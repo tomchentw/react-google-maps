@@ -3,45 +3,46 @@
 require("../styles/index.scss");
 var React = require("react/addons");
 
-var {GoogleMap} = require("../../src");
+var {GoogleMapsMixin, Map, Marker} = require("../../src");
 
 var Body = React.createClass({
 
-  getInitialState () {
-    var googleMapsApi = google.maps;
+  mixins: [GoogleMapsMixin],
+
+  getDefaultProps () {
     return {
-      googleMapsApi,
-      mapOptions: {
-        center: {
-          lat: -34.397,
-          lng: 150.644
-        },
-        zoom: 8,
-        mapTypeId: googleMapsApi.MapTypeId.ROADMAP
-      }
+      center: new google.maps.LatLng(-25.363882,131.044922),
+      zoom: 4,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
     };
   },
 
-  googleMapsApiLoaded () {
-    this.setState({
+  getInitialState () {
+    return  {
       googleMapsApi: google.maps
-    });
+    };
   },
 
   render () {
-    return <div>
-      <GoogleMap
-        googleMapsApi={this.state.googleMapsApi}
-        mapOptions={this.state.mapOptions}
-        onClick={this._handle_map_click}>
-      </GoogleMap>
-    </div>
+    return this._render(this.props, this.state);
   },
 
   _handle_map_click () {
     console.log("_handle_map_click");
+  },
+
+  _render (props, state) {
+    return <div>
+      <Map  center={props.center}
+            zoom={props.zoom}
+            mapTypeId={props.mapTypeId}
+            onClick={this._handle_map_click} />
+      <Marker position={props.center}
+              title={"Hello World!"} />
+    </div>;
   }
 });
+
 
 var bodyRef = React.renderComponent(
   <Body />,

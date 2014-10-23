@@ -32,9 +32,14 @@ var Body = React.createClass({
     return <div>
       <GoogleMap
         googleMapsApi={this.state.googleMapsApi}
-        mapOptions={this.state.mapOptions}>
+        mapOptions={this.state.mapOptions}
+        onClick={this._handle_map_click}>
       </GoogleMap>
     </div>
+  },
+
+  _handle_map_click () {
+    console.log("_handle_map_click");
   }
 });
 

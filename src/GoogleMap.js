@@ -2,16 +2,10 @@
 "use strict";
 var React = require("react/addons");
 
-var EventBindingMixin = require("./mixins/EventBindingMixin");
-
-var mapsNullObject = {
-
-};
+var Map = require("./Map");
 
 module.exports = React.createClass({
   displayName: "GoogleMap",
-
-  mixins: [EventBindingMixin],
 
   getDefaultProps () {
     return {
@@ -36,37 +30,27 @@ module.exports = React.createClass({
     }
   },
 
-  componentDidMount () {
-    this._init_google_maps(this.state.googleMapsApi);
-  },
-
-  componentDidUpdate () {
-    this._init_google_maps(this.state.googleMapsApi);
-  },
-
   componentWillUnmount () {
     var {googleMapsApi, map} = this.state;
-    this.clear_listeners(googleMapsApi, map);
+    this.refs.map.clear_listeners(googleMapsApi, map);
   },
 
   render () {
     return this._render(this.props, this.state);
   },
 
-  _init_google_maps (googleMapsApi) {
-    if (mapsNullObject === googleMapsApi) { return; }
-    var {map, eventNames} = this.state;
-    if (!map) {
-      map = new googleMapsApi.Map(
-        this.refs.mapCanvas.getDOMNode(),
-        this.props.mapOptions
-      );
-      this.setState({ map });
-    }
-    this.upsert_listeners(googleMapsApi, map);
+  _on_map_ceated (map) {
+    this.setState({ map });
   },
 
   _render (props, state) {
-    return <div ref="mapCanvas" style={{width:"100%", height:400}} />;
+    return <div>
+      <Map  ref="map"
+            googleMapsApi={state.googleMapsApi}
+            options={props.mapOptions}
+            on_map_ceated={this._on_map_ceated}>
+      </Map>
+      {props.children}
+    </div>;
   }
 });

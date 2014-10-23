@@ -1,0 +1,25 @@
+{
+  "name": "react-google-maps",
+  "main": "index.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/tomchentw/react-google-maps",
+  "author": {
+    "name": "tomchentw",
+    "email": "developer@tomchentw.com",
+    "url": "https://github.com/tomchentw"
+  },
+  "description": "React.js Google Maps integration component",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "webpack.config.js"
+  ],
+  "devDependencies": {
+    "bootstrap-sass-official": "~3.2.0"
+  }
+}

@@ -2,54 +2,40 @@
 "use strict";
 var React = require("react/addons");
 
-var EventBindingMixin = require("./mixins/EventBindingMixin");
-
-var mapsNullObject = {
-
-};
-
-function noop () {}
+var ChildMixin = require("./mixins/ChildMixin");
 
 module.exports = React.createClass({
   displayName: "Map",
 
-  mixins: [EventBindingMixin],
+  mixins: [ChildMixin],
 
-  getDefaultProps () {
-    return {
-      googleMapsApi: mapsNullObject,
-      options: {},
-      on_map_ceated: noop,
-    };
-  },
-
-  getInitialState () {
-    return {
-      initialized: false
-    }
+  contextTypes: {
+    _set_map: React.PropTypes.func
   },
 
   componentDidMount () {
-    this._init_google_maps(this.props.googleMapsApi);
+    this._init_map(this.context);
   },
 
   componentDidUpdate () {
-    this._init_google_maps(this.props.googleMapsApi);
+    this._init_map(this.context);
   },
 
   render () {
     return this._render(this.props, this.state);
   },
 
-  _init_google_maps (googleMapsApi) {
-    if (mapsNullObject === googleMapsApi || this.state.initialized) { return; }
-    var map = new googleMapsApi.Map(
-      this.refs.mapCanvas.getDOMNode(),
-      this.props.options
+  _init_map (context) {
+    if (context.hasMap() || !context.getApi()) {
+      return;
+    }
+    var {Map} = context.getApi();
+    context._set_map(
+      new Map(
+        this.refs.mapCanvas.getDOMNode(),
+        this.props
+      )
     );
-    this.setState({ initialized: true });
-    this.props.on_map_ceated(map);
-    this.upsert_listeners(googleMapsApi, map);
   },
 
   _render (props, state) {

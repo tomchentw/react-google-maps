@@ -3,11 +3,12 @@
 var React = require("react/addons");
 
 var ChildMixin = require("./mixins/ChildMixin");
+var EventBindingMixin = require("./mixins/EventBindingMixin");
 
 module.exports = React.createClass({
   displayName: "Marker",
 
-  mixins: [ChildMixin],
+  mixins: [ChildMixin, EventBindingMixin],
 
   getInitialState () {
     return {
@@ -24,11 +25,23 @@ module.exports = React.createClass({
   componentDidMount () {
     if (this.invalid_context(this.state.marker)) return;
     this._init_marker(this.context);
+    this.add_listeners(this.context);
+  },
+
+  componentWillUpdate () {
+    if (this.invalid_context(this.state.marker)) return;
+    this.clear_listeners(this.context);
   },
 
   componentDidUpdate () {
     if (this.invalid_context(this.state.marker)) return;
     this._init_marker(this.context);
+    this.add_listeners(this.context);
+  },
+
+  componentWillUnmount () {
+    if (this.invalid_context(this.state.marker)) return;
+    this.clear_listeners(this.context);
   },
 
   render () {
@@ -36,6 +49,9 @@ module.exports = React.createClass({
   },
 
   _init_marker (context) {
+    if (this.state.marker || !context.hasMap() || !context.getApi()) {
+      return;
+    }
     var {Marker} = context.getApi();
     var marker = new Marker(this.props);
     marker.setMap(context.getMap());

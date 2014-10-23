@@ -42,16 +42,15 @@ module.exports = {
     });
   },
 
-  upsert_listeners (googleMapsApi, map) {
-    this.clear_listeners(googleMapsApi, map);
+  add_listeners (context) {
     this.state.eventNames.forEach((eventName) => {
       var name = EVENT_MAP[eventName];
-      googleMapsApi.event.addListener(map, name, this.props[eventName]);
+      context.getApi().event.addListener(context.getMap(), name, this.props[eventName]);
     });
   },
 
-  clear_listeners (googleMapsApi, map) {
-    googleMapsApi.event.clearInstanceListeners(map);
+  clear_listeners (context) {
+    context.getApi().event.clearInstanceListeners(context.getMap());
   },
 
   _collect_event_names (props) {

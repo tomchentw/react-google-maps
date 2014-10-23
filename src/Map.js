@@ -14,10 +14,12 @@ module.exports = React.createClass({
   },
 
   componentDidMount () {
+    if (this.invalid_context(true)) return;
     this._init_map(this.context);
   },
 
   componentDidUpdate () {
+    if (this.invalid_context(true)) return;
     this._init_map(this.context);
   },
 
@@ -26,9 +28,6 @@ module.exports = React.createClass({
   },
 
   _init_map (context) {
-    if (context.hasMap() || !context.getApi()) {
-      return;
-    }
     var {Map} = context.getApi();
     context._set_map(
       new Map(

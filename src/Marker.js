@@ -4,7 +4,6 @@ var React = require("react/addons");
 
 var ChildMixin = require("./mixins/ChildMixin");
 
-
 module.exports = React.createClass({
   displayName: "Marker",
 
@@ -23,10 +22,12 @@ module.exports = React.createClass({
   },
 
   componentDidMount () {
+    if (this.invalid_context(this.state.marker)) return;
     this._init_marker(this.context);
   },
 
   componentDidUpdate () {
+    if (this.invalid_context(this.state.marker)) return;
     this._init_marker(this.context);
   },
 
@@ -35,9 +36,6 @@ module.exports = React.createClass({
   },
 
   _init_marker (context) {
-    if (this.state.marker || !context.hasMap() || !context.getApi()) {
-      return;
-    }
     var {Marker} = context.getApi();
     var marker = new Marker(this.props);
     marker.setMap(context.getMap());

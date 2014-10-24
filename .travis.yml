@@ -3,4 +3,4 @@ node_js:
 - '0.10'
 env:
   global:
-    secure: GrRduj+gIrQzGqme5nWw1mTBD5YjZrHdaDmiJW1mOgJzt+iapenfqH1n7HRu31FV1P9ikIj84V2OSXqRhYhpOJJmBdqKASmqSq8rLVXpIif8KKpxzagu6wl9umFl094AiNL+vAvuipvJoInKo1IH8iipATd18Lsvdr8BY05S9Fw=
+  - secure: GMNocCsbiEwxQc2VcKk1amBpX1gMcV3u4eLMgpf6E5O5J+c2X1xvsWm3zMz3TsnhSXQrtPnHXqhlX3Am8Vedx+dfqMW8y9r82KdJ4vr/2e3DrYt38qnQm9JZMGfUfxSpKMjcGzk0FPtSKiLT2xHi1AiH9hoCEPjgRA60vChVHDY=

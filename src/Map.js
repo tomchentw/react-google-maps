@@ -11,29 +11,30 @@ module.exports = React.createClass({
   mixins: [ChildMixin, EventBindingMixin],
 
   contextTypes: {
+    getMap: React.PropTypes.func,
     _set_map: React.PropTypes.func
   },
 
   componentDidMount () {
     if (this.invalid_context(true)) return;
     this._init_map(this.context);
-    this.add_listeners(this.context);
+    this.add_listeners(this.context.getMap());
   },
 
   componentWillUpdate () {
     if (this.invalid_context(true)) return;
-    this.clear_listeners(this.context);
+    this.clear_listeners(this.context.getMap());
   },
 
   componentDidUpdate () {
     if (this.invalid_context(true)) return;
     this._init_map(this.context);
-    this.add_listeners(this.context);
+    this.add_listeners(this.context.getMap());
   },
 
   componentWillUnmount () {
     if (this.invalid_context(true)) return;
-    this.clear_listeners(this.context);
+    this.clear_listeners(this.context.getMap());
   },
 
   render () {

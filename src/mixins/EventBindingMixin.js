@@ -42,15 +42,17 @@ module.exports = {
     });
   },
 
-  add_listeners (context) {
+  add_listeners (instance) {
+    var {context, props} = this;
     this.state.eventNames.forEach((eventName) => {
       var name = EVENT_MAP[eventName];
-      context.getApi().event.addListener(context.getMap(), name, this.props[eventName]);
+      context.getApi().event.addListener(instance, name, props[eventName]);
     });
   },
 
-  clear_listeners (context) {
-    context.getApi().event.clearInstanceListeners(context.getMap());
+  clear_listeners (instance) {
+    var {context} = this;
+    context.getApi().event.clearInstanceListeners(instance);
   },
 
   _collect_event_names (props) {

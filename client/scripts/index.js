@@ -31,6 +31,10 @@ var Body = React.createClass({
     console.log("_handle_map_click");
   },
 
+  _handle_marker_click () {
+    console.log("_handle_marker_click");
+  },
+
   _render (props, state) {
     return <div>
       <Map  center={props.center}
@@ -38,7 +42,8 @@ var Body = React.createClass({
             mapTypeId={props.mapTypeId}
             onClick={this._handle_map_click} />
       <Marker position={props.center}
-              title={"Hello World!"} />
+              title={"Hello World!"}
+              onClick={this._handle_marker_click} />
     </div>;
   }
 });

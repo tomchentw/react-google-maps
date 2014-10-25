@@ -25,23 +25,23 @@ module.exports = React.createClass({
   componentDidMount () {
     if (this.invalid_context(this.state.marker)) return;
     this._init_marker(this.context);
-    this.add_listeners(this.context);
+    this.add_listeners(this.state.marker);
   },
 
   componentWillUpdate () {
     if (this.invalid_context(this.state.marker)) return;
-    this.clear_listeners(this.context);
+    this.clear_listeners(this.state.marker);
   },
 
   componentDidUpdate () {
     if (this.invalid_context(this.state.marker)) return;
     this._init_marker(this.context);
-    this.add_listeners(this.context);
+    this.add_listeners(this.state.marker);
   },
 
   componentWillUnmount () {
     if (this.invalid_context(this.state.marker)) return;
-    this.clear_listeners(this.context);
+    this.clear_listeners(this.state.marker);
   },
 
   render () {

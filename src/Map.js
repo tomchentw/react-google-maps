@@ -17,8 +17,7 @@ module.exports = React.createClass({
 
   componentDidMount () {
     if (this.invalid_context(true)) return;
-    this._init_map(this.context);
-    this.add_listeners(this.context.getMap());
+    this.add_listeners(this._init_map());
   },
 
   componentWillUpdate () {
@@ -28,8 +27,7 @@ module.exports = React.createClass({
 
   componentDidUpdate () {
     if (this.invalid_context(true)) return;
-    this._init_map(this.context);
-    this.add_listeners(this.context.getMap());
+    this.add_listeners(this._init_map());
   },
 
   componentWillUnmount () {
@@ -41,9 +39,10 @@ module.exports = React.createClass({
     return this._render(this.props, this.state);
   },
 
-  _init_map (context) {
+  _init_map () {
+    var {context} = this;
     var {Map} = context.getApi();
-    context._set_map(
+    return context._set_map(
       new Map(
         this.refs.mapCanvas.getDOMNode(),
         this.props

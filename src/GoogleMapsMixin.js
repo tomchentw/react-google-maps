@@ -48,5 +48,6 @@ module.exports = {
 
   _set_map (map) {
     this.setState({ map });
+    return map;
   }
 };

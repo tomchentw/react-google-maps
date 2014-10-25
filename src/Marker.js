@@ -23,32 +23,37 @@ module.exports = React.createClass({
   },
 
   componentDidMount () {
-    if (this.invalid_context(this.state.marker)) return;
-    this._init_marker(this.context);
-    this.add_listeners(this.state.marker);
+    var {marker} = this.state;
+    if (this.invalid_context(marker)) return;
+    marker = this._init_marker();
+    this.add_listeners(marker);
   },
 
   componentWillUpdate () {
-    if (this.invalid_context(this.state.marker)) return;
-    this.clear_listeners(this.state.marker);
+    var {marker} = this.state;
+    if (this.invalid_context(marker)) return;
+    this.clear_listeners(marker);
   },
 
   componentDidUpdate () {
-    if (this.invalid_context(this.state.marker)) return;
-    this._init_marker(this.context);
-    this.add_listeners(this.state.marker);
+    var {marker} = this.state;
+    if (this.invalid_context(marker)) return;
+    marker = this._init_marker();
+    this.add_listeners(marker);
   },
 
   componentWillUnmount () {
-    if (this.invalid_context(this.state.marker)) return;
-    this.clear_listeners(this.state.marker);
+    var {marker} = this.state;
+    if (this.invalid_context(marker)) return;
+    this.clear_listeners(marker);
   },
 
   render () {
     return this._render(this.props, this.state);
   },
 
-  _init_marker (context) {
+  _init_marker () {
+    var {context} = this;
     if (this.state.marker || !context.hasMap() || !context.getApi()) {
       return;
     }
@@ -57,6 +62,7 @@ module.exports = React.createClass({
     marker.setMap(context.getMap());
 
     this.setState({ marker });
+    return marker;
   },
 
   _render (props, state) {

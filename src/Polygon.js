@@ -17,31 +17,30 @@ module.exports = React.createClass({
   },
 
   componentDidMount () {
-    var {polygon} = this.state;
-    if (polygon || !this.context.hasMap()) return;
-    this.add_listeners(this._init_polygon());
+    var polygon = this._init_polygon();
+    if (!polygon) return;
+    this.add_listeners(polygon);
   },
 
   componentWillUpdate () {
     var {polygon} = this.state;
-    if (polygon || !this.context.hasMap()) return;
+    if (!polygon) return;
     this.clear_listeners(polygon);
   },
 
   componentDidUpdate () {
-    var {polygon} = this.state;
-    if (!this.context.hasMap()) return;
-    if (polygon) {
-      polygon.setOptions(this.props);
-    } else {
-      this.add_listeners(this._init_polygon());
-    }
+    var polygon = this._init_polygon();
+    if (!polygon) return;
+    this.add_listeners(polygon);
+    polygon.setOptions(this.props);
   },
 
   componentWillUnmount () {
     var {polygon} = this.state;
-    if (polygon || !this.context.hasMap()) return;
+    if (!polygon) return;
     this.clear_listeners(polygon);
+    polygon.setMap(null);
+    this.setState({ polygon: null });
   },
 
   render () {
@@ -54,11 +53,12 @@ module.exports = React.createClass({
 
   _init_polygon () {
     var {context} = this;
-    if (this.state.polygon || !context.hasMap() || !context.getApi()) {
-      return;
+    var {polygon} = this.state;
+    if (polygon || !context.hasMap() || !context.getApi()) {
+      return polygon;
     }
     var {Polygon} = context.getApi();
-    var polygon = new Polygon(this.props);
+    polygon = new Polygon(this.props);
     polygon.setMap(context.getMap());
 
     this.expose_getters_from(Polygon.prototype, polygon);

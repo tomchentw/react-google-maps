@@ -6,6 +6,8 @@ describe("index", function() {
   it("should export components", function() {
     var index = require("../index.js");
 
-    expect(index.GoogleMap).toBeDefined();
+    expect(index.GoogleMapsMixin).toBeDefined();
+    expect(index.Map).toBeDefined();
+    expect(index.Marker).toBeDefined();
   });
 });

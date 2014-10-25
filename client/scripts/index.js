@@ -2,8 +2,9 @@
 "use strict";
 require("../styles/index.scss");
 var React = require("react/addons");
+var {update} = React.addons;
 
-var {GoogleMapsMixin, Map, Marker} = require("../../src");
+var {GoogleMapsMixin, Map, Marker, Polygon} = require("../../src");
 
 var Body = React.createClass({
 
@@ -11,8 +12,21 @@ var Body = React.createClass({
 
   getDefaultProps () {
     return {
-      center: new google.maps.LatLng(-25.363882,131.044922),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      center: {lat: 24.886436490787712, lng: -70.2685546875},
+      mapTypeId: google.maps.MapTypeId.TERRAIN,
+      bermudaTriangle: {
+        paths: [
+          {lat: 25.774252, lng: -80.190262},
+          {lat: 18.466465, lng: -66.118292},
+          {lat: 32.321384, lng: -64.75737},
+          {lat: 25.774252, lng: -80.190262},
+        ],
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35,
+      },
     };
   },
 
@@ -20,7 +34,8 @@ var Body = React.createClass({
     return  {
       googleMapsApi: google.maps,
       zoom: 4,
-      opacity: 1
+      opacity: 1,
+      hideMarker: false,
     };
   },
 
@@ -45,6 +60,13 @@ var Body = React.createClass({
     });
   },
 
+  _handle_polygon_rightclick () {
+    console.log(this.state.hideMarker);
+    this.setState({
+      hideMarker: !this.state.hideMarker
+    })
+  },
+
   _render (props, state) {
     return <div>
       <Map  ref="map"
@@ -53,10 +75,17 @@ var Body = React.createClass({
             mapTypeId={props.mapTypeId}
             onClick={this._handle_map_click}
             onZoomChanged={this._handle_map_zoom_changed} />
-      <Marker position={props.center}
-              title={"Hello World!"}
-              opacity={state.opacity}
-              onClick={this._handle_marker_click} />
+      { state.hideMarker ? false :
+          <Marker position={props.center}
+                  title={"the Bermuda Triangle!"}
+                  opacity={state.opacity}
+                  onClick={this._handle_marker_click} />
+      }
+      {
+        Polygon(update(props.bermudaTriangle, { $merge: {
+          onRightclick: this._handle_polygon_rightclick
+        }}))
+      }
     </div>;
   }
 });

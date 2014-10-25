@@ -3,3 +3,4 @@
 exports.GoogleMapsMixin = require("./GoogleMapsMixin");
 exports.Map = require("./Map");
 exports.Marker = require("./Marker");
+exports.Polygon = require("./Polygon");

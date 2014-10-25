@@ -1,10 +1,64 @@
 /** @jsx React.DOM */
 "use strict";
 
-var EVENT_MAP = {};
-var EVENT_LIST = "bounds_changed center_changed click dblclick drag dragend dragstart heading_changed idle maptypeid_changed mousemove mouseout mouseover projection_changed resize rightclick tilesloaded tilt_changed zoom_changed"
-                  .split(" ")
-                  .map(toEventList, EVENT_MAP);
+module.exports = {
+
+  getInitialState () {
+    return {
+      _active_event_names: []
+    };
+  },
+
+  componentWillMount () {
+    this.setState({
+      _active_event_names: this._collect_event_names(this.props)
+    });
+  },
+
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      _active_event_names: this._collect_event_names(nextProps)
+    });
+  },
+
+  add_listeners (instance) {
+    var {context, props} = this;
+    var {_active_event_names, _event_map} = this.state;
+    _active_event_names.forEach((eventName) => {
+      var name = _event_map[eventName];
+      context.getApi().event.addListener(instance, name, props[eventName]);
+    });
+  },
+
+  clear_listeners (instance) {
+    var {context} = this;
+    context.getApi().event.clearInstanceListeners(instance);
+  },
+
+  _get_event_list () {
+    var _event_list = this.state && this.state._event_list;
+    if (!_event_list) {
+      if (!this.get_event_names) {
+        throw new TypeError("Unimplemented get_event_names");
+      }
+      var _event_map = {};
+      _event_list = this.get_event_names()
+        .split(" ")
+        .map(toEventList, _event_map);
+      this.setState({
+        _event_list,
+        _event_map
+      });
+    }
+    return _event_list;
+  },
+
+  _collect_event_names (props) {
+    return this._get_event_list().filter((eventName) => {
+      return eventName in props;
+    });
+  }
+};
 
 function toEventList (name) {
   var eventName = toEventName(name);
@@ -21,43 +75,3 @@ function toEventName(name) {
 function groupToUpperCase (match, group) {
   return group.toUpperCase();
 }
-
-module.exports = {
-
-  getInitialState () {
-    return {
-      eventNames: []
-    };
-  },
-
-  componentWillMount () {
-    this.setState({
-      eventNames: this._collect_event_names(this.props)
-    });
-  },
-
-  componentWillReceiveProps (nextProps) {
-    this.setState({
-      eventNames: this._collect_event_names(nextProps)
-    });
-  },
-
-  add_listeners (instance) {
-    var {context, props} = this;
-    this.state.eventNames.forEach((eventName) => {
-      var name = EVENT_MAP[eventName];
-      context.getApi().event.addListener(instance, name, props[eventName]);
-    });
-  },
-
-  clear_listeners (instance) {
-    var {context} = this;
-    context.getApi().event.clearInstanceListeners(instance);
-  },
-
-  _collect_event_names (props) {
-    return EVENT_LIST.filter((eventName) => {
-      return eventName in props;
-    });
-  }
-};

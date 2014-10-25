@@ -49,6 +49,10 @@ module.exports = React.createClass({
     return this._render(this.props, this.state);
   },
 
+  get_event_names () {
+    return "bounds_changed center_changed click dblclick drag dragend dragstart heading_changed idle maptypeid_changed mousemove mouseout mouseover projection_changed resize rightclick tilesloaded tilt_changed zoom_changed";
+  },
+
   _init_map () {
     var {context} = this;
     var {Map} = context.getApi();

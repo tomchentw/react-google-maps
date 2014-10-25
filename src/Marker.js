@@ -48,6 +48,10 @@ module.exports = React.createClass({
     return this._render(this.props, this.state);
   },
 
+  get_event_names () {
+    return "animation_changed click clickable_changed cursor_changed dblclick drag dragend draggable_changed dragstart flat_changed icon_changed mousedown mouseout mouseover mouseup position_changed rightclick shape_changed title_changed visible_changed zindex_changed";
+  },
+
   _init_marker () {
     var {context} = this;
     if (this.state.marker || !context.hasMap() || !context.getApi()) {

@@ -31,8 +31,11 @@ module.exports = React.createClass({
   componentDidUpdate () {
     var {context} = this;
     if (!context.getApi()) return;
-    if (context.hasMap()) return;
-    this.add_listeners(this._init_map());
+    if (context.hasMap()) {
+      this.context.getMap().setOptions(this.props);
+    } else {
+      this.add_listeners(this._init_map());
+    }
   },
 
   componentWillUnmount () {

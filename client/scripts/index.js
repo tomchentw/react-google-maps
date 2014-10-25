@@ -33,12 +33,16 @@ var Body = React.createClass({
 
   _handle_marker_click () {
     console.log("_handle_marker_click");
+    this.setState({
+      zoom: (this.state.zoom || this.props.zoom)+1
+    });
   },
 
   _render (props, state) {
+    console.log('render', state);
     return <div>
       <Map  center={props.center}
-            zoom={props.zoom}
+            zoom={state.zoom || props.zoom}
             mapTypeId={props.mapTypeId}
             onClick={this._handle_map_click} />
       <Marker position={props.center}

@@ -16,35 +16,29 @@ module.exports = React.createClass({
     };
   },
 
-  contextTypes: {
-    getMap: React.PropTypes.func,
-    getApi: React.PropTypes.func,
-    hasMap: React.PropTypes.func,
-  },
-
   componentDidMount () {
     var {marker} = this.state;
-    if (this.invalid_context(marker)) return;
+    if (marker || !this.context.hasMap()) return;
     marker = this._init_marker();
     this.add_listeners(marker);
   },
 
   componentWillUpdate () {
     var {marker} = this.state;
-    if (this.invalid_context(marker)) return;
+    if (marker || !this.context.hasMap()) return;
     this.clear_listeners(marker);
   },
 
   componentDidUpdate () {
     var {marker} = this.state;
-    if (this.invalid_context(marker)) return;
+    if (marker || !this.context.hasMap()) return;
     marker = this._init_marker();
     this.add_listeners(marker);
   },
 
   componentWillUnmount () {
     var {marker} = this.state;
-    if (this.invalid_context(marker)) return;
+    if (marker || !this.context.hasMap()) return;
     this.clear_listeners(marker);
   },
 

@@ -18,13 +18,6 @@ module.exports = {
     _set_map: React.PropTypes.func
   },
 
-  contextTypes: {
-    getMap: React.PropTypes.func,
-    getApi: React.PropTypes.func,
-    hasMap: React.PropTypes.func,
-    _set_map: React.PropTypes.func
-  },
-
   getChildContext () {
     return {
       getMap: this._get_map,

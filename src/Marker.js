@@ -19,8 +19,7 @@ module.exports = React.createClass({
   componentDidMount () {
     var {marker} = this.state;
     if (marker || !this.context.hasMap()) return;
-    marker = this._init_marker();
-    this.add_listeners(marker);
+    this.add_listeners(this._init_marker());
   },
 
   componentWillUpdate () {
@@ -31,9 +30,12 @@ module.exports = React.createClass({
 
   componentDidUpdate () {
     var {marker} = this.state;
-    if (marker || !this.context.hasMap()) return;
-    marker = this._init_marker();
-    this.add_listeners(marker);
+    if (!this.context.hasMap()) return;
+    if (marker) {
+      marker.setOptions(this.props);
+    } else {
+      this.add_listeners(this._init_marker());
+    }
   },
 
   componentWillUnmount () {
@@ -55,6 +57,7 @@ module.exports = React.createClass({
     var marker = new Marker(this.props);
     marker.setMap(context.getMap());
 
+    this.expose_getters_from(Marker.prototype, marker);
     this.setState({ marker });
     return marker;
   },

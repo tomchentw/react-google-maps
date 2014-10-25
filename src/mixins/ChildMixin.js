@@ -16,7 +16,7 @@ module.exports = {
 
   expose_getters_from (prototype, instance) {
     Object.keys(prototype).forEach((key) => {
-      if (key.match(/^get/)) {
+      if (key.match(/^get/) && !key.match(/Map$/)) {
         this[key] = instance[key].bind(instance);
       }
     });

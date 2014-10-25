@@ -12,5 +12,13 @@ module.exports = {
     getMap: React.PropTypes.func,
     getApi: React.PropTypes.func,
     hasMap: React.PropTypes.func,
+  },
+
+  expose_getters_from (prototype, instance) {
+    Object.keys(prototype).forEach((key) => {
+      if (key.match(/^get/)) {
+        this[key] = instance[key].bind(instance);
+      }
+    });
   }
 };

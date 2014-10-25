@@ -52,12 +52,12 @@ module.exports = React.createClass({
   _init_map () {
     var {context} = this;
     var {Map} = context.getApi();
-    return context._set_map(
-      new Map(
-        this.refs.mapCanvas.getDOMNode(),
-        this.props
-      )
+    var map = new Map(
+      this.refs.mapCanvas.getDOMNode(),
+      this.props
     );
+    this.expose_getters_from(Map.prototype, map);
+    return context._set_map(map);
   },
 
   _render (props, state) {

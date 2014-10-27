@@ -18,7 +18,6 @@ module.exports = React.createClass({
 
   componentDidMount () {
     var marker = this._init_marker();
-    console.log("componentDidMount", marker);
     if (!marker) return;
     this.add_listeners(marker);
   },

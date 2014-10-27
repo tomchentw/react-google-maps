@@ -4,7 +4,7 @@ require("../styles/index.scss");
 var React = require("react/addons");
 var {update} = React.addons;
 
-var {GoogleMapsMixin, Map, Marker, Polygon} = require("../../src");
+var {GoogleMapsMixin, Map, Marker, Polygon, Polyline} = require("../../src");
 
 var Body = React.createClass({
 
@@ -26,6 +26,18 @@ var Body = React.createClass({
         strokeWeight: 2,
         fillColor: '#FF0000',
         fillOpacity: 0.35,
+      },
+      flightPath: {
+        path: [
+          {lat: 37.772323, lng: -122.214897},
+          {lat: 21.291982, lng: -157.821856},
+          {lat: -18.142599, lng: 178.431},
+          {lat: -27.46758, lng: 153.027892},
+        ],
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
       },
     };
   },
@@ -86,6 +98,7 @@ var Body = React.createClass({
           onRightclick: this._handle_polygon_rightclick
         }}))
       }
+      { Polyline(props.flightPath) }
     </div>;
   }
 });

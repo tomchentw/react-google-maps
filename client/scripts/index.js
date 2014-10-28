@@ -6,48 +6,58 @@ var {update} = React.addons;
 
 var {GoogleMapsMixin, Map, Marker, Polygon, Polyline} = require("../../src");
 
+function geometryToComponentWithLatLng (geometry) {
+  var typeFromThis = Array.isArray(geometry);
+  var type = typeFromThis ? this.type : geometry.type;
+  var coordinates = typeFromThis ? geometry : geometry.coordinates;
+
+  switch (type) {
+    case "Polygon":
+      return {
+        Component: Polygon,
+        paths: coordinates.map(geometryToComponentWithLatLng, {type: "LineString"})[0]
+      };
+    case "LineString":
+      coordinates = coordinates.map(geometryToComponentWithLatLng, {type: "Point"});
+      return typeFromThis ? coordinates : {
+        Component: Polyline,
+        path: coordinates
+      };
+    case "Point":
+      coordinates = new google.maps.LatLng(coordinates[1], coordinates[0]);
+      return typeFromThis ? coordinates : {
+        Component: Marker,
+        position: coordinates
+      };
+    default:
+      throw new TypeError(`Unknown geometry type: ${ type }`);
+  }
+}
+
 var Body = React.createClass({
 
   mixins: [GoogleMapsMixin],
 
-  getDefaultProps () {
-    return {
-      center: {lat: 24.886436490787712, lng: -70.2685546875},
-      mapTypeId: google.maps.MapTypeId.TERRAIN,
-      bermudaTriangle: {
-        paths: [
-          {lat: 25.774252, lng: -80.190262},
-          {lat: 18.466465, lng: -66.118292},
-          {lat: 32.321384, lng: -64.75737},
-          {lat: 25.774252, lng: -80.190262},
-        ],
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
-      },
-      flightPath: {
-        path: [
-          {lat: 37.772323, lng: -122.214897},
-          {lat: 21.291982, lng: -157.821856},
-          {lat: -18.142599, lng: 178.431},
-          {lat: -27.46758, lng: 153.027892},
-        ],
-        geodesic: true,
-        strokeColor: '#FF0000',
-        strokeOpacity: 1.0,
-        strokeWeight: 2,
-      },
-    };
-  },
-
   getInitialState () {
     return  {
       googleMapsApi: google.maps,
-      zoom: 4,
-      opacity: 1,
-      hideMarker: false,
+      geoJson: this.props.initialGeoJson,
+      geoStateBy: {
+        0: {
+          ref: "map",
+          onClick: this._handle_map_click,
+          onZoomChanged: this._handle_map_zoom_changed
+        },
+        1: {
+          visible: true,
+          draggable: true,
+          onDragend: this._handle_marker_dragend,
+          onClick: this._handle_marker_click
+        },
+        3: {
+          onRightclick: this._handle_polygon_rightclick
+        }
+      }
     };
   },
 
@@ -60,63 +70,118 @@ var Body = React.createClass({
   },
 
   _handle_map_zoom_changed () {
-    this.setState({
-      opacity: 0.5+(this.state.zoom/14),
-      zoom: this.refs.map.getZoom()
-    })
+    this.setState(update(this.state, {
+      geoStateBy: {
+        1: {
+          $merge: {
+            opacity: 0.3+(this.refs.map.getZoom()/14)
+          }
+        }
+      }
+    }));
   },
 
   _handle_marker_click () {
-    this.setState({
-      zoom: 1+this.state.zoom
-    });
+    this.setState(update(this.state, {
+      geoStateBy: {
+        0: {
+          $merge: {
+            zoom: 1+this.refs.map.getZoom()
+          }
+        }
+      }
+    }));
   },
 
   _handle_polygon_rightclick () {
-    console.log(this.state.hideMarker);
-    this.setState({
-      hideMarker: !this.state.hideMarker
-    })
+    this.setState(update(this.state, {
+      geoStateBy: {
+        1: {
+          $merge: {
+            visible: !this.state.geoStateBy[1].visible
+          }
+        }
+      }
+    }));
   },
 
   _handle_marker_dragend ({latLng}) {
-    this.setState({
-      line: [this.props.center, latLng]
-    });
+    var marker = this.state.geoJson.features[1];
+    var originalCoordinates = marker.properties.originalCoordinates || marker.geometry.coordinates;
+    var newCoordinates = [latLng.lng(), latLng.lat()];
+    this.setState(update(this.state, {
+      geoJson: {
+        features: {
+          1: {
+            geometry: {
+              coordinates: {
+                $set: newCoordinates
+              }
+            },
+            properties: {
+              originalCoordinates: {
+                $set: originalCoordinates
+              }
+            }
+          },
+          4: {
+            $set: {
+              "type": "Feature",
+              "id": 4,
+              "geometry": {
+                "type": "LineString",
+                "coordinates": [originalCoordinates, newCoordinates]
+              },
+              "properties": {
+              }
+            }
+          }
+        }
+      }
+    }));
   },
 
   _render (props, state) {
-    return <div>
-      <Map  ref="map"
-            center={props.center}
-            zoom={state.zoom}
-            mapTypeId={props.mapTypeId}
-            onClick={this._handle_map_click}
-            onZoomChanged={this._handle_map_zoom_changed} />
-      { state.hideMarker ? false :
-          <Marker draggable={true}
-                  onDragstart={this._handle_marker_dragstart}
-                  onDragend={this._handle_marker_dragend}
-                  position={props.center}
-                  title={"the Bermuda Triangle!"}
-                  opacity={state.opacity}
-                  onClick={this._handle_marker_click} />
+    console.log(state)
+    var {geoStateBy} = state;
+    var components = state.geoJson.features.map((feature) => {
+      var {properties} = feature;
+      var result = geometryToComponentWithLatLng(feature.geometry);
+      var Component = result.Component;
+      delete result.Component;
+      if (properties.isCenter) {
+        Component = Map;
+        result.center = result.position;
+        delete result.position;
       }
-      {
-        Polygon(update(props.bermudaTriangle, { $merge: {
-          onRightclick: this._handle_polygon_rightclick
-        }}))
+
+      var geoStatesOfFeature = geoStateBy[feature.id] || {};
+      if (geoStatesOfFeature.visible === false) {
+        return null;
       }
-      { Polyline(props.flightPath) }
-      { !state.line ? false :
-          <Polyline path={state.line} />
+      var {style} = properties;
+      if (style) {
+        style = update(properties.style, {
+          $merge: result
+        });
+      } else {
+        style = result;
       }
-    </div>;
+
+      if (geoStatesOfFeature) {
+        style = update(style, {
+          $merge: geoStatesOfFeature
+        });
+      }
+      return Component(style);
+    });
+
+    return React.DOM.div(null, components);
   }
 });
 
 
 var bodyRef = React.renderComponent(
-  <Body />,
+  <Body initialGeoJson={require("./geojson")} />,
   document.getElementById("react-root")
 );

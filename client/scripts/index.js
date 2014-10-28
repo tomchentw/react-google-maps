@@ -79,6 +79,12 @@ var Body = React.createClass({
     })
   },
 
+  _handle_marker_dragend ({latLng}) {
+    this.setState({
+      line: [this.props.center, latLng]
+    });
+  },
+
   _render (props, state) {
     return <div>
       <Map  ref="map"
@@ -88,7 +94,10 @@ var Body = React.createClass({
             onClick={this._handle_map_click}
             onZoomChanged={this._handle_map_zoom_changed} />
       { state.hideMarker ? false :
-          <Marker position={props.center}
+          <Marker draggable={true}
+                  onDragstart={this._handle_marker_dragstart}
+                  onDragend={this._handle_marker_dragend}
+                  position={props.center}
                   title={"the Bermuda Triangle!"}
                   opacity={state.opacity}
                   onClick={this._handle_marker_click} />
@@ -99,6 +108,9 @@ var Body = React.createClass({
         }}))
       }
       { Polyline(props.flightPath) }
+      { !state.line ? false :
+          <Polyline path={state.line} />
+      }
     </div>;
   }
 });

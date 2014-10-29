@@ -65,6 +65,10 @@ module.exports = React.createClass({
   },
 
   _render (props, state) {
-    return <div ref="mapCanvas" style={{width:"100%", height:400}} />;
+    return <div ref="mapCanvas"
+      id={props.id}
+      className={props.className}
+      style={props.style}>
+    </div>;
   }
 });

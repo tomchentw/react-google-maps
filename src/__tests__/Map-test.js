@@ -32,6 +32,6 @@ describe("Map", function() {
       map, "div"
     );
 
-    expect(divCanvas.getDOMNode().getAttribute("style")).toEqual("width:100%;height:400px;");
+    expect(divCanvas.getDOMNode().getAttribute("style")).toEqual(null);
   });
 });

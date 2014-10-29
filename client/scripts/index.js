@@ -45,6 +45,7 @@ var Body = React.createClass({
       geoStateBy: {
         0: {
           ref: "map",
+          style: {height: "100%"},
           onClick: this._handle_map_click,
           onZoomChanged: this._handle_map_zoom_changed
         },
@@ -66,7 +67,6 @@ var Body = React.createClass({
   },
 
   _handle_map_click () {
-    console.log("_handle_map_click");
   },
 
   _handle_map_zoom_changed () {
@@ -142,7 +142,6 @@ var Body = React.createClass({
   },
 
   _render (props, state) {
-    console.log(state)
     var {geoStateBy} = state;
     var components = state.geoJson.features.map((feature) => {
       var {properties} = feature;
@@ -176,7 +175,11 @@ var Body = React.createClass({
       return Component(style);
     });
 
-    return React.DOM.div(null, components);
+    return React.DOM.div({
+      style: {
+        height: "100%"
+      }
+    }, components);
   }
 });
 

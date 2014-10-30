@@ -4,7 +4,7 @@ require("../styles/index.scss");
 var React = require("react/addons");
 var {update} = React.addons;
 
-var {GoogleMapsMixin, Map, Marker, Polygon, Polyline} = require("../../src");
+var {GoogleMapsMixin, Map, Marker, Polygon, Polyline, InfoWindow} = require("../../src");
 
 function geometryToComponentWithLatLng (geometry) {
   var typeFromThis = Array.isArray(geometry);
@@ -27,6 +27,7 @@ function geometryToComponentWithLatLng (geometry) {
       coordinates = new google.maps.LatLng(coordinates[1], coordinates[0]);
       return typeFromThis ? coordinates : {
         Component: Marker,
+        ChildComponent: InfoWindow,
         position: coordinates
       };
     default:
@@ -50,10 +51,15 @@ var Body = React.createClass({
           onZoomChanged: this._handle_map_zoom_changed
         },
         1: {
+          ref: "centerMarker",
           visible: true,
           draggable: true,
           onDragend: this._handle_marker_dragend,
-          onClick: this._handle_marker_click
+          onClick: this._handle_marker_click,
+          child: {
+            content: "Bermuda Triangle",
+            owner: "centerMarker"
+          }
         },
         3: {
           onRightclick: this._handle_polygon_rightclick
@@ -171,6 +177,11 @@ var Body = React.createClass({
         style = update(style, {
           $merge: geoStatesOfFeature
         });
+      }
+      if (style.child) {
+        var {ChildComponent} = result;
+        delete result.ChildComponent;
+        return Component(style, ChildComponent(style.child));
       }
       return Component(style);
     });

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * __template__gist__: https://gist.github.com/tomchentw/368a93bb748ad9d576f1#file-webpack-config-js
  */

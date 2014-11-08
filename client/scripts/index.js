@@ -4,8 +4,8 @@ require("prism/themes/prism.css");
 
 var React = require("react/addons"),
     {update} = React.addons,
+    {PrismCode} = require("react-prism"),
 
-    PrismCode = require("./PrismCode"),
     Components = require("./Components"),
     Body,
     bodyComponent;

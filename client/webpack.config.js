@@ -6,12 +6,16 @@ var Path = require("path"),
     webpack = require("webpack"),
     HtmlWebpackPlugin = require("html-webpack-plugin"),
     webpackConfig,
- 
+
     IS_PRODUCTION = "production" === process.env.NODE_ENV,
     JSX_LOADER = "jsx-loader?harmony",
-    SCSS_LOADER = "style-loader!css-loader?root=../!sass-loader?includePaths[]=" +
-        Path.resolve(__dirname, "../bower_components/bootstrap-sass-official/assets/stylesheets");
- 
+    CSS_LOADER = "style-loader!css-loader?root=../",
+    SCSS_LOADER = CSS_LOADER + "!sass-loader?" + JSON.stringify({
+      includePaths: [
+        Path.resolve(__dirname, "../bower_components/bootstrap-sass-official/assets/stylesheets"),
+      ]
+    });
+
 webpackConfig = module.exports = {
   entry: "./client/scripts/index.js",
   output: {
@@ -19,15 +23,24 @@ webpackConfig = module.exports = {
     publicPath: "assets/",
     filename: (IS_PRODUCTION ? "[hash].js" : "bundle.js")
   },
+  resolve: {
+    root: [
+      Path.join(__dirname, "../bower_components")
+    ]
+  },
   module: {
     loaders: [
       { test: require.resolve("react/addons"), loader: "expose-loader?React" },
       { test: /\.js(x?)$/, loader: JSX_LOADER },
       { test: /\.jpg$/, loader: "file-loader" },
+      { test: /\.css$/, loader: CSS_LOADER },
       { test: /\.scss$/, loader: SCSS_LOADER },
     ]
   },
   plugins: [
+    new webpack.ResolverPlugin(
+      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
+    ),
     new webpack.ProvidePlugin({
         $: "jquery",
         jQuery: "jquery"
@@ -38,7 +51,7 @@ webpackConfig = module.exports = {
     })
   ]
 };
- 
+
 if (IS_PRODUCTION) {
   webpackConfig.plugins.push(
     new webpack.optimize.DedupePlugin()

@@ -1,8 +1,11 @@
 "use strict";
 require("../styles/index.scss");
+require("prism/themes/prism.css");
+
 var React = require("react/addons"),
     {update} = React.addons,
 
+    PrismCode = require("./PrismCode"),
     Components = require("./Components"),
     Body,
     bodyComponent;
@@ -15,10 +18,14 @@ Body = React.createClass({
   },
 
   _render (props, state) {
-    return <div className="row row--full-height">
-      <Components className="col-xs-6" initialGeoJson={require("./geojson")} />
-      <div className="col-xs-6">
-        {require("raw-loader!./Components")}
+    return <div className="container-fluid container--full-height">
+      <div className="row row--full-height">
+        <Components className="col-xs-6" initialGeoJson={require("./geojson")} />
+        <div className="col-xs-6">
+          <pre><PrismCode className="language-javascript">
+            {require("raw-loader!./Components")}
+          </PrismCode></pre>
+        </div>
       </div>
     </div>;
   }

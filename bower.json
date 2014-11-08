@@ -20,6 +20,7 @@
     "webpack.config.js"
   ],
   "devDependencies": {
-    "bootstrap-sass-official": "~3.2.0"
+    "bootstrap-sass-official": "~3.2.0",
+    "prism": "3e9491d33bb2e8b959f0cd97ebad927285885158"
   }
 }

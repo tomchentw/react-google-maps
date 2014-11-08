@@ -66,6 +66,6 @@ module.exports = React.createClass({
   },
 
   _render (props, state) {
-    return null;
+    return (props.children)? props.children : null;
   }
 });

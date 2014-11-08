@@ -63,7 +63,8 @@
     "webpack-dev-server": "^1.6.5"
   },
   "dependencies": {
-    "react": "^0.11.0"
+    "react": "^0.11.0",
+    "deep-equal": "^0.2.1"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/test/__preprocessor__.js",

@@ -194,7 +194,7 @@ var Body = React.createClass({
 });
 
 
-var bodyRef = React.renderComponent(
+var bodyComponent = React.render(
   <Body initialGeoJson={require("./geojson")} />,
   document.getElementById("react-root")
 );

@@ -3,7 +3,7 @@ require("../styles/index.scss");
 var React = require("react/addons");
 var {update} = React.addons;
 
-var {GoogleMapsMixin, Map, Marker, Polygon, Polyline, InfoWindow} = require("../../src");
+var {GoogleMapsMixin, Map, Marker, Polyline, Polygon, InfoWindow} = require("../../src");
 
 function geometryToComponentWithLatLng (geometry) {
   var typeFromThis = Array.isArray(geometry);
@@ -147,33 +147,28 @@ var Body = React.createClass({
   },
 
   _render (props, state) {
-    var {geoStateBy} = state;
-    var elements = state.geoJson.features.map((feature) => {
-      var {properties} = feature;
-      var result = geometryToComponentWithLatLng(feature.geometry);
-      var ElementClass = result.ElementClass;
-      delete result.ElementClass;
-      if (properties.isCenter) {
-        ElementClass = Map;
-        result.center = result.position;
-        delete result.position;
-      }
+    var {geoStateBy} = state,
+        {features} = state.geoJson;
 
-      var {visible, child, ...geoStatesOfFeature} = geoStateBy[feature.id] || {};
-      if (false === visible) {
-        return null;
-      }
-
-      return <ElementClass {...properties.style} {...result} {...geoStatesOfFeature}>
-        {child ? <result.ChildElementClass {...child} /> : null}
-      </ElementClass>;
-    });
-
-    return React.DOM.div({
-      style: {
-        height: "100%"
-      }
-    }, elements);
+    return <div style={{height: "100%"}}>
+      {features.reduce((array, feature, index) => {
+        var {properties} = feature,
+            {ElementClass, ChildElementClass, ...geometry} = geometryToComponentWithLatLng(feature.geometry),
+            {visible, child, ...featureState} = geoStateBy[feature.id] || {};
+        if (false !== visible) {
+          if (0 === index) {
+            ElementClass = Map;
+            geometry.center = geometry.position;
+            delete geometry.position;
+          }
+          array.push(<ElementClass key={feature.id} {...properties} {...geometry} {...featureState}/>);
+          if (child) {
+            array.push(<ChildElementClass {...child} />);
+          }
+        }
+        return array;
+      }, [])}
+    </div>;
   }
 });
 

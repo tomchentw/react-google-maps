@@ -12,11 +12,8 @@ module.exports = {
         "coordinates": [-70.2685546875, 24.886436490787712]
       },
       "properties": {
-        "isCenter": true,
-        "style": {
-          "zoom": 4,
-          "mapTypeId": "terrain"// google.maps.MapTypeId.TERRAIN
-        }
+        "zoom": 4,
+        "mapTypeId": "terrain"// google.maps.MapTypeId.TERRAIN
       }
     },
     {
@@ -40,12 +37,10 @@ module.exports = {
         ]
       },
       "properties": {
-        "style": {
-          "geodesic": true,
-          "strokeColor": "#FF0000",
-          "strokeOpacity": 1.0,
-          "strokeWeight": 2
-        }
+        "geodesic": true,
+        "strokeColor": "#FF0000",
+        "strokeOpacity": 1.0,
+        "strokeWeight": 2
       }
     },
     {
@@ -62,13 +57,11 @@ module.exports = {
       },
       "properties": {
         "title": "Bermuda Triangle",
-        "style": {
-          "strokeColor": "#FF0000",
-          "strokeOpacity": 0.8,
-          "strokeWeight": 2,
-          "fillColor": "#FF0000",
-          "fillOpacity": 0.35,
-        }
+        "strokeColor": "#FF0000",
+        "strokeOpacity": 0.8,
+        "strokeWeight": 2,
+        "fillColor": "#FF0000",
+        "fillOpacity": 0.35,
       }
     }
   ]

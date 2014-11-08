@@ -159,26 +159,13 @@ var Body = React.createClass({
         delete result.position;
       }
 
-      var geoStatesOfFeature = geoStateBy[feature.id] || {};
-      if (geoStatesOfFeature.visible === false) {
+      var {visible, child, ...geoStatesOfFeature} = geoStateBy[feature.id] || {};
+      if (false === visible) {
         return null;
       }
-      var {style} = properties;
-      if (style) {
-        style = update(properties.style, {
-          $merge: result
-        });
-      } else {
-        style = result;
-      }
 
-      if (geoStatesOfFeature) {
-        style = update(style, {
-          $merge: geoStatesOfFeature
-        });
-      }
-      return <ElementClass {...style}>
-        {style.child ? <result.ChildElementClass {...style.child} /> : null}
+      return <ElementClass {...properties.style} {...result} {...geoStatesOfFeature}>
+        {child ? <result.ChildElementClass {...child} /> : null}
       </ElementClass>;
     });
 

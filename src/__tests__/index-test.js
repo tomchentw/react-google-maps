@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 "use strict";
 
 jest.dontMock("../index.js");

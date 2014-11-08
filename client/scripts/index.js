@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 "use strict";
 require("../styles/index.scss");
 var React = require("react/addons");
@@ -14,20 +13,20 @@ function geometryToComponentWithLatLng (geometry) {
   switch (type) {
     case "Polygon":
       return {
-        Component: Polygon,
+        ElementClass: Polygon,
         paths: coordinates.map(geometryToComponentWithLatLng, {type: "LineString"})[0]
       };
     case "LineString":
       coordinates = coordinates.map(geometryToComponentWithLatLng, {type: "Point"});
       return typeFromThis ? coordinates : {
-        Component: Polyline,
+        ElementClass: Polyline,
         path: coordinates
       };
     case "Point":
       coordinates = new google.maps.LatLng(coordinates[1], coordinates[0]);
       return typeFromThis ? coordinates : {
-        Component: Marker,
-        ChildComponent: InfoWindow,
+        ElementClass: Marker,
+        ChildElementClass: InfoWindow,
         position: coordinates
       };
     default:
@@ -149,53 +148,37 @@ var Body = React.createClass({
 
   _render (props, state) {
     var {geoStateBy} = state;
-    var components = state.geoJson.features.map((feature) => {
+    var elements = state.geoJson.features.map((feature) => {
       var {properties} = feature;
       var result = geometryToComponentWithLatLng(feature.geometry);
-      var Component = result.Component;
-      delete result.Component;
+      var ElementClass = result.ElementClass;
+      delete result.ElementClass;
       if (properties.isCenter) {
-        Component = Map;
+        ElementClass = Map;
         result.center = result.position;
         delete result.position;
       }
 
-      var geoStatesOfFeature = geoStateBy[feature.id] || {};
-      if (geoStatesOfFeature.visible === false) {
+      var {visible, child, ...geoStatesOfFeature} = geoStateBy[feature.id] || {};
+      if (false === visible) {
         return null;
       }
-      var {style} = properties;
-      if (style) {
-        style = update(properties.style, {
-          $merge: result
-        });
-      } else {
-        style = result;
-      }
 
-      if (geoStatesOfFeature) {
-        style = update(style, {
-          $merge: geoStatesOfFeature
-        });
-      }
-      if (style.child) {
-        var {ChildComponent} = result;
-        delete result.ChildComponent;
-        return Component(style, ChildComponent(style.child));
-      }
-      return Component(style);
+      return <ElementClass {...properties.style} {...result} {...geoStatesOfFeature}>
+        {child ? <result.ChildElementClass {...child} /> : null}
+      </ElementClass>;
     });
 
     return React.DOM.div({
       style: {
         height: "100%"
       }
-    }, components);
+    }, elements);
   }
 });
 
 
-var bodyRef = React.renderComponent(
+var bodyComponent = React.render(
   <Body initialGeoJson={require("./geojson")} />,
   document.getElementById("react-root")
 );

@@ -54,8 +54,8 @@
     "html-webpack-plugin": "^1.1.0",
     "jest-cli": "^0.1.18",
     "jquery": "^2.1.1",
-    "jsx-loader": "^0.11.2",
-    "react-tools": "^0.11.2",
+    "jsx-loader": "^0.12.0",
+    "react-tools": "^0.12.0",
     "sass-loader": "^0.3.0",
     "style-loader": "^0.8.1",
     "tomchentw-npm-dev": "^1.1.0",
@@ -63,7 +63,7 @@
     "webpack-dev-server": "^1.6.5"
   },
   "dependencies": {
-    "react": "^0.11.0",
+    "react": "^0.12.0",
     "deep-equal": "^0.2.1"
   },
   "jest": {

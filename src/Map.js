@@ -1,47 +1,78 @@
 "use strict";
-var React = require("react/addons");
+var React = require("react/addons"),
+    deepEqual = require("deep-equal"),
 
-var ChildMixin = require("./mixins/ChildMixin");
-var EventBindingMixin = require("./mixins/EventBindingMixin");
+    expose_getters_from = require("./helpers/expose_getters_from"),
+    EventBindingMixin = require("./mixins/EventBindingMixin");
+
+function ensure_map_created (component, createdCallback, createFactory) {
+  var {context} = component,
+      map = context.getMap(),
+      noMap = !map;
+
+  if (noMap && context.getApi() && createFactory) {
+    map = createFactory(component, context);
+  }
+  if (map) {
+    createdCallback(map);
+    if (noMap) {
+      component.setState({_initialized: true});
+    }
+  }
+}
+
+function create_map (component, context) {
+  var {Map} = context.getApi(),
+      map = new Map(
+    component.refs.mapCanvas.getDOMNode(),
+    component.props
+  );
+  expose_getters_from(component, Map.prototype, map);
+  return context._set_map(map);
+}
 
 module.exports = React.createClass({
   displayName: "Map",
 
-  mixins: [ChildMixin, EventBindingMixin],
+  mixins: [EventBindingMixin],
 
   contextTypes: {
+    getMap: React.PropTypes.func,
+    getApi: React.PropTypes.func,
+    hasMap: React.PropTypes.func,
     _set_map: React.PropTypes.func
   },
 
+  getInitialState () {
+    return {
+      _initialized: false
+    };
+  },
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !deepEqual(nextProps, this.props) || nextState._initialized !== this.state._initialized;
+  },
+
   componentDidMount () {
-    var {context} = this;
-    if (!context.getApi()) return;
-    if (context.hasMap()) return;
-    this.add_listeners(this._init_map());
+    ensure_map_created(this, this.add_listeners, create_map);
   },
 
   componentWillUpdate () {
-    var {context} = this;
-    if (!context.getApi()) return;
-    if (context.hasMap()) return;
-    this.clear_listeners(context.getMap());
+    ensure_map_created(this, this.clear_listeners);
   },
 
   componentDidUpdate () {
-    var {context} = this;
-    if (!context.getApi()) return;
-    if (context.hasMap()) {
-      this.context.getMap().setOptions(this.props);
-    } else {
-      this.add_listeners(this._init_map());
-    }
+    ensure_map_created(this, (map) => {
+      map.setOptions(this.props);
+      this.add_listeners(map);
+    }, create_map);
   },
 
   componentWillUnmount () {
-    var {context} = this;
-    if (!context.getApi()) return;
-    if (context.hasMap()) return;
-    this.clear_listeners(context.getMap());
+    ensure_map_created(this, (map) => {
+      this.clear_listeners(map);
+      this.context._set_map(null);
+    });
   },
 
   render () {
@@ -52,22 +83,7 @@ module.exports = React.createClass({
     return "bounds_changed center_changed click dblclick drag dragend dragstart heading_changed idle maptypeid_changed mousemove mouseout mouseover projection_changed resize rightclick tilesloaded tilt_changed zoom_changed";
   },
 
-  _init_map () {
-    var {context} = this;
-    var {Map} = context.getApi();
-    var map = new Map(
-      this.refs.mapCanvas.getDOMNode(),
-      this.props
-    );
-    this.expose_getters_from(Map.prototype, map);
-    return context._set_map(map);
-  },
-
   _render (props, state) {
-    return <div ref="mapCanvas"
-      id={props.id}
-      className={props.className}
-      style={props.style}>
-    </div>;
+    return <div ref="mapCanvas" {...props}></div>;
   }
 });

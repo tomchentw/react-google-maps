@@ -1,8 +1,7 @@
 "use strict";
 
 jest.dontMock("../Map.js");
-jest.dontMock("../GoogleMapsMixin.js");
-jest.dontMock("../mixins/ChildMixin.js");
+jest.dontMock("../mixins/GoogleMapsMixin.js");
 jest.dontMock("../mixins/EventBindingMixin.js");
 
 describe("Map", function() {
@@ -15,10 +14,10 @@ describe("Map", function() {
         divCanvas;
 
     MockContext = React.createClass({
-      mixins: [require("../GoogleMapsMixin")],
+      mixins: [require("../mixins/GoogleMapsMixin")],
 
       render () {
-        return <div><Map /></div>;
+        return <Map />;
       }
     });
 

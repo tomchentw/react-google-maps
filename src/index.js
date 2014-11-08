@@ -3,7 +3,7 @@ var create_child_component = require("./helpers/create_child_component"),
 
     BASIC_EVENT_NAMES = "click dblclick drag dragend dragstart mousedown mousemove mouseout mouseover mouseup rightclick";
 
-exports.GoogleMapsMixin = require("./GoogleMapsMixin");
+exports.GoogleMapsMixin = require("./mixins/GoogleMapsMixin");
 exports.Map = require("./Map");
 
 [

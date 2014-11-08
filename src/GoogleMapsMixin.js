@@ -14,7 +14,7 @@ module.exports = {
     getMap: React.PropTypes.func,
     getApi: React.PropTypes.func,
     hasMap: React.PropTypes.func,
-    getRef: React.PropTypes.func,
+    getInstanceByRef: React.PropTypes.func,
     _set_map: React.PropTypes.func
   },
 
@@ -23,7 +23,7 @@ module.exports = {
       getMap: this._get_map,
       getApi: this._get_api,
       hasMap: this._has_map,
-      getRef: this._get_ref,
+      getInstanceByRef: this._get_instance_by_ref,
       _set_map: this._set_map
     };
   },
@@ -40,8 +40,8 @@ module.exports = {
     return !!this._get_map();
   },
 
-  _get_ref (key) {
-    return this.refs[key];
+  _get_instance_by_ref (key) {
+    return this.refs[key].state._instance;
   },
 
   _set_map (map) {

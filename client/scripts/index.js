@@ -13,20 +13,20 @@ function geometryToComponentWithLatLng (geometry) {
   switch (type) {
     case "Polygon":
       return {
-        Component: Polygon,
+        ElementClass: Polygon,
         paths: coordinates.map(geometryToComponentWithLatLng, {type: "LineString"})[0]
       };
     case "LineString":
       coordinates = coordinates.map(geometryToComponentWithLatLng, {type: "Point"});
       return typeFromThis ? coordinates : {
-        Component: Polyline,
+        ElementClass: Polyline,
         path: coordinates
       };
     case "Point":
       coordinates = new google.maps.LatLng(coordinates[1], coordinates[0]);
       return typeFromThis ? coordinates : {
-        Component: Marker,
-        ChildComponent: InfoWindow,
+        ElementClass: Marker,
+        ChildElementClass: InfoWindow,
         position: coordinates
       };
     default:
@@ -148,13 +148,13 @@ var Body = React.createClass({
 
   _render (props, state) {
     var {geoStateBy} = state;
-    var components = state.geoJson.features.map((feature) => {
+    var elements = state.geoJson.features.map((feature) => {
       var {properties} = feature;
       var result = geometryToComponentWithLatLng(feature.geometry);
-      var Component = result.Component;
-      delete result.Component;
+      var ElementClass = result.ElementClass;
+      delete result.ElementClass;
       if (properties.isCenter) {
-        Component = Map;
+        ElementClass = Map;
         result.center = result.position;
         delete result.position;
       }
@@ -177,19 +177,16 @@ var Body = React.createClass({
           $merge: geoStatesOfFeature
         });
       }
-      if (style.child) {
-        var {ChildComponent} = result;
-        delete result.ChildComponent;
-        return Component(style, ChildComponent(style.child));
-      }
-      return Component(style);
+      return <ElementClass {...style}>
+        {style.child ? <result.ChildElementClass {...style.child} /> : null}
+      </ElementClass>;
     });
 
     return React.DOM.div({
       style: {
         height: "100%"
       }
-    }, components);
+    }, elements);
   }
 });
 

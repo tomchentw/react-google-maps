@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 "use strict";
 require("../styles/index.scss");
 var React = require("react/addons");

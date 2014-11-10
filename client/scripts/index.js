@@ -23,7 +23,7 @@ Body = React.createClass({
         <Components className="col-xs-6" initialGeoJson={require("./geojson")} />
         <div className="col-xs-6">
           <pre><PrismCode className="language-javascript">
-            {require("raw-loader!./Components")}
+            {require("!raw-loader!./Components")}
           </PrismCode></pre>
         </div>
       </div>

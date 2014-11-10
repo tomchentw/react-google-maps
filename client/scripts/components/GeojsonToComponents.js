@@ -2,7 +2,7 @@
 var React = require("react/addons"),
     {update} = React.addons,
 
-    {GoogleMapsMixin, Map, Marker, Polyline, Polygon, InfoWindow} = require("../../src");
+    {GoogleMapsMixin, Map, Marker, Polyline, Polygon, InfoWindow} = require("../../../src");
 
 function geometryToComponentWithLatLng (geometry) {
   var typeFromThis = Array.isArray(geometry),
@@ -34,9 +34,9 @@ function geometryToComponentWithLatLng (geometry) {
 }
 
 module.exports = React.createClass({
-  displayName: "Components",
+  displayName: "GeojsonToComponents",
 
-  mixins: [GoogleMapsMixin],
+  mixins: [require("../ReactFutureMixin"), GoogleMapsMixin],
 
   getInitialState () {
     return  {
@@ -65,10 +65,6 @@ module.exports = React.createClass({
         }
       }
     };
-  },
-
-  render () {
-    return this._render(this.props, this.state);
   },
 
   _handle_map_click () {

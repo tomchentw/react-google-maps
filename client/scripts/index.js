@@ -6,6 +6,7 @@ var React = require("react/addons"),
     {update} = React.addons,
     {PrismCode} = require("react-prism"),
 
+    NavHeaderBar = require("./NavHeaderBar"),
     Components = require("./Components"),
     Body,
     bodyComponent;
@@ -13,22 +14,24 @@ var React = require("react/addons"),
 Body = React.createClass({
   displayName: "Body",
 
-  render () {
-    return this._render(this.props, this.state);
-  },
+  mixins: [require("./ReactFutureMixin")],
 
   _render (props, state) {
-    return <div className="container-fluid container--full-height">
-      <div className="row row--full-height">
-        <Components className="col-xs-6" initialGeoJson={require("./geojson")} />
-        <div className="col-xs-6">
-          <pre><PrismCode className="language-javascript">
-            {require("!raw-loader!./Components")}
-          </PrismCode></pre>
+    return <div id="react-root">
+      <NavHeaderBar />
+
+      <div className="container-fluid container--full-height">
+        <div className="row row--full-height">
+          <Components className="col-xs-6" initialGeoJson={require("./geojson")} />
+          <div className="col-xs-6">
+            <pre><PrismCode className="language-javascript">
+              {require("!raw-loader!./Components")}
+            </PrismCode></pre>
+          </div>
         </div>
       </div>
     </div>;
   }
 });
 
-bodyComponent = React.render(<Body />, document.getElementById("react-root"));
+bodyComponent = React.render(<Body />, document.body);

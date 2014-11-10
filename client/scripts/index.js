@@ -10,15 +10,31 @@ var React = require("react/addons"),
     Body,
     bodyComponent,
 
-    ACTIONS;
+    ACTIONS,
+    DROPDOWN_ACTIONS;
 
 ACTIONS = [
   {
     key: "gs",
     displayName: "Getting started",
     path: "",
-  }
+  },
 ];
+
+DROPDOWN_ACTIONS = [
+  {
+    key: "geojson",
+    displayName: "Geojson to Components",
+    path: "geojson-to-components",
+  },
+  false,
+  {
+    key: "geojson2",
+    displayName: "Geojson 2 to Components",
+    path: "geojson2-to-components",
+  },
+];
+
 
 Body = React.createClass({
   displayName: "Body",
@@ -27,7 +43,7 @@ Body = React.createClass({
 
   _render (props, state) {
     return <div id="react-root">
-      <NavHeaderBar activeActionKey="gs" actions={ACTIONS} />
+      <NavHeaderBar activeActionKey="gs" actions={ACTIONS} dropdownActions={DROPDOWN_ACTIONS} />
 
       <div className="container-fluid container--full-height">
         <ComponentPlayground

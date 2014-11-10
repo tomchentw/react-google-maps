@@ -30,6 +30,12 @@ module.exports = React.createClass({
     };
   },
 
+  getDefaultProps: function() {
+    return {
+      dropdownActions: [],
+    };
+  },
+
   _handle_click () {
     this.setState({dropdownOpen: !this.state.dropdownOpen});
   },
@@ -58,13 +64,7 @@ module.exports = React.createClass({
             <li className={cx(dropdownClassSet)}>
               <a href="#" className="dropdown-toggle" onClick={this._handle_click}>Samples <span className="caret"></span></a>
               <ul className="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li className="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li className="divider"></li>
-                <li><a href="#"></a></li>
+                {props.dropdownActions.map(actionToMenuItem, {__divider: true})}
               </ul>
             </li>
           </ul>
@@ -74,11 +74,15 @@ module.exports = React.createClass({
 
     function actionToMenuItem (action) {
       var classSet = {};
-      classSet.active = activeActionKey === action.key;
+      if (false === action && true === this.__divider) {
+        return <li className="divider"></li>;
+      } else {
+        classSet.active = activeActionKey === action.key;
 
-      return <li key={action.key} className={cx(classSet)}>
-        <a href={action.path}>{action.displayName}</a>
-      </li>;
+        return <li key={action.key} className={cx(classSet)}>
+          <a href={action.path}>{action.displayName}</a>
+        </li>;
+      }
     }
   }
 });

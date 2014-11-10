@@ -8,7 +8,17 @@ var React = require("react/addons"),
     NavHeaderBar = require("./NavHeaderBar"),
     ComponentPlayground = require("./ComponentPlayground"),
     Body,
-    bodyComponent;
+    bodyComponent,
+
+    ACTIONS;
+
+ACTIONS = [
+  {
+    key: "gs",
+    displayName: "Getting started",
+    path: "",
+  }
+];
 
 Body = React.createClass({
   displayName: "Body",
@@ -17,7 +27,7 @@ Body = React.createClass({
 
   _render (props, state) {
     return <div id="react-root">
-      <NavHeaderBar />
+      <NavHeaderBar activeActionKey="gs" actions={ACTIONS} />
 
       <div className="container-fluid container--full-height">
         <ComponentPlayground

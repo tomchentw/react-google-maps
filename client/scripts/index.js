@@ -4,10 +4,9 @@ require("prism/themes/prism.css");
 
 var React = require("react/addons"),
     {update} = React.addons,
-    {PrismCode} = require("react-prism"),
 
     NavHeaderBar = require("./NavHeaderBar"),
-    Components = require("./components/GeojsonToComponents"),
+    ComponentPlayground = require("./ComponentPlayground"),
     Body,
     bodyComponent;
 
@@ -21,14 +20,11 @@ Body = React.createClass({
       <NavHeaderBar />
 
       <div className="container-fluid container--full-height">
-        <div className="row row--full-height">
-          <Components className="col-xs-6" initialGeoJson={require("./geojson")} />
-          <div className="col-xs-6">
-            <pre><PrismCode className="language-javascript">
-              {require("!raw-loader!./components/GeojsonToComponents")}
-            </PrismCode></pre>
-          </div>
-        </div>
+        <ComponentPlayground
+          className="row row--full-height"
+          componentClass={require("./components/GeojsonToComponents")}
+          componentProps={{initialGeoJson: require("./geojson")}}
+          componentRaw={{__raw: require("!raw-loader!./components/GeojsonToComponents")}}/>
       </div>
     </div>;
   }

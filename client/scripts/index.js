@@ -56,11 +56,15 @@ Body = React.createClass({
     };
   },
 
+  _handle_navigate (action) {
+    this.setState({ action });
+  },
+
   _render (props, state) {
     var {action} = state;
 
     return <div id="react-root">
-      <NavHeaderBar activeActionKey={action.key} actions={ACTIONS} dropdownActions={DROPDOWN_ACTIONS} />
+      <NavHeaderBar activeActionKey={action.key} onNavigateTo={this._handle_navigate} actions={ACTIONS} dropdownActions={DROPDOWN_ACTIONS} />
 
       <div className="container-fluid container--full-height">
         <ComponentPlayground className="row row--full-height" {...action.component} />

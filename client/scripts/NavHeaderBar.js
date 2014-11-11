@@ -11,6 +11,8 @@ var React = require("react/addons"),
         path: PropTypes.string.isRequired,
       });
 
+function noop () {}
+
 module.exports = React.createClass({
   displayName: "NavHeaderBar",
 
@@ -18,26 +20,34 @@ module.exports = React.createClass({
 
   propTypes: {
     activeActionKey: PropTypes.string.isRequired,
+    onNavigateTo: PropTypes.func,
     actions: PropTypes.arrayOf(actionPropType).isRequired,
     dropdownActions: PropTypes.arrayOf(
         PropTypes.oneOfType([actionPropType, PropTypes.bool])
       ),
   },
 
-  getInitialState: function() {
+  getInitialState () {
     return {
       dropdownOpen: false,
     };
   },
 
-  getDefaultProps: function() {
+  getDefaultProps () {
     return {
+      onNavigateTo: noop,
       dropdownActions: [],
     };
   },
 
   _handle_click () {
     this.setState({dropdownOpen: !this.state.dropdownOpen});
+  },
+
+  _handle_navigate (action, event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.props.onNavigateTo(action);
   },
 
   _render (props, state) {
@@ -60,11 +70,11 @@ module.exports = React.createClass({
         <div className="collapse navbar-collapse">
           <ul className="nav navbar-nav">
             <li><a href="https://github.com/tomchentw" target="_blank">by @tomchentw</a></li>
-            {props.actions.map(actionToMenuItem)}
+            {props.actions.map(actionToMenuItem, this)}
             <li className={cx(dropdownClassSet)}>
               <a href="#" className="dropdown-toggle" onClick={this._handle_click}>Samples <span className="caret"></span></a>
               <ul className="dropdown-menu" role="menu">
-                {props.dropdownActions.map(actionToMenuItem, {__divider: true})}
+                {props.dropdownActions.map(actionToMenuItem, this)}
               </ul>
             </li>
           </ul>
@@ -74,12 +84,12 @@ module.exports = React.createClass({
 
     function actionToMenuItem (action) {
       var classSet = {};
-      if (false === action && true === this.__divider) {
+      if (false === action) {
         return <li className="divider"></li>;
       } else {
         classSet.active = activeActionKey === action.key;
 
-        return <li key={action.key} className={cx(classSet)}>
+        return <li key={action.key} className={cx(classSet)} onClick={this._handle_navigate.bind(this, action)}>
           <a href={action.path}>{action.displayName}</a>
         </li>;
       }

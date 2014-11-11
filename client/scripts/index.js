@@ -18,6 +18,15 @@ ACTIONS = [
     key: "gs",
     displayName: "Getting started",
     path: "",
+    component: {
+      componentClass: require("./components/GeojsonToComponents"),
+      componentProps: {
+        initialGeoJson: require("./geojson"),
+      },
+      componentRaw: {
+        __raw: require("!raw-loader!./components/GeojsonToComponents"),
+      },
+    },
   },
 ];
 
@@ -41,16 +50,20 @@ Body = React.createClass({
 
   mixins: [require("./ReactFutureMixin")],
 
+  getInitialState () {
+    return {
+      action: ACTIONS[0],
+    };
+  },
+
   _render (props, state) {
+    var {action} = state;
+
     return <div id="react-root">
-      <NavHeaderBar activeActionKey="gs" actions={ACTIONS} dropdownActions={DROPDOWN_ACTIONS} />
+      <NavHeaderBar activeActionKey={action.key} actions={ACTIONS} dropdownActions={DROPDOWN_ACTIONS} />
 
       <div className="container-fluid container--full-height">
-        <ComponentPlayground
-          className="row row--full-height"
-          componentClass={require("./components/GeojsonToComponents")}
-          componentProps={{initialGeoJson: require("./geojson")}}
-          componentRaw={{__raw: require("!raw-loader!./components/GeojsonToComponents")}}/>
+        <ComponentPlayground className="row row--full-height" {...action.component} />
       </div>
     </div>;
   }

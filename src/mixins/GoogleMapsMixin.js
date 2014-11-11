@@ -28,6 +28,14 @@ module.exports = {
     };
   },
 
+  componentWillReceiveProps (nextProps) {
+    if (!this.state.googleMapsApi && nextProps.googleMapsApi) {
+      this.setState({
+        googleMapsApi: nextProps.googleMapsApi
+      });
+    }
+  },
+
   _get_map () {
     return this.state.map;
   },

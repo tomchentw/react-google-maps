@@ -37,9 +37,6 @@ DROPDOWN_ACTIONS = [
     path: "basics/simple-map",
     component: {
       componentClass: require("./components/basics/SimpleMap"),
-      componentProps: {
-        googleMapsApi: google.maps,
-      },
       componentRaw: {
         __raw: require("!raw-loader!./components/basics/SimpleMap"),
       },
@@ -47,9 +44,16 @@ DROPDOWN_ACTIONS = [
   },
   false,
   {
-    key: "geojson2",
-    displayName: "Geojson 2 to Components",
-    path: "geojson2-to-components",
+    key: "basics__asynchronous-loading",
+    displayName: "Asynchronous Loading",
+    path: "basics/asynchronous-loading",
+    component: {
+      componentClass: require("./components/basics/AsynchronousLoading"),
+      componentAsync: true,
+      componentRaw: {
+        __raw: require("!raw-loader!./components/basics/AsynchronousLoading"),
+      },
+    },
   },
 ];
 

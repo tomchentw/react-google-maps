@@ -18,7 +18,7 @@ ACTIONS = [
   {
     key: "gs",
     displayName: "Getting started",
-    path: "",
+    path: "#gs",
     component: {
       componentClass: require("./components/GeojsonToComponents"),
       componentProps: {
@@ -35,7 +35,7 @@ DROPDOWN_ACTIONS = [
   {
     key: "basics__simple-map",
     displayName: "Simple Map",
-    path: "basics/simple-map",
+    path: "#basics/simple-map",
     component: {
       componentClass: require("./components/basics/SimpleMap"),
       componentRaw: {
@@ -47,7 +47,7 @@ DROPDOWN_ACTIONS = [
   {
     key: "basics__asynchronous-loading",
     displayName: "Asynchronous Loading",
-    path: "basics/asynchronous-loading",
+    path: "#basics/asynchronous-loading",
     component: {
       componentClass: require("./components/basics/AsynchronousLoading"),
       componentAsync: true,

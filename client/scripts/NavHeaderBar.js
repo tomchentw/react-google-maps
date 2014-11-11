@@ -45,10 +45,9 @@ module.exports = React.createClass({
   },
 
   _handle_navigate (action, event) {
-    event.preventDefault();
     event.stopPropagation();
     this.props.onNavigateTo(action);
-    this._handle_click();
+    this.setState({dropdownOpen: false});
   },
 
   _render (props, state) {
@@ -73,7 +72,7 @@ module.exports = React.createClass({
             <li><a href="https://github.com/tomchentw" target="_blank">by @tomchentw</a></li>
             {props.actions.map(actionToMenuItem, this)}
             <li className={cx(dropdownClassSet)}>
-              <a href="#" className="dropdown-toggle" onClick={this._handle_click}>Samples <span className="caret"></span></a>
+              <a href="javascript:void(0);" className="dropdown-toggle" onClick={this._handle_click}>Samples <span className="caret"></span></a>
               <ul className="dropdown-menu" role="menu">
                 {props.dropdownActions.map(actionToMenuItem, this)}
               </ul>

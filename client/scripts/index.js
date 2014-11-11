@@ -12,7 +12,8 @@ var React = require("react/addons"),
     bodyComponent,
 
     ACTIONS,
-    DROPDOWN_ACTIONS;
+    DROPDOWN_ACTIONS,
+    ALL_ACTIONS;
 
 ACTIONS = [
   {
@@ -58,6 +59,7 @@ DROPDOWN_ACTIONS = [
   },
 ];
 
+ALL_ACTIONS = ACTIONS.concat(DROPDOWN_ACTIONS.filter((x) => { return !!x; }));
 
 Body = React.createClass({
   displayName: "Body",
@@ -65,8 +67,11 @@ Body = React.createClass({
   mixins: [require("./ReactFutureMixin")],
 
   getInitialState () {
+    var hash = location.hash || ACTIONS[0].path,
+        action = ALL_ACTIONS.filter((action) => { return action.path === hash; })[0];
+
     return {
-      action: ACTIONS[0],
+      action: action,
     };
   },
 

@@ -44,7 +44,6 @@ webpackConfig = module.exports = {
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery",
-      Prism: "prism",
     }),
     new HtmlWebpackPlugin({
       template: "./client/index.html",

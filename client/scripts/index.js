@@ -32,9 +32,18 @@ ACTIONS = [
 
 DROPDOWN_ACTIONS = [
   {
-    key: "geojson",
-    displayName: "Geojson to Components",
-    path: "geojson-to-components",
+    key: "basics__simple-map",
+    displayName: "Simple Map",
+    path: "basics/simple-map",
+    component: {
+      componentClass: require("./components/basics/SimpleMap"),
+      componentProps: {
+        googleMapsApi: google.maps,
+      },
+      componentRaw: {
+        __raw: require("!raw-loader!./components/basics/SimpleMap"),
+      },
+    },
   },
   false,
   {

@@ -48,6 +48,7 @@ module.exports = React.createClass({
     event.preventDefault();
     event.stopPropagation();
     this.props.onNavigateTo(action);
+    this._handle_click();
   },
 
   _render (props, state) {

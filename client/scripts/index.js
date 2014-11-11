@@ -1,6 +1,7 @@
 "use strict";
 require("../styles/index.scss");
 require("prism/themes/prism.css");
+require("github-fork-ribbon-css/gh-fork-ribbon.css");
 
 var React = require("react/addons"),
     {update} = React.addons,
@@ -80,6 +81,11 @@ Body = React.createClass({
       <NavHeaderBar activeActionKey={action.key} onNavigateTo={this._handle_navigate} actions={ACTIONS} dropdownActions={DROPDOWN_ACTIONS} />
 
       <div className="container-fluid container--full-height">
+        <div className="github-fork-ribbon-wrapper right">
+          <div className="github-fork-ribbon" style={{backgroundColor: "#333"}}>
+            <a href="https://github.com/tomchentw/react-google-maps">Fork me on GitHub</a>
+          </div>
+        </div>
         <ComponentPlayground className="row row--full-height" {...action.component} />
       </div>
     </div>;

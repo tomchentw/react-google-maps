@@ -21,6 +21,7 @@
   ],
   "devDependencies": {
     "bootstrap-sass-official": "~3.2.0",
-    "prism": "3e9491d33bb2e8b959f0cd97ebad927285885158"
+    "prism": "3e9491d33bb2e8b959f0cd97ebad927285885158",
+    "github-fork-ribbon-css": "~0.1.1"
   }
 }

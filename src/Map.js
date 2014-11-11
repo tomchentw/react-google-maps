@@ -45,7 +45,8 @@ module.exports = React.createClass({
 
   getInitialState () {
     return {
-      _initialized: false
+      /* [null, false, true] => ["init", "api loaded", "done"] */
+      _initialized: null,
     };
   },
 
@@ -55,6 +56,14 @@ module.exports = React.createClass({
 
   componentDidMount () {
     ensure_map_created(this, this.add_listeners, create_map);
+  },
+
+  componentWillReceiveProps (nextProps, nextContext) {
+    if (null == this.state._initialized && nextContext.getApi()) {
+      this.setState({
+        _initialized: false,
+      });
+    }
   },
 
   componentWillUpdate () {

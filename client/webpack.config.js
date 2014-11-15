@@ -8,7 +8,7 @@ var Path = require("path"),
     webpackConfig,
 
     IS_PRODUCTION = "production" === process.env.NODE_ENV,
-    JSX_LOADER = "jsx-loader?harmony",
+    JSX_WITH_HOT_LOEADERS = ["react-hot-loader", "jsx-loader?harmony"],
     CSS_LOADER = "style-loader!css-loader?root=../",
     SCSS_LOADER = CSS_LOADER + "!sass-loader?" + JSON.stringify({
       includePaths: [
@@ -31,7 +31,7 @@ webpackConfig = module.exports = {
   module: {
     loaders: [
       { test: require.resolve("react/addons"), loader: "expose-loader?React" },
-      { test: /\.js(x?)$/, loader: JSX_LOADER },
+      { test: /\.js(x?)$/, loaders: JSX_WITH_HOT_LOEADERS },
       { test: /\.jpg$/, loader: "file-loader" },
       { test: /\.css$/, loader: CSS_LOADER },
       { test: /\.scss$/, loader: SCSS_LOADER },

@@ -57,6 +57,27 @@ MapSpec = {
     _set_map: React.PropTypes.func
   },
 
+  /*
+   * Some public API we'd like to expose
+   */
+  panBy (x, y) {
+    ensure_map_created(this, (map) => {
+      map.panBy(x, y);
+    });
+  },
+
+  panTo (latLng) {
+    ensure_map_created(this, (map) => {
+      map.panTo(latLng);
+    });
+  },
+
+  panToBounds (latLngBounds) {
+    ensure_map_created(this, (map) => {
+      map.panToBounds(latLngBounds);
+    });
+  },
+
   getInitialState () {
     return {
       /* [null, false, true] => ["init", "api loaded", "done"] */

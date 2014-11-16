@@ -1,6 +1,5 @@
 "use strict";
 var React = require("react/addons"),
-    {update} = React.addons,
 
     {GoogleMapsMixin, Map, InfoWindow} = require("react-google-maps"),
     {geolocation} = navigator;
@@ -11,8 +10,10 @@ if (!geolocation) {
   };
 }
 
-// https://developers.google.com/maps/documentation/javascript/examples/map-simple
 module.exports = React.createClass({
+  /*
+   * https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
+   */
   displayName: "Geolocation",
 
   mixins: [require("../../ReactFutureMixin"), GoogleMapsMixin],

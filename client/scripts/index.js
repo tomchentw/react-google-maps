@@ -55,7 +55,6 @@ DROPDOWN_ACTIONS = [
       },
     },
   },
-  false,
   {
     key: "basics__asynchronous-loading",
     displayName: "Asynchronous Loading",
@@ -68,6 +67,7 @@ DROPDOWN_ACTIONS = [
       },
     },
   },
+  false,
 ];
 
 ALL_ACTIONS = ACTIONS.concat(DROPDOWN_ACTIONS.filter((x) => { return !!x; }));

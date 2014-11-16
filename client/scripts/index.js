@@ -80,6 +80,18 @@ DROPDOWN_ACTIONS = [
       },
     },
   },
+  {
+    key: "events__event-closure",
+    displayName: "Using closures in event listeners",
+    path: "#events/event-closure",
+    component: {
+      componentClass: require("./components/events/ClosureListeners"),
+      componentAsync: true,
+      componentRaw: {
+        __raw: require("!raw-loader!./components/events/ClosureListeners"),
+      },
+    },
+  },
 ];
 
 ALL_ACTIONS = ACTIONS.concat(DROPDOWN_ACTIONS.filter((x) => { return !!x; }));

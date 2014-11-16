@@ -101,6 +101,17 @@ DROPDOWN_ACTIONS = [
       },
     },
   },
+  {
+    key: "events__event-properties",
+    displayName: "Getting properties with event handlers",
+    path: "#events/event-properties",
+    component: {
+      componentClass: require("./components/events/GettingProperties"),
+      componentRaw: {
+        __raw: require("!raw-loader!./components/events/GettingProperties"),
+      },
+    },
+  },
 ];
 
 ALL_ACTIONS = ACTIONS.concat(DROPDOWN_ACTIONS.filter((x) => { return !!x; }));

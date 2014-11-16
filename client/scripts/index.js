@@ -68,6 +68,18 @@ DROPDOWN_ACTIONS = [
     },
   },
   false,
+  {
+    key: "events__simple-click-event",
+    displayName: "Smple click event",
+    path: "#events/simple-click-event",
+    component: {
+      componentClass: require("./components/events/SimpleClickEvent"),
+      componentAsync: true,
+      componentRaw: {
+        __raw: require("!raw-loader!./components/events/SimpleClickEvent"),
+      },
+    },
+  },
 ];
 
 ALL_ACTIONS = ACTIONS.concat(DROPDOWN_ACTIONS.filter((x) => { return !!x; }));

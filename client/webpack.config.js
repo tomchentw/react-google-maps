@@ -21,12 +21,15 @@ webpackConfig = module.exports = {
   output: {
     path: Path.resolve(__dirname, "../public/assets"),
     publicPath: "assets/",
-    filename: (IS_PRODUCTION ? "[hash].js" : "bundle.js")
+    filename: (IS_PRODUCTION ? "[hash].js" : "bundle.js"),
   },
   resolve: {
     root: [
       Path.join(__dirname, "../bower_components")
-    ]
+    ],
+    alias: {
+      "react-google-maps": Path.resolve(__dirname, "../src"),
+    },
   },
   module: {
     loaders: [
@@ -35,7 +38,7 @@ webpackConfig = module.exports = {
       { test: /\.jpg$/, loader: "file-loader" },
       { test: /\.css$/, loader: CSS_LOADER },
       { test: /\.scss$/, loader: SCSS_LOADER },
-    ]
+    ],
   },
   plugins: [
     new webpack.ResolverPlugin(
@@ -48,8 +51,8 @@ webpackConfig = module.exports = {
     new HtmlWebpackPlugin({
       template: "./client/index.html",
       filename: "../index.html"
-    })
-  ]
+    }),
+  ],
 };
 
 if (IS_PRODUCTION) {

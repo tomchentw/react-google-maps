@@ -2,7 +2,7 @@
 var React = require("react/addons"),
     {update} = React.addons,
 
-    {GoogleMapsMixin, Map} = require("../../../../src");
+    {GoogleMapsMixin, Map} = require("react-google-maps");
 
 // https://developers.google.com/maps/documentation/javascript/examples/map-simple
 module.exports = React.createClass({

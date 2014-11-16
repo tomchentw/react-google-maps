@@ -44,7 +44,17 @@ DROPDOWN_ACTIONS = [
       },
     },
   },
-  false,
+  {
+    key: "basics__geolocation",
+    displayName: "Geolocation",
+    path: "#basics/geolocation",
+    component: {
+      componentClass: require("./components/basics/Geolocation"),
+      componentRaw: {
+        __raw: require("!raw-loader!./components/basics/Geolocation"),
+      },
+    },
+  },
   {
     key: "basics__asynchronous-loading",
     displayName: "Asynchronous Loading",
@@ -54,6 +64,31 @@ DROPDOWN_ACTIONS = [
       componentAsync: true,
       componentRaw: {
         __raw: require("!raw-loader!./components/basics/AsynchronousLoading"),
+      },
+    },
+  },
+  false,
+  {
+    key: "events__simple-click-event",
+    displayName: "Smple click event",
+    path: "#events/simple-click-event",
+    component: {
+      componentClass: require("./components/events/SimpleClickEvent"),
+      componentAsync: true,
+      componentRaw: {
+        __raw: require("!raw-loader!./components/events/SimpleClickEvent"),
+      },
+    },
+  },
+  {
+    key: "events__event-closure",
+    displayName: "Using closures in event listeners",
+    path: "#events/event-closure",
+    component: {
+      componentClass: require("./components/events/ClosureListeners"),
+      componentAsync: true,
+      componentRaw: {
+        __raw: require("!raw-loader!./components/events/ClosureListeners"),
       },
     },
   },

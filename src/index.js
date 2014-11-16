@@ -21,10 +21,14 @@ exports.Map = require("./Map");
   ],
   [
     "InfoWindow",
-    BASIC_EVENT_NAMES,
+    "closeclick content_changed domready position_changed zindex_changed",
     (component, infoWindow) => {
-      var {context} = component;
-      infoWindow.open(context.getMap(), context.getInstanceByRef(component.props.owner));
+      var {context} = component,
+          {owner} = component.props;
+      infoWindow.open(
+        context.getMap(),
+        owner ? context.getInstanceByRef(owner) : undefined
+      );
     }
   ],
 ].forEach((args) => {

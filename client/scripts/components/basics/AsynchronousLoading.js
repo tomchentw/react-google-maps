@@ -1,11 +1,12 @@
 "use strict";
 var React = require("react/addons"),
-    {update} = React.addons,
 
-    {GoogleMapsMixin, Map} = require("../../../../src");
+    {GoogleMapsMixin, Map} = require("react-google-maps");
 
-// https://developers.google.com/maps/documentation/javascript/examples/map-simple-async
 module.exports = React.createClass({
+  /*
+   * https://developers.google.com/maps/documentation/javascript/examples/map-simple-async
+   */
   displayName: "SimpleMap",
 
   mixins: [require("../../ReactFutureMixin"), GoogleMapsMixin],

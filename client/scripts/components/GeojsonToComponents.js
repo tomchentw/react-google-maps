@@ -2,7 +2,7 @@
 var React = require("react/addons"),
     {update} = React.addons,
 
-    {GoogleMapsMixin, Map, Marker, Polyline, Polygon, InfoWindow} = require("../../../src");
+    {GoogleMapsMixin, Map, Marker, Polyline, Polygon, InfoWindow} = require("react-google-maps");
 
 function geometryToComponentWithLatLng (geometry) {
   var typeFromThis = Array.isArray(geometry),

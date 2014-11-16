@@ -74,7 +74,6 @@ DROPDOWN_ACTIONS = [
     path: "#events/simple-click-event",
     component: {
       componentClass: require("./components/events/SimpleClickEvent"),
-      componentAsync: true,
       componentRaw: {
         __raw: require("!raw-loader!./components/events/SimpleClickEvent"),
       },
@@ -86,9 +85,30 @@ DROPDOWN_ACTIONS = [
     path: "#events/event-closure",
     component: {
       componentClass: require("./components/events/ClosureListeners"),
-      componentAsync: true,
       componentRaw: {
         __raw: require("!raw-loader!./components/events/ClosureListeners"),
+      },
+    },
+  },
+  {
+    key: "events__event-arguments",
+    displayName: "Accessing arguments in UI events",
+    path: "#events/event-arguments",
+    component: {
+      componentClass: require("./components/events/AccessingArguments"),
+      componentRaw: {
+        __raw: require("!raw-loader!./components/events/AccessingArguments"),
+      },
+    },
+  },
+  {
+    key: "events__event-properties",
+    displayName: "Getting properties with event handlers",
+    path: "#events/event-properties",
+    component: {
+      componentClass: require("./components/events/GettingProperties"),
+      componentRaw: {
+        __raw: require("!raw-loader!./components/events/GettingProperties"),
       },
     },
   },

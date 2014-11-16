@@ -46,7 +46,7 @@ MapPropTypes = {
 MapSpec = {
   displayName: "Map",
 
-  mixins: [EventBindingMixin],
+  mixins: [EventBindingMixin(EVENT_MAP)],
 
   propTypes: MapPropTypes,
 
@@ -80,10 +80,6 @@ MapSpec = {
     }
   },
 
-  componentWillUpdate () {
-    ensure_map_created(this, this.clear_listeners);
-  },
-
   componentDidUpdate () {
     ensure_map_created(this, (map) => {
       map.setOptions(this.props);
@@ -100,10 +96,6 @@ MapSpec = {
 
   render () {
     return this._render(this.props, this.state);
-  },
-
-  get_event_names () {
-    return EVENT_NAMES;
   },
 
   _render (props, state) {

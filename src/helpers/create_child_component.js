@@ -41,7 +41,7 @@ module.exports = (childName, eventNames, _created_callback) => {
   return React.createClass({
     displayName: childName,
 
-    mixins: [EventBindingMixin],
+    mixins: [EventBindingMixin({__keys__: []})],
 
     contextTypes: {
       getMap: React.PropTypes.func,

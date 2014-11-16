@@ -1,12 +1,13 @@
 "use strict";
 
 module.exports = (event_names) => {
-  return event_names.split(" ").reduce(listToMap, {});
+  return event_names.split(" ").reduce(listToMap, {__keys__: []});
 };
 
 function listToMap (map, event_name, index, list) {
-  map.__keys__ = list;
-  map[toEventName(event_name)] = event_name;
+  var eventName = toEventName(event_name);
+  map.__keys__.push(eventName);
+  map[eventName] = event_name;
   return map;
 }
 

@@ -2,6 +2,8 @@
 var React = require("react/addons"),
 
     expose_getters_from = require("./expose_getters_from"),
+    to_event_map = require("../helpers/to_event_map"),
+    assign_event_map_to_prop_types_and_spec = require("../helpers/assign_event_map_to_prop_types_and_spec"),
     EventBindingMixin = require("../mixins/EventBindingMixin");
 
 function ensure_instance_created (component, createdCallback, createFactory) {
@@ -25,7 +27,12 @@ function setMapToInstance (component, instance) {
 }
 
 module.exports = (childName, eventNames, _created_callback) => {
-  var createdCallback = _created_callback || setMapToInstance;
+  var createdCallback = _created_callback || setMapToInstance,
+
+      EVENT_MAP = to_event_map(eventNames),
+
+      ChildPropTypes,
+      ChildSpec;
 
   function create_instance (component, context) {
     var ChildClass = context.getApi()[childName],
@@ -35,13 +42,17 @@ module.exports = (childName, eventNames, _created_callback) => {
     return instance;
   }
 
+  ChildPropTypes = {
+
+  };
+
   /*
    * shouldComponentUpdate: true. Always rerender for child
    */
-  return React.createClass({
+  ChildSpec = {
     displayName: childName,
 
-    mixins: [EventBindingMixin],
+    mixins: [EventBindingMixin(EVENT_MAP)],
 
     contextTypes: {
       getMap: React.PropTypes.func,
@@ -49,6 +60,8 @@ module.exports = (childName, eventNames, _created_callback) => {
       hasMap: React.PropTypes.func,
       getInstanceByRef: React.PropTypes.func
     },
+
+    propTypes: ChildPropTypes,
 
     getInitialState () {
       return {
@@ -61,10 +74,6 @@ module.exports = (childName, eventNames, _created_callback) => {
         this.add_listeners(instance);
         createdCallback(this, instance);
       }, create_instance);
-    },
-
-    componentWillUpdate () {
-      ensure_instance_created(this, this.clear_listeners);
     },
 
     componentDidUpdate () {
@@ -86,13 +95,13 @@ module.exports = (childName, eventNames, _created_callback) => {
       return this._render(this.props, this.state);
     },
 
-    get_event_names () {
-      return "animation_changed click clickable_changed cursor_changed dblclick drag dragend draggable_changed dragstart flat_changed icon_changed mousedown mouseout mouseover mouseup position_changed rightclick shape_changed title_changed visible_changed zindex_changed";
-    },
-
     _render (props, state) {
       return null;
     }
-  });
+  };
+
+  assign_event_map_to_prop_types_and_spec(EVENT_MAP, ChildPropTypes, ChildSpec);
+
+  return React.createClass(ChildSpec);
 };
 

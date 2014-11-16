@@ -3,7 +3,15 @@ var React = require("react/addons"),
     deepEqual = require("deep-equal"),
 
     expose_getters_from = require("./helpers/expose_getters_from"),
-    EventBindingMixin = require("./mixins/EventBindingMixin");
+    to_event_map = require("./helpers/to_event_map"),
+    assign_event_map_to_prop_types_and_spec = require("./helpers/assign_event_map_to_prop_types_and_spec"),
+    EventBindingMixin = require("./mixins/EventBindingMixin"),
+
+    EVENT_NAMES = "bounds_changed center_changed click dblclick drag dragend dragstart heading_changed idle maptypeid_changed mousemove mouseout mouseover projection_changed resize rightclick tilesloaded tilt_changed zoom_changed",
+    EVENT_MAP = to_event_map(EVENT_NAMES),
+
+    MapSpec,
+    MapPropTypes;
 
 function ensure_map_created (component, createdCallback, createFactory) {
   var {context} = component,
@@ -31,10 +39,16 @@ function create_map (component, context) {
   return context._set_map(map);
 }
 
-module.exports = React.createClass({
+MapPropTypes = {
+
+};
+
+MapSpec = {
   displayName: "Map",
 
-  mixins: [EventBindingMixin],
+  mixins: [EventBindingMixin(EVENT_MAP)],
+
+  propTypes: MapPropTypes,
 
   contextTypes: {
     getMap: React.PropTypes.func,
@@ -66,10 +80,6 @@ module.exports = React.createClass({
     }
   },
 
-  componentWillUpdate () {
-    ensure_map_created(this, this.clear_listeners);
-  },
-
   componentDidUpdate () {
     ensure_map_created(this, (map) => {
       map.setOptions(this.props);
@@ -88,11 +98,11 @@ module.exports = React.createClass({
     return this._render(this.props, this.state);
   },
 
-  get_event_names () {
-    return "bounds_changed center_changed click dblclick drag dragend dragstart heading_changed idle maptypeid_changed mousemove mouseout mouseover projection_changed resize rightclick tilesloaded tilt_changed zoom_changed";
-  },
-
   _render (props, state) {
     return <div ref="mapCanvas" {...props}></div>;
   }
-});
+};
+
+assign_event_map_to_prop_types_and_spec(EVENT_MAP, MapPropTypes, MapSpec);
+
+module.exports = React.createClass(MapSpec);

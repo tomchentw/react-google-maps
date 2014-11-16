@@ -3,7 +3,11 @@ var React = require("react/addons"),
     deepEqual = require("deep-equal"),
 
     expose_getters_from = require("./helpers/expose_getters_from"),
-    EventBindingMixin = require("./mixins/EventBindingMixin");
+    to_event_map = require("./helpers/to_event_map"),
+    EventBindingMixin = require("./mixins/EventBindingMixin"),
+
+    EVENT_NAMES = "bounds_changed center_changed click dblclick drag dragend dragstart heading_changed idle maptypeid_changed mousemove mouseout mouseover projection_changed resize rightclick tilesloaded tilt_changed zoom_changed",
+    EVENT_MAP = to_event_map(EVENT_NAMES);
 
 function ensure_map_created (component, createdCallback, createFactory) {
   var {context} = component,
@@ -89,7 +93,7 @@ module.exports = React.createClass({
   },
 
   get_event_names () {
-    return "bounds_changed center_changed click dblclick drag dragend dragstart heading_changed idle maptypeid_changed mousemove mouseout mouseover projection_changed resize rightclick tilesloaded tilt_changed zoom_changed";
+    return EVENT_NAMES;
   },
 
   _render (props, state) {

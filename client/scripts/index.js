@@ -44,6 +44,17 @@ DROPDOWN_ACTIONS = [
       },
     },
   },
+  {
+    key: "basics__geolocation",
+    displayName: "Geolocation",
+    path: "#basics/geolocation",
+    component: {
+      componentClass: require("./components/basics/Geolocation"),
+      componentRaw: {
+        __raw: require("!raw-loader!./components/basics/Geolocation"),
+      },
+    },
+  },
   false,
   {
     key: "basics__asynchronous-loading",

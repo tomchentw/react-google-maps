@@ -4,10 +4,14 @@ var React = require("react/addons"),
 
     expose_getters_from = require("./helpers/expose_getters_from"),
     to_event_map = require("./helpers/to_event_map"),
+    assign_event_map_to_prop_types_and_spec = require("./helpers/assign_event_map_to_prop_types_and_spec"),
     EventBindingMixin = require("./mixins/EventBindingMixin"),
 
     EVENT_NAMES = "bounds_changed center_changed click dblclick drag dragend dragstart heading_changed idle maptypeid_changed mousemove mouseout mouseover projection_changed resize rightclick tilesloaded tilt_changed zoom_changed",
-    EVENT_MAP = to_event_map(EVENT_NAMES);
+    EVENT_MAP = to_event_map(EVENT_NAMES),
+
+    MapSpec,
+    MapPropTypes;
 
 function ensure_map_created (component, createdCallback, createFactory) {
   var {context} = component,
@@ -35,10 +39,16 @@ function create_map (component, context) {
   return context._set_map(map);
 }
 
-module.exports = React.createClass({
+MapPropTypes = {
+
+};
+
+MapSpec = {
   displayName: "Map",
 
   mixins: [EventBindingMixin],
+
+  propTypes: MapPropTypes,
 
   contextTypes: {
     getMap: React.PropTypes.func,
@@ -99,4 +109,8 @@ module.exports = React.createClass({
   _render (props, state) {
     return <div ref="mapCanvas" {...props}></div>;
   }
-});
+};
+
+assign_event_map_to_prop_types_and_spec(EVENT_MAP, MapPropTypes, MapSpec);
+
+module.exports = React.createClass(MapSpec);

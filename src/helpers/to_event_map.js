@@ -4,7 +4,8 @@ module.exports = (event_names) => {
   return event_names.split(" ").reduce(listToMap, {});
 };
 
-function listToMap (map, event_name) {
+function listToMap (map, event_name, index, list) {
+  map.__keys__ = list;
   map[toEventName(event_name)] = event_name;
   return map;
 }

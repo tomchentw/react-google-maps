@@ -61,7 +61,6 @@ DROPDOWN_ACTIONS = [
     path: "#basics/asynchronous-loading",
     component: {
       componentClass: require("./components/basics/AsynchronousLoading"),
-      componentAsync: true,
       componentRaw: {
         __raw: require("!raw-loader!./components/basics/AsynchronousLoading"),
       },
@@ -122,7 +121,7 @@ Body = React.createClass({
   mixins: [require("./ReactFutureMixin")],
 
   getInitialState () {
-    var hash = location.hash || ACTIONS[0].path,
+    var hash = location.hash || DROPDOWN_ACTIONS[0].path,
         action = ALL_ACTIONS.filter((action) => { return action.path === hash; })[0];
 
     return {

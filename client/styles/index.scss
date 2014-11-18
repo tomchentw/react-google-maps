@@ -11,7 +11,7 @@ html, body, #react-root {
 }
 
 .container--full-height {
-  @include full-height;
+  height: calc(100% - #{ $navbar-height + 20px * 2 });
 }
 
 .row--full-height {

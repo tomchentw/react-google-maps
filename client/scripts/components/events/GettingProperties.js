@@ -1,12 +1,12 @@
 "use strict";
 var React = require("react/addons"),
 
-    {GoogleMapsMixin, Map, InfoWindow} = require("react-google-maps");
-
-module.exports = React.createClass({
-  /*
-   * https://developers.google.com/maps/documentation/javascript/examples/event-properties
-   */
+    {GoogleMapsMixin, Map, InfoWindow} = require("react-google-maps"),
+    GettingProperties;
+/*
+ * https://developers.google.com/maps/documentation/javascript/examples/event-properties
+ */
+GettingProperties = React.createClass({
   displayName: "GettingProperties",
 
   mixins: [require("../../ReactFutureMixin"), GoogleMapsMixin],
@@ -31,5 +31,13 @@ module.exports = React.createClass({
       <Map ref="map" style={{height: "100%"}} zoom={4} center={myLatLng} onZoomChanged={this._handle_zoom_changed} />
       <InfoWindow position={myLatLng} content={state.content} />
     </div>;
+  }
+});
+
+module.exports = React.createClass({
+  mixins: [require("../../ReactFutureMixin")],
+
+  _render (props, state) {
+    return <GettingProperties googleMapsApi={google.maps} {...props} />;
   }
 });

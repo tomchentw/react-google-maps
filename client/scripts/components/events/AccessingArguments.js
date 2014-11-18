@@ -1,12 +1,12 @@
 "use strict";
 var React = require("react/addons"),
 
-    {GoogleMapsMixin, Map, Marker} = require("react-google-maps");
-
-module.exports = React.createClass({
-  /*
-   * https://developers.google.com/maps/documentation/javascript/examples/event-arguments
-   */
+    {GoogleMapsMixin, Map, Marker} = require("react-google-maps"),
+    AccessingArguments;
+/*
+ * https://developers.google.com/maps/documentation/javascript/examples/event-arguments
+ */
+AccessingArguments = React.createClass({
   displayName: "AccessingArguments",
 
   mixins: [require("../../ReactFutureMixin"), GoogleMapsMixin],
@@ -35,5 +35,13 @@ module.exports = React.createClass({
     function toMarker (marker) {
       return <Marker position={marker.position} />;
     }
+  }
+});
+
+module.exports = React.createClass({
+  mixins: [require("../../ReactFutureMixin")],
+
+  _render (props, state) {
+    return <AccessingArguments googleMapsApi={google.maps} {...props} />;
   }
 });

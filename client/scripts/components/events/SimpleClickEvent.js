@@ -1,12 +1,12 @@
 "use strict";
 var React = require("react/addons"),
 
-    {GoogleMapsMixin, Map, Marker} = require("react-google-maps");
-
-module.exports = React.createClass({
-  /*
-   * https://developers.google.com/maps/documentation/javascript/examples/event-simple
-   */
+    {GoogleMapsMixin, Map, Marker} = require("react-google-maps"),
+    SimpleClickEvent;
+/*
+ * https://developers.google.com/maps/documentation/javascript/examples/event-simple
+ */
+SimpleClickEvent = React.createClass({
   displayName: "SimpleClickEvent",
 
   mixins: [require("../../ReactFutureMixin"), GoogleMapsMixin],
@@ -44,5 +44,13 @@ module.exports = React.createClass({
       <Map ref="map" style={{height: "100%"}} zoom={state.zoom} center={state.center} onCenterChanged={this._handle_map_center_changed} />
       <Marker ref="marker" position={state.center} title="Click to zoom" onClick={this._handle_marker_click} />
     </div>;
+  }
+});
+
+module.exports = React.createClass({
+  mixins: [require("../../ReactFutureMixin")],
+
+  _render (props, state) {
+    return <SimpleClickEvent googleMapsApi={google.maps} {...props} />;
   }
 });

@@ -1,19 +1,19 @@
 "use strict";
 var React = require("react/addons"),
 
-    {GoogleMapsMixin, Map, Marker, InfoWindow} = require("react-google-maps");
-
-module.exports = React.createClass({
-  /*
-   * https://developers.google.com/maps/documentation/javascript/examples/event-closure
-   */
+    {GoogleMapsMixin, Map, Marker, InfoWindow} = require("react-google-maps"),
+    ClosureListeners;
+/*
+ * https://developers.google.com/maps/documentation/javascript/examples/event-closure
+ */
+ClosureListeners = React.createClass({
   displayName: "ClosureListeners",
 
   mixins: [require("../../ReactFutureMixin"), GoogleMapsMixin],
 
   getInitialState () {
     return {
-      markers: []
+      markers: [],
     };
   },
 
@@ -71,5 +71,13 @@ module.exports = React.createClass({
       var ref = `marker_${index}`;
       return marker.showInfo ? <InfoWindow key={`${ref}_info_window`} owner={ref} content={marker.content} onCloseclick={this._handle_closeclick.bind(this, marker)} /> : null;
     }
+  }
+});
+
+module.exports = React.createClass({
+  mixins: [require("../../ReactFutureMixin")],
+
+  _render (props, state) {
+    return <ClosureListeners googleMapsApi={google.maps} {...props} />;
   }
 });

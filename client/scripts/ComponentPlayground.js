@@ -17,40 +17,11 @@ module.exports = React.createClass({
     componentRaw: PropTypes.shape({__raw: PropTypes.string}).isRequired,
   },
 
-  getInitialState () {
-    return {
-      googleMapsApi: google.maps
-    };
-  },
-
-  componentDidMount () {
-    this._setup_async_loaded();
-  },
-
-  componentWillReceiveProps (nextProps) {
-    this.setState({
-      googleMapsApi: nextProps.componentAsync ? null : google.maps
-    });
-  },
-
-  componentDidUpdate () {
-    if (this.props.componentAsync && !this.state.googleMapsApi) {
-      this._setup_async_loaded();
-    }
-  },
-
-  _setup_async_loaded () {
-    setTimeout(() => {
-      // Emulated google.maps script is loaded async.
-      this.setState({googleMapsApi: google.maps});
-    }, 3000);
-  },
-
   _render (props, state) {
     var Component = props.componentClass;
 
     return <div className={props.className}>
-      <Component className="col-xs-6" {...props.componentProps} {...state} />
+      <Component className="col-xs-6" {...props.componentProps} />
       <div className="col-xs-6">
         <pre><PrismCode className="language-javascript">
           {props.componentRaw.__raw}

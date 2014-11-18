@@ -61,7 +61,6 @@ DROPDOWN_ACTIONS = [
     path: "#basics/asynchronous-loading",
     component: {
       componentClass: require("./components/basics/AsynchronousLoading"),
-      componentAsync: true,
       componentRaw: {
         __raw: require("!raw-loader!./components/basics/AsynchronousLoading"),
       },

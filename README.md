@@ -23,7 +23,7 @@ This module requires to be bundled with [webpack][webpack]/browserify and loads 
 
 ```shell
 git clone ...
-npm i
+npm run dev_install
 npm run dev
 ```
 

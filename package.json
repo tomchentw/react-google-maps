@@ -5,10 +5,10 @@
   "description": "React.js Google Maps integration component",
   "main": "lib/index.js",
   "scripts": {
-    "postinstall": "npm dedupe && bower install",
     "build": "jsx --harmony ./src ./lib",
     "build_client": "webpack -p --config ./client/webpack.config.js",
     "test": "jest",
+    "dev_install": "npm install && npm dedupe && bower install",
     "dev": "webpack --config ./client/webpack.config.js && webpack-dev-server --config ./client/webpack.config.js --inline --hot --content-base ./public"
   },
   "repository": {

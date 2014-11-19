@@ -28,6 +28,8 @@
     "google-maps",
     "google map",
     "google maps",
+    "GoogleMapsMixin",
+    "Map",
     "Marker",
     "Polyline",
     "Polygon",

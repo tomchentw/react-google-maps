@@ -14,7 +14,13 @@ GettingStarted = React.createClass({
 
   getInitialState () {
     return {
-      markers: [],
+      markers: [{
+        position: {
+          lat: 25.0112183,
+          lng: 121.52067570000001,
+        },
+        key: "Taiwan",
+      }],
     };
   },
   /*
@@ -44,7 +50,7 @@ GettingStarted = React.createClass({
 
   _render (props, state) {
     return <div style={{height: "100%"}} {...props}>
-      <Map ref="map" style={{height: "100%"}} zoom={4} center={new google.maps.LatLng(-25.363882, 131.044922)} onClick={this._handle_map_click} />
+      <Map ref="map" style={{height: "100%"}} zoom={3} center={new google.maps.LatLng(-25.363882, 131.044922)} onClick={this._handle_map_click} />
       {state.markers.map(toMarker, this)}
     </div>;
 

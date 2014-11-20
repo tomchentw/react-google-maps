@@ -1,3 +1,11 @@
+### 0.2.2 (2014-11-20)
+
+
+#### Bug Fixes
+
+* **Map:** only pass id, className and style from props ([284ab299](https://github.com/tomchentw/react-google-maps/commit/284ab2991a7be95afa2b612ef7c8ca0b5faa8861))
+
+
 ### 0.2.1 (2014-11-20)
 
 

@@ -89,10 +89,10 @@ module.exports = React.createClass({
       </div>
     </nav>;
 
-    function actionToMenuItem (action) {
+    function actionToMenuItem (action, index) {
       var classSet = {};
       if (false === action) {
-        return <li className="divider"></li>;
+        return <li key={`divider_${index}`} className="divider"></li>;
       } else {
         classSet.active = activeActionKey === action.key;
 

@@ -30,6 +30,17 @@ ACTIONS = [
       },
     },
   },
+  {
+    key: "gs",
+    displayName: "Getting started",
+    path: "#gs",
+    component: {
+      componentClass: require("./components/GettingStarted"),
+      componentRaw: {
+        __raw: require("!raw-loader!./components/GettingStarted"),
+      },
+    },
+  },
 ];
 
 DROPDOWN_ACTIONS = [

@@ -120,7 +120,9 @@ MapSpec = {
   },
 
   _render (props, state) {
-    return <div ref="mapCanvas" {...props}></div>;
+    return <div ref="mapCanvas"
+      id={props.id} className={props.className} style={props.style}>
+    </div>;
   }
 };
 

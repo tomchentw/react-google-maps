@@ -9,7 +9,8 @@ var React = require("react/addons"),
         key: PropTypes.string.isRequired,
         displayName: PropTypes.string.isRequired,
         path: PropTypes.string.isRequired,
-      });
+      }),
+    actionsArrayType = PropTypes.arrayOf(actionPropType).isRequired;
 
 function noop () {}
 
@@ -21,10 +22,11 @@ module.exports = React.createClass({
   propTypes: {
     activeActionKey: PropTypes.string.isRequired,
     onNavigateTo: PropTypes.func,
-    actions: PropTypes.arrayOf(actionPropType).isRequired,
+    actions: actionsArrayType,
     dropdownActions: PropTypes.arrayOf(
         PropTypes.oneOfType([actionPropType, PropTypes.bool])
       ),
+    rightActions: actionsArrayType,
   },
 
   getInitialState () {
@@ -36,7 +38,9 @@ module.exports = React.createClass({
   getDefaultProps () {
     return {
       onNavigateTo: noop,
+      actions: [],
       dropdownActions: [],
+      rightActions: [],
     };
   },
 
@@ -77,6 +81,9 @@ module.exports = React.createClass({
                 {props.dropdownActions.map(actionToMenuItem, this)}
               </ul>
             </li>
+          </ul>
+          <ul className="nav navbar-nav navbar-right" style={{marginRight:100}}>
+            {props.rightActions.map(actionToMenuItem, this)}
           </ul>
         </div>
       </div>

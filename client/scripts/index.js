@@ -13,23 +13,10 @@ var React = require("react/addons"),
 
     ACTIONS,
     DROPDOWN_ACTIONS,
+    RIGHT_ACTIONS,
     ALL_ACTIONS;
 
 ACTIONS = [
-  {
-    key: "gs",
-    displayName: "Getting started",
-    path: "#gs",
-    component: {
-      componentClass: require("./components/GeojsonToComponents"),
-      componentProps: {
-        initialGeoJson: require("./geojson"),
-      },
-      componentRaw: {
-        __raw: require("!raw-loader!./components/GeojsonToComponents"),
-      },
-    },
-  },
   {
     key: "gs",
     displayName: "Getting started",
@@ -124,7 +111,24 @@ DROPDOWN_ACTIONS = [
   },
 ];
 
-ALL_ACTIONS = ACTIONS.concat(DROPDOWN_ACTIONS.filter((x) => { return !!x; }));
+RIGHT_ACTIONS = [
+  {
+    key: "geojson",
+    displayName: "Geojson",
+    path: "#geojson",
+    component: {
+      componentClass: require("./components/GeojsonToComponents"),
+      componentProps: {
+        initialGeoJson: require("./geojson"),
+      },
+      componentRaw: {
+        __raw: require("!raw-loader!./components/GeojsonToComponents"),
+      },
+    },
+  },
+];
+
+ALL_ACTIONS = ACTIONS.concat(DROPDOWN_ACTIONS.filter((x) => { return !!x; })).concat(RIGHT_ACTIONS);
 
 Body = React.createClass({
   displayName: "Body",
@@ -148,7 +152,7 @@ Body = React.createClass({
     var {action} = state;
 
     return <div id="react-root">
-      <NavHeaderBar activeActionKey={action.key} onNavigateTo={this._handle_navigate} actions={ACTIONS} dropdownActions={DROPDOWN_ACTIONS} />
+      <NavHeaderBar activeActionKey={action.key} onNavigateTo={this._handle_navigate} actions={ACTIONS} dropdownActions={DROPDOWN_ACTIONS} rightActions={RIGHT_ACTIONS} />
 
       <div className="container-fluid container--full-height">
         <div className="github-fork-ribbon-wrapper right">

@@ -16,7 +16,8 @@ Please refer to [client][client] folder for example.
 
 ## Usage
 
-This module requires to be bundled with [webpack][webpack]/browserify and loads `react/addons` internally. WIP: release a UMD version via bower/components.
+This module requires to be bundled with [webpack][webpack]/browserify and loads `react/addons` internally.  
+WIP: release a UMD version via bower/components.
 
 
 ### Development

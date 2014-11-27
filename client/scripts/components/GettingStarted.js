@@ -1,5 +1,6 @@
 "use strict";
 var React = require("react/addons"),
+    {ToastContainer, ToastMessage} = require("react-toastr"),
 
     {GoogleMapsMixin, Map, Marker} = require("react-google-maps"),
     GettingStarted;
@@ -29,11 +30,22 @@ GettingStarted = React.createClass({
    */
   _handle_map_click (event) {
     var {markers} = this.state;
-    markers.push({
-      position: event.latLng,
-      key: Date.now(),// Add a key property for: http://fb.me/react-warning-keys
+    markers = React.addons.update(markers, {
+      $push: [
+        {
+          position: event.latLng,
+          key: Date.now(),// Add a key property for: http://fb.me/react-warning-keys
+        },
+      ],
     });
     this.setState({ markers });
+
+    if (3 === markers.length) {
+      this.refs.toast.success(
+        "Right click on the marker to remove it",
+        "Also check the code!"
+      );
+    }
     this.refs.map.panTo(event.latLng);
   },
 
@@ -50,6 +62,7 @@ GettingStarted = React.createClass({
 
   _render (props, state) {
     return <div style={{height: "100%"}} {...props}>
+      <ToastContainer ref="toast" toastMessageFactory={React.createFactory(ToastMessage.jQuery)}/>
       <Map ref="map" style={{height: "100%"}} zoom={3} center={new google.maps.LatLng(-25.363882, 131.044922)} onClick={this._handle_map_click} />
       {state.markers.map(toMarker, this)}
     </div>;

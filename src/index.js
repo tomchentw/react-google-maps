@@ -31,6 +31,10 @@ exports.Map = require("./Map");
       );
     }
   ],
+  [
+    "DirectionsRenderer",
+    BASIC_EVENT_NAMES,
+  ],
 ].forEach((args) => {
   exports[args[0]] = create_child_component.apply(null, args);
 });

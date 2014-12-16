@@ -78,6 +78,12 @@ MapSpec = {
     });
   },
 
+  fitBounds (latLngBounds) {
+    ensure_map_created(this, (map) => {
+      map.fitBounds(latLngBounds);
+    });
+  },
+
   getInitialState () {
     return {
       /* [null, false, true] => ["init", "api loaded", "done"] */

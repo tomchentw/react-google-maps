@@ -1,3 +1,11 @@
+### 0.2.4 (2014-12-16)
+
+
+#### Features
+
+* **Map:** expose fitBounds as public API ([c64da722](https://github.com/tomchentw/react-google-maps/commit/c64da7225c0ed88a03104d34a7cbd2bdbe46b22a))
+
+
 ### 0.2.3 (2014-11-27)
 
 

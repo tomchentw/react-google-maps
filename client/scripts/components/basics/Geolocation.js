@@ -1,7 +1,7 @@
 "use strict";
 var React = require("react/addons"),
 
-    {GoogleMapsMixin, Map, InfoWindow} = require("react-google-maps"),
+    {GoogleMapsMixin, Map, InfoWindow, Circle} = require("react-google-maps"),
     {geolocation} = navigator,
     Geolocation;
 
@@ -49,8 +49,9 @@ Geolocation = React.createClass({
     var {center} = state;
 
     return <div style={{height: "100%"}} {...props}>
-      <Map style={{height: "100%"}} zoom={6} center={center} />
+      <Map style={{height: "100%"}} zoom={12} center={center} />
       {center ? <InfoWindow position={center} content={state.content} /> : null}
+      {center ? <Circle center={center} radius={2000} fillColor="red" fillOpacity={0.20} strokeColor="red" strokeOpacity={1} strokeWeight={1} /> : null}
     </div>;
   }
 });

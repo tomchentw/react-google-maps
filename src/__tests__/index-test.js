@@ -9,5 +9,6 @@ describe("index", function() {
     expect(index.GoogleMapsMixin).toBeDefined();
     expect(index.Map).toBeDefined();
     expect(index.Marker).toBeDefined();
+    expect(index.Circle).toBeDefined();
   });
 });

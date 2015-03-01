@@ -65,6 +65,17 @@ DROPDOWN_ACTIONS = [
       },
     },
   },
+  {
+    key: "basics__directions",
+    displayName: "Directions",
+    path: "#basics/directions",
+    component: {
+      componentClass: require("./components/basics/Directions"),
+      componentRaw: {
+        __raw: require("!raw-loader!./components/basics/Directions"),
+      },
+    },
+  },
   false,
   {
     key: "events__simple-click-event",

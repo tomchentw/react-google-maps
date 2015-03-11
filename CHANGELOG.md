@@ -1,3 +1,13 @@
+### 0.2.5 (2015-03-11)
+
+
+#### Features
+
+* **Map:**
+  * add support for DirectionsRenderer ([0102184a](https://github.com/tomchentw/react-google-maps/commit/0102184a5dfa58392f70686b810734953e4d008c))
+  * add Circle support ([8a8d4d50](https://github.com/tomchentw/react-google-maps/commit/8a8d4d50563b83d98929aacff72a1dcf8708a7e7))
+
+
 ### 0.2.4 (2014-12-16)
 
 

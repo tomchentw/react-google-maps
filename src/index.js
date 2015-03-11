@@ -7,6 +7,10 @@ exports.GoogleMapsMixin = require("./mixins/GoogleMapsMixin");
 exports.Map = require("./Map");
 
 [
+  [ 
+    "Circle",
+    "center_changed click dblclick drag dragend dragstart mousedown mousemove mouseout mouseover mouseup radius_changed rightclick"
+  ],
   [
     "Marker",
     "animation_changed click clickable_changed cursor_changed dblclick drag dragend draggable_changed dragstart flat_changed icon_changed mousedown mouseout mouseover mouseup position_changed rightclick shape_changed title_changed visible_changed zindex_changed",

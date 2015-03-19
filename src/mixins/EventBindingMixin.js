@@ -22,6 +22,6 @@ module.exports = function (EVENT_MAP) {
         return;
       }
       _event_handles.map(event.removeListener, event);
-    },
+    }
   };
 };

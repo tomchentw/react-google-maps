@@ -1,7 +1,7 @@
 {
   "__template__gist__": "https://gist.github.com/tomchentw/368a93bb748ad9d576f1#file-package-json",
   "name": "react-google-maps",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "description": "React.js Google Maps integration component",
   "main": "lib/index.js",
   "scripts": {
@@ -64,15 +64,16 @@
     "react-prism": "^1.0.0",
     "react-toastr": "^1.1.2",
     "react-tools": "^0.12.0",
-    "sass-loader": "^0.3.0",
+    "sass-loader": "^0.6.0",
     "style-loader": "^0.8.1",
     "tomchentw-npm-dev": "^1.1.0",
     "webpack": "^1.4.7",
     "webpack-dev-server": "^1.6.5"
   },
   "dependencies": {
-    "react": "^0.12.0",
-    "deep-equal": "^0.2.1"
+    "deep-equal": "^0.2.1",
+    "object-path": "^0.9.2",
+    "react": "^0.12.0"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/test/__preprocessor__.js",

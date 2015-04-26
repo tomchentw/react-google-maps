@@ -60,7 +60,7 @@
     "jquery": "^2.1.1",
     "jsx-loader": "^0.12.0",
     "raw-loader": "^0.5.1",
-    "react-hot-loader": "^0.5.0",
+    "react-hot-loader": "^1.2.5",
     "react-prism": "^1.0.0",
     "react-toastr": "^1.1.2",
     "react-tools": "^0.12.0",
@@ -71,7 +71,7 @@
     "webpack-dev-server": "^1.6.5"
   },
   "dependencies": {
-    "react": "^0.12.0",
+    "react": "^0.13.0",
     "deep-equal": "^0.2.1"
   },
   "jest": {

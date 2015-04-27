@@ -1,9 +1,7 @@
-"use strict";
-var React = require("react/addons"),
+import React from "react/addons";
+import {GoogleMaps, Circle, InfoWindow} from "react-google-maps";
 
-    {GoogleMapsMixin, Map, InfoWindow, Circle} = require("react-google-maps"),
-    {geolocation} = navigator,
-    Geolocation;
+var {geolocation} = navigator;
 
 if (!geolocation) {
   geolocation = {
@@ -13,10 +11,7 @@ if (!geolocation) {
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
  */
-Geolocation = React.createClass({
-  displayName: "Geolocation",
-
-  mixins: [require("../../ReactFutureMixin"), GoogleMapsMixin],
+const Geolocation = React.createClass({
 
   getInitialState () {
     return {
@@ -45,21 +40,36 @@ Geolocation = React.createClass({
     });
   },
 
-  _render (props, state) {
-    var {center} = state;
+  render () {
+    const {props, state} = this,
+          {googleMapsApi, ...otherProps} = props,
+          {center} = state;
 
-    return <div style={{height: "100%"}} {...props}>
-      <Map style={{height: "100%"}} zoom={12} center={center} />
-      {center ? <InfoWindow position={center} content={state.content} /> : null}
-      {center ? <Circle center={center} radius={2000} fillColor="red" fillOpacity={0.20} strokeColor="red" strokeOpacity={1} strokeWeight={1} /> : null}
-    </div>;
+    return (
+      <GoogleMaps containerProps={{
+          ...otherProps,
+          style: {
+            height: "100%",
+          },
+        }} mapProps={{
+          style: {
+            height: "100%",
+          },
+        }}
+        googleMapsApi={googleMapsApi}
+        zoom={12}
+        center={center}>
+        {center ? <InfoWindow position={center} content={state.content} /> : null}
+        {center ? <Circle center={center} radius={2000} fillColor="red" fillOpacity={0.20} strokeColor="red" strokeOpacity={1} strokeWeight={1} /> : null}
+      </GoogleMaps>
+    );
   }
 });
 
-module.exports = React.createClass({
-  mixins: [require("../../ReactFutureMixin")],
-
-  _render (props, state) {
-    return <Geolocation googleMapsApi={google.maps} {...props} />;
+export default React.createClass({
+  render () {
+    return (
+      <Geolocation googleMapsApi={google.maps} {...this.props} />
+    );
   }
 });

@@ -1,15 +1,10 @@
-"use strict";
-var React = require("react/addons"),
+import React from "react/addons";
+import {GoogleMaps, Marker} from "react-google-maps";
 
-    {GoogleMapsMixin, Map, Marker} = require("react-google-maps"),
-    AccessingArguments;
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-arguments
  */
-AccessingArguments = React.createClass({
-  displayName: "AccessingArguments",
-
-  mixins: [require("../../ReactFutureMixin"), GoogleMapsMixin],
+const AccessingArguments = React.createClass({
 
   getInitialState () {
     return {
@@ -26,22 +21,42 @@ AccessingArguments = React.createClass({
     this.refs.map.panTo(event.latLng);
   },
 
-  _render (props, state) {
-    return <div style={{height: "100%"}} {...props}>
-      <Map ref="map" style={{height: "100%"}} zoom={4} center={new google.maps.LatLng(-25.363882, 131.044922)} onClick={this._handle_map_click} />
-      {state.markers.map(toMarker, this)}
-    </div>;
+  render () {
+    const {props, state} = this,
+          {googleMapsApi, ...otherProps} = props;
+
+    return (
+      <GoogleMaps containerProps={{
+          ...otherProps,
+          style: {
+            height: "100%",
+          },
+        }} mapProps={{
+          style: {
+            height: "100%",
+          },
+        }}
+        ref="map"
+        googleMapsApi={googleMapsApi}
+        zoom={4}
+        center={new google.maps.LatLng(-25.363882, 131.044922)}
+        onClick={this._handle_map_click}>
+        {state.markers.map(toMarker, this)}
+      </GoogleMaps>
+    );
 
     function toMarker (marker) {
-      return <Marker position={marker.position} />;
+      return (
+        <Marker position={marker.position} />
+      );
     }
   }
 });
 
-module.exports = React.createClass({
-  mixins: [require("../../ReactFutureMixin")],
-
-  _render (props, state) {
-    return <AccessingArguments googleMapsApi={google.maps} {...props} />;
+export default React.createClass({
+  render () {
+    return (
+      <AccessingArguments googleMapsApi={google.maps} {...this.props} />
+    );
   }
 });

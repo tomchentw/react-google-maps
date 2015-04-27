@@ -1,15 +1,10 @@
-"use strict";
-var React = require("react/addons"),
+import React from "react/addons";
+import {GoogleMaps, Marker} from "react-google-maps";
 
-    {GoogleMapsMixin, Map, Marker} = require("react-google-maps"),
-    SimpleClickEvent;
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-simple
  */
-SimpleClickEvent = React.createClass({
-  displayName: "SimpleClickEvent",
-
-  mixins: [require("../../ReactFutureMixin"), GoogleMapsMixin],
+const SimpleClickEvent = React.createClass({
 
   getInitialState () {
     return {
@@ -27,30 +22,54 @@ SimpleClickEvent = React.createClass({
   },
 
   _handle_map_center_changed () {
-    var {timeoutId} = this.state;
+    const {center, timeoutId} = this.state;
+    const newPos = this.refs.marker.getPosition();
+    if (center.equals(newPos)) {
+      // Notice: Check newPos equality here,
+      // or it will fire center_changed event infinitely
+      return;
+    }
     if (timeoutId) {
       clearTimeout(timeoutId);
     }
-    timeoutId = setTimeout(() => {
-      this.refs.map.panTo(this.refs.marker.getPosition());
+    const newTimeoutId = setTimeout(() => {
+      this.refs.map.panTo(newPos);
     }, 3000);
     this.setState({
-      timeoutId,
+      timeoutId: newTimeoutId,
     });
   },
 
-  _render (props, state) {
-    return <div style={{height: "100%"}} {...props}>
-      <Map ref="map" style={{height: "100%"}} zoom={state.zoom} center={state.center} onCenterChanged={this._handle_map_center_changed} />
-      <Marker ref="marker" position={state.center} title="Click to zoom" onClick={this._handle_marker_click} />
-    </div>;
+  render () {
+    const {props, state} = this,
+          {googleMapsApi, ...otherProps} = props;
+
+    return (
+      <GoogleMaps containerProps={{
+          ...otherProps,
+          style: {
+            height: "100%",
+          },
+        }} mapProps={{
+          style: {
+            height: "100%",
+          },
+        }}
+        ref="map"
+        googleMapsApi={googleMapsApi}
+        zoom={state.zoom}
+        center={state.center}
+        onCenterChanged={this._handle_map_center_changed}>
+        <Marker ref="marker" position={state.center} title="Click to zoom" onClick={this._handle_marker_click} />
+      </GoogleMaps>
+    );
   }
 });
 
-module.exports = React.createClass({
-  mixins: [require("../../ReactFutureMixin")],
-
-  _render (props, state) {
-    return <SimpleClickEvent googleMapsApi={google.maps} {...props} />;
+export default React.createClass({
+  render () {
+    return (
+      <SimpleClickEvent googleMapsApi={google.maps} {...this.props} />
+    );
   }
 });

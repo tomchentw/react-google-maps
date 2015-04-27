@@ -1,14 +1,10 @@
-"use strict";
+import React from "react/addons";
+import {PrismCode} from "react-prism";
+import {GoogleMaps, Marker, Polyline, Polygon, InfoWindow} from "react-google-maps";
 
-var React = require("react/addons"),
-    {PropTypes} = React,
-    {update} = React.addons,
-    {PrismCode} = require("react-prism");
+const {PropTypes} = React;
 
-module.exports = React.createClass({
-  displayName: "ComponentPlayground",
-
-  mixins: [require("./ReactFutureMixin")],
+const ComponentPlayground = React.createClass({
 
   propTypes: {
     componentClass: PropTypes.func.isRequired,
@@ -17,16 +13,21 @@ module.exports = React.createClass({
     componentRaw: PropTypes.shape({__raw: PropTypes.string}).isRequired,
   },
 
-  _render (props, state) {
-    var Component = props.componentClass;
+  render () {
+    const {props, state} = this,
+          Component = props.componentClass;
 
-    return <div className={props.className}>
-      <Component className="col-xs-6" {...props.componentProps} />
-      <div className="col-xs-6">
-        <pre><PrismCode className="language-javascript">
-          {props.componentRaw.__raw}
-        </PrismCode></pre>
+    return (
+      <div className={props.className}>
+        <Component className="col-xs-6" toast={props.toast} {...props.componentProps} />
+        <div className="col-xs-6">
+          <pre><PrismCode className="language-javascript">
+            {props.componentRaw.__raw}
+          </PrismCode></pre>
+        </div>
       </div>
-    </div>;
+    );
   }
 });
+
+export default ComponentPlayground;

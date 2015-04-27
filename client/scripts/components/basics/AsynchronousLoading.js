@@ -1,25 +1,34 @@
-"use strict";
-var React = require("react/addons"),
+import React from "react/addons";
+import {GoogleMaps} from "react-google-maps";
 
-    {GoogleMapsMixin, Map} = require("react-google-maps"),
-    AsynchronousLoading;
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/map-simple-async
  */
-AsynchronousLoading = React.createClass({
-  displayName: "AsynchronousLoading",
+const AsynchronousLoading = React.createClass({
 
-  mixins: [require("../../ReactFutureMixin"), GoogleMapsMixin],
+  render () {
+    const {props, state} = this,
+          {googleMapsApi, ...otherProps} = props;
 
-  _render (props, state) {
-    return <div style={{height: "100%"}} {...props}>
-      <Map style={{height: "100%"}} zoom={8} center={{lat: -34.397, lng: 150.644}} />
-    </div>;
+    return (
+      <GoogleMaps containerProps={{
+          ...otherProps,
+          style: {
+            height: "100%",
+          },
+        }} mapProps={{
+          style: {
+            height: "100%",
+          },
+        }}
+        googleMapsApi={googleMapsApi}
+        zoom={8}
+        center={{lat: -34.397, lng: 150.644}} />
+    );
   }
 });
 
-module.exports = React.createClass({
-  mixins: [require("../../ReactFutureMixin")],
+export default React.createClass({
 
   getInitialState () {
     return {
@@ -34,7 +43,9 @@ module.exports = React.createClass({
     }, 3000);
   },
 
-  _render (props, state) {
-    return <AsynchronousLoading googleMapsApi={state.googleMapsApi} {...props} />;
-  }
+  render () {
+    return (
+      <AsynchronousLoading googleMapsApi={this.state.googleMapsApi} {...this.props} />
+    );
+  },
 });

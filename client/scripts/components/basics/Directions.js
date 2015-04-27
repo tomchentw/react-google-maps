@@ -1,13 +1,7 @@
-"use strict";
-var React = require("react/addons"),
+import React from "react/addons";
+import {GoogleMaps, DirectionsRenderer} from "react-google-maps";
 
-    {GoogleMapsMixin, Map, DirectionsRenderer} = require("react-google-maps"),
-    Directions;
-
-Directions = React.createClass({
-  displayName: "Directions",
-
-  mixins: [require("../../ReactFutureMixin"), GoogleMapsMixin],
+const Directions = React.createClass({
 
   getInitialState () {
     return {
@@ -36,21 +30,36 @@ Directions = React.createClass({
     });
   },
 
-  _render (props, state) {
-    var {directions} = state;
+  render () {
+    const {props, state} = this,
+          {googleMapsApi, ...otherProps} = props,
+          {directions} = state;
 
-    return <div style={{height: "100%"}} {...props}>
-      <Map style={{height: "100%"}} zoom={6} center={state.origin} />
-      {directions ? <DirectionsRenderer directions={directions} /> : null}
-    </div>;
-  }
+    return (
+      <GoogleMaps containerProps={{
+          ...otherProps,
+          style: {
+            height: "100%",
+          },
+        }} mapProps={{
+          style: {
+            height: "100%",
+          },
+        }}
+        googleMapsApi={googleMapsApi}
+        zoom={7}
+        center={state.origin}>
+        {directions ? <DirectionsRenderer directions={directions} /> : null}
+      </GoogleMaps>
+    );
+  },
 });
 
-module.exports = React.createClass({
-  mixins: [require("../../ReactFutureMixin")],
-
-  _render (props, state) {
-    return <Directions googleMapsApi={google.maps} {...props} />;
+export default React.createClass({
+  render () {
+    return (
+      <Directions googleMapsApi={google.maps} {...this.props} />
+    );
   }
 });
 

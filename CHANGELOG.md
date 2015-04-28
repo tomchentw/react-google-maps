@@ -1,3 +1,16 @@
+## 1.0.0 (2015-04-28)
+
+
+#### Bug Fixes
+
+* **package.json:** add peerDependencies ([15166996](https://github.com/tomchentw/react-google-maps/commit/1516699617da603dd9dc7e51528a3dd827470617))
+
+
+#### Features
+
+* **src:** rewrite with new API ([a525d5f2](https://github.com/tomchentw/react-google-maps/commit/a525d5f2a074506ad0a9a50fd58d77ecfc4318f9))
+
+
 ### 0.2.5 (2015-03-11)
 
 

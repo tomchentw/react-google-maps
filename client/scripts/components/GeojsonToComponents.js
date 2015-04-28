@@ -1,9 +1,7 @@
-"use strict";
-var React = require("react/addons"),
-    {update} = React.addons,
+import React from "react/addons";
+import {GoogleMaps, Marker, Polyline, Polygon, InfoWindow} from "react-google-maps";
 
-    {GoogleMapsMixin, Map, Marker, Polyline, Polygon, InfoWindow} = require("react-google-maps"),
-    GeojsonToComponents;
+const {update} = React.addons;
 
 function geometryToComponentWithLatLng (geometry) {
   var typeFromThis = Array.isArray(geometry),
@@ -34,10 +32,7 @@ function geometryToComponentWithLatLng (geometry) {
   }
 }
 
-GeojsonToComponents = React.createClass({
-  displayName: "GeojsonToComponents",
-
-  mixins: [require("../ReactFutureMixin"), GoogleMapsMixin],
+const GeojsonToComponents = React.createClass({
 
   getInitialState () {
     return  {
@@ -47,7 +42,7 @@ GeojsonToComponents = React.createClass({
           ref: "map",
           style: {height: "100%"},
           onClick: this._handle_map_click,
-          onZoomChanged: this._handle_map_zoom_changed
+          // onZoomChanged: this._handle_map_zoom_changed
         },
         1: {
           ref: "centerMarker",
@@ -143,38 +138,59 @@ GeojsonToComponents = React.createClass({
     }));
   },
 
-  _render (props, state) {
-    var {initialGeoJson, ...props} = props,
-        {geoStateBy} = state,
-        {features} = state.geoJson;
+  render () {
+    const {props, state} = this,
+          {initialGeoJson, googleMapsApi, ...otherProps} = props,
+          {geoStateBy} = state,
+          {features} = state.geoJson,
+          mapFeature = features[0],
+          mapGeometry = geometryToComponentWithLatLng(mapFeature.geometry),
+          mapState = geoStateBy[0];
 
-    return <div style={{height: "100%"}} {...props}>
-      {features.reduce((array, feature, index) => {
-        var {properties} = feature,
-            {ElementClass, ChildElementClass, ...geometry} = geometryToComponentWithLatLng(feature.geometry),
-            {visible, child, ...featureState} = geoStateBy[feature.id] || {};
-        if (false !== visible) {
+    return (
+      <GoogleMaps containerProps={{
+        ...otherProps,
+        style: {
+          height: "100%",
+        },
+      }} mapProps={{
+        style: {
+          height: "100%",
+        },
+      }}
+        googleMapsApi={googleMapsApi}
+        {...mapFeature.properties}
+        {...mapState}
+        center={mapGeometry.position}>
+
+        {features.reduce((array, feature, index) => {
           if (0 === index) {
-            ElementClass = Map;
-            geometry.center = geometry.position;
-            delete geometry.position;
+            return array;
           }
-          array.push(<ElementClass key={feature.id} {...properties} {...geometry} {...featureState}/>);
-          if (child) {
-            array.push(<ChildElementClass {...child} />);
+          var {properties} = feature,
+              {ElementClass, ChildElementClass, ...geometry} = geometryToComponentWithLatLng(feature.geometry),
+              {visible, child, ...featureState} = geoStateBy[feature.id] || {};
+          if (false !== visible) {
+            array.push(
+              <ElementClass key={`json-${feature.id}`} {...properties} {...geometry} {...featureState}>
+                {child ? <ChildElementClass {...child} /> : null}
+              </ElementClass>
+            );
           }
-        }
-        return array;
-      }, [])}
-    </div>;
+          index === (features.length-1) && console.log(array);
+          return array;
+        }, [])}
+
+      </GoogleMaps>
+    );
   }
 });
 
-module.exports = React.createClass({
-  mixins: [require("../ReactFutureMixin")],
-
-  _render (props, state) {
-    return <GeojsonToComponents googleMapsApi={google.maps} {...props} />;
+export default React.createClass({
+  render () {
+    return (
+      <GeojsonToComponents googleMapsApi={google.maps} {...this.props} />
+    );
   }
 });
 

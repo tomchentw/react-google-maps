@@ -1,15 +1,10 @@
-"use strict";
-var React = require("react/addons"),
+import React from "react/addons";
+import {GoogleMaps, InfoWindow, Marker} from "react-google-maps";
 
-    {GoogleMapsMixin, Map, Marker, InfoWindow} = require("react-google-maps"),
-    ClosureListeners;
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-closure
  */
-ClosureListeners = React.createClass({
-  displayName: "ClosureListeners",
-
-  mixins: [require("../../ReactFutureMixin"), GoogleMapsMixin],
+const ClosureListeners = React.createClass({
 
   getInitialState () {
     return {
@@ -53,31 +48,51 @@ ClosureListeners = React.createClass({
     this.setState(this.state);
   },
 
-  _render (props, state) {
-    return <div style={{height: "100%"}} {...props}>
-      <Map style={{height: "100%"}} zoom={4} center={new google.maps.LatLng(-25.363882, 131.044922)} />
-      {state.markers.map(toMarker, this)}
-      {state.markers.map(toInfoWindow, this)}
-    </div>;
+  render () {
+    const {props, state} = this,
+          {googleMapsApi, ...otherProps} = props;
+
+    return (
+      <GoogleMaps containerProps={{
+        ...otherProps,
+          style: {
+            height: "100%",
+          },
+        }} mapProps={{
+          style: {
+            height: "100%",
+          },
+        }}
+        googleMapsApi={googleMapsApi}
+        zoom={4}
+        center={new google.maps.LatLng(-25.363882, 131.044922)}>
+        {state.markers.map(toMarker, this)}
+      </GoogleMaps>
+    );
 
     function toMarker (marker, index) {
       var ref = `marker_${index}`;
-      return <Marker key={ref} ref={ref} position={marker.position} title={(index+1).toString()} onClick={this._handle_marker_click.bind(this, marker)} />;
+      return (
+        <Marker key={ref} ref={ref}
+                      position={marker.position}
+                      title={(index+1).toString()}
+                      onClick={this._handle_marker_click.bind(this, marker)}>
+          {renderInfoWindow.call(this, marker, index)}
+        </Marker>
+      );
     }
-    /*
-     * Notice: Marker and InfoWindow are rendered in the same level.
-     */
-    function toInfoWindow (marker, index) {
+
+    function renderInfoWindow (marker, index) {
       var ref = `marker_${index}`;
       return marker.showInfo ? <InfoWindow key={`${ref}_info_window`} owner={ref} content={marker.content} onCloseclick={this._handle_closeclick.bind(this, marker)} /> : null;
     }
   }
 });
 
-module.exports = React.createClass({
-  mixins: [require("../../ReactFutureMixin")],
-
-  _render (props, state) {
-    return <ClosureListeners googleMapsApi={google.maps} {...props} />;
+export default React.createClass({
+  render () {
+    return (
+      <ClosureListeners googleMapsApi={google.maps} {...this.props} />
+    );
   }
 });

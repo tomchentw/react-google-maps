@@ -1,23 +1,14 @@
-"use strict";
+import React from "react/addons";
+import {ToastContainer, ToastMessage} from "react-toastr";
+
+import NavHeaderBar from "./NavHeaderBar";
+import ComponentPlayground from "./ComponentPlayground";
+
+const {update} = React.addons;
+
 require("../styles/index.scss");
-require("github-fork-ribbon-css/gh-fork-ribbon.css");
-require("prism/themes/prism.css");
-require("toastr/toastr.min.css");
 
-var React = require("react/addons"),
-    {update} = React.addons,
-
-    NavHeaderBar = require("./NavHeaderBar"),
-    ComponentPlayground = require("./ComponentPlayground"),
-    Body,
-    bodyComponent,
-
-    ACTIONS,
-    DROPDOWN_ACTIONS,
-    RIGHT_ACTIONS,
-    ALL_ACTIONS;
-
-ACTIONS = [
+const ACTIONS = [
   {
     key: "gs",
     displayName: "Getting started",
@@ -31,7 +22,7 @@ ACTIONS = [
   },
 ];
 
-DROPDOWN_ACTIONS = [
+const DROPDOWN_ACTIONS = [
   {
     key: "basics__simple-map",
     displayName: "Simple Map",
@@ -123,7 +114,7 @@ DROPDOWN_ACTIONS = [
   },
 ];
 
-RIGHT_ACTIONS = [
+const RIGHT_ACTIONS = [
   {
     key: "geojson",
     displayName: "Geojson",
@@ -140,12 +131,9 @@ RIGHT_ACTIONS = [
   },
 ];
 
-ALL_ACTIONS = ACTIONS.concat(DROPDOWN_ACTIONS.filter((x) => { return !!x; })).concat(RIGHT_ACTIONS);
+const ALL_ACTIONS = ACTIONS.concat(DROPDOWN_ACTIONS.filter((x) => { return !!x; })).concat(RIGHT_ACTIONS);
 
-Body = React.createClass({
-  displayName: "Body",
-
-  mixins: [require("./ReactFutureMixin")],
+const Body = React.createClass({
 
   getInitialState () {
     var hash = location.hash || ACTIONS[0].path,
@@ -160,8 +148,13 @@ Body = React.createClass({
     this.setState({ action });
   },
 
-  _render (props, state) {
-    var {action} = state;
+  _handle_toast (title, message) {
+    this.refs.toast.success(title, message);
+  },
+
+  render () {
+    const {props, state} = this,
+          {action} = state;
 
     return <div id="react-root">
       <NavHeaderBar activeActionKey={action.key} onNavigateTo={this._handle_navigate} actions={ACTIONS} dropdownActions={DROPDOWN_ACTIONS} rightActions={RIGHT_ACTIONS} />
@@ -172,10 +165,12 @@ Body = React.createClass({
             <a href="https://github.com/tomchentw/react-google-maps">Fork me on GitHub</a>
           </div>
         </div>
-        <ComponentPlayground className="row row--full-height" {...action.component} />
+        <ToastContainer ref="toast" toastMessageFactory={React.createFactory(ToastMessage.jQuery)}/>
+
+        <ComponentPlayground className="row row--full-height" toast={this._handle_toast} {...action.component} />
       </div>
     </div>;
   }
 });
 
-bodyComponent = React.render(<Body />, document.body);
+const bodyComponent = React.render(<Body />, document.body);

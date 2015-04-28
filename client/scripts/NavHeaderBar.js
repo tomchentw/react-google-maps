@@ -1,23 +1,20 @@
-"use strict";
+import React from "react/addons";
+import {GoogleMaps, Marker, Polyline, Polygon, InfoWindow} from "react-google-maps";
+import cx from "classnames";
 
-var React = require("react/addons"),
-    {PropTypes} = React,
-    {update} = React.addons,
-    cx = React.addons.classSet,
+const {PropTypes} = React;
+const {update} = React.addons;
 
-    actionPropType = PropTypes.shape({
+const actionPropType = PropTypes.shape({
         key: PropTypes.string.isRequired,
         displayName: PropTypes.string.isRequired,
         path: PropTypes.string.isRequired,
-      }),
-    actionsArrayType = PropTypes.arrayOf(actionPropType).isRequired;
+      });
+const actionsArrayType = PropTypes.arrayOf(actionPropType).isRequired;
 
 function noop () {}
 
-module.exports = React.createClass({
-  displayName: "NavHeaderBar",
-
-  mixins: [require("./ReactFutureMixin")],
+const NavHeaderBar = React.createClass({
 
   propTypes: {
     activeActionKey: PropTypes.string.isRequired,
@@ -54,52 +51,61 @@ module.exports = React.createClass({
     this.setState({dropdownOpen: false});
   },
 
-  _render (props, state) {
-    var {activeActionKey} = props,
-        dropdownClassSet = {dropdown: true};
+  render () {
+    const {props, state} = this,
+          {activeActionKey} = props,
+          dropdownClassSet = {dropdown: true};
     dropdownClassSet.open = state.dropdownOpen;
 
-    return <nav className="navbar navbar-default" role="navigation">
-      <div className="container-fluid">
-        <div className="navbar-header">
-          <button type="button" className="navbar-toggle collapsed">
-            <span className="sr-only">Toggle navigation</span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-          </button>
-          <a className="navbar-brand" href="#">React Google Maps</a>
-        </div>
+    return (
+      <nav className="navbar navbar-default" role="navigation">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <button type="button" className="navbar-toggle collapsed">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+            <a className="navbar-brand" href="#">React Google Maps</a>
+          </div>
 
-        <div className="collapse navbar-collapse">
-          <ul className="nav navbar-nav">
-            <li><a href="https://github.com/tomchentw" target="_blank">by @tomchentw</a></li>
-            {props.actions.map(actionToMenuItem, this)}
-            <li className={cx(dropdownClassSet)}>
-              <a href="javascript:void(0);" className="dropdown-toggle" onClick={this._handle_click}>Samples <span className="caret"></span></a>
-              <ul className="dropdown-menu" role="menu">
-                {props.dropdownActions.map(actionToMenuItem, this)}
-              </ul>
-            </li>
-          </ul>
-          <ul className="nav navbar-nav navbar-right" style={{marginRight:100}}>
-            {props.rightActions.map(actionToMenuItem, this)}
-          </ul>
+          <div className="collapse navbar-collapse">
+            <ul className="nav navbar-nav">
+              <li><a href="https://github.com/tomchentw" target="_blank">by @tomchentw</a></li>
+              {props.actions.map(actionToMenuItem, this)}
+              <li className={cx(dropdownClassSet)}>
+                <a href="javascript:void(0);" className="dropdown-toggle" onClick={this._handle_click}>Samples <span className="caret"></span></a>
+                <ul className="dropdown-menu" role="menu">
+                  {props.dropdownActions.map(actionToMenuItem, this)}
+                </ul>
+              </li>
+            </ul>
+            <ul className="nav navbar-nav navbar-right" style={{marginRight:100}}>
+              {props.rightActions.map(actionToMenuItem, this)}
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>;
+      </nav>
+    );
 
     function actionToMenuItem (action, index) {
       var classSet = {};
       if (false === action) {
-        return <li key={`divider_${index}`} className="divider"></li>;
+        return (
+          <li key={`divider_${index}`} className="divider"/>
+        );
       } else {
         classSet.active = activeActionKey === action.key;
 
-        return <li key={action.key} className={cx(classSet)} onClick={this._handle_navigate.bind(this, action)}>
-          <a href={action.path}>{action.displayName}</a>
-        </li>;
+        return (
+          <li key={action.key} className={cx(classSet)} onClick={this._handle_navigate.bind(this, action)}>
+            <a href={action.path}>{action.displayName}</a>
+          </li>
+        );
       }
     }
   }
 });
+
+export default NavHeaderBar;

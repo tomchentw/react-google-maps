@@ -1,17 +1,11 @@
-"use strict";
-var React = require("react/addons"),
-    {ToastContainer, ToastMessage} = require("react-toastr"),
+import React from "react/addons";
+import {GoogleMaps, Marker} from "react-google-maps";
 
-    {GoogleMapsMixin, Map, Marker} = require("react-google-maps"),
-    GettingStarted;
 /*
  * This is the modify version of:
  * https://developers.google.com/maps/documentation/javascript/examples/event-arguments
  */
-GettingStarted = React.createClass({
-  displayName: "GettingStarted",
-
-  mixins: [require("../ReactFutureMixin"), GoogleMapsMixin],
+const GettingStarted = React.createClass({
 
   getInitialState () {
     return {
@@ -41,7 +35,7 @@ GettingStarted = React.createClass({
     this.setState({ markers });
 
     if (3 === markers.length) {
-      this.refs.toast.success(
+      this.props.toast(
         "Right click on the marker to remove it",
         "Also check the code!"
       );
@@ -60,26 +54,56 @@ GettingStarted = React.createClass({
     this.setState({ markers });
   },
 
-  _render (props, state) {
-    return <div style={{height: "100%"}} {...props}>
-      <ToastContainer ref="toast" toastMessageFactory={React.createFactory(ToastMessage.jQuery)}/>
-      <Map ref="map" style={{height: "100%"}} zoom={3} center={new google.maps.LatLng(-25.363882, 131.044922)} onClick={this._handle_map_click} />
-      {state.markers.map(toMarker, this)}
-    </div>;
+  render () {
+    const {props, state} = this,
+          {googleMapsApi, ...otherProps} = props;
+
+    /* Internally, <GoogleMaps> will expand to:
+        <div {...containerProps}>
+          <div {...mapProps}>
+            <!-- This inner div is where google.maps.Map instance -->
+            <!-- will be initialized on -->
+          </div>
+          <!-- The container div is just a wrapper around inner div -->
+          <!-- and other children components of maps. -->
+          <!-- This is leaky. I knew it. -->
+        </div>
+     */
+    return (
+      <GoogleMaps containerProps={{
+          ...otherProps,
+          style: {
+            height: "100%",
+          },
+        }} mapProps={{
+          style: {
+            height: "100%",
+          },
+        }}
+        ref="map"
+        googleMapsApi={googleMapsApi}
+        zoom={3}
+        center={new google.maps.LatLng(-25.363882, 131.044922)}
+        onClick={this._handle_map_click}>
+        {state.markers.map(toMarker, this)}
+      </GoogleMaps>
+    );
 
     function toMarker (marker, index) {
-      return <Marker
-        position={marker.position}
-        key={marker.key}
-        onRightclick={this._handle_marker_rightclick.bind(this, index)} />;
+      return (
+        <Marker
+          position={marker.position}
+          key={marker.key}
+          onRightclick={this._handle_marker_rightclick.bind(this, index)} />
+      );
     }
   }
 });
 
-module.exports = React.createClass({
-  mixins: [require("../ReactFutureMixin")],
-
-  _render (props, state) {
-    return <GettingStarted googleMapsApi={google.maps} {...props} />;
+export default React.createClass({
+  render () {
+    return (
+      <GettingStarted googleMapsApi={google.maps} {...this.props} />
+    );
   }
 });

@@ -1,40 +1,49 @@
-"use strict";
-var React = require("react/addons"),
+import React from "react/addons";
+import {GoogleMaps} from "react-google-maps";
 
-    {GoogleMapsMixin, Map} = require("react-google-maps"),
-
-    SimpleMap;
 /*
  * Sample From: https://developers.google.com/maps/documentation/javascript/examples/map-simple
  */
-SimpleMap = React.createClass({
+const SimpleMap = React.createClass({
   /*
    * 1. Create a component class that wraps all your map components in it.
    */
   displayName: "SimpleMap",
   /*
-   * 2. Include GoogleMapsMixin into in its mixins.
+   * 2. Render GoogleMaps component with containerProps and mapProps
    */
-  mixins: [require("../../ReactFutureMixin"), GoogleMapsMixin],
+  render () {
+    const {props, state} = this,
+          {googleMapsApi, ...otherProps} = props;
 
-  _render (props, state) {
-    return <div style={{height: "100%"}} {...props}>
-      <Map style={{height: "100%"}} zoom={8} center={new google.maps.LatLng(-34.397, 150.644)} />
-    </div>;
+    return (
+      <GoogleMaps containerProps={{
+          ...otherProps,
+          style: {
+            height: "100%",
+          },
+        }} mapProps={{
+          style: {
+            height: "100%",
+          },
+        }}
+        googleMapsApi={googleMapsApi}
+        zoom={8}
+        center={{lat: -34.397, lng: 150.644}} />
+    );
   }
 });
 
-module.exports = React.createClass({
+export default React.createClass({
   /*
-   * 3. This is your component class that renders SimpleMap.
+   * 3. This is container component that renders SimpleMap.
    */
-  mixins: [require("../../ReactFutureMixin")],
-
-  _render (props, state) {
+  render () {
     /*
      * 4. The only thing you need to do is pass googleMapsApi as props.
-     * This will be used with GoogleMapsMixin that mixes into SimpleMap
      */
-    return <SimpleMap googleMapsApi={google.maps} {...props} />;
+    return (
+      <SimpleMap googleMapsApi={google.maps} {...this.props} />
+    );
   }
 });

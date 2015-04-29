@@ -1,3 +1,12 @@
+### 1.0.1 (2015-04-30)
+
+
+#### Bug Fixes
+
+* **Marker:** dont wrap children inside noscript tag ([5d9bbf0a](https://github.com/tomchentw/react-google-maps/commit/5d9bbf0a805d726711d1a97b034bbf813b54ee4c))
+* **package.json:** test ([7b54b54e](https://github.com/tomchentw/react-google-maps/commit/7b54b54e0cd432fb6683d1c7558f62104e8c07e2))
+
+
 ## 1.0.0 (2015-04-28)
 
 

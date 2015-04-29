@@ -58,24 +58,9 @@ const GettingStarted = React.createClass({
     const {props, state} = this,
           {googleMapsApi, ...otherProps} = props;
 
-    /* Internally, <GoogleMaps> will expand to:
-        <div {...containerProps}>
-          <div {...mapProps}>
-            <!-- This inner div is where google.maps.Map instance -->
-            <!-- will be initialized on -->
-          </div>
-          <!-- The container div is just a wrapper around inner div -->
-          <!-- and other children components of maps. -->
-          <!-- This is leaky. I knew it. -->
-        </div>
-     */
     return (
       <GoogleMaps containerProps={{
           ...otherProps,
-          style: {
-            height: "100%",
-          },
-        }} mapProps={{
           style: {
             height: "100%",
           },

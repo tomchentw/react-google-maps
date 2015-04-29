@@ -149,15 +149,11 @@ const GeojsonToComponents = React.createClass({
 
     return (
       <GoogleMaps containerProps={{
-        ...otherProps,
-        style: {
-          height: "100%",
-        },
-      }} mapProps={{
-        style: {
-          height: "100%",
-        },
-      }}
+          ...otherProps,
+          style: {
+            height: "100%",
+          },
+        }}
         googleMapsApi={googleMapsApi}
         {...mapFeature.properties}
         {...mapState}

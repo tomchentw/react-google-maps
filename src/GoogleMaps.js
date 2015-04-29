@@ -1,6 +1,7 @@
 import React from "react";
 
 import EventComponent from "./internals/EventComponent";
+import VirtualContainer from "./internals/VirtualContainer";
 import exposeGetters from "./internals/exposeGetters";
 import createRegisterEvents from "./internals/createRegisterEvents";
 
@@ -69,30 +70,49 @@ class GoogleMaps extends EventComponent {
     return instance;
   }
 
+  componentDidMount () {
+    super.componentDidMount();
+    this._containerNode = document.createElement("div");
+    this._render_virtual_container_();
+  }
+
+  componentDidUpdate () {
+    super.componentDidUpdate();
+    this._render_virtual_container_();
+  }
+
+  componentWillUnmount () {
+    React.unmountComponentAtNode(this._containerNode);
+    this._containerNode = null;
+    super.componentWillUnmount();
+  }
+
   render () {
     const {props} = this;
 
     return (
       <div {...props.containerProps}>
         <div {...props.mapProps} ref="googleMaps" />
-        {this._render_children_()}
       </div>
     );
   }
 
-  _render_children_ () {
-    const extraProps = {
-      googleMapsApi: this.props.googleMapsApi,
-      map: this.state.instance,
-    };
-
-    return React.Children.map(this.props.children, (child) => {
-      if (child && child.type) {
-        child = React.cloneElement(child, extraProps);
-      }
-      return child;
-    });
+  _render_virtual_container_ () {
+    const {props} = this,
+          {googleMapsApi, children} = props,
+          {instance} = this.state;
+    if (!googleMapsApi || !instance) {
+      return;
+    }
+    return React.render(
+      <VirtualContainer
+        googleMapsApi={googleMapsApi}
+        map={instance}>
+        {children}
+      </VirtualContainer>
+    , this._containerNode);
   }
+
 }
 
 GoogleMaps.propTypes = {

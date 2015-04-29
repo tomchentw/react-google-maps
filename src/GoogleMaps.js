@@ -91,9 +91,7 @@ class GoogleMaps extends EventComponent {
     const {props} = this;
 
     return (
-      <div {...props.containerProps}>
-        <div {...props.mapProps} ref="googleMaps" />
-      </div>
+      <div {...props.containerProps} ref="googleMaps" />
     );
   }
 
@@ -118,7 +116,6 @@ class GoogleMaps extends EventComponent {
 GoogleMaps.propTypes = {
   ...EventComponent.propTypes,
   containerProps: PropTypes.object.isRequired,
-  mapProps: PropTypes.object.isRequired,
 };
 
 GoogleMaps._registerEvents = createRegisterEvents(

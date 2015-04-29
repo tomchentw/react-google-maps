@@ -5,26 +5,31 @@ import createRegisterEvents from "./internals/createRegisterEvents";
 
 import InfoWindow from "./InfoWindow";
 
+const {Children} = React;
+
 class Marker extends SimpleChildComponent {
 
   render () {
-    const {props} = this;
+    if (0 === Children.count(this.props.children)) {
+      return <noscript />;
+    }
 
     return (
-      <noscript>
+      <div>
         {this._render_potential_info_windows_()}
-      </noscript>
+      </div>
     );
   }
 
   _render_potential_info_windows_ () {
+    const {props} = this;
     const extraProps = {
-      googleMapsApi: this.props.googleMapsApi,
-      map: this.props.map,
+      googleMapsApi: props.googleMapsApi,
+      map: props.map,
       anchor: this.state.instance,
     };
 
-    return React.Children.map(this.props.children, (child) => {
+    return Children.map(props.children, (child) => {
       if (React.isValidElement(child) && child.type === InfoWindow) {
         child = React.cloneElement(child, extraProps);
       }

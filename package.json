@@ -61,6 +61,7 @@
     "css-loader": "^0.9.0",
     "expose-loader": "^0.5.3",
     "file-loader": "^0.8.1",
+    "github-fork-ribbon-css": "git+https://github.com/tomchentw/github-fork-ribbon-css.git#gh-pages",
     "html-webpack-plugin": "^1.1.0",
     "jest-cli": "^0.1.18",
     "jquery": "^2.1.1",

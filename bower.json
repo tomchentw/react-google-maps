@@ -21,6 +21,5 @@
     "webpack.config.js"
   ],
   "devDependencies": {
-    "toastr": "~2.1.0"
   }
 }

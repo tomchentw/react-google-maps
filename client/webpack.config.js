@@ -12,7 +12,7 @@ var Path = require("path"),
     CSS_LOADER = "style-loader!css-loader?root=../",
     SCSS_LOADER = CSS_LOADER + "!sass-loader?" + JSON.stringify({
       includePaths: [
-        Path.resolve(__dirname, "../bower_components/bootstrap-sass-official/assets/stylesheets"),
+        Path.resolve(__dirname, "../node_modules/bootstrap-sass/assets/stylesheets"),
       ]
     });
 

@@ -24,9 +24,6 @@ webpackConfig = module.exports = {
     filename: (IS_PRODUCTION ? "[hash].js" : "bundle.js"),
   },
   resolve: {
-    root: [
-      Path.join(__dirname, "../bower_components")
-    ],
     alias: {
       "react-google-maps": Path.resolve(__dirname, "../src"),
     },
@@ -40,9 +37,6 @@ webpackConfig = module.exports = {
     ],
   },
   plugins: [
-    new webpack.ResolverPlugin(
-      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
-    ),
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery",

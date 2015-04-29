@@ -24,7 +24,7 @@ WIP: release a UMD version via bower/components.
 
 ```shell
 git clone ...
-npm run dev_install
+npm install
 npm run dev
 ```
 

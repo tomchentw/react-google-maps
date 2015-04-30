@@ -50,10 +50,6 @@ const SimpleClickEvent = React.createClass({
           style: {
             height: "100%",
           },
-        }} mapProps={{
-          style: {
-            height: "100%",
-          },
         }}
         ref="map"
         googleMapsApi={googleMapsApi}

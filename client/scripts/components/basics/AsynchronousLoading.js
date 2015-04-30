@@ -16,10 +16,6 @@ const AsynchronousLoading = React.createClass({
           style: {
             height: "100%",
           },
-        }} mapProps={{
-          style: {
-            height: "100%",
-          },
         }}
         googleMapsApi={googleMapsApi}
         zoom={8}

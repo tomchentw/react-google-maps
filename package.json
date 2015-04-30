@@ -56,7 +56,7 @@
     "babel-loader": "^5.0.0",
     "bootstrap-sass": "^3.3.4",
     "classnames": "^1.2.1",
-    "css-loader": "^0.9.0",
+    "css-loader": "^0.12.0",
     "file-loader": "^0.8.1",
     "github-fork-ribbon-css": "git+https://github.com/tomchentw/github-fork-ribbon-css.git#gh-pages",
     "html-webpack-plugin": "^1.1.0",

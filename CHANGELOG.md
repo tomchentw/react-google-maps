@@ -1,3 +1,33 @@
+## 1.1.0 (2015-04-30)
+
+
+#### Features
+
+* **GoogleMaps:**
+  * get rid of mapProps ([7e338c2a](https://github.com/tomchentw/react-google-maps/commit/7e338c2add01fdb63441e023e5da25db905b9c4c))
+  * render child components inside VirtualContainer ([f07eb4b4](https://github.com/tomchentw/react-google-maps/commit/f07eb4b47605a4bc2752f60306ae4e5f8395bc64))
+
+
+#### Breaking Changes
+
+* mapProps is no longer needed
+
+  since map children components are now rendered inside a virtual
+  container, we don't need funky wrapper div anymore.
+
+  Before:
+
+    <div {...props.containerProps} ref="googleMaps" />
+      <div {...props.mapProps} ref="googleMaps" />
+    </div>
+
+  After:
+
+    <div {...props.containerProps} ref="googleMaps" />
+
+ ([7e338c2a](https://github.com/tomchentw/react-google-maps/commit/7e338c2add01fdb63441e023e5da25db905b9c4c))
+
+
 ### 1.0.1 (2015-04-30)
 
 

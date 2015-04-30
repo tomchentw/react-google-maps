@@ -2,7 +2,9 @@
 > React.js Google Maps integration component
 
 [![Version][npm-image]][npm-url]
+## Installation
 
+`npm i --save react-google-maps`
 
 ## Demo
 

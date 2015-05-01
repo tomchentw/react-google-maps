@@ -2,24 +2,21 @@
 > React.js Google Maps integration component
 
 [![Version][npm-image]][npm-url]
+
+
 ## Installation
 
 `npm i --save react-google-maps`
 
-## Demo
 
-Static hosted [demo site][demo] on GitHub.
+## Demo/Examples
 
-
-## Example
-
-Please refer to [client][client] folder for example.
+Static hosted [demo site][demo] on GitHub. The code is located under [examples/gh-pages][examples_gh_pages] folder.
 
 
 ## Usage
 
 This module requires to be bundled with [webpack][webpack]/browserify and loads `react/addons` internally.  
-WIP: release a UMD version via bower/components.
 
 
 ### Development
@@ -62,5 +59,5 @@ Then open [http://localhost:8080](http://localhost:8080).
 
 
 [demo]: http://tomchentw.github.io/react-google-maps/
-[client]: https://github.com/tomchentw/react-google-maps/tree/master/client
+[examples_gh_pages]: https://github.com/tomchentw/react-google-maps/tree/master/examples/gh-pages
 [webpack]: http://webpack.github.io/docs/tutorials/getting-started/

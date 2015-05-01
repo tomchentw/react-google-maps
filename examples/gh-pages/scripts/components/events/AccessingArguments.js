@@ -4,22 +4,23 @@ import {GoogleMaps, Marker} from "react-google-maps";
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-arguments
  */
-const AccessingArguments = React.createClass({
+class AccessingArguments extends React.Component {
 
-  getInitialState () {
-    return {
+  constructor (...args) {
+    super(...args);
+    this.state =  {
       markers: [],
     };
-  },
+  }
 
   _handle_map_click (event) {
-    var {markers} = this.state;
+    const {markers} = this.state;
     markers.push({
       position: event.latLng
     });
     this.setState({ markers });
     this.refs.map.panTo(event.latLng);
-  },
+  }
 
   render () {
     const {props, state} = this,
@@ -33,10 +34,10 @@ const AccessingArguments = React.createClass({
           },
         }}
         ref="map"
-        googleMapsApi={googleMapsApi}
+        googleMapsApi={google.maps}
         zoom={4}
         center={new google.maps.LatLng(-25.363882, 131.044922)}
-        onClick={this._handle_map_click}>
+        onClick={this._handle_map_click.bind(this)}>
         {state.markers.map(toMarker, this)}
       </GoogleMaps>
     );
@@ -47,12 +48,7 @@ const AccessingArguments = React.createClass({
       );
     }
   }
-});
 
-export default React.createClass({
-  render () {
-    return (
-      <AccessingArguments googleMapsApi={google.maps} {...this.props} />
-    );
-  }
-});
+}
+
+export default AccessingArguments;

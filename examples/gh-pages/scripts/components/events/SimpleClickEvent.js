@@ -4,22 +4,23 @@ import {GoogleMaps, Marker} from "react-google-maps";
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-simple
  */
-const SimpleClickEvent = React.createClass({
+class SimpleClickEvent extends React.Component {
 
-  getInitialState () {
-    return {
+  constructor (...args) {
+    super(...args);
+    this.state = {
       zoom: 4,
       center: new google.maps.LatLng(-25.363882, 131.044922),
       timeoutId: null,
     };
-  },
+  }
 
   _handle_marker_click () {
     this.setState({
       zoom: 8,
       center: this.refs.marker.getPosition(),
     });
-  },
+  }
 
   _handle_map_center_changed () {
     const {center, timeoutId} = this.state;
@@ -38,7 +39,7 @@ const SimpleClickEvent = React.createClass({
     this.setState({
       timeoutId: newTimeoutId,
     });
-  },
+  }
 
   render () {
     const {props, state} = this,
@@ -52,20 +53,19 @@ const SimpleClickEvent = React.createClass({
           },
         }}
         ref="map"
-        googleMapsApi={googleMapsApi}
+        googleMapsApi={google.maps}
         zoom={state.zoom}
         center={state.center}
-        onCenterChanged={this._handle_map_center_changed}>
-        <Marker ref="marker" position={state.center} title="Click to zoom" onClick={this._handle_marker_click} />
+        onCenterChanged={this._handle_map_center_changed.bind(this)}>
+        <Marker
+          ref="marker"
+          position={state.center}
+          title="Click to zoom"
+          onClick={this._handle_marker_click.bind(this)} />
       </GoogleMaps>
     );
   }
-});
 
-export default React.createClass({
-  render () {
-    return (
-      <SimpleClickEvent googleMapsApi={google.maps} {...this.props} />
-    );
-  }
-});
+}
+
+export default SimpleClickEvent;

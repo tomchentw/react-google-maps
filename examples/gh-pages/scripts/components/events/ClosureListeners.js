@@ -4,13 +4,14 @@ import {GoogleMaps, InfoWindow, Marker} from "react-google-maps";
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-closure
  */
-const ClosureListeners = React.createClass({
+class ClosureListeners extends React.Component {
 
-  getInitialState () {
-    return {
+  constructor (...args) {
+    super(...args);
+    this.state = {
       markers: [],
     };
-  },
+  }
 
   componentWillMount () {
     var southWest = new google.maps.LatLng(-31.203405, 125.244141),
@@ -36,17 +37,17 @@ const ClosureListeners = React.createClass({
     this.setState({
       markers, 
     });
-  },
+  }
 
   _handle_marker_click (marker) {
     marker.showInfo = true;
     this.setState(this.state);
-  },
+  }
 
   _handle_closeclick (marker) {
     marker.showInfo = false;
     this.setState(this.state);
-  },
+  }
 
   render () {
     const {props, state} = this,
@@ -59,7 +60,7 @@ const ClosureListeners = React.createClass({
             height: "100%",
           },
         }}
-        googleMapsApi={googleMapsApi}
+        googleMapsApi={google.maps}
         zoom={4}
         center={new google.maps.LatLng(-25.363882, 131.044922)}>
         {state.markers.map(toMarker, this)}
@@ -83,12 +84,7 @@ const ClosureListeners = React.createClass({
       return marker.showInfo ? <InfoWindow key={`${ref}_info_window`} owner={ref} content={marker.content} onCloseclick={this._handle_closeclick.bind(this, marker)} /> : null;
     }
   }
-});
 
-export default React.createClass({
-  render () {
-    return (
-      <ClosureListeners googleMapsApi={google.maps} {...this.props} />
-    );
-  }
-});
+}
+
+export default ClosureListeners;

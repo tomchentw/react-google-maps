@@ -4,14 +4,15 @@ import {GoogleMaps, InfoWindow, Marker} from "react-google-maps";
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-properties
  */
-const GettingProperties = React.createClass({
+class GettingProperties extends React.Component {
 
-  getInitialState () {
-    return {
+  constructor (...args) {
+    super(...args);
+    this.state = {
       zoomLevel: 4,
       content: "Change the zoom level", 
     };
-  },
+  }
 
   _handle_zoom_changed () {
     const zoomLevel = this.refs.map.getZoom();
@@ -23,7 +24,7 @@ const GettingProperties = React.createClass({
         content: `Zoom: ${ zoomLevel }`,
       });
     }
-  },
+  }
 
   render () {
     const {props, state} = this,
@@ -38,20 +39,15 @@ const GettingProperties = React.createClass({
           },
         }}
         ref="map"
-        googleMapsApi={googleMapsApi}
+        googleMapsApi={google.maps}
         zoom={state.zoomLevel}
         center={myLatLng}
-        onZoomChanged={this._handle_zoom_changed}>
+        onZoomChanged={this._handle_zoom_changed.bind(this)}>
         <InfoWindow position={myLatLng} content={state.content} />
       </GoogleMaps>
     );
   }
-});
 
-export default React.createClass({
-  render () {
-    return (
-      <GettingProperties googleMapsApi={google.maps} {...this.props} />
-    );
-  }
-});
+}
+
+export default GettingProperties;

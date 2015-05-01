@@ -1,18 +1,19 @@
 import React from "react/addons";
 import {GoogleMaps, DirectionsRenderer} from "react-google-maps";
 
-const Directions = React.createClass({
+class Directions extends React.Component {
 
-  getInitialState () {
-    return {
+  constructor (...args) {
+    super(...args);
+    this.state = {
       origin: new google.maps.LatLng(41.8507300, -87.6512600),
       destination: new google.maps.LatLng(41.8525800, -87.6514100),
       directions: null,
     };
-  },
+  }
 
   componentDidMount () {
-    var DirectionsService = new google.maps.DirectionsService();
+    const DirectionsService = new google.maps.DirectionsService();
 
     DirectionsService.route({
       origin: this.state.origin,
@@ -25,10 +26,10 @@ const Directions = React.createClass({
         })
       }
       else {
-        console.error('error fetching directions ' + result);
+        console.error(`error fetching directions ${ result }`);
       }
     });
-  },
+  }
 
   render () {
     const {props, state} = this,
@@ -42,20 +43,14 @@ const Directions = React.createClass({
             height: "100%",
           },
         }}
-        googleMapsApi={googleMapsApi}
+        googleMapsApi={google.maps}
         zoom={7}
         center={state.origin}>
         {directions ? <DirectionsRenderer directions={directions} /> : null}
       </GoogleMaps>
     );
-  },
-});
-
-export default React.createClass({
-  render () {
-    return (
-      <Directions googleMapsApi={google.maps} {...this.props} />
-    );
   }
-});
 
+}
+
+export default Directions;

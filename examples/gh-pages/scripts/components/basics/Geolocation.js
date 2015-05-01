@@ -12,14 +12,15 @@ const geolocation = (
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
  */
-const Geolocation = React.createClass({
+class Geolocation extends React.Component {
 
-  getInitialState () {
-    return {
+  constructor (...args) {
+    super(...args);
+    this.state = {
       center: null,
       content: null,
     };
-  },
+  }
 
   componentDidMount () {
     geolocation.getCurrentPosition((position) => {
@@ -39,7 +40,7 @@ const Geolocation = React.createClass({
         content: `Error: The Geolocation service failed (${ reason }).`
       });
     });
-  },
+  }
 
   render () {
     const {props, state} = this,
@@ -53,7 +54,7 @@ const Geolocation = React.createClass({
             height: "100%",
           },
         }}
-        googleMapsApi={googleMapsApi}
+        googleMapsApi={google.maps}
         zoom={12}
         center={center}>
         {center ? <InfoWindow position={center} content={state.content} /> : null}
@@ -61,12 +62,7 @@ const Geolocation = React.createClass({
       </GoogleMaps>
     );
   }
-});
 
-export default React.createClass({
-  render () {
-    return (
-      <Geolocation googleMapsApi={google.maps} {...this.props} />
-    );
-  }
-});
+}
+
+export default Geolocation;

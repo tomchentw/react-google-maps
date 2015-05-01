@@ -1,17 +1,13 @@
-import React from "react/addons";
+import React from "react";
 
 const {PropTypes} = React;
 
-const ReactHtml = React.createClass({
-
-  propTypes: {
-    componentString: PropTypes.string.isRequired,
-    clientAssets: PropTypes.object.isRequired,
-  },
+class ReactHtml extends React.Component {
 
   render () {
     const {props, state} = this,
-          {clientAssets} = props;
+          {clientAssets} = props,
+          innerHtml = {__html: props.componentString};
 
     return (
       <html>
@@ -21,12 +17,17 @@ const ReactHtml = React.createClass({
           <script type="text/javascript" src="prism.min.js" />
         </head>
         <body>
-          <div id="react-container" dangerouslySetInnerHTML={{__html: props.componentString}}/>
+          <div id="react-container" dangerouslySetInnerHTML={innerHtml} />
           <script type="text/javascript" src={clientAssets["assets/main"]} />
         </body>
       </html>
     );
   }
-});
+}
+
+ReactHtml.propTypes = {
+  componentString: PropTypes.string.isRequired,
+  clientAssets: PropTypes.object.isRequired,
+};
 
 export default ReactHtml;

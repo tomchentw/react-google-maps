@@ -1,4 +1,4 @@
-import React from "react/addons";
+import React from "react";
 
 import ReactRoot from "./ReactRoot";
 

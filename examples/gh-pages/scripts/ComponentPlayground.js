@@ -1,17 +1,10 @@
-import React from "react/addons";
+import React from "react";
 import {PrismCode} from "react-prism";
 import {GoogleMaps, Marker, Polyline, Polygon, InfoWindow} from "react-google-maps";
 
 const {PropTypes} = React;
 
-const ComponentPlayground = React.createClass({
-
-  propTypes: {
-    componentClass: PropTypes.func.isRequired,
-    componentProps: PropTypes.object,
-    // Adding __raw is to hide content from React Develop Tool
-    componentRaw: PropTypes.shape({__raw: PropTypes.string}).isRequired,
-  },
+class ComponentPlayground extends React.Component {
 
   render () {
     const {props, state} = this,
@@ -19,8 +12,13 @@ const ComponentPlayground = React.createClass({
 
     return (
       <div className={props.className}>
-        <Component className="col-xs-6" toast={props.toast} {...props.componentProps} />
-        <div className="col-xs-6">
+        <Component
+          className="col-xs-6"
+          toast={props.toast}
+          {...props.componentProps} />
+
+        <div
+          className="col-xs-6">
           <pre><PrismCode className="language-javascript">
             {props.componentRaw.__raw}
           </PrismCode></pre>
@@ -28,6 +26,13 @@ const ComponentPlayground = React.createClass({
       </div>
     );
   }
-});
+}
+
+ComponentPlayground.propTypes = {
+  componentClass: PropTypes.func.isRequired,
+  componentProps: PropTypes.object,
+  // Adding __raw is to hide content from React Develop Tool
+  componentRaw: PropTypes.shape({__raw: PropTypes.string}).isRequired,
+};
 
 export default ComponentPlayground;

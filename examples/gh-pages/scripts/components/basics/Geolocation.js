@@ -1,13 +1,14 @@
 import React from "react/addons";
 import {GoogleMaps, Circle, InfoWindow} from "react-google-maps";
 
-var {geolocation} = navigator;
+const geolocation = (
+  "undefined" !== typeof window && navigator && navigator.geolocation || {
+    getCurrentPosition: (success, failure) => {
+      failure("Your browser doesn't support geolocation.");
+    },
+  }
+);
 
-if (!geolocation) {
-  geolocation = {
-    getCurrentPosition: (success, failure) => { failure("Your browser doesn't support geolocation."); }
-  };
-}
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
  */

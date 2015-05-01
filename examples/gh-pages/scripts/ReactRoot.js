@@ -134,8 +134,12 @@ const ALL_ACTIONS = ACTIONS.concat(DROPDOWN_ACTIONS.filter((x) => { return !!x; 
 const ReactRoot = React.createClass({
 
   getInitialState () {
-    var hash = location.hash || ACTIONS[0].path,
-        action = ALL_ACTIONS.filter((action) => { return action.path === hash; })[0];
+    const location = (
+      "undefined" !== typeof window && location || {
+      }
+    );
+    const hash = location.hash || ACTIONS[0].path;
+    const action = ALL_ACTIONS.filter((action) => { return action.path === hash; })[0];
 
     return {
       action: action,

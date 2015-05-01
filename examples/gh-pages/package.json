@@ -2,15 +2,17 @@
   "name": "gh-pages",
   "version": "1.0.0",
   "scripts": {
-    "build_client": "webpack -p",
-    "dev": "webpack && webpack-dev-server --inline --hot --content-base ../../public"
+    "clean": "rm -f ../../public/index.html && rm -rf ../../public/assets && rm -rf ../../public/tmp",
+    "build_client": "npm run clean && webpack -p",
+    "dev": "npm run clean && webpack-dev-server --content-base ../../public"
   },
-   "devDependencies": {
+  "devDependencies": {
     "babel-core": "^5.1.13",
     "babel-loader": "^5.0.0",
     "bootstrap-sass": "^3.3.4",
     "classnames": "^1.2.1",
     "css-loader": "^0.12.0",
+    "eval": "^0.1.0",
     "file-loader": "^0.8.1",
     "github-fork-ribbon-css": "git+https://github.com/tomchentw/github-fork-ribbon-css.git#gh-pages",
     "html-webpack-plugin": "^1.1.0",

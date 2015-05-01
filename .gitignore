@@ -42,5 +42,6 @@ node_modules
 .module-cache
 bower_components
 public/assets
+public/tmp
 public/index.html
 public/*.gz

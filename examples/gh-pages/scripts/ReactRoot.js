@@ -133,16 +133,24 @@ class ReactRoot extends React.Component {
 
   constructor (...args) {
     super(args);
-    const location = (
-      "undefined" !== typeof window && location || {
-      }
-    );
-    const hash = location.hash || ACTIONS[0].path;
-    const action = ALL_ACTIONS.filter((action) => { return action.path === hash; })[0];
-
     this.state = {
-      action: action,
+      action: ACTIONS[0],
     };
+  }
+
+  componentWillMount () {
+    var {action} = this.state;
+    const hash = (
+      "undefined" !== typeof window && location.hash || (
+        // Server rendering polyfill
+        action.path
+      )
+    );
+    if (hash === action.path) {
+      return;
+    }
+    action = ALL_ACTIONS.filter((action) => { return action.path === hash; })[0];
+    this.setState({ action });
   }
 
   _handle_navigate (action) {

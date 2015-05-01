@@ -40,6 +40,5 @@ node_modules
 ### Project ###
 
 .module-cache
-public/assets
-public/index.html
-public/*.gz
+tmp
+*.gz

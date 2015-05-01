@@ -68,7 +68,7 @@ const GettingStarted = React.createClass({
         ref="map"
         googleMapsApi={googleMapsApi}
         zoom={3}
-        center={new google.maps.LatLng(-25.363882, 131.044922)}
+        center={{lat: -25.363882, lng: 131.044922}}
         onClick={this._handle_map_click}>
         {state.markers.map(toMarker, this)}
       </GoogleMaps>
@@ -88,7 +88,9 @@ const GettingStarted = React.createClass({
 export default React.createClass({
   render () {
     return (
-      <GettingStarted googleMapsApi={google.maps} {...this.props} />
+      <GettingStarted googleMapsApi={
+        "undefined" !== typeof google ? google.maps : null
+      } {...this.props} />
     );
   }
 });

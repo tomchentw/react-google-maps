@@ -24,6 +24,10 @@ class SimpleClickEvent extends React.Component {
 
   _handle_map_center_changed () {
     const {center, timeoutId} = this.state;
+    const {marker} = this.refs;
+    if (!marker) {
+      return;
+    }
     const newPos = this.refs.marker.getPosition();
     if (center.equals(newPos)) {
       // Notice: Check newPos equality here,

@@ -1,3 +1,11 @@
+### 1.1.1 (2015-05-01)
+
+
+#### Bug Fixes
+
+* **VirtualContainer:** preserve ref for React.cloneElement ([3d3be964](https://github.com/tomchentw/react-google-maps/commit/3d3be964111b969bad9a1f5052f4aae8e3cc3637))
+
+
 ## 1.1.0 (2015-04-30)
 
 

@@ -19,7 +19,6 @@ class VirtualContainer extends React.Component {
     const extraProps = {
       googleMapsApi: props.googleMapsApi,
       map: props.map,
-      ref: null,
     };
 
     return React.Children.map(props.children, (child) => {

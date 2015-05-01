@@ -1,9 +1,8 @@
-import React from "react/addons";
+import React from "react";
 import {GoogleMaps, Marker, Polyline, Polygon, InfoWindow} from "react-google-maps";
 import cx from "classnames";
 
 const {PropTypes} = React;
-const {update} = React.addons;
 
 const actionPropType = PropTypes.shape({
         key: PropTypes.string.isRequired,
@@ -14,42 +13,30 @@ const actionsArrayType = PropTypes.arrayOf(actionPropType).isRequired;
 
 function noop () {}
 
-const NavHeaderBar = React.createClass({
+class NavHeaderBar extends React.Component {
 
-  propTypes: {
-    activeActionKey: PropTypes.string.isRequired,
-    onNavigateTo: PropTypes.func,
-    actions: actionsArrayType,
-    dropdownActions: PropTypes.arrayOf(
-        PropTypes.oneOfType([actionPropType, PropTypes.bool])
-      ),
-    rightActions: actionsArrayType,
-  },
-
-  getInitialState () {
-    return {
-      dropdownOpen: false,
-    };
-  },
-
-  getDefaultProps () {
-    return {
+  constructor (props, ...restArgs) {
+    super({
       onNavigateTo: noop,
       actions: [],
       dropdownActions: [],
       rightActions: [],
+      ...props,
+    }, ...restArgs);
+    this.state = {
+      dropdownOpen: false,
     };
-  },
+  }
 
   _handle_click () {
     this.setState({dropdownOpen: !this.state.dropdownOpen});
-  },
+  }
 
   _handle_navigate (action, event) {
     event.stopPropagation();
     this.props.onNavigateTo(action);
     this.setState({dropdownOpen: false});
-  },
+  }
 
   render () {
     const {props, state} = this,
@@ -75,7 +62,7 @@ const NavHeaderBar = React.createClass({
               <li><a href="https://github.com/tomchentw" target="_blank">by @tomchentw</a></li>
               {props.actions.map(actionToMenuItem, this)}
               <li className={cx(dropdownClassSet)}>
-                <a href="javascript:void(0);" className="dropdown-toggle" onClick={this._handle_click}>Samples <span className="caret"></span></a>
+                <a href="javascript:void(0);" className="dropdown-toggle" onClick={this._handle_click.bind(this)}>Samples <span className="caret"></span></a>
                 <ul className="dropdown-menu" role="menu">
                   {props.dropdownActions.map(actionToMenuItem, this)}
                 </ul>
@@ -106,6 +93,17 @@ const NavHeaderBar = React.createClass({
       }
     }
   }
-});
+
+}
+
+NavHeaderBar.propTypes = {
+  activeActionKey: PropTypes.string.isRequired,
+  onNavigateTo: PropTypes.func,
+  actions: actionsArrayType,
+  dropdownActions: PropTypes.arrayOf(
+      PropTypes.oneOfType([actionPropType, PropTypes.bool])
+    ),
+  rightActions: actionsArrayType,
+};
 
 export default NavHeaderBar;

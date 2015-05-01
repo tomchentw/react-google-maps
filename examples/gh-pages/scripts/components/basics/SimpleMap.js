@@ -4,18 +4,16 @@ import {GoogleMaps} from "react-google-maps";
 /*
  * Sample From: https://developers.google.com/maps/documentation/javascript/examples/map-simple
  */
-const SimpleMap = React.createClass({
+class SimpleMap extends React.Component {
   /*
-   * 1. Create a component class that wraps all your map components in it.
-   */
-  displayName: "SimpleMap",
-  /*
-   * 2. Render GoogleMaps component with containerProps and mapProps
+   * 1. Create a component that wraps all your map sub-components.
    */
   render () {
     const {props, state} = this,
           {googleMapsApi, ...otherProps} = props;
-
+    /*
+     * 2. Render GoogleMaps component with containerProps
+     */
     return (
       <GoogleMaps containerProps={{
           ...otherProps,
@@ -23,23 +21,15 @@ const SimpleMap = React.createClass({
             height: "100%",
           },
         }}
-        googleMapsApi={googleMapsApi}
+        /*
+         * 3. Pass googleMapsApi from global variable as props.
+         */
+        googleMapsApi={google.maps}
         zoom={8}
         center={{lat: -34.397, lng: 150.644}} />
     );
   }
-});
 
-export default React.createClass({
-  /*
-   * 3. This is container component that renders SimpleMap.
-   */
-  render () {
-    /*
-     * 4. The only thing you need to do is pass googleMapsApi as props.
-     */
-    return (
-      <SimpleMap googleMapsApi={google.maps} {...this.props} />
-    );
-  }
-});
+}
+
+export default SimpleMap;

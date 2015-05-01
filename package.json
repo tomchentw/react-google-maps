@@ -52,7 +52,8 @@
   "devDependencies": {
     "babel": "^5.1.13",
     "babel-core": "^5.1.13",
-    "jest-cli": "^0.4.0"
+    "jest-cli": "^0.4.0",
+    "tomchentw-npm-dev": "^1.2.0"
   },
   "dependencies": {
     "react": "^0.13.0"

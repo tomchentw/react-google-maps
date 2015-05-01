@@ -32,38 +32,39 @@ function geometryToComponentWithLatLng (geometry) {
   }
 }
 
-const GeojsonToComponents = React.createClass({
+class GeojsonToComponents extends React.Component {
 
-  getInitialState () {
-    return  {
+  constructor (...args) {
+    super(...args);
+    this.state = {
       geoJson: this.props.initialGeoJson,
       geoStateBy: {
         0: {
           ref: "map",
           style: {height: "100%"},
-          onClick: this._handle_map_click,
-          // onZoomChanged: this._handle_map_zoom_changed
+          onClick: this._handle_map_click.bind(this),
+          // onZoomChanged: this._handle_map_zoom_changed.bind(this)
         },
         1: {
           ref: "centerMarker",
           visible: true,
           draggable: true,
-          onDragend: this._handle_marker_dragend,
-          onClick: this._handle_marker_click,
+          onDragend: this._handle_marker_dragend.bind(this),
+          onClick: this._handle_marker_click.bind(this),
           child: {
             content: "Bermuda Triangle",
             owner: "centerMarker"
           }
         },
         3: {
-          onRightclick: this._handle_polygon_rightclick
+          onRightclick: this._handle_polygon_rightclick.bind(this),
         }
       }
     };
-  },
+  }
 
   _handle_map_click () {
-  },
+  }
 
   _handle_map_zoom_changed () {
     this.setState(update(this.state, {
@@ -75,7 +76,7 @@ const GeojsonToComponents = React.createClass({
         }
       }
     }));
-  },
+  }
 
   _handle_marker_click () {
     this.setState(update(this.state, {
@@ -87,7 +88,7 @@ const GeojsonToComponents = React.createClass({
         }
       }
     }));
-  },
+  }
 
   _handle_polygon_rightclick () {
     this.setState(update(this.state, {
@@ -99,12 +100,12 @@ const GeojsonToComponents = React.createClass({
         }
       }
     }));
-  },
+  }
 
   _handle_marker_dragend ({latLng}) {
-    var marker = this.state.geoJson.features[1],
-        originalCoordinates = marker.properties.originalCoordinates || marker.geometry.coordinates,
-        newCoordinates = [latLng.lng(), latLng.lat()];
+    const marker = this.state.geoJson.features[1],
+          originalCoordinates = marker.properties.originalCoordinates || marker.geometry.coordinates,
+          newCoordinates = [latLng.lng(), latLng.lat()];
 
     this.setState(update(this.state, {
       geoJson: {
@@ -136,7 +137,7 @@ const GeojsonToComponents = React.createClass({
         }
       }
     }));
-  },
+  }
 
   render () {
     const {props, state} = this,
@@ -154,7 +155,7 @@ const GeojsonToComponents = React.createClass({
             height: "100%",
           },
         }}
-        googleMapsApi={googleMapsApi}
+        googleMapsApi={google.maps}
         {...mapFeature.properties}
         {...mapState}
         center={mapGeometry.position}>
@@ -163,9 +164,9 @@ const GeojsonToComponents = React.createClass({
           if (0 === index) {
             return array;
           }
-          var {properties} = feature,
-              {ElementClass, ChildElementClass, ...geometry} = geometryToComponentWithLatLng(feature.geometry),
-              {visible, child, ...featureState} = geoStateBy[feature.id] || {};
+          const {properties} = feature,
+                {ElementClass, ChildElementClass, ...geometry} = geometryToComponentWithLatLng(feature.geometry),
+                {visible, child, ...featureState} = geoStateBy[feature.id] || {};
           if (false !== visible) {
             array.push(
               <ElementClass key={`json-${feature.id}`} {...properties} {...geometry} {...featureState}>
@@ -173,20 +174,12 @@ const GeojsonToComponents = React.createClass({
               </ElementClass>
             );
           }
-          index === (features.length-1) && console.log(array);
           return array;
-        }, [])}
+        }, [], this)}
 
       </GoogleMaps>
     );
   }
-});
+}
 
-export default React.createClass({
-  render () {
-    return (
-      <GeojsonToComponents googleMapsApi={google.maps} {...this.props} />
-    );
-  }
-});
-
+export default GeojsonToComponents;

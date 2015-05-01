@@ -1,14 +1,16 @@
 import React from "react/addons";
 import {GoogleMaps, Marker} from "react-google-maps";
 
+const {update} = React.addons;
 /*
  * This is the modify version of:
  * https://developers.google.com/maps/documentation/javascript/examples/event-arguments
  */
-const GettingStarted = React.createClass({
+class GettingStarted extends React.Component {
 
-  getInitialState () {
-    return {
+  constructor (...args) {
+    super(...args);
+    this.state = {
       markers: [{
         position: {
           lat: 25.0112183,
@@ -17,14 +19,15 @@ const GettingStarted = React.createClass({
         key: "Taiwan",
       }],
     };
-  },
+  }
+
   /*
    * This is called when you click on the map.
    * Go and try click now.
    */
   _handle_map_click (event) {
     var {markers} = this.state;
-    markers = React.addons.update(markers, {
+    markers = update(markers, {
       $push: [
         {
           position: event.latLng,
@@ -41,7 +44,7 @@ const GettingStarted = React.createClass({
       );
     }
     this.refs.map.panTo(event.latLng);
-  },
+  }
 
   _handle_marker_rightclick (index, event) {
     /*
@@ -50,9 +53,13 @@ const GettingStarted = React.createClass({
      * web front end and even with google maps API.)
      */
     var {markers} = this.state;
-    markers.splice(index, 1);
+    markers = update(markers, {
+      $splice: [
+        [index, 1]
+      ],
+    });
     this.setState({ markers });
-  },
+  }
 
   render () {
     const {props, state} = this,
@@ -66,10 +73,12 @@ const GettingStarted = React.createClass({
           },
         }}
         ref="map"
-        googleMapsApi={googleMapsApi}
+        googleMapsApi={
+          "undefined" !== typeof google ? google.maps : null
+        }
         zoom={3}
         center={{lat: -25.363882, lng: 131.044922}}
-        onClick={this._handle_map_click}>
+        onClick={this._handle_map_click.bind(this)}>
         {state.markers.map(toMarker, this)}
       </GoogleMaps>
     );
@@ -83,14 +92,6 @@ const GettingStarted = React.createClass({
       );
     }
   }
-});
+}
 
-export default React.createClass({
-  render () {
-    return (
-      <GettingStarted googleMapsApi={
-        "undefined" !== typeof google ? google.maps : null
-      } {...this.props} />
-    );
-  }
-});
+export default GettingStarted; 

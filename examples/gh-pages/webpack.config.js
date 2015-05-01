@@ -32,7 +32,7 @@ clientConfig = {
   },
   output: {
     path: Path.resolve(__dirname, "../../public"),
-    filename: (IS_PRODUCTION ? "[hash].js" : "[name].js"),
+    filename: "[name].js",
   },
   resolve: {
     alias: {
@@ -65,6 +65,8 @@ clientConfig = {
 };
 
 if (IS_PRODUCTION) {
+  clientConfig.output.filename = "assets/[hash].js";
+
   clientConfig.plugins.push(
     new webpack.optimize.DedupePlugin()
   );

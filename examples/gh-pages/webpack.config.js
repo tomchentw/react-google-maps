@@ -12,21 +12,24 @@ var Path = require("path"),
     CSS_LOADER = "style-loader!css-loader?root=../",
     SCSS_LOADER = CSS_LOADER + "!sass-loader?" + JSON.stringify({
       includePaths: [
-        Path.resolve(__dirname, "../node_modules/bootstrap-sass/assets/stylesheets"),
+        Path.resolve(__dirname, "./node_modules/bootstrap-sass/assets/stylesheets"),
       ]
     });
 
 webpackConfig = module.exports = {
-  entry: "./client/scripts/index.js",
+  entry: "./scripts/index.js",
   output: {
-    path: Path.resolve(__dirname, "../public/assets"),
+    path: Path.resolve(__dirname, "../../public/assets"),
     publicPath: "assets/",
     filename: (IS_PRODUCTION ? "[hash].js" : "bundle.js"),
   },
   resolve: {
     alias: {
-      "react-google-maps": Path.resolve(__dirname, "../src"),
+      "react-google-maps": Path.resolve(__dirname, "../../src"),
     },
+  },
+  resolveLoader: {
+    root: Path.resolve(__dirname, "./node_modules")
   },
   module: {
     loaders: [
@@ -42,7 +45,7 @@ webpackConfig = module.exports = {
       jQuery: "jquery",
     }),
     new HtmlWebpackPlugin({
-      template: "./client/index.html",
+      template: "./index.html",
       filename: "../index.html"
     }),
   ],

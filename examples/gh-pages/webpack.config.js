@@ -122,10 +122,7 @@ serverConfig = {
 
 webpackConfigsArray = [
   clientConfig,
+  serverConfig,
 ];
-
-if (!IS_PRODUCTION) {
-  webpackConfigsArray.push(serverConfig);
-}
 
 module.exports = webpackConfigsArray;

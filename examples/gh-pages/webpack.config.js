@@ -17,7 +17,7 @@ var Path = require("path"),
     });
 
 webpackConfig = module.exports = {
-  entry: "./scripts/index.js",
+  entry: "./scripts/client.js",
   output: {
     path: Path.resolve(__dirname, "../../public/assets"),
     publicPath: "assets/",
@@ -25,6 +25,7 @@ webpackConfig = module.exports = {
   },
   resolve: {
     alias: {
+      "react": Path.resolve(__dirname, "../../node_modules/react"),
       "react-google-maps": Path.resolve(__dirname, "../../src"),
     },
   },

@@ -6,8 +6,6 @@ import ComponentPlayground from "./ComponentPlayground";
 
 const {update} = React.addons;
 
-require("../styles/index.scss");
-
 const ACTIONS = [
   {
     key: "gs",
@@ -133,7 +131,7 @@ const RIGHT_ACTIONS = [
 
 const ALL_ACTIONS = ACTIONS.concat(DROPDOWN_ACTIONS.filter((x) => { return !!x; })).concat(RIGHT_ACTIONS);
 
-const Body = React.createClass({
+const ReactRoot = React.createClass({
 
   getInitialState () {
     var hash = location.hash || ACTIONS[0].path,
@@ -173,4 +171,4 @@ const Body = React.createClass({
   }
 });
 
-const bodyComponent = React.render(<Body />, document.body);
+export default ReactRoot;

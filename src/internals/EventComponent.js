@@ -12,8 +12,8 @@ class EventComponent extends React.Component {
    *  member:
    *    _createOrUpdateInstance
    */
-  constructor (props) {
-    super(props);
+  constructor (...args) {
+    super(...args);
 
     this._unregisterEvents = noop;
   }

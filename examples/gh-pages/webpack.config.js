@@ -142,6 +142,7 @@ webpackConfigsArray = [
 ];
 
 webpackConfigsArray.devServer = {
+  hot: IS_DEVELOPMENT,
 };
 
 module.exports = webpackConfigsArray;

@@ -13,6 +13,7 @@
     "classnames": "^1.2.1",
     "css-loader": "^0.12.0",
     "eval": "^0.1.0",
+    "extract-text-webpack-plugin": "^0.7.0",
     "file-loader": "^0.8.1",
     "github-fork-ribbon-css": "git+https://github.com/tomchentw/github-fork-ribbon-css.git#gh-pages",
     "html-webpack-plugin": "^1.1.0",

@@ -9,7 +9,7 @@ function IsomorphicReactPluginFactory (_options_) {
   var options = _options_ || {};
   this.serverComponentPath = options.serverComponentPath;
   this.serverMarkupPath = options.serverMarkupPath;
-  this.htmlOutputPath = options.htmlOutputPath;
+  this.htmlOutputFilename = options.htmlOutputFilename;
 
   if ("string" !== typeof options.htmlDoctype) {
     options.htmlDoctype = "<!DOCTYPE html>";
@@ -34,8 +34,9 @@ IsomorphicReactPluginFactory.prototype.receivedClientAssets = function (clientAs
   }
 }
 
-IsomorphicReactPluginFactory.prototype.receivedServerEmit = function (serverAssets, done) {
-  this.serverAssets = serverAssets;
+IsomorphicReactPluginFactory.prototype.receivedServerEmit = function (compilation, done) {
+  this.htmlOutputPath = compilation.getPath(this.htmlOutputFilename)
+  this.serverAssets = compilation.assets;
   this.done = done;
   if (this.clientAssets) {
     this.runCompilation();
@@ -94,7 +95,6 @@ ClientPlugin.prototype.apply = function (compiler) {
     var assets = getAssetsFromCompilation(compilation);
 
     this.pluginFactory.receivedClientAssets(assets);
-
     done();
   }).bind(this));
 }
@@ -106,16 +106,16 @@ function ServerPlugin (isomorphicReactPluginFactory) {
 ServerPlugin.prototype.apply = function (compiler) {
   compiler.plugin("emit", (function (compilation, done) {
 
-    this.pluginFactory.receivedServerEmit(compilation.assets, done);
+    this.pluginFactory.receivedServerEmit(compilation, done);
   }).bind(this));
 }
 
 module.exports = IsomorphicReactPluginFactory;
 
 // Shamelessly stolen from html-webpack-plugin - Thanks @ampedandwired :)
-function getAssetsFromCompilation (compiler) {
+function getAssetsFromCompilation (compilation) {
   var assets = {};
-  var webpackStatsJson = compiler.getStats().toJson();
+  var webpackStatsJson = compilation.getStats().toJson();
   for (var chunk in webpackStatsJson.assetsByChunkName) {
     var chunkValue = webpackStatsJson.assetsByChunkName[chunk];
 

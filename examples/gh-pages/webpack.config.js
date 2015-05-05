@@ -5,34 +5,37 @@
 var Path = require("path"),
     webpack = require("webpack"),
     React = require("react"),
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
     IsomorphicReactPluginFactory = require("./IsomorphicReactPluginFactory"),
     isomorphicReactPlugin,
+    outputPath = Path.resolve(__dirname, "../../public"),
     clientConfig,
     serverConfig,
     webpackConfigsArray,
 
     IS_PRODUCTION = "production" === process.env.NODE_ENV,
+    IS_DEVELOPMENT = !IS_PRODUCTION,
     BABEL_LOADER = "babel-loader?stage=1",
-    CSS_LOADER = "style-loader!css-loader?root=../",
-    SCSS_LOADER = CSS_LOADER + "!sass-loader?" + JSON.stringify({
+    STYLE_LOADER = "style-loader",
+    CSS_LOADER = "css-loader?root=../",
+    SASS_LOADER = CSS_LOADER + "!sass-loader?" + JSON.stringify({
       includePaths: [
         Path.resolve(__dirname, "./node_modules/bootstrap-sass/assets/stylesheets"),
       ]
     });
 
 isomorphicReactPlugin = new IsomorphicReactPluginFactory({
-  serverComponentPath: "tmp/main.js",
+  serverComponentPath: "tmp/server.js",
   serverMarkupPath: "tmp/html.js",
-  htmlOutputPath: "index.html",
+  htmlOutputFilename: "index.html",
 });
 
 clientConfig = {
   entry: {
-    "main": "./scripts/client.js",
+    "assets/client": "./scripts/client.js",
   },
   output: {
-    path: Path.resolve(__dirname, "../../public/assets"),
-    publicPath: "assets/",
+    path: outputPath,
     filename: "[name].js",
   },
   resolve: {
@@ -52,8 +55,7 @@ clientConfig = {
         loaders: [BABEL_LOADER],
       },
       { test: /\.jpg$/, loader: "file-loader" },
-      { test: /\.css$/, loader: CSS_LOADER },
-      { test: /\.scss$/, loader: SCSS_LOADER },
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract(STYLE_LOADER, SASS_LOADER) },
     ],
   },
   plugins: [
@@ -61,18 +63,14 @@ clientConfig = {
       $: "jquery",
       jQuery: "jquery",
     }),
+    new ExtractTextPlugin("[name].css", {
+      disable: IS_DEVELOPMENT,
+    }),
     isomorphicReactPlugin.clientPlugin,
   ],
 };
 
-if (IS_PRODUCTION) {
-  clientConfig.output.path = Path.resolve(clientConfig.output.path, "./[hash]");
-  clientConfig.output.publicPath = clientConfig.output.publicPath + "[hash]/";
-
-  clientConfig.plugins.push(
-    new webpack.optimize.DedupePlugin()
-  );
-} else {
+if (IS_DEVELOPMENT) {
   // http://webpack.github.io/docs/hot-module-replacement-with-webpack.html#tutorial
   Object.keys(clientConfig.entry).forEach(function (key) {
     clientConfig.entry[key] = this.concat(clientConfig.entry[key]);
@@ -86,15 +84,27 @@ if (IS_PRODUCTION) {
   clientConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin()
   )
+} else {
+  clientConfig.entry = Object.keys(clientConfig.entry).reduce(function (acc, key) {
+    acc[key.replace(/^assets\//, "")] = clientConfig.entry[key];
+    return acc;
+  }, {});
+
+  clientConfig.output.publicPath = "assets/[hash]/";
+  clientConfig.output.path = Path.resolve(outputPath, "./" + clientConfig.output.publicPath);
+
+  clientConfig.plugins.push(
+    new webpack.optimize.DedupePlugin()
+  );
 }
 
 serverConfig = {
   entry: {
-    "tmp/main": "./scripts/server.js",
+    "tmp/server": "./scripts/server.js",
     "tmp/html": "./scripts/html.js",
   },
   output: {
-    path: Path.resolve(__dirname, "../../public"),
+    path: outputPath,
     filename: "[name].js",
     library: true,
     libraryTarget: "commonjs2",
@@ -130,5 +140,8 @@ webpackConfigsArray = [
   clientConfig,
   serverConfig,
 ];
+
+webpackConfigsArray.devServer = {
+};
 
 module.exports = webpackConfigsArray;

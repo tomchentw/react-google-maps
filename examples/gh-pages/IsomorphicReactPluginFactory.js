@@ -125,10 +125,7 @@ function getAssetsFromCompilation (compiler) {
       chunkValue = chunkValue[0];
     }
 
-    if (compiler.options.output.publicPath) {
-      chunkValue = compiler.options.output.publicPath + chunkValue;
-    }
-    assets[chunk] = chunkValue;
+    assets[chunk] = (webpackStatsJson.publicPath || "") + chunkValue;
   }
   return assets;
 }

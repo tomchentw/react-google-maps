@@ -18,7 +18,7 @@ class ReactHtml extends React.Component {
         </head>
         <body>
           <div id="react-container" dangerouslySetInnerHTML={innerHtml} />
-          <script type="text/javascript" src={clientAssets["assets/main"]} />
+          <script type="text/javascript" src={clientAssets["main"]} />
         </body>
       </html>
     );

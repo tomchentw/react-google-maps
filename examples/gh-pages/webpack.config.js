@@ -28,10 +28,11 @@ isomorphicReactPlugin = new IsomorphicReactPluginFactory({
 
 clientConfig = {
   entry: {
-    "assets/main": "./scripts/client.js",
+    "main": "./scripts/client.js",
   },
   output: {
-    path: Path.resolve(__dirname, "../../public"),
+    path: Path.resolve(__dirname, "../../public/assets"),
+    publicPath: "assets/",
     filename: "[name].js",
   },
   resolve: {
@@ -48,7 +49,7 @@ clientConfig = {
       {
         test: /\.js(x?)$/,
         exclude: /node_modules/,
-        loaders: ["react-hot-loader", BABEL_LOADER],
+        loaders: [BABEL_LOADER],
       },
       { test: /\.jpg$/, loader: "file-loader" },
       { test: /\.css$/, loader: CSS_LOADER },
@@ -65,7 +66,8 @@ clientConfig = {
 };
 
 if (IS_PRODUCTION) {
-  clientConfig.output.filename = "assets/[hash].js";
+  clientConfig.output.path = Path.resolve(clientConfig.output.path, "./[hash]");
+  clientConfig.output.publicPath = clientConfig.output.publicPath + "[hash]/";
 
   clientConfig.plugins.push(
     new webpack.optimize.DedupePlugin()
@@ -78,6 +80,8 @@ if (IS_PRODUCTION) {
     require.resolve("webpack-dev-server/client/") + "?http://localhost:8080",
     "webpack/hot/dev-server"
   ]);
+
+  clientConfig.module.loaders[0].loaders.unshift("react-hot-loader");
 
   clientConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin()

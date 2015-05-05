@@ -41,8 +41,8 @@ class GoogleMaps extends EventComponent {
   /*
    * Internals
    */
-  constructor (props) {
-    super(props);
+  constructor (...args) {
+    super(...args);
     this.state = {};
   }
 

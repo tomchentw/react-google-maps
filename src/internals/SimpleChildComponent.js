@@ -12,8 +12,8 @@ class SimpleChildComponent extends EventComponent {
    *  state:
    *    instance
    */
-  constructor (props) {
-    super(props);
+  constructor (...args) {
+    super(...args);
     this.state = {};
   }
 

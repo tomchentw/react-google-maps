@@ -40,7 +40,7 @@ clientConfig = {
   },
   resolve: {
     alias: {
-      "react": Path.resolve(__dirname, "../../node_modules/react"),
+      "react": Path.resolve(__dirname, "./node_modules/react"),
       "react-google-maps": Path.resolve(__dirname, "../../src"),
     },
   },

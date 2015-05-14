@@ -4,7 +4,7 @@
   "scripts": {
     "clean": "rm -f ../../public/index.html && rm -rf ../../public/assets && rm -rf ../../public/tmp",
     "build_client": "npm run clean && webpack -p",
-    "dev": "npm run clean && webpack-dev-server --content-base ../../public"
+    "dev": "npm run clean && webpack-dev-server -d --content-base ../../public"
   },
   "devDependencies": {
     "babel-core": "^5.1.13",

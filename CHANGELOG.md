@@ -1,3 +1,12 @@
+### 1.1.2 (2015-05-06)
+
+
+#### Bug Fixes
+
+* **GoogleMaps:** constructor should use spread operator ([d8e30af6](https://github.com/tomchentw/react-google-maps/commit/d8e30af69dc411cc5a2d5f8cb0239a4669b1c693))
+* **SimpleChildComponent:** prevent removal of child during update ([834d399b](https://github.com/tomchentw/react-google-maps/commit/834d399b3c39045d8406b5db50edf4618aa2b67a))
+
+
 ### 1.1.1 (2015-05-01)
 
 

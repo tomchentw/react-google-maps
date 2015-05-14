@@ -12,8 +12,8 @@ class SimpleChildComponent extends EventComponent {
    *  state:
    *    instance
    */
-  constructor (props) {
-    super(props);
+  constructor (...args) {
+    super(...args);
     this.state = {};
   }
 
@@ -26,8 +26,9 @@ class SimpleChildComponent extends EventComponent {
     var {instance} = this.state;
 
     if (instance) {
-      if (googleMapsConfig.map !== instance.getMap()) {
-        instance.setMap(googleMapsConfig.map);
+      if (googleMapsConfig.map === instance.getMap()) {
+        // prevent it not to be removed first then be added later
+        delete googleMapsConfig.map;
       }
       instance.setOptions(googleMapsConfig);
     } else {

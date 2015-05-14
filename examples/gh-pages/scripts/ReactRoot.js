@@ -182,7 +182,7 @@ class ReactRoot extends React.Component {
           </div>
           <ToastContainer 
             ref="toast"
-            toastMessageFactory={React.createFactory(ToastMessage.jQuery)}/>
+            toastMessageFactory={React.createFactory(ToastMessage.animation)}/>
 
           <ComponentPlayground
             className="row row--full-height"

@@ -1,7 +1,7 @@
 "use strict";
 
 var React = require("react");
-var evaluate = require("eval");
+var evaluate = require("eval-as-module");
 
 var SEPERATOR = "----------------------------------------";// 40 chars
 
@@ -53,7 +53,7 @@ IsomorphicReactPluginFactory.prototype.evaluate = function (serverPath, errorMes
   var includeGlobals = this.evaluateOptions.includeGlobals;
 
   try {
-    return evaluate(source, includeGlobals);
+    return evaluate(source, includeGlobals).exports;
   } catch (error) {
     error.message = serverPath + "\n" + SEPERATOR + SEPERATOR + error.message;
     error.stack = error.stack + "\n" + SEPERATOR + SEPERATOR + source + "\n" + SEPERATOR + SEPERATOR;

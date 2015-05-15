@@ -1,3 +1,14 @@
+## 1.2.0 (2015-05-15)
+
+
+#### Features
+
+* **DrawingManager:** Support for Drawing API ([9b3cbeba](https://github.com/tomchentw/react-google-maps/commit/9b3cbeba5ac4d1ebb83c4ed61dadd49ca8ef7c33))
+* **SimpleChildComponent:**
+  * use warning from react/lib/warning ([680c194d](https://github.com/tomchentw/react-google-maps/commit/680c194d70485e49f5498d8777a73e80f3f4f73b))
+  * Add warning text ([9652e0c7](https://github.com/tomchentw/react-google-maps/commit/9652e0c7b231f0569c522add87034dad214a9235))
+
+
 ### 1.1.2 (2015-05-06)
 
 

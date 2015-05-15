@@ -5,6 +5,8 @@ import {GoogleMaps, DrawingManager} from "react-google-maps";
  * https://developers.google.com/maps/documentation/javascript/examples/drawing-tools
  *
  * Note: requires the Google Maps drawing API library in your script src
+ *
+ * Credits: thanks @idolize for the contribution!
  */
 class DrawingTools extends React.Component {
 

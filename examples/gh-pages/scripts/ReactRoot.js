@@ -66,7 +66,7 @@ const DROPDOWN_ACTIONS = [
   false,
   {
     key: "events__simple-click-event",
-    displayName: "Smple click event",
+    displayName: "Simple click event",
     path: "#events/simple-click-event",
     component: {
       componentClass: require("./components/events/SimpleClickEvent"),
@@ -105,6 +105,18 @@ const DROPDOWN_ACTIONS = [
       componentClass: require("./components/events/GettingProperties"),
       componentRaw: {
         __raw: require("!raw-loader!./components/events/GettingProperties"),
+      },
+    },
+  },
+  false,
+  {
+    key: "drawing__drawing-tools",
+    displayName: "Drawing Tools",
+    path: "#drawing/drawing-tools",
+    component: {
+      componentClass: require("./components/drawing/DrawingTools"),
+      componentRaw: {
+        __raw: require("!raw-loader!./components/drawing/DrawingTools"),
       },
     },
   },

@@ -1,4 +1,5 @@
 import React from "react";
+import objectPath from "object-path";
 
 import EventComponent from "./EventComponent";
 import exposeGetters from "./exposeGetters";
@@ -32,7 +33,11 @@ class SimpleChildComponent extends EventComponent {
       }
       instance.setOptions(googleMapsConfig);
     } else {
-      const GoogleMapsClass = googleMapsApi[this.constructor._GoogleMapsClassName];
+      const googleMapsClassName = this.constructor._GoogleMapsClassName;
+      if (!objectPath.has(googleMapsApi, googleMapsClassName)) {
+        return;
+      }
+      const GoogleMapsClass = objectPath.get(googleMapsApi, googleMapsClassName);
       instance = new GoogleMapsClass(googleMapsConfig);
 
       exposeGetters(this, GoogleMapsClass.prototype, instance);

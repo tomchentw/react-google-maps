@@ -22,7 +22,7 @@ class ReactHtml extends React.Component {
         <head>
           <title>React Google Maps | tomchentw</title>
           {this._render_link_to_stylesheet_(clientAssets)}
-          <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp" />
+          <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing" />
           <script type="text/javascript" src="prism.min.js" />
         </head>
         <body>

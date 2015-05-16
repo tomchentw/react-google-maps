@@ -55,10 +55,6 @@ clientConfig = {
     ],
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
-    }),
     new ExtractTextPlugin("[name].css", {
       disable: IS_DEVELOPMENT,
     }),

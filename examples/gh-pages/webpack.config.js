@@ -18,11 +18,7 @@ var Path = require("path"),
     BABEL_LOADER = "babel-loader?stage=1",
     STYLE_LOADER = "style-loader",
     CSS_LOADER = "css-loader?root=../",
-    SASS_LOADER = CSS_LOADER + "!sass-loader?" + JSON.stringify({
-      includePaths: [
-        Path.resolve(__dirname, "./node_modules/bootstrap-sass/assets/stylesheets"),
-      ]
-    });
+    SASS_LOADER = CSS_LOADER + "!sass-loader";
 
 isomorphicReactPlugin = new IsomorphicReactPluginFactory({
   serverComponentPath: "tmp/server.js",
@@ -59,10 +55,6 @@ clientConfig = {
     ],
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
-    }),
     new ExtractTextPlugin("[name].css", {
       disable: IS_DEVELOPMENT,
     }),

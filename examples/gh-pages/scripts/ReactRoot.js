@@ -30,6 +30,17 @@ const DROPDOWN_ACTIONS = [
       },
     },
   },
+    {
+    key: "basics__styled-map",
+    displayName: "Styled Map",
+    path: "#basics/styled-map",
+    component: {
+      componentClass: require("./components/basics/StyledMap"),
+      componentRaw: {
+        __raw: require("!raw-loader!./components/basics/StyledMap"),
+      },
+    },
+  },
   {
     key: "basics__geolocation",
     displayName: "Geolocation",

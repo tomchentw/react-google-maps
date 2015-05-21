@@ -1,7 +1,7 @@
 {
   "__template__gist__": "https://gist.github.com/tomchentw/368a93bb748ad9d576f1#file-package-json",
   "name": "react-google-maps",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "React.js Google Maps integration component",
   "main": "lib/index.js",
   "scripts": {

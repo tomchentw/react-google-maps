@@ -41,10 +41,7 @@
     "email": "developer@tomchentw.com",
     "url": "https://github.com/tomchentw"
   },
-  "license": {
-    "type": "MIT",
-    "url": "http://tomchentw.mit-license.org"
-  },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/tomchentw/react-google-maps/issues"
   },

@@ -1,3 +1,11 @@
+## 1.3.0 (2015-05-21)
+
+
+#### Features
+
+* **InfoBox:** Support for InfoBox ([613e5ef5](https://github.com/tomchentw/react-google-maps/commit/613e5ef5c517f4db601e13524586a5195b9f967b))
+
+
 ## 1.2.0 (2015-05-15)
 
 

@@ -5,10 +5,12 @@
   "description": "React.js Google Maps integration component",
   "main": "lib/index.js",
   "scripts": {
-    "build": "rm -rf ./lib && babel --stage=1 ./src --out-dir ./lib",
+    "clean": "rm -rf lib",
+    "build": "npm run lint && npm run clean && babel --stage=1 src --out-dir lib",
     "build_client": "cd examples/gh-pages && npm i && npm run build_client",
     "dev": "cd examples/gh-pages && npm i && npm run dev",
-    "test": "jest"
+    "lint": "eslint src",
+    "test": "npm run lint && jest"
   },
   "repository": {
     "type": "git",
@@ -49,6 +51,8 @@
   "devDependencies": {
     "babel": "^5.1.13",
     "babel-core": "^5.1.13",
+    "babel-eslint": "^3.1.7",
+    "eslint": "^0.21.2",
     "jest-cli": "^0.4.0",
     "tomchentw-npm-dev": "^1.2.0"
   },

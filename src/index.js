@@ -2,7 +2,7 @@ import GoogleMaps from "./GoogleMaps";
 
 import Circle from "./Circle";
 import DirectionsRenderer from "./DirectionsRenderer";
-import DrawingManager from './DrawingManager';
+import DrawingManager from "./DrawingManager";
 import InfoWindow from "./InfoWindow";
 import Marker from "./Marker";
 import Polygon from "./Polygon";

@@ -10,7 +10,7 @@ const {PropTypes} = React;
 class SimpleChildComponent extends EventComponent {
   /* Contract
    *  statics:
-   *    _GoogleMapsClassName: 
+   *    _GoogleMapsClassName:
    *  state:
    *    instance
    */
@@ -24,7 +24,7 @@ class SimpleChildComponent extends EventComponent {
     if (!props.googleMapsApi || !props.map) {
       return;
     }
-    const {googleMapsApi, key, ref, ...googleMapsConfig} = props;
+    const {googleMapsApi, ...googleMapsConfig} = props;
     var {instance} = this.state;
 
     if (instance) {
@@ -62,8 +62,6 @@ class SimpleChildComponent extends EventComponent {
   }
 
   render () {
-    const {props} = this;
-
     return <noscript />;
   }
 

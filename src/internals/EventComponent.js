@@ -8,7 +8,7 @@ function noop () {
 class EventComponent extends React.Component {
   /* Contract
    *  statics:
-   *    _registerEvents: 
+   *    _registerEvents:
    *  member:
    *    _createOrUpdateInstance
    */

@@ -4,6 +4,6 @@ function exposeGetters (component, prototype, instance) {
       component[key] = instance[key].bind(instance);
     }
   }
-};
+}
 
 export default exposeGetters;

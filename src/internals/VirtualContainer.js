@@ -1,7 +1,5 @@
 import React from "react";
 
-import EventComponent from "./EventComponent";
-
 const {PropTypes} = React;
 
 class VirtualContainer extends React.Component {

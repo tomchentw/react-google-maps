@@ -10,7 +10,7 @@ const {PropTypes} = React;
 class SimpleChildComponent extends EventComponent {
   /* Contract
    *  statics:
-   *    _GoogleMapsClassName: 
+   *    _GoogleMapsClassName:
    *  state:
    *    instance
    */

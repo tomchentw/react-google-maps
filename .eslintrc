@@ -1,0 +1,25 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+  },
+  "ecmaFeatures": {
+    "arrowFunctions": true,
+    "classes": true,
+    "modules": true,
+    "jsx": true
+  },
+  "rules": {
+    // Possible Errors
+    "comma-dangle": "always",
+    // Best Practices
+    "consistent-return": "never",
+    "yoda": "always",
+    // Variables
+    "no-use-before-define": "nofunc",
+    // Stylistic Issues
+    "camelcase": "never",
+    "no-underscore-dangle": "never",
+  },
+}

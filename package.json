@@ -8,6 +8,7 @@
     "build": "rm -rf ./lib && babel --stage=1 ./src --out-dir ./lib",
     "build_client": "cd examples/gh-pages && npm i && npm run build_client",
     "dev": "cd examples/gh-pages && npm i && npm run dev",
+    "lint": "eslint src",
     "test": "jest"
   },
   "repository": {
@@ -49,6 +50,8 @@
   "devDependencies": {
     "babel": "^5.1.13",
     "babel-core": "^5.1.13",
+    "babel-eslint": "^3.1.7",
+    "eslint": "^0.21.2",
     "jest-cli": "^0.4.0",
     "tomchentw-npm-dev": "^1.2.0"
   },

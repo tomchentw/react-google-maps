@@ -1,3 +1,11 @@
+### 1.3.2 (2015-05-22)
+
+
+#### Bug Fixes
+
+* **src:** eslint issues ([adf3764b](https://github.com/tomchentw/react-google-maps/commit/adf3764b6264e2740c5e3e6e8caf56b3c6732300))
+
+
 ### 1.3.1 (2015-05-21)
 
 

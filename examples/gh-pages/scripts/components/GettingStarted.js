@@ -17,6 +17,7 @@ class GettingStarted extends React.Component {
           lng: 121.52067570000001,
         },
         key: "Taiwan",
+        animation: 2
       }],
     };
   }
@@ -31,6 +32,7 @@ class GettingStarted extends React.Component {
       $push: [
         {
           position: event.latLng,
+          animation: 2,
           key: Date.now(),// Add a key property for: http://fb.me/react-warning-keys
         },
       ],
@@ -88,6 +90,7 @@ class GettingStarted extends React.Component {
         <Marker
           position={marker.position}
           key={marker.key}
+          animation={marker.animation}
           onRightclick={this._handle_marker_rightclick.bind(this, index)} />
       );
     }

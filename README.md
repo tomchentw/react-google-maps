@@ -6,7 +6,9 @@
 
 ## Installation
 
-`npm i --save react-google-maps`
+```sh
+npm i --save react-google-maps
+```
 
 
 ## Demo/Examples

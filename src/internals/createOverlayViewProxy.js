@@ -84,5 +84,5 @@ function defineOverlayViewProxyClass (googleMapsApi) {
         );
       }
     }
-  }
+  };
 }

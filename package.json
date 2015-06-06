@@ -9,6 +9,7 @@
     "build": "npm run lint && npm run clean && babel --stage=1 src --out-dir lib",
     "build_client": "cd examples/gh-pages && npm i && npm run build_client",
     "dev": "cd examples/gh-pages && npm i && npm run dev",
+    "start": "npm install && npm run dev",
     "lint": "eslint src",
     "test": "npm run lint && jest"
   },

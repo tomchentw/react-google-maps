@@ -1,0 +1,9 @@
+web:
+  image: node:0.12
+  command: npm start
+  ports:
+   - "8080:8080"
+  volumes:
+   - .:/react-google-maps
+  privileged: true
+  working_dir: /react-google-maps

@@ -4,18 +4,15 @@ import InfoBox from "react-google-maps/addons/InfoBox";
 
 class StyledMap extends React.Component {
 
+  _test_component_click(e) {
+    console.log("clicked InfoBox");
+  }
+
   render () {
     const {props, state} = this,
           {googleMapsApi, mapStyles, ...otherProps} = props;
     const myLatLng = new google.maps.LatLng(25.03, 121.6);
 
-    const InfoBoxContent = `
-      <div style="background-color:yellow; opacity:0.75;">
-        <div style="font-size: 16px; font-color:#08233B">
-          Taipei
-        </div>
-      </div>
-    `;
     return (
       <GoogleMaps containerProps={{
           ...otherProps,
@@ -30,7 +27,13 @@ class StyledMap extends React.Component {
         <InfoBox
           closeBoxURL=""
           position={myLatLng}
-          content={InfoBoxContent}/>
+          enableEventPropagation={true}>
+            <div style={{backgroundColor: 'yellow', opacity: '0.75'}} onClick={this._test_component_click}>
+              <div style={{fontSize: 16, fontColor: '#08233B'}}>
+                Taipei
+              </div>
+            </div>
+        </InfoBox>
       </GoogleMaps>
     );
   }

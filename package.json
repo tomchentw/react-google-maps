@@ -4,6 +4,11 @@
   "version": "1.5.0",
   "description": "React.js Google Maps integration component",
   "main": "lib/index.js",
+  "files": [
+    "lib/",
+    "src/",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "clean": "rm -rf lib",
     "build": "npm run lint && npm run clean && babel --stage=1 src --out-dir lib",

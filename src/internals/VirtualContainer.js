@@ -31,7 +31,7 @@ class VirtualContainer extends React.Component {
 VirtualContainer.propTypes = {
   googleMapsApi: PropTypes.object.isRequired,
   map: PropTypes.object.isRequired,
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.renderable || PropTypes.node, // https://github.com/facebook/react/issues/1752#issuecomment-47818166
 };
 
 export default VirtualContainer;

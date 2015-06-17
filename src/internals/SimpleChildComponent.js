@@ -29,8 +29,9 @@ class SimpleChildComponent extends EventComponent {
 
     if (instance) {
       if (googleMapsConfig.map === instance.getMap()) {
-        // prevent it not to be removed first then be added later
+        // Set map and animation props only on the first run:
         delete googleMapsConfig.map;
+        delete googleMapsConfig.animation;
       }
       instance.setOptions(googleMapsConfig);
     } else {

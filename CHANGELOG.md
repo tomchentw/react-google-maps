@@ -1,3 +1,16 @@
+## 1.5.0 (2015-06-17)
+
+
+#### Bug Fixes
+
+* **VirtualContainer:** propTypes.children should be renderable ([a3d73af4](https://github.com/tomchentw/react-google-maps/commit/a3d73af4c209765eb7ae0ead70e9d3be8afd2ffa))
+
+
+#### Features
+
+* **GoogleMaps:** render VirtualContainer as children ([c9e19828](https://github.com/tomchentw/react-google-maps/commit/c9e19828ecf4f35d78f1a0b34bfc6cbe7b1b1780), closes [#61](https://github.com/tomchentw/react-google-maps/issues/61))
+
+
 ## 1.4.0 (2015-06-17)
 
 

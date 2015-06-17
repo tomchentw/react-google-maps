@@ -1,3 +1,12 @@
+## 1.4.0 (2015-06-17)
+
+
+#### Bug Fixes
+
+* **SimpleChildComponent:** Make sure to only animate markers on the first run. ([65aec078](https://github.com/tomchentw/react-google-maps/commit/65aec0784f833061eeaad7be00d979a0a417330e))
+* **src:** eslint issues ([adf3764b](https://github.com/tomchentw/react-google-maps/commit/adf3764b6264e2740c5e3e6e8caf56b3c6732300))
+
+
 ### 1.3.1 (2015-05-21)
 
 

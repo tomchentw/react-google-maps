@@ -74,28 +74,13 @@ class GoogleMaps extends EventComponent {
     return instance;
   }
 
-  componentDidMount () {
-    super.componentDidMount();
-    this._containerNode = document.createElement("div");
-    this._render_virtual_container_();
-  }
-
-  componentDidUpdate () {
-    super.componentDidUpdate();
-    this._render_virtual_container_();
-  }
-
-  componentWillUnmount () {
-    React.unmountComponentAtNode(this._containerNode);
-    this._containerNode = null;
-    super.componentWillUnmount();
-  }
-
   render () {
     const {props} = this;
 
     return (
-      <div {...props.containerProps} ref="googleMaps" />
+      <div {...props.containerProps} ref="googleMaps">
+        { this._render_virtual_container_() }
+      </div>
     );
   }
 
@@ -106,13 +91,13 @@ class GoogleMaps extends EventComponent {
     if (!googleMapsApi || !instance) {
       return;
     }
-    return React.render(
+    return (
       <VirtualContainer
         googleMapsApi={googleMapsApi}
         map={instance}>
         {children}
       </VirtualContainer>
-    , this._containerNode);
+    );
   }
 
 }

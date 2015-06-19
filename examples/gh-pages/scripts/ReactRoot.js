@@ -141,7 +141,7 @@ const DROPDOWN_ACTIONS = [
         __raw: require("!raw-loader!./components/drawing/DrawingTools"),
       },
     },
-  },
+  }
 ];
 
 const RIGHT_ACTIONS = [

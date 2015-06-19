@@ -1,3 +1,11 @@
+## 1.7.0 (2015-06-19)
+
+
+#### Features
+
+* **GoogleMaps:** specify map bounds via declarative props.bounds ([b1333c52](https://github.com/tomchentw/react-google-maps/commit/b1333c529fc4b338cef425dba9b4ba7d33937d29), closes [#64](https://github.com/tomchentw/react-google-maps/issues/64))
+
+
 ## 1.6.0 (2015-06-19)
 
 

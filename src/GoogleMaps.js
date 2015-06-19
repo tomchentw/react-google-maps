@@ -55,9 +55,14 @@ class GoogleMaps extends EventComponent {
     }
     // googleMapsApi can be async loaded
     /*eslint-disable no-unused-vars */
-    const {containerProps, googleMapsApi, ...googleMapsConfig} = props;
+    const {containerProps, googleMapsApi, bounds, ...googleMapsConfig} = props;
     /*eslint-enable no-unused-vars */
     var {instance} = this.state;
+
+    if (bounds) {
+      delete googleMapsConfig.zoom;
+      delete googleMapsConfig.center;
+    }
 
     if (instance) {
       instance.setOptions(googleMapsConfig);
@@ -71,6 +76,11 @@ class GoogleMaps extends EventComponent {
 
       this.setState({instance});
     }
+
+    if (bounds) {
+      instance.fitBounds(bounds);
+    }
+
     return instance;
   }
 
@@ -105,6 +115,7 @@ class GoogleMaps extends EventComponent {
 GoogleMaps.propTypes = {
   ...EventComponent.propTypes,
   containerProps: PropTypes.object.isRequired,
+  bounds: React.PropTypes.object
 };
 
 GoogleMaps._registerEvents = createRegisterEvents(

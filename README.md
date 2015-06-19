@@ -53,7 +53,9 @@ Install `node@^0.12.4`. Then,
 
 ```shell
 npm install
-npm run dev
+cd examples/gh-pages
+npm install
+npm start
 ```
 
 Then open [http://localhost:8080](http://localhost:8080).

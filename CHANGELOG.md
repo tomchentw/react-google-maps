@@ -1,3 +1,11 @@
+## 1.6.0 (2015-06-19)
+
+
+#### Features
+
+* **OverlayView:** add OverlayView component by @petebrowne ([f0c56ecb](https://github.com/tomchentw/react-google-maps/commit/f0c56ecb06a452c3f942f4c1596e9bf6d76f70aa), closes [#63](https://github.com/tomchentw/react-google-maps/issues/63))
+
+
 ### 1.5.1 (2015-06-17)
 
 

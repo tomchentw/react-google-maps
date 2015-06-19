@@ -2,7 +2,7 @@
   "name": "gh-pages",
   "version": "1.0.0",
   "scripts": {
-    "clean": "rm -f ../../public/index.html ../../public/assets ../../public/tmp",
+    "clean": "rm -rf ../../public/index.html ../../public/assets ../../public/tmp",
     "build_client": "npm run clean && webpack -p",
     "build": "npm run clean && webpack -d",
     "dev": "npm run clean && webpack-dev-server -d",

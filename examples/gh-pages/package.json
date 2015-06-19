@@ -2,10 +2,11 @@
   "name": "gh-pages",
   "version": "1.0.0",
   "scripts": {
-    "clean": "rm -f ../../public/index.html && rm -rf ../../public/assets && rm -rf ../../public/tmp",
+    "clean": "rm -f ../../public/index.html ../../public/assets ../../public/tmp",
     "build_client": "npm run clean && webpack -p",
     "build": "npm run clean && webpack -d",
-    "dev": "npm run clean && webpack-dev-server -d --content-base ../../public"
+    "dev": "npm run clean && webpack-dev-server -d",
+    "docker_start": "npm run clean && webpack-dev-server -d --docker"
   },
   "devDependencies": {
     "babel-core": "^5.3.3",

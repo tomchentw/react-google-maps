@@ -21,10 +21,37 @@ Static hosted [demo site][demo] on GitHub. The code is located under [examples/g
 This module requires to be bundled with [webpack][webpack]/browserify and loads `react/addons` internally.  
 
 
-### Development
+## Development
+
+First, clone the project.
 
 ```shell
 git clone ...
+```
+
+### With Docker
+
+Install `docker@^1.6.2`, `docker-compose@^1.3.0` and optionally `boot2docker@^1.6.2`. Then,
+
+```shell
+docker-compose run --service-ports web
+```
+
+Then open [http://192.168.59.103:8080](http://192.168.59.103:8080).
+
+**192.168.59.103** is actually your ip from `boot2docker ip`.
+
+If you change code in your local, you'll need to rebuild the image to make changes happen.
+
+```shell
+docker-compose rebuild
+```
+
+### With Mac
+
+Install `node@^0.12.4`. Then,
+
+```shell
 npm install
 npm run dev
 ```

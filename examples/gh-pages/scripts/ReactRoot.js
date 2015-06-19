@@ -74,6 +74,17 @@ const DROPDOWN_ACTIONS = [
       },
     },
   },
+  {
+    key: "basics__overlay-view",
+    displayName: "OverlayView",
+    path: "#basics/overlay-view",
+    component: {
+      componentClass: require("./components/basics/OverlayView"),
+      componentRaw: {
+        __raw: require("!raw-loader!./components/basics/OverlayView"),
+      },
+    },
+  },
   false,
   {
     key: "events__simple-click-event",
@@ -203,7 +214,7 @@ class ReactRoot extends React.Component {
               <a href="https://github.com/tomchentw/react-google-maps">Fork me on GitHub</a>
             </div>
           </div>
-          <ToastContainer 
+          <ToastContainer
             ref="toast"
             toastMessageFactory={React.createFactory(ToastMessage.animation)}/>
 

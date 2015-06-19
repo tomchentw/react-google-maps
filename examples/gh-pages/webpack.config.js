@@ -12,6 +12,7 @@ var Path = require("path"),
     clientConfig,
     serverConfig,
     webpackConfigsArray,
+    host,
 
     IS_PRODUCTION = "production" === process.env.NODE_ENV,
     IS_DEVELOPMENT = !IS_PRODUCTION,
@@ -19,6 +20,12 @@ var Path = require("path"),
     STYLE_LOADER = "style-loader",
     CSS_LOADER = "css-loader?root=../",
     SASS_LOADER = CSS_LOADER + "!sass-loader";
+
+if ("--docker" === process.argv[process.argv.length-1]) {
+  host = "0.0.0.0";
+} else {
+  host = "localhost";
+}
 
 isomorphicReactPlugin = new IsomorphicReactPluginFactory({
   serverComponentPath: "tmp/server.js",
@@ -67,7 +74,7 @@ if (IS_DEVELOPMENT) {
   Object.keys(clientConfig.entry).forEach(function (key) {
     clientConfig.entry[key] = this.concat(clientConfig.entry[key]);
   }, [
-    require.resolve("webpack-dev-server/client/") + "?http://localhost:8080",
+    require.resolve("webpack-dev-server/client/") + "?http://" + host + ":8080",
     "webpack/hot/dev-server"
   ]);
 
@@ -135,6 +142,8 @@ webpackConfigsArray = [
 
 webpackConfigsArray.devServer = {
   hot: IS_DEVELOPMENT,
+  host: host,
+  contentBase: "../../public",
 };
 
 module.exports = webpackConfigsArray;

@@ -1,9 +1,7 @@
 import React from "react";
 
 import EventComponent from "./internals/EventComponent";
-/*eslint-disable no-unused-vars */
 import VirtualContainer from "./internals/VirtualContainer";
-/*eslint-enable no-unused-vars */
 import exposeGetters from "./internals/exposeGetters";
 import createRegisterEvents from "./internals/createRegisterEvents";
 
@@ -54,9 +52,7 @@ class GoogleMaps extends EventComponent {
       return;
     }
     // googleMapsApi can be async loaded
-    /*eslint-disable no-unused-vars */
     const {containerProps, googleMapsApi, bounds, ...googleMapsConfig} = props;
-    /*eslint-enable no-unused-vars */
     var {instance} = this.state;
 
     if (bounds) {

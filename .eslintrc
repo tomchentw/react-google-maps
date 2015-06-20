@@ -10,6 +10,9 @@
     "modules": true,
     "jsx": true
   },
+  "plugins": [
+    "react"
+  ],
   "rules": {
     // Possible Errors
     "comma-dangle": "always",

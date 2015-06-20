@@ -13,9 +13,7 @@ class InfoBox extends SimpleChildComponent {
 
   _createOrUpdateInstance () {
     const props = this.props;
-    /*eslint-disable no-unused-vars */
     const {googleMapsApi, ...googleMapsConfig} = props;
-    /*eslint-enable no-unused-vars */
     let {instance} = this.state;
 
     if (instance) {

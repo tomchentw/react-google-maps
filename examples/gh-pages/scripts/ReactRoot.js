@@ -1,4 +1,5 @@
 import React from "react";
+import {default as GitHubForkRibbon} from "react-github-fork-ribbon";
 import {ToastContainer, ToastMessage} from "react-toastr";
 
 import NavHeaderBar from "./NavHeaderBar";
@@ -209,11 +210,12 @@ class ReactRoot extends React.Component {
           rightActions={RIGHT_ACTIONS} />
 
         <div className="container-fluid container--full-height">
-          <div className="github-fork-ribbon-wrapper right">
-            <div className="github-fork-ribbon" style={{backgroundColor: "#333"}}>
-              <a href="https://github.com/tomchentw/react-google-maps">Fork me on GitHub</a>
-            </div>
-          </div>
+          <GitHubForkRibbon
+            position="right"
+            color="black"
+            href="https://github.com/tomchentw/react-google-maps">
+            Fork me on GitHub
+          </GitHubForkRibbon>
           <ToastContainer
             ref="toast"
             toastMessageFactory={React.createFactory(ToastMessage.animation)}/>

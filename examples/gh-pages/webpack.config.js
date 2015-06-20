@@ -28,8 +28,8 @@ if ("--docker" === process.argv[process.argv.length-1]) {
 }
 
 isomorphicReactPlugin = new IsomorphicReactPluginFactory({
-  serverComponentPath: "tmp/server.js",
-  serverMarkupPath: "tmp/html.js",
+  serverComponentPath: "../tmp/server.js",
+  serverMarkupPath: "../tmp/html.js",
   htmlOutputFilename: "index.html",
 });
 
@@ -99,8 +99,8 @@ if (IS_DEVELOPMENT) {
 
 serverConfig = {
   entry: {
-    "tmp/server": "./scripts/server.js",
-    "tmp/html": "./scripts/html.js",
+    "../tmp/server": "./scripts/server.js",
+    "../tmp/html": "./scripts/html.js",
   },
   output: {
     path: outputPath,

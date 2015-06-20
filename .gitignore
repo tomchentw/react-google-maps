@@ -43,3 +43,4 @@ node_modules
 public/assets
 public/index.html
 public/*.gz
+tmp/*

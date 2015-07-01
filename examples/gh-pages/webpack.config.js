@@ -62,6 +62,7 @@ clientConfig = {
     ],
   },
   plugins: [
+    new webpack.EnvironmentPlugin("NODE_ENV"),
     new ExtractTextPlugin("[name].css", {
       disable: IS_DEVELOPMENT,
     }),
@@ -131,6 +132,7 @@ serverConfig = {
     ],
   },
   plugins: [
+    new webpack.EnvironmentPlugin("NODE_ENV"),
     isomorphicReactPlugin.serverPlugin,
   ],
 };

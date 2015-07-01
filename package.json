@@ -58,7 +58,7 @@
     "eslint": "^0.21.2",
     "eslint-plugin-react": "^2.5.2",
     "jest-cli": "^0.4.0",
-    "tomchentw-npm-dev": "^2.0.0"
+    "tomchentw-npm-dev": "^3.0.0"
   },
   "dependencies": {
     "google-maps-infobox": "^1.1.13",

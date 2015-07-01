@@ -15,14 +15,14 @@
   ],
   "rules": {
     // Possible Errors
-    "comma-dangle": "always",
+    "comma-dangle": [2, "always-multiline"],
     // Best Practices
-    "consistent-return": "never",
-    "yoda": "always",
+    "consistent-return": [0],
+    "yoda": [2, "always"],
     // Variables
-    "no-use-before-define": "nofunc",
+    "no-use-before-define": [2, "nofunc"],
     // Stylistic Issues
-    "camelcase": "never",
-    "no-underscore-dangle": "never",
+    "camelcase": [0],
+    "no-underscore-dangle": [0],
   },
 }

@@ -1,3 +1,12 @@
+<a name"1.7.1"></a>
+### 1.7.1 (2015-07-01)
+
+
+#### Bug Fixes
+
+* **src:** eslint rules ([012faada](https://github.com/tomchentw/react-google-maps/commit/012faada))
+
+
 ## 1.7.0 (2015-06-19)
 
 

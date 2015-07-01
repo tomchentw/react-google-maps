@@ -40,7 +40,7 @@ class InfoBox extends SimpleChildComponent {
 
 InfoBox.propTypes = {
   ...SimpleChildComponent.propTypes,
-  anchor: PropTypes.object
+  anchor: PropTypes.object,
 };
 
 InfoBox._GoogleMapsClassName = "InfoBox";

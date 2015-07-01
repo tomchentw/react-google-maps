@@ -111,7 +111,7 @@ class GoogleMaps extends EventComponent {
 GoogleMaps.propTypes = {
   ...EventComponent.propTypes,
   containerProps: PropTypes.object.isRequired,
-  bounds: React.PropTypes.object
+  bounds: React.PropTypes.object,
 };
 
 GoogleMaps._registerEvents = createRegisterEvents(

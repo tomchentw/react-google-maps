@@ -38,13 +38,13 @@ OverlayView.propTypes = {
     OverlayView.MAP_PANE,
     OverlayView.MARKER_LAYER,
     OverlayView.OVERLAY_LAYER,
-    OverlayView.OVERLAY_MOUSE_TARGET
+    OverlayView.OVERLAY_MOUSE_TARGET,
   ]),
-  getPixelPositionOffset: React.PropTypes.func
+  getPixelPositionOffset: React.PropTypes.func,
 };
 
 OverlayView.defaultProps = {
-  mapPane: OverlayView.OVERLAY_LAYER
+  mapPane: OverlayView.OVERLAY_LAYER,
 };
 
 OverlayView._registerEvents = createRegisterEvents(

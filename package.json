@@ -13,7 +13,7 @@
     "clean": "rm -rf lib",
     "build": "npm run lint && npm run clean && babel --stage=1 src --out-dir lib",
     "lint": "eslint src",
-    "test": "npm run lint && jest"
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -57,7 +57,6 @@
     "babel-eslint": "^3.1.7",
     "eslint": "^0.21.2",
     "eslint-plugin-react": "^2.5.2",
-    "jest-cli": "^0.4.0",
     "tomchentw-npm-dev": "^3.0.0"
   },
   "dependencies": {
@@ -67,18 +66,5 @@
   },
   "peerDependencies": {
     "react": "^0.13.0"
-  },
-  "jest": {
-    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-    "testPathDirs": [
-      "<rootDir>/src"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "<rootDir>/node_modules/"
-    ],
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react"
-    ]
   }
 }

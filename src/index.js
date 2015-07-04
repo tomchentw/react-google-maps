@@ -8,6 +8,7 @@ import Marker from "./Marker";
 import OverlayView from "./OverlayView";
 import Polygon from "./Polygon";
 import Polyline from "./Polyline";
+import Rectangle from "./Rectangle";
 
 export {
   GoogleMaps,
@@ -22,4 +23,5 @@ export {
   OverlayView,
   Polygon,
   Polyline,
+  Rectangle
 };

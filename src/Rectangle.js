@@ -2,13 +2,13 @@ import SimpleChildComponent from "./internals/SimpleChildComponent";
 import createRegisterEvents from "./internals/createRegisterEvents";
 import BASIC_EVENT_NAMES from "./internals/BASIC_EVENT_NAMES";
 
-class Circle extends SimpleChildComponent {
+class Rectangle extends SimpleChildComponent {
 }
 
-Circle._GoogleMapsClassName = "Circle";
+Rectangle._GoogleMapsClassName = "Rectangle";
 
-Circle._registerEvents = createRegisterEvents(
-  `${BASIC_EVENT_NAMES} radius_changed center_changed`
+Rectangle._registerEvents = createRegisterEvents(
+  `${BASIC_EVENT_NAMES} bounds_changed`
 );
 
-export default Circle;
+export default Rectangle;

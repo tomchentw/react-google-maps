@@ -1,6 +1,10 @@
 import React from "react/addons";
 import {GoogleMaps, DirectionsRenderer} from "react-google-maps";
 
+/*
+ * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
+ */
+
 class Directions extends React.Component {
 
   constructor (...args) {

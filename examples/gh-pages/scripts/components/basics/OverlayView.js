@@ -1,6 +1,10 @@
 import React from "react/addons";
 import {GoogleMaps, OverlayView} from "react-google-maps";
 
+/*
+ * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
+ */
+
 const STYLES = {
   mapContainer: {
     height: "100%"

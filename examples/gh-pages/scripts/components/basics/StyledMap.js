@@ -4,7 +4,7 @@ import InfoBox from "react-google-maps/addons/InfoBox";
 
 /*
  * Sample From: https://developers.google.com/maps/documentation/javascript/examples/map-simple
- * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML
+ * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
 class StyledMap extends React.Component {
 

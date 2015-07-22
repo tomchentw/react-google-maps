@@ -26,14 +26,13 @@ class SimpleChildComponent extends EventComponent {
     }
     const {googleMapsApi, ...googleMapsConfig} = props;
     var {instance} = this.state;
-
     if (instance) {
       if (googleMapsConfig.map === instance.getMap()) {
         // Set map and animation props only on the first run:
         delete googleMapsConfig.map;
         delete googleMapsConfig.animation;
       }
-      instance.setOptions(googleMapsConfig);
+      instance.setOptions(this._handleMissingContent(googleMapsConfig));
     } else {
       const googleMapsClassName = this.constructor._GoogleMapsClassName;
       if (!objectPath.has(googleMapsApi, googleMapsClassName)) {
@@ -46,12 +45,28 @@ class SimpleChildComponent extends EventComponent {
         return;
       }
       const GoogleMapsClass = objectPath.get(googleMapsApi, googleMapsClassName);
-      instance = new GoogleMapsClass(googleMapsConfig);
+      instance = new GoogleMapsClass(this._handleMissingContent(googleMapsConfig));
 
       exposeGetters(this, GoogleMapsClass.prototype, instance);
       this.setState({instance});
     }
     return instance;
+  }
+
+  _handleMissingContent(config) {
+    const googleMapsClassName = this.constructor._GoogleMapsClassName;
+    if (("InfoWindow" !== googleMapsClassName && "InfoBox" !== googleMapsClassName) || config.content) {
+      return config;
+    } else {
+      var detachedDiv = document.createElement("div"),
+          childComponent = React.Children.only(this.props.children);
+      if (childComponent.props.wrapperClassName) {
+          detachedDiv.className = childComponent.props.wrapperClassName;
+      }
+      React.render(childComponent, detachedDiv);
+      config.content = detachedDiv;
+      return config;
+    }
   }
 
   componentWillUnmount () {

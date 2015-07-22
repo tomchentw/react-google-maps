@@ -24,7 +24,7 @@ class InfoBox extends SimpleChildComponent {
       // As a result, we import "google-maps-infobox" here to prevent an error on
       // a isomorphic server.
       const GoogleMapsInfobox = require("google-maps-infobox");
-      instance = new GoogleMapsInfobox(googleMapsConfig);
+      instance = new GoogleMapsInfobox(super._handleMissingContent(googleMapsConfig));
       exposeGetters(this, GoogleMapsInfobox.prototype, instance);
       this.setState({instance});
       instance.open(

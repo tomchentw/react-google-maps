@@ -49,6 +49,10 @@ class ClosureListeners extends React.Component {
     this.setState(this.state);
   }
 
+  _handle_infowindow_click () {
+    console.log('clicked InfoWindow');
+  }
+
   render () {
     const {props, state} = this,
           {googleMapsApi, ...otherProps} = props;
@@ -81,7 +85,9 @@ class ClosureListeners extends React.Component {
 
     function renderInfoWindow (marker, index) {
       var ref = `marker_${index}`;
-      return marker.showInfo ? <InfoWindow key={`${ref}_info_window`} owner={ref} content={marker.content} onCloseclick={this._handle_closeclick.bind(this, marker)} /> : null;
+      return marker.showInfo ? <InfoWindow key={`${ref}_info_window`} owner={ref} onCloseclick={this._handle_closeclick.bind(this, marker)}>
+          <div onClick={this._handle_infowindow_click} className="own-css-class" wrapperClassName="wrapper-css-class"> {marker.content} </div>
+        </InfoWindow> : null;
     }
   }
 

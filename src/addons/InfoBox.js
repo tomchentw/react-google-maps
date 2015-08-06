@@ -1,53 +1,62 @@
-import React from "react";
-import SimpleChildComponent from "../internals/SimpleChildComponent";
-import createRegisterEvents from "../internals/createRegisterEvents";
-import exposeGetters from "../internals/exposeGetters";
+import {
+  default as React,
+  Component,
+} from "react";
 
-const {PropTypes} = React;
+import {
+  default as InfoBoxCreator,
+  infoBoxDefaultPropTypes,
+  infoBoxControlledPropTypes,
+  infoBoxEventPropTypes,
+} from "./addonsCreators/InfoBoxCreator";
 
-class InfoBox extends SimpleChildComponent {
-  constructor (...args) {
-    super(...args);
-    this.state = {};
+/*
+ * Original author: @wuct
+ * Original PR: https://github.com/tomchentw/react-google-maps/pull/54
+ */
+export default class InfoBox extends Component {
+  static propTypes = {
+    // Uncontrolled default[props] - used only in componentDidMount
+    ...infoBoxDefaultPropTypes,
+    // Controlled [props] - used in componentDidMount/componentDidUpdate
+    ...infoBoxControlledPropTypes,
+    // Event [onEventName]
+    ...infoBoxEventPropTypes,
   }
 
-  _createOrUpdateInstance () {
-    const props = this.props;
-    const {googleMapsApi, ...googleMapsConfig} = props;
-    let {instance} = this.state;
+  // Public APIs
+  //
+  // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/docs/reference.html
+  getContent () { /* TODO: children */ }
 
-    if (instance) {
-      instance = super._createOrUpdateInstance();
-    } else {
-      // "google-maps-infobox" uses "google" as a global variable. Since we don't
-      // have "google" on the server, we can not use it in server-side rendering.
-      // As a result, we import "google-maps-infobox" here to prevent an error on
-      // a isomorphic server.
-      const GoogleMapsInfobox = require("google-maps-infobox");
-      instance = new GoogleMapsInfobox(googleMapsConfig);
-      exposeGetters(this, GoogleMapsInfobox.prototype, instance);
-      this.setState({instance});
-      instance.open(
-        this.props.map,
-        this.props.anchor
+  getPosition () { return this.state.infoBox.getPosition(); }
+
+  getVisible () { return this.state.infoBox.getVisible(); }
+
+  getZIndex () { return this.state.infoBox.getZIndex(); }
+  // END - Public APIs
+  //
+  // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/docs/reference.html
+
+  state = {
+  }
+
+  componentDidMount () {
+    const {mapHolderRef, ...infoBoxProps} = this.props;
+    const infoBox = InfoBoxCreator._createInfoBox(mapHolderRef, infoBoxProps);
+
+    this.setState({ infoBox });
+  }
+
+  render () {
+    if (this.state.infoBox) {
+      return (
+        <InfoBoxCreator infoBox={this.state.infoBox} {...this.props}>
+          {this.props.children}
+        </InfoBoxCreator>
       );
+    } else {
+      return (<noscript />);
     }
-
-    return instance;
   }
 }
-
-
-InfoBox.propTypes = {
-  ...SimpleChildComponent.propTypes,
-  anchor: PropTypes.object,
-};
-
-InfoBox._GoogleMapsClassName = "InfoBox";
-
-InfoBox._registerEvents = createRegisterEvents(
-  "closeclick content_changed domready position_changed zindex_changed"
-);
-
-
-export default InfoBox;

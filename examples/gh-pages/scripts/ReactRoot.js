@@ -54,17 +54,6 @@ const DROPDOWN_ACTIONS = [
     },
   },
   {
-    key: "basics__asynchronous-loading",
-    displayName: "Asynchronous Loading",
-    path: "#basics/asynchronous-loading",
-    component: {
-      componentClass: require("./components/basics/AsynchronousLoading"),
-      componentRaw: {
-        __raw: require("!raw-loader!./components/basics/AsynchronousLoading"),
-      },
-    },
-  },
-  {
     key: "basics__directions",
     displayName: "Directions",
     path: "#basics/directions",

@@ -1,54 +1,68 @@
-import React from "react";
+import {
+  default as React,
+  Component,
+} from "react";
 
-import SimpleChildComponent from "./internals/SimpleChildComponent";
-import createOverlayViewProxy from "./internals/createOverlayViewProxy";
-import createRegisterEvents from "./internals/createRegisterEvents";
-import exposeGetters from "./internals/exposeGetters";
+import {
+  default as OverlayViewCreator,
+  overlayViewDefaultPropTypes,
+  overlayViewControlledPropTypes,
+} from "./creators/OverlayViewCreator";
 
-class OverlayView extends SimpleChildComponent {
-  _createOrUpdateInstance () {
-    const {props} = this;
-    if (!props.googleMapsApi || !props.map) {
-      return;
-    }
-    var {instance} = this.state;
+/*
+ * Original author: @petebrowne
+ * Original PR: https://github.com/tomchentw/react-google-maps/pull/63
+ */
+export default class OverlayView extends Component {
 
-    if (instance) {
-      instance = super._createOrUpdateInstance();
-      instance.draw();
+  static FLOAT_PANE = "floatPane"
+  static MAP_PANE = "mapPane"
+  static MARKER_LAYER = "markerLayer"
+  static OVERLAY_LAYER = "overlayLayer"
+  static OVERLAY_MOUSE_TARGET = "overlayMouseTarget"
+
+  static propTypes = {
+    // Uncontrolled default[props] - used only in componentDidMount
+    ...overlayViewDefaultPropTypes,
+    // Controlled [props] - used in componentDidMount/componentDidUpdate
+    ...overlayViewControlledPropTypes,
+  }
+
+  static defaultProps = {
+    mapPaneName: OverlayView.OVERLAY_LAYER,
+  }
+
+  // Public APIs
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+  getPanes () { return this.state.overlayView.getPanes(); }
+
+  getProjection () { return this.state.overlayView.getProjection(); }
+  // END - Public APIs
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
+
+  state = {
+  }
+
+  componentDidMount () {
+    const {mapHolderRef, ...overlayViewProps} = this.props;
+    const overlayView = OverlayViewCreator._createOverlayView(mapHolderRef, overlayViewProps);
+
+    this.setState({ overlayView });
+  }
+
+  render () {
+    if (this.state.overlayView) {
+      return (
+        <OverlayViewCreator overlayView={this.state.overlayView} {...this.props}>
+          {this.props.children}
+        </OverlayViewCreator>
+      );
     } else {
-      instance = createOverlayViewProxy(this.props);
-      exposeGetters(this, instance.constructor.prototype, instance);
-      this.setState({instance});
+      return (<noscript />);
     }
-    return instance;
   }
 }
-
-OverlayView.FLOAT_PANE = "floatPane";
-OverlayView.MAP_PANE = "mapPane";
-OverlayView.MARKER_LAYER = "markerLayer";
-OverlayView.OVERLAY_LAYER = "overlayLayer";
-OverlayView.OVERLAY_MOUSE_TARGET = "overlayMouseTarget";
-
-OverlayView.propTypes = {
-  ...SimpleChildComponent.propTypes,
-  mapPane: React.PropTypes.oneOf([
-    OverlayView.FLOAT_PANE,
-    OverlayView.MAP_PANE,
-    OverlayView.MARKER_LAYER,
-    OverlayView.OVERLAY_LAYER,
-    OverlayView.OVERLAY_MOUSE_TARGET,
-  ]),
-  getPixelPositionOffset: React.PropTypes.func,
-};
-
-OverlayView.defaultProps = {
-  mapPane: OverlayView.OVERLAY_LAYER,
-};
-
-OverlayView._registerEvents = createRegisterEvents(
-  "projection_changed position_changed"
-);
-
-export default OverlayView;

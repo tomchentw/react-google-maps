@@ -1,10 +1,14 @@
-import React from "react";
+import {default as React, PropTypes, Component} from "react";
 import {PrismCode} from "react-prism";
-import {GoogleMaps, Marker, Polyline, Polygon, InfoWindow} from "react-google-maps";
 
-const {PropTypes} = React;
+export default class ComponentPlayground extends Component {
 
-class ComponentPlayground extends React.Component {
+  static propTypes = {
+    componentClass: PropTypes.func.isRequired,
+    componentProps: PropTypes.object,
+    // Adding __raw is to hide content from React Develop Tool
+    componentRaw: PropTypes.shape({__raw: PropTypes.string}).isRequired,
+  }
 
   render () {
     const {props, state} = this,
@@ -27,12 +31,3 @@ class ComponentPlayground extends React.Component {
     );
   }
 }
-
-ComponentPlayground.propTypes = {
-  componentClass: PropTypes.func.isRequired,
-  componentProps: PropTypes.object,
-  // Adding __raw is to hide content from React Develop Tool
-  componentRaw: PropTypes.shape({__raw: PropTypes.string}).isRequired,
-};
-
-export default ComponentPlayground;

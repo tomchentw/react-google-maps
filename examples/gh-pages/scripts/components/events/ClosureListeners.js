@@ -1,30 +1,28 @@
-import React from "react/addons";
-import {GoogleMaps, InfoWindow, Marker} from "react-google-maps";
+import {default as React, Component} from "react";
+
+import {default as GoogleMap} from "../../../../../src/GoogleMap";
+import {default as Marker} from "../../../../../src/Marker";
+import {default as InfoWindow} from "../../../../../src/InfoWindow";
 
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-closure
  */
-class ClosureListeners extends React.Component {
+export default class ClosureListeners extends Component {
 
-  constructor (...args) {
-    super(...args);
-    this.state = {
-      markers: [],
-    };
+  state = {
+    markers: [],
   }
 
   componentWillMount () {
-    var southWest = new google.maps.LatLng(-31.203405, 125.244141),
-        northEast = new google.maps.LatLng(-25.363882, 131.044922),
+    const southWest = new google.maps.LatLng(-31.203405, 125.244141);
+    const northEast = new google.maps.LatLng(-25.363882, 131.044922);
 
-        lngSpan = northEast.lng() - southWest.lng(),
-        latSpan = northEast.lat() - southWest.lat(),
-        i,
-        position,
-        markers = [];
+    const lngSpan = northEast.lng() - southWest.lng();
+    const latSpan = northEast.lat() - southWest.lat();
 
-    for (i = 0; i < 5; i++) {
-      position = new google.maps.LatLng(
+    let markers = [];
+    for (let i = 0; i < 5; i++) {
+      const position = new google.maps.LatLng(
         southWest.lat() + latSpan * Math.random(),
         southWest.lng() + lngSpan * Math.random()
       );
@@ -32,59 +30,56 @@ class ClosureListeners extends React.Component {
         position,
         content: "This is the secret message".split(" ")[i],
         showInfo: false,
-      })
+      });
     }
+
     this.setState({
       markers, 
     });
   }
 
-  _handle_marker_click (marker) {
+  _handle_marker_click = (marker) => {
     marker.showInfo = true;
     this.setState(this.state);
   }
 
-  _handle_closeclick (marker) {
+  _handle_closeclick = (marker) => {
     marker.showInfo = false;
     this.setState(this.state);
   }
 
   render () {
-    const {props, state} = this,
-          {googleMapsApi, ...otherProps} = props;
+    const {markers} = this.state;
 
     return (
-      <GoogleMaps containerProps={{
-        ...otherProps,
+      <GoogleMap containerProps={{
+        ...this.props,
           style: {
             height: "100%",
           },
         }}
-        googleMapsApi={google.maps}
-        zoom={4}
-        center={new google.maps.LatLng(-25.363882, 131.044922)}>
-        {state.markers.map(toMarker, this)}
-      </GoogleMaps>
+        defaultZoom={4}
+        defaultCenter={new google.maps.LatLng(-25.363882, 131.044922)}>
+        {markers.map((marker, index) => {
+          const ref = `marker_${index}`;
+
+          const content = marker.showInfo ? (
+            <InfoWindow key={`${ref}_info_window`}
+              content={marker.content}
+              onCloseclick={this._handle_closeclick.bind(this, marker)}
+            />
+          ) : null;
+
+          return (
+            <Marker key={ref} ref={ref}
+              position={marker.position}
+              title={(index+1).toString()}
+              onClick={this._handle_marker_click.bind(this, marker)}>
+              {content}
+            </Marker>
+          );
+        })}
+      </GoogleMap>
     );
-
-    function toMarker (marker, index) {
-      var ref = `marker_${index}`;
-      return (
-        <Marker key={ref} ref={ref}
-                      position={marker.position}
-                      title={(index+1).toString()}
-                      onClick={this._handle_marker_click.bind(this, marker)}>
-          {renderInfoWindow.call(this, marker, index)}
-        </Marker>
-      );
-    }
-
-    function renderInfoWindow (marker, index) {
-      var ref = `marker_${index}`;
-      return marker.showInfo ? <InfoWindow key={`${ref}_info_window`} owner={ref} content={marker.content} onCloseclick={this._handle_closeclick.bind(this, marker)} /> : null;
-    }
   }
-
 }
-
-export default ClosureListeners;

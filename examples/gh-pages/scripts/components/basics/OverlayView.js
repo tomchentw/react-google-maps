@@ -1,5 +1,7 @@
-import React from "react/addons";
-import {GoogleMaps, OverlayView} from "react-google-maps";
+import {default as React, Component} from "react";
+
+import {default as GoogleMap} from "../../../../../src/GoogleMap";
+import {default as OverlayView} from "../../../../../src/OverlayView";
 
 const STYLES = {
   mapContainer: {
@@ -12,22 +14,19 @@ const STYLES = {
   }
 };
 
-class OverlayViewExample extends React.Component {
-  constructor (...args) {
-    super(...args);
-    this.state = {count: 0};
+export default class OverlayViewExample extends Component {
+  state = {
+    count: 0,
   }
 
   render () {
-    const {props, state} = this,
-          {googleMapsApi, ...otherProps} = props,
-          {count} = state;
+    const {count} = this.state;
+
     return (
-      <GoogleMaps
-        containerProps={{...otherProps, style: STYLES.mapContainer}}
-        googleMapsApi={google.maps}
-        zoom={8}
-        center={{lat: -34.397, lng: 150.644}}>
+      <GoogleMap
+        containerProps={{...this.props, style: STYLES.mapContainer}}
+        defaultZoom={8}
+        defaultCenter={{lat: -34.397, lng: 150.644}}>
         <OverlayView
           position={{lat: -34.397, lng: 150.644}}
           /*
@@ -35,7 +34,7 @@ class OverlayViewExample extends React.Component {
            *    mouse interactivity, use `OverlayView.OVERLAY_MOUSE_TARGET`.
            *    Defaults to `OverlayView.OVERLAY_LAYER`.
            */
-          mapPane={OverlayView.OVERLAY_MOUSE_TARGET}
+          mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
           /*
            * 2. Tweak the OverlayView's pixel position. In this case, we're
            *    centering the content.
@@ -43,19 +42,20 @@ class OverlayViewExample extends React.Component {
           getPixelPositionOffset={this.getPixelPositionOffset}
           /*
            * 3. Create OverlayView content using standard React components.
-           */>
+           */
+        >
           <div style={STYLES.overlayView}>
             <h1>OverlayView</h1>
-            <button onClick={this.onClick.bind(this)}>
+            <button onClick={this.onClick}>
               I have been clicked {count} time{count === 1 ? '' : 's'}
             </button>
           </div>
         </OverlayView>
-      </GoogleMaps>
+      </GoogleMap>
     );
   }
 
-  onClick () {
+  onClick = () => {
     this.setState({count: this.state.count + 1});
   }
 
@@ -63,5 +63,3 @@ class OverlayViewExample extends React.Component {
     return {x: -(width / 2), y: -(height / 2)};
   }
 }
-
-export default OverlayViewExample;

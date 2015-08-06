@@ -1,54 +1,47 @@
-import React from "react/addons";
-import {GoogleMaps, Marker} from "react-google-maps";
+import {default as React, Component} from "react";
+
+import {default as GoogleMap} from "../../../../../src/GoogleMap";
+import {default as Marker} from "../../../../../src/Marker";
 
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-arguments
  */
-class AccessingArguments extends React.Component {
+export default class AccessingArguments extends Component {
 
-  constructor (...args) {
-    super(...args);
-    this.state =  {
-      markers: [],
-    };
+  state =  {
+    markers: [],
+    center: new google.maps.LatLng(-25.363882, 131.044922),
   }
 
-  _handle_map_click (event) {
+  _handle_map_click = (event) => {
     const {markers} = this.state;
     markers.push({
       position: event.latLng
     });
-    this.setState({ markers });
-    this.refs.map.panTo(event.latLng);
+    this.setState({
+      center: event.latLng,
+      markers,
+    });
   }
 
   render () {
-    const {props, state} = this,
-          {googleMapsApi, ...otherProps} = props;
+    const {markers, center} = this.state;
 
     return (
-      <GoogleMaps containerProps={{
-          ...otherProps,
+      <GoogleMap containerProps={{
+          ...this.props,
           style: {
             height: "100%",
           },
         }}
         ref="map"
-        googleMapsApi={google.maps}
-        zoom={4}
-        center={new google.maps.LatLng(-25.363882, 131.044922)}
-        onClick={this._handle_map_click.bind(this)}>
-        {state.markers.map(toMarker, this)}
-      </GoogleMaps>
+        defaultZoom={4}
+        center={center}
+        onClick={this._handle_map_click}>
+        {markers.map((marker, index) =>
+          <Marker position={marker.position} key={index} />
+        )}
+      </GoogleMap>
     );
-
-    function toMarker (marker) {
-      return (
-        <Marker position={marker.position} />
-      );
-    }
   }
-
 }
-
-export default AccessingArguments;

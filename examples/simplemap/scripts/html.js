@@ -26,7 +26,6 @@ export default class ReactHtml extends Component {
           <title>React Google Maps | tomchentw</title>
           {this._render_link_to_stylesheet_(clientAssets)}
           <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing" />
-          <script type="text/javascript" src="prism.min.js" />
         </head>
         <body>
           <div id="react-container" dangerouslySetInnerHTML={innerHtml} />

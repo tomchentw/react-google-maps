@@ -1,7 +1,7 @@
 import {default as React, addons, Component} from "react/addons";
 
-import {default as GoogleMap} from "../../../../src/GoogleMap";
-import {default as Marker} from "../../../../src/Marker";
+import {default as GoogleMap} from "../../../src/GoogleMap";
+import {default as Marker} from "../../../src/Marker";
 
 const {update} = addons;
 
@@ -9,7 +9,7 @@ const {update} = addons;
  * This is the modify version of:
  * https://developers.google.com/maps/documentation/javascript/examples/event-arguments
  */
-export default class GettingStarted extends Component {
+export default class SimpleMap extends Component {
 
   constructor (...args) {
     super(...args);
@@ -23,6 +23,25 @@ export default class GettingStarted extends Component {
         defaultAnimation: 2
       }],
     };
+  }
+
+  componentDidMount () {
+    setTimeout(() => {
+      var {markers} = this.state;
+      markers = update(markers, {
+        $push: [
+          {
+            position: {
+              lat: 25.99,
+              lng: 122.9,
+            },
+            defaultAnimation: 2,
+            key: Date.now(),// Add a key property for: http://fb.me/react-warning-keys
+          },
+        ],
+      });
+      this.setState({ markers });
+    }, 2000);
   }
 
   /*
@@ -42,12 +61,7 @@ export default class GettingStarted extends Component {
     });
     this.setState({ markers });
 
-    if (3 === markers.length) {
-      this.props.toast(
-        "Right click on the marker to remove it",
-        "Also check the code!"
-      );
-    }
+    console.log(this.refs.map.getBounds());
   }
 
   _handle_marker_rightclick (index, event) {
@@ -67,24 +81,25 @@ export default class GettingStarted extends Component {
 
   render () {
     return (
-      <GoogleMap containerProps={{
-          ...this.props,
-          style: {
-            height: "100%",
-          },
-        }}
-        ref="map"
-        defaultZoom={3}
-        defaultCenter={{lat: -25.363882, lng: 131.044922}}
-        onClick={this._handle_map_click}>
-        {this.state.markers.map((marker, index) => {
-          return (
-            <Marker
-              {...marker}
-              onRightclick={this._handle_marker_rightclick.bind(this, index)} />
-          );
-        })}
-      </GoogleMap>
+      <section style={{height: "100%"}}>
+        <GoogleMap containerProps={{
+            style: {
+              height: "100%",
+            },
+          }}
+          ref="map"
+          defaultZoom={3}
+          defaultCenter={{lat: -25.363882, lng: 131.044922}}
+          onClick={this._handle_map_click}>
+          {this.state.markers.map((marker, index) => {
+            return (
+              <Marker
+                {...marker}
+                onRightclick={this._handle_marker_rightclick.bind(this, index)} />
+            );
+          })}
+        </GoogleMap>
+      </section>
     );
   }
 }

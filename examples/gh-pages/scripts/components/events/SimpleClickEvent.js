@@ -1,75 +1,71 @@
-import React from "react/addons";
-import {GoogleMaps, Marker} from "react-google-maps";
+import {default as React, Component} from "react";
+
+import {default as GoogleMap} from "../../../../../src/GoogleMap";
+import {default as Marker} from "../../../../../src/Marker";
 
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-simple
  */
-class SimpleClickEvent extends React.Component {
+export default class SimpleClickEvent extends Component {
 
-  constructor (...args) {
-    super(...args);
-    this.state = {
-      zoom: 4,
-      center: new google.maps.LatLng(-25.363882, 131.044922),
-      timeoutId: null,
-    };
+  static defaultProps = {
+    initialCenter: {lat: -25.363882, lng: 131.044922},
   }
 
-  _handle_marker_click () {
+  state = {
+    zoom: 4,
+    center: this.props.initialCenter,
+  }
+
+  _handle_marker_click = () => {
     this.setState({
       zoom: 8,
-      center: this.refs.marker.getPosition(),
     });
   }
 
-  _handle_map_center_changed () {
-    const {center, timeoutId} = this.state;
-    const {marker} = this.refs;
-    if (!marker) {
-      return;
-    }
-    const newPos = this.refs.marker.getPosition();
-    if (center.equals(newPos)) {
+  _handle_map_center_changed = () => {
+    const newPos = this.refs.map.getCenter();
+    if (newPos.equals(new google.maps.LatLng(this.props.initialCenter))) {
       // Notice: Check newPos equality here,
       // or it will fire center_changed event infinitely
       return;
     }
-    if (timeoutId) {
-      clearTimeout(timeoutId);
+    if (this._timeoutId) {
+      clearTimeout(this._timeoutId);
     }
-    const newTimeoutId = setTimeout(() => {
-      this.refs.map.panTo(newPos);
+    this._timeoutId = setTimeout(() => {
+      this.setState({ center: this.props.initialCenter });
     }, 3000);
+
     this.setState({
-      timeoutId: newTimeoutId,
+      // Because center now is a controlled variable, we need to set it to new
+      // value when "center_changed". Or in the next render it will use out-dated
+      // state.center and reset the center of the map to the old location.
+      // We can never drag the map.
+      center: newPos,
     });
   }
 
   render () {
-    const {props, state} = this,
-          {googleMapsApi, ...otherProps} = props;
+    const {initialCenter, ...restProps} = this.props;
+    const {zoom, center} = this.state;
 
     return (
-      <GoogleMaps containerProps={{
-          ...otherProps,
+      <GoogleMap containerProps={{
+          ...restProps,
           style: {
             height: "100%",
           },
         }}
         ref="map"
-        googleMapsApi={google.maps}
-        zoom={state.zoom}
-        center={state.center}
-        onCenterChanged={this._handle_map_center_changed.bind(this)}>
+        zoom={zoom}
+        center={center}
+        onCenterChanged={this._handle_map_center_changed}>
         <Marker
-          ref="marker"
-          position={state.center}
+          defaultPosition={center}
           title="Click to zoom"
-          onClick={this._handle_marker_click.bind(this)} />
-      </GoogleMaps>
+          onClick={this._handle_marker_click} />
+      </GoogleMap>
     );
   }
-
 }
-
-export default SimpleClickEvent;

@@ -1,9 +1,9 @@
-import React from "react";
+import {default as React, Component} from "react";
 import {default as GitHubForkRibbon} from "react-github-fork-ribbon";
 import {ToastContainer, ToastMessage} from "react-toastr";
 
-import NavHeaderBar from "./NavHeaderBar";
-import ComponentPlayground from "./ComponentPlayground";
+import {default as NavHeaderBar} from "./NavHeaderBar";
+import {default as ComponentPlayground} from "./ComponentPlayground";
 
 const ACTIONS = [
   {
@@ -153,7 +153,7 @@ const RIGHT_ACTIONS = [
 
 const ALL_ACTIONS = ACTIONS.concat(DROPDOWN_ACTIONS.filter((x) => { return !!x; })).concat(RIGHT_ACTIONS);
 
-class ReactRoot extends React.Component {
+export default class ReactRoot extends Component {
 
   constructor (...args) {
     super(args);
@@ -217,5 +217,3 @@ class ReactRoot extends React.Component {
     );
   }
 }
-
-export default ReactRoot;

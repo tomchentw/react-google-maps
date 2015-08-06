@@ -1,8 +1,5 @@
-import React from "react";
-import {GoogleMaps, Marker, Polyline, Polygon, InfoWindow} from "react-google-maps";
-import cx from "classnames";
-
-const {PropTypes} = React;
+import {default as React, PropTypes, Component} from "react";
+import {default as cx} from "classnames";
 
 const actionPropType = PropTypes.shape({
         key: PropTypes.string.isRequired,
@@ -13,7 +10,17 @@ const actionsArrayType = PropTypes.arrayOf(actionPropType).isRequired;
 
 function noop () {}
 
-class NavHeaderBar extends React.Component {
+export default class NavHeaderBar extends Component {
+
+  static propTypes = {
+    activeActionKey: PropTypes.string.isRequired,
+    onNavigateTo: PropTypes.func,
+    actions: actionsArrayType,
+    dropdownActions: PropTypes.arrayOf(
+        PropTypes.oneOfType([actionPropType, PropTypes.bool])
+      ),
+    rightActions: actionsArrayType,
+  }
 
   constructor (props, ...restArgs) {
     super({
@@ -93,17 +100,4 @@ class NavHeaderBar extends React.Component {
       }
     }
   }
-
 }
-
-NavHeaderBar.propTypes = {
-  activeActionKey: PropTypes.string.isRequired,
-  onNavigateTo: PropTypes.func,
-  actions: actionsArrayType,
-  dropdownActions: PropTypes.arrayOf(
-      PropTypes.oneOfType([actionPropType, PropTypes.bool])
-    ),
-  rightActions: actionsArrayType,
-};
-
-export default NavHeaderBar;

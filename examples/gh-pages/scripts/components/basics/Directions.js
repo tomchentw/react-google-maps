@@ -1,15 +1,14 @@
-import React from "react/addons";
-import {GoogleMaps, DirectionsRenderer} from "react-google-maps";
+import {default as React, Component} from "react";
 
-class Directions extends React.Component {
+import {default as GoogleMap} from "../../../../../src/GoogleMap";
+import {default as DirectionsRenderer} from "../../../../../src/DirectionsRenderer";
 
-  constructor (...args) {
-    super(...args);
-    this.state = {
-      origin: new google.maps.LatLng(41.8507300, -87.6512600),
-      destination: new google.maps.LatLng(41.8525800, -87.6514100),
-      directions: null,
-    };
+export default class Directions extends Component {
+
+  state = {
+    origin: new google.maps.LatLng(41.8507300, -87.6512600),
+    destination: new google.maps.LatLng(41.8525800, -87.6514100),
+    directions: null,
   }
 
   componentDidMount () {
@@ -32,25 +31,19 @@ class Directions extends React.Component {
   }
 
   render () {
-    const {props, state} = this,
-          {googleMapsApi, ...otherProps} = props,
-          {directions} = state;
+    const {origin, directions} = this.state;
 
     return (
-      <GoogleMaps containerProps={{
-          ...otherProps,
+      <GoogleMap containerProps={{
+          ...this.props,
           style: {
             height: "100%",
           },
         }}
-        googleMapsApi={google.maps}
-        zoom={7}
-        center={state.origin}>
+        defaultZoom={7}
+        defaultCenter={origin}>
         {directions ? <DirectionsRenderer directions={directions} /> : null}
-      </GoogleMaps>
+      </GoogleMap>
     );
   }
-
 }
-
-export default Directions;

@@ -1,7 +1,6 @@
 // http://en.wikipedia.org/wiki/GeoJSON
-"use strict";
 
-module.exports = {
+export default {
   "type": "FeatureCollection",
   "features": [
     {

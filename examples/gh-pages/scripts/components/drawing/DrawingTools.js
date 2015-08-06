@@ -1,5 +1,7 @@
-import React from "react/addons";
-import {GoogleMaps, DrawingManager} from "react-google-maps";
+import {default as React, Component} from "react";
+
+import {default as GoogleMap} from "../../../../../src/GoogleMap";
+import {default as DrawingManager} from "../../../../../src/DrawingManager";
 
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/drawing-tools
@@ -8,31 +10,18 @@ import {GoogleMaps, DrawingManager} from "react-google-maps";
  *
  * Credits: thanks @idolize for the contribution!
  */
-class DrawingTools extends React.Component {
-
-  constructor (...args) {
-    super(...args);
-    this.state = {
-      zoom: 8,
-      center: new google.maps.LatLng(-34.397, 150.644),
-    };
-  }
+export default class DrawingTools extends Component {
 
   render () {
-    const {props, state} = this,
-          {googleMapsApi, ...otherProps} = props;
-
     return (
-      <GoogleMaps containerProps={{
-          ...otherProps,
+      <GoogleMap containerProps={{
+          ...this.props,
           style: {
             height: "100%",
           },
         }}
-        ref="map"
-        googleMapsApi={google.maps}
-        zoom={state.zoom}
-        center={state.center}>
+        defaultZoom={8}
+        defaultCenter={new google.maps.LatLng(-34.397, 150.644)}>
 
         <DrawingManager
           drawingMode={google.maps.drawing.OverlayType.CIRCLE}
@@ -55,11 +44,7 @@ class DrawingTools extends React.Component {
             zIndex: 1
           }}
         />
-
-      </GoogleMaps>
+      </GoogleMap>
     );
   }
-
 }
-
-export default DrawingTools;

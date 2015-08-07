@@ -8,7 +8,7 @@ import {
   rectangleDefaultPropTypes,
   rectangleControlledPropTypes,
   rectangleEventPropTypes
-} from "./creators/_RectangleCreator";
+} from "./creators/RectangleCreator";
 
 /*
  * Original author: @alistairjcbrown

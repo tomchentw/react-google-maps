@@ -8,6 +8,8 @@ import {default as DrawingManager} from "../../../../../src/DrawingManager";
  *
  * Note: requires the Google Maps drawing API library in your script src
  *
+ * Add <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing"></script> to your HTML to provide google.maps reference
+ *
  * Credits: thanks @idolize for the contribution!
  */
 export default class DrawingTools extends Component {

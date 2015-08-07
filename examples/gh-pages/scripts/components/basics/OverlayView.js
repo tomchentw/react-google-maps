@@ -14,6 +14,9 @@ const STYLES = {
   }
 };
 
+/*
+ * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
+ */
 export default class OverlayViewExample extends Component {
   state = {
     count: 0,

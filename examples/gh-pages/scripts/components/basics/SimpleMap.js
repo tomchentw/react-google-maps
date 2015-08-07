@@ -3,6 +3,8 @@ import {default as React, Component} from "react";
 import {default as GoogleMap} from "../../../../../src/GoogleMap";
 /*
  * Sample From: https://developers.google.com/maps/documentation/javascript/examples/map-simple
+ *
+ * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
 export default class SimpleMap extends Component {
   /*

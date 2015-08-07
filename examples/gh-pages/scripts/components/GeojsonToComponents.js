@@ -37,6 +37,10 @@ function geometryToComponentWithLatLng (geometry) {
   }
 }
 
+/*
+ *
+ * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
+ */
 export default class GeojsonToComponents extends Component {
 
   constructor (...args) {

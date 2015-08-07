@@ -6,6 +6,8 @@ import {default as InfoWindow} from "../../../../../src/InfoWindow";
 
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-closure
+ *
+ * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
 export default class ClosureListeners extends Component {
 

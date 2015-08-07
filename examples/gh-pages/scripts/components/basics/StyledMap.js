@@ -3,6 +3,9 @@ import {default as React, Component} from "react";
 import {default as GoogleMap} from "../../../../../src/GoogleMap";
 import {default as InfoBox} from "../../../../../src/addons/InfoBox";
 
+/*
+ * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
+ */
 export default class StyledMap extends Component {
 
   static defaultProps = {

@@ -5,6 +5,8 @@ import {default as Marker} from "../../../../../src/Marker";
 
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-simple
+ *
+ * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
 export default class SimpleClickEvent extends Component {
 

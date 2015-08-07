@@ -22,17 +22,15 @@ export default class NavHeaderBar extends Component {
     rightActions: actionsArrayType,
   }
 
-  constructor (props, ...restArgs) {
-    super({
-      onNavigateTo: noop,
-      actions: [],
-      dropdownActions: [],
-      rightActions: [],
-      ...props,
-    }, ...restArgs);
-    this.state = {
-      dropdownOpen: false,
-    };
+  static defaultProps = {
+    onNavigateTo: noop,
+    actions: [],
+    dropdownActions: [],
+    rightActions: [],
+  }
+
+  state = {
+    dropdownOpen: false,
   }
 
   _handle_click () {

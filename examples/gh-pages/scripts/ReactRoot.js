@@ -155,11 +155,8 @@ const ALL_ACTIONS = ACTIONS.concat(DROPDOWN_ACTIONS.filter((x) => { return !!x; 
 
 export default class ReactRoot extends Component {
 
-  constructor (...args) {
-    super(args);
-    this.state = {
-      action: ACTIONS[0],
-    };
+  state = {
+    action: ACTIONS[0],
   }
 
   componentWillMount () {

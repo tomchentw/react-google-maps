@@ -43,33 +43,30 @@ function geometryToComponentWithLatLng (geometry) {
  */
 export default class GeojsonToComponents extends Component {
 
-  constructor (...args) {
-    super(...args);
-    this.state = {
-      geoJson: this.props.initialGeoJson,
-      geoStateBy: {
-        0: {
-          ref: "map",
-          style: {height: "100%"},
-          onClick: this._handle_map_click,
-          onZoomChanged: this._handle_map_zoom_changed,
-        },
-        1: {
-          ref: "centerMarker",
-          visible: true,
-          draggable: true,
-          onDragend: this._handle_marker_dragend,
-          onClick: this._handle_marker_click,
-          child: {
-            content: "Bermuda Triangle",
-            owner: "centerMarker",
-          },
-        },
-        3: {
-          onRightclick: this._handle_polygon_rightclick,
+  state = {
+    geoJson: this.props.initialGeoJson,
+    geoStateBy: {
+      0: {
+        ref: "map",
+        style: {height: "100%"},
+        onClick: this._handle_map_click,
+        onZoomChanged: this._handle_map_zoom_changed,
+      },
+      1: {
+        ref: "centerMarker",
+        visible: true,
+        draggable: true,
+        onDragend: this._handle_marker_dragend,
+        onClick: this._handle_marker_click,
+        child: {
+          content: "Bermuda Triangle",
+          owner: "centerMarker",
         },
       },
-    };
+      3: {
+        onRightclick: this._handle_polygon_rightclick,
+      },
+    },
   }
 
   _handle_map_click = () => {

@@ -1,3 +1,63 @@
+<a name"2.0.0"></a>
+## 2.0.0 (2015-08-07)
+
+
+#### Features
+
+* **InfoWindow:** add ReactElement child as content support ([2c0dc026](https://github.com/tomchentw/react-google-maps/commit/2c0dc026), closes [#69](https://github.com/tomchentw/react-google-maps/issues/69))
+* **Rectangle:** add new componet ([4511d87d](https://github.com/tomchentw/react-google-maps/commit/4511d87d), closes [#80](https://github.com/tomchentw/react-google-maps/issues/80))
+
+
+#### Breaking Changes
+
+* This commit rewrite this module from scratch.
+
+* GoogleMaps -> GoogleMap
+	- (Others Component names are the same)
+* OverlayView
+      - Now only accepts single child
+* Remove asynchronous loading support
+* The props are not directly served as options for all google.maps instance.
+	- Instead, we convert setters to props and also expose getters on component instance.
+* To set an option directly, you can now pass options object
+	just the same way as using Google Maps JavaScript APIs.
+* Expose props have two representation: controlled & uncontrolled
+	- uncontrolled props will have a `default${ PropName }` name
+	- controlled props will be `${ propName }` as you expected
+* Uncontrolled props will be used only when the instance first mounted
+* Controlled props will call its corresponding setters **every** time rendered
+
+MIGRATION GUIDE:
+
+It introduces **controlled property** concept into the module. Most of the case, your application would like to have **uncontrolled** property. So change your component like this:
+
+Before (v1.x.x):
+
+```js
+<Marker
+      key={this.props.key}
+      position={this.props.position}
+      animation={this.props.animation}
+      onRightclick={this.handleMarkerRightclick} />
+```
+
+After (v2.x.x):
+
+```js
+<Marker
+      key={this.props.key}
+      defaultPosition={this.props.position}
+      defaultAnimation={this.props.animation}
+      onRightclick={this.handleMarkerRightclick} />
+```
+
+The properties with *default-* prefix is **uncontrolled** property. It will only be set **ONCE** when the component is first-time mounted. Any further changes to your React props/state will **NOT** affect this marker (So it's **uncontrolled** from the view of React). Who can change the marker, you may ask. The answer is, only the component from google.maps.
+
+But sometimes, we may want the marker's position changed according to current state. In that case, you have to provide **controlled** property to the `<Marker [position={this.state.position}>`. By doing so, the marker's position will change *every* time the React props/state changes. However, it will not intercept the changes made by the component from google.maps. This is because for the `<Marker>` itself, it doesn't know what events from google.maps will change its component. So the consumer who uses "react-google-maps" will have to manually handle this in their codebase.
+
+ ([081d03f1](https://github.com/tomchentw/react-google-maps/commit/081d03f1))
+
+
 <a name"1.7.1"></a>
 ### 1.7.1 (2015-07-01)
 

@@ -103,18 +103,16 @@ export default class StyledMap extends Component {
     }]
   }
 
+  _click_from_children_of_infoBox = (e) => {
+    console.log("_click_from_children_of_infoBox!!");
+    console.log(e);
+  }
+
   render () {
     const {props, state} = this,
           {googleMapsApi, mapStyles, ...otherProps} = props;
     const myLatLng = new google.maps.LatLng(25.03, 121.6);
 
-    const InfoBoxContent = `
-      <div style="background-color:yellow; opacity:0.75;">
-        <div style="font-size: 16px; font-color:#08233B">
-          Taipei
-        </div>
-      </div>
-    `;
     return (
       <GoogleMap containerProps={{
           ...otherProps,
@@ -126,9 +124,18 @@ export default class StyledMap extends Component {
         defaultZoom={5}
         defaultCenter={myLatLng}>
         <InfoBox
-          closeBoxURL=""
           defaultPosition={myLatLng}
-          defaultContent={InfoBoxContent}/>
+          options={{closeBoxURL: "", enableEventPropagation: true}}
+        >
+          <div
+            style={{backgroundColor: "yellow", opacity: 0.75}}
+            onClick={this._click_from_children_of_infoBox}
+          >
+            <div style={{fontSize: "16px", fontColor: "#08233B"}}>
+              Taipei
+            </div>
+          </div>
+        </InfoBox>
       </GoogleMap>
     );
   }

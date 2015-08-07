@@ -8,6 +8,7 @@ import {default as InfoWindowEventList} from "../eventLists/InfoWindowEventList"
 import {default as eventHandlerCreator} from "../utils/eventHandlerCreator";
 import {default as defaultPropsCreator} from "../utils/defaultPropsCreator";
 import {default as composeOptions} from "../utils/composeOptions";
+import {default as setContentForOptionalReactElement} from "../utils/setContentForOptionalReactElement";
 import {default as componentLifecycleDecorator} from "../utils/componentLifecycleDecorator";
 
 import {default as GoogleMapHolder} from "./GoogleMapHolder";
@@ -15,7 +16,7 @@ import {default as GoogleMapHolder} from "./GoogleMapHolder";
 export const infoWindowControlledPropTypes = {
 // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
-  content: PropTypes.any, /* TODO: children */
+  content: PropTypes.any,
   options: PropTypes.object,
   position: PropTypes.any,
   zIndex: PropTypes.number,
@@ -24,7 +25,8 @@ export const infoWindowControlledPropTypes = {
 export const infoWindowDefaultPropTypes = defaultPropsCreator(infoWindowControlledPropTypes);
 
 const infoWindowUpdaters = {
-  content   (/* content, component */) { /* TODO: children */ },
+  children  (children, component) { setContentForOptionalReactElement(children, component.getInfoWindow()); },
+  content   (content, component) { component.getInfoWindow().setContent(content); },
   options   (options, component) { component.getInfoWindow().setOptions(options); },
   position  (position, component) { component.getInfoWindow().setPosition(position); },
   zIndex    (zIndex, component) { component.getInfoWindow().setZIndex(zIndex); },
@@ -51,10 +53,14 @@ export default class InfoWindowCreator extends Component {
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
     const infoWindow = new google.maps.InfoWindow(composeOptions(infoWindowProps, [
       // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindowOptions
-      "content", /* TODO: children */
+      "content",
       "position",
       "zIndex",
     ]));
+
+    if (infoWindowProps.children) {
+      setContentForOptionalReactElement(infoWindowProps.children, infoWindow);
+    }
 
     if (anchorHolderRef) {
       infoWindow.open(mapHolderRef.getMap(), anchorHolderRef.getAnchor());

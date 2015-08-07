@@ -8,13 +8,14 @@ import {default as InfoBoxEventList} from "../addonsEventLists/InfoBoxEventList"
 import {default as eventHandlerCreator} from "../../utils/eventHandlerCreator";
 import {default as defaultPropsCreator} from "../../utils/defaultPropsCreator";
 import {default as composeOptions} from "../../utils/composeOptions";
+import {default as setContentForOptionalReactElement} from "../../utils/setContentForOptionalReactElement";
 import {default as componentLifecycleDecorator} from "../../utils/componentLifecycleDecorator";
 
 import {default as GoogleMapHolder} from "../../creators/GoogleMapHolder";
 
 export const infoBoxControlledPropTypes = {
 // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/docs/reference.html
-  content: PropTypes.any, /* TODO: children */
+  content: PropTypes.any,
   options: PropTypes.object,
   position: PropTypes.any,
   visible: PropTypes.bool,
@@ -24,7 +25,8 @@ export const infoBoxControlledPropTypes = {
 export const infoBoxDefaultPropTypes = defaultPropsCreator(infoBoxControlledPropTypes);
 
 const infoBoxUpdaters = {
-  content   (/* content, component */) { /* TODO: children */ },
+  children  (children, component) { setContentForOptionalReactElement(children, component.getInfoWindow()); },
+  content   (content, component) { component.getInfoBox().setContent(content); },
   options   (options, component) { component.getInfoBox().setOptions(options); },
   position  (position, component) { component.getInfoBox().setPosition(position); },
   visible   (visible, component) { component.getInfoBox().setVisible(visible); },
@@ -56,11 +58,16 @@ export default class InfoBoxCreator extends Component {
     // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/docs/reference.html
     const infoBox = new GoogleMapsInfobox(composeOptions(infoBoxProps, [
       // https://developers.google.com/maps/documentation/javascript/3.exp/reference
-      "content", /* TODO: children */
+      "content",
       "position",
       "visible",
       "zIndex",
     ]));
+
+    if (infoBoxProps.children) {
+      setContentForOptionalReactElement(infoBoxProps.children, infoBox);
+    }
+
     if (anchorHolderRef) {
       infoBox.open(mapHolderRef.getMap(), anchorHolderRef.getAnchor());
     } else {

@@ -1,25 +1,11 @@
-import GoogleMaps from "./GoogleMaps";
+export {default as GoogleMap} from "./GoogleMap";
 
-import Circle from "./Circle";
-import DirectionsRenderer from "./DirectionsRenderer";
-import DrawingManager from "./DrawingManager";
-import InfoWindow from "./InfoWindow";
-import Marker from "./Marker";
-import OverlayView from "./OverlayView";
-import Polygon from "./Polygon";
-import Polyline from "./Polyline";
-
-export {
-  GoogleMaps,
-};
-
-export {
-  Circle,
-  DirectionsRenderer,
-  DrawingManager,
-  InfoWindow,
-  Marker,
-  OverlayView,
-  Polygon,
-  Polyline,
-};
+export {default as Circle} from "./Circle";
+export {default as DirectionsRenderer} from "./DirectionsRenderer";
+export {default as DrawingManager} from "./DrawingManager";
+export {default as InfoWindow} from "./InfoWindow";
+export {default as Marker} from "./Marker";
+export {default as OverlayView} from "./OverlayView";
+export {default as Polygon} from "./Polygon";
+export {default as Polyline} from "./Polyline";
+export {default as Rectangle} from "./Rectangle";

@@ -1,14 +1,62 @@
-import SimpleChildComponent from "./internals/SimpleChildComponent";
-import createRegisterEvents from "./internals/createRegisterEvents";
-import BASIC_EVENT_NAMES from "./internals/BASIC_EVENT_NAMES";
+import {
+  default as React,
+  Component,
+} from "react";
 
-class DirectionsRenderer extends SimpleChildComponent {
+import {
+  default as DirectionsRendererCreator,
+  directionsRendererDefaultPropTypes,
+  directionsRendererControlledPropTypes,
+  directionsRendererEventPropTypes,
+} from "./creators/DirectionsRendererCreator";
+
+/*
+ * Original author: @alexishevia
+ * Original PR: https://github.com/tomchentw/react-google-maps/pull/22
+ */
+export default class DirectionsRenderer extends Component {
+  static propTypes = {
+    // Uncontrolled default[props] - used only in componentDidMount
+    ...directionsRendererDefaultPropTypes,
+    // Controlled [props] - used in componentDidMount/componentDidUpdate
+    ...directionsRendererControlledPropTypes,
+    // Event [onEventName]
+    ...directionsRendererEventPropTypes,
+  }
+
+  // Public APIs
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+  getDirections () { return this.state.directionsRenderer.getDirections(); }
+
+  getPanel () { return this.state.directionsRenderer.getPanel(); }
+
+  getRouteIndex () { return this.state.directionsRenderer.getRouteIndex(); }
+  // END - Public APIs
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
+
+  state = {
+  }
+
+  componentDidMount () {
+    const {mapHolderRef, ...directionsRendererProps} = this.props;
+    const directionsRenderer = DirectionsRendererCreator._createDirectionsRenderer(mapHolderRef, directionsRendererProps);
+
+    this.setState({ directionsRenderer });
+  }
+
+  render () {
+    if (this.state.directionsRenderer) {
+      return (
+        <DirectionsRendererCreator directionsRenderer={this.state.directionsRenderer} {...this.props}>
+          {this.props.children}
+        </DirectionsRendererCreator>
+      );
+    } else {
+      return (<noscript />);
+    }
+  }
 }
-
-DirectionsRenderer._GoogleMapsClassName = "DirectionsRenderer";
-
-DirectionsRenderer._registerEvents = createRegisterEvents(
-  BASIC_EVENT_NAMES
-);
-
-export default DirectionsRenderer;

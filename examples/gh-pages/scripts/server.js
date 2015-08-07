@@ -1,5 +1,5 @@
-import React from "react";
+import {default as React} from "react";
 
-import ReactRoot from "./ReactRoot";
+import {default as ReactRoot} from "./ReactRoot";
 
 export default ReactRoot;

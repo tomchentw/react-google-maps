@@ -1,14 +1,62 @@
-import SimpleChildComponent from "./internals/SimpleChildComponent";
-import createRegisterEvents from "./internals/createRegisterEvents";
-import BASIC_EVENT_NAMES from "./internals/BASIC_EVENT_NAMES";
+import {
+  default as React,
+  Component,
+} from "react";
 
-class Polygon extends SimpleChildComponent {
+import {
+  default as PolygonCreator,
+  polygonDefaultPropTypes,
+  polygonControlledPropTypes,
+  polygonEventPropTypes,
+} from "./creators/PolygonCreator";
+
+export default class Polygon extends Component {
+  static propTypes = {
+    // Uncontrolled default[props] - used only in componentDidMount
+    ...polygonDefaultPropTypes,
+    // Controlled [props] - used in componentDidMount/componentDidUpdate
+    ...polygonControlledPropTypes,
+    // Event [onEventName]
+    ...polygonEventPropTypes,
+  }
+
+  // Public APIs
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+  getDraggable () { return this.state.polygon.getDraggable(); }
+
+  getEditable () { return this.state.polygon.getEditable(); }
+
+  getPath () { return this.state.polygon.getPath(); }
+
+  getPaths () { return this.state.polygon.getPaths(); }
+
+  getVisible () { return this.state.polygon.getVisible(); }
+  // END - Public APIs
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
+
+  state = {
+  }
+
+  componentDidMount () {
+    const {mapHolderRef, ...polygonProps} = this.props;
+    const polygon = PolygonCreator._createPolygon(mapHolderRef, polygonProps);
+
+    this.setState({ polygon });
+  }
+
+  render () {
+    if (this.state.polygon) {
+      return (
+        <PolygonCreator polygon={this.state.polygon} {...this.props}>
+          {this.props.children}
+        </PolygonCreator>
+      );
+    } else {
+      return (<noscript />);
+    }
+  }
 }
-
-Polygon._GoogleMapsClassName = "Polygon";
-
-Polygon._registerEvents = createRegisterEvents(
-  BASIC_EVENT_NAMES
-);
-
-export default Polygon;

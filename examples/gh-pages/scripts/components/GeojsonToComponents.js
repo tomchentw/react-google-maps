@@ -1,7 +1,12 @@
-import React from "react/addons";
-import {GoogleMaps, Marker, Polyline, Polygon, InfoWindow} from "react-google-maps";
+import {default as React, Component, addons} from "react/addons";
 
-const {update} = React.addons;
+import {default as GoogleMap} from "../../../../src/GoogleMap";
+import {default as Marker} from "../../../../src/Marker";
+import {default as Polyline} from "../../../../src/Polyline";
+import {default as Polygon} from "../../../../src/Polygon";
+import {default as InfoWindow} from "../../../../src/InfoWindow";
+
+const {update} = addons;
 
 function geometryToComponentWithLatLng (geometry) {
   var typeFromThis = Array.isArray(geometry),
@@ -18,21 +23,25 @@ function geometryToComponentWithLatLng (geometry) {
       coordinates = coordinates.map(geometryToComponentWithLatLng, {type: "Point"});
       return typeFromThis ? coordinates : {
         ElementClass: Polyline,
-        path: coordinates
+        path: coordinates,
       };
     case "Point":
       coordinates = new google.maps.LatLng(coordinates[1], coordinates[0]);
       return typeFromThis ? coordinates : {
         ElementClass: Marker,
         ChildElementClass: InfoWindow,
-        position: coordinates
+        position: coordinates,
       };
     default:
       throw new TypeError(`Unknown geometry type: ${ type }`);
   }
 }
 
-class GeojsonToComponents extends React.Component {
+/*
+ *
+ * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
+ */
+export default class GeojsonToComponents extends Component {
 
   constructor (...args) {
     super(...args);
@@ -42,67 +51,72 @@ class GeojsonToComponents extends React.Component {
         0: {
           ref: "map",
           style: {height: "100%"},
-          onClick: this._handle_map_click.bind(this),
-          // onZoomChanged: this._handle_map_zoom_changed.bind(this)
+          onClick: this._handle_map_click,
+          onZoomChanged: this._handle_map_zoom_changed,
         },
         1: {
           ref: "centerMarker",
           visible: true,
           draggable: true,
-          onDragend: this._handle_marker_dragend.bind(this),
-          onClick: this._handle_marker_click.bind(this),
+          onDragend: this._handle_marker_dragend,
+          onClick: this._handle_marker_click,
           child: {
             content: "Bermuda Triangle",
-            owner: "centerMarker"
-          }
+            owner: "centerMarker",
+          },
         },
         3: {
-          onRightclick: this._handle_polygon_rightclick.bind(this),
-        }
-      }
+          onRightclick: this._handle_polygon_rightclick,
+        },
+      },
     };
   }
 
-  _handle_map_click () {
+  _handle_map_click = () => {
   }
 
-  _handle_map_zoom_changed () {
-    this.setState(update(this.state, {
-      geoStateBy: {
-        1: {
-          $merge: {
-            opacity: 0.3+(this.refs.map.getZoom()/14)
-          }
-        }
-      }
-    }));
-  }
-
-  _handle_marker_click () {
+  _handle_map_zoom_changed = () => {
     this.setState(update(this.state, {
       geoStateBy: {
         0: {
           $merge: {
-            zoom: 1+this.refs.map.getZoom()
-          }
-        }
-      }
+            zoom: this.refs.map.getZoom(),
+          },
+        },
+        1: {
+          $merge: {
+            opacity: 0.2+(this.refs.map.getZoom()/14),
+          },
+        },
+      },
     }));
   }
 
-  _handle_polygon_rightclick () {
+  _handle_marker_click = () => {
+    this.setState(update(this.state, {
+      geoStateBy: {
+        0: {
+          $merge: {
+            zoom: 1+this.refs.map.getZoom(),
+          },
+        },
+      },
+    }));
+  }
+
+  _handle_polygon_rightclick = () => {
     this.setState(update(this.state, {
       geoStateBy: {
         1: {
           $merge: {
-            visible: !this.state.geoStateBy[1].visible
-          }
-        }
-      }
+            visible: !this.state.geoStateBy[1].visible,
+          },
+        },
+      },
     }));
   }
 
-  _handle_marker_dragend ({latLng}) {
+  _handle_marker_dragend = ({latLng}) => {
     const marker = this.state.geoJson.features[1],
           originalCoordinates = marker.properties.originalCoordinates || marker.geometry.coordinates,
           newCoordinates = [latLng.lng(), latLng.lat()];
@@ -113,14 +127,14 @@ class GeojsonToComponents extends React.Component {
           1: {
             geometry: {
               coordinates: {
-                $set: newCoordinates
-              }
+                $set: newCoordinates,
+              },
             },
             properties: {
               originalCoordinates: {
-                $set: originalCoordinates
-              }
-            }
+                $set: originalCoordinates,
+              },
+            },
           },
           4: {
             $set: {
@@ -128,14 +142,14 @@ class GeojsonToComponents extends React.Component {
               "id": 4,
               "geometry": {
                 "type": "LineString",
-                "coordinates": [originalCoordinates, newCoordinates]
+                "coordinates": [originalCoordinates, newCoordinates],
               },
               "properties": {
-              }
-            }
-          }
-        }
-      }
+              },
+            },
+          },
+        },
+      },
     }));
   }
 
@@ -149,13 +163,12 @@ class GeojsonToComponents extends React.Component {
           mapState = geoStateBy[0];
 
     return (
-      <GoogleMaps containerProps={{
+      <GoogleMap containerProps={{
           ...otherProps,
           style: {
             height: "100%",
           },
         }}
-        googleMapsApi={google.maps}
         {...mapFeature.properties}
         {...mapState}
         center={mapGeometry.position}>
@@ -177,9 +190,7 @@ class GeojsonToComponents extends React.Component {
           return array;
         }, [], this)}
 
-      </GoogleMaps>
+      </GoogleMap>
     );
   }
 }
-
-export default GeojsonToComponents;

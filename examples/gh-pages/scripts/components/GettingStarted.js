@@ -1,12 +1,17 @@
-import React from "react/addons";
-import {GoogleMaps, Marker} from "react-google-maps";
+import {default as React, addons, Component} from "react/addons";
 
-const {update} = React.addons;
+import {default as GoogleMap} from "../../../../src/GoogleMap";
+import {default as Marker} from "../../../../src/Marker";
+
+const {update} = addons;
+
 /*
  * This is the modify version of:
  * https://developers.google.com/maps/documentation/javascript/examples/event-arguments
+ *
+ * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
-class GettingStarted extends React.Component {
+export default class GettingStarted extends Component {
 
   constructor (...args) {
     super(...args);
@@ -17,7 +22,7 @@ class GettingStarted extends React.Component {
           lng: 121.52067570000001,
         },
         key: "Taiwan",
-        animation: 2
+        defaultAnimation: 2
       }],
     };
   }
@@ -26,13 +31,13 @@ class GettingStarted extends React.Component {
    * This is called when you click on the map.
    * Go and try click now.
    */
-  _handle_map_click (event) {
+  _handle_map_click = (event) => {
     var {markers} = this.state;
     markers = update(markers, {
       $push: [
         {
           position: event.latLng,
-          animation: 2,
+          defaultAnimation: 2,
           key: Date.now(),// Add a key property for: http://fb.me/react-warning-keys
         },
       ],
@@ -45,7 +50,6 @@ class GettingStarted extends React.Component {
         "Also check the code!"
       );
     }
-    this.refs.map.panTo(event.latLng);
   }
 
   _handle_marker_rightclick (index, event) {
@@ -64,37 +68,25 @@ class GettingStarted extends React.Component {
   }
 
   render () {
-    const {props, state} = this,
-          {googleMapsApi, ...otherProps} = props;
-
     return (
-      <GoogleMaps containerProps={{
-          ...otherProps,
+      <GoogleMap containerProps={{
+          ...this.props,
           style: {
             height: "100%",
           },
         }}
         ref="map"
-        googleMapsApi={
-          "undefined" !== typeof google ? google.maps : null
-        }
-        zoom={3}
-        center={{lat: -25.363882, lng: 131.044922}}
-        onClick={this._handle_map_click.bind(this)}>
-        {state.markers.map(toMarker, this)}
-      </GoogleMaps>
+        defaultZoom={3}
+        defaultCenter={{lat: -25.363882, lng: 131.044922}}
+        onClick={this._handle_map_click}>
+        {this.state.markers.map((marker, index) => {
+          return (
+            <Marker
+              {...marker}
+              onRightclick={this._handle_marker_rightclick.bind(this, index)} />
+          );
+        })}
+      </GoogleMap>
     );
-
-    function toMarker (marker, index) {
-      return (
-        <Marker
-          position={marker.position}
-          key={marker.key}
-          animation={marker.animation}
-          onRightclick={this._handle_marker_rightclick.bind(this, index)} />
-      );
-    }
   }
 }
-
-export default GettingStarted; 

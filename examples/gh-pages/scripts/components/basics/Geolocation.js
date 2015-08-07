@@ -1,5 +1,9 @@
-import React from "react/addons";
-import {GoogleMaps, Circle, InfoWindow} from "react-google-maps";
+import {default as React, Component} from "react";
+import {default as raf} from "raf";
+
+import {default as GoogleMap} from "../../../../../src/GoogleMap";
+import {default as Circle} from "../../../../../src/Circle";
+import {default as InfoWindow} from "../../../../../src/InfoWindow";
 
 const geolocation = (
   "undefined" !== typeof window && navigator && navigator.geolocation || {
@@ -11,15 +15,15 @@ const geolocation = (
 
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
+ *
+ * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
-class Geolocation extends React.Component {
+export default class Geolocation extends Component {
 
-  constructor (...args) {
-    super(...args);
-    this.state = {
-      center: null,
-      content: null,
-    };
+  state = {
+    center: null,
+    content: null,
+    radius: 6000,
   }
 
   componentDidMount () {
@@ -31,6 +35,16 @@ class Geolocation extends React.Component {
         },
         content: "Location found using HTML5.",
       });
+
+      const tick = () => {
+        this.setState({ radius: Math.max(this.state.radius - 20, 0) });
+
+        if (this.state.radius > 200) {
+          raf(tick);
+        }
+      };
+      raf(tick);
+
     }, (reason) => {
       this.setState({
         center: {
@@ -43,26 +57,33 @@ class Geolocation extends React.Component {
   }
 
   render () {
-    const {props, state} = this,
-          {googleMapsApi, ...otherProps} = props,
-          {center} = state;
+    const {center, content, radius} = this.state;
+    let contents = [];
+
+    if (center) {
+      contents = contents.concat([
+        (<InfoWindow key="info" position={center} content={content} />),
+        (<Circle key="circle" center={center} radius={radius} options={{
+            fillColor: "red",
+            fillOpacity: 0.20,
+            strokeColor: "red",
+            strokeOpacity: 1,
+            strokeWeight: 1,
+          }} />),
+      ]);
+    }
 
     return (
-      <GoogleMaps containerProps={{
-          ...otherProps,
+      <GoogleMap containerProps={{
+          ...this.props,
           style: {
             height: "100%",
           },
         }}
-        googleMapsApi={google.maps}
-        zoom={12}
+        defaultZoom={12}
         center={center}>
-        {center ? <InfoWindow position={center} content={state.content} /> : null}
-        {center ? <Circle center={center} radius={2000} fillColor="red" fillOpacity={0.20} strokeColor="red" strokeOpacity={1} strokeWeight={1} /> : null}
-      </GoogleMaps>
+        {contents}
+      </GoogleMap>
     );
   }
-
 }
-
-export default Geolocation;

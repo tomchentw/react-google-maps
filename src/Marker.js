@@ -1,48 +1,80 @@
-import React from "react";
+import {
+  default as React,
+  Component,
+} from "react";
 
-import SimpleChildComponent from "./internals/SimpleChildComponent";
-import createRegisterEvents from "./internals/createRegisterEvents";
+import {
+  default as MarkerCreator,
+  markerDefaultPropTypes,
+  markerControlledPropTypes,
+  markerEventPropTypes
+} from "./creators/MarkerCreator";
 
-import InfoWindow from "./InfoWindow";
+export default class Marker extends Component {
+  static propTypes = {
+    // Uncontrolled default[props] - used only in componentDidMount
+    ...markerDefaultPropTypes,
+    // Controlled [props] - used in componentDidMount/componentDidUpdate
+    ...markerControlledPropTypes,
+    // Event [onEventName]
+    ...markerEventPropTypes,
+  }
 
-const {Children} = React;
+  // Public APIs
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+  getAnimation () { return this.state.marker.getAnimation(); }
 
-class Marker extends SimpleChildComponent {
+  getAttribution () { return this.state.marker.getAttribution(); }
+
+  getClickable () { return this.state.marker.getClickable(); }
+
+  getCursor () { return this.state.marker.getCursor(); }
+
+  getDraggable () { return this.state.marker.getDraggable(); }
+
+  getIcon () { return this.state.marker.getIcon(); }
+
+  getLabel () { return this.state.marker.getLabel(); }
+
+  getOpacity () { return this.state.marker.getOpacity(); }
+
+  getPlace () { return this.state.marker.getPlace(); }
+
+  getPosition () { return this.state.marker.getPosition(); }
+
+  getShape () { return this.state.marker.getShape(); }
+
+  getTitle () { return this.state.marker.getTitle(); }
+
+  getVisible () { return this.state.marker.getVisible(); }
+
+  getZIndex () { return this.state.marker.getZIndex(); }
+  // END - Public APIs
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
+
+  state = {
+  }
+
+  componentDidMount () {
+    const {mapHolderRef, ...markerProps} = this.props;
+    const marker = MarkerCreator._createMarker(mapHolderRef, markerProps);
+
+    this.setState({ marker });
+  }
 
   render () {
-    if (0 === Children.count(this.props.children)) {
-      return <noscript />;
+    if (this.state.marker) {
+      return (
+        <MarkerCreator marker={this.state.marker} {...this.props}>
+          {this.props.children}
+        </MarkerCreator>
+      );
+    } else {
+      return (<noscript />);
     }
-
-    return (
-      <div>
-        {this._render_potential_info_windows_()}
-      </div>
-    );
   }
-
-  _render_potential_info_windows_ () {
-    const {props} = this;
-    const extraProps = {
-      googleMapsApi: props.googleMapsApi,
-      map: props.map,
-      anchor: this.state.instance,
-    };
-
-    return Children.map(props.children, (child) => {
-      if (React.isValidElement(child) && child.type === InfoWindow) {
-        child = React.cloneElement(child, extraProps);
-      }
-      return child;
-    }, this);
-  }
-
 }
-
-Marker._GoogleMapsClassName = "Marker";
-
-Marker._registerEvents = createRegisterEvents(
-  "animation_changed click clickable_changed cursor_changed dblclick drag dragend draggable_changed dragstart flat_changed icon_changed mousedown mouseout mouseover mouseup position_changed rightclick shape_changed title_changed visible_changed zindex_changed"
-);
-
-export default Marker;

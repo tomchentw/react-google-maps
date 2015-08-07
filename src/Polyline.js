@@ -1,14 +1,60 @@
-import SimpleChildComponent from "./internals/SimpleChildComponent";
-import createRegisterEvents from "./internals/createRegisterEvents";
-import BASIC_EVENT_NAMES from "./internals/BASIC_EVENT_NAMES";
+import {
+  default as React,
+  Component,
+} from "react";
 
-class Polyline extends SimpleChildComponent {
+import {
+  default as PolylineCreator,
+  polylineDefaultPropTypes,
+  polylineControlledPropTypes,
+  polylineEventPropTypes,
+} from "./creators/PolylineCreator";
+
+export default class Polyline extends Component {
+  static propTypes = {
+    // Uncontrolled default[props] - used only in componentDidMount
+    ...polylineDefaultPropTypes,
+    // Controlled [props] - used in componentDidMount/componentDidUpdate
+    ...polylineControlledPropTypes,
+    // Event [onEventName]
+    ...polylineEventPropTypes,
+  }
+
+  // Public APIs
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+  getDraggable () { return this.state.polyline.getDraggable(); }
+
+  getEditable () { return this.state.polyline.getEditable(); }
+
+  getPath () { return this.state.polyline.getPath(); }
+
+  getVisible () { return this.state.polyline.getVisible(); }
+  // END - Public APIs
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
+
+  state = {
+  }
+
+  componentDidMount () {
+    const {mapHolderRef, ...polylineProps} = this.props;
+    const polyline = PolylineCreator._createPolyline(mapHolderRef, polylineProps);
+
+    this.setState({ polyline });
+  }
+
+  render () {
+    if (this.state.polyline) {
+      return (
+        <PolylineCreator polyline={this.state.polyline} {...this.props}>
+          {this.props.children}
+        </PolylineCreator>
+      );
+    } else {
+      return (<noscript />);
+    }
+  }
 }
-
-Polyline._GoogleMapsClassName = "Polyline";
-
-Polyline._registerEvents = createRegisterEvents(
-  BASIC_EVENT_NAMES
-);
-
-export default Polyline;

@@ -16,7 +16,6 @@ export default class GoogleMap extends Component {
   static propTypes = {
     containerTagName: PropTypes.string.isRequired,
     containerProps: PropTypes.object.isRequired,
-    children: PropTypes.element,
     // Uncontrolled default[props] - used only in componentDidMount
     ...mapDefaultPropTypes,
     // Controlled [props] - used in componentDidMount/componentDidUpdate

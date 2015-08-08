@@ -8,7 +8,7 @@ import {
   skeletonDefaultPropTypes,
   skeletonControlledPropTypes,
   skeletonEventPropTypes
-} from "./creators/_SkeletonCreator";
+} from "./creators/SkeletonCreator";
 
 export default class Skeleton extends Component {
   static propTypes = {

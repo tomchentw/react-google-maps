@@ -6,12 +6,13 @@ import {
 } from "react";
 
 import {default as defaultPropsCreator} from "../utils/defaultPropsCreator";
+import {default as composeOptions} from "../utils/composeOptions";
 
 import {default as GoogleMapHolder} from "./GoogleMapHolder";
 
 export const overlayViewControlledPropTypes = {
 // CustomProps
-  mapPaneName: PropTypes.string.isRequired,
+  mapPaneName: PropTypes.string,
   getPixelPositionOffset: PropTypes.func,
 // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference
@@ -29,7 +30,11 @@ export default class OverlayViewCreator extends Component {
   static _createOverlayView (mapHolderRef, overlayViewProps) {
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
     const overlayView = new google.maps.OverlayView();
-    overlayView.setValues(overlayViewProps);
+    overlayView.setValues(composeOptions(overlayViewProps, [
+      "mapPaneName",
+      "getPixelPositionOffset",
+      "children",
+    ]));
 
     overlayView.onAdd = function () {
       this._containerElement = document.createElement("div");

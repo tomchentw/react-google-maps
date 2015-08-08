@@ -1,3 +1,13 @@
+<a name"2.0.2"></a>
+### 2.0.2 (2015-08-08)
+
+
+#### Bug Fixes
+
+* **GoogleMap:** remove propTypes validation on children ([0e417015](https://github.com/tomchentw/react-google-maps/commit/0e417015))
+* **OverlayView:** props.{default}mapPaneName should not be required ([702a5710](https://github.com/tomchentw/react-google-maps/commit/702a5710))
+
+
 <a name"2.0.1"></a>
 ### 2.0.1 (2015-08-08)
 

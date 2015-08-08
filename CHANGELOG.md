@@ -1,3 +1,12 @@
+<a name"2.0.1"></a>
+### 2.0.1 (2015-08-08)
+
+
+#### Bug Fixes
+
+* **Rectangle:** remove unnecessary underscore ([13312273](https://github.com/tomchentw/react-google-maps/commit/13312273), closes [#90](https://github.com/tomchentw/react-google-maps/issues/90))
+
+
 <a name"2.0.0"></a>
 ## 2.0.0 (2015-08-07)
 

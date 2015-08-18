@@ -1,3 +1,16 @@
+<a name"2.0.3"></a>
+### 2.0.3 (2015-08-18)
+
+
+#### Bug Fixes
+
+* **OverlayView:**
+  * add invariant for mapPaneName ([f102577c](https://github.com/tomchentw/react-google-maps/commit/f102577c))
+  * add invariant checking for position props ([757bda08](https://github.com/tomchentw/react-google-maps/commit/757bda08))
+  * add position to propTypes ([1fc968ad](https://github.com/tomchentw/react-google-maps/commit/1fc968ad), closes [#99](https://github.com/tomchentw/react-google-maps/issues/99))
+* **package.json:** remove object-path ([ee55b7a5](https://github.com/tomchentw/react-google-maps/commit/ee55b7a5))
+
+
 <a name"2.0.2"></a>
 ### 2.0.2 (2015-08-08)
 

@@ -74,6 +74,8 @@ export default class OverlayViewCreator extends Component {
 
     overlayView._mountContainerToPane = function () {
       const mapPaneName = this.get("mapPaneName");
+      invariant(!!mapPaneName, "OverlayView requires a mapPaneName/defaultMapPaneName in your props instead of %s", mapPaneName);
+
       this.getPanes()[mapPaneName].appendChild(this._containerElement);
     };
 

@@ -37,6 +37,7 @@ export default class OverlayViewCreator extends Component {
       "getPixelPositionOffset",
       "position",
       "children",
+      "position"
     ]));
 
     overlayView.onAdd = function () {

@@ -14,6 +14,7 @@ export const overlayViewControlledPropTypes = {
 // CustomProps
   mapPaneName: PropTypes.string,
   getPixelPositionOffset: PropTypes.func,
+  position: PropTypes.object,
 // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference
 };
@@ -33,6 +34,7 @@ export default class OverlayViewCreator extends Component {
     overlayView.setValues(composeOptions(overlayViewProps, [
       "mapPaneName",
       "getPixelPositionOffset",
+      "position",
       "children",
     ]));
 

@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "google-maps-infobox": "^1.1.13",
+    "invariant": "^2.1.0",
     "react": "^0.13.0"
   },
   "peerDependencies": {

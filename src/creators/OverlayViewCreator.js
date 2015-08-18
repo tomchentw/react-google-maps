@@ -4,6 +4,7 @@ import {
   Component,
   Children,
 } from "react";
+import {default as invariant} from "invariant";
 
 import {default as defaultPropsCreator} from "../utils/defaultPropsCreator";
 import {default as composeOptions} from "../utils/composeOptions";
@@ -100,6 +101,8 @@ export default class OverlayViewCreator extends Component {
     overlayView._getPixelPosition = function () {
       let projection = this.getProjection();
       let position = this.get("position");
+      invariant(!!position, "OverlayView requires a position/defaultPosition in your props instead of %s", position);
+
       if (projection && position) {
         if (!(position instanceof google.maps.LatLng)) {
           position = new google.maps.LatLng(position.lat, position.lng);

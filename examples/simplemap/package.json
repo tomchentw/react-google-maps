@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "scripts": {
     "clean": "rimraf ../../public/index.html ../../public/assets ../../tmp",
-    "build": "npm run clean && NODE_ENV=production webpack -p",
-    "build:windows": "set NODE_ENV=production&& npm run clean && webpack -p",
+    "prebuild": "npm run clean",
+    "prebuild:windows": "npm run clean",
+    "build": "NODE_ENV=production webpack -p",
+    "build:windows": "set NODE_ENV=production && webpack -p",
     "dev": "npm run clean && webpack -d",
-    "start": "npm run clean && webpack-dev-server -d",
-    "start:windows": "npm run clean && webpack -d && webpack-dev-server -d",
-    "start:docker": "npm run clean && webpack-dev-server -d --docker"
+    "prestart": "npm run clean",
+    "prestart:windows": "npm run clean",
+    "prestart:docker": "npm run clean",
+    "start": "webpack-dev-server -d",
+    "start:windows": "webpack -d && webpack-dev-server -d",
+    "start:docker": "webpack-dev-server -d --docker"
   },
   "devDependencies": {
     "babel-core": "^5.3.3",

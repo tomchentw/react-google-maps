@@ -60,6 +60,7 @@ export default class GoogleMapHolder extends Component {
       "streetView",
       "tilt",
       "zoom",
+      "scrollwheel",
     ]));
   }
 

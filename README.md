@@ -68,7 +68,7 @@ Install `node@^0.12.4`. Then,
 npm install
 cd examples/gh-pages
 npm install
-npm start-windows
+npm start:windows
 ```
 
 Then open [http://localhost:8080/webpack-dev-server/](http://localhost:8080/webpack-dev-server/).

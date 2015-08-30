@@ -1,6 +1,6 @@
 web:
   build: .
   dockerfile: examples/gh-pages/Dockerfile
-  command: npm run docker_start
+  command: npm run start:docker
   ports:
     - "8080:8080"

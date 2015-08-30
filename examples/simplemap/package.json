@@ -5,15 +5,14 @@
     "clean": "rimraf ../../public/index.html ../../public/assets ../../tmp",
     "prebuild": "npm run clean",
     "prebuild:windows": "npm run clean",
-    "build": "NODE_ENV=production webpack -p",
-    "build:windows": "set NODE_ENV=production && webpack -p",
-    "dev": "npm run clean && webpack -d",
+    "build": "NODE_ENV=production reacthtmlpack buildToDir ../../public ./scripts/*.html.js",
+    "build:windows": "set NODE_ENV=production && reacthtmlpack buildToDir ../../public ./scripts/*.html.js",
+    "dev": "npm run clean && reacthtmlpack watchAndBuildToDir ../../public ./scripts/*.html.js",
     "prestart": "npm run clean",
     "prestart:windows": "npm run clean",
     "prestart:docker": "npm run clean",
-    "start": "webpack-dev-server -d",
-    "start:windows": "webpack -d && webpack-dev-server -d",
-    "start:docker": "webpack-dev-server -d --docker"
+    "start": "reacthtmlpack devServer ./Client.webpackConfig.js ../../public ./scripts/*.html.js",
+    "start:windows": "reacthtmlpack devServer ./Client.webpackConfig.js ../../public ./scripts/*.html.js"
   },
   "devDependencies": {
     "babel-core": "^5.3.3",
@@ -21,15 +20,15 @@
     "css-loader": "^0.12.0",
     "extract-text-webpack-plugin": "^0.8.0",
     "file-loader": "^0.8.1",
-    "isomorphic-react-plugin-factory": "^1.0.0",
     "node-sass": "^3.1.0",
     "raw-loader": "^0.5.1",
     "react-hot-loader": "^1.2.7",
+    "reacthtmlpack": "^0.2.1",
+    "rimraf": "^2.4.3",
     "sass-loader": "^1.0.1",
     "style-loader": "^0.12.2",
     "webpack": "^1.9.5",
-    "webpack-dev-server": "^1.8.2",
-    "rimraf": "^2.4.3"
+    "webpack-dev-server": "^1.8.2"
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.4",

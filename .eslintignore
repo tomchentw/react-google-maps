@@ -1,1 +1,5 @@
-**/__tests__/**
+examples/**
+lib/**
+public/**
+__tests__/**
+test/fixture/file/**

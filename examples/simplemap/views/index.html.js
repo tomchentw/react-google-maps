@@ -24,7 +24,7 @@ export default (
         id="react-container"
         tagName="div"
         chunkName="tmp/server"
-        chunkFilepath="./scripts/server.js"
+        chunkFilepath="./scripts/ReactRoot.js"
         configFilepath="../Server.webpackConfig.js"
       />
       <WebpackScriptEntry

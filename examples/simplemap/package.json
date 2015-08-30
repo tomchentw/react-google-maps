@@ -2,7 +2,7 @@
   "name": "simplemap",
   "version": "1.0.0",
   "scripts": {
-    "clean": "rimraf ../../public/index.html ../../public/assets ../../tmp",
+    "clean": "rimraf ../../public/index.html ../../public/assets ../../public/tmp",
     "prebuild": "npm run clean",
     "prebuild:windows": "npm run clean",
     "build": "NODE_ENV=production reacthtmlpack buildToDir ../../public ./views/*.html.js",

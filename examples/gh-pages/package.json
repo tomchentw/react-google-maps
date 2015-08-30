@@ -2,10 +2,12 @@
   "name": "gh-pages",
   "version": "1.0.0",
   "scripts": {
-    "clean": "rm -rf ../../public/index.html ../../public/assets ../../tmp",
+    "clean": "rimraf ../../public/index.html ../../public/assets ../../tmp",
     "build": "npm run clean && NODE_ENV=production webpack -p",
+    "build-windows": "set NODE_ENV=production&& npm run clean && webpack -p",
     "dev": "npm run clean && webpack -d",
     "start": "npm run clean && webpack-dev-server -d",
+    "start-windows": "npm run clean && webpack -d && webpack-dev-server -d",
     "docker_start": "npm run clean && webpack-dev-server -d --docker"
   },
   "devDependencies": {
@@ -21,7 +23,8 @@
     "sass-loader": "^1.0.1",
     "style-loader": "^0.12.2",
     "webpack": "^1.9.5",
-    "webpack-dev-server": "^1.8.2"
+    "webpack-dev-server": "^1.8.2",
+    "rimraf": "^2.4.3"
   },
   "dependencies": {
     "animate.css": "^3.2.5",

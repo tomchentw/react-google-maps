@@ -10,7 +10,7 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "clean": "rm -rf lib",
+    "clean": "rimraf lib",
     "build": "npm run lint && npm run clean && babel --stage=1 src --out-dir lib",
     "lint": "eslint src",
     "test": "npm run lint"
@@ -57,7 +57,8 @@
     "babel-eslint": "^4.0.5",
     "eslint": "^1.0.0",
     "eslint-plugin-react": "^3.2.0",
-    "tomchentw-npm-dev": "^3.0.0"
+    "tomchentw-npm-dev": "^3.0.0",
+    "rimraf": "^2.4.3"
   },
   "dependencies": {
     "google-maps-infobox": "^1.1.13",

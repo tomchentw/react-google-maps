@@ -28,7 +28,7 @@ module.exports = {
   devServer: {
     port: 8080,
     host: "localhost",
-    "contentBase": Path.resolve(__dirname, "../../public"),
+    contentBase: Path.resolve(__dirname, "../../public"),
     hot: true,
   },
   context: __dirname,

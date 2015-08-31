@@ -2,10 +2,7 @@
 
 var Path = require("path");
 var webpack = require("webpack");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-var JSX_LOADER_LIST;
-var FILENAME_FORMAT;
 var PRODUCTION_PLUGINS;
 
 if ("production" === process.env.NODE_ENV) {
@@ -61,8 +58,5 @@ module.exports = {
   },
   plugins: [
     new webpack.EnvironmentPlugin("NODE_ENV"),
-    new ExtractTextPlugin("[name]-[chunkhash].css", {
-      disable: "production" !== process.env.NODE_ENV
-    }),
   ].concat(PRODUCTION_PLUGINS),
 };

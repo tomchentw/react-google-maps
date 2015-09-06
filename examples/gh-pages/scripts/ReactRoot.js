@@ -132,6 +132,18 @@ const DROPDOWN_ACTIONS = [
       },
     },
   },
+  false,
+  {
+    key: "places__search-box",
+    displayName: "Adding a Places search box",
+    path: "#places/search-box",
+    component: {
+      componentClass: require("./components/places/SearchBox"),
+      componentRaw: {
+        __raw: require("!raw-loader!./components/places/SearchBox"),
+      },
+    }
+  },
 ];
 
 const RIGHT_ACTIONS = [

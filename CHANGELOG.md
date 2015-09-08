@@ -1,3 +1,12 @@
+<a name"2.1.0"></a>
+## 2.1.0 (2015-09-08)
+
+
+#### Features
+
+* **SearchBox:** Support for Google Places API search box ([b06f5d6c](https://github.com/tomchentw/react-google-maps/commit/b06f5d6c), closes [#110](https://github.com/tomchentw/react-google-maps/issues/110))
+
+
 <a name"2.0.3"></a>
 ### 2.0.3 (2015-08-18)
 

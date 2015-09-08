@@ -27,6 +27,8 @@
     "google",
     "map",
     "maps",
+    "place",
+    "places",
     "googlemap",
     "googlemaps",
     "google-map",
@@ -40,7 +42,8 @@
     "Polygon",
     "Circle",
     "Directions",
-    "InfoWindow"
+    "InfoWindow",
+    "SearchBox"
   ],
   "author": {
     "name": "tomchentw",

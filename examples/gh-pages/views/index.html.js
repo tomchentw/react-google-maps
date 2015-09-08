@@ -20,7 +20,11 @@ export default (
         configFilepath="../Client.webpackConfig.js"
       />
       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places" />
-      <script type="text/javascript" src="prism.min.js" />
+      <WebpackScriptEntry
+        chunkName="prism"
+        chunkFilepath={require.resolve("prismjs")}
+        configFilepath="../Client.webpackConfig.js"
+      />
     </head>
     <body>
       <ReactRenderToStringEntry

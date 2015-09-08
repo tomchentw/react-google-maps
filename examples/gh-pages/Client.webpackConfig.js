@@ -36,11 +36,15 @@ module.exports = {
     port: 8080,
     host: HOST,
     contentBase: Path.resolve(__dirname, "../../public"),
+    publicPath: "/assets/",
     hot: true,
+    stats: { colors: true },
   },
   context: __dirname,
   output: {
-    path: Path.resolve(__dirname, "../../public"),
+    path: Path.resolve(__dirname, "../../public/assets"),
+    pathinfo: "production" !== process.env.NODE_ENV,
+    publicPath: "assets/",
     filename: FILENAME_FORMAT,
   },
   resolve: {

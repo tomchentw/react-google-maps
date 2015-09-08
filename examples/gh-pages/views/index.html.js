@@ -15,7 +15,7 @@ export default (
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <meta charSet="UTF-8" />
       <WebpackStyleEntry
-        chunkName="assets/client"
+        chunkName="client"
         chunkFilepath="./scripts/client.js"
         configFilepath="../Client.webpackConfig.js"
       />
@@ -26,12 +26,12 @@ export default (
       <ReactRenderToStringEntry
         id="react-container"
         tagName="div"
-        chunkName="tmp/server"
+        chunkName="server"
         chunkFilepath="./scripts/ReactRoot.js"
         configFilepath="../Server.webpackConfig.js"
       />
       <WebpackScriptEntry
-        chunkName="assets/client"
+        chunkName="client"
         chunkFilepath="./scripts/client.js"
         configFilepath="../Client.webpackConfig.js"
       />

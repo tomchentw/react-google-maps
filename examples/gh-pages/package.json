@@ -2,13 +2,18 @@
   "name": "gh-pages",
   "version": "1.0.0",
   "scripts": {
-    "clean": "rimraf ../../public/index.html ../../public/assets ../../tmp",
-    "build": "npm run clean && NODE_ENV=production webpack -p",
-    "build:windows": "set NODE_ENV=production&& npm run clean && webpack -p",
-    "dev": "npm run clean && webpack -d",
-    "start": "npm run clean && webpack-dev-server -d",
-    "start:windows": "npm run clean && webpack -d && webpack-dev-server -d",
-    "start:docker": "npm run clean && webpack-dev-server -d --docker"
+    "clean": "rimraf ../../public/index.html ../../public/assets ../../public/tmp",
+    "prebuild": "npm run clean",
+    "prebuild:windows": "npm run clean",
+    "build": "NODE_ENV=production reacthtmlpack buildToDir ../../public ./views/*.html.js",
+    "build:windows": "set NODE_ENV=production&& reacthtmlpack buildToDir ../../public ./views/*.html.js",
+    "dev": "npm run clean && reacthtmlpack buildToDir ../../public ./views/*.html.js",
+    "prestart": "npm run clean",
+    "prestart:windows": "npm run clean",
+    "prestart:docker": "npm run clean",
+    "start": "reacthtmlpack devServer ./Client.webpackConfig.js ../../public ./views/*.html.js",
+    "start:windows": "reacthtmlpack devServer ./Client.webpackConfig.js ../../public ./views/*.html.js",
+    "start:docker": "reacthtmlpack devServer ./Client.webpackConfig.js ../../public ./views/*.html.js --docker"
   },
   "devDependencies": {
     "babel-core": "^5.3.3",
@@ -16,15 +21,15 @@
     "css-loader": "^0.12.0",
     "extract-text-webpack-plugin": "^0.8.0",
     "file-loader": "^0.8.1",
-    "isomorphic-react-plugin-factory": "^1.0.0",
     "node-sass": "^3.1.0",
     "raw-loader": "^0.5.1",
     "react-hot-loader": "^1.2.7",
+    "reacthtmlpack": "^0.3.3",
+    "rimraf": "^2.4.3",
     "sass-loader": "^1.0.1",
     "style-loader": "^0.12.2",
     "webpack": "^1.9.5",
-    "webpack-dev-server": "^1.8.2",
-    "rimraf": "^2.4.3"
+    "webpack-dev-server": "^1.8.2"
   },
   "dependencies": {
     "animate.css": "^3.2.5",

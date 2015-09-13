@@ -56,6 +56,13 @@ export default class PolylineCreator extends Component {
       "editable",
       "path",
       "visible",
+      "clickable",
+      "geodesic",
+      "icons",
+      "strokeColor",
+      "strokeOpacity",
+      "strokeWeight",
+      "zIndex",
     ]));
 
     polyline.setMap(mapHolderRef.getMap());

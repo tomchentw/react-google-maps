@@ -23,7 +23,7 @@ export default (
       <WebpackScriptEntry
         chunkName="prism"
         chunkFilepath={require.resolve("prismjs")}
-        configFilepath="../Client.webpackConfig.js"
+        configFilepath="../WebWorker.webpackConfig.js"
       />
     </head>
     <body>
@@ -31,7 +31,7 @@ export default (
         id="react-container"
         tagName="div"
         chunkName="server"
-        chunkFilepath="./scripts/ReactRoot.js"
+        chunkFilepath="./scripts/server.js"
         configFilepath="../Server.webpackConfig.js"
       />
       <WebpackScriptEntry

@@ -1,4 +1,9 @@
-import {default as React, PropTypes, Component} from "react";
+import {
+  default as React,
+  Component,
+  PropTypes,
+} from "react";
+
 import {PrismCode} from "react-prism";
 
 export default class ComponentPlayground extends Component {

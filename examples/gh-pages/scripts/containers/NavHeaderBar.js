@@ -1,4 +1,9 @@
-import {default as React, PropTypes, Component} from "react";
+import {
+  default as React,
+  Component,
+  PropTypes,
+} from "react";
+
 import {default as cx} from "classnames";
 
 const actionPropType = PropTypes.shape({

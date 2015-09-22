@@ -7,7 +7,7 @@ import {
   default as CircleCreator,
   circleDefaultPropTypes,
   circleControlledPropTypes,
-  circleEventPropTypes
+  circleEventPropTypes,
 } from "./creators/CircleCreator";
 
 export default class Circle extends Component {

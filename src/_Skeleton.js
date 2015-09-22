@@ -7,7 +7,7 @@ import {
   default as SkeletonCreator,
   skeletonDefaultPropTypes,
   skeletonControlledPropTypes,
-  skeletonEventPropTypes
+  skeletonEventPropTypes,
 } from "./creators/SkeletonCreator";
 
 export default class Skeleton extends Component {

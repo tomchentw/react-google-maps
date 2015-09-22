@@ -1,7 +1,7 @@
 import {
   default as React,
   PropTypes,
-  Component
+  Component,
 } from "react";
 
 import {default as SearchBoxEventList} from "../eventLists/SearchBoxEventList";

@@ -7,7 +7,7 @@ import {
   default as InfoWindowCreator,
   infoWindowDefaultPropTypes,
   infoWindowControlledPropTypes,
-  infoWindowEventPropTypes
+  infoWindowEventPropTypes,
 } from "./creators/InfoWindowCreator";
 
 export default class InfoWindow extends Component {

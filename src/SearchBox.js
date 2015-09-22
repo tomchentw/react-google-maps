@@ -1,14 +1,13 @@
 import {
   default as React,
   Component,
-  findDOMNode
 } from "react";
 
 import {
   default as SearchBoxCreator,
   searchBoxDefaultPropTypes,
   searchBoxControlledPropTypes,
-  searchBoxEventPropTypes
+  searchBoxEventPropTypes,
 } from "./creators/SearchBoxCreator";
 
 /*

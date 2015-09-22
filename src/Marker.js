@@ -7,7 +7,7 @@ import {
   default as MarkerCreator,
   markerDefaultPropTypes,
   markerControlledPropTypes,
-  markerEventPropTypes
+  markerEventPropTypes,
 } from "./creators/MarkerCreator";
 
 export default class Marker extends Component {

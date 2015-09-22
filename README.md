@@ -31,7 +31,7 @@ git clone ...
 
 ### With Docker
 
-Install `docker@^1.6.2`, `docker-compose@^1.3.0` and optionally `boot2docker@^1.6.2`. Then,
+Install `docker@^1.8.2`, `docker-compose@^1.4.0` and optionally `docker-machine@^0.4.1`. Then,
 
 ```shell
 docker-compose run --service-ports web
@@ -39,12 +39,14 @@ docker-compose run --service-ports web
 
 Then open [http://192.168.59.103:8080](http://192.168.59.103:8080).
 
-**192.168.59.103** is actually your ip from `boot2docker ip`.
+**192.168.59.103** is actually your ip from `docker-machine ip`.
 
 If you change code in your local, you'll need to rebuild the image to make changes happen.
 
+If you're previously using `boot2docker`, you may want to migrate to [docker-machine](https://docs.docker.com/machine/migrate-to-machine/) instead.
+
 ```shell
-docker-compose rebuild
+docker-compose build
 ```
 
 ### With Mac

@@ -9,7 +9,7 @@ var JSX_LOADER_LIST;
 var FILENAME_FORMAT;
 var PRODUCTION_PLUGINS;
 
-if ("--docker" === process.argv[process.argv.length-1]) {
+if (process.env.DOCKER_ENV) {
   HOST = "0.0.0.0";
 } else {
   HOST = "localhost";

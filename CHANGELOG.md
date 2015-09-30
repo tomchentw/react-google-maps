@@ -1,3 +1,12 @@
+<a name"3.0.0"></a>
+## 3.0.0 (2015-09-30)
+
+
+#### Bug Fixes
+
+* **package.json:** remove react from dependencies ([bfd37877](https://github.com/tomchentw/react-google-maps/commit/bfd37877), closes [#109](https://github.com/tomchentw/react-google-maps/issues/109))
+
+
 <a name"2.2.0"></a>
 ## 2.2.0 (2015-09-30)
 

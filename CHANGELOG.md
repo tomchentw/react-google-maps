@@ -1,3 +1,12 @@
+<a name"2.1.1"></a>
+### 2.1.1 (2015-09-30)
+
+
+#### Bug Fixes
+
+* **InfoBox:** typo when update InfoBox children ([a66852c4](https://github.com/tomchentw/react-google-maps/commit/a66852c4), closes [#120](https://github.com/tomchentw/react-google-maps/issues/120))
+
+
 <a name"2.1.0"></a>
 ## 2.1.0 (2015-09-08)
 

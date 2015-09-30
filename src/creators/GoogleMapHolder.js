@@ -39,6 +39,20 @@ const {eventPropTypes, registerEvents} = eventHandlerCreator(GoogleMapEventList)
 
 export const mapEventPropTypes = eventPropTypes;
 
+const MAP_OPTIONS = [
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#MapOptions
+  "center",
+  "heading",
+  "mapTypeId",
+  "streetView",
+  "tilt",
+  "zoom",
+  "scrollwheel",
+  "zoomControl",
+  "streetViewControl",
+  "mapTypeControl",
+];
+
 @componentLifecycleDecorator({
   registerEvents,
   instanceMethodName: "getMap",
@@ -52,15 +66,7 @@ export default class GoogleMapHolder extends Component {
 
   static _createMap (domEl, mapProps) {
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
-    return new google.maps.Map(domEl, composeOptions(mapProps, [
-      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#MapOptions
-      "center",
-      "heading",
-      "mapTypeId",
-      "streetView",
-      "tilt",
-      "zoom",
-    ]));
+    return new google.maps.Map(domEl, composeOptions(mapProps, MAP_OPTIONS));
   }
 
   getMap () {

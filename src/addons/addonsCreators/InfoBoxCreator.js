@@ -25,7 +25,7 @@ export const infoBoxControlledPropTypes = {
 export const infoBoxDefaultPropTypes = defaultPropsCreator(infoBoxControlledPropTypes);
 
 const infoBoxUpdaters = {
-  children  (children, component) { setContentForOptionalReactElement(children, component.getInfoWindow()); },
+  children  (children, component) { setContentForOptionalReactElement(children, component.getInfoBox()); },
   content   (content, component) { component.getInfoBox().setContent(content); },
   options   (options, component) { component.getInfoBox().setOptions(options); },
   position  (position, component) { component.getInfoBox().setPosition(position); },

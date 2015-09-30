@@ -1,3 +1,12 @@
+<a name"2.2.0"></a>
+## 2.2.0 (2015-09-30)
+
+
+#### Bug Fixes
+
+* **Marker:** allow null and undefined as children ([17daa0a2](https://github.com/tomchentw/react-google-maps/commit/17daa0a2), closes [#119](https://github.com/tomchentw/react-google-maps/issues/119))
+
+
 <a name"2.1.1"></a>
 ### 2.1.1 (2015-09-30)
 

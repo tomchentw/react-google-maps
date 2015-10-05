@@ -57,6 +57,12 @@ export default class RectangleCreator extends Component {
       "draggable",
       "editable",
       "visible",
+      "fillColor",
+      "fillOpacity",
+      "strokeColor",
+      "strokeOpacity",
+      "strokePosition",
+      "strokeWeight",
     ]));
 
     rectangle.setMap(mapHolderRef.getMap());

@@ -91,7 +91,7 @@ export default class MarkerCreator extends Component {
     ]));
 
     if (anchorHolderRef) {
-      if (anchorHolderRef.getAnchorType() === 'MarkerClusterer') {
+      if ('MarkerClusterer' === anchorHolderRef.getAnchorType()) {
         anchorHolderRef.getAnchor().addMarker(marker);
       }
     } else {
@@ -115,7 +115,7 @@ export default class MarkerCreator extends Component {
     const { anchorHolderRef } = this.props;
 
     if (anchorHolderRef) {
-      if (anchorHolderRef.getAnchorType() === 'MarkerClusterer') {
+      if ("MarkerClusterer" === anchorHolderRef.getAnchorType()) {
         anchorHolderRef.getAnchor().removeMarker(this.props.marker);
       }
     }

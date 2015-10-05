@@ -7,7 +7,7 @@ import {
   default as MarkerClustererCreator,
   markerClustererDefaultPropTypes,
   markerClustererControlledPropTypes,
-  markerClustererEventPropTypes
+  markerClustererEventPropTypes,
 } from "./creators/MarkerClustererCreator";
 
 export default class MarkerClusterer extends Component {

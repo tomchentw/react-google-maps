@@ -67,9 +67,10 @@ export default class MarkerCreator extends Component {
   static propTypes = {
     mapHolderRef: PropTypes.instanceOf(GoogleMapHolder).isRequired,
     marker: PropTypes.object.isRequired,
+    anchorHolderRef: PropTypes.object,
   }
 
-  static _createMarker (mapHolderRef, markerProps) {
+  static _createMarker (mapHolderRef, markerProps, anchorHolderRef) {
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
     const marker = new google.maps.Marker(composeOptions(markerProps, [
       // https://developers.google.com/maps/documentation/javascript/3.exp/reference#MarkerOptions
@@ -89,7 +90,13 @@ export default class MarkerCreator extends Component {
       "zIndex",
     ]));
 
-    marker.setMap(mapHolderRef.getMap());
+    if (anchorHolderRef) {
+      if (anchorHolderRef.getAnchorType() === 'MarkerClusterer') {
+        anchorHolderRef.getAnchor().addMarker(marker);
+      }
+    } else {
+      marker.setMap(mapHolderRef.getMap());
+    }
 
     return marker;
   }
@@ -102,6 +109,16 @@ export default class MarkerCreator extends Component {
   // In the core API, the only anchor is the Marker class.
   getAnchor () {
     return this.props.marker;
+  }
+
+  componentWillUnmount () {
+    const { anchorHolderRef } = this.props;
+
+    if (anchorHolderRef) {
+      if (anchorHolderRef.getAnchorType() === 'MarkerClusterer') {
+        anchorHolderRef.getAnchor().removeMarker(this.props.marker);
+      }
+    }
   }
 
   render () {

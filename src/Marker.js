@@ -60,8 +60,8 @@ export default class Marker extends Component {
   }
 
   componentDidMount () {
-    const {mapHolderRef, ...markerProps} = this.props;
-    const marker = MarkerCreator._createMarker(mapHolderRef, markerProps);
+    const {mapHolderRef, anchorHolderRef, ...markerProps} = this.props;
+    const marker = MarkerCreator._createMarker(mapHolderRef, markerProps, anchorHolderRef);
 
     this.setState({ marker });
   }

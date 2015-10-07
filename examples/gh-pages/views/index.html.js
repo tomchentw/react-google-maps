@@ -20,6 +20,7 @@ export default (
         configFilepath="../Client.webpackConfig.js"
       />
       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places" />
+      <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/src/markerclusterer.js" />
       <WebpackScriptEntry
         chunkName="prism"
         chunkFilepath={require.resolve("prismjs")}

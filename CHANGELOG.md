@@ -1,3 +1,19 @@
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/tomchentw/react-google-maps/compare/v3.0.0...v4.0.0) (2015-10-08)
+
+
+### Features
+
+* **package.json:** upgrade to React@^0.14 ([443a5fd](https://github.com/tomchentw/react-google-maps/commit/443a5fd)), closes [#127](https://github.com/tomchentw/react-google-maps/issues/127) [#102](https://github.com/tomchentw/react-google-maps/issues/102)
+
+
+### BREAKING CHANGES
+
+* * __React@^0.14__: upgrade React in peerDependencies
+	* add __react-dom@^0.14__ to peerDependencies
+
+
+
 <a name"3.0.0"></a>
 ## 3.0.0 (2015-09-30)
 

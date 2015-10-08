@@ -19,7 +19,7 @@ if ("production" === process.env.NODE_ENV) {
   JSX_LOADER_LIST = ["babel"];
   FILENAME_FORMAT = "[name]-[chunkhash].js";
   PRODUCTION_PLUGINS = [
-    // Safe effect as webpack -p
+    // Same effect as webpack -p
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
   ];
@@ -40,7 +40,6 @@ module.exports = {
     hot: true,
     stats: { colors: true },
   },
-  context: __dirname,
   output: {
     path: Path.resolve(__dirname, "../../public/assets"),
     pathinfo: "production" !== process.env.NODE_ENV,
@@ -50,6 +49,7 @@ module.exports = {
   resolve: {
     alias: {
       "react": Path.resolve(__dirname, "./node_modules/react"),
+      "react-dom": Path.resolve(__dirname, "./node_modules/react-dom"),
     },
   },
   resolveLoader: {

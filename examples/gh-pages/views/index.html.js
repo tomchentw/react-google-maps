@@ -16,7 +16,7 @@ export default (
       <meta charSet="UTF-8" />
       <WebpackStyleEntry
         chunkName="client"
-        chunkFilepath="./scripts/client.js"
+        chunkFilepath="../scripts/client.js"
         configFilepath="../Client.webpackConfig.js"
       />
       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places" />
@@ -31,12 +31,12 @@ export default (
         id="react-container"
         tagName="div"
         chunkName="server"
-        chunkFilepath="./scripts/server.js"
+        chunkFilepath="../scripts/server.js"
         configFilepath="../Server.webpackConfig.js"
       />
       <WebpackScriptEntry
         chunkName="client"
-        chunkFilepath="./scripts/client.js"
+        chunkFilepath="../scripts/client.js"
         configFilepath="../Client.webpackConfig.js"
       />
     </body>

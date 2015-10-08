@@ -66,6 +66,7 @@ export default class OverlayViewCreator extends Component {
     };
 
     overlayView._renderContent = function () {
+      // FIXME: React@0.14
       React.render(
         Children.only(this.get("children")),
         this._containerElement

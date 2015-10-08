@@ -11,6 +11,7 @@ function renderElement (
     prevContent = document.createElement("div");
   }
 
+  // FIXME: React@0.14
   React.render(contentElement, prevContent);
   return prevContent;
 }

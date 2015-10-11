@@ -42,10 +42,10 @@
     "raf": "^3.1.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "react-github-fork-ribbon": "^0.4.1",
+    "react-github-fork-ribbon": "^0.4.2",
     "react-prism": "^3.0.0",
     "react-pure-render": "^1.0.2",
-    "react-toastr": "^2.0.0",
+    "react-toastr": "^2.1.0",
     "toastr": "^2.1.2"
   }
 }

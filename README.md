@@ -18,7 +18,7 @@ Static hosted [demo site][demo] on GitHub. The code is located under [examples/g
 
 ## Usage
 
-This module requires to be bundled with [webpack][webpack]/browserify and loads `react/addons` internally.  
+This module requires to be bundled with build tools like [webpack][webpack] or browserify.
 
 
 ## Development

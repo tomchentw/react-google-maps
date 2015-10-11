@@ -72,7 +72,7 @@ export default class NavHeaderBar extends Component {
               <li><a href="https://github.com/tomchentw" target="_blank">by @tomchentw</a></li>
               {props.actions.map(actionToMenuItem, this)}
               <li className={cx(dropdownClassSet)}>
-                <a href="javascript:void(0);" className="dropdown-toggle" onClick={this._handle_click.bind(this)}>Samples <span className="caret"></span></a>
+                <a href="javascript:void(0);" className="dropdown-toggle" onClick={::this._handle_click}>Samples <span className="caret"></span></a>
                 <ul className="dropdown-menu" role="menu">
                   {props.dropdownActions.map(actionToMenuItem, this)}
                 </ul>

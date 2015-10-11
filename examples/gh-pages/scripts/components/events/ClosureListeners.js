@@ -40,12 +40,12 @@ export default class ClosureListeners extends Component {
     });
   }
 
-  _handle_marker_click = (marker) => {
+  _handle_marker_click (marker) {
     marker.showInfo = true;
     this.setState(this.state);
   }
 
-  _handle_closeclick = (marker) => {
+  _handle_closeclick (marker) {
     marker.showInfo = false;
     this.setState(this.state);
   }

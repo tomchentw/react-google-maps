@@ -15,7 +15,7 @@ export default class GettingProperties extends Component {
     content: "Change the zoom level", 
   }
 
-  _handle_zoom_changed = () => {
+  _handle_zoom_changed () {
     const zoomLevel = this.refs.map.getZoom();
     if (zoomLevel !== this.state.zoomLevel) {
       // Notice: Check zoomLevel equality here,
@@ -41,7 +41,7 @@ export default class GettingProperties extends Component {
         ref="map"
         defaultCenter={myLatLng}
         zoom={zoomLevel}
-        onZoomChanged={this._handle_zoom_changed}>
+        onZoomChanged={::this._handle_zoom_changed}>
         <InfoWindow
           defaultPosition={myLatLng}
           content={content}

@@ -19,13 +19,13 @@ export default class SimpleClickEvent extends Component {
     center: this.props.initialCenter,
   }
 
-  _handle_marker_click = () => {
+  _handle_marker_click () {
     this.setState({
       zoom: 8,
     });
   }
 
-  _handle_map_center_changed = () => {
+  _handle_map_center_changed () {
     const newPos = this.refs.map.getCenter();
     if (newPos.equals(new google.maps.LatLng(this.props.initialCenter))) {
       // Notice: Check newPos equality here,
@@ -62,11 +62,11 @@ export default class SimpleClickEvent extends Component {
         ref="map"
         zoom={zoom}
         center={center}
-        onCenterChanged={this._handle_map_center_changed}>
+        onCenterChanged={::this._handle_map_center_changed}>
         <Marker
           defaultPosition={center}
           title="Click to zoom"
-          onClick={this._handle_marker_click} />
+          onClick={::this._handle_marker_click} />
       </GoogleMap>
     );
   }

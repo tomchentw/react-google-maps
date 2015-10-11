@@ -49,7 +49,7 @@ export default class OverlayViewExample extends Component {
         >
           <div style={STYLES.overlayView}>
             <h1>OverlayView</h1>
-            <button onClick={this.onClick}>
+            <button onClick={::this.onClick}>
               I have been clicked {count} time{count === 1 ? '' : 's'}
             </button>
           </div>
@@ -58,7 +58,7 @@ export default class OverlayViewExample extends Component {
     );
   }
 
-  onClick = () => {
+  onClick () {
     this.setState({count: this.state.count + 1});
   }
 

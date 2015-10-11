@@ -46,7 +46,7 @@ export default class SimpleMap extends Component {
    * This is called when you click on the map.
    * Go and try click now.
    */
-  _handle_map_click = (event) => {
+  _handle_map_click (event) {
     var {markers} = this.state;
     markers = update(markers, {
       $push: [
@@ -88,7 +88,7 @@ export default class SimpleMap extends Component {
           ref="map"
           defaultZoom={3}
           defaultCenter={{lat: -25.363882, lng: 131.044922}}
-          onClick={this._handle_map_click}>
+          onClick={::this._handle_map_click}>
           {this.state.markers.map((marker, index) => {
             return (
               <Marker

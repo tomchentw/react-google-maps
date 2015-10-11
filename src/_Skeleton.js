@@ -4,6 +4,10 @@ import {
 } from "react";
 
 import {
+  canUseDOM,
+} from "fbjs/lib/ExecutionEnvironment";
+
+import {
   default as SkeletonCreator,
   skeletonDefaultPropTypes,
   skeletonControlledPropTypes,
@@ -33,7 +37,10 @@ export default class Skeleton extends Component {
   state = {
   }
 
-  componentDidMount () {
+  componentWillMount () {
+    if (!canUseDOM) {
+      return;
+    }
     const {mapHolderRef, ...skeletonProps} = this.props;
     const skeleton = SkeletonCreator._createSkeleton(mapHolderRef, skeletonProps);
 

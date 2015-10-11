@@ -4,6 +4,10 @@ import {
 } from "react";
 
 import {
+  canUseDOM,
+} from "fbjs/lib/ExecutionEnvironment";
+
+import {
   default as PolylineCreator,
   polylineDefaultPropTypes,
   polylineControlledPropTypes,
@@ -39,7 +43,10 @@ export default class Polyline extends Component {
   state = {
   }
 
-  componentDidMount () {
+  componentWillMount () {
+    if (!canUseDOM) {
+      return;
+    }
     const {mapHolderRef, ...polylineProps} = this.props;
     const polyline = PolylineCreator._createPolyline(mapHolderRef, polylineProps);
 

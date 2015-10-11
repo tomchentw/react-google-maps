@@ -4,6 +4,10 @@ import {
 } from "react";
 
 import {
+  canUseDOM,
+} from "fbjs/lib/ExecutionEnvironment";
+
+import {
   default as DrawingManagerCreator,
   drawingManagerDefaultPropTypes,
   drawingManagerControlledPropTypes,
@@ -37,7 +41,10 @@ export default class DrawingManager extends Component {
   state = {
   }
 
-  componentDidMount () {
+  componentWillMount () {
+    if (!canUseDOM) {
+      return;
+    }
     const {mapHolderRef, ...drawingManagerProps} = this.props;
     const drawingManager = DrawingManagerCreator._createDrawingManager(mapHolderRef, drawingManagerProps);
 

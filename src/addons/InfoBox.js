@@ -4,6 +4,10 @@ import {
 } from "react";
 
 import {
+  canUseDOM,
+} from "fbjs/lib/ExecutionEnvironment";
+
+import {
   default as InfoBoxCreator,
   infoBoxDefaultPropTypes,
   infoBoxControlledPropTypes,
@@ -41,7 +45,10 @@ export default class InfoBox extends Component {
   state = {
   }
 
-  componentDidMount () {
+  componentWillMount () {
+    if (!canUseDOM) {
+      return;
+    }
     const {mapHolderRef, ...infoBoxProps} = this.props;
     const infoBox = InfoBoxCreator._createInfoBox(mapHolderRef, infoBoxProps);
 

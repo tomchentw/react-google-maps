@@ -4,6 +4,10 @@ import {
 } from "react";
 
 import {
+  canUseDOM,
+} from "fbjs/lib/ExecutionEnvironment";
+
+import {
   default as OverlayViewCreator,
   overlayViewDefaultPropTypes,
   overlayViewControlledPropTypes,
@@ -47,7 +51,10 @@ export default class OverlayView extends Component {
   state = {
   }
 
-  componentDidMount () {
+  componentWillMount () {
+    if (!canUseDOM) {
+      return;
+    }
     const {mapHolderRef, ...overlayViewProps} = this.props;
     const overlayView = OverlayViewCreator._createOverlayView(mapHolderRef, overlayViewProps);
 

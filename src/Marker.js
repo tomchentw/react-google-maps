@@ -4,6 +4,10 @@ import {
 } from "react";
 
 import {
+  canUseDOM,
+} from "fbjs/lib/ExecutionEnvironment";
+
+import {
   default as MarkerCreator,
   markerDefaultPropTypes,
   markerControlledPropTypes,
@@ -59,7 +63,10 @@ export default class Marker extends Component {
   state = {
   }
 
-  componentDidMount () {
+  componentWillMount () {
+    if (!canUseDOM) {
+      return;
+    }
     const {mapHolderRef, ...markerProps} = this.props;
     const marker = MarkerCreator._createMarker(mapHolderRef, markerProps);
 

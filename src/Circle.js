@@ -4,6 +4,10 @@ import {
 } from "react";
 
 import {
+  canUseDOM,
+} from "fbjs/lib/ExecutionEnvironment";
+
+import {
   default as CircleCreator,
   circleDefaultPropTypes,
   circleControlledPropTypes,
@@ -45,7 +49,10 @@ export default class Circle extends Component {
   state = {
   }
 
-  componentDidMount () {
+  componentWillMount () {
+    if (!canUseDOM) {
+      return;
+    }
     const {mapHolderRef, ...circleProps} = this.props;
     const circle = CircleCreator._createCircle(mapHolderRef, circleProps);
 

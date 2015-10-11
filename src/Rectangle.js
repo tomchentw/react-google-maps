@@ -4,6 +4,10 @@ import {
 } from "react";
 
 import {
+  canUseDOM,
+} from "fbjs/lib/ExecutionEnvironment";
+
+import {
   default as RectangleCreator,
   rectangleDefaultPropTypes,
   rectangleControlledPropTypes,
@@ -43,7 +47,10 @@ export default class Rectangle extends Component {
   state = {
   }
 
-  componentDidMount () {
+  componentWillMount () {
+    if (!canUseDOM) {
+      return;
+    }
     const {mapHolderRef, ...rectangleProps} = this.props;
     const rectangle = RectangleCreator._createRectangle(mapHolderRef, rectangleProps);
 

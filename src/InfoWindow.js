@@ -4,6 +4,10 @@ import {
 } from "react";
 
 import {
+  canUseDOM,
+} from "fbjs/lib/ExecutionEnvironment";
+
+import {
   default as InfoWindowCreator,
   infoWindowDefaultPropTypes,
   infoWindowControlledPropTypes,
@@ -37,7 +41,10 @@ export default class InfoWindow extends Component {
   state = {
   }
 
-  componentDidMount () {
+  componentWillMount () {
+    if (!canUseDOM) {
+      return;
+    }
     const {mapHolderRef, anchorHolderRef, ...infoWindowProps} = this.props;
     const infoWindow = InfoWindowCreator._createInfoWindow(mapHolderRef, infoWindowProps, anchorHolderRef);
 

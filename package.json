@@ -79,6 +79,7 @@
     "tomchentw-npm-dev": "^3.1.0"
   },
   "dependencies": {
+    "fbjs": "^0.3.1",
     "google-maps-infobox": "^1.1.13",
     "invariant": "^2.1.1"
   },

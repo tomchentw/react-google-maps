@@ -4,6 +4,10 @@ import {
 } from "react";
 
 import {
+  canUseDOM,
+} from "fbjs/lib/ExecutionEnvironment";
+
+import {
   default as PolygonCreator,
   polygonDefaultPropTypes,
   polygonControlledPropTypes,
@@ -41,7 +45,10 @@ export default class Polygon extends Component {
   state = {
   }
 
-  componentDidMount () {
+  componentWillMount () {
+    if (!canUseDOM) {
+      return;
+    }
     const {mapHolderRef, ...polygonProps} = this.props;
     const polygon = PolygonCreator._createPolygon(mapHolderRef, polygonProps);
 

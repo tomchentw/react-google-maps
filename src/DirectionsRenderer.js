@@ -4,6 +4,10 @@ import {
 } from "react";
 
 import {
+  canUseDOM,
+} from "fbjs/lib/ExecutionEnvironment";
+
+import {
   default as DirectionsRendererCreator,
   directionsRendererDefaultPropTypes,
   directionsRendererControlledPropTypes,
@@ -41,7 +45,10 @@ export default class DirectionsRenderer extends Component {
   state = {
   }
 
-  componentDidMount () {
+  componentWillMount () {
+    if (!canUseDOM) {
+      return;
+    }
     const {mapHolderRef, ...directionsRendererProps} = this.props;
     const directionsRenderer = DirectionsRendererCreator._createDirectionsRenderer(mapHolderRef, directionsRendererProps);
 

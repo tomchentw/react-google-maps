@@ -3,6 +3,8 @@ import {default as controlledOrDefault} from "./controlledOrDefault";
 export default function composeOptions (props, optionNameList) {
   const getter = controlledOrDefault(props);
 
+  // props from arguments may contain unknow props.
+  // We only interested those in optionNameList
   return optionNameList.reduce((acc, optionName) => {
     const value = getter(optionName);
     if ("undefined" !== typeof value) {

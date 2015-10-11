@@ -51,8 +51,7 @@ export default class Rectangle extends Component {
     if (!canUseDOM) {
       return;
     }
-    const {mapHolderRef, ...rectangleProps} = this.props;
-    const rectangle = RectangleCreator._createRectangle(mapHolderRef, rectangleProps);
+    const rectangle = RectangleCreator._createRectangle(this.props);
 
     this.setState({ rectangle });
   }

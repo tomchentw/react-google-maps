@@ -49,8 +49,7 @@ export default class InfoBox extends Component {
     if (!canUseDOM) {
       return;
     }
-    const {mapHolderRef, ...infoBoxProps} = this.props;
-    const infoBox = InfoBoxCreator._createInfoBox(mapHolderRef, infoBoxProps);
+    const infoBox = InfoBoxCreator._createInfoBox(this.props);
 
     this.setState({ infoBox });
   }

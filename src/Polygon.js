@@ -49,8 +49,7 @@ export default class Polygon extends Component {
     if (!canUseDOM) {
       return;
     }
-    const {mapHolderRef, ...polygonProps} = this.props;
-    const polygon = PolygonCreator._createPolygon(mapHolderRef, polygonProps);
+    const polygon = PolygonCreator._createPolygon(this.props);
 
     this.setState({ polygon });
   }

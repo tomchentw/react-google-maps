@@ -67,8 +67,7 @@ export default class Marker extends Component {
     if (!canUseDOM) {
       return;
     }
-    const {mapHolderRef, ...markerProps} = this.props;
-    const marker = MarkerCreator._createMarker(mapHolderRef, markerProps);
+    const marker = MarkerCreator._createMarker(this.props);
 
     this.setState({ marker });
   }

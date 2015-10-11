@@ -48,7 +48,8 @@ export default class PolylineCreator extends Component {
     polyline: PropTypes.object.isRequired,
   }
 
-  static _createPolyline (mapHolderRef, polylineProps) {
+  static _createPolyline (polylineProps) {
+    const {mapHolderRef} = polylineProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
     const polyline = new google.maps.Polyline(composeOptions(polylineProps, [
       // https://developers.google.com/maps/documentation/javascript/3.exp/reference#PolylineOptions

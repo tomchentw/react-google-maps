@@ -45,8 +45,7 @@ export default class DrawingManager extends Component {
     if (!canUseDOM) {
       return;
     }
-    const {mapHolderRef, ...drawingManagerProps} = this.props;
-    const drawingManager = DrawingManagerCreator._createDrawingManager(mapHolderRef, drawingManagerProps);
+    const drawingManager = DrawingManagerCreator._createDrawingManager(this.props);
 
     this.setState({ drawingManager });
   }

@@ -69,7 +69,8 @@ export default class MarkerCreator extends Component {
     marker: PropTypes.object.isRequired,
   }
 
-  static _createMarker (mapHolderRef, markerProps) {
+  static _createMarker (markerProps) {
+    const {mapHolderRef} = markerProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
     const marker = new google.maps.Marker(composeOptions(markerProps, [
       // https://developers.google.com/maps/documentation/javascript/3.exp/reference#MarkerOptions

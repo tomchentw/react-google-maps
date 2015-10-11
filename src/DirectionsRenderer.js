@@ -49,8 +49,7 @@ export default class DirectionsRenderer extends Component {
     if (!canUseDOM) {
       return;
     }
-    const {mapHolderRef, ...directionsRendererProps} = this.props;
-    const directionsRenderer = DirectionsRendererCreator._createDirectionsRenderer(mapHolderRef, directionsRendererProps);
+    const directionsRenderer = DirectionsRendererCreator._createDirectionsRenderer(this.props);
 
     this.setState({ directionsRenderer });
   }

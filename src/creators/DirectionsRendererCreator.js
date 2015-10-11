@@ -47,7 +47,8 @@ export default class DirectionsRendererCreator extends Component {
     directionsRenderer: PropTypes.object.isRequired,
   }
 
-  static _createDirectionsRenderer (mapHolderRef, directionsRendererProps) {
+  static _createDirectionsRenderer (directionsRendererProps) {
+    const {mapHolderRef} = directionsRendererProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
     const directionsRenderer = new google.maps.DirectionsRenderer(composeOptions(directionsRendererProps, [
       // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRendererOptions

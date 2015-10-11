@@ -47,8 +47,7 @@ export default class Polyline extends Component {
     if (!canUseDOM) {
       return;
     }
-    const {mapHolderRef, ...polylineProps} = this.props;
-    const polyline = PolylineCreator._createPolyline(mapHolderRef, polylineProps);
+    const polyline = PolylineCreator._createPolyline(this.props);
 
     this.setState({ polyline });
   }

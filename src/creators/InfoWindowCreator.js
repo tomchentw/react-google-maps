@@ -49,7 +49,8 @@ export default class InfoWindowCreator extends Component {
     anchorHolderRef: PropTypes.object,
   }
 
-  static _createInfoWindow (mapHolderRef, infoWindowProps, anchorHolderRef) {
+  static _createInfoWindow (infoWindowProps) {
+    const {mapHolderRef, anchorHolderRef} = infoWindowProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
     const infoWindow = new google.maps.InfoWindow(composeOptions(infoWindowProps, [
       // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindowOptions

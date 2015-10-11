@@ -41,7 +41,8 @@ export default class SkeletonCreator extends Component {
     skeleton: PropTypes.object.isRequired,
   }
 
-  static _createSkeleton (mapHolderRef, skeletonProps) {
+  static _createSkeleton (skeletonProps) {
+    const {mapHolderRef} = skeletonProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference
     const skeleton = new google.maps.Skeleton(composeOptions(skeletonProps, [
       // https://developers.google.com/maps/documentation/javascript/3.exp/reference

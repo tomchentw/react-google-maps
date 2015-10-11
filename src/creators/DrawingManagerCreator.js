@@ -42,7 +42,8 @@ export default class DrawingManagerCreator extends Component {
     drawingManager: PropTypes.object.isRequired,
   }
 
-  static _createDrawingManager (mapHolderRef, drawingManagerProps) {
+  static _createDrawingManager (drawingManagerProps) {
+    const {mapHolderRef} = drawingManagerProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
     const drawingManager = new google.maps.drawing.DrawingManager(composeOptions(drawingManagerProps, [
       // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManagerOptions

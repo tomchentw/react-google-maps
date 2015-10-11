@@ -49,7 +49,8 @@ export default class RectangleCreator extends Component {
     rectangle: PropTypes.object.isRequired,
   }
 
-  static _createRectangle (mapHolderRef, rectangleProps) {
+  static _createRectangle (rectangleProps) {
+    const {mapHolderRef} = rectangleProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
     const rectangle = new google.maps.Rectangle(composeOptions(rectangleProps, [
       // https://developers.google.com/maps/documentation/javascript/3.exp/reference#RectangleOptions

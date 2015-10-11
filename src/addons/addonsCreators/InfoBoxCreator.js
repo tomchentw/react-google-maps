@@ -49,7 +49,8 @@ export default class InfoBoxCreator extends Component {
     infoBox: PropTypes.object.isRequired,
   }
 
-  static _createInfoBox (mapHolderRef, infoBoxProps, anchorHolderRef) {
+  static _createInfoBox (infoBoxProps) {
+    const {mapHolderRef, anchorHolderRef} = infoBoxProps;
     // "google-maps-infobox" uses "google" as a global variable. Since we don't
     // have "google" on the server, we can not use it in server-side rendering.
     // As a result, we import "google-maps-infobox" here to prevent an error on

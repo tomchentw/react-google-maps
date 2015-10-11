@@ -41,8 +41,7 @@ export default class Skeleton extends Component {
     if (!canUseDOM) {
       return;
     }
-    const {mapHolderRef, ...skeletonProps} = this.props;
-    const skeleton = SkeletonCreator._createSkeleton(mapHolderRef, skeletonProps);
+    const skeleton = SkeletonCreator._createSkeleton(this.props);
 
     this.setState({ skeleton });
   }

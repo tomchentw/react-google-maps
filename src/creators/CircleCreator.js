@@ -50,7 +50,8 @@ export default class CircleCreator extends Component {
     circle: PropTypes.object.isRequired,
   }
 
-  static _createCircle (mapHolderRef, circleProps) {
+  static _createCircle (circleProps) {
+    const {mapHolderRef} = circleProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
     const circle = new google.maps.Circle(composeOptions(circleProps, [
       // https://developers.google.com/maps/documentation/javascript/3.exp/reference#CircleOptions

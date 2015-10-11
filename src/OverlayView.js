@@ -55,8 +55,7 @@ export default class OverlayView extends Component {
     if (!canUseDOM) {
       return;
     }
-    const {mapHolderRef, ...overlayViewProps} = this.props;
-    const overlayView = OverlayViewCreator._createOverlayView(mapHolderRef, overlayViewProps);
+    const overlayView = OverlayViewCreator._createOverlayView(this.props);
 
     this.setState({ overlayView });
   }

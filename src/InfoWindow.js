@@ -45,8 +45,7 @@ export default class InfoWindow extends Component {
     if (!canUseDOM) {
       return;
     }
-    const {mapHolderRef, anchorHolderRef, ...infoWindowProps} = this.props;
-    const infoWindow = InfoWindowCreator._createInfoWindow(mapHolderRef, infoWindowProps, anchorHolderRef);
+    const infoWindow = InfoWindowCreator._createInfoWindow(this.props);
 
     this.setState({ infoWindow });
   }

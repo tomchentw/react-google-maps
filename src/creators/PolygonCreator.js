@@ -50,7 +50,8 @@ export default class PolygonCreator extends Component {
     polygon: PropTypes.object.isRequired,
   }
 
-  static _createPolygon (mapHolderRef, polygonProps) {
+  static _createPolygon (polygonProps) {
+    const {mapHolderRef} = polygonProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
     const polygon = new google.maps.Polygon(composeOptions(polygonProps, [
       // https://developers.google.com/maps/documentation/javascript/3.exp/reference#PolygonOptions

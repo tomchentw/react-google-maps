@@ -53,8 +53,7 @@ export default class Circle extends Component {
     if (!canUseDOM) {
       return;
     }
-    const {mapHolderRef, ...circleProps} = this.props;
-    const circle = CircleCreator._createCircle(mapHolderRef, circleProps);
+    const circle = CircleCreator._createCircle(this.props);
 
     this.setState({ circle });
   }

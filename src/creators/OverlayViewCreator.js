@@ -29,7 +29,8 @@ export default class OverlayViewCreator extends Component {
     overlayView: PropTypes.object.isRequired,
   }
 
-  static _createOverlayView (mapHolderRef, overlayViewProps) {
+  static _createOverlayView (overlayViewProps) {
+    const {mapHolderRef} = overlayViewProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
     const overlayView = new google.maps.OverlayView();
     overlayView.setValues(composeOptions(overlayViewProps, [

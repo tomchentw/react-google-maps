@@ -1,9 +1,8 @@
-import {default as React, addons, Component} from "react/addons";
+import {default as React, Component} from "react";
+import {default as update} from "react-addons-update";
 
 import {default as GoogleMap} from "../../../../src/GoogleMap";
 import {default as Marker} from "../../../../src/Marker";
-
-const {update} = addons;
 
 /*
  * This is the modify version of:

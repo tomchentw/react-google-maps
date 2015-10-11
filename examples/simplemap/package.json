@@ -37,6 +37,7 @@
     "classnames": "^2.1.5",
     "node-libs-browser": "^0.5.3",
     "react": "^0.14.0",
+    "react-addons-update": "^0.14.0",
     "react-dom": "^0.14.0"
   }
 }

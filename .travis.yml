@@ -1,7 +1,12 @@
 language: node_js
 node_js:
-- '0.12'
-- '0.10'
+- "4"
+- "0.12"
+- "0.10"
+script:
+  - npm run test:cov
+after_script:
+  - if [[ `node --version` == *v4* ]]; then cat ./coverage/lcov.info | ./node_modules/.bin/codeclimate-test-reporter; fi
 env:
   global:
-  - secure: GMNocCsbiEwxQc2VcKk1amBpX1gMcV3u4eLMgpf6E5O5J+c2X1xvsWm3zMz3TsnhSXQrtPnHXqhlX3Am8Vedx+dfqMW8y9r82KdJ4vr/2e3DrYt38qnQm9JZMGfUfxSpKMjcGzk0FPtSKiLT2xHi1AiH9hoCEPjgRA60vChVHDY=
+    secure: gYr2P0NQiF4sdolyrwfAURyM/SWPeYvYjhZdVQrGC1RszfpKFJuXvUAZsxA8zdco+oPTn1YeVbbqvOL+ZwAAZr58N9Ou0v/wwDc7XPRpn1odAHTFi5o5yAmX12SIKmt7O9UeT/hIu0ejyd85d2XHsQiGdVWDno4nrNZUnar/PgE=

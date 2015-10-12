@@ -159,3 +159,19 @@ export const RIGHT_ACTIONS = [
 ];
 
 export const ALL_ACTIONS = ACTIONS.concat(DROPDOWN_ACTIONS.filter((x) => { return !!x; })).concat(RIGHT_ACTIONS);
+
+export const ASYNC_ACTIONS = [
+  {
+    key: "async-loader-getting-started",
+    displayName: "Async Loader - Getting Started",
+    path: "#async-loader-gs",
+    component: {
+      componentClass: require("../components/AsyncGettingStarted"),
+      componentProps: {
+      },
+      componentRaw: {
+        __raw: require("!raw-loader!../components/AsyncGettingStarted"),
+      },
+    },
+  },
+];

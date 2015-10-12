@@ -50,9 +50,7 @@ export default class NavHeaderBar extends Component {
 
   render () {
     const {props, state} = this,
-          {activeActionKey} = props,
-          dropdownClassSet = {dropdown: true};
-    dropdownClassSet.open = state.dropdownOpen;
+          {activeActionKey} = props;
 
     return (
       <nav className="navbar navbar-default" role="navigation">
@@ -71,20 +69,50 @@ export default class NavHeaderBar extends Component {
             <ul className="nav navbar-nav">
               <li><a href="https://github.com/tomchentw" target="_blank">by @tomchentw</a></li>
               {props.actions.map(actionToMenuItem, this)}
-              <li className={cx(dropdownClassSet)}>
-                <a href="javascript:void(0);" className="dropdown-toggle" onClick={::this._handle_click}>Samples <span className="caret"></span></a>
-                <ul className="dropdown-menu" role="menu">
-                  {props.dropdownActions.map(actionToMenuItem, this)}
-                </ul>
-              </li>
+              {renderDropdown.call(this)}
             </ul>
             <ul className="nav navbar-nav navbar-right" style={{marginRight:100}}>
+              {renderSyncAsyncLink()}
               {props.rightActions.map(actionToMenuItem, this)}
             </ul>
           </div>
         </div>
       </nav>
     );
+
+    function renderDropdown () {
+      const dropdownClassSet = {dropdown: true};
+      dropdownClassSet.open = state.dropdownOpen;
+
+      if (props.dropdownActions.length) {
+        return (
+          <li className={cx(dropdownClassSet)}>
+            <a href="javascript:void(0);" className="dropdown-toggle" onClick={::this._handle_click}>Samples <span className="caret"></span></a>
+            <ul className="dropdown-menu" role="menu">
+              {props.dropdownActions.map(actionToMenuItem, this)}
+            </ul>
+          </li>
+        );
+      } else {
+        return null;
+      }
+    }
+
+    function renderSyncAsyncLink () {
+      var isAsync = "undefined" !== typeof window && window.location.pathname.match(/async\//);
+
+      return (
+        <li>
+          {
+            isAsync ? (
+              <a href="../">Back to Sync</a>
+            ) : (
+              <a href="async/">Async Example</a>
+            )
+          }
+        </li>
+      );
+    }
 
     function actionToMenuItem (action, index) {
       var classSet = {};

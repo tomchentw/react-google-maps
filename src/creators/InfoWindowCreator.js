@@ -56,6 +56,9 @@ export default class InfoWindowCreator extends Component {
       "content",
       "position",
       "zIndex",
+      "maxWidth",
+      "pixelOffset",
+      "disableAutoPan"
     ]));
 
     if (infoWindowProps.children) {

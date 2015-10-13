@@ -1,3 +1,14 @@
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/tomchentw/react-google-maps/compare/v4.0.0...v4.1.0) (2015-10-13)
+
+
+### Features
+
+* **src:** move instance creation in componentWillMount ([91d5790](https://github.com/tomchentw/react-google-maps/commit/91d5790))
+* **src:** update composeOptions to accept controlledPropTypes for _2 ([03aee4d](https://github.com/tomchentw/react-google-maps/commit/03aee4d))
+
+
+
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/tomchentw/react-google-maps/compare/v3.0.0...v4.0.0) (2015-10-08)
 

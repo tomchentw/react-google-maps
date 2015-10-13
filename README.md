@@ -65,7 +65,7 @@ Anything that are inside components' `options` property could __ONLY__ be access
 
 One common event trigger is to resize map after the size of the container div changes:
 
-```
+```js
 componentDidUpdate() {
     var map = React.findDOMNode(this.refs.map);
     window.google.maps.event.trigger(map, 'resize');

@@ -59,6 +59,12 @@ export default class CircleCreator extends Component {
       "editable",
       "radius",
       "visible",
+      "fillColor",
+      "fillOpacity",
+      "strokeColor",
+      "strokeOpacity",
+      "strokePosition",
+      "strokeWeight",
     ]));
 
     circle.setMap(mapHolderRef.getMap());

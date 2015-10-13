@@ -58,6 +58,12 @@ export default class PolygonCreator extends Component {
       "editable",
       "paths",
       "visible",
+      "fillColor",
+      "fillOpacity",
+      "strokeColor",
+      "strokeOpacity",
+      "strokePosition",
+      "strokeWeight",
     ]));
 
     polygon.setMap(mapHolderRef.getMap());

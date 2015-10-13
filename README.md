@@ -73,7 +73,7 @@ componentDidUpdate() {
 
 <GoogleMap {...props} ref="map" > ... </GoogleMap>
 ```
-You'll need to lead googlemap js file from Google beofore you have window.google available. 
+You'll need to load `<script src="https://maps.googleapis.com/maps/api/js"></script>` beofore you have window.google available. 
 
 ### Check the examples
 

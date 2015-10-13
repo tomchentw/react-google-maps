@@ -13,7 +13,12 @@ import {default as componentLifecycleDecorator} from "../utils/componentLifecycl
 import {default as GoogleMapHolder} from "./GoogleMapHolder";
 
 export const drawingManagerControlledPropTypes = {
+// NOTICE!!!!!!
+//
+// Only expose those with getters & setters in the table as controlled props.
+//
 // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+//
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
   drawingMode: PropTypes.any,
   options: PropTypes.object,
@@ -45,10 +50,7 @@ export default class DrawingManagerCreator extends Component {
   static _createDrawingManager (drawingManagerProps) {
     const {mapHolderRef} = drawingManagerProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
-    const drawingManager = new google.maps.drawing.DrawingManager(composeOptions(drawingManagerProps, [
-      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManagerOptions
-      "drawingMode",
-    ]));
+    const drawingManager = new google.maps.drawing.DrawingManager(composeOptions(drawingManagerProps, drawingManagerControlledPropTypes));
 
     drawingManager.setMap(mapHolderRef.getMap());
 

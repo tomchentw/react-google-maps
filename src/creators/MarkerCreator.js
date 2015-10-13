@@ -14,7 +14,12 @@ import {default as componentLifecycleDecorator} from "../utils/componentLifecycl
 import {default as GoogleMapHolder} from "./GoogleMapHolder";
 
 export const markerControlledPropTypes = {
+// NOTICE!!!!!!
+//
+// Only expose those with getters & setters in the table as controlled props.
+//
 // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+//
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
   animation: PropTypes.any,
   attribution: PropTypes.any,
@@ -72,23 +77,7 @@ export default class MarkerCreator extends Component {
   static _createMarker (markerProps) {
     const {mapHolderRef} = markerProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
-    const marker = new google.maps.Marker(composeOptions(markerProps, [
-      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#MarkerOptions
-      "animation",
-      "attribution",
-      "clickable",
-      "cursor",
-      "draggable",
-      "icon",
-      "label",
-      "opacity",
-      "place",
-      "position",
-      "shape",
-      "title",
-      "visible",
-      "zIndex",
-    ]));
+    const marker = new google.maps.Marker(composeOptions(markerProps, markerControlledPropTypes));
 
     marker.setMap(mapHolderRef.getMap());
 

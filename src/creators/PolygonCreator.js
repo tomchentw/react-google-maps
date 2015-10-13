@@ -13,7 +13,12 @@ import {default as componentLifecycleDecorator} from "../utils/componentLifecycl
 import {default as GoogleMapHolder} from "./GoogleMapHolder";
 
 export const polygonControlledPropTypes = {
+// NOTICE!!!!!!
+//
+// Only expose those with getters & setters in the table as controlled props.
+//
 // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+//
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
   draggable: PropTypes.bool,
   editable: PropTypes.bool,
@@ -53,13 +58,7 @@ export default class PolygonCreator extends Component {
   static _createPolygon (polygonProps) {
     const {mapHolderRef} = polygonProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
-    const polygon = new google.maps.Polygon(composeOptions(polygonProps, [
-      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#PolygonOptions
-      "draggable",
-      "editable",
-      "paths",
-      "visible",
-    ]));
+    const polygon = new google.maps.Polygon(composeOptions(polygonProps, polygonControlledPropTypes));
 
     polygon.setMap(mapHolderRef.getMap());
 

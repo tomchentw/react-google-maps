@@ -14,6 +14,10 @@ import {default as componentLifecycleDecorator} from "../../utils/componentLifec
 import {default as GoogleMapHolder} from "../../creators/GoogleMapHolder";
 
 export const infoBoxControlledPropTypes = {
+// NOTICE!!!!!!
+//
+// Only expose those with getters & setters in the table as controlled props.
+//
 // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/docs/reference.html
   content: PropTypes.any,
   options: PropTypes.object,
@@ -57,13 +61,7 @@ export default class InfoBoxCreator extends Component {
     // a isomorphic server.
     const GoogleMapsInfobox = require("google-maps-infobox");
     // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/docs/reference.html
-    const infoBox = new GoogleMapsInfobox(composeOptions(infoBoxProps, [
-      // https://developers.google.com/maps/documentation/javascript/3.exp/reference
-      "content",
-      "position",
-      "visible",
-      "zIndex",
-    ]));
+    const infoBox = new GoogleMapsInfobox(composeOptions(infoBoxProps, infoBoxControlledPropTypes));
 
     if (infoBoxProps.children) {
       setContentForOptionalReactElement(infoBoxProps.children, infoBox);

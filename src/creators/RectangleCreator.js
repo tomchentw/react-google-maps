@@ -14,7 +14,12 @@ import {default as componentLifecycleDecorator} from "../utils/componentLifecycl
 import {default as GoogleMapHolder} from "./GoogleMapHolder";
 
 export const rectangleControlledPropTypes = {
+// NOTICE!!!!!!
+//
+// Only expose those with getters & setters in the table as controlled props.
+//
 // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+//
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
   bounds: PropTypes.any,
   draggable: PropTypes.bool,
@@ -52,13 +57,7 @@ export default class RectangleCreator extends Component {
   static _createRectangle (rectangleProps) {
     const {mapHolderRef} = rectangleProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
-    const rectangle = new google.maps.Rectangle(composeOptions(rectangleProps, [
-      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#RectangleOptions
-      "bounds",
-      "draggable",
-      "editable",
-      "visible",
-    ]));
+    const rectangle = new google.maps.Rectangle(composeOptions(rectangleProps, rectangleControlledPropTypes));
 
     rectangle.setMap(mapHolderRef.getMap());
 

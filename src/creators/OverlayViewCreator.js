@@ -16,7 +16,13 @@ export const overlayViewControlledPropTypes = {
   mapPaneName: PropTypes.string,
   getPixelPositionOffset: PropTypes.func,
   position: PropTypes.object,
+  children: PropTypes.node,
+// NOTICE!!!!!!
+//
+// Only expose those with getters & setters in the table as controlled props.
+//
 // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+//
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference
 };
 
@@ -33,12 +39,7 @@ export default class OverlayViewCreator extends Component {
     const {mapHolderRef} = overlayViewProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
     const overlayView = new google.maps.OverlayView();
-    overlayView.setValues(composeOptions(overlayViewProps, [
-      "mapPaneName",
-      "getPixelPositionOffset",
-      "position",
-      "children",
-    ]));
+    overlayView.setValues(composeOptions(overlayViewProps, overlayViewControlledPropTypes));
 
     overlayView.onAdd = function () {
       this._containerElement = document.createElement("div");

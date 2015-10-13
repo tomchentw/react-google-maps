@@ -13,7 +13,12 @@ import {default as componentLifecycleDecorator} from "../utils/componentLifecycl
 import {default as GoogleMapHolder} from "./GoogleMapHolder";
 
 export const polylineControlledPropTypes = {
+// NOTICE!!!!!!
+//
+// Only expose those with getters & setters in the table as controlled props.
+//
 // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+//
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
   draggable: PropTypes.bool,
   editable: PropTypes.bool,
@@ -51,13 +56,7 @@ export default class PolylineCreator extends Component {
   static _createPolyline (polylineProps) {
     const {mapHolderRef} = polylineProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
-    const polyline = new google.maps.Polyline(composeOptions(polylineProps, [
-      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#PolylineOptions
-      "draggable",
-      "editable",
-      "path",
-      "visible",
-    ]));
+    const polyline = new google.maps.Polyline(composeOptions(polylineProps, polylineControlledPropTypes));
 
     polyline.setMap(mapHolderRef.getMap());
 

@@ -14,7 +14,12 @@ import {default as componentLifecycleDecorator} from "../utils/componentLifecycl
 import {default as GoogleMapHolder} from "./GoogleMapHolder";
 
 export const infoWindowControlledPropTypes = {
+// NOTICE!!!!!!
+//
+// Only expose those with getters & setters in the table as controlled props.
+//
 // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+//
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
   content: PropTypes.any,
   options: PropTypes.object,
@@ -52,12 +57,7 @@ export default class InfoWindowCreator extends Component {
   static _createInfoWindow (infoWindowProps) {
     const {mapHolderRef, anchorHolderRef} = infoWindowProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
-    const infoWindow = new google.maps.InfoWindow(composeOptions(infoWindowProps, [
-      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindowOptions
-      "content",
-      "position",
-      "zIndex",
-    ]));
+    const infoWindow = new google.maps.InfoWindow(composeOptions(infoWindowProps, infoWindowControlledPropTypes));
 
     if (infoWindowProps.children) {
       setContentForOptionalReactElement(infoWindowProps.children, infoWindow);

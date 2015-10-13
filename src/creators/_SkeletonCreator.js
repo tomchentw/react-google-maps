@@ -14,7 +14,12 @@ import {default as componentLifecycleDecorator} from "../utils/componentLifecycl
 import {default as GoogleMapHolder} from "./GoogleMapHolder";
 
 export const skeletonControlledPropTypes = {
+// NOTICE!!!!!!
+//
+// Only expose those with getters & setters in the table as controlled props.
+//
 // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+//
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference
   animation: PropTypes.any,
 };
@@ -44,10 +49,7 @@ export default class SkeletonCreator extends Component {
   static _createSkeleton (skeletonProps) {
     const {mapHolderRef} = skeletonProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference
-    const skeleton = new google.maps.Skeleton(composeOptions(skeletonProps, [
-      // https://developers.google.com/maps/documentation/javascript/3.exp/reference
-      "animation",
-    ]));
+    const skeleton = new google.maps.Skeleton(composeOptions(skeletonProps, skeletonControlledPropTypes));
 
     skeleton.setMap(mapHolderRef.getMap());
 

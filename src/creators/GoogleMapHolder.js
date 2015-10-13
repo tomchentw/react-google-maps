@@ -12,7 +12,12 @@ import {default as composeOptions} from "../utils/composeOptions";
 import {default as componentLifecycleDecorator} from "../utils/componentLifecycleDecorator";
 
 export const mapControlledPropTypes = {
+// NOTICE!!!!!!
+//
+// Only expose those with getters & setters in the table as controlled props.
+//
 // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+//
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
   center: PropTypes.object,
   heading: PropTypes.number,
@@ -52,15 +57,7 @@ export default class GoogleMapHolder extends Component {
 
   static _createMap (domEl, mapProps) {
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
-    return new google.maps.Map(domEl, composeOptions(mapProps, [
-      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#MapOptions
-      "center",
-      "heading",
-      "mapTypeId",
-      "streetView",
-      "tilt",
-      "zoom",
-    ]));
+    return new google.maps.Map(domEl, composeOptions(mapProps, mapControlledPropTypes));
   }
 
   getMap () {

@@ -67,7 +67,7 @@ One common event trigger is to resize map after the size of the container div ch
 
 ```js
 componentDidUpdate() {
-    var map = React.findDOMNode(this.refs.map);
+    var map = ReactDOM.findDOMNode(this.refs.map);
     window.google.maps.event.trigger(map, 'resize');
 }
 

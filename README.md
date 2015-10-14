@@ -61,6 +61,19 @@ Every props mentioned in __Rule 2__ could be either [controlled](https://faceboo
 
 Anything that are inside components' `options` property could __ONLY__ be accessible via `props.options`. It's your responsibility to manage `props.options` object during the React lifetime for your component. My suggestion is, always use __Rule 3__ if possible. Only use `options` when it's necessary.
 
+### Map Event Triggers
+
+One common event trigger is to resize map after the size of the container div changes:
+
+```js
+componentDidUpdate() {
+    var map = React.findDOMNode(this.refs.map);
+    window.google.maps.event.trigger(map, 'resize');
+}
+
+<GoogleMap {...props} ref="map" > ... </GoogleMap>
+```
+
 ### Check the examples
 
 Static hosted [demo site][demo] on GitHub. The code is located under [examples/gh-pages][examples_gh_pages] folder.

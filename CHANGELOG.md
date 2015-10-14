@@ -1,3 +1,13 @@
+<a name="4.1.1"></a>
+## [4.1.1](https://github.com/tomchentw/react-google-maps/compare/v4.1.0...v4.1.1) (2015-10-14)
+
+
+### Bug Fixes
+
+* **src:** switch to findDOMNode from "react-dom" ([593b1c8](https://github.com/tomchentw/react-google-maps/commit/593b1c8)), closes [#132](https://github.com/tomchentw/react-google-maps/issues/132)
+
+
+
 <a name="4.1.0"></a>
 # [4.1.0](https://github.com/tomchentw/react-google-maps/compare/v4.0.0...v4.1.0) (2015-10-13)
 

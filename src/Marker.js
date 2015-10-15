@@ -4,8 +4,8 @@ import {
 } from "react";
 
 import {
-  canUseDOM,
-} from "fbjs/lib/ExecutionEnvironment";
+  default as canUseDOM,
+} from "can-use-dom";
 
 import {
   default as MarkerCreator,

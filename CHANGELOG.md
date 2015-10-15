@@ -1,3 +1,13 @@
+<a name="4.2.0"></a>
+# [4.2.0](https://github.com/tomchentw/react-google-maps/compare/v4.1.1...v4.2.0) (2015-10-15)
+
+
+### Bug Fixes
+
+* **src:** replace fbjs dependencies with can-use-dom ([43250b3](https://github.com/tomchentw/react-google-maps/commit/43250b3)), closes [#134](https://github.com/tomchentw/react-google-maps/issues/134)
+
+
+
 <a name="4.1.1"></a>
 ## [4.1.1](https://github.com/tomchentw/react-google-maps/compare/v4.1.0...v4.1.1) (2015-10-14)
 

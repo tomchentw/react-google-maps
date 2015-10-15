@@ -1,4 +1,9 @@
 import {default as React, Component} from "react";
+
+import {
+  default as canUseDOM,
+} from "can-use-dom";
+
 import {default as raf} from "raf";
 
 import {default as GoogleMap} from "../../../../../src/GoogleMap";
@@ -6,7 +11,7 @@ import {default as Circle} from "../../../../../src/Circle";
 import {default as InfoWindow} from "../../../../../src/InfoWindow";
 
 const geolocation = (
-  "undefined" !== typeof window && navigator && navigator.geolocation || {
+  canUseDOM && navigator.geolocation || {
     getCurrentPosition: (success, failure) => {
       failure("Your browser doesn't support geolocation.");
     },

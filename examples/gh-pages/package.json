@@ -35,6 +35,7 @@
   "dependencies": {
     "animate.css": "^3.4.0",
     "bootstrap-sass": "^3.3.5",
+    "can-use-dom": "^0.1.0",
     "classnames": "^2.1.5",
     "fbjs": "^0.3.1",
     "node-libs-browser": "^0.5.3",

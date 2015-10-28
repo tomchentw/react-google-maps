@@ -37,4 +37,3 @@ exclude_paths:
 - lib/**
 - public/**
 - __tests__/**
-- test/fixture/file/**

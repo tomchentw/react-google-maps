@@ -86,6 +86,7 @@ export default class SearchBoxExample extends Component {
           controlPosition={google.maps.ControlPosition.TOP_LEFT}
           onPlacesChanged={::this._handle_places_changed}
           ref="searchBox"
+          placeholder="Example placeholder"
           style={SearchBoxExample.inputStyle} />
 
         {this.state.markers.map((marker, index) => (

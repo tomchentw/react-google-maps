@@ -4,6 +4,9 @@ import {
   Component,
   Children,
 } from "react";
+import {
+  render,
+} from "react-dom";
 import {default as invariant} from "invariant";
 
 import {default as defaultPropsCreator} from "../utils/defaultPropsCreator";
@@ -68,8 +71,7 @@ export default class OverlayViewCreator extends Component {
     };
 
     overlayView._renderContent = function () {
-      // FIXME: React@0.14
-      React.render(
+      render(
         Children.only(this.get("children")),
         this._containerElement
       );

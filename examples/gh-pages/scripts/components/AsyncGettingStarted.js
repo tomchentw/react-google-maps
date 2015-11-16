@@ -1,5 +1,6 @@
 import {default as React, Component} from "react";
 import {default as update} from "react-addons-update";
+import {default as FaSpinner} from "react-icons/lib/fa/spinner";
 
 import {default as ScriptjsGoogleMap} from "../../../../src/async/ScriptjsGoogleMap";
 import {default as Marker} from "../../../../src/Marker";
@@ -69,8 +70,23 @@ export default class AsyncGettingStarted extends Component {
       <ScriptjsGoogleMap
         hostname={"maps.googleapis.com"}
         pathname={"/maps/api/js"}
-        query={{v: "3.exp", libraries: "geometry,drawing,places"}}
-        loadingElement={<div>Loading…</div>}
+        query={{v: `3.${ Math.ceil(Math.random() * 22) }`, libraries: "geometry,drawing,places"}}
+        loadingElement={
+          <div
+            {...this.props}
+            style={{
+              height: "100%",
+            }}
+          >
+            <FaSpinner
+              style={{
+                display: "block",
+                margin: "150px auto",
+                animation: "fa-spin 2s infinite linear"
+              }}
+            />
+          </div>
+        }
         // <GoogleMap> props
         containerProps={{
           ...this.props,

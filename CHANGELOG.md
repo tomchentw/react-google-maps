@@ -1,3 +1,14 @@
+<a name="4.2.1"></a>
+## [4.2.1](https://github.com/tomchentw/react-google-maps/compare/v4.2.0...v4.2.1) (2015-11-16)
+
+
+### Bug Fixes
+
+* **OverlayView:** switch to ReactDOM ([51fe680](https://github.com/tomchentw/react-google-maps/commit/51fe680)), closes [#140](https://github.com/tomchentw/react-google-maps/issues/140)
+* **OverlayView:** use ReactDOM for unmountComponentAtNode ([735eba0](https://github.com/tomchentw/react-google-maps/commit/735eba0)), closes [#137](https://github.com/tomchentw/react-google-maps/issues/137)
+
+
+
 <a name="4.2.0"></a>
 # [4.2.0](https://github.com/tomchentw/react-google-maps/compare/v4.1.1...v4.2.0) (2015-10-15)
 

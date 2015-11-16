@@ -1,3 +1,13 @@
+<a name="4.3.0"></a>
+# [4.3.0](https://github.com/tomchentw/react-google-maps/compare/v4.2.1...v4.3.0) (2015-11-16)
+
+
+### Features
+
+* **ScriptjsGoogleMap:** add "scriptjs" support ([b80b731](https://github.com/tomchentw/react-google-maps/commit/b80b731))
+
+
+
 <a name="4.2.1"></a>
 ## [4.2.1](https://github.com/tomchentw/react-google-maps/compare/v4.2.0...v4.2.1) (2015-11-16)
 

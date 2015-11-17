@@ -18,17 +18,13 @@ import {
 
 import {
   default as makeUrl,
+  urlObjDefinition,
+  getUrlObjChangedKeys,
 } from "../utils/makeUrl";
 
 export default class ScriptjsGoogleMap extends Component {
   static propTypes = {
-    // PropTypes for URL generation
-    // https://nodejs.org/api/url.html#url_url_format_urlobj
-    protocol: PropTypes.string,
-    hostname: PropTypes.string.isRequired,
-    port: PropTypes.number,
-    pathname: PropTypes.string.isRequired,
-    query: PropTypes.object.isRequired,
+    ...urlObjDefinition,
     // PropTypes for ScriptjsGoogleMap
     loadingElement: PropTypes.node,
   }
@@ -49,10 +45,11 @@ export default class ScriptjsGoogleMap extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    const changedKeys = Object.keys(ScriptjsGoogleMap.propTypes)
-      .filter(key => this.props[key] !== nextProps[key]);
+    if ("production" !== process.env.NODE_ENV) {
+      const changedKeys = getUrlObjChangedKeys(this.props, nextProps);
 
-    warning(0 === changedKeys.length, `ScriptjsGoogleMap doesn't support mutating props after initial render. Changed props: %s`, `[${ changedKeys.join(", ") }]`);
+      warning(0 === changedKeys.length, `ScriptjsGoogleMap doesn't support mutating url related props after initial render. Changed props: %s`, `[${ changedKeys.join(", ") }]`);
+    }
   }
 
   render () {

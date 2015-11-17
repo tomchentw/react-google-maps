@@ -1,3 +1,13 @@
+<a name="4.3.2"></a>
+## [4.3.2](https://github.com/tomchentw/react-google-maps/compare/v4.3.1...v4.3.2) (2015-11-17)
+
+
+### Bug Fixes
+
+* **async/ScriptjsGoogleMap:** switch to _.isEqual for key comparasion ([0a1df35](https://github.com/tomchentw/react-google-maps/commit/0a1df35)), closes [#143](https://github.com/tomchentw/react-google-maps/issues/143)
+
+
+
 <a name="4.3.1"></a>
 ## [4.3.1](https://github.com/tomchentw/react-google-maps/compare/v4.3.0...v4.3.1) (2015-11-16)
 

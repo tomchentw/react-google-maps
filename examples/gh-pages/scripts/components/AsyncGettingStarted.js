@@ -13,6 +13,8 @@ import {default as Marker} from "../../../../src/Marker";
  */
 export default class AsyncGettingStarted extends Component {
 
+  static version = Math.ceil(Math.random() * 22);
+
   state = {
     markers: [{
       position: {
@@ -70,7 +72,7 @@ export default class AsyncGettingStarted extends Component {
       <ScriptjsGoogleMap
         hostname={"maps.googleapis.com"}
         pathname={"/maps/api/js"}
-        query={{v: `3.${ Math.ceil(Math.random() * 22) }`, libraries: "geometry,drawing,places"}}
+        query={{v: `3.${ AsyncGettingStarted.version }`, libraries: "geometry,drawing,places"}}
         loadingElement={
           <div
             {...this.props}

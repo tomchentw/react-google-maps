@@ -146,7 +146,7 @@ export default class OverlayViewCreator extends Component {
 
   componentDidUpdate (prevProps) {
     this.getOverlayView().setValues(this.props);
-    this.getOverlayView()._redraw(this.props.mapPaneName !== prevProps);
+    this.getOverlayView()._redraw(this.props.mapPaneName !== prevProps.mapPaneName);
   }
 
   componentWillUnmount () {

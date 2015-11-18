@@ -75,11 +75,17 @@ export default class MarkerCreator extends Component {
   }
 
   static _createMarker (markerProps) {
-    const {mapHolderRef} = markerProps;
+    const {mapHolderRef, anchorHolderRef} = markerProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
     const marker = new google.maps.Marker(composeOptions(markerProps, markerControlledPropTypes));
 
-    marker.setMap(mapHolderRef.getMap());
+    if (anchorHolderRef) {
+      if ("MarkerClusterer" === anchorHolderRef.getAnchorType()) {
+        anchorHolderRef.getAnchor().addMarker(marker);
+      }
+    } else {
+      marker.setMap(mapHolderRef.getMap());
+    }
 
     return marker;
   }

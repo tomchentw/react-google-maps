@@ -70,6 +70,17 @@ export const DROPDOWN_ACTIONS = [
       },
     },
   },
+  {
+    key: "basics__marker-clusterer",
+    displayName: 'MarkerClusterer',
+    path: '#basics/marker-clusterer',
+    component: {
+      componentClass: require("../components/basics/MarkerClusterer"),
+      componentRaw: {
+        __raw: require("!raw-loader!../components/basics/MarkerClusterer"),
+      },
+    },
+  },
   false,
   {
     key: "events__simple-click-event",

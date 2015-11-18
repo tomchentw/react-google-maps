@@ -72,6 +72,20 @@ export default class Marker extends Component {
     this.setState({ marker });
   }
 
+  componentWillUnmount () {
+    if (!canUseDOM) {
+      return;
+    }
+
+    const {anchorHolderRef, marker} = this.props;
+
+    if (anchorHolderRef) {
+      if ("MarkerClusterer" === anchorHolderRef.getAnchorType()) {
+        anchorHolderRef.getAnchor().removeMarker(marker);
+      }
+    }
+  }
+
   render () {
     if (this.state.marker) {
       return (

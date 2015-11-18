@@ -49,6 +49,7 @@
     "react-prism": "^3.0.0",
     "react-pure-render": "^1.0.2",
     "react-toastr": "^2.1.0",
+    "superagent": "^1.4.0",
     "toastr": "^2.1.2"
   }
 }

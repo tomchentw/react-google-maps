@@ -1,3 +1,13 @@
+<a name="4.3.3"></a>
+## [4.3.3](https://github.com/tomchentw/react-google-maps/compare/v4.3.2...v4.3.3) (2015-11-18)
+
+
+### Bug Fixes
+
+* **OverlayView:** redraw only when props.mapPaneName changes ([ff4473d](https://github.com/tomchentw/react-google-maps/commit/ff4473d)), closes [#147](https://github.com/tomchentw/react-google-maps/issues/147) [#148](https://github.com/tomchentw/react-google-maps/issues/148)
+
+
+
 <a name="4.3.2"></a>
 ## [4.3.2](https://github.com/tomchentw/react-google-maps/compare/v4.3.1...v4.3.2) (2015-11-17)
 

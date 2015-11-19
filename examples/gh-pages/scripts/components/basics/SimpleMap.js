@@ -1,6 +1,6 @@
 import {default as React, Component} from "react";
 
-import {default as GoogleMap} from "../../../../../src/GoogleMap";
+import {GoogleMap} from "react-google-maps";
 /*
  * Sample From: https://developers.google.com/maps/documentation/javascript/examples/map-simple
  *

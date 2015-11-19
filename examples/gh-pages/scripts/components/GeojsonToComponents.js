@@ -1,11 +1,7 @@
 import {default as React, Component} from "react";
 import {default as update} from "react-addons-update";
 
-import {default as GoogleMap} from "../../../../src/GoogleMap";
-import {default as Marker} from "../../../../src/Marker";
-import {default as Polyline} from "../../../../src/Polyline";
-import {default as Polygon} from "../../../../src/Polygon";
-import {default as InfoWindow} from "../../../../src/InfoWindow";
+import {GoogleMap, Marker, Polyline, Polygon, InfoWindow} from "react-google-maps";
 
 function geometryToComponentWithLatLng (geometry) {
   var typeFromThis = Array.isArray(geometry),

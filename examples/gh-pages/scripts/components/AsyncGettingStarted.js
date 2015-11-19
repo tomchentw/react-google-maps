@@ -2,8 +2,8 @@ import {default as React, Component} from "react";
 import {default as update} from "react-addons-update";
 import {default as FaSpinner} from "react-icons/lib/fa/spinner";
 
-import {default as ScriptjsGoogleMap} from "../../../../src/async/ScriptjsGoogleMap";
-import {default as Marker} from "../../../../src/Marker";
+import {default as ScriptjsGoogleMap} from "react-google-maps/lib/async/ScriptjsGoogleMap";
+import {Marker} from "react-google-maps";
 
 /*
  * This is the modify version of:

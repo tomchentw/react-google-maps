@@ -1,9 +1,8 @@
-import { default as React, Component } from "react";
-import { default as fetch } from "isomorphic-fetch";
+import {default as React, Component} from "react";
+import {default as fetch} from "isomorphic-fetch";
 
-import { default as GoogleMap } from "../../../../../src/GoogleMap";
-import { default as Marker } from "../../../../../src/Marker";
-import { default as MarkerClusterer } from "../../../../../src/addons/MarkerClusterer";
+import {GoogleMap, Marker} from "react-google-maps";
+import {default as MarkerClusterer} from "react-google-maps/lib/addons/MarkerClusterer";
 
 export default class MarkerClustererExample extends Component {
   state = {

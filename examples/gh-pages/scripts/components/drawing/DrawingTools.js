@@ -1,7 +1,6 @@
 import {default as React, Component} from "react";
 
-import {default as GoogleMap} from "../../../../../src/GoogleMap";
-import {default as DrawingManager} from "../../../../../src/DrawingManager";
+import {GoogleMap, DrawingManager} from "react-google-maps";
 
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/drawing-tools

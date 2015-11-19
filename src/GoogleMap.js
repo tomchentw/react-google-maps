@@ -97,9 +97,11 @@ export default class GoogleMap extends Component {
       //
       // In this state, the DOM of google.maps.Map is already initialized in
       // my innerHTML. Adding extra React components will not clean it
-      // in current (0.13.3) version. It will use prepend to add DOM of
+      // in current version*. It will use prepend to add DOM of
       // GoogleMapHolder and become a sibling of the DOM of google.maps.Map
       // Not sure this is subject to change
+      //
+      // *current version: 0.13.3, 0.14.2
       //
       <GoogleMapHolder map={this.state.map} {...mapProps}>
         {children}

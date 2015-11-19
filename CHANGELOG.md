@@ -1,3 +1,13 @@
+<a name="4.4.0"></a>
+# [4.4.0](https://github.com/tomchentw/react-google-maps/compare/v4.3.3...v4.4.0) (2015-11-19)
+
+
+### Features
+
+* **MarkerClusterer:** Support for MarkerClusterPlus API ([d56551c](https://github.com/tomchentw/react-google-maps/commit/d56551c)), closes [#146](https://github.com/tomchentw/react-google-maps/issues/146)
+
+
+
 <a name="4.3.3"></a>
 ## [4.3.3](https://github.com/tomchentw/react-google-maps/compare/v4.3.2...v4.3.3) (2015-11-18)
 

@@ -105,7 +105,7 @@ export default class NavHeaderBar extends Component {
         <li>
           {
             isAsync ? (
-              <a href="../">Back to Sync</a>
+              <a href="./">Back to Sync</a>
             ) : (
               <a href="async/">Async Example</a>
             )

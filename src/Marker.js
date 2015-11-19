@@ -77,7 +77,9 @@ export default class Marker extends Component {
       return;
     }
 
-    const {anchorHolderRef, marker} = this.props;
+    const {anchorHolderRef} = this.props;
+    const {marker} = this.state;
+
 
     if (anchorHolderRef) {
       if ("MarkerClusterer" === anchorHolderRef.getAnchorType()) {

@@ -44,30 +44,30 @@ export default class GeojsonToComponents extends Component {
       0: {
         ref: "map",
         style: {height: "100%"},
-        onClick: ::this._handle_map_click,
-        onZoomChanged: ::this._handle_map_zoom_changed,
+        onClick: ::this.handleMapClick,
+        onZoomChanged: ::this.handleMapZoomChanged,
       },
       1: {
         ref: "centerMarker",
         visible: true,
         draggable: true,
-        onDragend: ::this._handle_marker_dragend,
-        onClick: ::this._handle_marker_click,
+        onDragend: ::this.handleMarkerDragend,
+        onClick: ::this.handleMarkerClick,
         child: {
           content: "Bermuda Triangle",
           owner: "centerMarker",
         },
       },
       3: {
-        onRightclick: ::this._handle_polygon_rightclick,
+        onRightclick: ::this.handlePolygonRightclick,
       },
     },
   }
 
-  _handle_map_click () {
+  handleMapClick () {
   }
 
-  _handle_map_zoom_changed () {
+  handleMapZoomChanged () {
     this.setState(update(this.state, {
       geoStateBy: {
         0: {
@@ -84,7 +84,7 @@ export default class GeojsonToComponents extends Component {
     }));
   }
 
-  _handle_marker_click () {
+  handleMarkerClick () {
     this.setState(update(this.state, {
       geoStateBy: {
         0: {
@@ -96,7 +96,7 @@ export default class GeojsonToComponents extends Component {
     }));
   }
 
-  _handle_polygon_rightclick () {
+  handlePolygonRightclick () {
     this.setState(update(this.state, {
       geoStateBy: {
         1: {
@@ -108,7 +108,7 @@ export default class GeojsonToComponents extends Component {
     }));
   }
 
-  _handle_marker_dragend ({latLng}) {
+  handleMarkerDragend ({latLng}) {
     const marker = this.state.geoJson.features[1],
           originalCoordinates = marker.properties.originalCoordinates || marker.geometry.coordinates,
           newCoordinates = [latLng.lng(), latLng.lat()];

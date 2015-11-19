@@ -14,7 +14,7 @@ export default class AccessingArguments extends Component {
     center: new google.maps.LatLng(-25.363882, 131.044922),
   }
 
-  _handle_map_click (event) {
+  handleMapClick (event) {
     const {markers} = this.state;
     markers.push({
       position: event.latLng
@@ -38,7 +38,7 @@ export default class AccessingArguments extends Component {
         ref="map"
         defaultZoom={4}
         center={center}
-        onClick={::this._handle_map_click}>
+        onClick={::this.handleMapClick}>
         {markers.map((marker, index) =>
           <Marker position={marker.position} key={index} />
         )}

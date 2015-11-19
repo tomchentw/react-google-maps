@@ -35,14 +35,14 @@ export default class SearchBoxExample extends Component {
     markers: []
   }
 
-  _handle_bounds_changed () {
+  handleBoundsChanged () {
     this.setState({
       bounds: this.refs.map.getBounds(),
       center: this.refs.map.getCenter()
     });
   }
 
-  _handle_places_changed () {
+  handlePlacesChanged () {
     const places = this.refs.searchBox.getPlaces();
     const markers = [];
 
@@ -76,13 +76,13 @@ export default class SearchBoxExample extends Component {
           }
         }}
         defaultZoom={15}
-        onBoundsChanged={::this._handle_bounds_changed}
+        onBoundsChanged={::this.handleBoundsChanged}
         ref="map">
 
         <SearchBox
           bounds={this.state.bounds}
           controlPosition={google.maps.ControlPosition.TOP_LEFT}
-          onPlacesChanged={::this._handle_places_changed}
+          onPlacesChanged={::this.handlePlacesChanged}
           ref="searchBox"
           style={SearchBoxExample.inputStyle} />
 

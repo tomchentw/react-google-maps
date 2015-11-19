@@ -1,8 +1,6 @@
 import {default as React, Component} from "react";
 
-import {default as GoogleMap} from "../../../../../src/GoogleMap";
-import {default as Marker} from "../../../../../src/Marker";
-import {default as InfoWindow} from "../../../../../src/InfoWindow";
+import {GoogleMap, Marker, InfoWindow} from "react-google-maps";
 
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-closure

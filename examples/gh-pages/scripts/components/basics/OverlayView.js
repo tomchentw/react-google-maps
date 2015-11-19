@@ -1,7 +1,6 @@
 import {default as React, Component} from "react";
 
-import {default as GoogleMap} from "../../../../../src/GoogleMap";
-import {default as OverlayView} from "../../../../../src/OverlayView";
+import {GoogleMap, OverlayView} from "react-google-maps";
 
 const STYLES = {
   mapContainer: {

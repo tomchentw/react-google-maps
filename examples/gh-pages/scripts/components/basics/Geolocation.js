@@ -6,9 +6,7 @@ import {
 
 import {default as raf} from "raf";
 
-import {default as GoogleMap} from "../../../../../src/GoogleMap";
-import {default as Circle} from "../../../../../src/Circle";
-import {default as InfoWindow} from "../../../../../src/InfoWindow";
+import {GoogleMap, Circle, InfoWindow} from "react-google-maps";
 
 const geolocation = (
   canUseDOM && navigator.geolocation || {

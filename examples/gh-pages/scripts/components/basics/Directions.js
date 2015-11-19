@@ -1,7 +1,6 @@
 import {default as React, Component} from "react";
 
-import {default as GoogleMap} from "../../../../../src/GoogleMap";
-import {default as DirectionsRenderer} from "../../../../../src/DirectionsRenderer";
+import {GoogleMap, DirectionsRenderer} from "react-google-maps";
 
 /*
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference

@@ -38,30 +38,30 @@ export default class ClosureListeners extends Component {
     });
   }
 
-  _handle_marker_click (marker) {
+  handleMarkerClick (marker) {
     marker.showInfo = true;
     this.setState(this.state);
   }
 
-  _handle_closeclick (marker) {
+  handleCloseclick (marker) {
     marker.showInfo = false;
     this.setState(this.state);
   }
 
-  _render_InfoWindow (ref, marker) {
+  renderInfoWindow (ref, marker) {
     if (Math.random() > 0.5) {
       // Normal version: Pass string as content
       return (
         <InfoWindow key={`${ref}_info_window`}
           content={marker.content}
-          onCloseclick={this._handle_closeclick.bind(this, marker)}
+          onCloseclick={this.handleCloseclick.bind(this, marker)}
         />
       )
     } else {
       // "react-google-maps" extended version: Pass ReactElement as content
       return (
         <InfoWindow key={`${ref}_info_window`}
-          onCloseclick={this._handle_closeclick.bind(this, marker)}
+          onCloseclick={this.handleCloseclick.bind(this, marker)}
         >
           <div>
             <strong>{marker.content}</strong>
@@ -92,8 +92,8 @@ export default class ClosureListeners extends Component {
             <Marker key={ref} ref={ref}
               position={marker.position}
               title={(index+1).toString()}
-              onClick={this._handle_marker_click.bind(this, marker)}>
-              {marker.showInfo ? this._render_InfoWindow(ref, marker) : null}
+              onClick={this.handleMarkerClick.bind(this, marker)}>
+              {marker.showInfo ? this.renderInfoWindow(ref, marker) : null}
             </Marker>
           );
         })}

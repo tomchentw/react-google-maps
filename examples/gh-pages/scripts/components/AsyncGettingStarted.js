@@ -30,7 +30,7 @@ export default class AsyncGettingStarted extends Component {
    * This is called when you click on the map.
    * Go and try click now.
    */
-  _handle_map_click (event) {
+  handleMapClick (event) {
     var {markers} = this.state;
     markers = update(markers, {
       $push: [
@@ -51,7 +51,7 @@ export default class AsyncGettingStarted extends Component {
     }
   }
 
-  _handle_marker_rightclick (index, event) {
+  handleMarkerRightclick (index, event) {
     /*
      * All you modify is data, and the view is driven by data.
      * This is so called data-driven-development. (And yes, it's now in
@@ -99,12 +99,12 @@ export default class AsyncGettingStarted extends Component {
         ref="map"
         defaultZoom={3}
         defaultCenter={{lat: -25.363882, lng: 131.044922}}
-        onClick={::this._handle_map_click}>
+        onClick={::this.handleMapClick}>
         {this.state.markers.map((marker, index) => {
           return (
             <Marker
               {...marker}
-              onRightclick={this._handle_marker_rightclick.bind(this, index)} />
+              onRightclick={this.handleMarkerRightclick.bind(this, index)} />
           );
         })}
       </ScriptjsGoogleMap>

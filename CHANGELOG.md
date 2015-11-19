@@ -1,3 +1,13 @@
+<a name="4.4.1"></a>
+## [4.4.1](https://github.com/tomchentw/react-google-maps/compare/v4.4.0...v4.4.1) (2015-11-19)
+
+
+### Bug Fixes
+
+* **Marker:** remove from MarkerClusterer ([f4e0696](https://github.com/tomchentw/react-google-maps/commit/f4e0696)), closes [#154](https://github.com/tomchentw/react-google-maps/issues/154) [#153](https://github.com/tomchentw/react-google-maps/issues/153)
+
+
+
 <a name="4.4.0"></a>
 # [4.4.0](https://github.com/tomchentw/react-google-maps/compare/v4.3.3...v4.4.0) (2015-11-19)
 

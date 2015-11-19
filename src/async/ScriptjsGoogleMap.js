@@ -1,12 +1,7 @@
 import {
   default as React,
   Component,
-  PropTypes,
 } from "react";
-
-import {
-  default as canUseDOM,
-} from "can-use-dom";
 
 import {
   default as warning,
@@ -17,49 +12,35 @@ import {
 } from "../index";
 
 import {
-  default as makeUrl,
-  urlObjDefinition,
-  getUrlObjChangedKeys,
-} from "../utils/makeUrl";
+  default as ScriptjsLoader,
+} from "./ScriptjsLoader";
 
 export default class ScriptjsGoogleMap extends Component {
-  static propTypes = {
-    ...urlObjDefinition,
-    // PropTypes for ScriptjsGoogleMap
-    loadingElement: PropTypes.node,
-  }
-
-  state = {
-    isLoaded: false,
-  }
 
   componentWillMount () {
-    if (!canUseDOM) {
-      return;
-    }
-    const scriptjs = require("scriptjs");
-    const {protocol, hostname, port, pathname, query, ...restProps} = this.props;
-    const urlObj = {protocol, hostname, port, pathname, query};
-    const url =  makeUrl(urlObj);
-    scriptjs(url, () => this.setState({ isLoaded: true }));
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if ("production" !== process.env.NODE_ENV) {
-      const changedKeys = getUrlObjChangedKeys(this.props, nextProps);
-
-      warning(0 === changedKeys.length, `ScriptjsGoogleMap doesn't support mutating url related props after initial render. Changed props: %s`, `[${ changedKeys.join(", ") }]`);
-    }
+    warning(false,
+`"async/ScriptjsGoogleMap" is deprecated now and will be removed in next major release (5.0.0). Use "async/ScriptjsLoader" instead.
+See https://github.com/tomchentw/react-google-maps/pull/150 for more details.`
+    );
   }
 
   render () {
-    if (this.state.isLoaded) {
-      const {protocol, hostname, port, pathname, query, ...restProps} = this.props;
-      return (
-        <GoogleMap {...restProps} />
-      );
-    } else {
-      return this.props.loadingElement;
-    }
+    const {protocol, hostname, port, pathname, query, loadingElement, children, ...restProps} = this.props;
+
+    return (
+      <ScriptjsLoader
+        protocol={protocol}
+        hostname={hostname}
+        port={port}
+        pathname={pathname}
+        query={query}
+        loadingElement={loadingElement}
+        googleMapElement={
+          <GoogleMap {...restProps}>
+            {children}
+          </GoogleMap>
+        }
+      />
+    )
   }
 }

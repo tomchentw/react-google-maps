@@ -19,6 +19,7 @@ export default class GoogleMap extends Component {
   static propTypes = {
     containerTagName: PropTypes.string.isRequired,
     containerProps: PropTypes.object.isRequired,
+    onLoad: PropTypes.func,
     // Uncontrolled default[props] - used only in componentDidMount
     ...mapDefaultPropTypes,
     // Controlled [props] - used in componentDidMount/componentDidUpdate
@@ -80,13 +81,14 @@ export default class GoogleMap extends Component {
 
   componentDidMount () {
     const domEl = findDOMNode(this);
-    const {containerTagName, containerProps, children, ...mapProps} = this.props;
+    const {containerTagName, containerProps, children, onLoad, ...mapProps} = this.props;
     // TODO: support asynchronous load of google.maps API at this level.
     //
     // Create google.maps.Map instance so that dom is initialized before
     // React's children creators.
     //
     const map = GoogleMapHolder._createMap(domEl, mapProps);
+    onLoad ? onLoad(map) : null
     this.setState({ map });
   }
 

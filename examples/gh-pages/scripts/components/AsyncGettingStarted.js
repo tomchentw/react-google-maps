@@ -100,6 +100,9 @@ export default class AsyncGettingStarted extends Component {
             ref={googleMap => {
               // Wait until GoogleMap is fully loaded. Related to #133
               setTimeout(() => {
+                if (!googleMap) {
+                  return;
+                }
                 console.log(googleMap)
                 console.log("Zoom: " + googleMap.getZoom());
                 console.log("Center: " + googleMap.getCenter());

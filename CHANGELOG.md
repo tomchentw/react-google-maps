@@ -1,3 +1,53 @@
+<a name="4.5.0"></a>
+# [4.5.0](https://github.com/tomchentw/react-google-maps/compare/v4.4.1...v4.5.0) (2015-11-21)
+
+
+### Features
+
+* **async/ScriptjsLoader:** replacement of async/ScriptjsGoogleMap ([ccfadd4](https://github.com/tomchentw/react-google-maps/commit/ccfadd4)), closes [#145](https://github.com/tomchentw/react-google-maps/issues/145)
+
+
+### BREAKING CHANGES
+
+* async/ScriptjsLoader: migrate from async/ScriptjsGoogleMap to async/ScriptjsLoader and changed its behavior from implicit inheritance to simple delegation
+
+To migrate the code follow the example below (extracted from examples/gh-pages migration):
+
+Before:
+
+```js
+<ScriptjsLoader
+  hostname={"maps.googleapis.com"}
+  pathname={"/maps/api/js"}
+  query={{v: `3.exp`, libraries: "geometry,drawing,places"}}
+  //
+  // <GoogleMap> props
+  defaultZoom={3}
+  defaultCenter={{lat: -25.363882, lng: 131.044922}}
+  onClick={::this._handle_map_click}
+/>
+```
+
+After:
+
+```js
+<ScriptjsLoader
+  hostname={"maps.googleapis.com"}
+  pathname={"/maps/api/js"}
+  query={{v: `3.exp`, libraries: "geometry,drawing,places"}}
+  //
+  googleMapElement={
+    <GoogleMap
+      defaultZoom={3}
+      defaultCenter={{lat: -25.363882, lng: 131.044922}}
+      onClick={::this._handle_map_click}
+    />
+  }
+/>
+```
+
+
+
 <a name="4.4.1"></a>
 ## [4.4.1](https://github.com/tomchentw/react-google-maps/compare/v4.4.0...v4.4.1) (2015-11-19)
 

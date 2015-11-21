@@ -1,3 +1,13 @@
+<a name="4.5.1"></a>
+## [4.5.1](https://github.com/tomchentw/react-google-maps/compare/v4.5.0...v4.5.1) (2015-11-21)
+
+
+### Features
+
+* **ScriptjsLoader:** check with propTypesElementOfType(GoogleMap) ([e8bb97b](https://github.com/tomchentw/react-google-maps/commit/e8bb97b))
+
+
+
 <a name="4.5.0"></a>
 # [4.5.0](https://github.com/tomchentw/react-google-maps/compare/v4.4.1...v4.5.0) (2015-11-21)
 

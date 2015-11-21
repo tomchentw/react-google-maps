@@ -13,7 +13,7 @@
     "clean": "rimraf lib",
     "prebuild": "npm run lint && npm run clean",
     "build": "babel src --out-dir lib",
-    "lint": "eslint src",
+    "lint": "eslint .",
     "pretest:cov": "npm run lint",
     "pretest": "npm run lint",
     "test:cov": "babel-node ./node_modules/.bin/isparta cover --report lcov _mocha -- $npm_package_config_mocha",

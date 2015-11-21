@@ -36,4 +36,3 @@ exclude_paths:
 - examples/**
 - lib/**
 - public/**
-- __tests__/**

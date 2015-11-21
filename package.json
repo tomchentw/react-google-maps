@@ -12,6 +12,7 @@
   "scripts": {
     "clean": "rimraf lib",
     "prebuild": "npm run lint && npm run clean",
+    "build:watch": "npm run build -- --watch",
     "build": "babel src --out-dir lib",
     "lint": "eslint .",
     "pretest:cov": "npm run lint",
@@ -86,6 +87,7 @@
     "invariant": "^2.1.1",
     "lodash.isequal": "^3.0.4",
     "marker-clusterer-plus": "^2.1.2",
+    "react-prop-types-element-of-type": "^1.0.2",
     "scriptjs": "^2.5.8",
     "warning": "^2.1.0"
   },

@@ -5,6 +5,10 @@ import {
 } from "react";
 
 import {
+  default as propTypesElementOfType,
+} from "react-prop-types-element-of-type";
+
+import {
   default as canUseDOM,
 } from "can-use-dom";
 
@@ -27,7 +31,7 @@ export default class ScriptjsLoader extends Component {
     ...urlObjDefinition,
     // PropTypes for ScriptjsLoader
     loadingElement: PropTypes.node,
-    googleMapElement: PropTypes.element.isRequired,
+    googleMapElement: propTypesElementOfType(GoogleMap).isRequired,
   }
 
   state = {

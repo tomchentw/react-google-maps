@@ -21,7 +21,7 @@
     "test": "mocha $npm_package_config_mocha"
   },
   "config": {
-    "mocha": "--compilers js:babel/register ./src/**/__tests__/*.spec.js"
+    "mocha": "--compilers js:babel/register ./src/**/__tests__/*.spec.js --require ./src/__tests__/__setup__.js"
   },
   "repository": {
     "type": "git",
@@ -72,10 +72,12 @@
     "expect": "^1.12.1",
     "isparta": "^3.1.0",
     "istanbul": "^0.3.22",
+    "jsdom": "^7.0.2",
     "mocha": "^2.3.3",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "rimraf": "^2.4.3",
+    "thenify": "^3.1.1",
     "tomchentw-npm-dev": "^3.1.0"
   },
   "dependencies": {

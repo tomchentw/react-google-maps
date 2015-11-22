@@ -1,5 +1,6 @@
-export {default as GoogleMap} from "./GoogleMap";
+export {default as GoogleMapLoader} from "./GoogleMapLoader";
 
+export {default as GoogleMap} from "./GoogleMap";
 export {default as Circle} from "./Circle";
 export {default as DirectionsRenderer} from "./DirectionsRenderer";
 export {default as DrawingManager} from "./DrawingManager";

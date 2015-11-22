@@ -5,8 +5,8 @@ import {
 } from "react";
 
 import {
-  findDOMNode,
-} from "react-dom";
+  default as warning,
+} from "warning";
 
 import {
   default as GoogleMapHolder,
@@ -15,40 +15,47 @@ import {
   mapEventPropTypes,
 } from "./creators/GoogleMapHolder";
 
+import {
+  default as GoogleMapLoader,
+} from "./GoogleMapLoader";
+
+const USE_NEW_BEHAVIOR_TAG_NAME = `__new_behavior__`;
+
 export default class GoogleMap extends Component {
   static propTypes = {
-    containerTagName: PropTypes.string.isRequired,
-    containerProps: PropTypes.object.isRequired,
+    containerTagName: PropTypes.string,
+    containerProps: PropTypes.object,
+    map: PropTypes.object,
     // Uncontrolled default[props] - used only in componentDidMount
     ...mapDefaultPropTypes,
     // Controlled [props] - used in componentDidMount/componentDidUpdate
     ...mapControlledPropTypes,
     // Event [onEventName]
     ...mapEventPropTypes,
-  }
+  };
 
   // Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getBounds () { return this.state.map.getBounds(); }
+  getBounds () { return (this.props.map || this.refs.delegate).getBounds(); }
 
-  getCenter () { return this.state.map.getCenter(); }
+  getCenter () { return (this.props.map || this.refs.delegate).getCenter(); }
 
-  getDiv () { return this.state.map.getDiv(); }
+  getDiv () { return (this.props.map || this.refs.delegate).getDiv(); }
 
-  getHeading () { return this.state.map.getHeading(); }
+  getHeading () { return (this.props.map || this.refs.delegate).getHeading(); }
 
-  getMapTypeId () { return this.state.map.getMapTypeId(); }
+  getMapTypeId () { return (this.props.map || this.refs.delegate).getMapTypeId(); }
 
-  getProjection () { return this.state.map.getProjection(); }
+  getProjection () { return (this.props.map || this.refs.delegate).getProjection(); }
 
-  getStreetView () { return this.state.map.getStreetView(); }
+  getStreetView () { return (this.props.map || this.refs.delegate).getStreetView(); }
 
-  getTilt () { return this.state.map.getTilt(); }
+  getTilt () { return (this.props.map || this.refs.delegate).getTilt(); }
 
-  getZoom () { return this.state.map.getZoom(); }
+  getZoom () { return (this.props.map || this.refs.delegate).getZoom(); }
   // END - Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
@@ -59,55 +66,50 @@ export default class GoogleMap extends Component {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return !it.match(/^get/) && !it.match(/^set/) && !it.match(/Map$/); })
-  fitBounds (bounds) { return this.state.map.fitBounds(bounds); }
+  fitBounds (bounds) { return (this.props.map || this.refs.delegate).fitBounds(bounds); }
 
-  panBy (x, y) { return this.state.map.panBy(x, y); }
+  panBy (x, y) { return (this.props.map || this.refs.delegate).panBy(x, y); }
 
-  panTo (latLng) { return this.state.map.panTo(latLng); }
+  panTo (latLng) { return (this.props.map || this.refs.delegate).panTo(latLng); }
 
-  panToBounds (latLngBounds) { return this.state.map.panToBounds(latLngBounds); }
+  panToBounds (latLngBounds) { return (this.props.map || this.refs.delegate).panToBounds(latLngBounds); }
   // END - Public APIs - Use this carefully
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
 
-  static defaultProps = {
-    containerTagName: "div",
-    containerProps: {},
-  }
+  componentWillMount () {
+    const {containerTagName} = this.props;
+    const isUsingNewBehavior = USE_NEW_BEHAVIOR_TAG_NAME === containerTagName;
 
-  state = {
-  }
-
-  componentDidMount () {
-    const domEl = findDOMNode(this);
-    const {containerTagName, containerProps, children, ...mapProps} = this.props;
-    // TODO: support asynchronous load of google.maps API at this level.
-    //
-    // Create google.maps.Map instance so that dom is initialized before
-    // React's children creators.
-    //
-    const map = GoogleMapHolder._createMap(domEl, mapProps);
-    this.setState({ map });
+    warning(isUsingNewBehavior,
+`"GoogleMap" with containerTagName is deprecated now and will be removed in next major release (5.0.0). 
+Use "GoogleMapLoader" instead. See https://github.com/tomchentw/react-google-maps/pull/157 for more details.`
+    );
   }
 
   render () {
-    const {containerTagName, containerProps, children, ...mapProps} = this.props;
-    const child = this.state.map ? (
-      // Notice: implementation details
-      //
-      // In this state, the DOM of google.maps.Map is already initialized in
-      // my innerHTML. Adding extra React components will not clean it
-      // in current version*. It will use prepend to add DOM of
-      // GoogleMapHolder and become a sibling of the DOM of google.maps.Map
-      // Not sure this is subject to change
-      //
-      // *current version: 0.13.3, 0.14.2
-      //
-      <GoogleMapHolder map={this.state.map} {...mapProps}>
-        {children}
-      </GoogleMapHolder>
-    ) : undefined;
+    const {containerTagName, containerProps = {}, children, ...mapProps} = this.props;
+    const isUsingNewBehavior = USE_NEW_BEHAVIOR_TAG_NAME === containerTagName;
 
-    return React.createElement(containerTagName, containerProps, child);
+    if (isUsingNewBehavior) {
+      return (
+        <GoogleMapHolder {...mapProps}>
+          {children}
+        </GoogleMapHolder>
+      );
+    } else {//------------ Deprecated ------------
+      const realContainerTagName = null == containerTagName ? `div` : containerTagName;
+
+      return (
+        <GoogleMapLoader
+          containerElement={React.createElement(realContainerTagName, containerProps)}
+          googleMapElement={
+            <GoogleMap ref="delegate" containerTagName={USE_NEW_BEHAVIOR_TAG_NAME} {...mapProps}>
+              {children}
+            </GoogleMap>
+          }
+        />
+      );
+    }
   }
 }

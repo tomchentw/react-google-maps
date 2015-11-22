@@ -1,3 +1,147 @@
+<a name="4.6.0"></a>
+# [4.6.0](https://github.com/tomchentw/react-google-maps/compare/v4.5.1...v4.6.0) (2015-11-22)
+
+
+### Features
+
+* **GoogleMapLoader:** introduce loader to manage React elements ([532816a](https://github.com/tomchentw/react-google-maps/commit/532816a)), closes [#141](https://github.com/tomchentw/react-google-maps/issues/141) [#133](https://github.com/tomchentw/react-google-maps/issues/133)
+* **ScriptjsLoader:** new behavior will render GoogleMapLoader instead ([0f100d8](https://github.com/tomchentw/react-google-maps/commit/0f100d8))
+
+
+### BREAKING CHANGES
+
+* ScriptjsLoader: ScriptjsLoader will delegate to GoogleMapLoader when the script is loaded
+
+Before:
+
+```js
+<ScriptjsLoader
+  hostname={"maps.googleapis.com"}
+  pathname={"/maps/api/js"}
+  query={{v: `3.${ AsyncGettingStarted.version }`, libraries: "geometry,drawing,places"}}
+  loadingElement={
+    <div {...this.props} style={{ height: "100%" }}>
+      <FaSpinner />
+    </div>
+  }
+  googleMapElement={
+    <GoogleMap
+      containerProps={{
+        ...this.props,
+        style: {
+          height: "100%",
+        },
+      }}
+      ref={googleMap => {
+        // Wait until GoogleMap is fully loaded. Related to #133
+        setTimeout(() => {
+          googleMap && console.log(`Zoom: ${ googleMap.getZoom() }`);
+        }, 50);
+      }}
+      defaultZoom={3}
+      defaultCenter={{lat: -25.363882, lng: 131.044922}}
+      onClick={::this.handleMapClick}
+    >
+      <Marker
+        {...this.state.marker}
+        onRightclick={this.handleMarkerRightclick}
+      />
+    </GoogleMap>
+  }
+/>
+```
+
+After:
+
+```js
+<ScriptjsLoader
+  hostname={"maps.googleapis.com"}
+  pathname={"/maps/api/js"}
+  query={{v: `3.${ AsyncGettingStarted.version }`, libraries: "geometry,drawing,places"}}
+  loadingElement={
+    <div {...this.props} style={{ height: "100%" }}>
+      <FaSpinner />
+    </div>
+  }
+  containerElement={
+    <div {...this.props} style={{ height: "100%" }} />
+  }
+  googleMapElement={
+    <GoogleMap
+      ref={googleMap => {
+        googleMap && console.log(`Zoom: ${ googleMap.getZoom() }`);
+      }}
+      defaultZoom={3}
+      defaultCenter={{lat: -25.363882, lng: 131.044922}}
+      onClick={::this.handleMapClick}
+    >
+      <Marker
+        {...this.state.marker}
+        onRightclick={this.handleMarkerRightclick}
+      />
+    </GoogleMap>
+  }
+/>
+```
+* GoogleMapLoader: GoogleMap with props.containerProps is now deprecated. Use GoogleMapLoader with props.googleMapElement instead
+
+We also suggest switching to callback based ref so that you'll get the component instance when it is mounted.
+
+Before:
+
+```js
+<GoogleMap containerProps={{
+    ...this.props,
+    style: {
+      height: "100%",
+    },
+  }}
+  ref="map"
+  defaultZoom={3}
+  defaultCenter={{lat: -25.363882, lng: 131.044922}}
+  onClick={::this.handleMapClick}>
+  {this.state.markers.map((marker, index) => {
+    return (
+      <Marker
+        {...marker}
+        onRightclick={this.handleMarkerRightclick.bind(this, index)} />
+    );
+  })}
+</GoogleMap>
+```
+
+After:
+
+```js
+<GoogleMapLoader
+  containerElement={
+    <div
+      {...this.props}
+      style={{
+        height: "100%",
+      }}
+    />
+  }
+  googleMapElement={
+    <GoogleMap
+      ref={(map) => console.log(map)}
+      defaultZoom={3}
+      defaultCenter={{lat: -25.363882, lng: 131.044922}}
+      onClick={::this.handleMapClick}>
+      {this.state.markers.map((marker, index) => {
+        return (
+          <Marker
+            {...marker}
+            onRightclick={this.handleMarkerRightclick.bind(this, index)} />
+        );
+      })}
+    </GoogleMap>
+  }
+/>
+```
+
+
+
 <a name="4.5.1"></a>
 ## [4.5.1](https://github.com/tomchentw/react-google-maps/compare/v4.5.0...v4.5.1) (2015-11-21)
 

@@ -66,8 +66,7 @@ export default class AsyncGettingStarted extends Component {
     this.setState({ markers });
   }
 
-  render () {
-    // <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places" />
+  renderDeprecatedBehavior () {// Remove when reach 5.0.0
     return (
       <ScriptjsLoader
         hostname={"maps.googleapis.com"}
@@ -123,5 +122,58 @@ export default class AsyncGettingStarted extends Component {
         }
       />
     );
+  }
+
+  renderNewBehavior () {
+    return (
+      <ScriptjsLoader
+        hostname={"maps.googleapis.com"}
+        pathname={"/maps/api/js"}
+        query={{v: `3.${ AsyncGettingStarted.version }`, libraries: "geometry,drawing,places"}}
+        loadingElement={
+          <div {...this.props} style={{ height: "100%" }}>
+            <FaSpinner
+              style={{
+                display: "block",
+                margin: "150px auto",
+                animation: "fa-spin 2s infinite linear"
+              }}
+            />
+          </div>
+        }
+        containerElement={
+          <div {...this.props} style={{ height: "100%" }} />
+        }
+        googleMapElement={
+          <GoogleMap
+            ref={googleMap => {
+              if (!googleMap) {
+                return;
+              }
+              console.log(googleMap)
+              console.log(`Zoom: ${ googleMap.getZoom() }`);
+              console.log(`Center: ${ googleMap.getCenter() }`);
+            }}
+            defaultZoom={3}
+            defaultCenter={{lat: -25.363882, lng: 131.044922}}
+            onClick={::this.handleMapClick}
+          >
+            {this.state.markers.map((marker, index) => {
+              return (
+                <Marker
+                  {...marker}
+                  onRightclick={this.handleMarkerRightclick.bind(this, index)} />
+              );
+            })}
+          </GoogleMap>
+        }
+      />
+    );
+  }
+
+  render () {
+    // <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places" />
+    // return this.renderDeprecatedBehavior(); // Uncomment for legacy support
+    return this.renderNewBehavior();
   }
 }

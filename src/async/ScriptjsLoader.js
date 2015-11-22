@@ -17,6 +17,7 @@ import {
 } from "warning";
 
 import {
+  GoogleMapLoader,
   GoogleMap,
 } from "../index";
 
@@ -31,14 +32,32 @@ export default class ScriptjsLoader extends Component {
     ...urlObjDefinition,
     // PropTypes for ScriptjsLoader
     loadingElement: PropTypes.node,
+    // ...GoogleMapLoader.propTypes,// Uncomment for 5.0.0
     googleMapElement: propTypesElementOfType(GoogleMap).isRequired,
-  }
+  };
+
+  static defaultProps = {
+  };
 
   state = {
     isLoaded: false,
   }
 
+  shouldUseNewBehavior () {
+    const {containerTagName, containerProps} = this.props.googleMapElement.props;
+    return (
+      null != this.props.containerElement &&
+      undefined === containerTagName &&
+      undefined === containerProps
+    );
+  }
+
   componentWillMount () {
+    warning(this.shouldUseNewBehavior(),
+`"async/ScriptjsLoader" is now rendering "GoogleMapLoader". Migrate to use "GoogleMapLoader" instead. 
+The old behavior will be removed in next major release (5.0.0). 
+See https://github.com/tomchentw/react-google-maps/pull/157 for more details.`
+    );
     if (!canUseDOM) {
       return;
     }
@@ -65,7 +84,15 @@ export default class ScriptjsLoader extends Component {
 
   render () {
     if (this.state.isLoaded) {
-      return this.props.googleMapElement;
+      const {protocol, hostname, port, pathname, query, loadingElement, ...restProps} = this.props;
+
+      if (this.shouldUseNewBehavior()) {
+        return (
+          <GoogleMapLoader {...restProps} />
+        );
+      } else {//------------ Deprecated ------------
+        return this.props.googleMapElement;
+      }
     } else {
       return this.props.loadingElement;
     }

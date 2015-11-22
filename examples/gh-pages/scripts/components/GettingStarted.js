@@ -1,7 +1,7 @@
 import {default as React, Component} from "react";
 import {default as update} from "react-addons-update";
 
-import {GoogleMap, Marker} from "react-google-maps";
+import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
 
 /*
  * This is the modify version of:
@@ -64,24 +64,31 @@ export default class GettingStarted extends Component {
 
   render () {
     return (
-      <GoogleMap containerProps={{
-          ...this.props,
-          style: {
-            height: "100%",
-          },
-        }}
-        ref="map"
-        defaultZoom={3}
-        defaultCenter={{lat: -25.363882, lng: 131.044922}}
-        onClick={::this.handleMapClick}>
-        {this.state.markers.map((marker, index) => {
-          return (
-            <Marker
-              {...marker}
-              onRightclick={this.handleMarkerRightclick.bind(this, index)} />
-          );
-        })}
-      </GoogleMap>
+      <GoogleMapLoader
+        containerElement={
+          <div
+            {...this.props}
+            style={{
+              height: "100%",
+            }}
+          />
+        }
+        googleMapElement={
+          <GoogleMap
+            ref={(map) => map && console.log(map.getZoom())}
+            defaultZoom={3}
+            defaultCenter={{lat: -25.363882, lng: 131.044922}}
+            onClick={::this.handleMapClick}>
+            {this.state.markers.map((marker, index) => {
+              return (
+                <Marker
+                  {...marker}
+                  onRightclick={this.handleMarkerRightclick.bind(this, index)} />
+              );
+            })}
+          </GoogleMap>
+        }
+      />
     );
   }
 }

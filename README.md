@@ -61,6 +61,19 @@ Every props mentioned in __Rule 2__ could be either [controlled](https://faceboo
 
 Anything that are inside components' `options` property could __ONLY__ be accessible via `props.options`. It's your responsibility to manage `props.options` object during the React lifetime for your component. My suggestion is, always use __Rule 3__ if possible. Only use `options` when it's necessary.
 
+### Rule 5
+
+For event handlers on these components, you could bind them using React component convention. There's a list of evnet names exists in `eventLists` folder. Find the supported event name and use the form of `on${ camelizedEventName }`. For example, If I want to add `center_changed` callback to a map instance, I'll do the following with `react-google-maps`:
+
+```js
+<GoogleMap
+  // onCenterChanged: on + camelizedEventName(center_change)
+  onCenterChanged={this.handleCenterChanged}
+/>
+```
+
+The list of event names can be found [here](https://github.com/tomchentw/react-google-maps/blob/master/src/eventLists/GoogleMapEventList.js).
+
 ### Map Event Triggers
 
 One common event trigger is to resize map after the size of the container div changes:

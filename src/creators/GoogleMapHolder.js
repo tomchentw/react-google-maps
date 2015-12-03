@@ -5,6 +5,10 @@ import {
   Children,
 } from "react";
 
+import {
+  default as warning,
+} from "warning";
+
 import {default as GoogleMapEventList} from "../eventLists/GoogleMapEventList";
 import {default as eventHandlerCreator} from "../utils/eventHandlerCreator";
 import {default as defaultPropsCreator} from "../utils/defaultPropsCreator";
@@ -56,6 +60,11 @@ export default class GoogleMapHolder extends Component {
   }
 
   static _createMap (domEl, mapProps) {
+    warning(`undefined` !== typeof google,
+`Make sure you've put a <script> tag in your <head> element to load Google Maps JavaScript API v3.
+ If you're looking for built-in support to load it for you, use the "async/ScriptjsLoader" instead.
+ See https://github.com/tomchentw/react-google-maps/pull/168`
+    );
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
     return new google.maps.Map(domEl, composeOptions(mapProps, mapControlledPropTypes));
   }

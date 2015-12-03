@@ -2,9 +2,6 @@ import {
   default as expect,
 } from "expect";
 
-import {
-  default as thenify,
-} from "thenify";
 
 import {
   default as React,
@@ -15,7 +12,7 @@ import {
 
 import {
   unmountComponentAtNode,
-  render as renderWithCallback,
+  render,
 } from "react-dom";
 
 import * as maps from "../__mocks__/google.maps.mock";
@@ -24,8 +21,6 @@ import {
   default as GoogleMap,
 } from "../GoogleMap";
 
-const render = thenify(renderWithCallback);
-
 describe(`GoogleMap`, () => {
   before(() => {
     global.google = {maps};
@@ -33,6 +28,39 @@ describe(`GoogleMap`, () => {
 
   after(() => {
     delete global.google;
+  });
+
+  describe(`creation`, () => {
+    context(`global.google is undefined`, () => {
+      let prevGoogle;
+
+      before(() => {
+        prevGoogle = global.google;
+        delete global.google;
+      });
+
+      after(() => {
+        global.google = prevGoogle;
+      });
+
+      it(`should warn and throw error`, () => {
+        const warningSpy = expect.spyOn(console, `error`);
+        expect(warningSpy).toNotHaveBeenCalled();
+
+        let error;
+        try {
+          render((
+            <GoogleMap />
+          ), document.createElement(`div`));
+        } catch (__e__) {
+          error = __e__;
+        }
+        expect(error).toExist();
+        expect(warningSpy).toHaveBeenCalled();
+
+        warningSpy.restore();
+      });
+    });
   });
 
   describe(`rendering`, () => {
@@ -47,36 +75,34 @@ describe(`GoogleMap`, () => {
       domEl = null;
     });
 
-    it(`should call constructor during initial render`, async (done) => {
+    it(`should call constructor during initial render`, () => {
       const constructorSpy = expect.spyOn(maps, `Map`);
       expect(constructorSpy).toNotHaveBeenCalled();
 
-      await render((
+      render((
         <GoogleMap />
       ), domEl);
 
       expect(constructorSpy).toHaveBeenCalled();
 
       constructorSpy.restore();
-      done();
     });
 
-    it(`should call setZoom when props.zoom changes`, async (done) => {
+    it(`should call setZoom when props.zoom changes`, () => {
       const setZoomSpy = expect.spyOn(maps.Map.prototype, `setZoom`);
       expect(setZoomSpy).toNotHaveBeenCalled();
 
-      await render((
+      render((
         <GoogleMap />
       ), domEl);
       expect(setZoomSpy).toNotHaveBeenCalled();
 
-      await render((
+      render((
         <GoogleMap zoom={10} />
       ), domEl);
       expect(setZoomSpy).toHaveBeenCalled();
 
       setZoomSpy.restore();
-      done();
     });
   });
 });

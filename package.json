@@ -78,7 +78,6 @@
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "rimraf": "^2.4.3",
-    "thenify": "^3.1.1",
     "tomchentw-npm-dev": "^3.1.0"
   },
   "dependencies": {

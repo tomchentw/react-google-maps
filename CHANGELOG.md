@@ -1,3 +1,13 @@
+<a name="4.6.1"></a>
+## [4.6.1](https://github.com/tomchentw/react-google-maps/compare/v4.6.0...v4.6.1) (2015-12-03)
+
+
+### Features
+
+* **GoogleMap:** add warning for undefined google object ([2e0c60b](https://github.com/tomchentw/react-google-maps/commit/2e0c60b)), closes [#142](https://github.com/tomchentw/react-google-maps/issues/142)
+
+
+
 <a name="4.6.0"></a>
 # [4.6.0](https://github.com/tomchentw/react-google-maps/compare/v4.5.1...v4.6.0) (2015-11-22)
 

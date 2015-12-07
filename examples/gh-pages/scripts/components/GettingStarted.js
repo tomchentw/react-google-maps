@@ -1,7 +1,11 @@
 import {default as React, Component} from "react";
 import {default as update} from "react-addons-update";
 
+import {default as canUseDOM} from "can-use-dom";
+import {default as _} from "lodash";
+
 import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
+import {triggerEvent} from "react-google-maps/lib/utils";
 
 /*
  * This is the modify version of:
@@ -20,6 +24,30 @@ export default class GettingStarted extends Component {
       key: "Taiwan",
       defaultAnimation: 2
     }],
+  }
+
+  constructor (props, context) {
+    super(props, context);
+    this.handleWindowResize = _.throttle(::this.handleWindowResize, 500);
+  }
+
+  componentDidMount () {
+    if (!canUseDOM) {
+      return;
+    }
+    window.addEventListener("resize", this.handleWindowResize);
+  }
+
+  componentWillUnmount () {
+    if (!canUseDOM) {
+      return;
+    }
+    window.removeEventListener("resize", this.handleWindowResize);
+  }
+
+  handleWindowResize () {
+    console.log("handleWindowResize", this._googleMapComponent);
+    triggerEvent(this._googleMapComponent, "resize");
   }
 
   /*
@@ -75,7 +103,7 @@ export default class GettingStarted extends Component {
         }
         googleMapElement={
           <GoogleMap
-            ref={(map) => map && console.log(map.getZoom())}
+            ref={(map) => (this._googleMapComponent = map) && console.log(map.getZoom())}
             defaultZoom={3}
             defaultCenter={{lat: -25.363882, lng: 131.044922}}
             onClick={::this.handleMapClick}>

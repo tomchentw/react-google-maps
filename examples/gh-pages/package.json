@@ -39,6 +39,7 @@
     "classnames": "^2.1.5",
     "fbjs": "^0.3.1",
     "isomorphic-fetch": "^2.2.0",
+    "lodash": "^3.10.1",
     "node-libs-browser": "^0.5.3",
     "prismjs": "git+https://github.com/PrismJS/prism.git#gh-pages",
     "raf": "^3.1.0",

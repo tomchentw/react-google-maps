@@ -102,6 +102,7 @@ Use "GoogleMapLoader" instead. See https://github.com/tomchentw/react-google-map
 
       return (
         <GoogleMapLoader
+          ref="loader"
           containerElement={React.createElement(realContainerTagName, containerProps)}
           googleMapElement={
             <GoogleMap ref="delegate" containerTagName={USE_NEW_BEHAVIOR_TAG_NAME} {...mapProps}>

@@ -1,3 +1,13 @@
+<a name="4.7.0"></a>
+# [4.7.0](https://github.com/tomchentw/react-google-maps/compare/v4.6.2...v4.7.0) (2015-12-07)
+
+
+### Features
+
+* **utils:** add triggerEvent api ([112a1e6](https://github.com/tomchentw/react-google-maps/commit/112a1e6)), closes [#161](https://github.com/tomchentw/react-google-maps/issues/161)
+
+
+
 <a name="4.6.2"></a>
 ## [4.6.2](https://github.com/tomchentw/react-google-maps/compare/v4.6.1...v4.6.2) (2015-12-07)
 

@@ -1,3 +1,13 @@
+<a name="4.6.2"></a>
+## [4.6.2](https://github.com/tomchentw/react-google-maps/compare/v4.6.1...v4.6.2) (2015-12-07)
+
+
+### Features
+
+* **SearchBox:** add placeholder props to the underlying input element ([e6a6a02](https://github.com/tomchentw/react-google-maps/commit/e6a6a02)), closes [#115](https://github.com/tomchentw/react-google-maps/issues/115) [#136](https://github.com/tomchentw/react-google-maps/issues/136)
+
+
+
 <a name="4.6.1"></a>
 ## [4.6.1](https://github.com/tomchentw/react-google-maps/compare/v4.6.0...v4.6.1) (2015-12-03)
 

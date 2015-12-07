@@ -46,14 +46,15 @@ export default class SearchBox extends Component {
     if (!canUseDOM) {
       return;
     }
-    const {mapHolderRef, classes, style, ...searchBoxProps} = this.props;
+    const {mapHolderRef, classes, style, placeholder, ...searchBoxProps} = this.props;
 
     // Cannot create input via component - Google Maps will mess with React's internal state by detaching/attaching.
     // Allow developers to style the "hidden element" via inputClasses.
     let domEl = document.createElement("input");
     domEl.className = classes;
     domEl.type = "text";
-
+    domEl.placeholder = placeholder;
+    
     for (var propKey in style) {
       if (style.hasOwnProperty(propKey)) {
         domEl.style[propKey] = style[propKey];

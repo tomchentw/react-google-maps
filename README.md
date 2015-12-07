@@ -74,19 +74,6 @@ For event handlers on these components, you could bind them using React componen
 
 The list of event names can be found [here](https://github.com/tomchentw/react-google-maps/blob/master/src/eventLists/GoogleMapEventList.js).
 
-### Map Event Triggers
-
-One common event trigger is to resize map after the size of the container div changes:
-
-```js
-componentDidUpdate() {
-    var map = ReactDOM.findDOMNode(this.refs.map);
-    window.google.maps.event.trigger(map, 'resize');
-}
-
-<GoogleMap {...props} ref="map" > ... </GoogleMap>
-```
-
 ### Check the examples
 
 Static hosted [demo site][demo] on GitHub. The code is located under [examples/gh-pages][examples_gh_pages] folder.
@@ -104,6 +91,20 @@ All components are available on the top-level export.
 
 ```js
 import { GoogleMap, Marker, SearchBox } from "react-google-maps";
+```
+
+### Trigger events
+
+`triggerEvent(component, ...args)`: One common event trigger is to resize map after the size of the container div change.
+
+```js
+import {triggerEvent} from "react-google-maps/lib/utils";
+
+function handleWindowResize () {
+  triggerEvent(this._googleMapComponent, "resize");
+}
+// and you'll get `this._googleMapComponent` like this:
+<GoogleMap ref={it => this._googleMapComponent = it} />
 ```
 
 ### Optimize bundle size

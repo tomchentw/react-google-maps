@@ -22,7 +22,7 @@
     "test": "mocha $npm_package_config_mocha"
   },
   "config": {
-    "mocha": "--compilers js:babel/register ./src/**/__tests__/*.spec.js --require ./src/__tests__/__setup__.js"
+    "mocha": "--compilers js:babel/register ./src/__tests__/*.spec.js ./src/**/__tests__/*.spec.js --require ./src/__tests__/__setup__.js"
   },
   "repository": {
     "type": "git",

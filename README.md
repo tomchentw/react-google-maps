@@ -124,6 +124,11 @@ import InfoBox from "react-google-maps/lib/addons/InfoBox";
 ```
 
 
+## Changelog
+
+The changelog is automatically generated via [conventional-changelog][conventional-changelog] and [can be found in project root](https://github.com/tomchentw/react-google-maps/blob/master/CHANGELOG.md) as well as npm tarball.
+
+
 ## Development
 
 First, clone the project.
@@ -210,3 +215,5 @@ Then open [http://localhost:8080/webpack-dev-server/](http://localhost:8080/webp
 [demo]: http://tomchentw.github.io/react-google-maps/
 [examples_gh_pages]: https://github.com/tomchentw/react-google-maps/tree/master/examples/gh-pages
 [webpack]: http://webpack.github.io/docs/tutorials/getting-started/
+[conventional-changelog]: 
+https://github.com/ajoslin/conventional-changelog

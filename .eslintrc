@@ -1,7 +1,9 @@
 {
   "parser": "babel-eslint",
+  "extends": "airbnb",
   "env": {
     "browser": true,
+    "mocha": true,
     "node": true,
   },
   "ecmaFeatures": {
@@ -18,12 +20,18 @@
     "comma-dangle": [2, "always-multiline"],
     // Best Practices
     "consistent-return": [0],
+    "no-else-return": [0],
     "yoda": [2, "always"],
     // Variables
     "no-use-before-define": [2, "nofunc"],
+    "no-unused-vars": [1],
     // Stylistic Issues
     "camelcase": [0],
     "no-underscore-dangle": [0],
+    "quotes": [2, "backtick"],
+    // React extensions
+    "react/sort-comp": [1],
+    "react/prop-types": [1],
   },
   "globals": {
     "google": true,

@@ -29,19 +29,19 @@ export default class Circle extends Component {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getBounds () { return this.state.circle.getBounds(); }
+  getBounds() { return this.state.circle.getBounds(); }
 
-  getCenter () { return this.state.circle.getCenter(); }
+  getCenter() { return this.state.circle.getCenter(); }
 
-  getDraggable () { return this.state.circle.getDraggable(); }
+  getDraggable() { return this.state.circle.getDraggable(); }
 
-  getEditable () { return this.state.circle.getEditable(); }
+  getEditable() { return this.state.circle.getEditable(); }
 
-  getMap () { return this.state.circle.getMap(); }
+  getMap() { return this.state.circle.getMap(); }
 
-  getRadius () { return this.state.circle.getRadius(); }
+  getRadius() { return this.state.circle.getRadius(); }
 
-  getVisible () { return this.state.circle.getVisible(); }
+  getVisible() { return this.state.circle.getVisible(); }
   // END - Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
@@ -49,7 +49,7 @@ export default class Circle extends Component {
   state = {
   }
 
-  componentWillMount () {
+  componentWillMount() {
     if (!canUseDOM) {
       return;
     }
@@ -58,7 +58,7 @@ export default class Circle extends Component {
     this.setState({ circle });
   }
 
-  render () {
+  render() {
     if (this.state.circle) {
       return (
         <CircleCreator circle={this.state.circle} {...this.props}>

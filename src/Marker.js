@@ -29,33 +29,33 @@ export default class Marker extends Component {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getAnimation () { return this.state.marker.getAnimation(); }
+  getAnimation() { return this.state.marker.getAnimation(); }
 
-  getAttribution () { return this.state.marker.getAttribution(); }
+  getAttribution() { return this.state.marker.getAttribution(); }
 
-  getClickable () { return this.state.marker.getClickable(); }
+  getClickable() { return this.state.marker.getClickable(); }
 
-  getCursor () { return this.state.marker.getCursor(); }
+  getCursor() { return this.state.marker.getCursor(); }
 
-  getDraggable () { return this.state.marker.getDraggable(); }
+  getDraggable() { return this.state.marker.getDraggable(); }
 
-  getIcon () { return this.state.marker.getIcon(); }
+  getIcon() { return this.state.marker.getIcon(); }
 
-  getLabel () { return this.state.marker.getLabel(); }
+  getLabel() { return this.state.marker.getLabel(); }
 
-  getOpacity () { return this.state.marker.getOpacity(); }
+  getOpacity() { return this.state.marker.getOpacity(); }
 
-  getPlace () { return this.state.marker.getPlace(); }
+  getPlace() { return this.state.marker.getPlace(); }
 
-  getPosition () { return this.state.marker.getPosition(); }
+  getPosition() { return this.state.marker.getPosition(); }
 
-  getShape () { return this.state.marker.getShape(); }
+  getShape() { return this.state.marker.getShape(); }
 
-  getTitle () { return this.state.marker.getTitle(); }
+  getTitle() { return this.state.marker.getTitle(); }
 
-  getVisible () { return this.state.marker.getVisible(); }
+  getVisible() { return this.state.marker.getVisible(); }
 
-  getZIndex () { return this.state.marker.getZIndex(); }
+  getZIndex() { return this.state.marker.getZIndex(); }
   // END - Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
@@ -63,7 +63,7 @@ export default class Marker extends Component {
   state = {
   }
 
-  componentWillMount () {
+  componentWillMount() {
     if (!canUseDOM) {
       return;
     }
@@ -72,23 +72,23 @@ export default class Marker extends Component {
     this.setState({ marker });
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (!canUseDOM) {
       return;
     }
 
-    const {anchorHolderRef} = this.props;
-    const {marker} = this.state;
+    const { anchorHolderRef } = this.props;
+    const { marker } = this.state;
 
 
     if (anchorHolderRef) {
-      if ("MarkerClusterer" === anchorHolderRef.getAnchorType()) {
+      if (`MarkerClusterer` === anchorHolderRef.getAnchorType()) {
         anchorHolderRef.getAnchor().removeMarker(marker);
       }
     }
   }
 
-  render () {
+  render() {
     if (this.state.marker) {
       return (
         <MarkerCreator marker={this.state.marker} {...this.props}>

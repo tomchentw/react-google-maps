@@ -5,14 +5,14 @@ import {
 import * as event from "./google.maps.event.mock";
 
 export class Map {
-  constructor (domEl, options) {
+  constructor(domEl, options) {
   }
 
-  setOptions (nextOptions) {
+  setOptions(nextOptions) {
   }
 
-  setZoom (nextZoom) {
+  setZoom(nextZoom) {
   }
 }
 
-export {event};
+export { event };

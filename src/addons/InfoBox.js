@@ -31,13 +31,13 @@ export default class InfoBox extends Component {
   // Public APIs
   //
   // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/docs/reference.html
-  getContent () { /* TODO: children */ }
+  getContent() { /* TODO: children */ }
 
-  getPosition () { return this.state.infoBox.getPosition(); }
+  getPosition() { return this.state.infoBox.getPosition(); }
 
-  getVisible () { return this.state.infoBox.getVisible(); }
+  getVisible() { return this.state.infoBox.getVisible(); }
 
-  getZIndex () { return this.state.infoBox.getZIndex(); }
+  getZIndex() { return this.state.infoBox.getZIndex(); }
   // END - Public APIs
   //
   // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/docs/reference.html
@@ -45,7 +45,7 @@ export default class InfoBox extends Component {
   state = {
   }
 
-  componentWillMount () {
+  componentWillMount() {
     if (!canUseDOM) {
       return;
     }
@@ -54,7 +54,7 @@ export default class InfoBox extends Component {
     this.setState({ infoBox });
   }
 
-  render () {
+  render() {
     if (this.state.infoBox) {
       return (
         <InfoBoxCreator infoBox={this.state.infoBox} {...this.props}>

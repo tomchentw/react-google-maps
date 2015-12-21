@@ -29,11 +29,11 @@ export default class InfoWindow extends Component {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getContent () { /* TODO: children */ }
+  getContent() { /* TODO: children */ }
 
-  getPosition () { return this.state.infoWindow.getPosition(); }
+  getPosition() { return this.state.infoWindow.getPosition(); }
 
-  getZIndex () { return this.state.infoWindow.getZIndex(); }
+  getZIndex() { return this.state.infoWindow.getZIndex(); }
   // END - Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
@@ -41,7 +41,7 @@ export default class InfoWindow extends Component {
   state = {
   }
 
-  componentWillMount () {
+  componentWillMount() {
     if (!canUseDOM) {
       return;
     }
@@ -50,7 +50,7 @@ export default class InfoWindow extends Component {
     this.setState({ infoWindow });
   }
 
-  render () {
+  render() {
     if (this.state.infoWindow) {
       return (
         <InfoWindowCreator infoWindow={this.state.infoWindow} {...this.props}>

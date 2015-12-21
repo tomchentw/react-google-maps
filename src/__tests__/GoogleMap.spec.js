@@ -23,7 +23,7 @@ import {
 
 describe(`GoogleMap`, () => {
   before(() => {
-    global.google = {maps};
+    global.google = { maps };
   });
 
   after(() => {

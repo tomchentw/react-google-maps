@@ -33,11 +33,11 @@ export default class DirectionsRenderer extends Component {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getDirections () { return this.state.directionsRenderer.getDirections(); }
+  getDirections() { return this.state.directionsRenderer.getDirections(); }
 
-  getPanel () { return this.state.directionsRenderer.getPanel(); }
+  getPanel() { return this.state.directionsRenderer.getPanel(); }
 
-  getRouteIndex () { return this.state.directionsRenderer.getRouteIndex(); }
+  getRouteIndex() { return this.state.directionsRenderer.getRouteIndex(); }
   // END - Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
@@ -45,7 +45,7 @@ export default class DirectionsRenderer extends Component {
   state = {
   }
 
-  componentWillMount () {
+  componentWillMount() {
     if (!canUseDOM) {
       return;
     }
@@ -54,7 +54,7 @@ export default class DirectionsRenderer extends Component {
     this.setState({ directionsRenderer });
   }
 
-  render () {
+  render() {
     if (this.state.directionsRenderer) {
       return (
         <DirectionsRendererCreator directionsRenderer={this.state.directionsRenderer} {...this.props}>

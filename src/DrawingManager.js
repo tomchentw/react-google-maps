@@ -33,7 +33,7 @@ export default class DrawingManager extends Component {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getDrawingMode () { return this.state.drawingManager.getDrawingMode(); }
+  getDrawingMode() { return this.state.drawingManager.getDrawingMode(); }
   // END - Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
@@ -41,7 +41,7 @@ export default class DrawingManager extends Component {
   state = {
   }
 
-  componentWillMount () {
+  componentWillMount() {
     if (!canUseDOM) {
       return;
     }
@@ -50,7 +50,7 @@ export default class DrawingManager extends Component {
     this.setState({ drawingManager });
   }
 
-  render () {
+  render() {
     if (this.state.drawingManager) {
       return (
         <DrawingManagerCreator drawingManager={this.state.drawingManager} {...this.props}>

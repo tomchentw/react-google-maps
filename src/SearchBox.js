@@ -16,7 +16,7 @@ import {
 
 /*
  * Original author: @eyebraus
- * Original PR: https://github.com/tomchentw/react-google-maps/pull/110 
+ * Original PR: https://github.com/tomchentw/react-google-maps/pull/110
  */
 export default class SearchBox extends Component {
   static propTypes = {
@@ -33,29 +33,29 @@ export default class SearchBox extends Component {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getBounds () { return this.state.searchBox.getBounds(); }
+  getBounds() { return this.state.searchBox.getBounds(); }
 
-  getPlaces () { return this.state.searchBox.getPlaces(); }
+  getPlaces() { return this.state.searchBox.getPlaces(); }
   // END - Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
 
   state = {}
 
-  componentWillMount () {
+  componentWillMount() {
     if (!canUseDOM) {
       return;
     }
-    const {mapHolderRef, classes, style, placeholder, ...searchBoxProps} = this.props;
+    const { mapHolderRef, classes, style, placeholder, ...searchBoxProps } = this.props;
 
     // Cannot create input via component - Google Maps will mess with React's internal state by detaching/attaching.
     // Allow developers to style the "hidden element" via inputClasses.
-    let domEl = document.createElement("input");
+    const domEl = document.createElement(`input`);
     domEl.className = classes;
-    domEl.type = "text";
+    domEl.type = `text`;
     domEl.placeholder = placeholder;
-    
-    for (var propKey in style) {
+
+    for (const propKey in style) {
       if (style.hasOwnProperty(propKey)) {
         domEl.style[propKey] = style[propKey];
       }
@@ -65,12 +65,12 @@ export default class SearchBox extends Component {
 
     this.setState({
       inputElement: domEl,
-      searchBox: searchBox,
+      searchBox,
     });
   }
 
-  render () {
-    const {mapHolderRef, controlPosition} = this.props;
+  render() {
+    const { mapHolderRef, controlPosition } = this.props;
 
     return this.state.searchBox ? (
       <SearchBoxCreator controlPosition={controlPosition} inputElement={this.state.inputElement} mapHolderRef={mapHolderRef} searchBox={this.state.searchBox} {...this.props}>

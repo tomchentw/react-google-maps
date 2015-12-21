@@ -33,13 +33,13 @@ export default class Rectangle extends Component {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getBounds () { return this.state.rectangle.getBounds(); }
+  getBounds() { return this.state.rectangle.getBounds(); }
 
-  getDraggable () { return this.state.rectangle.getDraggable(); }
+  getDraggable() { return this.state.rectangle.getDraggable(); }
 
-  getEditable () { return this.state.rectangle.getEditable(); }
+  getEditable() { return this.state.rectangle.getEditable(); }
 
-  getVisible () { return this.state.rectangle.getVisible(); }
+  getVisible() { return this.state.rectangle.getVisible(); }
   // END - Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
@@ -47,7 +47,7 @@ export default class Rectangle extends Component {
   state = {
   }
 
-  componentWillMount () {
+  componentWillMount() {
     if (!canUseDOM) {
       return;
     }
@@ -56,7 +56,7 @@ export default class Rectangle extends Component {
     this.setState({ rectangle });
   }
 
-  render () {
+  render() {
     if (this.state.rectangle) {
       return (
         <RectangleCreator rectangle={this.state.rectangle} {...this.props}>

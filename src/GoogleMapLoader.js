@@ -5,10 +5,6 @@ import {
 } from "react";
 
 import {
-  default as propTypesElementOfType,
-} from "react-prop-types-element-of-type";
-
-import {
   default as GoogleMapHolder,
 } from "./creators/GoogleMapHolder";
 
@@ -17,7 +13,7 @@ const USE_NEW_BEHAVIOR_TAG_NAME = `__new_behavior__`;/* CIRCULAR_DEPENDENCY */
 export default class GoogleMapLoader extends Component {
   static propTypes = {
     containerElement: PropTypes.node.isRequired,
-    googleMapElement: PropTypes.element.isRequired,/* CIRCULAR_DEPENDENCY. Uncomment when 5.0.0 comes: propTypesElementOfType(GoogleMap).isRequired, */
+    googleMapElement: PropTypes.element.isRequired, /* CIRCULAR_DEPENDENCY. Uncomment when 5.0.0 comes: propTypesElementOfType(GoogleMap).isRequired, */
   };
 
   static defaultProps = {
@@ -28,11 +24,11 @@ export default class GoogleMapLoader extends Component {
     map: null,
   };
 
-  mountGoogleMap (domEl) {
+  mountGoogleMap(domEl) {
     if (this.state.map) {
       return;
     }
-    const {children, ...mapProps} = this.props.googleMapElement.props;
+    const { children, ...mapProps } = this.props.googleMapElement.props;
     //
     // Create google.maps.Map instance so that dom is initialized before
     // React's children creators.
@@ -41,7 +37,7 @@ export default class GoogleMapLoader extends Component {
     this.setState({ map });
   }
 
-  renderChild () {
+  renderChild() {
     if (this.state.map) {
       // Notice: implementation details
       //
@@ -55,13 +51,13 @@ export default class GoogleMapLoader extends Component {
       //
       return React.cloneElement(this.props.googleMapElement, {
         map: this.state.map,
-        //------------ Deprecated ------------
+        // ------------ Deprecated ------------
         containerTagName: USE_NEW_BEHAVIOR_TAG_NAME,
       });
     }
   }
 
-  render () {
+  render() {
     return React.cloneElement(this.props.containerElement, {
       ref: ::this.mountGoogleMap,
     }, this.renderChild());

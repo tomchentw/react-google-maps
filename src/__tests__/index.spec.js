@@ -18,8 +18,8 @@ import {
   SearchBox,
 } from "../index";
 
-describe("index", () => {
-  it("should be exported", () => {
+describe(`index`, () => {
+  it(`should be exported`, () => {
     expect(GoogleMapLoader).toExist();
     expect(GoogleMap).toExist();
 

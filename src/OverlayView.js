@@ -19,11 +19,11 @@ import {
  */
 export default class OverlayView extends Component {
 
-  static FLOAT_PANE = "floatPane"
-  static MAP_PANE = "mapPane"
-  static MARKER_LAYER = "markerLayer"
-  static OVERLAY_LAYER = "overlayLayer"
-  static OVERLAY_MOUSE_TARGET = "overlayMouseTarget"
+  static FLOAT_PANE = `floatPane`
+  static MAP_PANE = `mapPane`
+  static MARKER_LAYER = `markerLayer`
+  static OVERLAY_LAYER = `overlayLayer`
+  static OVERLAY_MOUSE_TARGET = `overlayMouseTarget`
 
   static propTypes = {
     // Uncontrolled default[props] - used only in componentDidMount
@@ -41,9 +41,9 @@ export default class OverlayView extends Component {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getPanes () { return this.state.overlayView.getPanes(); }
+  getPanes() { return this.state.overlayView.getPanes(); }
 
-  getProjection () { return this.state.overlayView.getProjection(); }
+  getProjection() { return this.state.overlayView.getProjection(); }
   // END - Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
@@ -51,7 +51,7 @@ export default class OverlayView extends Component {
   state = {
   }
 
-  componentWillMount () {
+  componentWillMount() {
     if (!canUseDOM) {
       return;
     }
@@ -60,7 +60,7 @@ export default class OverlayView extends Component {
     this.setState({ overlayView });
   }
 
-  render () {
+  render() {
     if (this.state.overlayView) {
       return (
         <OverlayViewCreator overlayView={this.state.overlayView} {...this.props}>

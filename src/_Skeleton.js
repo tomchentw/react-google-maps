@@ -29,7 +29,7 @@ export default class Skeleton extends Component {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getAnimation () { return this.state.skeleton.getAnimation(); }
+  getAnimation() { return this.state.skeleton.getAnimation(); }
   // END - Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference
@@ -37,7 +37,7 @@ export default class Skeleton extends Component {
   state = {
   }
 
-  componentWillMount () {
+  componentWillMount() {
     if (!canUseDOM) {
       return;
     }
@@ -46,7 +46,7 @@ export default class Skeleton extends Component {
     this.setState({ skeleton });
   }
 
-  render () {
+  render() {
     if (this.state.skeleton) {
       return (
         <SkeletonCreator skeleton={this.state.skeleton} {...this.props}>

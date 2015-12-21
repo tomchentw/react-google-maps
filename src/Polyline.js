@@ -29,13 +29,13 @@ export default class Polyline extends Component {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getDraggable () { return this.state.polyline.getDraggable(); }
+  getDraggable() { return this.state.polyline.getDraggable(); }
 
-  getEditable () { return this.state.polyline.getEditable(); }
+  getEditable() { return this.state.polyline.getEditable(); }
 
-  getPath () { return this.state.polyline.getPath(); }
+  getPath() { return this.state.polyline.getPath(); }
 
-  getVisible () { return this.state.polyline.getVisible(); }
+  getVisible() { return this.state.polyline.getVisible(); }
   // END - Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
@@ -43,7 +43,7 @@ export default class Polyline extends Component {
   state = {
   }
 
-  componentWillMount () {
+  componentWillMount() {
     if (!canUseDOM) {
       return;
     }
@@ -52,7 +52,7 @@ export default class Polyline extends Component {
     this.setState({ polyline });
   }
 
-  render () {
+  render() {
     if (this.state.polyline) {
       return (
         <PolylineCreator polyline={this.state.polyline} {...this.props}>

@@ -70,7 +70,7 @@ export const markerClustererEventPropTypes = eventPropTypes;
 
 @componentLifecycleDecorator({
   registerEvents,
-  instanceMethodName: 'getMarkerClusterer',
+  instanceMethodName: `getMarkerClusterer`,
   updaters: markerClustererUpdaters,
 })
 export default class MarkerClustererCreator extends Component {
@@ -80,7 +80,7 @@ export default class MarkerClustererCreator extends Component {
   }
 
   static _createMarkerClusterer(mapHolderRef, markerClustererProps) {
-    const GoogleMarkerClusterer = require('marker-clusterer-plus');
+    const GoogleMarkerClusterer = require(`marker-clusterer-plus`);
 
     // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html#events
     const markerClusterer = new GoogleMarkerClusterer(mapHolderRef.getMap(), [], composeOptions(markerClustererProps, markerClustererControlledPropTypes));
@@ -105,7 +105,7 @@ export default class MarkerClustererCreator extends Component {
   }
 
   getAnchorType() {
-    return 'MarkerClusterer';
+    return `MarkerClusterer`;
   }
 
   render() {

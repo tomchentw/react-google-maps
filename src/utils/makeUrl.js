@@ -10,7 +10,7 @@ import {
   default as isEqual,
 } from "lodash.isequal";
 
-export default function makeUrl (urlObj) {
+export default function makeUrl(urlObj) {
   return formatUrlObj({
     protocol: urlObj.protocol,
     hostname: urlObj.hostname,
@@ -30,7 +30,7 @@ export const urlObjDefinition = {
   query: PropTypes.object.isRequired,
 };
 
-export function getUrlObjChangedKeys (urlObj, nextUrlObj) {
+export function getUrlObjChangedKeys(urlObj, nextUrlObj) {
   return Object.keys(urlObjDefinition)
     .filter(key => !isEqual(urlObj[key], nextUrlObj[key]));
 }

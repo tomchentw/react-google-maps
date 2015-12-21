@@ -39,7 +39,7 @@ import {
 describe(`utils`, () => {
   describe(`triggerEvent`, () => {
     before(() => {
-      global.google = {maps};
+      global.google = { maps };
     });
 
     after(() => {
@@ -51,14 +51,14 @@ describe(`utils`, () => {
         const triggerSpy = expect.spyOn(maps.event, `trigger`);
         expect(triggerSpy).toNotHaveBeenCalled();
 
-        function ref (component) {
+        function ref(component) {
           triggerEvent(component, `resize`);
           expect(triggerSpy).toHaveBeenCalled();
 
           triggerSpy.restore();
           done();
         }
-      
+
         render((
           <GoogleMapLoader
             containerElement={<div/>}

@@ -6,8 +6,9 @@ import {
   default as GoogleMap,
 } from "../GoogleMap";
 
-export function __getInstance (component) {
-  const {constructor} = component;
+export function __getInstance(componentOrLoader) {
+  let component = componentOrLoader;
+  const { constructor } = component;
   if (GoogleMap === constructor) {
     if (component.props.map) {
       return component.props.map;
@@ -21,7 +22,7 @@ export function __getInstance (component) {
   return component.state[key];
 }
 
-export function triggerEvent (component, ...args) {
+export function triggerEvent(component, ...args) {
   const instance = __getInstance(component);
   invariant(instance,
 `The react-google-maps component %s is not mounted, hence we can't find an

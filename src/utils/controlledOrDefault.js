@@ -1,6 +1,6 @@
-import {default as addDefaultPrefix} from "./addDefaultPrefix";
+import { default as addDefaultPrefix } from "./addDefaultPrefix";
 
-export default function controlledOrDefault (props) {
+export default function controlledOrDefault(props) {
   return (name) => {
     if (Object.prototype.hasOwnProperty.call(props, name)) {
       return props[name];

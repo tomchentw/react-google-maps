@@ -1,6 +1,6 @@
 import { PropTypes } from "react";
 
-function groupToUpperCase (match, group) {
+function groupToUpperCase(match, group) {
   return group.toUpperCase();
 }
 
@@ -10,7 +10,7 @@ function toOnEventName(rawName) {
     .replace(/_(.)/g, groupToUpperCase) }`;
 }
 
-export default function eventHandlerCreator (rawNameList) {
+export default function eventHandlerCreator(rawNameList) {
   const eventPropTypes = {};
   const onEventNameByRawName = {};
 
@@ -20,7 +20,7 @@ export default function eventHandlerCreator (rawNameList) {
     onEventNameByRawName[rawName] = onEventName;
   });
 
-  function registerEvents (event, props, googleMapInstance) {
+  function registerEvents(event, props, googleMapInstance) {
     const registered = rawNameList.reduce((acc, rawName) => {
       const onEventName = onEventNameByRawName[rawName];
 

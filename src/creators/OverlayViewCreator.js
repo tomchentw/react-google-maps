@@ -10,12 +10,12 @@ import {
   unmountComponentAtNode,
 } from "react-dom";
 
-import {default as invariant} from "invariant";
+import { default as invariant } from "invariant";
 
-import {default as defaultPropsCreator} from "../utils/defaultPropsCreator";
-import {default as composeOptions} from "../utils/composeOptions";
+import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
+import { default as composeOptions } from "../utils/composeOptions";
 
-import {default as GoogleMapHolder} from "./GoogleMapHolder";
+import { default as GoogleMapHolder } from "./GoogleMapHolder";
 
 export const overlayViewControlledPropTypes = {
 // CustomProps
@@ -38,33 +38,33 @@ export default class OverlayViewCreator extends Component {
 
   static propTypes = {
     mapHolderRef: PropTypes.instanceOf(GoogleMapHolder).isRequired,
+    mapPaneName: PropTypes.string,
     overlayView: PropTypes.object.isRequired,
   }
 
-  static _createOverlayView (overlayViewProps) {
-    const {mapHolderRef} = overlayViewProps;
+  static _createOverlayView(overlayViewProps) {
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
     const overlayView = new google.maps.OverlayView();
     overlayView.setValues(composeOptions(overlayViewProps, overlayViewControlledPropTypes));
 
-    overlayView.onAdd = function () {
-      this._containerElement = document.createElement("div");
-      this._containerElement.style.position = "absolute";
+    overlayView.onAdd = function onAdd() {
+      this._containerElement = document.createElement(`div`);
+      this._containerElement.style.position = `absolute`;
     };
 
-    overlayView.draw = function () {
+    overlayView.draw = function draw() {
       this._renderContent();
       this._mountContainerToPane();
       this._positionContainerElement();
     };
 
-    overlayView.onRemove = function () {
+    overlayView.onRemove = function onRemove() {
       unmountComponentAtNode(this._containerElement);
       this._unmountContainerFromPane();
       this._containerElement = null;
     };
 
-    overlayView._redraw = function (mapPaneNameChanged) {
+    overlayView._redraw = function _redraw(mapPaneNameChanged) {
       this._renderContent();
       if (mapPaneNameChanged) {
         this._unmountContainerFromPane();
@@ -73,45 +73,46 @@ export default class OverlayViewCreator extends Component {
       this._positionContainerElement();
     };
 
-    overlayView._renderContent = function () {
+    overlayView._renderContent = function _renderContent() {
       render(
-        Children.only(this.get("children")),
+        Children.only(this.get(`children`)),
         this._containerElement
       );
     };
 
-    overlayView._mountContainerToPane = function () {
-      const mapPaneName = this.get("mapPaneName");
-      invariant(!!mapPaneName, "OverlayView requires a mapPaneName/defaultMapPaneName in your props instead of %s", mapPaneName);
+    overlayView._mountContainerToPane = function _mountContainerToPane() {
+      const mapPaneName = this.get(`mapPaneName`);
+      invariant(!!mapPaneName, `OverlayView requires a mapPaneName/defaultMapPaneName in your props instead of %s`, mapPaneName);
 
       this.getPanes()[mapPaneName].appendChild(this._containerElement);
     };
 
-    overlayView._unmountContainerFromPane = function () {
+    overlayView._unmountContainerFromPane = function _unmountContainerFromPane() {
       this._containerElement.parentNode.removeChild(this._containerElement);
     };
 
-    overlayView._positionContainerElement = function () {
-      let left, top;
-      let position = this._getPixelPosition();
+    overlayView._positionContainerElement = function _positionContainerElement() {
+      let left;
+      let top;
+      const position = this._getPixelPosition();
       if (position) {
-        let {x, y} = position;
-        let offset = this._getOffset();
+        let { x, y } = position;
+        const offset = this._getOffset();
         if (offset) {
           x += offset.x;
           y += offset.y;
         }
-        left = x + "px";
-        top = y + "px";
+        left = x + `px`;
+        top = y + `px`;
       }
       this._containerElement.style.left = left;
       this._containerElement.style.top = top;
     };
 
-    overlayView._getPixelPosition = function () {
-      let projection = this.getProjection();
-      let position = this.get("position");
-      invariant(!!position, "OverlayView requires a position/defaultPosition in your props instead of %s", position);
+    overlayView._getPixelPosition = function _getPixelPosition() {
+      const projection = this.getProjection();
+      let position = this.get(`position`);
+      invariant(!!position, `OverlayView requires a position/defaultPosition in your props instead of %s`, position);
 
       if (projection && position) {
         if (!(position instanceof google.maps.LatLng)) {
@@ -121,10 +122,10 @@ export default class OverlayViewCreator extends Component {
       }
     };
 
-    overlayView._getOffset = function () {
+    overlayView._getOffset = function _getOffset() {
       // Allows the component to control the visual position of the OverlayView
       // relative to the LatLng pixel position.
-      let getPixelPositionOffset = this.get("getPixelPositionOffset");
+      const getPixelPositionOffset = this.get(`getPixelPositionOffset`);
       if (getPixelPositionOffset) {
         return getPixelPositionOffset(
           this._containerElement.offsetWidth,
@@ -136,24 +137,24 @@ export default class OverlayViewCreator extends Component {
     return overlayView;
   }
 
-  getOverlayView () {
+  getOverlayView() {
     return this.props.overlayView;
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.getOverlayView().setMap(this.props.mapHolderRef.getMap());
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     this.getOverlayView().setValues(this.props);
     this.getOverlayView()._redraw(this.props.mapPaneName !== prevProps.mapPaneName);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.getOverlayView().setMap(null);
   }
 
-  render () {
+  render() {
     return (<noscript />);
   }
 }

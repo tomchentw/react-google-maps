@@ -5,13 +5,13 @@ import {
   Children,
 } from "react";
 
-import {default as SkeletonEventList} from "../eventLists/SkeletonEventList";
-import {default as eventHandlerCreator} from "../utils/eventHandlerCreator";
-import {default as defaultPropsCreator} from "../utils/defaultPropsCreator";
-import {default as composeOptions} from "../utils/composeOptions";
-import {default as componentLifecycleDecorator} from "../utils/componentLifecycleDecorator";
+import { default as SkeletonEventList } from "../eventLists/SkeletonEventList";
+import { default as eventHandlerCreator } from "../utils/eventHandlerCreator";
+import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
+import { default as composeOptions } from "../utils/composeOptions";
+import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
-import {default as GoogleMapHolder} from "./GoogleMapHolder";
+import { default as GoogleMapHolder } from "./GoogleMapHolder";
 
 export const skeletonControlledPropTypes = {
 // NOTICE!!!!!!
@@ -27,16 +27,16 @@ export const skeletonControlledPropTypes = {
 export const skeletonDefaultPropTypes = defaultPropsCreator(skeletonControlledPropTypes);
 
 const skeletonUpdaters = {
-  animation   (animation, component) { component.getSkeleton().setAnimation(animation); },
+  animation(animation, component) { component.getSkeleton().setAnimation(animation); },
 };
 
-const {eventPropTypes, registerEvents} = eventHandlerCreator(SkeletonEventList);
+const { eventPropTypes, registerEvents } = eventHandlerCreator(SkeletonEventList);
 
 export const skeletonEventPropTypes = eventPropTypes;
 
 @componentLifecycleDecorator({
   registerEvents,
-  instanceMethodName: "getSkeleton",
+  instanceMethodName: `getSkeleton`,
   updaters: skeletonUpdaters,
 })
 export default class SkeletonCreator extends Component {
@@ -46,8 +46,8 @@ export default class SkeletonCreator extends Component {
     skeleton: PropTypes.object.isRequired,
   }
 
-  static _createSkeleton (skeletonProps) {
-    const {mapHolderRef} = skeletonProps;
+  static _createSkeleton(skeletonProps) {
+    const { mapHolderRef } = skeletonProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference
     const skeleton = new google.maps.Skeleton(composeOptions(skeletonProps, skeletonControlledPropTypes));
 
@@ -56,12 +56,12 @@ export default class SkeletonCreator extends Component {
     return skeleton;
   }
 
-  getSkeleton () {
+  getSkeleton() {
     return this.props.skeleton;
   }
 
-  render () {
-    const {children} = this.props;
+  render() {
+    const { children } = this.props;
 
     if (0 < Children.count(children)) {
       return (

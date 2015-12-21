@@ -4,13 +4,13 @@ import {
   Component,
 } from "react";
 
-import {default as DrawingManagerEventList} from "../eventLists/DrawingManagerEventList";
-import {default as eventHandlerCreator} from "../utils/eventHandlerCreator";
-import {default as defaultPropsCreator} from "../utils/defaultPropsCreator";
-import {default as composeOptions} from "../utils/composeOptions";
-import {default as componentLifecycleDecorator} from "../utils/componentLifecycleDecorator";
+import { default as DrawingManagerEventList } from "../eventLists/DrawingManagerEventList";
+import { default as eventHandlerCreator } from "../utils/eventHandlerCreator";
+import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
+import { default as composeOptions } from "../utils/composeOptions";
+import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
-import {default as GoogleMapHolder} from "./GoogleMapHolder";
+import { default as GoogleMapHolder } from "./GoogleMapHolder";
 
 export const drawingManagerControlledPropTypes = {
 // NOTICE!!!!!!
@@ -27,17 +27,17 @@ export const drawingManagerControlledPropTypes = {
 export const drawingManagerDefaultPropTypes = defaultPropsCreator(drawingManagerControlledPropTypes);
 
 const drawingManagerUpdaters = {
-  drawingMode (drawingMode, component) { component.getDrawingManager().setDrawingMode(drawingMode); },
-  options     (options, component) { component.getDrawingManager().setOptions(options); },
+  drawingMode(drawingMode, component) { component.getDrawingManager().setDrawingMode(drawingMode); },
+  options(options, component) { component.getDrawingManager().setOptions(options); },
 };
 
-const {eventPropTypes, registerEvents} = eventHandlerCreator(DrawingManagerEventList);
+const { eventPropTypes, registerEvents } = eventHandlerCreator(DrawingManagerEventList);
 
 export const drawingManagerEventPropTypes = eventPropTypes;
 
 @componentLifecycleDecorator({
   registerEvents,
-  instanceMethodName: "getDrawingManager",
+  instanceMethodName: `getDrawingManager`,
   updaters: drawingManagerUpdaters,
 })
 export default class DrawingManagerCreator extends Component {
@@ -47,8 +47,8 @@ export default class DrawingManagerCreator extends Component {
     drawingManager: PropTypes.object.isRequired,
   }
 
-  static _createDrawingManager (drawingManagerProps) {
-    const {mapHolderRef} = drawingManagerProps;
+  static _createDrawingManager(drawingManagerProps) {
+    const { mapHolderRef } = drawingManagerProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
     const drawingManager = new google.maps.drawing.DrawingManager(composeOptions(drawingManagerProps, drawingManagerControlledPropTypes));
 
@@ -57,11 +57,11 @@ export default class DrawingManagerCreator extends Component {
     return drawingManager;
   }
 
-  getDrawingManager () {
+  getDrawingManager() {
     return this.props.drawingManager;
   }
 
-  render () {
+  render() {
     return (<noscript />);
   }
 }

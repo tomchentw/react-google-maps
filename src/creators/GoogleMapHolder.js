@@ -9,11 +9,11 @@ import {
   default as warning,
 } from "warning";
 
-import {default as GoogleMapEventList} from "../eventLists/GoogleMapEventList";
-import {default as eventHandlerCreator} from "../utils/eventHandlerCreator";
-import {default as defaultPropsCreator} from "../utils/defaultPropsCreator";
-import {default as composeOptions} from "../utils/composeOptions";
-import {default as componentLifecycleDecorator} from "../utils/componentLifecycleDecorator";
+import { default as GoogleMapEventList } from "../eventLists/GoogleMapEventList";
+import { default as eventHandlerCreator } from "../utils/eventHandlerCreator";
+import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
+import { default as composeOptions } from "../utils/composeOptions";
+import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
 export const mapControlledPropTypes = {
 // NOTICE!!!!!!
@@ -35,22 +35,22 @@ export const mapControlledPropTypes = {
 export const mapDefaultPropTypes = defaultPropsCreator(mapControlledPropTypes);
 
 const mapUpdaters = {
-  center      (center, component) { component.getMap().setCenter(center); },
-  heading     (heading, component) { component.getMap().setHeading(heading); },
-  mapTypeId   (mapTypeId, component) { component.getMap().setMapTypeId(mapTypeId); },
-  options     (options, component) { component.getMap().setOptions(options); },
-  streetView  (streetView, component) { component.getMap().setStreetView(streetView); },
-  tilt        (tilt, component) { component.getMap().setTilt(tilt); },
-  zoom        (zoom, component) { component.getMap().setZoom(zoom); },
+  center(center, component) { component.getMap().setCenter(center); },
+  heading(heading, component) { component.getMap().setHeading(heading); },
+  mapTypeId(mapTypeId, component) { component.getMap().setMapTypeId(mapTypeId); },
+  options(options, component) { component.getMap().setOptions(options); },
+  streetView(streetView, component) { component.getMap().setStreetView(streetView); },
+  tilt(tilt, component) { component.getMap().setTilt(tilt); },
+  zoom(zoom, component) { component.getMap().setZoom(zoom); },
 };
 
-const {eventPropTypes, registerEvents} = eventHandlerCreator(GoogleMapEventList);
+const { eventPropTypes, registerEvents } = eventHandlerCreator(GoogleMapEventList);
 
 export const mapEventPropTypes = eventPropTypes;
 
 @componentLifecycleDecorator({
   registerEvents,
-  instanceMethodName: "getMap",
+  instanceMethodName: `getMap`,
   updaters: mapUpdaters,
 })
 export default class GoogleMapHolder extends Component {
@@ -59,7 +59,7 @@ export default class GoogleMapHolder extends Component {
     map: PropTypes.object.isRequired,
   }
 
-  static _createMap (domEl, mapProps) {
+  static _createMap(domEl, mapProps) {
     warning(`undefined` !== typeof google,
 `Make sure you've put a <script> tag in your <head> element to load Google Maps JavaScript API v3.
  If you're looking for built-in support to load it for you, use the "async/ScriptjsLoader" instead.
@@ -69,11 +69,11 @@ export default class GoogleMapHolder extends Component {
     return new google.maps.Map(domEl, composeOptions(mapProps, mapControlledPropTypes));
   }
 
-  getMap () {
+  getMap() {
     return this.props.map;
   }
 
-  render () {
+  render() {
     return (
       <div>
         {Children.map(this.props.children, (childElement) => {

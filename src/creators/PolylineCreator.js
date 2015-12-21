@@ -4,13 +4,13 @@ import {
   Component,
 } from "react";
 
-import {default as PolylineEventList} from "../eventLists/PolylineEventList";
-import {default as eventHandlerCreator} from "../utils/eventHandlerCreator";
-import {default as defaultPropsCreator} from "../utils/defaultPropsCreator";
-import {default as composeOptions} from "../utils/composeOptions";
-import {default as componentLifecycleDecorator} from "../utils/componentLifecycleDecorator";
+import { default as PolylineEventList } from "../eventLists/PolylineEventList";
+import { default as eventHandlerCreator } from "../utils/eventHandlerCreator";
+import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
+import { default as composeOptions } from "../utils/composeOptions";
+import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
-import {default as GoogleMapHolder} from "./GoogleMapHolder";
+import { default as GoogleMapHolder } from "./GoogleMapHolder";
 
 export const polylineControlledPropTypes = {
 // NOTICE!!!!!!
@@ -30,20 +30,20 @@ export const polylineControlledPropTypes = {
 export const polylineDefaultPropTypes = defaultPropsCreator(polylineControlledPropTypes);
 
 const polylineUpdaters = {
-  draggable (draggable, component) { component.getPolyline().setDraggable(draggable); },
-  editable  (editable, component) { component.getPolyline().setEditable(editable); },
-  options   (options, component) { component.getPolyline().setOptions(options); },
-  path      (path, component) { component.getPolyline().setPath(path); },
-  visible   (visible, component) { component.getPolyline().setVisible(visible); },
+  draggable(draggable, component) { component.getPolyline().setDraggable(draggable); },
+  editable(editable, component) { component.getPolyline().setEditable(editable); },
+  options(options, component) { component.getPolyline().setOptions(options); },
+  path(path, component) { component.getPolyline().setPath(path); },
+  visible(visible, component) { component.getPolyline().setVisible(visible); },
 };
 
-const {eventPropTypes, registerEvents} = eventHandlerCreator(PolylineEventList);
+const { eventPropTypes, registerEvents } = eventHandlerCreator(PolylineEventList);
 
 export const polylineEventPropTypes = eventPropTypes;
 
 @componentLifecycleDecorator({
   registerEvents,
-  instanceMethodName: "getPolyline",
+  instanceMethodName: `getPolyline`,
   updaters: polylineUpdaters,
 })
 export default class PolylineCreator extends Component {
@@ -53,8 +53,8 @@ export default class PolylineCreator extends Component {
     polyline: PropTypes.object.isRequired,
   }
 
-  static _createPolyline (polylineProps) {
-    const {mapHolderRef} = polylineProps;
+  static _createPolyline(polylineProps) {
+    const { mapHolderRef } = polylineProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
     const polyline = new google.maps.Polyline(composeOptions(polylineProps, polylineControlledPropTypes));
 
@@ -63,11 +63,11 @@ export default class PolylineCreator extends Component {
     return polyline;
   }
 
-  getPolyline () {
+  getPolyline() {
     return this.props.polyline;
   }
 
-  render () {
+  render() {
     return (<noscript />);
   }
 }

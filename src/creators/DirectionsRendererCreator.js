@@ -5,13 +5,13 @@ import {
   Children,
 } from "react";
 
-import {default as DirectionsRendererEventList} from "../eventLists/DirectionsRendererEventList";
-import {default as eventHandlerCreator} from "../utils/eventHandlerCreator";
-import {default as defaultPropsCreator} from "../utils/defaultPropsCreator";
-import {default as composeOptions} from "../utils/composeOptions";
-import {default as componentLifecycleDecorator} from "../utils/componentLifecycleDecorator";
+import { default as DirectionsRendererEventList } from "../eventLists/DirectionsRendererEventList";
+import { default as eventHandlerCreator } from "../utils/eventHandlerCreator";
+import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
+import { default as composeOptions } from "../utils/composeOptions";
+import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
-import {default as GoogleMapHolder} from "./GoogleMapHolder";
+import { default as GoogleMapHolder } from "./GoogleMapHolder";
 
 export const directionsRendererControlledPropTypes = {
 // NOTICE!!!!!!
@@ -30,19 +30,19 @@ export const directionsRendererControlledPropTypes = {
 export const directionsRendererDefaultPropTypes = defaultPropsCreator(directionsRendererControlledPropTypes);
 
 const directionsRendererUpdaters = {
-  directions  (directions, component) { component.getDirectionsRenderer().setDirections(directions); },
-  options     (options, component) { component.getDirectionsRenderer().setOptions(options); },
-  panel       (panel, component) { component.getDirectionsRenderer().setPanel(panel); },
-  routeIndex  (routeIndex, component) { component.getDirectionsRenderer().setRouteIndex(routeIndex); },
+  directions(directions, component) { component.getDirectionsRenderer().setDirections(directions); },
+  options(options, component) { component.getDirectionsRenderer().setOptions(options); },
+  panel(panel, component) { component.getDirectionsRenderer().setPanel(panel); },
+  routeIndex(routeIndex, component) { component.getDirectionsRenderer().setRouteIndex(routeIndex); },
 };
 
-const {eventPropTypes, registerEvents} = eventHandlerCreator(DirectionsRendererEventList);
+const { eventPropTypes, registerEvents } = eventHandlerCreator(DirectionsRendererEventList);
 
 export const directionsRendererEventPropTypes = eventPropTypes;
 
 @componentLifecycleDecorator({
   registerEvents,
-  instanceMethodName: "getDirectionsRenderer",
+  instanceMethodName: `getDirectionsRenderer`,
   updaters: directionsRendererUpdaters,
 })
 export default class DirectionsRendererCreator extends Component {
@@ -52,8 +52,8 @@ export default class DirectionsRendererCreator extends Component {
     directionsRenderer: PropTypes.object.isRequired,
   }
 
-  static _createDirectionsRenderer (directionsRendererProps) {
-    const {mapHolderRef} = directionsRendererProps;
+  static _createDirectionsRenderer(directionsRendererProps) {
+    const { mapHolderRef } = directionsRendererProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
     const directionsRenderer = new google.maps.DirectionsRenderer(composeOptions(directionsRendererProps, directionsRendererControlledPropTypes));
 
@@ -62,12 +62,12 @@ export default class DirectionsRendererCreator extends Component {
     return directionsRenderer;
   }
 
-  getDirectionsRenderer () {
+  getDirectionsRenderer() {
     return this.props.directionsRenderer;
   }
 
-  render () {
-    const {children} = this.props;
+  render() {
+    const { children } = this.props;
 
     if (0 < Children.count(children)) {
       // TODO: take a look at DirectionsRendererOptions#infoWindow and DirectionsRendererOptions#markerOptions ?

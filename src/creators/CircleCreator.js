@@ -4,13 +4,13 @@ import {
   Component,
 } from "react";
 
-import {default as CircleEventList} from "../eventLists/CircleEventList";
-import {default as eventHandlerCreator} from "../utils/eventHandlerCreator";
-import {default as defaultPropsCreator} from "../utils/defaultPropsCreator";
-import {default as composeOptions} from "../utils/composeOptions";
-import {default as componentLifecycleDecorator} from "../utils/componentLifecycleDecorator";
+import { default as CircleEventList } from "../eventLists/CircleEventList";
+import { default as eventHandlerCreator } from "../utils/eventHandlerCreator";
+import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
+import { default as composeOptions } from "../utils/composeOptions";
+import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
-import {default as GoogleMapHolder} from "./GoogleMapHolder";
+import { default as GoogleMapHolder } from "./GoogleMapHolder";
 
 export const circleControlledPropTypes = {
 // NOTICE!!!!!!
@@ -31,21 +31,21 @@ export const circleControlledPropTypes = {
 export const circleDefaultPropTypes = defaultPropsCreator(circleControlledPropTypes);
 
 const circleUpdaters = {
-  center    (center, component) { component.getCircle().setCenter(center); },
-  draggable (draggable, component) { component.getCircle().setDraggable(draggable); },
-  editable  (editable, component) { component.getCircle().setEditable(editable); },
-  options   (options, component) { component.getCircle().setOptions(options); },
-  radius    (radius, component) { component.getCircle().setRadius(radius); },
-  visible   (visible, component) { component.getCircle().setVisible(visible); },
+  center(center, component) { component.getCircle().setCenter(center); },
+  draggable(draggable, component) { component.getCircle().setDraggable(draggable); },
+  editable(editable, component) { component.getCircle().setEditable(editable); },
+  options(options, component) { component.getCircle().setOptions(options); },
+  radius(radius, component) { component.getCircle().setRadius(radius); },
+  visible(visible, component) { component.getCircle().setVisible(visible); },
 };
 
-const {eventPropTypes, registerEvents} = eventHandlerCreator(CircleEventList);
+const { eventPropTypes, registerEvents } = eventHandlerCreator(CircleEventList);
 
 export const circleEventPropTypes = eventPropTypes;
 
 @componentLifecycleDecorator({
   registerEvents,
-  instanceMethodName: "getCircle",
+  instanceMethodName: `getCircle`,
   updaters: circleUpdaters,
 })
 export default class CircleCreator extends Component {
@@ -55,8 +55,8 @@ export default class CircleCreator extends Component {
     circle: PropTypes.object.isRequired,
   }
 
-  static _createCircle (circleProps) {
-    const {mapHolderRef} = circleProps;
+  static _createCircle(circleProps) {
+    const { mapHolderRef } = circleProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
     const circle = new google.maps.Circle(composeOptions(circleProps, circleControlledPropTypes));
 
@@ -65,11 +65,11 @@ export default class CircleCreator extends Component {
     return circle;
   }
 
-  getCircle () {
+  getCircle() {
     return this.props.circle;
   }
 
-  render () {
+  render() {
     return (<noscript />);
   }
 }

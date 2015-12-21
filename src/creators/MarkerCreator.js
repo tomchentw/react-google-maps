@@ -5,13 +5,13 @@ import {
   Children,
 } from "react";
 
-import {default as MarkerEventList} from "../eventLists/MarkerEventList";
-import {default as eventHandlerCreator} from "../utils/eventHandlerCreator";
-import {default as defaultPropsCreator} from "../utils/defaultPropsCreator";
-import {default as composeOptions} from "../utils/composeOptions";
-import {default as componentLifecycleDecorator} from "../utils/componentLifecycleDecorator";
+import { default as MarkerEventList } from "../eventLists/MarkerEventList";
+import { default as eventHandlerCreator } from "../utils/eventHandlerCreator";
+import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
+import { default as composeOptions } from "../utils/composeOptions";
+import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
-import {default as GoogleMapHolder} from "./GoogleMapHolder";
+import { default as GoogleMapHolder } from "./GoogleMapHolder";
 
 export const markerControlledPropTypes = {
 // NOTICE!!!!!!
@@ -41,30 +41,30 @@ export const markerControlledPropTypes = {
 export const markerDefaultPropTypes = defaultPropsCreator(markerControlledPropTypes);
 
 const markerUpdaters = {
-  animation   (animation, component) { component.getMarker().setAnimation(animation); },
-  attribution (attribution, component) { component.getMarker().setAttribution(attribution); },
-  clickable   (clickable, component) { component.getMarker().setClickable(clickable); },
-  cursor      (cursor, component) { component.getMarker().setCursor(cursor); },
-  draggable   (draggable, component) { component.getMarker().setDraggable(draggable); },
-  icon        (icon, component) { component.getMarker().setIcon(icon); },
-  label       (label, component) { component.getMarker().setLabel(label); },
-  opacity     (opacity, component) { component.getMarker().setOpacity(opacity); },
-  options     (options, component) { component.getMarker().setOptions(options); },
-  place       (place, component) { component.getMarker().setPlace(place); },
-  position    (position, component) { component.getMarker().setPosition(position); },
-  shape       (shape, component) { component.getMarker().setShape(shape); },
-  title       (title, component) { component.getMarker().setTitle(title); },
-  visible     (visible, component) { component.getMarker().setVisible(visible); },
-  zIndex      (zIndex, component) { component.getMarker().setZIndex(zIndex); },
+  animation(animation, component) { component.getMarker().setAnimation(animation); },
+  attribution(attribution, component) { component.getMarker().setAttribution(attribution); },
+  clickable(clickable, component) { component.getMarker().setClickable(clickable); },
+  cursor(cursor, component) { component.getMarker().setCursor(cursor); },
+  draggable(draggable, component) { component.getMarker().setDraggable(draggable); },
+  icon(icon, component) { component.getMarker().setIcon(icon); },
+  label(label, component) { component.getMarker().setLabel(label); },
+  opacity(opacity, component) { component.getMarker().setOpacity(opacity); },
+  options(options, component) { component.getMarker().setOptions(options); },
+  place(place, component) { component.getMarker().setPlace(place); },
+  position(position, component) { component.getMarker().setPosition(position); },
+  shape(shape, component) { component.getMarker().setShape(shape); },
+  title(title, component) { component.getMarker().setTitle(title); },
+  visible(visible, component) { component.getMarker().setVisible(visible); },
+  zIndex(zIndex, component) { component.getMarker().setZIndex(zIndex); },
 };
 
-const {eventPropTypes, registerEvents} = eventHandlerCreator(MarkerEventList);
+const { eventPropTypes, registerEvents } = eventHandlerCreator(MarkerEventList);
 
 export const markerEventPropTypes = eventPropTypes;
 
 @componentLifecycleDecorator({
   registerEvents,
-  instanceMethodName: "getMarker",
+  instanceMethodName: `getMarker`,
   updaters: markerUpdaters,
 })
 export default class MarkerCreator extends Component {
@@ -74,13 +74,13 @@ export default class MarkerCreator extends Component {
     marker: PropTypes.object.isRequired,
   }
 
-  static _createMarker (markerProps) {
-    const {mapHolderRef, anchorHolderRef} = markerProps;
+  static _createMarker(markerProps) {
+    const { mapHolderRef, anchorHolderRef } = markerProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
     const marker = new google.maps.Marker(composeOptions(markerProps, markerControlledPropTypes));
 
     if (anchorHolderRef) {
-      if ("MarkerClusterer" === anchorHolderRef.getAnchorType()) {
+      if (`MarkerClusterer` === anchorHolderRef.getAnchorType()) {
         anchorHolderRef.getAnchor().addMarker(marker);
       }
     } else {
@@ -90,18 +90,18 @@ export default class MarkerCreator extends Component {
     return marker;
   }
 
-  getMarker () {
+  getMarker() {
     return this.props.marker;
   }
 
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindowOptions
   // In the core API, the only anchor is the Marker class.
-  getAnchor () {
+  getAnchor() {
     return this.props.marker;
   }
 
-  render () {
-    const {mapHolderRef, children} = this.props;
+  render() {
+    const { mapHolderRef, children } = this.props;
 
     if (0 < Children.count(children)) {
       return (

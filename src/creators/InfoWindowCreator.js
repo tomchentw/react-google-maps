@@ -4,14 +4,14 @@ import {
   Component,
 } from "react";
 
-import {default as InfoWindowEventList} from "../eventLists/InfoWindowEventList";
-import {default as eventHandlerCreator} from "../utils/eventHandlerCreator";
-import {default as defaultPropsCreator} from "../utils/defaultPropsCreator";
-import {default as composeOptions} from "../utils/composeOptions";
-import {default as setContentForOptionalReactElement} from "../utils/setContentForOptionalReactElement";
-import {default as componentLifecycleDecorator} from "../utils/componentLifecycleDecorator";
+import { default as InfoWindowEventList } from "../eventLists/InfoWindowEventList";
+import { default as eventHandlerCreator } from "../utils/eventHandlerCreator";
+import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
+import { default as composeOptions } from "../utils/composeOptions";
+import { default as setContentForOptionalReactElement } from "../utils/setContentForOptionalReactElement";
+import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
-import {default as GoogleMapHolder} from "./GoogleMapHolder";
+import { default as GoogleMapHolder } from "./GoogleMapHolder";
 
 export const infoWindowControlledPropTypes = {
 // NOTICE!!!!!!
@@ -30,20 +30,20 @@ export const infoWindowControlledPropTypes = {
 export const infoWindowDefaultPropTypes = defaultPropsCreator(infoWindowControlledPropTypes);
 
 const infoWindowUpdaters = {
-  children  (children, component) { setContentForOptionalReactElement(children, component.getInfoWindow()); },
-  content   (content, component) { component.getInfoWindow().setContent(content); },
-  options   (options, component) { component.getInfoWindow().setOptions(options); },
-  position  (position, component) { component.getInfoWindow().setPosition(position); },
-  zIndex    (zIndex, component) { component.getInfoWindow().setZIndex(zIndex); },
+  children(children, component) { setContentForOptionalReactElement(children, component.getInfoWindow()); },
+  content(content, component) { component.getInfoWindow().setContent(content); },
+  options(options, component) { component.getInfoWindow().setOptions(options); },
+  position(position, component) { component.getInfoWindow().setPosition(position); },
+  zIndex(zIndex, component) { component.getInfoWindow().setZIndex(zIndex); },
 };
 
-const {eventPropTypes, registerEvents} = eventHandlerCreator(InfoWindowEventList);
+const { eventPropTypes, registerEvents } = eventHandlerCreator(InfoWindowEventList);
 
 export const infoWindowEventPropTypes = eventPropTypes;
 
 @componentLifecycleDecorator({
   registerEvents,
-  instanceMethodName: "getInfoWindow",
+  instanceMethodName: `getInfoWindow`,
   updaters: infoWindowUpdaters,
 })
 export default class InfoWindowCreator extends Component {
@@ -54,8 +54,8 @@ export default class InfoWindowCreator extends Component {
     anchorHolderRef: PropTypes.object,
   }
 
-  static _createInfoWindow (infoWindowProps) {
-    const {mapHolderRef, anchorHolderRef} = infoWindowProps;
+  static _createInfoWindow(infoWindowProps) {
+    const { mapHolderRef, anchorHolderRef } = infoWindowProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
     const infoWindow = new google.maps.InfoWindow(composeOptions(infoWindowProps, infoWindowControlledPropTypes));
 
@@ -72,11 +72,11 @@ export default class InfoWindowCreator extends Component {
     return infoWindow;
   }
 
-  getInfoWindow () {
+  getInfoWindow() {
     return this.props.infoWindow;
   }
 
-  render () {
+  render() {
     return (<noscript />);
   }
 }

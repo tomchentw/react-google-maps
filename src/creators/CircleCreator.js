@@ -21,6 +21,7 @@ export const circleControlledPropTypes = {
 //
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
   center: PropTypes.any,
+  clickable: PropTypes.bool,
   draggable: PropTypes.bool,
   editable: PropTypes.bool,
   options: PropTypes.object,

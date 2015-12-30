@@ -28,7 +28,7 @@ export default function setContentForOptionalReactElement(
     const contentElement = Children.only(contentOptionalReactElement);
     const prevContent = infoWindowLikeInstance.getContent();
 
-    const domEl = renderElement(contentOptionalReactElement, prevContent);
+    const domEl = renderElement(contentElement, prevContent);
     infoWindowLikeInstance.setContent(domEl);
   } else {
     infoWindowLikeInstance.setContent(contentOptionalReactElement);

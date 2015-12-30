@@ -53,9 +53,8 @@ export default class OverlayViewCreator extends Component {
     };
 
     overlayView.draw = function draw() {
-      this._renderContent();
       this._mountContainerToPane();
-      this._positionContainerElement();
+      this._renderContent();
     };
 
     overlayView.onRemove = function onRemove() {
@@ -65,19 +64,21 @@ export default class OverlayViewCreator extends Component {
     };
 
     overlayView._redraw = function _redraw(mapPaneNameChanged) {
-      this._renderContent();
       if (mapPaneNameChanged) {
         this._unmountContainerFromPane();
         this._mountContainerToPane();
       }
-      this._positionContainerElement();
+      this._renderContent();
     };
 
     overlayView._renderContent = function _renderContent() {
-      render(
-        Children.only(this.get(`children`)),
-        this._containerElement
-      );
+      if (this._containerElement) {
+        render(
+          Children.only(this.get(`children`)),
+          this._containerElement,
+          this._positionContainerElement.bind(this)
+        );
+      }
     };
 
     overlayView._mountContainerToPane = function _mountContainerToPane() {

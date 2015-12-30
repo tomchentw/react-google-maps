@@ -1,3 +1,13 @@
+<a name="4.7.1"></a>
+## [4.7.1](https://github.com/tomchentw/react-google-maps/compare/v4.7.0...v4.7.1) (2015-12-30)
+
+
+### Bug Fixes
+
+* **utils:** should use contentElement ([76abbfc](https://github.com/tomchentw/react-google-maps/commit/76abbfc))
+
+
+
 <a name="4.7.0"></a>
 # [4.7.0](https://github.com/tomchentw/react-google-maps/compare/v4.6.2...v4.7.0) (2015-12-07)
 

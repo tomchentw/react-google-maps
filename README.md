@@ -223,5 +223,4 @@ Then open [http://localhost:8080/webpack-dev-server/](http://localhost:8080/webp
 [demo]: http://tomchentw.github.io/react-google-maps/
 [examples_gh_pages]: https://github.com/tomchentw/react-google-maps/tree/master/examples/gh-pages
 [webpack]: http://webpack.github.io/docs/tutorials/getting-started/
-[conventional-changelog]: 
-https://github.com/ajoslin/conventional-changelog
+[conventional-changelog]: https://github.com/ajoslin/conventional-changelog

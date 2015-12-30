@@ -2,12 +2,8 @@ import {
   default as expect,
 } from "expect";
 
-
 import {
   default as React,
-  Children,
-  PropTypes,
-  Component,
 } from "react";
 
 import {

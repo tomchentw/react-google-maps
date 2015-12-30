@@ -98,7 +98,7 @@ Use "GoogleMapLoader" instead. See https://github.com/tomchentw/react-google-map
         </GoogleMapHolder>
       );
     } else {// ------------ Deprecated ------------
-      const realContainerTagName = (undefined === containerTagName || null === containerTagName) ? `div` : containerTagName;
+      const realContainerTagName = (containerTagName === undefined || containerTagName === null) ? `div` : containerTagName;
 
       return (
         <GoogleMapLoader

@@ -21,10 +21,10 @@
     // Best Practices
     "consistent-return": [0],
     "no-else-return": [0],
-    "yoda": [2, "always"],
+    "yoda": [2, "never", {"exceptRange": true}],
     // Variables
     "no-use-before-define": [2, "nofunc"],
-    "no-unused-vars": [1],
+    "no-unused-vars": [2, {"args": "none"}],
     // Stylistic Issues
     "camelcase": [0],
     "no-underscore-dangle": [0],

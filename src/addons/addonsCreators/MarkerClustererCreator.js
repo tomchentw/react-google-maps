@@ -4,7 +4,6 @@ import {
   Component,
   Children,
 } from 'react';
-import { default as invariant } from 'invariant';
 
 import { default as MarkerClustererEventList } from '../addonsEventLists/MarkerClustererEventList';
 import { default as eventHandlerCreator } from '../../utils/eventHandlerCreator';
@@ -111,7 +110,7 @@ export default class MarkerClustererCreator extends Component {
   render() {
     const { mapHolderRef, children } = this.props;
 
-    if (0 < Children.count(children)) {
+    if (Children.count(children) > 0) {
       return (
         <div>
           {

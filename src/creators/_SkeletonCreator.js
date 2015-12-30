@@ -63,7 +63,7 @@ export default class SkeletonCreator extends Component {
   render() {
     const { children } = this.props;
 
-    if (0 < Children.count(children)) {
+    if (Children.count(children) > 0) {
       return (
         <div>{children}</div>
       );

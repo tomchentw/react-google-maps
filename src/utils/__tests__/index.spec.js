@@ -4,13 +4,9 @@ import {
 
 import {
   default as React,
-  Children,
-  PropTypes,
-  Component,
 } from "react";
 
 import {
-  unmountComponentAtNode,
   render,
 } from "react-dom";
 
@@ -19,17 +15,6 @@ import * as maps from "../../__mocks__/google.maps.mock";
 import {
   GoogleMapLoader,
   GoogleMap,
-
-  Circle,
-  DirectionsRenderer,
-  DrawingManager,
-  InfoWindow,
-  Marker,
-  OverlayView,
-  Polygon,
-  Polyline,
-  Rectangle,
-  SearchBox,
 } from "../../index";
 
 import {

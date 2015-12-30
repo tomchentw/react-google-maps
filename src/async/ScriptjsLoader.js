@@ -46,10 +46,10 @@ export default class ScriptjsLoader extends Component {
   shouldUseNewBehavior() {
     const { containerTagName, containerProps } = this.props.googleMapElement.props;
     return (
-      undefined !== this.props.containerElement &&
-      null !== this.props.containerElement &&
-      undefined === containerTagName &&
-      undefined === containerProps
+      this.props.containerElement !== undefined &&
+      this.props.containerElement !== null &&
+      containerTagName === undefined &&
+      containerProps === undefined
     );
   }
 
@@ -79,7 +79,7 @@ See https://github.com/tomchentw/react-google-maps/pull/157 for more details.`
     if (`production` !== process.env.NODE_ENV) {
       const changedKeys = getUrlObjChangedKeys(this.props, nextProps);
 
-      warning(0 === changedKeys.length, `ScriptjsLoader doesn't support mutating url related props after initial render. Changed props: %s`, `[${ changedKeys.join(`, `) }]`);
+      warning(changedKeys.length === 0, `ScriptjsLoader doesn't support mutating url related props after initial render. Changed props: %s`, `[${ changedKeys.join(`, `) }]`);
     }
   }
 

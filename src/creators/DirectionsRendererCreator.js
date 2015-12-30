@@ -69,7 +69,7 @@ export default class DirectionsRendererCreator extends Component {
   render() {
     const { children } = this.props;
 
-    if (0 < Children.count(children)) {
+    if (Children.count(children) > 0) {
       // TODO: take a look at DirectionsRendererOptions#infoWindow and DirectionsRendererOptions#markerOptions ?
       return (
         <div>{children}</div>

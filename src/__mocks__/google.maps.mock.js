@@ -1,7 +1,3 @@
-import {
-  default as expect,
-} from "expect";
-
 import * as event from "./google.maps.event.mock";
 
 export class Map {

@@ -103,7 +103,7 @@ export default class MarkerCreator extends Component {
   render() {
     const { mapHolderRef, children } = this.props;
 
-    if (0 < Children.count(children)) {
+    if (Children.count(children) > 0) {
       return (
         <div>{Children.map(children, childElement =>
           childElement && React.cloneElement(childElement, {

@@ -1,12 +1,6 @@
-import {default as React, Component} from "react";
+import { default as React, Component } from "react";
 
-import {GoogleMap, KmlLayer} from "react-google-maps";
-
-const STYLES = {
-  mapContainer: {
-    height: "100%"
-  }
-};
+import { GoogleMap, KmlLayer } from "react-google-maps";
 
 /*
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference

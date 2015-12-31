@@ -39,7 +39,7 @@ function geometryToComponentWithLatLng(geometry) {
 export default class GeojsonToComponents extends Component {
 
   state = {
-    geoJson: this.props.initialGeoJson,
+    geoJson: require(`../constants/geojson`),
     geoStateBy: {
       0: {
         ref: `map`,
@@ -147,7 +147,7 @@ export default class GeojsonToComponents extends Component {
 
   render() {
     const { props, state } = this;
-    const { initialGeoJson, googleMapsApi, ...otherProps } = props;
+    const { googleMapsApi, ...otherProps } = props;
     const { geoStateBy } = state;
     const { features } = state.geoJson;
     const mapFeature = features[0];

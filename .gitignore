@@ -41,6 +41,7 @@ node_modules
 
 .module-cache
 public/assets
+public/**/assets
 public/**/*.html
 public/*.gz
 tmp/*

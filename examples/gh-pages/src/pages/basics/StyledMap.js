@@ -27,7 +27,7 @@ export default class StyledMap extends Component {
         defaultZoom={5}
         defaultCenter={myLatLng}
         defaultOptions={{
-          styles: this.props.fancyMapStyles,
+          styles: require(`../../constants/fancyMapStyles.json`),
         }}
       >
         <InfoBox

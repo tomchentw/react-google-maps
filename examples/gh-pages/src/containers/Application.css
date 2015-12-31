@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,900");
+
+@import url("https://cdn.jsdelivr.net/prism/1.4.1/themes/prism.css");
+@import url("https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css");
+@import url("https://cdn.jsdelivr.net/animatecss/3.5.1/animate.min.css");
+@import url("https://cdn.jsdelivr.net/toastr/2.1.2/toastr.min.css");
+
+html, body, :global(#react-container) {
+  height: 100%;
+}
+
+.__full-height__ {
+  height: 100%;
+}
+
+.Application {
+  composes: __full-height__;
+}
+
+.container {
+  composes: __full-height__;
+}
+
+.row {
+  composes: __full-height__;
+}
+
+@keyframes :global(fa-spin) {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}

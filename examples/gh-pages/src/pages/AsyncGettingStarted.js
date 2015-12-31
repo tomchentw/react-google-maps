@@ -136,7 +136,9 @@ export default class AsyncGettingStarted extends Component {
             <FaSpinner
               style={{
                 display: `block`,
-                margin: `150px auto`,
+                width: 200,
+                height: 200,
+                margin: `100px auto`,
                 animation: `fa-spin 2s infinite linear`,
               }}
             />

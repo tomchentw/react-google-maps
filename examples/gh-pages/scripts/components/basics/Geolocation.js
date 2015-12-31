@@ -1,17 +1,17 @@
-import {default as React, Component} from "react";
+import { default as React, Component } from "react";
 
 import {
   default as canUseDOM,
 } from "can-use-dom";
 
-import {default as raf} from "raf";
+import { default as raf } from "raf";
 
-import {GoogleMap, Circle, InfoWindow} from "react-google-maps";
+import { GoogleMap, Circle, InfoWindow } from "react-google-maps";
 
 const geolocation = (
   canUseDOM && navigator.geolocation || {
     getCurrentPosition: (success, failure) => {
-      failure("Your browser doesn't support geolocation.");
+      failure(`Your browser doesn't support geolocation.`);
     },
   }
 );
@@ -29,14 +29,14 @@ export default class Geolocation extends Component {
     radius: 6000,
   }
 
-  componentDidMount () {
+  componentDidMount() {
     geolocation.getCurrentPosition((position) => {
       this.setState({
         center: {
           lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lng: position.coords.longitude,
         },
-        content: "Location found using HTML5.",
+        content: `Location found using HTML5.`,
       });
 
       const tick = () => {
@@ -47,44 +47,46 @@ export default class Geolocation extends Component {
         }
       };
       raf(tick);
-
     }, (reason) => {
       this.setState({
         center: {
           lat: 60,
-          lng: 105
+          lng: 105,
         },
-        content: `Error: The Geolocation service failed (${ reason }).`
+        content: `Error: The Geolocation service failed (${ reason }).`,
       });
     });
   }
 
-  render () {
-    const {center, content, radius} = this.state;
+  render() {
+    const { center, content, radius } = this.state;
     let contents = [];
 
     if (center) {
       contents = contents.concat([
         (<InfoWindow key="info" position={center} content={content} />),
         (<Circle key="circle" center={center} radius={radius} options={{
-            fillColor: "red",
-            fillOpacity: 0.20,
-            strokeColor: "red",
-            strokeOpacity: 1,
-            strokeWeight: 1,
-          }} />),
+          fillColor: `red`,
+          fillOpacity: 0.20,
+          strokeColor: `red`,
+          strokeOpacity: 1,
+          strokeWeight: 1,
+        }}
+        />),
       ]);
     }
 
     return (
-      <GoogleMap containerProps={{
+      <GoogleMap
+        containerProps={{
           ...this.props,
           style: {
-            height: "100%",
+            height: `100%`,
           },
         }}
         defaultZoom={12}
-        center={center}>
+        center={center}
+      >
         {contents}
       </GoogleMap>
     );

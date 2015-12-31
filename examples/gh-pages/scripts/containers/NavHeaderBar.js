@@ -4,16 +4,16 @@ import {
   PropTypes,
 } from "react";
 
-import {default as cx} from "classnames";
+import { default as cx } from "classnames";
 
 const actionPropType = PropTypes.shape({
-        key: PropTypes.string.isRequired,
-        displayName: PropTypes.string.isRequired,
-        path: PropTypes.string.isRequired,
-      });
+  key: PropTypes.string.isRequired,
+  displayName: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+});
 const actionsArrayType = PropTypes.arrayOf(actionPropType).isRequired;
 
-function noop () {}
+function noop() {}
 
 export default class NavHeaderBar extends Component {
 
@@ -25,32 +25,32 @@ export default class NavHeaderBar extends Component {
         PropTypes.oneOfType([actionPropType, PropTypes.bool])
       ),
     rightActions: actionsArrayType,
-  }
+  };
 
   static defaultProps = {
     onNavigateTo: noop,
     actions: [],
     dropdownActions: [],
     rightActions: [],
-  }
+  };
 
   state = {
     dropdownOpen: false,
   }
 
-  _handle_click () {
-    this.setState({dropdownOpen: !this.state.dropdownOpen});
+  _handle_click() {
+    this.setState({ dropdownOpen: !this.state.dropdownOpen });
   }
 
-  _handle_navigate (action, event) {
+  _handle_navigate(action, event) {
     event.stopPropagation();
     this.props.onNavigateTo(action);
-    this.setState({dropdownOpen: false});
+    this.setState({ dropdownOpen: false });
   }
 
-  render () {
-    const {props, state} = this,
-          {activeActionKey} = props;
+  render() {
+    const { props, state } = this;
+    const { activeActionKey } = props;
 
     return (
       <nav className="navbar navbar-default" role="navigation">
@@ -71,7 +71,7 @@ export default class NavHeaderBar extends Component {
               {props.actions.map(actionToMenuItem, this)}
               {renderDropdown.call(this)}
             </ul>
-            <ul className="nav navbar-nav navbar-right" style={{marginRight:100}}>
+            <ul className="nav navbar-nav navbar-right" style={{ marginRight: 100 }}>
               {renderSyncAsyncLink()}
               {props.rightActions.map(actionToMenuItem, this)}
             </ul>
@@ -80,14 +80,14 @@ export default class NavHeaderBar extends Component {
       </nav>
     );
 
-    function renderDropdown () {
-      const dropdownClassSet = {dropdown: true};
+    function renderDropdown() {
+      const dropdownClassSet = { dropdown: true };
       dropdownClassSet.open = state.dropdownOpen;
 
       if (props.dropdownActions.length) {
         return (
           <li className={cx(dropdownClassSet)}>
-            <a href="javascript:void(0);" className="dropdown-toggle" onClick={::this._handle_click}>Samples <span className="caret"></span></a>
+            <a href="#" className="dropdown-toggle" onClick={::this._handle_click}>Samples <span className="caret"></span></a>
             <ul className="dropdown-menu" role="menu">
               {props.dropdownActions.map(actionToMenuItem, this)}
             </ul>
@@ -98,8 +98,8 @@ export default class NavHeaderBar extends Component {
       }
     }
 
-    function renderSyncAsyncLink () {
-      var isAsync = "undefined" !== typeof window && window.location.pathname.match(/async\//);
+    function renderSyncAsyncLink() {
+      const isAsync = typeof window !== `undefined` && window.location.pathname.match(/async\//);
 
       return (
         <li>
@@ -114,9 +114,9 @@ export default class NavHeaderBar extends Component {
       );
     }
 
-    function actionToMenuItem (action, index) {
-      var classSet = {};
-      if (false === action) {
+    function actionToMenuItem(action, index) {
+      const classSet = {};
+      if (action === false) {
         return (
           <li key={`divider_${index}`} className="divider"/>
         );

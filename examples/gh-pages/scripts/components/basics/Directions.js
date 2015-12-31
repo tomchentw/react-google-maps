@@ -1,6 +1,6 @@
-import {default as React, Component} from "react";
+import { default as React, Component } from "react";
 
-import {GoogleMap, DirectionsRenderer} from "react-google-maps";
+import { GoogleMap, DirectionsRenderer } from "react-google-maps";
 
 /*
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
@@ -13,37 +13,38 @@ export default class Directions extends Component {
     directions: null,
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const DirectionsService = new google.maps.DirectionsService();
 
     DirectionsService.route({
       origin: this.state.origin,
       destination: this.state.destination,
-      travelMode: google.maps.TravelMode.DRIVING
+      travelMode: google.maps.TravelMode.DRIVING,
     }, (result, status) => {
-      if(status == google.maps.DirectionsStatus.OK) {
+      if (status === google.maps.DirectionsStatus.OK) {
         this.setState({
-          directions: result
-        })
-      }
-      else {
+          directions: result,
+        });
+      } else {
         console.error(`error fetching directions ${ result }`);
       }
     });
   }
 
-  render () {
-    const {origin, directions} = this.state;
+  render() {
+    const { origin, directions } = this.state;
 
     return (
-      <GoogleMap containerProps={{
+      <GoogleMap
+        containerProps={{
           ...this.props,
           style: {
-            height: "100%",
+            height: `100%`,
           },
         }}
         defaultZoom={7}
-        defaultCenter={origin}>
+        defaultCenter={origin}
+      >
         {directions ? <DirectionsRenderer directions={directions} /> : null}
       </GoogleMap>
     );

@@ -1,6 +1,6 @@
-import {default as React, Component} from "react";
+import { default as React, Component } from "react";
 
-import {GoogleMap, Marker} from "react-google-maps";
+import { GoogleMap, Marker } from "react-google-maps";
 
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-simple
@@ -10,7 +10,7 @@ import {GoogleMap, Marker} from "react-google-maps";
 export default class SimpleClickEvent extends Component {
 
   static defaultProps = {
-    initialCenter: {lat: -25.363882, lng: 131.044922},
+    initialCenter: { lat: -25.363882, lng: 131.044922 },
   }
 
   state = {
@@ -18,13 +18,13 @@ export default class SimpleClickEvent extends Component {
     center: this.props.initialCenter,
   }
 
-  handleMarkerClick () {
+  handleMarkerClick() {
     this.setState({
       zoom: 8,
     });
   }
 
-  handleMapCenterChanged () {
+  handleMapCenterChanged() {
     const newPos = this.refs.map.getCenter();
     if (newPos.equals(new google.maps.LatLng(this.props.initialCenter))) {
       // Notice: Check newPos equality here,
@@ -47,25 +47,28 @@ export default class SimpleClickEvent extends Component {
     });
   }
 
-  render () {
-    const {initialCenter, ...restProps} = this.props;
-    const {zoom, center} = this.state;
+  render() {
+    const { initialCenter, ...restProps } = this.props;
+    const { zoom, center } = this.state;
 
     return (
-      <GoogleMap containerProps={{
+      <GoogleMap
+        containerProps={{
           ...restProps,
           style: {
-            height: "100%",
+            height: `100%`,
           },
         }}
         ref="map"
         zoom={zoom}
         center={center}
-        onCenterChanged={::this.handleMapCenterChanged}>
+        onCenterChanged={::this.handleMapCenterChanged}
+      >
         <Marker
           defaultPosition={center}
           title="Click to zoom"
-          onClick={::this.handleMarkerClick} />
+          onClick={::this.handleMarkerClick}
+        />
       </GoogleMap>
     );
   }

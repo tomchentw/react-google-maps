@@ -1,13 +1,16 @@
-"use strict";
+import {
+  resolve as resolvePath,
+} from "path";
 
-var Path = require("path");
-var webpack = require("webpack");
+import {
+  default as webpack,
+} from "webpack";
 
-var FILENAME_FORMAT;
-var PRODUCTION_PLUGINS;
+let FILENAME_FORMAT;
+let PRODUCTION_PLUGINS;
 
-if ("production" === process.env.NODE_ENV) {
-  FILENAME_FORMAT = "[name]-[chunkhash].js";
+if (`production` === process.env.NODE_ENV) {
+  FILENAME_FORMAT = `[name]-[chunkhash].js`;
   PRODUCTION_PLUGINS = [
     // Same effect as webpack -p
     new webpack.optimize.UglifyJsPlugin(),
@@ -15,41 +18,46 @@ if ("production" === process.env.NODE_ENV) {
   ];
 } else {
   // When HMR is enabled, chunkhash cannot be used.
-  FILENAME_FORMAT = "[name].js";
+  FILENAME_FORMAT = `[name].js`;
   PRODUCTION_PLUGINS = [];
 }
 
-module.exports = {
+export default {
   output: {
-    path: Path.resolve(__dirname, "../../public/assets"),
-    pathinfo: "production" !== process.env.NODE_ENV,
-    publicPath: "assets/",
+    path: resolvePath(__dirname, `../../public/assets`),
+    pathinfo: `production` !== process.env.NODE_ENV,
+    publicPath: `assets/`,
     filename: FILENAME_FORMAT,
   },
-  target: "webworker",
+  target: `webworker`,
   resolve: {
     alias: {
-      "react": Path.resolve(__dirname, "./node_modules/react"),
-      "react-dom": Path.resolve(__dirname, "./node_modules/react-dom"),
+      "react": resolvePath(__dirname, `./node_modules/react`),
+      "react-dom": resolvePath(__dirname, `./node_modules/react-dom`),
     },
   },
   resolveLoader: {
-    root: Path.resolve(__dirname, "./node_modules")
+    root: resolvePath(__dirname, `./node_modules`),
   },
   module: {
     loaders: [
       {
         test: /\.scss$/,
-        loader: "null",
+        loader: `null`,
       },
       {
         test: /\.js(x?)$/,
         exclude: /node_modules/,
-        loaders: "babel",
+        loader: `babel`,
+      },
+      {
+        test: /\.json$/,
+        loader: `json`,
       },
     ],
   },
   plugins: [
-    new webpack.EnvironmentPlugin("NODE_ENV"),
-  ].concat(PRODUCTION_PLUGINS),
+    new webpack.EnvironmentPlugin(`NODE_ENV`),
+    ...PRODUCTION_PLUGINS,
+  ],
 };

@@ -1,10 +1,9 @@
 import {
   default as React,
   Component,
-  PropTypes,
 } from "react";
 
-import {default as ReactRoot} from "./ReactRoot";
+import { default as ReactRoot } from "./ReactRoot";
 import {
   ACTIONS,
   ALL_ACTIONS,
@@ -14,7 +13,7 @@ import {
 
 export default class SyncReactRoot extends Component {
 
-  render () {
+  render() {
     return (
       <ReactRoot
         ACTIONS={ACTIONS}

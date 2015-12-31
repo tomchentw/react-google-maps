@@ -1,6 +1,6 @@
-import {default as React, Component} from "react";
+import { default as React, Component } from "react";
 
-import {GoogleMap} from "react-google-maps";
+import { GoogleMap } from "react-google-maps";
 /*
  * Sample From: https://developers.google.com/maps/documentation/javascript/examples/map-simple
  *
@@ -10,22 +10,24 @@ export default class SimpleMap extends Component {
   /*
    * 1. Create a component that wraps all your map sub-components.
    */
-  render () {
+  render() {
     /*
      * 2. Render GoogleMap component with containerProps
      */
     return (
-      <GoogleMap containerProps={{
+      <GoogleMap
+        containerProps={{
           ...this.props,
           style: {
-            height: "100%",
+            height: `100%`,
           },
         }}
         /*
          * 3. config <GoogleMap> instance by properties
          */
         defaultZoom={8}
-        defaultCenter={{lat: -34.397, lng: 150.644}} />
+        defaultCenter={{ lat: -34.397, lng: 150.644 }}
+      />
     );
   }
 }

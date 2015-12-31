@@ -1,3 +1,3 @@
-import {default as AsyncReactRoot} from "./containers/AsyncReactRoot";
+import { default as AsyncReactRoot } from "./containers/AsyncReactRoot";
 
 export default AsyncReactRoot;

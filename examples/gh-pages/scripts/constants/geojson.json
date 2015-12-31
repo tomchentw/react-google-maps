@@ -1,6 +1,4 @@
-// http://en.wikipedia.org/wiki/GeoJSON
-
-export default {
+{
   "type": "FeatureCollection",
   "features": [
     {
@@ -12,7 +10,7 @@ export default {
       },
       "properties": {
         "zoom": 4,
-        "mapTypeId": "terrain"// google.maps.MapTypeId.TERRAIN
+        "mapTypeId": "terrain"
       }
     },
     {
@@ -60,8 +58,8 @@ export default {
         "strokeOpacity": 0.8,
         "strokeWeight": 2,
         "fillColor": "#FF0000",
-        "fillOpacity": 0.35,
+        "fillOpacity": 0.35
       }
     }
   ]
-};
+}

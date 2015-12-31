@@ -1,11 +1,14 @@
-"use strict";
+import {
+  resolve as resolvePath,
+} from "path";
 
-var Path = require("path");
-var webpack = require("webpack");
+import {
+  default as webpack,
+} from "webpack";
 
-var PRODUCTION_PLUGINS;
+let PRODUCTION_PLUGINS;
 
-if ("production" === process.env.NODE_ENV) {
+if (`production` === process.env.NODE_ENV) {
   PRODUCTION_PLUGINS = [
     // Same effect as webpack -p
     new webpack.optimize.UglifyJsPlugin(),
@@ -15,48 +18,56 @@ if ("production" === process.env.NODE_ENV) {
   PRODUCTION_PLUGINS = [];
 }
 
-var externals = [
-  require("./package.json").dependencies,
-  require("../../package.json").dependencies,
-].reduce(function (acc, dependencies={}) {
-  return acc.concat(
-    Object.keys(dependencies)
-      .map(function (key) { return new RegExp("^" + key); })
-  );
+const externals = [
+  require(`./package.json`).dependencies,
+  require(`../../package.json`).dependencies,
+].reduce((acc, dependencies = {}) => {
+  const regExpList = Object.keys(dependencies)
+    .map(key => new RegExp(`^${ key }`));
+
+  return [
+    ...acc,
+    ...regExpList,
+  ];
 }, []);
 
-module.exports = {
+export default {
   output: {
-    path: Path.resolve(__dirname, "../../public/assets"),
-    pathinfo: "production" !== process.env.NODE_ENV,
-    filename: "[name].js",
-    libraryTarget: "commonjs2",
+    path: resolvePath(__dirname, `../../public/assets`),
+    pathinfo: `production` !== process.env.NODE_ENV,
+    filename: `[name].js`,
+    libraryTarget: `commonjs2`,
   },
-  target: "node",
-  externals: externals,
+  target: `node`,
+  externals,
   resolve: {
     alias: {
-      "react": Path.resolve(__dirname, "./node_modules/react"),
-      "react-dom": Path.resolve(__dirname, "./node_modules/react-dom"),
+      "react": resolvePath(__dirname, `./node_modules/react`),
+      "react-dom": resolvePath(__dirname, `./node_modules/react-dom`),
     },
   },
   resolveLoader: {
-    root: Path.resolve(__dirname, "./node_modules")
+    root: resolvePath(__dirname, `./node_modules`),
   },
   module: {
     loaders: [
       {
         test: /\.scss$/,
-        loader: "null",
+        loader: `null`,
       },
       {
         test: /\.js(x?)$/,
         exclude: /node_modules/,
-        loader: "babel",
+        loader: `babel`,
+      },
+      {
+        test: /\.json$/,
+        loader: `json`,
       },
     ],
   },
   plugins: [
-    new webpack.EnvironmentPlugin("NODE_ENV"),
-  ].concat(PRODUCTION_PLUGINS),
+    new webpack.EnvironmentPlugin(`NODE_ENV`),
+    ...PRODUCTION_PLUGINS,
+  ],
 };

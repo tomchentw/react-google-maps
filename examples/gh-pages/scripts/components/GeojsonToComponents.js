@@ -1,26 +1,26 @@
-import {default as React, Component} from "react";
-import {default as update} from "react-addons-update";
+import { default as React, Component } from "react";
+import { default as update } from "react-addons-update";
 
-import {GoogleMap, Marker, Polyline, Polygon, InfoWindow} from "react-google-maps";
+import { GoogleMap, Marker, Polyline, Polygon, InfoWindow } from "react-google-maps";
 
-function geometryToComponentWithLatLng (geometry) {
-  var typeFromThis = Array.isArray(geometry),
-      type = typeFromThis ? this.type : geometry.type,
-      coordinates = typeFromThis ? geometry : geometry.coordinates;
+function geometryToComponentWithLatLng(geometry) {
+  const typeFromThis = Array.isArray(geometry);
+  const type = typeFromThis ? this.type : geometry.type;
+  let coordinates = typeFromThis ? geometry : geometry.coordinates;
 
   switch (type) {
-    case "Polygon":
+    case `Polygon`:
       return {
         ElementClass: Polygon,
-        paths: coordinates.map(geometryToComponentWithLatLng, {type: "LineString"})[0]
+        paths: coordinates.map(geometryToComponentWithLatLng, { type: `LineString` })[0],
       };
-    case "LineString":
-      coordinates = coordinates.map(geometryToComponentWithLatLng, {type: "Point"});
+    case `LineString`:
+      coordinates = coordinates.map(geometryToComponentWithLatLng, { type: `Point` });
       return typeFromThis ? coordinates : {
         ElementClass: Polyline,
         path: coordinates,
       };
-    case "Point":
+    case `Point`:
       coordinates = new google.maps.LatLng(coordinates[1], coordinates[0]);
       return typeFromThis ? coordinates : {
         ElementClass: Marker,
@@ -42,20 +42,20 @@ export default class GeojsonToComponents extends Component {
     geoJson: this.props.initialGeoJson,
     geoStateBy: {
       0: {
-        ref: "map",
-        style: {height: "100%"},
+        ref: `map`,
+        style: { height: `100%` },
         onClick: ::this.handleMapClick,
         onZoomChanged: ::this.handleMapZoomChanged,
       },
       1: {
-        ref: "centerMarker",
+        ref: `centerMarker`,
         visible: true,
         draggable: true,
         onDragend: ::this.handleMarkerDragend,
         onClick: ::this.handleMarkerClick,
         child: {
-          content: "Bermuda Triangle",
-          owner: "centerMarker",
+          content: `Bermuda Triangle`,
+          owner: `centerMarker`,
         },
       },
       3: {
@@ -64,10 +64,10 @@ export default class GeojsonToComponents extends Component {
     },
   }
 
-  handleMapClick () {
+  handleMapClick() {
   }
 
-  handleMapZoomChanged () {
+  handleMapZoomChanged() {
     this.setState(update(this.state, {
       geoStateBy: {
         0: {
@@ -77,26 +77,26 @@ export default class GeojsonToComponents extends Component {
         },
         1: {
           $merge: {
-            opacity: 0.2+(this.refs.map.getZoom()/14),
+            opacity: 0.2 + (this.refs.map.getZoom() / 14),
           },
         },
       },
     }));
   }
 
-  handleMarkerClick () {
+  handleMarkerClick() {
     this.setState(update(this.state, {
       geoStateBy: {
         0: {
           $merge: {
-            zoom: 1+this.refs.map.getZoom(),
+            zoom: 1 + this.refs.map.getZoom(),
           },
         },
       },
     }));
   }
 
-  handlePolygonRightclick () {
+  handlePolygonRightclick() {
     this.setState(update(this.state, {
       geoStateBy: {
         1: {
@@ -108,10 +108,10 @@ export default class GeojsonToComponents extends Component {
     }));
   }
 
-  handleMarkerDragend ({latLng}) {
-    const marker = this.state.geoJson.features[1],
-          originalCoordinates = marker.properties.originalCoordinates || marker.geometry.coordinates,
-          newCoordinates = [latLng.lng(), latLng.lat()];
+  handleMarkerDragend({ latLng }) {
+    const marker = this.state.geoJson.features[1];
+    const originalCoordinates = marker.properties.originalCoordinates || marker.geometry.coordinates;
+    const newCoordinates = [latLng.lng(), latLng.lat()];
 
     this.setState(update(this.state, {
       geoJson: {
@@ -130,10 +130,10 @@ export default class GeojsonToComponents extends Component {
           },
           4: {
             $set: {
-              "type": "Feature",
+              "type": `Feature`,
               "id": 4,
               "geometry": {
-                "type": "LineString",
+                "type": `LineString`,
                 "coordinates": [originalCoordinates, newCoordinates],
               },
               "properties": {
@@ -145,34 +145,35 @@ export default class GeojsonToComponents extends Component {
     }));
   }
 
-  render () {
-    const {props, state} = this,
-          {initialGeoJson, googleMapsApi, ...otherProps} = props,
-          {geoStateBy} = state,
-          {features} = state.geoJson,
-          mapFeature = features[0],
-          mapGeometry = geometryToComponentWithLatLng(mapFeature.geometry),
-          mapState = geoStateBy[0];
+  render() {
+    const { props, state } = this;
+    const { initialGeoJson, googleMapsApi, ...otherProps } = props;
+    const { geoStateBy } = state;
+    const { features } = state.geoJson;
+    const mapFeature = features[0];
+    const mapGeometry = geometryToComponentWithLatLng(mapFeature.geometry);
+    const mapState = geoStateBy[0];
 
     return (
-      <GoogleMap containerProps={{
+      <GoogleMap
+        containerProps={{
           ...otherProps,
           style: {
-            height: "100%",
+            height: `100%`,
           },
         }}
         {...mapFeature.properties}
         {...mapState}
-        center={mapGeometry.position}>
-
+        center={mapGeometry.position}
+      >
         {features.reduce((array, feature, index) => {
-          if (0 === index) {
+          if (index === 0) {
             return array;
           }
-          const {properties} = feature,
-                {ElementClass, ChildElementClass, ...geometry} = geometryToComponentWithLatLng(feature.geometry),
-                {visible, child, ...featureState} = geoStateBy[feature.id] || {};
-          if (false !== visible) {
+          const { properties } = feature;
+          const { ElementClass, ChildElementClass, ...geometry } = geometryToComponentWithLatLng(feature.geometry);
+          const { visible, child, ...featureState } = geoStateBy[feature.id] || {};
+          if (visible !== false) {
             array.push(
               <ElementClass key={`json-${feature.id}`} {...properties} {...geometry} {...featureState}>
                 {child ? <ChildElementClass {...child} /> : null}
@@ -181,7 +182,6 @@ export default class GeojsonToComponents extends Component {
           }
           return array;
         }, [], this)}
-
       </GoogleMap>
     );
   }

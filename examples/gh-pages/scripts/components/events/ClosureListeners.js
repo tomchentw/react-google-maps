@@ -1,6 +1,6 @@
-import {default as React, Component} from "react";
+import { default as React, Component } from "react";
 
-import {GoogleMap, Marker, InfoWindow} from "react-google-maps";
+import { GoogleMap, Marker, InfoWindow } from "react-google-maps";
 
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-closure
@@ -13,14 +13,14 @@ export default class ClosureListeners extends Component {
     markers: [],
   }
 
-  componentWillMount () {
+  componentWillMount() {
     const southWest = new google.maps.LatLng(-31.203405, 125.244141);
     const northEast = new google.maps.LatLng(-25.363882, 131.044922);
 
     const lngSpan = northEast.lng() - southWest.lng();
     const latSpan = northEast.lat() - southWest.lat();
 
-    let markers = [];
+    const markers = [];
     for (let i = 0; i < 5; i++) {
       const position = new google.maps.LatLng(
         southWest.lat() + latSpan * Math.random(),
@@ -28,27 +28,27 @@ export default class ClosureListeners extends Component {
       );
       markers.push({
         position,
-        content: "This is the secret message".split(" ")[i],
+        content: `This is the secret message`.split(` `)[i],
         showInfo: false,
       });
     }
 
     this.setState({
-      markers, 
+      markers,
     });
   }
 
-  handleMarkerClick (marker) {
+  handleMarkerClick(marker) {
     marker.showInfo = true;
     this.setState(this.state);
   }
 
-  handleCloseclick (marker) {
+  handleCloseclick(marker) {
     marker.showInfo = false;
     this.setState(this.state);
   }
 
-  renderInfoWindow (ref, marker) {
+  renderInfoWindow(ref, marker) {
     if (Math.random() > 0.5) {
       // Normal version: Pass string as content
       return (
@@ -56,7 +56,7 @@ export default class ClosureListeners extends Component {
           content={marker.content}
           onCloseclick={this.handleCloseclick.bind(this, marker)}
         />
-      )
+      );
     } else {
       // "react-google-maps" extended version: Pass ReactElement as content
       return (
@@ -69,30 +69,33 @@ export default class ClosureListeners extends Component {
             <em>The contents of this InfoWindow are actually ReactElements.</em>
           </div>
         </InfoWindow>
-      )
+      );
     }
   }
 
-  render () {
-    const {markers} = this.state;
+  render() {
+    const { markers } = this.state;
 
     return (
-      <GoogleMap containerProps={{
-        ...this.props,
+      <GoogleMap
+        containerProps={{
+          ...this.props,
           style: {
-            height: "100%",
+            height: `100%`,
           },
         }}
         defaultZoom={4}
-        defaultCenter={new google.maps.LatLng(-25.363882, 131.044922)}>
+        defaultCenter={new google.maps.LatLng(-25.363882, 131.044922)}
+      >
         {markers.map((marker, index) => {
           const ref = `marker_${index}`;
 
           return (
             <Marker key={ref} ref={ref}
               position={marker.position}
-              title={(index+1).toString()}
-              onClick={this.handleMarkerClick.bind(this, marker)}>
+              title={(index + 1).toString()}
+              onClick={this.handleMarkerClick.bind(this, marker)}
+            >
               {marker.showInfo ? this.renderInfoWindow(ref, marker) : null}
             </Marker>
           );

@@ -4,7 +4,7 @@ import {
   PropTypes,
 } from "react";
 
-import {PrismCode} from "react-prism";
+import { PrismCode } from "react-prism";
 
 export default class ComponentPlayground extends Component {
 
@@ -12,25 +12,26 @@ export default class ComponentPlayground extends Component {
     componentClass: PropTypes.func.isRequired,
     componentProps: PropTypes.object,
     // Adding __raw is to hide content from React Develop Tool
-    componentRaw: PropTypes.shape({__raw: PropTypes.string}).isRequired,
+    componentRaw: PropTypes.shape({ __raw: PropTypes.string }).isRequired,
   }
 
-  render () {
-    const {props, state} = this,
-          Component = props.componentClass;
+  render() {
+    const { props } = this;
+    const PlayComponent = props.componentClass;
 
     return (
       <div className={props.className}>
-        <Component
+        <PlayComponent
           className="col-xs-6"
           toast={props.toast}
-          {...props.componentProps} />
-
-        <div
-          className="col-xs-6">
-          <pre><PrismCode className="language-javascript">
-            {props.componentRaw.__raw}
-          </PrismCode></pre>
+          {...props.componentProps}
+        />
+        <div className="col-xs-6">
+          <pre>
+            <PrismCode className="language-javascript">
+              {props.componentRaw.__raw}
+            </PrismCode>
+          </pre>
         </div>
       </div>
     );

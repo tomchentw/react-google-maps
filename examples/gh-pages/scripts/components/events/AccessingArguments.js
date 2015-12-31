@@ -1,6 +1,6 @@
-import {default as React, Component} from "react";
+import { default as React, Component } from "react";
 
-import {GoogleMap, Marker} from "react-google-maps";
+import { GoogleMap, Marker } from "react-google-maps";
 
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-arguments
@@ -9,15 +9,15 @@ import {GoogleMap, Marker} from "react-google-maps";
  */
 export default class AccessingArguments extends Component {
 
-  state =  {
+  state = {
     markers: [],
     center: new google.maps.LatLng(-25.363882, 131.044922),
   }
 
-  handleMapClick (event) {
-    const {markers} = this.state;
+  handleMapClick(event) {
+    const { markers } = this.state;
     markers.push({
-      position: event.latLng
+      position: event.latLng,
     });
     this.setState({
       center: event.latLng,
@@ -25,20 +25,22 @@ export default class AccessingArguments extends Component {
     });
   }
 
-  render () {
-    const {markers, center} = this.state;
+  render() {
+    const { markers, center } = this.state;
 
     return (
-      <GoogleMap containerProps={{
+      <GoogleMap
+        containerProps={{
           ...this.props,
           style: {
-            height: "100%",
+            height: `100%`,
           },
         }}
         ref="map"
         defaultZoom={4}
         center={center}
-        onClick={::this.handleMapClick}>
+        onClick={::this.handleMapClick}
+      >
         {markers.map((marker, index) =>
           <Marker position={marker.position} key={index} />
         )}

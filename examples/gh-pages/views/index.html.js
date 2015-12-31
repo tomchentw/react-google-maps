@@ -22,7 +22,7 @@ export default (
       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places" />
       <WebpackScriptEntry
         chunkName="prism"
-        chunkFilepath={require.resolve("prismjs")}
+        chunkFilepath={require.resolve(`prismjs`)}
         configFilepath="../WebWorker.webpackConfig.js"
       />
     </head>

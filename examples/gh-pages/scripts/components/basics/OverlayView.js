@@ -1,16 +1,16 @@
-import {default as React, Component} from "react";
+import { default as React, Component } from "react";
 
-import {GoogleMap, OverlayView} from "react-google-maps";
+import { GoogleMap, OverlayView } from "react-google-maps";
 
 const STYLES = {
   mapContainer: {
-    height: "100%"
+    height: `100%`,
   },
   overlayView: {
-    background: "white",
-    border: "1px solid #ccc",
-    padding: 15
-  }
+    background: `white`,
+    border: `1px solid #ccc`,
+    padding: 15,
+  },
 };
 
 /*
@@ -21,16 +21,17 @@ export default class OverlayViewExample extends Component {
     count: 0,
   }
 
-  render () {
-    const {count} = this.state;
+  render() {
+    const { count } = this.state;
 
     return (
       <GoogleMap
-        containerProps={{...this.props, style: STYLES.mapContainer}}
+        containerProps={{ ...this.props, style: STYLES.mapContainer }}
         defaultZoom={8}
-        defaultCenter={{lat: -34.397, lng: 150.644}}>
+        defaultCenter={{ lat: -34.397, lng: 150.644 }}
+      >
         <OverlayView
-          position={{lat: -34.397, lng: 150.644}}
+          position={{ lat: -34.397, lng: 150.644 }}
           /*
            * An alternative to specifying position is specifying bounds.
            * bounds can either be an instance of google.maps.LatLngBounds
@@ -55,7 +56,7 @@ export default class OverlayViewExample extends Component {
           <div style={STYLES.overlayView}>
             <h1>OverlayView</h1>
             <button onClick={::this.onClick}>
-              I have been clicked {count} time{count === 1 ? '' : 's'}
+              I have been clicked {count} time{count === 1 ? `` : `s`}
             </button>
           </div>
         </OverlayView>
@@ -63,11 +64,11 @@ export default class OverlayViewExample extends Component {
     );
   }
 
-  onClick () {
-    this.setState({count: this.state.count + 1});
+  onClick() {
+    this.setState({ count: this.state.count + 1 });
   }
 
-  getPixelPositionOffset (width, height) {
-    return {x: -(width / 2), y: -(height / 2)};
+  getPixelPositionOffset(width, height) {
+    return { x: -(width / 2), y: -(height / 2) };
   }
 }

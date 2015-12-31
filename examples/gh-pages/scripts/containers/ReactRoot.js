@@ -4,13 +4,13 @@ import {
   PropTypes,
 } from "react";
 
-import {default as GitHubForkRibbon} from "react-github-fork-ribbon";
-import {ToastContainer, ToastMessage} from "react-toastr";
+import { default as GitHubForkRibbon } from "react-github-fork-ribbon";
+import { ToastContainer, ToastMessage } from "react-toastr";
 
-import {default as NavHeaderBar} from "./NavHeaderBar";
-import {default as ComponentPlayground} from "./ComponentPlayground";
+import { default as NavHeaderBar } from "./NavHeaderBar";
+import { default as ComponentPlayground } from "./ComponentPlayground";
 
-require("../../styles/index.scss");
+require(`../../styles/index.scss`);
 
 export default class ReactRoot extends Component {
 
@@ -25,10 +25,10 @@ export default class ReactRoot extends Component {
     action: this.props.ACTIONS[0],
   }
 
-  componentWillMount () {
-    var {action} = this.state;
+  componentWillMount() {
+    let { action } = this.state;
     const hash = (
-      "undefined" !== typeof window && location.hash || (
+      `undefined` !== typeof window && location.hash || (
         // Server rendering polyfill
         action.path
       )
@@ -36,19 +36,19 @@ export default class ReactRoot extends Component {
     if (hash === action.path) {
       return;
     }
-    action = this.props.ALL_ACTIONS.filter((action) => { return action.path === hash; })[0];
+    action = this.props.ALL_ACTIONS.filter(({ path }) => { return path === hash; })[0];
     this.setState({ action });
   }
 
-  _handle_navigate (action) {
+  _handle_navigate(action) {
     this.setState({ action });
   }
 
-  _handle_toast (title, message) {
+  _handle_toast(title, message) {
     this.refs.toast.success(title, message);
   }
 
-  render () {
+  render() {
     return (
       <div id="react-root">
         <NavHeaderBar
@@ -62,7 +62,8 @@ export default class ReactRoot extends Component {
           <GitHubForkRibbon
             position="right"
             color="black"
-            href="https://github.com/tomchentw/react-google-maps">
+            href="https://github.com/tomchentw/react-google-maps"
+          >
             Fork me on GitHub
           </GitHubForkRibbon>
           <ToastContainer

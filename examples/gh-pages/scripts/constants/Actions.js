@@ -81,6 +81,17 @@ export const DROPDOWN_ACTIONS = [
       },
     },
   },
+  {
+    key: "basics__kml-layer",
+    displayName: 'KmlLayer',
+    path: '#basics/kml-layer',
+    component: {
+      componentClass: require("../components/basics/KmlLayer"),
+      componentRaw: {
+        __raw: require("!raw-loader!../components/basics/KmlLayer"),
+      },
+    },
+  },
   false,
   {
     key: "events__simple-click-event",

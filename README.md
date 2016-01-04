@@ -49,13 +49,13 @@ export default function SimpleMap (props) {
 
 ### Rule 1
 
-Define `<GoogleMap>` component in the top level. Use `containerProps`, `containerTagName` to customized the wrapper DOM for the component.
+Define `<GoogleMap>` component in the top level. Use `containerProps`, `containerTagName` to customize the wrapper DOM for the component.
 
-Other components like `<Marker>` belongs to the children of `<GoogleMap>`. You already know this from the example code above.
+Other components like `<Marker>` belong to the children of `<GoogleMap>`. You already know this from the example code above.
 
 ### Rule 2
 
-Everything in the `Methods` table in the [official documentation](https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker) of the component could be set via component's *props* directly. For example, a `<Marker>` component has the following *props*:
+Everything in the `Methods` table in the [official documentation](https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker) of the component could be set directly via component's *props* . For example, a `<Marker>` component has the following *props*:
 
 ```
 animation, attribution, clickable, cursor, draggable, icon, label, opacity, options, place, position, shape, title, visible, zIndex
@@ -67,11 +67,11 @@ Every props mentioned in __Rule 2__ could be either [controlled](https://faceboo
 
 ### Rule 4
 
-Anything that are inside components' `options` property could __ONLY__ be accessible via `props.options`. It's your responsibility to manage `props.options` object during the React lifetime for your component. My suggestion is, always use __Rule 3__ if possible. Only use `options` when it's necessary.
+Anything that is inside components' `options` property can __ONLY__ be accessible via `props.options`. It's your responsibility to manage the `props.options` object during the React lifetime of your component. My suggestion is, always use __Rule 3__ if possible. Only use `options` when it's necessary.
 
 ### Rule 5
 
-For event handlers on these components, you could bind them using React component convention. There's a list of event names exists in `eventLists` folder. Find the supported event name and use the form of `on${ camelizedEventName }`. For example, If I want to add `center_changed` callback to a map instance, I'll do the following with `react-google-maps`:
+Event handlers on these components can be bound using React component convention. There's a list of event names that exist in the `eventLists` folder. Find the supported event name and use the form of `on${ camelizedEventName }`. For example, If I want to add `center_changed` callback to a map instance, I'll do the following with `react-google-maps`:
 
 ```js
 <GoogleMap

@@ -1,3 +1,13 @@
+<a name="4.7.2"></a>
+## [4.7.2](https://github.com/tomchentw/react-google-maps/compare/v4.7.1...v4.7.2) (2016-01-07)
+
+
+### Bug Fixes
+
+* **OverlayViewCreator:** position container after render ([f5b0a4c](https://github.com/tomchentw/react-google-maps/commit/f5b0a4c)), closes [#167](https://github.com/tomchentw/react-google-maps/issues/167)
+
+
+
 <a name="4.7.1"></a>
 ## [4.7.1](https://github.com/tomchentw/react-google-maps/compare/v4.7.0...v4.7.1) (2015-12-30)
 

@@ -137,8 +137,7 @@ export default class OverlayViewCreator extends Component {
 
     // If we're inside a MarkerClusterer, allow ourselves to be clustered
     if (overlayViewProps.anchorHolderRef) {
-      if ('MarkerClusterer' === overlayViewProps.anchorHolderRef.getAnchorType()) {
-
+      if (`MarkerClusterer` === overlayViewProps.anchorHolderRef.getAnchorType()) {
         overlayView.getDraggable = function getDraggable() {
           return !!overlayViewProps.draggable;
         };

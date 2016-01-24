@@ -5,6 +5,7 @@ export { default as Circle } from "./Circle";
 export { default as DirectionsRenderer } from "./DirectionsRenderer";
 export { default as DrawingManager } from "./DrawingManager";
 export { default as InfoWindow } from "./InfoWindow";
+export { default as KmlLayer } from "./KmlLayer";
 export { default as Marker } from "./Marker";
 export { default as OverlayView } from "./OverlayView";
 export { default as Polygon } from "./Polygon";

@@ -23,7 +23,7 @@ export default class MarkerClusterer extends Component {
 
   // Public APIs
   // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html#events
-  getAvaerageCenter() { return this.state.markerClusterer.getAvaerageCenter(); }
+  getAverageCenter() { return this.state.markerClusterer.getAverageCenter(); }
 
   getBatchSizeIE() { return this.state.markerClusterer.getBatchSizeIE(); }
 

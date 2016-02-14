@@ -23,6 +23,7 @@ export const overlayViewControlledPropTypes = {
   getPixelPositionOffset: PropTypes.func,
   position: PropTypes.object,
   children: PropTypes.node,
+  bounds: PropTypes.object,
 // NOTICE!!!!!!
 //
 // Only expose those with getters & setters in the table as controlled props.
@@ -95,17 +96,33 @@ export default class OverlayViewCreator extends Component {
     overlayView._positionContainerElement = function _positionContainerElement() {
       let left;
       let top;
-      const position = this._getPixelPosition();
-      if (position) {
-        let { x, y } = position;
-        const offset = this._getOffset();
-        if (offset) {
-          x += offset.x;
-          y += offset.y;
+      const offset = this._getOffset();
+      if (this.get(`bounds`)) {
+        const bounds = this._getPixelBounds();
+        if (bounds) {
+          const { sw, ne } = bounds;
+          if (offset) {
+            sw.x += offset.x;
+            ne.y += offset.y;
+          }
+          left = sw.x + `px`;
+          top = ne.y + `px`;
+          this._containerElement.style.width = (ne.x - sw.x) + `px`;
+          this._containerElement.style.height = (sw.y - ne.y) + `px`;
         }
-        left = x + `px`;
-        top = y + `px`;
+      } else {
+        const position = this._getPixelPosition();
+        if (position) {
+          let { x, y } = position;
+          if (offset) {
+            x += offset.x;
+            y += offset.y;
+          }
+          left = x + `px`;
+          top = y + `px`;
+        }
       }
+
       this._containerElement.style.left = left;
       this._containerElement.style.top = top;
     };
@@ -114,12 +131,29 @@ export default class OverlayViewCreator extends Component {
       const projection = this.getProjection();
       let position = this.get(`position`);
       invariant(!!position, `OverlayView requires a position/defaultPosition in your props instead of %s`, position);
-
       if (projection && position) {
         if (!(position instanceof google.maps.LatLng)) {
           position = new google.maps.LatLng(position.lat, position.lng);
         }
         return projection.fromLatLngToDivPixel(position);
+      }
+    };
+
+    overlayView._getPixelBounds = function _getPixelBounds() {
+      const projection = this.getProjection();
+      let bounds = this.get(`bounds`);
+      invariant(!!bounds, `OverlayView requires a bounds in your props instead of %s`, bounds);
+      if (projection && bounds) {
+        if (!(bounds instanceof google.maps.LatLngBounds)) {
+          bounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(bounds.ne.lat, bounds.ne.lng),
+            new google.maps.LatLng(bounds.sw.lat, bounds.sw.lng)
+          );
+        }
+        return {
+          sw: projection.fromLatLngToDivPixel(this.bounds.getSouthWest()),
+          ne: projection.fromLatLngToDivPixel(this.bounds.getNorthEast()),
+        };
       }
     };
 

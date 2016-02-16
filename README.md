@@ -71,7 +71,7 @@ Anything that are inside components' `options` property could __ONLY__ be access
 
 ### Rule 5
 
-For event handlers on these components, you could bind them using React component convention. There's a list of evnet names exists in `eventLists` folder. Find the supported event name and use the form of `on${ camelizedEventName }`. For example, If I want to add `center_changed` callback to a map instance, I'll do the following with `react-google-maps`:
+For event handlers on these components, you could bind them using React component convention. There's a list of event names exists in `eventLists` folder. Find the supported event name and use the form of `on${ camelizedEventName }`. For example, If I want to add `center_changed` callback to a map instance, I'll do the following with `react-google-maps`:
 
 ```js
 <GoogleMap

@@ -20,7 +20,7 @@ export default function componentLifecycleDecorator({ registerEvents, instanceMe
 
     // Stash component's own lifecycle methods to be invoked later
     const componentDidMount = Component.prototype.hasOwnProperty(`componentDidMount`) ? Component.prototype.componentDidMount : noop;
-    const componentDidUpdate = Component.prototype.hasOwnProperty(`componentDidUpdate`) ? Component.prototype.componentDidUpdate : noop;
+    const componentWillReceiveProps = Component.prototype.hasOwnProperty(`componentWillReceiveProps`) ? Component.prototype.componentWillReceiveProps : noop;
     const componentWillUnmount = Component.prototype.hasOwnProperty(`componentWillUnmount`) ? Component.prototype.componentWillUnmount : noop;
 
     Object.defineProperty(Component.prototype, `componentDidMount`, {
@@ -35,7 +35,7 @@ export default function componentLifecycleDecorator({ registerEvents, instanceMe
       },
     });
 
-    Object.defineProperty(Component.prototype, `componentDidUpdate`, {
+    Object.defineProperty(Component.prototype, `componentWillReceiveProps`, {
       enumerable: false,
       configurable: true,
       writable: true,
@@ -49,7 +49,7 @@ export default function componentLifecycleDecorator({ registerEvents, instanceMe
         }
 
         // Hook into client's implementation, if it has any
-        componentDidUpdate.call(this, prevProps);
+        componentWillReceiveProps.call(this, prevProps);
 
         register.call(this);
       },

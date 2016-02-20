@@ -1,3 +1,13 @@
+<a name="4.8.0"></a>
+# [4.8.0](https://github.com/tomchentw/react-google-maps/compare/v4.7.2...v4.8.0) (2016-02-20)
+
+
+### Features
+
+* **KmlLayer:** add new KmlLayer component ([746af8d](https://github.com/tomchentw/react-google-maps/commit/746af8d))
+
+
+
 <a name="4.7.2"></a>
 ## [4.7.2](https://github.com/tomchentw/react-google-maps/compare/v4.7.1...v4.7.2) (2016-01-07)
 

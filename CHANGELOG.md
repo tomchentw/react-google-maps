@@ -1,3 +1,13 @@
+<a name="4.8.1"></a>
+## [4.8.1](https://github.com/tomchentw/react-google-maps/compare/v4.8.0...v4.8.1) (2016-02-20)
+
+
+### Bug Fixes
+
+* **MarkerClusterer:** typo method name of getAverageCenter ([4f2ad76](https://github.com/tomchentw/react-google-maps/commit/4f2ad76)), closes [#203](https://github.com/tomchentw/react-google-maps/issues/203) [#204](https://github.com/tomchentw/react-google-maps/issues/204)
+
+
+
 <a name="4.8.0"></a>
 # [4.8.0](https://github.com/tomchentw/react-google-maps/compare/v4.7.2...v4.8.0) (2016-02-20)
 

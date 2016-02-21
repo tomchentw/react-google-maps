@@ -19,12 +19,9 @@ export default (
         chunkFilepath="../scripts/client.js"
         configFilepath="../Client.webpackConfig.js"
       />
-      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places" />
-      <WebpackScriptEntry
-        chunkName="prism"
-        chunkFilepath={require.resolve(`prismjs`)}
-        configFilepath="../WebWorker.webpackConfig.js"
-      />
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"/>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/prism/1.4.1/prism.js"/>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/prism/1.4.1/components/prism-jsx.min.js"/>
     </head>
     <body>
       <ReactRenderToStringEntry

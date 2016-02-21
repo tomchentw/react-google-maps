@@ -28,7 +28,7 @@ export default class ComponentPlayground extends Component {
         />
         <div className="col-xs-6">
           <pre>
-            <PrismCode className="language-javascript">
+            <PrismCode className="language-jsx">
               {props.componentRaw.__raw}
             </PrismCode>
           </pre>

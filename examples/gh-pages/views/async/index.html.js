@@ -20,11 +20,8 @@ export default (
         chunkFilepath="../../scripts/client-async.js"
         configFilepath="../../Client.webpackConfig.js"
       />
-      <WebpackScriptEntry
-        chunkName="prism"
-        chunkFilepath={require.resolve(`prismjs`)}
-        configFilepath="../../WebWorker.webpackConfig.js"
-      />
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/prism/1.4.1/prism.js"/>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/prism/1.4.1/components/prism-jsx.min.js"/>
     </head>
     <body>
       <ReactRenderToStringEntry

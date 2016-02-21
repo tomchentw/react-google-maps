@@ -1,3 +1,13 @@
+<a name="4.9.1"></a>
+## [4.9.1](https://github.com/tomchentw/react-google-maps/compare/v4.9.0...v4.9.1) (2016-02-21)
+
+
+### Bug Fixes
+
+* **componentLifecycleDecorator:** revert to componentWillReceiveProps ([105dc6b](https://github.com/tomchentw/react-google-maps/commit/105dc6b))
+
+
+
 <a name="4.9.0"></a>
 # [4.9.0](https://github.com/tomchentw/react-google-maps/compare/v4.8.2...v4.9.0) (2016-02-21)
 

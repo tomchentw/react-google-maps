@@ -1,3 +1,13 @@
+<a name="4.8.2"></a>
+## [4.8.2](https://github.com/tomchentw/react-google-maps/compare/v4.8.1...v4.8.2) (2016-02-21)
+
+
+### Bug Fixes
+
+* **componentLifecycleDecorator:** check _unregisterEvents before calling ([cd2667c](https://github.com/tomchentw/react-google-maps/commit/cd2667c)), closes [#117](https://github.com/tomchentw/react-google-maps/issues/117)
+
+
+
 <a name="4.8.1"></a>
 ## [4.8.1](https://github.com/tomchentw/react-google-maps/compare/v4.8.0...v4.8.1) (2016-02-20)
 

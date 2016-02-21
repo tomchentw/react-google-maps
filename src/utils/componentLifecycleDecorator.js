@@ -10,8 +10,10 @@ export default function componentLifecycleDecorator({ registerEvents, instanceMe
     }
 
     function unregister() {
-      this._unregisterEvents();
-      this._unregisterEvents = null;
+      if (this._unregisterEvents) {
+        this._unregisterEvents();
+        this._unregisterEvents = null;
+      }
     }
 
     function noop() {}

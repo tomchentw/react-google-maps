@@ -48,7 +48,7 @@
     "react-addons-update": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-github-fork-ribbon": "^0.4.2",
-    "react-google-maps": "^4.4.0",
+    "react-google-maps": "^4.9.0",
     "react-icons": "^0.1.4",
     "react-prism": "^3.0.0",
     "react-pure-render": "^1.0.2",

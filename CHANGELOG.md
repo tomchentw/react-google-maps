@@ -1,3 +1,17 @@
+<a name="4.9.0"></a>
+# [4.9.0](https://github.com/tomchentw/react-google-maps/compare/v4.8.2...v4.9.0) (2016-02-21)
+
+
+### Bug Fixes
+
+* **componentLifecycleDecorator:** change componentDidUpdate to componentWillReceiveProps ([b42b58e](https://github.com/tomchentw/react-google-maps/commit/b42b58e))
+
+### Features
+
+* **OverlayView:** add props.bounds support ([dcdfefa](https://github.com/tomchentw/react-google-maps/commit/dcdfefa)), closes [#205](https://github.com/tomchentw/react-google-maps/issues/205) [#206](https://github.com/tomchentw/react-google-maps/issues/206)
+
+
+
 <a name="4.8.2"></a>
 ## [4.8.2](https://github.com/tomchentw/react-google-maps/compare/v4.8.1...v4.8.2) (2016-02-21)
 

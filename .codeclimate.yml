@@ -33,6 +33,5 @@ ratings:
 # exclude_paths key.
 
 exclude_paths:
-- examples/**
 - lib/**
 - public/**

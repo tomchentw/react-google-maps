@@ -1,3 +1,17 @@
 {
-  "stage": 0
+  "env": {
+    "test": {
+      "plugins": [
+        "typecheck"
+      ]
+    }
+  },
+  "plugins": [
+    "transform-flow-comments"
+  ],
+  "presets": [
+    "es2015",
+    "stage-0",
+    "react"
+  ]
 }

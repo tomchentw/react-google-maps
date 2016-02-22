@@ -34,7 +34,8 @@ export default class Polygon extends Component {
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
   //
-  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
   getDraggable() { return this.state.polygon.getDraggable(); }
 
   getEditable() { return this.state.polygon.getEditable(); }

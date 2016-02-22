@@ -35,7 +35,8 @@ export default class Circle extends Component {
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
   //
-  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
   getBounds() { return this.state.circle.getBounds(); }
 
   getCenter() { return this.state.circle.getCenter(); }

@@ -39,7 +39,8 @@ export default class DirectionsRenderer extends Component {
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
   //
-  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
   getDirections() { return this.state.directionsRenderer.getDirections(); }
 
   getPanel() { return this.state.directionsRenderer.getPanel(); }
@@ -69,7 +70,10 @@ export default class DirectionsRenderer extends Component {
   render() {
     if (this.state.directionsRenderer) {
       return (
-        <DirectionsRendererCreator directionsRenderer={this.state.directionsRenderer} {...this.props}>
+        <DirectionsRendererCreator
+          directionsRenderer={this.state.directionsRenderer}
+          {...this.props}
+        >
           {this.props.children}
         </DirectionsRendererCreator>
       );

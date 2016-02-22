@@ -19,7 +19,8 @@ export const mapControlledPropTypes = {
 //
 // Only expose those with getters & setters in the table as controlled props.
 //
-// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+//    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
 //
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
   center: PropTypes.object,
@@ -47,12 +48,7 @@ const { eventPropTypes, registerEvents } = eventHandlerCreator(GoogleMapEventLis
 
 export const mapEventPropTypes = eventPropTypes;
 
-@componentLifecycleDecorator({
-  registerEvents,
-  instanceMethodName: `getMap`,
-  updaters: mapUpdaters,
-})
-export default class GoogleMapHolder extends Component {
+class GoogleMapHolder extends Component {
 
   static propTypes = {
     map: PropTypes.object.isRequired,
@@ -88,3 +84,9 @@ export default class GoogleMapHolder extends Component {
     );
   }
 }
+
+export default componentLifecycleDecorator({
+  registerEvents,
+  instanceMethodName: `getMap`,
+  updaters: mapUpdaters,
+})(GoogleMapHolder);

@@ -8,7 +8,9 @@ import { default as InfoBoxEventList } from "../addonsEventLists/InfoBoxEventLis
 import { default as eventHandlerCreator } from "../../utils/eventHandlerCreator";
 import { default as defaultPropsCreator } from "../../utils/defaultPropsCreator";
 import { default as composeOptions } from "../../utils/composeOptions";
-import { default as setContentForOptionalReactElement } from "../../utils/setContentForOptionalReactElement";
+import {
+  default as setContentForOptionalReactElement,
+} from "../../utils/setContentForOptionalReactElement";
 import { default as componentLifecycleDecorator } from "../../utils/componentLifecycleDecorator";
 
 export const infoBoxControlledPropTypes = {
@@ -27,7 +29,9 @@ export const infoBoxControlledPropTypes = {
 export const infoBoxDefaultPropTypes = defaultPropsCreator(infoBoxControlledPropTypes);
 
 const infoBoxUpdaters = {
-  children(children, component) { setContentForOptionalReactElement(children, component.getInfoBox()); },
+  children(children, component) {
+    setContentForOptionalReactElement(children, component.getInfoBox());
+  },
   content(content, component) { component.getInfoBox().setContent(content); },
   options(options, component) { component.getInfoBox().setOptions(options); },
   position(position, component) { component.getInfoBox().setPosition(position); },
@@ -39,12 +43,7 @@ const { eventPropTypes, registerEvents } = eventHandlerCreator(InfoBoxEventList)
 
 export const infoBoxEventPropTypes = eventPropTypes;
 
-@componentLifecycleDecorator({
-  registerEvents,
-  instanceMethodName: `getInfoBox`,
-  updaters: infoBoxUpdaters,
-})
-export default class InfoBoxCreator extends Component {
+class InfoBoxCreator extends Component {
 
   static propTypes = {
     infoBox: PropTypes.object.isRequired,
@@ -56,7 +55,7 @@ export default class InfoBoxCreator extends Component {
     // have "google" on the server, we can not use it in server-side rendering.
     // As a result, we import "google-maps-infobox" here to prevent an error on
     // a isomorphic server.
-    const GoogleMapsInfobox = require(`google-maps-infobox`);
+    const GoogleMapsInfobox = require(`google-maps-infobox`); // eslint-disable-line global-require
     // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/docs/reference.html
     const infoBox = new GoogleMapsInfobox(composeOptions(infoBoxProps, infoBoxControlledPropTypes));
 
@@ -80,3 +79,9 @@ export default class InfoBoxCreator extends Component {
     return (<noscript />);
   }
 }
+
+export default componentLifecycleDecorator({
+  registerEvents,
+  instanceMethodName: `getInfoBox`,
+  updaters: infoBoxUpdaters,
+})(InfoBoxCreator);

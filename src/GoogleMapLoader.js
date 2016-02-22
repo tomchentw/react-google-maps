@@ -13,7 +13,9 @@ const USE_NEW_BEHAVIOR_TAG_NAME = `__new_behavior__`;/* CIRCULAR_DEPENDENCY */
 export default class GoogleMapLoader extends Component {
   static propTypes = {
     containerElement: PropTypes.node.isRequired,
-    googleMapElement: PropTypes.element.isRequired, /* CIRCULAR_DEPENDENCY. Uncomment when 5.0.0 comes: propTypesElementOfType(GoogleMap).isRequired, */
+    /* CIRCULAR_DEPENDENCY. Uncomment when 5.0.0 comes:
+    propTypesElementOfType(GoogleMap).isRequired, */
+    googleMapElement: PropTypes.element.isRequired,
   };
 
   static defaultProps = {
@@ -28,12 +30,15 @@ export default class GoogleMapLoader extends Component {
     if (this.state.map || domEl === null) {
       return;
     }
-    const { children, ...mapProps } = this.props.googleMapElement.props;
+    const {
+      children, // eslint-disable-line no-unused-vars
+      ...restProps,
+    } = this.props.googleMapElement.props;
     //
     // Create google.maps.Map instance so that dom is initialized before
     // React's children creators.
     //
-    const map = GoogleMapHolder._createMap(domEl, mapProps);
+    const map = GoogleMapHolder._createMap(domEl, restProps);
     this.setState({ map });
   }
 

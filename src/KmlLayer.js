@@ -35,7 +35,8 @@ export default class KmlLayer extends Component {
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
   //
-  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
   getDefaultViewport() { return this.state.kmlLayer.getDefaultViewport(); }
 
   getMetadata() { return this.state.kmlLayer.getMetadata(); }

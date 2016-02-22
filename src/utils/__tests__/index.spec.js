@@ -46,7 +46,7 @@ describe(`utils`, () => {
 
         render((
           <GoogleMapLoader
-            containerElement={<div/>}
+            containerElement={<div />}
             googleMapElement={<GoogleMap ref={ref} />}
           />
         ), document.createElement(`div`));

@@ -35,7 +35,8 @@ export default class Polyline extends Component {
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
   //
-  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
   getDraggable() { return this.state.polyline.getDraggable(); }
 
   getEditable() { return this.state.polyline.getEditable(); }

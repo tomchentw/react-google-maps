@@ -30,12 +30,7 @@ const { eventPropTypes, registerEvents } = eventHandlerCreator(SearchBoxEventLis
 
 export const searchBoxEventPropTypes = eventPropTypes;
 
-@componentLifecycleDecorator({
-  registerEvents,
-  instanceMethodName: `getSearchBox`,
-  updaters: searchBoxUpdaters,
-})
-export default class SearchBoxCreator extends Component {
+class SearchBoxCreator extends Component {
 
   static propTypes = {
     mapHolderRef: PropTypes.instanceOf(GoogleMapHolder).isRequired,
@@ -43,7 +38,10 @@ export default class SearchBoxCreator extends Component {
   }
 
   static _createSearchBox(inputElement, searchBoxProps) {
-    const searchBox = new google.maps.places.SearchBox(inputElement, composeOptions(searchBoxProps, searchBoxControlledPropTypes));
+    const searchBox = new google.maps.places.SearchBox(
+      inputElement,
+      composeOptions(searchBoxProps, searchBoxControlledPropTypes)
+    );
 
     return searchBox;
   }
@@ -84,3 +82,9 @@ export default class SearchBoxCreator extends Component {
     return (<noscript />);
   }
 }
+
+export default componentLifecycleDecorator({
+  registerEvents,
+  instanceMethodName: `getSearchBox`,
+  updaters: searchBoxUpdaters,
+})(SearchBoxCreator);

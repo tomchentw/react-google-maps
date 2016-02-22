@@ -5,9 +5,9 @@ function groupToUpperCase(match, group) {
 }
 
 function toOnEventName(rawName) {
-  return `on${ rawName
+  return `on${rawName
     .replace(/^(.)/, groupToUpperCase)
-    .replace(/_(.)/g, groupToUpperCase) }`;
+    .replace(/_(.)/g, groupToUpperCase)}`;
 }
 
 export default function eventHandlerCreator(rawNameList) {

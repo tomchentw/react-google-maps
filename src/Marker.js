@@ -35,7 +35,8 @@ export default class Marker extends Component {
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
   //
-  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
   getAnimation() { return this.state.marker.getAnimation(); }
 
   getAttribution() { return this.state.marker.getAttribution(); }

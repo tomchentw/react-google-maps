@@ -7,6 +7,7 @@ export default function composeOptions(props, controlledPropTypes) {
   // props from arguments may contain unknow props.
   // We only interested those in optionNameList
   return optionNameList.reduce((acc, optionName) => {
+    /* eslint-disable no-param-reassign */
     if (`options` !== optionName) {
       const value = getter(optionName);
       if (`undefined` !== typeof value) {

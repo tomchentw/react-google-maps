@@ -31,22 +31,34 @@ export const markerClustererControlledPropTypes = {
   zoomOnClick: PropTypes.bool,
 };
 
-export const markerClustererDefaultPropTypes = defaultPropsCreator(markerClustererControlledPropTypes);
+export const markerClustererDefaultPropTypes = defaultPropsCreator(
+  markerClustererControlledPropTypes
+);
 
 const markerClustererUpdaters = {
-  averageCenter(averageCenter, component) { component.getMarkerClusterer().setAverageCenter(averageCenter); },
+  averageCenter(averageCenter, component) {
+    component.getMarkerClusterer().setAverageCenter(averageCenter);
+  },
 
-  batchSizeIE(batchSizeIE, component) { component.getMarkerClusterer().setBatchSizeIE(batchSizeIE); },
+  batchSizeIE(batchSizeIE, component) {
+    component.getMarkerClusterer().setBatchSizeIE(batchSizeIE);
+  },
 
   calculator(calculator, component) { component.getMarkerClusterer().setCalculator(calculator); },
 
-  enableRetinaIcons(enableRetinaIcons, component) { component.getMarkerClusterer().setEnableRetinaIcons(enableRetinaIcons); },
+  enableRetinaIcons(enableRetinaIcons, component) {
+    component.getMarkerClusterer().setEnableRetinaIcons(enableRetinaIcons);
+  },
 
   gridSize(gridSize, component) { component.getMarkerClusterer().setGridSize(gridSize); },
 
-  ignoreHidden(ignoreHidden, component) { component.getMarkerClusterer().setIgnoreHidden(ignoreHidden); },
+  ignoreHidden(ignoreHidden, component) {
+    component.getMarkerClusterer().setIgnoreHidden(ignoreHidden);
+  },
 
-  imageExtension(imageExtension, component) { component.getMarkerClusterer().setImageExtension(imageExtension); },
+  imageExtension(imageExtension, component) {
+    component.getMarkerClusterer().setImageExtension(imageExtension);
+  },
 
   imagePath(imagePath, component) { component.getMarkerClusterer().setImagePath(imagePath); },
 
@@ -54,27 +66,26 @@ const markerClustererUpdaters = {
 
   maxZoom(maxZoom, component) { component.getMarkerClusterer().setMaxZoom(maxZoom); },
 
-  minimumClusterSize(minimumClusterSize, component) { component.getMarkerClusterer().setMinimumClusterSize(minimumClusterSize); },
+  minimumClusterSize(minimumClusterSize, component) {
+    component.getMarkerClusterer().setMinimumClusterSize(minimumClusterSize);
+  },
 
   styles(styles, component) { component.getMarkerClusterer().setStyles(styles); },
 
   title(title, component) { component.getMarkerClusterer().setTitle(title); },
 
-  zoomOnClick(zoomOnClick, component) { component.getMarkerClusterer().setZoomOnClick(zoomOnClick); },
+  zoomOnClick(zoomOnClick, component) {
+    component.getMarkerClusterer().setZoomOnClick(zoomOnClick);
+  },
 };
 
 const { eventPropTypes, registerEvents } = eventHandlerCreator(MarkerClustererEventList);
 
 export const markerClustererEventPropTypes = eventPropTypes;
 
-@componentLifecycleDecorator({
-  registerEvents,
-  instanceMethodName: `getMarkerClusterer`,
-  updaters: markerClustererUpdaters,
-})
-export default class MarkerClustererCreator extends Component {
 
-  static propTypes = {
+class MarkerClustererCreator extends Component {
+  static PropTypes = {
     markerClusterer: PropTypes.object.isRequired,
   }
 
@@ -83,10 +94,16 @@ export default class MarkerClustererCreator extends Component {
   }
 
   static _createMarkerClusterer(mapHolderRef, markerClustererProps) {
-    const GoogleMarkerClusterer = require(`marker-clusterer-plus`);
+    const GoogleMarkerClusterer = require( // eslint-disable-line global-require
+      `marker-clusterer-plus`
+    );
 
     // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html#events
-    const markerClusterer = new GoogleMarkerClusterer(mapHolderRef.getMap(), [], composeOptions(markerClustererProps, markerClustererControlledPropTypes));
+    const markerClusterer = new GoogleMarkerClusterer(
+      mapHolderRef.getMap(),
+      [],
+      composeOptions(markerClustererProps, markerClustererControlledPropTypes)
+    );
 
     return markerClusterer;
   }
@@ -137,3 +154,9 @@ export default class MarkerClustererCreator extends Component {
     }
   }
 }
+
+export default componentLifecycleDecorator({
+  registerEvents,
+  instanceMethodName: `getMarkerClusterer`,
+  updaters: markerClustererUpdaters,
+})(MarkerClustererCreator);

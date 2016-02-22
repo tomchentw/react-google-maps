@@ -47,7 +47,8 @@ export default class OverlayView extends Component {
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
   //
-  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
   getPanes() { return this.state.overlayView.getPanes(); }
 
   getProjection() { return this.state.overlayView.getProjection(); }
@@ -71,7 +72,10 @@ export default class OverlayView extends Component {
     const { mapHolderRef } = this.context;
     if (this.state.overlayView) {
       return (
-        <OverlayViewCreator mapHolderRef={mapHolderRef} overlayView={this.state.overlayView} {...this.props}>
+        <OverlayViewCreator
+          mapHolderRef={mapHolderRef}
+          overlayView={this.state.overlayView} {...this.props}
+        >
           {this.props.children}
         </OverlayViewCreator>
       );

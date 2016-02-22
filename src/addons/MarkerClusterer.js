@@ -67,13 +67,21 @@ export default class MarkerClusterer extends Component {
   getZoomOnClick() { return this.state.markerClusterer.getZoomOnClick(); }
 
   // Public APIs - Use this carefully
-  addMarker(marker, nodraw = false) { return this.state.markerClusterer.addMarker(marker, nodraw); }
+  addMarker(marker, nodraw = false) {
+    return this.state.markerClusterer.addMarker(marker, nodraw);
+  }
 
-  addMarkers(markers, nodraw = false) { return this.state.markerClusterer.addMarkers(markers, nodraw); }
+  addMarkers(markers, nodraw = false) {
+    return this.state.markerClusterer.addMarkers(markers, nodraw);
+  }
 
-  removeMarker(marker, nodraw = false) { return this.state.markerClusterer.removeMarker(marker, nodraw); }
+  removeMarker(marker, nodraw = false) {
+    return this.state.markerClusterer.removeMarker(marker, nodraw);
+  }
 
-  removeMarkers(markers, nodraw = false) { return this.state.markerClusterer.removeMarkers(markers, nodraw); }
+  removeMarkers(markers, nodraw = false) {
+    return this.state.markerClusterer.removeMarkers(markers, nodraw);
+  }
 
   clearMarkers() { return this.state.markerClusterer.clearMarkers(); }
 
@@ -88,9 +96,10 @@ export default class MarkerClusterer extends Component {
       return;
     }
 
-    const { ...markerClustererProps } = this.props;
-    const { mapHolderRef } = this.context;
-    const markerClusterer = MarkerClustererCreator._createMarkerClusterer(mapHolderRef, markerClustererProps);
+    const markerClusterer = MarkerClustererCreator._createMarkerClusterer(
+      this.context.mapHolderRef,
+      this.props
+    );
 
     this.setState({ markerClusterer });
   }
@@ -98,8 +107,8 @@ export default class MarkerClusterer extends Component {
   render() {
     if (this.state.markerClusterer) {
       return (
-        <MarkerClustererCreator markerClusterer={ this.state.markerClusterer } { ...this.props }>
-          { this.props.children }
+        <MarkerClustererCreator markerClusterer={this.state.markerClusterer} { ...this.props }>
+          {this.props.children}
         </MarkerClustererCreator>
       );
     } else {

@@ -1,4 +1,6 @@
-export default function componentLifecycleDecorator({ registerEvents, instanceMethodName, updaters }) {
+export default function componentLifecycleDecorator(
+  { registerEvents, instanceMethodName, updaters }
+) {
   // This modify the Component.prototype directly
   return (Component) => {
     function register() {
@@ -19,9 +21,21 @@ export default function componentLifecycleDecorator({ registerEvents, instanceMe
     function noop() {}
 
     // Stash component's own lifecycle methods to be invoked later
-    const componentDidMount = Component.prototype.hasOwnProperty(`componentDidMount`) ? Component.prototype.componentDidMount : noop;
-    const componentDidUpdate = Component.prototype.hasOwnProperty(`componentDidUpdate`) ? Component.prototype.componentDidUpdate : noop;
-    const componentWillUnmount = Component.prototype.hasOwnProperty(`componentWillUnmount`) ? Component.prototype.componentWillUnmount : noop;
+    const componentDidMount = (
+      Component.prototype.hasOwnProperty(`componentDidMount`) ?
+      Component.prototype.componentDidMount :
+      noop
+    );
+    const componentDidUpdate = (
+      Component.prototype.hasOwnProperty(`componentDidUpdate`) ?
+      Component.prototype.componentDidUpdate :
+      noop
+    );
+    const componentWillUnmount = (
+      Component.prototype.hasOwnProperty(`componentWillUnmount`) ?
+      Component.prototype.componentWillUnmount :
+      noop
+    );
 
     Object.defineProperty(Component.prototype, `componentDidMount`, {
       enumerable: false,
@@ -42,11 +56,7 @@ export default function componentLifecycleDecorator({ registerEvents, instanceMe
       value(prevProps) {
         unregister.call(this);
 
-        for (const name in updaters) {
-          if (Object.prototype.hasOwnProperty.call(this.props, name)) {
-            updaters[name](this.props[name], this);
-          }
-        }
+        Object.keys(updaters).forEach(name => updaters[name](this.props[name], this));
 
         // Hook into client's implementation, if it has any
         componentDidUpdate.call(this, prevProps);

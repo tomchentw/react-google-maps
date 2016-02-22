@@ -35,7 +35,8 @@ export default class InfoWindow extends Component {
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
   //
-  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
   getContent() { /* TODO: children */ }
 
   getPosition() { return this.state.infoWindow.getPosition(); }

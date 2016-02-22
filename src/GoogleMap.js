@@ -38,7 +38,8 @@ export default class GoogleMap extends Component {
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
   //
-  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
   getBounds() { return (this.props.map || this.refs.delegate).getBounds(); }
 
   getCenter() { return (this.props.map || this.refs.delegate).getCenter(); }
@@ -65,14 +66,17 @@ export default class GoogleMap extends Component {
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
   //
-  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return !it.match(/^get/) && !it.match(/^set/) && !it.match(/Map$/); })
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  //    .filter(function(it){ return !it.match(/^get/) && !it.match(/^set/) && !it.match(/Map$/); })
   fitBounds(bounds) { return (this.props.map || this.refs.delegate).fitBounds(bounds); }
 
   panBy(x, y) { return (this.props.map || this.refs.delegate).panBy(x, y); }
 
   panTo(latLng) { return (this.props.map || this.refs.delegate).panTo(latLng); }
 
-  panToBounds(latLngBounds) { return (this.props.map || this.refs.delegate).panToBounds(latLngBounds); }
+  panToBounds(latLngBounds) {
+    return (this.props.map || this.refs.delegate).panToBounds(latLngBounds);
+  }
   // END - Public APIs - Use this carefully
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
@@ -82,8 +86,9 @@ export default class GoogleMap extends Component {
     const isUsingNewBehavior = USE_NEW_BEHAVIOR_TAG_NAME === containerTagName;
 
     warning(isUsingNewBehavior,
-`"GoogleMap" with containerTagName is deprecated now and will be removed in next major release (5.0.0).
-Use "GoogleMapLoader" instead. See https://github.com/tomchentw/react-google-maps/pull/157 for more details.`
+`"GoogleMap" with containerTagName is deprecated now and will be removed in
+ next major release (5.0.0). Use "GoogleMapLoader" instead.
+See https://github.com/tomchentw/react-google-maps/pull/157 for more details.`
     );
   }
 
@@ -97,8 +102,12 @@ Use "GoogleMapLoader" instead. See https://github.com/tomchentw/react-google-map
           {children}
         </GoogleMapHolder>
       );
-    } else {// ------------ Deprecated ------------
-      const realContainerTagName = (containerTagName === undefined || containerTagName === null) ? `div` : containerTagName;
+    } else { // ------------ Deprecated ------------
+      const realContainerTagName = (
+        (containerTagName === undefined || containerTagName === null)
+        ? `div`
+        : containerTagName
+      );
 
       return (
         <GoogleMapLoader

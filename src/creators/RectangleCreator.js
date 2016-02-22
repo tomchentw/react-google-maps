@@ -15,7 +15,8 @@ export const rectangleControlledPropTypes = {
 //
 // Only expose those with getters & setters in the table as controlled props.
 //
-// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+//    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
 //
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
   bounds: PropTypes.any,
@@ -39,12 +40,7 @@ const { eventPropTypes, registerEvents } = eventHandlerCreator(RectangleEventLis
 
 export const rectangleEventPropTypes = eventPropTypes;
 
-@componentLifecycleDecorator({
-  registerEvents,
-  instanceMethodName: `getRectangle`,
-  updaters: rectangleUpdaters,
-})
-export default class RectangleCreator extends Component {
+class RectangleCreator extends Component {
 
   static propTypes = {
     rectangle: PropTypes.object.isRequired,
@@ -53,7 +49,9 @@ export default class RectangleCreator extends Component {
   static _createRectangle(rectangleProps) {
     const { mapHolderRef } = rectangleProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
-    const rectangle = new google.maps.Rectangle(composeOptions(rectangleProps, rectangleControlledPropTypes));
+    const rectangle = new google.maps.Rectangle(
+      composeOptions(rectangleProps, rectangleControlledPropTypes)
+    );
 
     rectangle.setMap(mapHolderRef.getMap());
 
@@ -68,3 +66,9 @@ export default class RectangleCreator extends Component {
     return (<noscript />);
   }
 }
+
+export default componentLifecycleDecorator({
+  registerEvents,
+  instanceMethodName: `getRectangle`,
+  updaters: rectangleUpdaters,
+})(RectangleCreator);

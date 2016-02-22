@@ -27,6 +27,15 @@ import {
   getUrlObjChangedKeys,
 } from "../utils/makeUrl";
 
+const DELEGATE_PROPS_LIST = [
+  `protocol`,
+  `hostname`,
+  `port`,
+  `pathname`,
+  `query`,
+  `loadingElement`,
+];
+
 export default class ScriptjsLoader extends Component {
   static propTypes = {
     ...urlObjDefinition,
@@ -55,7 +64,8 @@ export default class ScriptjsLoader extends Component {
 
   componentWillMount() {
     warning(this.shouldUseNewBehavior(),
-`"async/ScriptjsLoader" is now rendering "GoogleMapLoader". Migrate to use "GoogleMapLoader" instead.
+`"async/ScriptjsLoader" is now rendering "GoogleMapLoader".
+Migrate to use "GoogleMapLoader" instead.
 The old behavior will be removed in next major release (5.0.0).
 See https://github.com/tomchentw/react-google-maps/pull/157 for more details.`
     );
@@ -65,7 +75,7 @@ See https://github.com/tomchentw/react-google-maps/pull/157 for more details.`
     /*
      * External commonjs require dependency -- begin
      */
-    const scriptjs = require(`scriptjs`);
+    const scriptjs = require(`scriptjs`); // eslint-disable-line global-require
     /*
      * External commonjs require dependency -- end
      */
@@ -79,19 +89,35 @@ See https://github.com/tomchentw/react-google-maps/pull/157 for more details.`
     if (`production` !== process.env.NODE_ENV) {
       const changedKeys = getUrlObjChangedKeys(this.props, nextProps);
 
-      warning(changedKeys.length === 0, `ScriptjsLoader doesn't support mutating url related props after initial render. Changed props: %s`, `[${ changedKeys.join(`, `) }]`);
+      warning(
+        changedKeys.length === 0,
+`ScriptjsLoader doesn't support mutating url related props after initial render.
+Changed props: %s`,
+`[${changedKeys.join(`, `)}]`
+      );
     }
   }
 
   render() {
     if (this.state.isLoaded) {
-      const { protocol, hostname, port, pathname, query, loadingElement, ...restProps } = this.props;
-
       if (this.shouldUseNewBehavior()) {
+        const nextProps = Object.keys(this.props).reduce((acc, key) => {
+          if (DELEGATE_PROPS_LIST.indexOf(key) !== -1) {
+            return acc;
+          } else {
+            return {
+              ...acc,
+              [key]: this.props[key],
+            };
+          }
+        }, {});
+
         return (
-          <GoogleMapLoader {...restProps} />
+          <GoogleMapLoader
+            {...nextProps}
+          />
         );
-      } else {// ------------ Deprecated ------------
+      } else { // ------------ Deprecated ------------
         return this.props.googleMapElement;
       }
     } else {

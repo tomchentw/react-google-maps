@@ -18,7 +18,8 @@ export const kmlLayerControlledPropTypes = {
 //
 // Only expose those with getters & setters in the table as controlled props.
 //
-// [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+// [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; })
+//    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
 //
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
   defaultViewport: PropTypes.any,
@@ -31,7 +32,9 @@ export const kmlLayerControlledPropTypes = {
 export const kmlLayerDefaultPropTypes = defaultPropsCreator(kmlLayerControlledPropTypes);
 
 const kmlLayerUpdaters = {
-  defaultViewport(defaultViewport, component) { component.getKmlLayer().setDefaultViewport(defaultViewport); },
+  defaultViewport(defaultViewport, component) {
+    component.getKmlLayer().setDefaultViewport(defaultViewport);
+  },
   metadata(metadata, component) { component.getKmlLayer().setMetadata(metadata); },
   status(status, component) { component.getKmlLayer().setStatus(status); },
   url(url, component) { component.getKmlLayer().setUrl(url); },
@@ -42,12 +45,7 @@ const { eventPropTypes, registerEvents } = eventHandlerCreator(KmlLayerEventList
 
 export const kmlLayerEventPropTypes = eventPropTypes;
 
-@componentLifecycleDecorator({
-  registerEvents,
-  instanceMethodName: `getKmlLayer`,
-  updaters: kmlLayerUpdaters,
-})
-export default class KmlLayerCreator extends Component {
+class KmlLayerCreator extends Component {
 
   static propTypes = {
     mapHolderRef: PropTypes.instanceOf(GoogleMapHolder).isRequired,
@@ -57,7 +55,9 @@ export default class KmlLayerCreator extends Component {
   static _createKmlLayer(kmlLayerProps) {
     const { mapHolderRef } = kmlLayerProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
-    const kmlLayer = new google.maps.KmlLayer(composeOptions(kmlLayerProps, kmlLayerControlledPropTypes));
+    const kmlLayer = new google.maps.KmlLayer(
+      composeOptions(kmlLayerProps, kmlLayerControlledPropTypes)
+    );
 
     kmlLayer.setMap(mapHolderRef.getMap());
 
@@ -84,3 +84,9 @@ export default class KmlLayerCreator extends Component {
     }
   }
 }
+
+export default componentLifecycleDecorator({
+  registerEvents,
+  instanceMethodName: `getKmlLayer`,
+  updaters: kmlLayerUpdaters,
+})(KmlLayerCreator);

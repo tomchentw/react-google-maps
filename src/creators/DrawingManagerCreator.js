@@ -15,17 +15,22 @@ export const drawingManagerControlledPropTypes = {
 //
 // Only expose those with getters & setters in the table as controlled props.
 //
-// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+//    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
 //
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
   drawingMode: PropTypes.any,
   options: PropTypes.object,
 };
 
-export const drawingManagerDefaultPropTypes = defaultPropsCreator(drawingManagerControlledPropTypes);
+export const drawingManagerDefaultPropTypes = defaultPropsCreator(
+  drawingManagerControlledPropTypes
+);
 
 const drawingManagerUpdaters = {
-  drawingMode(drawingMode, component) { component.getDrawingManager().setDrawingMode(drawingMode); },
+  drawingMode(drawingMode, component) {
+    component.getDrawingManager().setDrawingMode(drawingMode);
+  },
   options(options, component) { component.getDrawingManager().setOptions(options); },
 };
 
@@ -33,12 +38,7 @@ const { eventPropTypes, registerEvents } = eventHandlerCreator(DrawingManagerEve
 
 export const drawingManagerEventPropTypes = eventPropTypes;
 
-@componentLifecycleDecorator({
-  registerEvents,
-  instanceMethodName: `getDrawingManager`,
-  updaters: drawingManagerUpdaters,
-})
-export default class DrawingManagerCreator extends Component {
+class DrawingManagerCreator extends Component {
 
   static propTypes = {
     drawingManager: PropTypes.object.isRequired,
@@ -47,7 +47,9 @@ export default class DrawingManagerCreator extends Component {
   static _createDrawingManager(drawingManagerProps) {
     const { mapHolderRef } = drawingManagerProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
-    const drawingManager = new google.maps.drawing.DrawingManager(composeOptions(drawingManagerProps, drawingManagerControlledPropTypes));
+    const drawingManager = new google.maps.drawing.DrawingManager(
+      composeOptions(drawingManagerProps, drawingManagerControlledPropTypes)
+    );
 
     drawingManager.setMap(mapHolderRef.getMap());
 
@@ -62,3 +64,9 @@ export default class DrawingManagerCreator extends Component {
     return (<noscript />);
   }
 }
+
+export default componentLifecycleDecorator({
+  registerEvents,
+  instanceMethodName: `getDrawingManager`,
+  updaters: drawingManagerUpdaters,
+})(DrawingManagerCreator);

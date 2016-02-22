@@ -35,7 +35,7 @@ import {
 } from "react-helmet";
 
 import {
-  default as theme,
+  default as applicationTheme,
 } from "./Application.css";
 
 export default class Application extends Component {
@@ -46,10 +46,12 @@ export default class Application extends Component {
       container: PropTypes.string.isRequired,
       row: PropTypes.string.isRequired,
     }).isRequired,
+    children: PropTypes.element.isRequired,
   };
 
   static defaultProps = {
-    theme: `locals` in theme ? theme.locals : theme, // Temp hack for injecting css-modules object in server side
+    // Temp hack for injecting css-modules object in server side
+    theme: `locals` in applicationTheme ? applicationTheme.locals : applicationTheme,
   };
 
   _handle_toast(title, message) {
@@ -65,12 +67,12 @@ export default class Application extends Component {
           title="Getting Started"
           titleTemplate="%s | React Google Maps | tomchentw"
           // base={{
-          //   "href": `/`,
+          //   href: `/`,
           // }}
           meta={[
-            { "name": `viewport`, "content": `width=device-width, initial-scale=1` },
-            { "name": `description`, "content": `react-google-maps example application` },
-            { "property": `og:type`, "content": `article` },
+            { name: `viewport`, content: `width=device-width, initial-scale=1` },
+            { name: `description`, content: `react-google-maps example application` },
+            { property: `og:type`, content: `article` },
           ]}
         />
         <Navbar fluid>
@@ -88,18 +90,26 @@ export default class Application extends Component {
               <MenuItem href="#basics/directions">Directions</MenuItem>
               <MenuItem href="#basics/overlay-view">Overlay view</MenuItem>
               <MenuItem href="#basics/kml-layer">KmlLayer</MenuItem>
-              <MenuItem href="#basics/pop-up-window">Pop-up InfoWindow</MenuItem> 
+              <MenuItem href="#basics/pop-up-window">Pop-up InfoWindow</MenuItem>
               <MenuItem divider />
               <MenuItem href="#events/simple-click-event">Simple click event</MenuItem>
-              <MenuItem href="#events/closure-listeners">Using closures in event listeners</MenuItem>
-              <MenuItem href="#events/accessing-arguments">Accessing arguments in UI events</MenuItem>
-              <MenuItem href="#events/getting-properties">Getting properties with event handlers</MenuItem>
+              <MenuItem href="#events/closure-listeners">
+                Using closures in event listeners
+              </MenuItem>
+              <MenuItem href="#events/accessing-arguments">
+                Accessing arguments in UI events
+              </MenuItem>
+              <MenuItem href="#events/getting-properties">
+                Getting properties with event handlers
+              </MenuItem>
               <MenuItem divider />
               <MenuItem href="#drawing/drawing-tools">Drawing tools</MenuItem>
               <MenuItem divider />
               <MenuItem href="#places/search-box">Adding a places search box</MenuItem>
               <MenuItem divider />
-              <MenuItem href="#addons/marker-clusterer">Marker clusterer addon with Marker</MenuItem>
+              <MenuItem href="#addons/marker-clusterer">
+                Marker clusterer addon with Marker
+              </MenuItem>
             </NavDropdown>
           </Nav>
           <Navbar.Collapse style={{ marginRight: 100 }}>

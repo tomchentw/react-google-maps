@@ -36,7 +36,10 @@ export default class OverlayViewExample extends Component {
            * An alternative to specifying position is specifying bounds.
            * bounds can either be an instance of google.maps.LatLngBounds
            * or an object in the following format:
-           * bounds={ {ne: { lat: 62.400471, lng: -150.005608 }, sw: { { lat: 62.281819, lng: -150.287132 } } }
+           * bounds={{
+           *    ne: { lat: 62.400471, lng: -150.005608 },
+           *    sw: { lat: 62.281819, lng: -150.287132 }
+           * }}
            */
           /*
            * 1. Specify the pane the OverlayView will be rendered to. For

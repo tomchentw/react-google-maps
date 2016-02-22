@@ -1,4 +1,9 @@
-import { default as React, Component } from "react";
+import {
+  default as React,
+  Component,
+  PropTypes,
+} from "react";
+
 import { default as update } from "react-addons-update";
 import { default as FaSpinner } from "react-icons/lib/fa/spinner";
 
@@ -12,6 +17,10 @@ import { GoogleMap, Marker } from "react-google-maps";
  * Loaded using async loader.
  */
 export default class AsyncGettingStarted extends Component {
+
+  static propTypes = {
+    toast: PropTypes.func.isRequired,
+  };
 
   static version = Math.ceil(Math.random() * 22);
 
@@ -66,12 +75,33 @@ export default class AsyncGettingStarted extends Component {
     this.setState({ markers });
   }
 
-  renderDeprecatedBehavior() {// Remove when reach 5.0.0
+  handleGoogleMapLoad(googleMap) {
+    // Wait until GoogleMap is fully loaded. Related to #133
+    setTimeout(() => {
+      if (!googleMap) {
+        return;
+      }
+      console.log(googleMap);
+      console.log(`Zoom: ${googleMap.getZoom()}`);
+      console.log(`Center: ${googleMap.getCenter()}`);
+    }, 50);
+  }
+
+  handleNewBehaviorGoogleMapLoad(googleMap) {
+    if (!googleMap) {
+      return;
+    }
+    console.log(googleMap);
+    console.log(`Zoom: ${googleMap.getZoom()}`);
+    console.log(`Center: ${googleMap.getCenter()}`);
+  }
+
+  renderDeprecatedBehavior() { // Remove when reach 5.0.0
     return (
       <ScriptjsLoader
         hostname={"maps.googleapis.com"}
         pathname={"/maps/api/js"}
-        query={{ v: `3.${ AsyncGettingStarted.version }`, libraries: `geometry,drawing,places` }}
+        query={{ v: `3.${AsyncGettingStarted.version}`, libraries: `geometry,drawing,places` }}
         loadingElement={
           <div
             {...this.props}
@@ -96,26 +126,17 @@ export default class AsyncGettingStarted extends Component {
                 height: `100%`,
               },
             }}
-            ref={googleMap => {
-              // Wait until GoogleMap is fully loaded. Related to #133
-              setTimeout(() => {
-                if (!googleMap) {
-                  return;
-                }
-                console.log(googleMap);
-                console.log(`Zoom: ` + googleMap.getZoom());
-                console.log(`Center: ` + googleMap.getCenter());
-              }, 50);
-            }}
+            ref={::this.handleGoogleMapLoad}
             defaultZoom={3}
             defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
             onClick={::this.handleMapClick}
           >
             {this.state.markers.map((marker, index) => {
+              const onRightclick = this.handleMarkerRightclick.bind(this, index);
               return (
                 <Marker
                   {...marker}
-                  onRightclick={this.handleMarkerRightclick.bind(this, index)}
+                  onRightclick={onRightclick}
                 />
               );
             })}
@@ -130,7 +151,7 @@ export default class AsyncGettingStarted extends Component {
       <ScriptjsLoader
         hostname={"maps.googleapis.com"}
         pathname={"/maps/api/js"}
-        query={{ v: `3.${ AsyncGettingStarted.version }`, libraries: `geometry,drawing,places` }}
+        query={{ v: `3.${AsyncGettingStarted.version}`, libraries: `geometry,drawing,places` }}
         loadingElement={
           <div {...this.props} style={{ height: `100%` }}>
             <FaSpinner
@@ -149,23 +170,17 @@ export default class AsyncGettingStarted extends Component {
         }
         googleMapElement={
           <GoogleMap
-            ref={googleMap => {
-              if (!googleMap) {
-                return;
-              }
-              console.log(googleMap);
-              console.log(`Zoom: ${ googleMap.getZoom() }`);
-              console.log(`Center: ${ googleMap.getCenter() }`);
-            }}
+            ref={::this.handleNewBehaviorGoogleMapLoad}
             defaultZoom={3}
             defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
             onClick={::this.handleMapClick}
           >
             {this.state.markers.map((marker, index) => {
+              const onRightclick = this.handleMarkerRightclick.bind(this, index);
               return (
                 <Marker
                   {...marker}
-                  onRightclick={this.handleMarkerRightclick.bind(this, index)}
+                  onRightclick={onRightclick}
                 />
               );
             })}

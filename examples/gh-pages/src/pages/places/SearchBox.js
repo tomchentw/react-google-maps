@@ -10,18 +10,18 @@ import { GoogleMap, Marker, SearchBox } from "react-google-maps";
 export default class SearchBoxExample extends Component {
 
   static inputStyle = {
-    "border": `1px solid transparent`,
-    "borderRadius": `1px`,
-    "boxShadow": `0 2px 6px rgba(0, 0, 0, 0.3)`,
-    "boxSizing": `border-box`,
-    "MozBoxSizing": `border-box`,
-    "fontSize": `14px`,
-    "height": `32px`,
-    "marginTop": `27px`,
-    "outline": `none`,
-    "padding": `0 12px`,
-    "textOverflow": `ellipses`,
-    "width": `400px`,
+    border: `1px solid transparent`,
+    borderRadius: `1px`,
+    boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+    boxSizing: `border-box`,
+    MozBoxSizing: `border-box`,
+    fontSize: `14px`,
+    height: `32px`,
+    marginTop: `27px`,
+    outline: `none`,
+    padding: `0 12px`,
+    textOverflow: `ellipses`,
+    width: `400px`,
   }
 
   static mapCenter = {
@@ -44,14 +44,11 @@ export default class SearchBoxExample extends Component {
 
   handlePlacesChanged() {
     const places = this.refs.searchBox.getPlaces();
-    const markers = [];
 
     // Add a marker for each place returned from search bar
-    places.forEach(function (place) {
-      markers.push({
-        position: place.geometry.location,
-      });
-    });
+    const markers = places.map(place => ({
+      position: place.geometry.location,
+    }));
 
     // Set markers; set map center to first search result
     const mapCenter = markers.length > 0 ? markers[0].position : this.state.center;

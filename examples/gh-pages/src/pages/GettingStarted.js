@@ -90,6 +90,11 @@ export default class GettingStarted extends Component {
     this.setState({ markers });
   }
 
+  handleGoogleMapLoad(googleMap) {
+    this._googleMapComponent = googleMap;
+    console.log(googleMap.getZoom());
+  }
+
   render() {
     return (
       <GoogleMapLoader
@@ -103,16 +108,17 @@ export default class GettingStarted extends Component {
         }
         googleMapElement={
           <GoogleMap
-            ref={(map) => (this._googleMapComponent = map) && console.log(map.getZoom())}
+            ref={::this.handleGoogleMapLoad}
             defaultZoom={3}
             defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
             onClick={::this.handleMapClick}
           >
             {this.state.markers.map((marker, index) => {
+              const onRightclick = this.handleMarkerRightclick.bind(this, index);
               return (
                 <Marker
                   {...marker}
-                  onRightclick={this.handleMarkerRightclick.bind(this, index)}
+                  onRightclick={onRightclick}
                 />
               );
             })}

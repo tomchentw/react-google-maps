@@ -28,21 +28,21 @@ export default class MarkerClustererExample extends Component {
             height: `100%`,
           },
         }}
-        defaultZoom={ 3 }
+        defaultZoom={3}
         defaultCenter={{ lat: 25.0391667, lng: 121.525 }}
       >
         <MarkerClusterer
           averageCenter
           enableRetinaIcons
-          gridSize={ 60 }
+          gridSize={60}
         >
           {markers.map(marker => (
             <Marker
               position={{ lat: marker.latitude, lng: marker.longitude }}
-              key={ marker.photo_id }
+              key={marker.photo_id}
             />
           ))}
-       </MarkerClusterer>
+        </MarkerClusterer>
       </GoogleMap>
     );
   }

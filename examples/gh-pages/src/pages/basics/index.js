@@ -22,9 +22,9 @@ import {
   default as KmlLayerExample,
 } from "./KmlLayerExample";
 
-import { 
-  default as PopUpInfoWindow, 
-} from "./PopUpInfoWindow"
+import {
+  default as PopUpInfoWindow,
+} from "./PopUpInfoWindow";
 
 SimpleMap.__raw = require(`!raw-loader!./SimpleMap`);
 StyledMap.__raw = require(`!raw-loader!./StyledMap`);
@@ -41,5 +41,5 @@ export {
   Directions,
   OverlayView,
   KmlLayerExample,
-  PopUpInfoWindow
+  PopUpInfoWindow,
 };

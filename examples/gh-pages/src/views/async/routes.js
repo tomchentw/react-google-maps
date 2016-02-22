@@ -19,6 +19,6 @@ import {
 export default (
   <Route path="/" component={AsyncApplication}>
     <IndexRoute component={AsyncGettingStarted} />
-    <Redirect path="*" to="/"/>
+    <Redirect path="*" to="/" />
   </Route>
 );

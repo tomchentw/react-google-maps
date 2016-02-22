@@ -26,7 +26,7 @@ export default class Directions extends Component {
           directions: result,
         });
       } else {
-        console.error(`error fetching directions ${ result }`);
+        console.error(`error fetching directions ${result}`);
       }
     });
   }

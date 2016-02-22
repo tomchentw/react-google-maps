@@ -21,7 +21,7 @@ export default class GettingProperties extends Component {
       // or it will fire zoom_changed event infinitely
       this.setState({
         zoomLevel,
-        content: `Zoom: ${ zoomLevel }`,
+        content: `Zoom: ${zoomLevel}`,
       });
     }
   }

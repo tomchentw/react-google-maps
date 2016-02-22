@@ -3,6 +3,8 @@ import { default as React, Component } from "react";
 import { GoogleMap } from "react-google-maps";
 import { default as InfoBox } from "react-google-maps/lib/addons/InfoBox";
 
+import fancyMapStyles from "../../constants/fancyMapStyles.json";
+
 /*
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
@@ -27,7 +29,7 @@ export default class StyledMap extends Component {
         defaultZoom={5}
         defaultCenter={myLatLng}
         defaultOptions={{
-          styles: require(`../../constants/fancyMapStyles.json`),
+          styles: fancyMapStyles,
         }}
       >
         <InfoBox

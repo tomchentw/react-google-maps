@@ -53,7 +53,7 @@ export default class Geolocation extends Component {
           lat: 60,
           lng: 105,
         },
-        content: `Error: The Geolocation service failed (${ reason }).`,
+        content: `Error: The Geolocation service failed (${reason}).`,
       });
     });
   }
@@ -65,13 +65,17 @@ export default class Geolocation extends Component {
     if (center) {
       contents = contents.concat([
         (<InfoWindow key="info" position={center} content={content} />),
-        (<Circle key="circle" center={center} radius={radius} options={{
-          fillColor: `red`,
-          fillOpacity: 0.20,
-          strokeColor: `red`,
-          strokeOpacity: 1,
-          strokeWeight: 1,
-        }}
+        (<Circle
+          key="circle"
+          center={center}
+          radius={radius}
+          options={{
+            fillColor: `red`,
+            fillOpacity: 0.20,
+            strokeColor: `red`,
+            strokeOpacity: 1,
+            strokeWeight: 1,
+          }}
         />),
       ]);
     }

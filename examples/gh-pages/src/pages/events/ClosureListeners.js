@@ -38,30 +38,52 @@ export default class ClosureListeners extends Component {
     });
   }
 
-  handleMarkerClick(marker) {
-    marker.showInfo = true;
-    this.setState(this.state);
+  handleMarkerClick(targetMarker) {
+    this.setState({
+      markers: this.state.markers.map(marker => {
+        if (marker === targetMarker) {
+          return {
+            ...marker,
+            showInfo: true,
+          };
+        }
+        return marker;
+      }),
+    });
   }
 
-  handleCloseclick(marker) {
-    marker.showInfo = false;
-    this.setState(this.state);
+  handleCloseclick(targetMarker) {
+    this.setState({
+      markers: this.state.markers.map(marker => {
+        if (marker === targetMarker) {
+          return {
+            ...marker,
+            showInfo: false,
+          };
+        }
+        return marker;
+      }),
+    });
   }
 
   renderInfoWindow(ref, marker) {
+    const onCloseclick = this.handleCloseclick.bind(this, marker);
+
     if (Math.random() > 0.5) {
       // Normal version: Pass string as content
       return (
-        <InfoWindow key={`${ref}_info_window`}
+        <InfoWindow
+          key={`${ref}_info_window`}
           content={marker.content}
-          onCloseclick={this.handleCloseclick.bind(this, marker)}
+          onCloseclick={onCloseclick}
         />
       );
     } else {
       // "react-google-maps" extended version: Pass ReactElement as content
       return (
-        <InfoWindow key={`${ref}_info_window`}
-          onCloseclick={this.handleCloseclick.bind(this, marker)}
+        <InfoWindow
+          key={`${ref}_info_window`}
+          onCloseclick={onCloseclick}
         >
           <div>
             <strong>{marker.content}</strong>
@@ -89,12 +111,15 @@ export default class ClosureListeners extends Component {
       >
         {markers.map((marker, index) => {
           const ref = `marker_${index}`;
+          const onClick = this.handleMarkerClick.bind(this, marker);
 
           return (
-            <Marker key={ref} ref={ref}
+            <Marker
+              key={ref}
+              ref={ref}
               position={marker.position}
               title={(index + 1).toString()}
-              onClick={this.handleMarkerClick.bind(this, marker)}
+              onClick={onClick}
             >
               {marker.showInfo ? this.renderInfoWindow(ref, marker) : null}
             </Marker>

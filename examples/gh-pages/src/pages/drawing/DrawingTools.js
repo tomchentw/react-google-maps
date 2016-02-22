@@ -1,4 +1,4 @@
-import { default as React, Component } from "react";
+import { default as React } from "react";
 
 import { GoogleMap, DrawingManager } from "react-google-maps";
 
@@ -11,44 +11,41 @@ import { GoogleMap, DrawingManager } from "react-google-maps";
  *
  * Credits: thanks @idolize for the contribution!
  */
-export default class DrawingTools extends Component {
+const DrawingTools = props => (
+  <GoogleMap
+    containerProps={{
+      ...this.props,
+      style: {
+        height: `100%`,
+      },
+    }}
+    defaultZoom={8}
+    defaultCenter={new google.maps.LatLng(-34.397, 150.644)}
+  >
+    <DrawingManager
+      defaultDrawingMode={google.maps.drawing.OverlayType.CIRCLE}
+      defaultOptions={{
+        drawingControl: true,
+        drawingControlOptions: {
+          position: google.maps.ControlPosition.TOP_CENTER,
+          drawingModes: [
+            google.maps.drawing.OverlayType.CIRCLE,
+            google.maps.drawing.OverlayType.POLYGON,
+            google.maps.drawing.OverlayType.POLYLINE,
+            google.maps.drawing.OverlayType.RECTANGLE,
+          ],
+        },
+        circleOptions: {
+          fillColor: `#ffff00`,
+          fillOpacity: 1,
+          strokeWeight: 5,
+          clickable: false,
+          editable: true,
+          zIndex: 1,
+        },
+      }}
+    />
+  </GoogleMap>
+);
 
-  render() {
-    return (
-      <GoogleMap
-        containerProps={{
-          ...this.props,
-          style: {
-            height: `100%`,
-          },
-        }}
-        defaultZoom={8}
-        defaultCenter={new google.maps.LatLng(-34.397, 150.644)}
-      >
-        <DrawingManager
-          defaultDrawingMode={google.maps.drawing.OverlayType.CIRCLE}
-          defaultOptions={{
-            drawingControl: true,
-            drawingControlOptions: {
-              position: google.maps.ControlPosition.TOP_CENTER,
-              drawingModes: [
-                google.maps.drawing.OverlayType.CIRCLE,
-                google.maps.drawing.OverlayType.POLYGON,
-                google.maps.drawing.OverlayType.POLYLINE,
-                google.maps.drawing.OverlayType.RECTANGLE,
-              ],
-            },
-            circleOptions: {
-              fillColor: `#ffff00`,
-              fillOpacity: 1,
-              strokeWeight: 5,
-              clickable: false,
-              editable: true,
-              zIndex: 1,
-            },
-          }}
-        />
-      </GoogleMap>
-    );
-  }
-}
+export default DrawingTools;

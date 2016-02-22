@@ -24,7 +24,7 @@ import {
   Directions,
   OverlayView,
   KmlLayerExample,
-  PopUpInfoWindow
+  PopUpInfoWindow,
 } from "../pages/basics";
 
 import {
@@ -50,30 +50,30 @@ export default (
   <Route path="/" component={Application}>
     <IndexRoute component={GettingStarted} />
     <Route path="basics">
-      <Route path="simple-map" component={SimpleMap}/>
-      <Route path="styled-map" component={StyledMap}/>
-      <Route path="geolocation" component={Geolocation}/>
-      <Route path="directions" component={Directions}/>
-      <Route path="overlay-view" component={OverlayView}/>
-      <Route path="kml-layer" component={KmlLayerExample}/>
+      <Route path="simple-map" component={SimpleMap} />
+      <Route path="styled-map" component={StyledMap} />
+      <Route path="geolocation" component={Geolocation} />
+      <Route path="directions" component={Directions} />
+      <Route path="overlay-view" component={OverlayView} />
+      <Route path="kml-layer" component={KmlLayerExample} />
       <Route path="pop-up-window" component={PopUpInfoWindow} />
     </Route>
     <Route path="events">
-      <Route path="simple-click-event" component={SimpleClickEvent}/>
-      <Route path="closure-listeners" component={ClosureListeners}/>
-      <Route path="accessing-arguments" component={AccessingArguments}/>
-      <Route path="getting-properties" component={GettingProperties}/>
+      <Route path="simple-click-event" component={SimpleClickEvent} />
+      <Route path="closure-listeners" component={ClosureListeners} />
+      <Route path="accessing-arguments" component={AccessingArguments} />
+      <Route path="getting-properties" component={GettingProperties} />
     </Route>
     <Route path="drawing">
-      <Route path="drawing-tools" component={DrawingTools}/>
+      <Route path="drawing-tools" component={DrawingTools} />
     </Route>
     <Route path="places">
-      <Route path="search-box" component={SearchBox}/>
+      <Route path="search-box" component={SearchBox} />
     </Route>
     <Route path="addons">
-      <Route path="marker-clusterer" component={MarkerClusterer}/>
+      <Route path="marker-clusterer" component={MarkerClusterer} />
     </Route>
-    <Route path="geojson" component={GeojsonToComponents}/>
-    <Redirect path="*" to="/"/>
+    <Route path="geojson" component={GeojsonToComponents} />
+    <Redirect path="*" to="/" />
   </Route>
 );

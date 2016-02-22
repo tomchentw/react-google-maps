@@ -1,3 +1,5 @@
+import { default as omit } from "lodash/omit";
+
 import { default as React, Component } from "react";
 
 import { GoogleMap, Marker } from "react-google-maps";
@@ -48,13 +50,12 @@ export default class SimpleClickEvent extends Component {
   }
 
   render() {
-    const { initialCenter, ...restProps } = this.props;
     const { zoom, center } = this.state;
 
     return (
       <GoogleMap
         containerProps={{
-          ...restProps,
+          ...omit(this.props, [`initialCenter`]),
           style: {
             height: `100%`,
           },

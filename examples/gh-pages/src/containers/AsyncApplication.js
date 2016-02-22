@@ -33,7 +33,7 @@ import {
 } from "react-helmet";
 
 import {
-  default as theme,
+  default as applicationTheme,
 } from "./Application.css";
 
 export default class AsyncApplication extends Component {
@@ -44,10 +44,12 @@ export default class AsyncApplication extends Component {
       container: PropTypes.string.isRequired,
       row: PropTypes.string.isRequired,
     }).isRequired,
+    children: PropTypes.element.isRequired,
   };
 
   static defaultProps = {
-    theme: `locals` in theme ? theme.locals : theme, // Temp hack for injecting css-modules object in server side
+    // Temp hack for injecting css-modules object in server side
+    theme: `locals` in applicationTheme ? applicationTheme.locals : applicationTheme,
   };
 
   _handle_toast(title, message) {
@@ -63,12 +65,12 @@ export default class AsyncApplication extends Component {
           title="Getting Started"
           titleTemplate="%s | Async | React Google Maps | tomchentw"
           // base={{
-          //   "href": `/`,
+          //   href: `/`,
           // }}
           meta={[
-            { "name": `viewport`, "content": `width=device-width, initial-scale=1` },
-            { "name": `description`, "content": `react-google-maps example application` },
-            { "property": `og:type`, "content": `article` },
+            { name: `viewport`, content: `width=device-width, initial-scale=1` },
+            { name: `description`, content: `react-google-maps example application` },
+            { property: `og:type`, content: `article` },
           ]}
         />
         <Navbar fluid>

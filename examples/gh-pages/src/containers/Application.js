@@ -88,6 +88,7 @@ export default class Application extends Component {
               <MenuItem href="#basics/directions">Directions</MenuItem>
               <MenuItem href="#basics/overlay-view">Overlay view</MenuItem>
               <MenuItem href="#basics/kml-layer">KmlLayer</MenuItem>
+              <MenuItem href="#basics/pop-up-window">Pop-up InfoWindow</MenuItem> 
               <MenuItem divider />
               <MenuItem href="#events/simple-click-event">Simple click event</MenuItem>
               <MenuItem href="#events/closure-listeners">Using closures in event listeners</MenuItem>

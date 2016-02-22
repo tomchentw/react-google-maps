@@ -24,6 +24,7 @@ import {
   Directions,
   OverlayView,
   KmlLayerExample,
+  PopUpInfoWindow
 } from "../pages/basics";
 
 import {
@@ -55,6 +56,7 @@ export default (
       <Route path="directions" component={Directions}/>
       <Route path="overlay-view" component={OverlayView}/>
       <Route path="kml-layer" component={KmlLayerExample}/>
+      <Route path="pop-up-window" component={PopUpInfoWindow} />
     </Route>
     <Route path="events">
       <Route path="simple-click-event" component={SimpleClickEvent}/>

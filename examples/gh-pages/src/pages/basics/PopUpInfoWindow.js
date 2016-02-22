@@ -6,7 +6,8 @@ import { GoogleMapLoader, GoogleMap, InfoWindow, Marker } from "react-google-map
  *
  *  Add <script src="https://maps.googleapis.com/maps/api/js"></script>
  *  to your HTML to provide google.maps reference
- * 
+ *
+ *  @author: @chiwoojo
  */
 export default class PopUpInfoWindow extends Component {
 

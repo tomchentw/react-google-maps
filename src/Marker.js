@@ -99,6 +99,10 @@ export default class Marker extends Component {
     }
   }
 
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     if (this.state.marker) {
       return (

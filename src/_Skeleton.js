@@ -1,6 +1,7 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from "react";
 
 import {
@@ -14,6 +15,8 @@ import {
   skeletonEventPropTypes,
 } from "./creators/SkeletonCreator";
 
+import GoogleMapHolder from "./creators/GoogleMapHolder";
+
 export default class Skeleton extends Component {
   static propTypes = {
     // Uncontrolled default[props] - used only in componentDidMount
@@ -22,6 +25,10 @@ export default class Skeleton extends Component {
     ...skeletonControlledPropTypes,
     // Event [onEventName]
     ...skeletonEventPropTypes,
+  }
+
+  static contextTypes = {
+    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
   }
 
   // Public APIs
@@ -38,10 +45,14 @@ export default class Skeleton extends Component {
   }
 
   componentWillMount() {
+    const { mapHolderRef } = this.context;
     if (!canUseDOM) {
       return;
     }
-    const skeleton = SkeletonCreator._createSkeleton(this.props);
+    const skeleton = SkeletonCreator._createSkeleton({
+      ...this.props,
+      mapHolderRef,
+    });
 
     this.setState({ skeleton });
   }

@@ -10,8 +10,6 @@ import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
 import { default as composeOptions } from "../utils/composeOptions";
 import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
-import { default as GoogleMapHolder } from "./GoogleMapHolder";
-
 export const circleControlledPropTypes = {
 // NOTICE!!!!!!
 //
@@ -51,7 +49,6 @@ export const circleEventPropTypes = eventPropTypes;
 export default class CircleCreator extends Component {
 
   static propTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder).isRequired,
     circle: PropTypes.object.isRequired,
   }
 

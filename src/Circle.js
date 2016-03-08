@@ -1,6 +1,7 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from "react";
 
 import {
@@ -14,6 +15,8 @@ import {
   circleEventPropTypes,
 } from "./creators/CircleCreator";
 
+import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+
 export default class Circle extends Component {
   static propTypes = {
     // Uncontrolled default[props] - used only in componentDidMount
@@ -22,6 +25,10 @@ export default class Circle extends Component {
     ...circleControlledPropTypes,
     // Event [onEventName]
     ...circleEventPropTypes,
+  }
+
+  static contextTypes = {
+    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
   }
 
   // Public APIs
@@ -50,10 +57,15 @@ export default class Circle extends Component {
   }
 
   componentWillMount() {
+    const { mapHolderRef } = this.context;
+
     if (!canUseDOM) {
       return;
     }
-    const circle = CircleCreator._createCircle(this.props);
+    const circle = CircleCreator._createCircle({
+      ...this.props,
+      mapHolderRef,
+    });
 
     this.setState({ circle });
   }

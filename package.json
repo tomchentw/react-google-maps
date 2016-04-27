@@ -1,5 +1,4 @@
 {
-  "__template__gist__": "https://gist.github.com/tomchentw/368a93bb748ad9d576f1#file-package-json",
   "name": "react-google-maps",
   "version": "4.10.0",
   "description": "React.js Google Maps integration component",
@@ -87,7 +86,7 @@
     "invariant": "^2.1.1",
     "lodash.isequal": "^3.0.4",
     "marker-clusterer-plus": "^2.1.2",
-    "react-prop-types-element-of-type": "^1.0.2",
+    "react-prop-types-element-of-type": "^2.1.0",
     "scriptjs": "^2.5.8",
     "warning": "^2.1.0"
   },

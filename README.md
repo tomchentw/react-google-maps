@@ -89,7 +89,7 @@ Static hosted [demo site][demo] on GitHub. The code is located under [examples/g
 
 ## Usage
 
-`react-google-maps` requires __React 0.14__
+`react-google-maps` requires __React >= 0.14__
 
 ```sh
 npm install --save react-google-maps

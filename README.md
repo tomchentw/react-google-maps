@@ -165,7 +165,7 @@ If you're previously using `boot2docker`, you may want to migrate to [docker-mac
 docker-compose build
 ```
 
-### With Mac
+### Without Docker
 
 Install `node`. Then,
 
@@ -174,19 +174,6 @@ npm install
 cd examples/gh-pages
 npm install
 npm start
-```
-
-Then open [http://localhost:8080/webpack-dev-server/](http://localhost:8080/webpack-dev-server/).
-
-### With Windows
-
-Install `node`. Then,
-
-```shell
-npm install
-cd examples/gh-pages
-npm install
-npm start:windows
 ```
 
 Then open [http://localhost:8080/webpack-dev-server/](http://localhost:8080/webpack-dev-server/).

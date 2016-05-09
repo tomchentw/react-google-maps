@@ -17,7 +17,7 @@ export default function SimpleMap (props) {
       <GoogleMapLoader
         containerElement={
           <div
-            {...this.props}
+            {...props.containerElementProps}
             style={{
               height: "100%",
             }}
@@ -27,13 +27,14 @@ export default function SimpleMap (props) {
           <GoogleMap
             ref={(map) => console.log(map)}
             defaultZoom={3}
-            defaultCenter={{lat: -25.363882, lng: 131.044922}}
-            onClick={::this.handleMapClick}>
-            {this.state.markers.map((marker, index) => {
+            defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
+            onClick={props.onMapClick}
+          >
+            {props.markers.map((marker, index) => {
               return (
                 <Marker
                   {...marker}
-                  onRightclick={this.handleMarkerRightclick.bind(this, index)} />
+                  onRightclick={() => props.onMarkerRightclick(index)} />
               );
             })}
           </GoogleMap>

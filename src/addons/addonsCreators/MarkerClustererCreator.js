@@ -73,9 +73,13 @@ export const markerClustererEventPropTypes = eventPropTypes;
   updaters: markerClustererUpdaters,
 })
 export default class MarkerClustererCreator extends Component {
-  static PropTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder).isRequired,
+
+  static propTypes = {
     markerClusterer: PropTypes.object.isRequired,
+  }
+
+  static contextTypes = {
+    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
   }
 
   static _createMarkerClusterer(mapHolderRef, markerClustererProps) {
@@ -108,7 +112,8 @@ export default class MarkerClustererCreator extends Component {
   }
 
   render() {
-    const { mapHolderRef, children } = this.props;
+    const { children } = this.props;
+    const { mapHolderRef } = this.context;
 
     if (Children.count(children) > 0) {
       return (

@@ -1,6 +1,7 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from "react";
 
 import {
@@ -14,6 +15,8 @@ import {
   directionsRendererEventPropTypes,
 } from "./creators/DirectionsRendererCreator";
 
+import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+
 /*
  * Original author: @alexishevia
  * Original PR: https://github.com/tomchentw/react-google-maps/pull/22
@@ -26,6 +29,10 @@ export default class DirectionsRenderer extends Component {
     ...directionsRendererControlledPropTypes,
     // Event [onEventName]
     ...directionsRendererEventPropTypes,
+  }
+
+  static contextTypes = {
+    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
   }
 
   // Public APIs
@@ -46,10 +53,15 @@ export default class DirectionsRenderer extends Component {
   }
 
   componentWillMount() {
+    const { mapHolderRef } = this.context;
+
     if (!canUseDOM) {
       return;
     }
-    const directionsRenderer = DirectionsRendererCreator._createDirectionsRenderer(this.props);
+    const directionsRenderer = DirectionsRendererCreator._createDirectionsRenderer({
+      ...this.props,
+      mapHolderRef,
+    });
 
     this.setState({ directionsRenderer });
   }

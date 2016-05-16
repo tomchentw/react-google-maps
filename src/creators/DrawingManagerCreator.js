@@ -10,8 +10,6 @@ import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
 import { default as composeOptions } from "../utils/composeOptions";
 import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
-import { default as GoogleMapHolder } from "./GoogleMapHolder";
-
 export const drawingManagerControlledPropTypes = {
 // NOTICE!!!!!!
 //
@@ -43,7 +41,6 @@ export const drawingManagerEventPropTypes = eventPropTypes;
 export default class DrawingManagerCreator extends Component {
 
   static propTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder).isRequired,
     drawingManager: PropTypes.object.isRequired,
   }
 

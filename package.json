@@ -84,6 +84,7 @@
     "can-use-dom": "^0.1.0",
     "google-maps-infobox": "^1.1.13",
     "invariant": "^2.1.1",
+    "lodash": "^4.12.0",
     "lodash.isequal": "^3.0.4",
     "marker-clusterer-plus": "^2.1.2",
     "react-prop-types-element-of-type": "^2.1.0",

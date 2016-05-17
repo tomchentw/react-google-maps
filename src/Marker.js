@@ -101,7 +101,7 @@ export default class Marker extends Component {
     }
   }
 
-  shouldComponentUpdate() {
+  shouldComponentUpdate(nextProps, nextState) {
     return !_.isEqual(this.props.icon, nextProps.icon);
   }
 

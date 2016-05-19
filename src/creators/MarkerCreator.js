@@ -11,8 +11,6 @@ import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
 import { default as composeOptions } from "../utils/composeOptions";
 import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
-import { default as GoogleMapHolder } from "./GoogleMapHolder";
-
 export const markerControlledPropTypes = {
 // NOTICE!!!!!!
 //
@@ -70,7 +68,6 @@ export const markerEventPropTypes = eventPropTypes;
 export default class MarkerCreator extends Component {
 
   static propTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder).isRequired,
     marker: PropTypes.object.isRequired,
   }
 

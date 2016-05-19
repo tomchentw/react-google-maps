@@ -1,3 +1,23 @@
+<a name="4.10.1"></a>
+## [4.10.1](https://github.com/tomchentw/react-google-maps/compare/v4.10.0...v4.10.1) (2016-04-27)
+
+
+### Bug Fixes
+
+* **package.json:** update to "react-prop-types-element-of-type@^2.1.0" ([0f27ed3](https://github.com/tomchentw/react-google-maps/commit/0f27ed3))
+
+
+
+<a name="4.10.0"></a>
+# [4.10.0](https://github.com/tomchentw/react-google-maps/compare/v4.9.1...v4.10.0) (2016-04-26)
+
+
+### Features
+
+* **package.json:** update to react@^15.0.0 ([4a85cf6](https://github.com/tomchentw/react-google-maps/commit/4a85cf6)), closes [#243](https://github.com/tomchentw/react-google-maps/issues/243)
+
+
+
 <a name="4.9.1"></a>
 ## [4.9.1](https://github.com/tomchentw/react-google-maps/compare/v4.9.0...v4.9.1) (2016-02-21)
 

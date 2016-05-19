@@ -10,8 +10,6 @@ import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
 import { default as composeOptions } from "../utils/composeOptions";
 import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
-import { default as GoogleMapHolder } from "./GoogleMapHolder";
-
 export const polygonControlledPropTypes = {
 // NOTICE!!!!!!
 //
@@ -51,7 +49,6 @@ export const polygonEventPropTypes = eventPropTypes;
 export default class PolygonCreator extends Component {
 
   static propTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder).isRequired,
     polygon: PropTypes.object.isRequired,
   }
 

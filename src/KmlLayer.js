@@ -1,6 +1,7 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from "react";
 
 import {
@@ -14,6 +15,8 @@ import {
   kmlLayerEventPropTypes,
 } from "./creators/KmlLayerCreator";
 
+import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+
 export default class KmlLayer extends Component {
   static propTypes = {
     // Uncontrolled default[props] - used only in componentDidMount
@@ -22,6 +25,10 @@ export default class KmlLayer extends Component {
     ...kmlLayerControlledPropTypes,
     // Event [onEventName]
     ...kmlLayerEventPropTypes,
+  }
+
+  static contextTypes = {
+    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
   }
 
   // Public APIs
@@ -46,18 +53,24 @@ export default class KmlLayer extends Component {
   }
 
   componentWillMount() {
+    const { mapHolderRef } = this.context;
+
     if (!canUseDOM) {
       return;
     }
-    const kmlLayer = KmlLayerCreator._createKmlLayer(this.props);
+    const kmlLayer = KmlLayerCreator._createKmlLayer({
+      ...this.props,
+      mapHolderRef,
+    });
 
     this.setState({ kmlLayer });
   }
 
   render() {
+    const { mapHolderRef } = this.context;
     if (this.state.kmlLayer) {
       return (
-        <KmlLayerCreator kmlLayer={this.state.kmlLayer} {...this.props}>
+        <KmlLayerCreator mapHolderRef={mapHolderRef} kmlLayer={this.state.kmlLayer} {...this.props}>
           {this.props.children}
         </KmlLayerCreator>
       );

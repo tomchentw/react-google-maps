@@ -1,6 +1,7 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from "react";
 
 import {
@@ -14,6 +15,10 @@ import {
   markerEventPropTypes,
 } from "./creators/MarkerCreator";
 
+import GoogleMapHolder from "./creators/GoogleMapHolder";
+
+import _ from 'lodash';
+
 export default class Marker extends Component {
   static propTypes = {
     // Uncontrolled default[props] - used only in componentDidMount
@@ -22,6 +27,10 @@ export default class Marker extends Component {
     ...markerControlledPropTypes,
     // Event [onEventName]
     ...markerEventPropTypes,
+  }
+
+  static contextTypes = {
+    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
   }
 
   // Public APIs
@@ -64,10 +73,14 @@ export default class Marker extends Component {
   }
 
   componentWillMount() {
+    const { mapHolderRef } = this.context;
     if (!canUseDOM) {
       return;
     }
-    const marker = MarkerCreator._createMarker(this.props);
+    const marker = MarkerCreator._createMarker({
+      ...this.props,
+      mapHolderRef,
+    });
 
     this.setState({ marker });
   }
@@ -86,6 +99,10 @@ export default class Marker extends Component {
         anchorHolderRef.getAnchor().removeMarker(marker);
       }
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !_.isEqual(this.props.icon, nextProps.icon);
   }
 
   render() {

@@ -17,7 +17,7 @@ export default function SimpleMap (props) {
       <GoogleMapLoader
         containerElement={
           <div
-            {...this.props}
+            {...props.containerElementProps}
             style={{
               height: "100%",
             }}
@@ -27,13 +27,14 @@ export default function SimpleMap (props) {
           <GoogleMap
             ref={(map) => console.log(map)}
             defaultZoom={3}
-            defaultCenter={{lat: -25.363882, lng: 131.044922}}
-            onClick={::this.handleMapClick}>
-            {this.state.markers.map((marker, index) => {
+            defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
+            onClick={props.onMapClick}
+          >
+            {props.markers.map((marker, index) => {
               return (
                 <Marker
                   {...marker}
-                  onRightclick={this.handleMarkerRightclick.bind(this, index)} />
+                  onRightclick={() => props.onMarkerRightclick(index)} />
               );
             })}
           </GoogleMap>
@@ -89,7 +90,7 @@ Static hosted [demo site][demo] on GitHub. The code is located under [examples/g
 
 ## Usage
 
-`react-google-maps` requires __React 0.14__
+`react-google-maps` requires __React >= 0.14__
 
 ```sh
 npm install --save react-google-maps
@@ -165,7 +166,7 @@ If you're previously using `boot2docker`, you may want to migrate to [docker-mac
 docker-compose build
 ```
 
-### With Mac
+### Without Docker
 
 Install `node`. Then,
 
@@ -174,19 +175,6 @@ npm install
 cd examples/gh-pages
 npm install
 npm start
-```
-
-Then open [http://localhost:8080/webpack-dev-server/](http://localhost:8080/webpack-dev-server/).
-
-### With Windows
-
-Install `node`. Then,
-
-```shell
-npm install
-cd examples/gh-pages
-npm install
-npm start:windows
 ```
 
 Then open [http://localhost:8080/webpack-dev-server/](http://localhost:8080/webpack-dev-server/).

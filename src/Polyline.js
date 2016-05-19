@@ -1,6 +1,7 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from "react";
 
 import {
@@ -14,6 +15,8 @@ import {
   polylineEventPropTypes,
 } from "./creators/PolylineCreator";
 
+import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+
 export default class Polyline extends Component {
   static propTypes = {
     // Uncontrolled default[props] - used only in componentDidMount
@@ -22,6 +25,10 @@ export default class Polyline extends Component {
     ...polylineControlledPropTypes,
     // Event [onEventName]
     ...polylineEventPropTypes,
+  }
+
+  static contextTypes = {
+    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
   }
 
   // Public APIs
@@ -44,10 +51,15 @@ export default class Polyline extends Component {
   }
 
   componentWillMount() {
+    const { mapHolderRef } = this.context;
+
     if (!canUseDOM) {
       return;
     }
-    const polyline = PolylineCreator._createPolyline(this.props);
+    const polyline = PolylineCreator._createPolyline({
+      ...this.props,
+      mapHolderRef,
+    });
 
     this.setState({ polyline });
   }

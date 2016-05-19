@@ -1,6 +1,7 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from "react";
 
 import {
@@ -12,6 +13,8 @@ import {
   overlayViewDefaultPropTypes,
   overlayViewControlledPropTypes,
 } from "./creators/OverlayViewCreator";
+
+import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
 
 /*
  * Original author: @petebrowne
@@ -30,6 +33,10 @@ export default class OverlayView extends Component {
     ...overlayViewDefaultPropTypes,
     // Controlled [props] - used in componentDidMount/componentDidUpdate
     ...overlayViewControlledPropTypes,
+  }
+
+  static contextTypes = {
+    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
   }
 
   static defaultProps = {
@@ -61,9 +68,10 @@ export default class OverlayView extends Component {
   }
 
   render() {
+    const { mapHolderRef } = this.context;
     if (this.state.overlayView) {
       return (
-        <OverlayViewCreator overlayView={this.state.overlayView} {...this.props}>
+        <OverlayViewCreator mapHolderRef={mapHolderRef} overlayView={this.state.overlayView} {...this.props}>
           {this.props.children}
         </OverlayViewCreator>
       );

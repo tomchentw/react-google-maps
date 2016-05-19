@@ -10,8 +10,6 @@ import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
 import { default as composeOptions } from "../utils/composeOptions";
 import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
-import { default as GoogleMapHolder } from "./GoogleMapHolder";
-
 export const rectangleControlledPropTypes = {
 // NOTICE!!!!!!
 //
@@ -49,7 +47,6 @@ export const rectangleEventPropTypes = eventPropTypes;
 export default class RectangleCreator extends Component {
 
   static propTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder).isRequired,
     rectangle: PropTypes.object.isRequired,
   }
 

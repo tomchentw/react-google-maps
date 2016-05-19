@@ -11,8 +11,6 @@ import { default as composeOptions } from "../../utils/composeOptions";
 import { default as setContentForOptionalReactElement } from "../../utils/setContentForOptionalReactElement";
 import { default as componentLifecycleDecorator } from "../../utils/componentLifecycleDecorator";
 
-import { default as GoogleMapHolder } from "../../creators/GoogleMapHolder";
-
 export const infoBoxControlledPropTypes = {
 // NOTICE!!!!!!
 //
@@ -49,7 +47,6 @@ export const infoBoxEventPropTypes = eventPropTypes;
 export default class InfoBoxCreator extends Component {
 
   static propTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder).isRequired,
     infoBox: PropTypes.object.isRequired,
   }
 

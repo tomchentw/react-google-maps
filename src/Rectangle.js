@@ -1,6 +1,7 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from "react";
 
 import {
@@ -14,6 +15,8 @@ import {
   rectangleEventPropTypes,
 } from "./creators/RectangleCreator";
 
+import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+
 /*
  * Original author: @alistairjcbrown
  * Original PR: https://github.com/tomchentw/react-google-maps/pull/80
@@ -26,6 +29,10 @@ export default class Rectangle extends Component {
     ...rectangleControlledPropTypes,
     // Event [onEventName]
     ...rectangleEventPropTypes,
+  }
+
+  static contextTypes = {
+    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
   }
 
   // Public APIs
@@ -48,10 +55,15 @@ export default class Rectangle extends Component {
   }
 
   componentWillMount() {
+    const { mapHolderRef } = this.context;
+
     if (!canUseDOM) {
       return;
     }
-    const rectangle = RectangleCreator._createRectangle(this.props);
+    const rectangle = RectangleCreator._createRectangle({
+      ...this.props,
+      mapHolderRef,
+    });
 
     this.setState({ rectangle });
   }

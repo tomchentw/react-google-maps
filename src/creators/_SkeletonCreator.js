@@ -11,8 +11,6 @@ import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
 import { default as composeOptions } from "../utils/composeOptions";
 import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
-import { default as GoogleMapHolder } from "./GoogleMapHolder";
-
 export const skeletonControlledPropTypes = {
 // NOTICE!!!!!!
 //
@@ -42,7 +40,6 @@ export const skeletonEventPropTypes = eventPropTypes;
 export default class SkeletonCreator extends Component {
 
   static propTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder).isRequired,
     skeleton: PropTypes.object.isRequired,
   }
 

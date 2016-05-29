@@ -1,3 +1,13 @@
+<a name="4.10.2"></a>
+## [4.10.2](https://github.com/tomchentw/react-google-maps/compare/v4.10.1...v4.10.2) (2016-05-29)
+
+
+### Features
+
+* **package.json:** upgrade to "marker-clusterer-plus@^2.1.4" ([c1d322a](https://github.com/tomchentw/react-google-maps/commit/c1d322a))
+
+
+
 <a name="4.10.1"></a>
 ## [4.10.1](https://github.com/tomchentw/react-google-maps/compare/v4.10.0...v4.10.1) (2016-04-27)
 

@@ -17,8 +17,6 @@ import {
 
 import GoogleMapHolder from "./creators/GoogleMapHolder";
 
-import _ from 'lodash';
-
 export default class Marker extends Component {
   static propTypes = {
     // Uncontrolled default[props] - used only in componentDidMount

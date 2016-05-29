@@ -101,10 +101,6 @@ export default class Marker extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return !_.isEqual(this.props.icon, nextProps.icon);
-  }
-
   render() {
     if (this.state.marker) {
       return (

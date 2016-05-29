@@ -25,7 +25,7 @@ export default class GoogleMapLoader extends Component {
   };
 
   mountGoogleMap(domEl) {
-    if (this.state.map) {
+    if (this.state.map || domEl === null) {
       return;
     }
     const { children, ...mapProps } = this.props.googleMapElement.props;

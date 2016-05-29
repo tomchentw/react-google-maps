@@ -1,3 +1,13 @@
+<a name="4.11.0"></a>
+# [4.11.0](https://github.com/tomchentw/react-google-maps/compare/v4.10.3...v4.11.0) (2016-05-29)
+
+
+### Features
+
+* **OverlayView:** allow rendered as children of MarkerCluster ([435961a](https://github.com/tomchentw/react-google-maps/commit/435961a)), closes [#187](https://github.com/tomchentw/react-google-maps/issues/187)
+
+
+
 <a name="4.10.3"></a>
 ## [4.10.3](https://github.com/tomchentw/react-google-maps/compare/v4.10.2...v4.10.3) (2016-05-29)
 

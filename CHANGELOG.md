@@ -1,3 +1,13 @@
+<a name="4.10.3"></a>
+## [4.10.3](https://github.com/tomchentw/react-google-maps/compare/v4.10.2...v4.10.3) (2016-05-29)
+
+
+### Bug Fixes
+
+* **GoogleMapLoader:** handle unmount ref case ([334c5c9](https://github.com/tomchentw/react-google-maps/commit/334c5c9))
+
+
+
 <a name="4.10.2"></a>
 ## [4.10.2](https://github.com/tomchentw/react-google-maps/compare/v4.10.1...v4.10.2) (2016-05-29)
 

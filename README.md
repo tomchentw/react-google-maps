@@ -4,6 +4,11 @@
 [![Version][npm-image]][npm-url] [![Travis CI][travis-image]][travis-url] [![Quality][codeclimate-image]][codeclimate-url] [![Coverage][codeclimate-coverage-image]][codeclimate-coverage-url] [![Dependencies][gemnasium-image]][gemnasium-url] [![Gitter][gitter-image]][gitter-url]
 
 
+## Call for maintainers
+
+As the author ([tomchentw][tomchentw]) currently doesn't actively use this module, he's looking for awesome contributors to help and keep the community healthy. Please don't hensitate to [contact him][tomchentw] directly. See [#266][call-for-maintainers] for more information.
+
+
 ## Quick start: SimpleMap
 
 Declare your Google Maps components using React components.
@@ -208,6 +213,8 @@ Then open [http://localhost:8080/webpack-dev-server/](http://localhost:8080/webp
 [david-dm-url]: https://david-dm.org/tomchentw/react-google-maps#info=devDependencies
 
 
+[tomchentw]: https://github.com/tomchentw
+[call-for-maintainers]: https://github.com/tomchentw/react-google-maps/issues/266
 [demo]: http://tomchentw.github.io/react-google-maps/
 [examples_gh_pages]: https://github.com/tomchentw/react-google-maps/tree/master/examples/gh-pages
 [webpack]: http://webpack.github.io/docs/tutorials/getting-started/

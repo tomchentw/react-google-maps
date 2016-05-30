@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import {
   format as formatUrlObj,
 } from "url";
@@ -5,10 +7,6 @@ import {
 import {
   PropTypes,
 } from "react";
-
-import {
-  default as isEqual,
-} from "lodash.isequal";
 
 export default function makeUrl(urlObj) {
   return formatUrlObj({
@@ -32,5 +30,5 @@ export const urlObjDefinition = {
 
 export function getUrlObjChangedKeys(urlObj, nextUrlObj) {
   return Object.keys(urlObjDefinition)
-    .filter(key => !isEqual(urlObj[key], nextUrlObj[key]));
+    .filter(key => !_.isEqual(urlObj[key], nextUrlObj[key]));
 }

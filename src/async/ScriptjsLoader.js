@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import {
   default as React,
   Component,
@@ -101,16 +103,7 @@ Changed props: %s`,
   render() {
     if (this.state.isLoaded) {
       if (this.shouldUseNewBehavior()) {
-        const nextProps = Object.keys(this.props).reduce((acc, key) => {
-          if (DELEGATE_PROPS_LIST.indexOf(key) !== -1) {
-            return acc;
-          } else {
-            return {
-              ...acc,
-              [key]: this.props[key],
-            };
-          }
-        }, {});
+        const nextProps = _.omit(this.props, DELEGATE_PROPS_LIST);
 
         return (
           <GoogleMapLoader

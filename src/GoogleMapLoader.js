@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import {
   default as React,
   PropTypes,
@@ -30,10 +32,7 @@ export default class GoogleMapLoader extends Component {
     if (this.state.map || domEl === null) {
       return;
     }
-    const {
-      children, // eslint-disable-line no-unused-vars
-      ...restProps,
-    } = this.props.googleMapElement.props;
+    const restProps = _.omit(this.props.googleMapElement.props, [`children`]);
     //
     // Create google.maps.Map instance so that dom is initialized before
     // React's children creators.

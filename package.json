@@ -18,7 +18,9 @@
     "pretest": "npm run lint",
     "test:cov": "cross-env NODE_ENV=test babel-node ./node_modules/.bin/isparta cover --report lcov _mocha -- $npm_package_config_mocha",
     "test:watch": "npm test -- --watch",
-    "test": "cross-env NODE_ENV=test mocha $npm_package_config_mocha"
+    "test": "cross-env NODE_ENV=test mocha $npm_package_config_mocha",
+    "prerelease": "npm run build && git add -A && git commit -m 'chore(lib): compile from src using babel'",
+    "release": "standard-version"
   },
   "config": {
     "mocha": "--compilers js:babel-register ./src/**/__tests__/*.spec.js --require ./src/__tests__/setup.js"

@@ -89,6 +89,7 @@
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "rimraf": "^2.5.2",
+    "standard-version": "^2.2.1",
     "tomchentw-npm-dev": "^3.3.0"
   },
   "dependencies": {

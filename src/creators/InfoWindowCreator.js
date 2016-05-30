@@ -11,8 +11,6 @@ import { default as composeOptions } from "../utils/composeOptions";
 import { default as setContentForOptionalReactElement } from "../utils/setContentForOptionalReactElement";
 import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
-import { default as GoogleMapHolder } from "./GoogleMapHolder";
-
 export const infoWindowControlledPropTypes = {
 // NOTICE!!!!!!
 //
@@ -49,7 +47,6 @@ export const infoWindowEventPropTypes = eventPropTypes;
 export default class InfoWindowCreator extends Component {
 
   static propTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder).isRequired,
     infoWindow: PropTypes.object.isRequired,
     anchorHolderRef: PropTypes.object,
   }

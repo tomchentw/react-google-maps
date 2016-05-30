@@ -1,6 +1,7 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from 'react';
 
 import {
@@ -14,11 +15,17 @@ import {
   markerClusterEventPropTypes,
 } from './addonsCreators/MarkerClustererCreator';
 
+import { default as GoogleMapHolder } from "../creators/GoogleMapHolder";
+
 export default class MarkerClusterer extends Component {
   static propTypes = {
     ...markerClusterDefaultPropTypes,
     ...markerClusterControlledPropTypes,
     ...markerClusterEventPropTypes,
+  }
+
+  static contextTypes = {
+    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
   }
 
   // Public APIs
@@ -81,7 +88,8 @@ export default class MarkerClusterer extends Component {
       return;
     }
 
-    const { mapHolderRef, ...markerClustererProps } = this.props;
+    const { ...markerClustererProps } = this.props;
+    const { mapHolderRef } = this.context;
     const markerClusterer = MarkerClustererCreator._createMarkerClusterer(mapHolderRef, markerClustererProps);
 
     this.setState({ markerClusterer });

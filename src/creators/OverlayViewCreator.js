@@ -15,8 +15,6 @@ import { default as invariant } from "invariant";
 import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
 import { default as composeOptions } from "../utils/composeOptions";
 
-import { default as GoogleMapHolder } from "./GoogleMapHolder";
-
 export const overlayViewControlledPropTypes = {
 // CustomProps
   mapPaneName: PropTypes.string,
@@ -38,7 +36,6 @@ export const overlayViewDefaultPropTypes = defaultPropsCreator(overlayViewContro
 export default class OverlayViewCreator extends Component {
 
   static propTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder).isRequired,
     mapPaneName: PropTypes.string,
     overlayView: PropTypes.object.isRequired,
   }

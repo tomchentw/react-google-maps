@@ -1,6 +1,7 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from "react";
 
 import {
@@ -14,6 +15,8 @@ import {
   infoWindowEventPropTypes,
 } from "./creators/InfoWindowCreator";
 
+import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+
 export default class InfoWindow extends Component {
   static propTypes = {
     // Uncontrolled default[props] - used only in componentDidMount
@@ -22,6 +25,10 @@ export default class InfoWindow extends Component {
     ...infoWindowControlledPropTypes,
     // Event [onEventName]
     ...infoWindowEventPropTypes,
+  }
+
+  static contextTypes = {
+    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
   }
 
   // Public APIs
@@ -42,10 +49,15 @@ export default class InfoWindow extends Component {
   }
 
   componentWillMount() {
+    const { mapHolderRef } = this.context;
+
     if (!canUseDOM) {
       return;
     }
-    const infoWindow = InfoWindowCreator._createInfoWindow(this.props);
+    const infoWindow = InfoWindowCreator._createInfoWindow({
+      ...this.props,
+      mapHolderRef,
+    });
 
     this.setState({ infoWindow });
   }

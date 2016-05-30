@@ -2,7 +2,6 @@ import {
   default as React,
   PropTypes,
   Component,
-  Children,
 } from "react";
 
 import {
@@ -69,6 +68,14 @@ export default class GoogleMapHolder extends Component {
     return new google.maps.Map(domEl, composeOptions(mapProps, mapControlledPropTypes));
   }
 
+  static childContextTypes = {
+    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
+  }
+
+  getChildContext() {
+    return { mapHolderRef: this };
+  }
+
   getMap() {
     return this.props.map;
   }
@@ -76,15 +83,7 @@ export default class GoogleMapHolder extends Component {
   render() {
     return (
       <div>
-        {Children.map(this.props.children, (childElement) => {
-          if (React.isValidElement(childElement)) {
-            return React.cloneElement(childElement, {
-              mapHolderRef: this,
-            });
-          } else {
-            return childElement;
-          }
-        })}
+        {this.props.children}
       </div>
     );
   }

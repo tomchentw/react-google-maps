@@ -1,6 +1,7 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from "react";
 
 import {
@@ -14,6 +15,8 @@ import {
   polygonEventPropTypes,
 } from "./creators/PolygonCreator";
 
+import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+
 export default class Polygon extends Component {
   static propTypes = {
     // Uncontrolled default[props] - used only in componentDidMount
@@ -22,6 +25,9 @@ export default class Polygon extends Component {
     ...polygonControlledPropTypes,
     // Event [onEventName]
     ...polygonEventPropTypes,
+  }
+  static contextTypes = {
+    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
   }
 
   // Public APIs
@@ -46,10 +52,15 @@ export default class Polygon extends Component {
   }
 
   componentWillMount() {
+    const { mapHolderRef } = this.context;
+
     if (!canUseDOM) {
       return;
     }
-    const polygon = PolygonCreator._createPolygon(this.props);
+    const polygon = PolygonCreator._createPolygon({
+      ...this.props,
+      mapHolderRef,
+    });
 
     this.setState({ polygon });
   }

@@ -1,6 +1,7 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from "react";
 
 import {
@@ -14,6 +15,8 @@ import {
   searchBoxEventPropTypes,
 } from "./creators/SearchBoxCreator";
 
+import GoogleMapHolder from "./creators/GoogleMapHolder";
+
 /*
  * Original author: @eyebraus
  * Original PR: https://github.com/tomchentw/react-google-maps/pull/110
@@ -26,6 +29,10 @@ export default class SearchBox extends Component {
     ...searchBoxControlledPropTypes,
     // Event [onEventName]
     ...searchBoxEventPropTypes,
+  }
+
+  static contextTypes = {
+    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
   }
 
   // Public APIs
@@ -46,7 +53,7 @@ export default class SearchBox extends Component {
     if (!canUseDOM) {
       return;
     }
-    const { mapHolderRef, classes, style, placeholder, ...searchBoxProps } = this.props;
+    const { classes, style, placeholder, ...searchBoxProps } = this.props;
 
     // Cannot create input via component - Google Maps will mess with React's internal state by detaching/attaching.
     // Allow developers to style the "hidden element" via inputClasses.
@@ -70,7 +77,8 @@ export default class SearchBox extends Component {
   }
 
   render() {
-    const { mapHolderRef, controlPosition } = this.props;
+    const { controlPosition } = this.props;
+    const { mapHolderRef } = this.context;
 
     return this.state.searchBox ? (
       <SearchBoxCreator controlPosition={controlPosition} inputElement={this.state.inputElement} mapHolderRef={mapHolderRef} searchBox={this.state.searchBox} {...this.props}>

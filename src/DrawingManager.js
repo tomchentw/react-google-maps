@@ -1,6 +1,7 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from "react";
 
 import {
@@ -14,6 +15,8 @@ import {
   drawingManagerEventPropTypes,
 } from "./creators/DrawingManagerCreator";
 
+import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+
 /*
  * Original author: @idolize
  * Original PR: https://github.com/tomchentw/react-google-maps/pull/46
@@ -26,6 +29,10 @@ export default class DrawingManager extends Component {
     ...drawingManagerControlledPropTypes,
     // Event [onEventName]
     ...drawingManagerEventPropTypes,
+  }
+
+  static contextTypes = {
+    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
   }
 
   // Public APIs
@@ -42,10 +49,15 @@ export default class DrawingManager extends Component {
   }
 
   componentWillMount() {
+    const { mapHolderRef } = this.context;
+
     if (!canUseDOM) {
       return;
     }
-    const drawingManager = DrawingManagerCreator._createDrawingManager(this.props);
+    const drawingManager = DrawingManagerCreator._createDrawingManager({
+      ...this.props,
+      mapHolderRef,
+    });
 
     this.setState({ drawingManager });
   }

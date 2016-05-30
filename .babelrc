@@ -7,7 +7,9 @@
     }
   },
   "plugins": [
-    "transform-flow-comments"
+    "lodash",
+    "transform-flow-comments",
+    "transform-runtime"
   ],
   "presets": [
     "es2015",

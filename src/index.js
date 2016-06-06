@@ -12,3 +12,4 @@ export { default as Polygon } from "./Polygon";
 export { default as Polyline } from "./Polyline";
 export { default as Rectangle } from "./Rectangle";
 export { default as SearchBox } from "./SearchBox";
+export { default as HeatmapLayer } from "./HeatmapLayer";

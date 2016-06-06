@@ -17,8 +17,6 @@ export const heatmapLayerControlledPropTypes = {
 //
 // Only expose those with getters & setters in the table as controlled props.
 //
-// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
-//
 // https://developers.google.com/maps/documentation/javascript/3.exp/reference#HeatmapLayer
   data: PropTypes.any,
   options: PropTypes.object,
@@ -50,7 +48,9 @@ export default class HeatmapLayerCreator extends Component {
   static _createHeatmapLayer(heatmapLayerProps) {
     const { mapHolderRef } = heatmapLayerProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#HeatmapLayer
-    const heatmapLayer = new google.maps.visualization.HeatmapLayer(composeOptions(heatmapLayerProps, heatmapLayerControlledPropTypes));
+    const heatmapLayer = new google.maps.visualization.HeatmapLayer(
+      composeOptions(heatmapLayerProps, heatmapLayerControlledPropTypes)
+    );
 
     heatmapLayer.setMap(mapHolderRef.getMap());
 

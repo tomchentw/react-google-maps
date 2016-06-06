@@ -28,7 +28,6 @@ export default class HeatmapLayer extends Component {
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#HeatmapLayer
   //
-  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
   getData() { return this.state.heatmapLayer.getData(); }
 
   // END - Public APIs

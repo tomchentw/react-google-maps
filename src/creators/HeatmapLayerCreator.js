@@ -4,13 +4,13 @@ import {
   Component,
 } from "react";
 
-import { default as HeatmapLayerEventList } from "../addonsEventLists/HeatmapLayerEventList";
-import { default as eventHandlerCreator } from "../../utils/eventHandlerCreator";
-import { default as defaultPropsCreator } from "../../utils/defaultPropsCreator";
-import { default as composeOptions } from "../../utils/composeOptions";
-import { default as componentLifecycleDecorator } from "../../utils/componentLifecycleDecorator";
+import { default as HeatmapLayerEventList } from "../eventLists/HeatmapLayerEventList";
+import { default as eventHandlerCreator } from "../utils/eventHandlerCreator";
+import { default as defaultPropsCreator } from "../utils/defaultPropsCreator";
+import { default as composeOptions } from "../utils/composeOptions";
+import { default as componentLifecycleDecorator } from "../utils/componentLifecycleDecorator";
 
-import { default as GoogleMapHolder } from "../../creators/GoogleMapHolder";
+import { default as GoogleMapHolder } from "./GoogleMapHolder";
 
 export const heatmapLayerControlledPropTypes = {
 // NOTICE!!!!!!

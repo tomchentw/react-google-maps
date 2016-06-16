@@ -107,6 +107,30 @@ All components are available on the top-level export.
 import { GoogleMap, Marker, SearchBox } from "react-google-maps";
 ```
 
+## Loading Libraries
+
+```html
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=<<YOUR_API_HERE>>&libraries=geometry,places,visualization">
+</script>
+```
+
+```js
+<GoogleMapLoader
+        query={{ libraries: `geometry,drawing,places,visualization` }}
+  ...
+```
+
+Or using ScriptjsLoader:
+
+```js
+<ScriptjsLoader
+  hostname={"maps.googleapis.com"}
+  pathname={"/maps/api/js"}
+  query={{ key: 'YOUR_API_KEY', libraries: 'geometry,drawing,places' }}
+  ...
+```
+
 ### Trigger events
 
 `triggerEvent(component, ...args)`: One common event trigger is to resize map after the size of the container div change.

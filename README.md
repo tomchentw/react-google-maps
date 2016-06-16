@@ -107,6 +107,35 @@ All components are available on the top-level export.
 import { GoogleMap, Marker, SearchBox } from "react-google-maps";
 ```
 
+### Loading Libraries
+
+To use this component, you are going to need to load the [Google Maps Javascript API].
+It is optional, but recommended, to specify the libraries you will be using as well as your API key.
+
+You could do it synchronously like so:
+
+```html
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=[YOUR_API_KEY]&libraries=geometry,places,visualization">
+</script>
+```
+
+```js
+<GoogleMapLoader
+        query={{ libraries: "geometry,drawing,places,visualization" }}
+  ...
+```
+
+Or asynchronously using the ScriptjsLoader:
+
+```js
+<ScriptjsLoader
+  hostname={"maps.googleapis.com"}
+  pathname={"/maps/api/js"}
+  query={{ key: "[YOUR_API_KEY]", libraries: "geometry,drawing,places" }}
+  ...
+```
+
 ### Trigger events
 
 `triggerEvent(component, ...args)`: One common event trigger is to resize map after the size of the container div change.
@@ -219,3 +248,5 @@ Then open [http://localhost:8080/webpack-dev-server/](http://localhost:8080/webp
 [examples_gh_pages]: https://github.com/tomchentw/react-google-maps/tree/master/examples/gh-pages
 [webpack]: http://webpack.github.io/docs/tutorials/getting-started/
 [conventional-changelog]: https://github.com/ajoslin/conventional-changelog
+
+[Google Maps Javascript API]: https://developers.google.com/maps/documentation/javascript/

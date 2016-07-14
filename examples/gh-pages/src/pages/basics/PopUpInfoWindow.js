@@ -129,7 +129,7 @@ export default class PopUpInfoWindow extends Component {
           >
             {this.state.markers.map((marker, index) => {
               const ref = `marker_${index}`;
-              const onClick = this.handleMarkerClick.bind(this, marker);
+              const onClick = () => this.handleMarkerClick(marker);
 
               return (
                 <Marker

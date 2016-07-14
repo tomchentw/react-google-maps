@@ -111,7 +111,7 @@ export default class ClosureListeners extends Component {
       >
         {markers.map((marker, index) => {
           const ref = `marker_${index}`;
-          const onClick = this.handleMarkerClick.bind(this, marker);
+          const onClick = () => this.handleMarkerClick(marker);
 
           return (
             <Marker

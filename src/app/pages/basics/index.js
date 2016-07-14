@@ -1,45 +1,31 @@
-import {
-  default as SimpleMap,
-} from "./SimpleMap";
+import SimpleMapExample from "./SimpleMapExample";
 
-import {
-  default as StyledMap,
-} from "./StyledMap";
+import StyledMapExample from "./StyledMapExample";
 
-import {
-  default as Geolocation,
-} from "./Geolocation";
+import GeolocationExample from "./GeolocationExample";
 
-import {
-  default as Directions,
-} from "./Directions";
+import DirectionsExample from "./DirectionsExample";
 
-import {
-  default as OverlayView,
-} from "./OverlayView";
+import OverlayViewExample from "./OverlayViewExample";
 
-import {
-  default as KmlLayerExample,
-} from "./KmlLayerExample";
+import KmlLayerExample from "./KmlLayerExample";
 
-import {
-  default as PopUpInfoWindow,
-} from "./PopUpInfoWindow";
+import PopUpInfoWindowExample from "./PopUpInfoWindowExample";
 
-SimpleMap.__raw = require(`!raw!./SimpleMap`);
-StyledMap.__raw = require(`!raw!./StyledMap`);
-Geolocation.__raw = require(`!raw!./Geolocation`);
-Directions.__raw = require(`!raw!./Directions`);
-OverlayView.__raw = require(`!raw!./OverlayView`);
+SimpleMapExample.__raw = require(`!raw!./SimpleMapExample`);
+StyledMapExample.__raw = require(`!raw!./StyledMapExample`);
+GeolocationExample.__raw = require(`!raw!./GeolocationExample`);
+DirectionsExample.__raw = require(`!raw!./DirectionsExample`);
+OverlayViewExample.__raw = require(`!raw!./OverlayViewExample`);
 KmlLayerExample.__raw = require(`!raw!./KmlLayerExample`);
-PopUpInfoWindow.__raw = require(`!raw!./PopUpInfoWindow`);
+PopUpInfoWindowExample.__raw = require(`!raw!./PopUpInfoWindowExample`);
 
 export {
-  SimpleMap,
-  StyledMap,
-  Geolocation,
-  Directions,
-  OverlayView,
+  SimpleMapExample,
+  StyledMapExample,
+  GeolocationExample,
+  DirectionsExample,
+  OverlayViewExample,
   KmlLayerExample,
-  PopUpInfoWindow,
+  PopUpInfoWindowExample,
 };

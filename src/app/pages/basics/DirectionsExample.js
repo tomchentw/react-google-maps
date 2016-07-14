@@ -1,12 +1,28 @@
 /* global google */
-import { default as React, Component } from "react";
+import {
+  default as React,
+  Component,
+} from "react";
 
-import { GoogleMap, DirectionsRenderer } from "../../../lib";
+import {
+  withGoogleMap,
+  GoogleMap,
+  DirectionsRenderer,
+} from "../../../lib";
+
+const DirectionsExampleGoogleMap = withGoogleMap(props => (
+  <GoogleMap
+    defaultZoom={7}
+    defaultCenter={props.center}
+  >
+    {props.directions && <DirectionsRenderer directions={props.directions} />}
+  </GoogleMap>
+));
 
 /*
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
-export default class Directions extends Component {
+export default class DirectionsExample extends Component {
 
   state = {
     origin: new google.maps.LatLng(41.8507300, -87.6512600),
@@ -33,21 +49,17 @@ export default class Directions extends Component {
   }
 
   render() {
-    const { origin, directions } = this.state;
-
     return (
-      <GoogleMap
-        containerProps={{
-          ...this.props,
-          style: {
-            height: `100%`,
-          },
-        }}
-        defaultZoom={7}
-        defaultCenter={origin}
-      >
-        {directions ? <DirectionsRenderer directions={directions} /> : null}
-      </GoogleMap>
+      <DirectionsExampleGoogleMap
+        containerElement={
+          <div style={{ height: `100%` }} />
+        }
+        mapElement={
+          <div style={{ height: `100%` }} />
+        }
+        center={this.state.origin}
+        directions={this.state.directions}
+      />
     );
   }
 }

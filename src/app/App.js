@@ -16,37 +16,37 @@ import {
 } from "./containers";
 
 import {
-  GettingStarted,
-  GeojsonToComponents,
+  GettingStartedExample,
+  AsyncGettingStartedExample,
 } from "./pages";
 
 import {
-  SimpleMap,
-  StyledMap,
-  Geolocation,
-  Directions,
-  OverlayView,
+  SimpleMapExample,
+  StyledMapExample,
+  GeolocationExample,
+  DirectionsExample,
+  OverlayViewExample,
   KmlLayerExample,
-  PopUpInfoWindow,
+  PopUpInfoWindowExample,
 } from "./pages/basics";
 
 import {
-  SimpleClickEvent,
-  ClosureListeners,
-  AccessingArguments,
-  GettingProperties,
+  SimpleClickEventExample,
+  ClosureListenersExample,
+  AccessingArgumentsExample,
+  GettingPropertiesExample,
 } from "./pages/events";
 
 import {
-  DrawingTools,
+  DrawingExample,
 } from "./pages/drawing";
 
 import {
-  SearchBox,
+  SearchBoxExample,
 } from "./pages/places";
 
 import {
-  MarkerClusterer,
+  MarkerClustererExample,
 } from "./pages/addons";
 
 export default class App extends Component {
@@ -54,32 +54,32 @@ export default class App extends Component {
     return (
       <Router history={browserHistory}>
         <Route path="/" component={Application}>
-          <IndexRoute component={GettingStarted} />
+          <IndexRoute component={GettingStartedExample} />
           <Route path="basics">
-            <Route path="simple-map" component={SimpleMap} />
-            <Route path="styled-map" component={StyledMap} />
-            <Route path="geolocation" component={Geolocation} />
-            <Route path="directions" component={Directions} />
-            <Route path="overlay-view" component={OverlayView} />
+            <Route path="simple-map" component={SimpleMapExample} />
+            <Route path="styled-map" component={StyledMapExample} />
+            <Route path="geolocation" component={GeolocationExample} />
+            <Route path="directions" component={DirectionsExample} />
+            <Route path="overlay-view" component={OverlayViewExample} />
             <Route path="kml-layer" component={KmlLayerExample} />
-            <Route path="pop-up-window" component={PopUpInfoWindow} />
+            <Route path="pop-up-window" component={PopUpInfoWindowExample} />
           </Route>
           <Route path="events">
-            <Route path="simple-click-event" component={SimpleClickEvent} />
-            <Route path="closure-listeners" component={ClosureListeners} />
-            <Route path="accessing-arguments" component={AccessingArguments} />
-            <Route path="getting-properties" component={GettingProperties} />
+            <Route path="simple-click-event" component={SimpleClickEventExample} />
+            <Route path="closure-listeners" component={ClosureListenersExample} />
+            <Route path="accessing-arguments" component={AccessingArgumentsExample} />
+            <Route path="getting-properties" component={GettingPropertiesExample} />
           </Route>
           <Route path="drawing">
-            <Route path="drawing-tools" component={DrawingTools} />
+            <Route path="drawing-tools" component={DrawingExample} />
           </Route>
           <Route path="places">
-            <Route path="search-box" component={SearchBox} />
+            <Route path="search-box" component={SearchBoxExample} />
           </Route>
           <Route path="addons">
-            <Route path="marker-clusterer" component={MarkerClusterer} />
+            <Route path="marker-clusterer" component={MarkerClustererExample} />
           </Route>
-          <Route path="geojson" component={GeojsonToComponents} />
+          <Route path="async" component={AsyncGettingStartedExample} />
           <Redirect path="*" to="/" />
         </Route>
       </Router>

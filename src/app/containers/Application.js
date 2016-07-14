@@ -21,9 +21,7 @@ import {
   LinkContainer,
 } from "react-router-bootstrap";
 
-import {
-  default as GitHubForkRibbon,
-} from "react-github-fork-ribbon";
+import GitHubForkRibbon from "react-github-fork-ribbon";
 
 import {
   ToastContainer,
@@ -34,9 +32,7 @@ import {
   PrismCode,
 } from "react-prism";
 
-import {
-  default as Helmet,
-} from "react-helmet";
+import Helmet from "react-helmet";
 
 export default class Application extends Component {
 
@@ -54,11 +50,7 @@ export default class Application extends Component {
     return (
       <div className="full-height">
         <Helmet
-          title="Getting Started"
           titleTemplate="%s | React Google Maps | tomchentw"
-          // base={{
-          //   href: `/`,
-          // }}
           meta={[
             { name: `viewport`, content: `width=device-width, initial-scale=1` },
             { name: `description`, content: `react-google-maps example application` },
@@ -112,8 +104,9 @@ export default class Application extends Component {
           </Nav>
           <Navbar.Collapse style={{ marginRight: 100 }}>
             <Nav pullRight>
-              <NavItem href="./async">Async example</NavItem>
-              <NavItem href="geojson">Geojson</NavItem>
+              <LinkContainer to="/async">
+                <NavItem>Async example</NavItem>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

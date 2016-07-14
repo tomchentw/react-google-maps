@@ -1,9 +1,7 @@
-import {
-  default as DrawingTools,
-} from "./DrawingTools";
+import DrawingExample from "./DrawingExample";
 
-DrawingTools.__raw = require(`!raw!./DrawingTools`);
+DrawingExample.__raw = require(`!raw!./DrawingExample`);
 
 export {
-  DrawingTools,
+  DrawingExample,
 };

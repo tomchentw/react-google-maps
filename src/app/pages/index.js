@@ -1,15 +1,7 @@
-import {
-  default as GettingStarted,
-} from "./GettingStarted";
+import GettingStartedExample from "./GettingStartedExample";
 
-import {
-  default as GeojsonToComponents,
-} from "./GeojsonToComponents";
-
-GettingStarted.__raw = require(`!raw!./GettingStarted`);
-GeojsonToComponents.__raw = require(`!raw!./GeojsonToComponents`);
+GettingStartedExample.__raw = require(`!raw!./GettingStartedExample`);
 
 export {
-  GettingStarted,
-  GeojsonToComponents,
+  GettingStartedExample,
 };

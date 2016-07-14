@@ -1,9 +1,7 @@
-import {
-  default as SearchBox,
-} from "./SearchBox";
+import SearchBoxExample from "./SearchBoxExample";
 
-SearchBox.__raw = require(`!raw!./SearchBox`);
+SearchBoxExample.__raw = require(`!raw!./SearchBoxExample`);
 
 export {
-  SearchBox,
+  SearchBoxExample,
 };

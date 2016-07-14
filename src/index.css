@@ -11,11 +11,7 @@ body {
   font-family: sans-serif;
 }
 
-html, body, #root {
-  height: 100%;
-}
-
-.full-height {
+html, body, #root, .full-height {
   height: 100%;
 }
 

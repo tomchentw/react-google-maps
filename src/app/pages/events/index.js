@@ -1,27 +1,19 @@
-import {
-  default as SimpleClickEvent,
-} from "./SimpleClickEvent";
+import SimpleClickEventExample from "./SimpleClickEventExample";
 
-import {
-  default as ClosureListeners,
-} from "./ClosureListeners";
+import ClosureListenersExample from "./ClosureListenersExample";
 
-import {
-  default as AccessingArguments,
-} from "./AccessingArguments";
+import AccessingArgumentsExample from "./AccessingArgumentsExample";
 
-import {
-  default as GettingProperties,
-} from "./GettingProperties";
+import GettingPropertiesExample from "./GettingPropertiesExample";
 
-SimpleClickEvent.__raw = require(`!raw!./SimpleClickEvent`);
-ClosureListeners.__raw = require(`!raw!./ClosureListeners`);
-AccessingArguments.__raw = require(`!raw!./AccessingArguments`);
-GettingProperties.__raw = require(`!raw!./GettingProperties`);
+SimpleClickEventExample.__raw = require(`!raw!./SimpleClickEventExample`);
+ClosureListenersExample.__raw = require(`!raw!./ClosureListenersExample`);
+AccessingArgumentsExample.__raw = require(`!raw!./AccessingArgumentsExample`);
+GettingPropertiesExample.__raw = require(`!raw!./GettingPropertiesExample`);
 
 export {
-  SimpleClickEvent,
-  ClosureListeners,
-  AccessingArguments,
-  GettingProperties,
+  SimpleClickEventExample,
+  ClosureListenersExample,
+  AccessingArgumentsExample,
+  GettingPropertiesExample,
 };

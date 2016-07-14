@@ -7,31 +7,26 @@ import {
 import {
   withGoogleMap,
   GoogleMap,
-  KmlLayer,
 } from "../../../lib";
 
 /*
- * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
+ * Sample From: https://developers.google.com/maps/documentation/javascript/examples/map-simple
  */
-const KmlLayerExampleGoogleMap = withGoogleMap(props => (
+const SimpleMapExampleGoogleMap = withGoogleMap(props => (
   <GoogleMap
     defaultZoom={8}
-    defaultCenter={{ lat: 41.876, lng: -87.624 }}
-  >
-    <KmlLayer
-      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"
-    />
-  </GoogleMap>
+    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+  />
 ));
 
 /*
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
-export default class KmlLayerExample extends Component {
+export default class SimpleMapExample extends Component {
 
   render() {
     return (
-      <KmlLayerExampleGoogleMap
+      <SimpleMapExampleGoogleMap
         containerElement={
           <div style={{ height: `100%` }} />
         }

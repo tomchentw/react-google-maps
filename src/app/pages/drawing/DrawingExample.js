@@ -1,25 +1,25 @@
 /* global google */
-import { default as React } from "react";
+import {
+  default as React,
+  Component,
+} from "react";
 
-import { GoogleMap, DrawingManager } from "../../../lib";
+import {
+  withGoogleMap,
+  GoogleMap,
+} from "../../../lib";
+
+import DrawingManager from "../../../lib/drawing/DrawingManager";
 
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/drawing-tools
  *
  * Note: requires the Google Maps drawing API library in your script src
  *
- * Add <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing"></script> to your HTML to provide google.maps reference
- *
  * Credits: thanks @idolize for the contribution!
  */
-const DrawingTools = props => (
+const DrawingExampleGoogleMap = withGoogleMap(props => (
   <GoogleMap
-    containerProps={{
-      ...this.props,
-      style: {
-        height: `100%`,
-      },
-    }}
     defaultZoom={8}
     defaultCenter={new google.maps.LatLng(-34.397, 150.644)}
   >
@@ -47,6 +47,23 @@ const DrawingTools = props => (
       }}
     />
   </GoogleMap>
-);
+));
 
-export default DrawingTools;
+/*
+ * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
+ */
+export default class DrawingExample extends Component {
+
+  render() {
+    return (
+      <DrawingExampleGoogleMap
+        containerElement={
+          <div style={{ height: `100%` }} />
+        }
+        mapElement={
+          <div style={{ height: `100%` }} />
+        }
+      />
+    );
+  }
+}

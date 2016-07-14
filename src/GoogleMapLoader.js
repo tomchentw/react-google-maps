@@ -7,17 +7,21 @@ import {
 } from "react";
 
 import {
+  default as propTypesElementOfType,
+} from "react-prop-types-element-of-type";
+
+import {
+  default as GoogleMap,
+} from "./GoogleMap";
+
+import {
   default as GoogleMapHolder,
 } from "./creators/GoogleMapHolder";
-
-const USE_NEW_BEHAVIOR_TAG_NAME = `__new_behavior__`;/* CIRCULAR_DEPENDENCY */
 
 export default class GoogleMapLoader extends Component {
   static propTypes = {
     containerElement: PropTypes.node.isRequired,
-    /* CIRCULAR_DEPENDENCY. Uncomment when 5.0.0 comes:
-    propTypesElementOfType(GoogleMap).isRequired, */
-    googleMapElement: PropTypes.element.isRequired,
+    googleMapElement: propTypesElementOfType(GoogleMap).isRequired,
   };
 
   static defaultProps = {
@@ -55,8 +59,6 @@ export default class GoogleMapLoader extends Component {
       //
       return React.cloneElement(this.props.googleMapElement, {
         map: this.state.map,
-        // ------------ Deprecated ------------
-        containerTagName: USE_NEW_BEHAVIOR_TAG_NAME,
       });
     }
   }

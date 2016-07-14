@@ -34,7 +34,7 @@
     "react-bootstrap": "^0.29.4",
     "react-dom": "^15.1.0",
     "react-github-fork-ribbon": "^0.4.4",
-    "react-google-maps": "^4.11.0",
+    "react-google-maps": "file:../..",
     "react-helmet": "^3.1.0",
     "react-icons": "^2.1.0",
     "react-prism": "^3.2.0",

@@ -1,12 +1,12 @@
 import {
+  default as invariant,
+} from "invariant";
+
+import {
   default as React,
   PropTypes,
   Component,
 } from "react";
-
-import {
-  default as warning,
-} from "warning";
 
 import {
   default as GoogleMapHolder,
@@ -15,16 +15,8 @@ import {
   mapEventPropTypes,
 } from "./creators/GoogleMapHolder";
 
-import {
-  default as GoogleMapLoader,
-} from "./GoogleMapLoader";
-
-const USE_NEW_BEHAVIOR_TAG_NAME = `__new_behavior__`;
-
 export default class GoogleMap extends Component {
   static propTypes = {
-    containerTagName: PropTypes.string,
-    containerProps: PropTypes.object,
     map: PropTypes.object,
     // Uncontrolled default[props] - used only in componentDidMount
     ...mapDefaultPropTypes,
@@ -40,23 +32,23 @@ export default class GoogleMap extends Component {
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getBounds() { return (this.props.map || this.refs.delegate).getBounds(); }
+  getBounds() { return this.props.map.getBounds(); }
 
-  getCenter() { return (this.props.map || this.refs.delegate).getCenter(); }
+  getCenter() { return this.props.map.getCenter(); }
 
-  getDiv() { return (this.props.map || this.refs.delegate).getDiv(); }
+  getDiv() { return this.props.map.getDiv(); }
 
-  getHeading() { return (this.props.map || this.refs.delegate).getHeading(); }
+  getHeading() { return this.props.map.getHeading(); }
 
-  getMapTypeId() { return (this.props.map || this.refs.delegate).getMapTypeId(); }
+  getMapTypeId() { return this.props.map.getMapTypeId(); }
 
-  getProjection() { return (this.props.map || this.refs.delegate).getProjection(); }
+  getProjection() { return this.props.map.getProjection(); }
 
-  getStreetView() { return (this.props.map || this.refs.delegate).getStreetView(); }
+  getStreetView() { return this.props.map.getStreetView(); }
 
-  getTilt() { return (this.props.map || this.refs.delegate).getTilt(); }
+  getTilt() { return this.props.map.getTilt(); }
 
-  getZoom() { return (this.props.map || this.refs.delegate).getZoom(); }
+  getZoom() { return this.props.map.getZoom(); }
   // END - Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
@@ -68,58 +60,32 @@ export default class GoogleMap extends Component {
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return !it.match(/^get/) && !it.match(/^set/) && !it.match(/Map$/); })
-  fitBounds(bounds) { return (this.props.map || this.refs.delegate).fitBounds(bounds); }
+  fitBounds(bounds) { return this.props.map.fitBounds(bounds); }
 
-  panBy(x, y) { return (this.props.map || this.refs.delegate).panBy(x, y); }
+  panBy(x, y) { return this.props.map.panBy(x, y); }
 
-  panTo(latLng) { return (this.props.map || this.refs.delegate).panTo(latLng); }
+  panTo(latLng) { return this.props.map.panTo(latLng); }
 
   panToBounds(latLngBounds) {
-    return (this.props.map || this.refs.delegate).panToBounds(latLngBounds);
+    return this.props.map.panToBounds(latLngBounds);
   }
   // END - Public APIs - Use this carefully
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
 
   componentWillMount() {
-    const { containerTagName } = this.props;
-    const isUsingNewBehavior = USE_NEW_BEHAVIOR_TAG_NAME === containerTagName;
-
-    warning(isUsingNewBehavior,
-`"GoogleMap" with containerTagName is deprecated now and will be removed in
- next major release (5.0.0). Use "GoogleMapLoader" instead.
-See https://github.com/tomchentw/react-google-maps/pull/157 for more details.`
-    );
+    const { containerTagName, containerProps } = this.props;
+    invariant(!containerTagName && !containerProps,
+`"GoogleMap" with containerTagName or containerProps is removed in release (5.0.0).
+Use "GoogleMapLoader" instead.
+See https://github.com/tomchentw/react-google-maps/pull/317 for more details.`);
   }
 
   render() {
-    const { containerTagName, containerProps = {}, children, ...mapProps } = this.props;
-    const isUsingNewBehavior = USE_NEW_BEHAVIOR_TAG_NAME === containerTagName;
-
-    if (isUsingNewBehavior) {
-      return (
-        <GoogleMapHolder {...mapProps}>
-          {children}
-        </GoogleMapHolder>
-      );
-    } else { // ------------ Deprecated ------------
-      const realContainerTagName = (
-        (containerTagName === undefined || containerTagName === null)
-        ? `div`
-        : containerTagName
-      );
-
-      return (
-        <GoogleMapLoader
-          ref="loader"
-          containerElement={React.createElement(realContainerTagName, containerProps)}
-          googleMapElement={
-            <GoogleMap ref="delegate" containerTagName={USE_NEW_BEHAVIOR_TAG_NAME} {...mapProps}>
-              {children}
-            </GoogleMap>
-          }
-        />
-      );
-    }
+    return (
+      <GoogleMapHolder {...this.props}>
+        {this.props.children}
+      </GoogleMapHolder>
+    );
   }
 }

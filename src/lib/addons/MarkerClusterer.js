@@ -1,118 +1,236 @@
+import _ from "lodash";
+
 import {
   default as React,
-  Component,
   PropTypes,
-} from 'react';
+} from "react";
+
+import MarkerClustererPlus from "marker-clusterer-plus";
 
 import {
-  default as canUseDOM,
-} from 'can-use-dom';
+  MAP,
+  ANCHOR,
+  MARKER_CLUSTERER,
+} from "../constants";
 
 import {
-  default as MarkerClustererCreator,
-  markerClusterDefaultPropTypes,
-  markerClusterControlledPropTypes,
-  markerClusterEventPropTypes,
-} from './addonsCreators/MarkerClustererCreator';
+  addDefaultPrefixToPropTypes,
+  collectUncontrolledAndControlledProps,
+  default as enhanceElement,
+} from "../enhanceElement";
 
-import { default as GoogleMapHolder } from "../creators/GoogleMapHolder";
+const controlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html
+  averageCenter: PropTypes.bool,
+  batchSizeIE: PropTypes.number,
+  calculator: PropTypes.func,
+  clusterClass: PropTypes.string,
+  enableRetinaIcons: PropTypes.bool,
+  gridSize: PropTypes.number,
+  ignoreHidden: PropTypes.bool,
+  imageExtension: PropTypes.string,
+  imagePath: PropTypes.string,
+  imageSizes: PropTypes.array,
+  maxZoom: PropTypes.number,
+  minimumClusterSize: PropTypes.number,
+  styles: PropTypes.array,
+  title: PropTypes.string,
+  zoomOnClick: PropTypes.bool,
+};
 
-export default class MarkerClusterer extends Component {
-  static propTypes = {
-    ...markerClusterDefaultPropTypes,
-    ...markerClusterControlledPropTypes,
-    ...markerClusterEventPropTypes,
-  }
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
-  static contextTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
-  }
+const eventMap = {
+  // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html
+  onClick: `click`,
 
+  onClusteringBegin: `clusteringbegin`,
+
+  onClusteringEnd: `clusteringend`,
+
+  onMouseOut: `mouseout`,
+
+  onMouseOver: `mouseover`,
+};
+
+const publicMethodMap = {
   // Public APIs
+  //
   // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html#events
-  getAverageCenter() { return this.state.markerClusterer.getAverageCenter(); }
+  getAverageCenter(markerClusterer) { return markerClusterer.getAverageCenter(); },
 
-  getBatchSizeIE() { return this.state.markerClusterer.getBatchSizeIE(); }
+  getBatchSizeIE(markerClusterer) { return markerClusterer.getBatchSizeIE(); },
 
-  getCalculator() { return this.state.markerClusterer.getCalculator(); }
+  getCalculator(markerClusterer) { return markerClusterer.getCalculator(); },
 
-  getClusterClass() { return this.state.markerClusterer.getClusterClass(); }
+  getClusterClass(markerClusterer) { return markerClusterer.getClusterClass(); },
 
-  getClusters() { return this.state.markerClusterer.getClusters(); }
+  getClusters(markerClusterer) { return markerClusterer.getClusters(); },
 
-  getEnableRetinaIcons() { return this.state.markerClusterer.getEnableRetinaIcons(); }
+  getEnableRetinaIcons(markerClusterer) { return markerClusterer.getEnableRetinaIcons(); },
 
-  getGridSize() { return this.state.markerClusterer.getGridSize(); }
+  getGridSize(markerClusterer) { return markerClusterer.getGridSize(); },
 
-  getIgnoreHidden() { return this.state.markerClusterer.getIgnoreHidden(); }
+  getIgnoreHidden(markerClusterer) { return markerClusterer.getIgnoreHidden(); },
 
-  getImageExtension() { return this.state.markerClusterer.getImageExtension(); }
+  getImageExtension(markerClusterer) { return markerClusterer.getImageExtension(); },
 
-  getImagePath() { return this.state.markerClusterer.getImagePath(); }
+  getImagePath(markerClusterer) { return markerClusterer.getImagePath(); },
 
-  getImageSize() { return this.state.markerClusterer.getImageSize(); }
+  getImageSize(markerClusterer) { return markerClusterer.getImageSize(); },
 
-  getMarkers() { return this.state.markerClusterer.getMarkers(); }
+  getMarkers(markerClusterer) { return markerClusterer.getMarkers(); },
 
-  getMaxZoom() { return this.state.markerClusterer.getMaxZoom(); }
+  getMaxZoom(markerClusterer) { return markerClusterer.getMaxZoom(); },
 
-  getMinimumClusterSize() { return this.state.markerClusterer.getMinimumClusterSize(); }
+  getMinimumClusterSize(markerClusterer) { return markerClusterer.getMinimumClusterSize(); },
 
-  getStyles() { return this.state.markerClusterer.getStyles(); }
+  getStyles(markerClusterer) { return markerClusterer.getStyles(); },
 
-  getTitle() { return this.state.markerClusterer.getTitle(); }
+  getTitle(markerClusterer) { return markerClusterer.getTitle(); },
 
-  getTotalClusters() { return this.state.markerClusterer.getTotalClusters(); }
+  getTotalClusters(markerClusterer) { return markerClusterer.getTotalClusters(); },
 
-  getZoomOnClick() { return this.state.markerClusterer.getZoomOnClick(); }
+  getZoomOnClick(markerClusterer) { return markerClusterer.getZoomOnClick(); },
 
   // Public APIs - Use this carefully
-  addMarker(marker, nodraw = false) {
-    return this.state.markerClusterer.addMarker(marker, nodraw);
-  }
+  addMarker(markerClusterer, marker, nodraw = false) {
+    return markerClusterer.addMarker(marker, nodraw);
+  },
 
-  addMarkers(markers, nodraw = false) {
-    return this.state.markerClusterer.addMarkers(markers, nodraw);
-  }
+  addMarkers(markerClusterer, markers, nodraw = false) {
+    return markerClusterer.addMarkers(markers, nodraw);
+  },
 
-  removeMarker(marker, nodraw = false) {
-    return this.state.markerClusterer.removeMarker(marker, nodraw);
-  }
+  removeMarker(markerClusterer, marker, nodraw = false) {
+    return markerClusterer.removeMarker(marker, nodraw);
+  },
 
-  removeMarkers(markers, nodraw = false) {
-    return this.state.markerClusterer.removeMarkers(markers, nodraw);
-  }
+  removeMarkers(markerClusterer, markers, nodraw = false) {
+    return markerClusterer.removeMarkers(markers, nodraw);
+  },
 
-  clearMarkers() { return this.state.markerClusterer.clearMarkers(); }
+  clearMarkers(markerClusterer) { return markerClusterer.clearMarkers(); },
 
-  fitMapToMarkers() { return this.state.markerClusterer.fitMapToMarkers(); }
+  fitMapToMarkers(markerClusterer) { return markerClusterer.fitMapToMarkers(); },
 
-  repaint() { return this.state.markerClusterer.repaint(); }
+  repaint(markerClusterer) { return markerClusterer.repaint(); },
+  // END - Public APIs
+};
 
-  state = {}
+const controlledPropUpdaterMap = {
+  averageCenter(markerClusterer, averageCenter) {
+    markerClusterer.setAverageCenter(averageCenter);
+  },
 
-  componentWillMount() {
-    if (!canUseDOM) {
-      return;
-    }
+  batchSizeIE(markerClusterer, batchSizeIE) {
+    markerClusterer.setBatchSizeIE(batchSizeIE);
+  },
 
-    const markerClusterer = MarkerClustererCreator._createMarkerClusterer(
-      this.context.mapHolderRef,
-      this.props
+  calculator(markerClusterer, calculator) { markerClusterer.setCalculator(calculator); },
+
+  enableRetinaIcons(markerClusterer, enableRetinaIcons) {
+    markerClusterer.setEnableRetinaIcons(enableRetinaIcons);
+  },
+
+  gridSize(markerClusterer, gridSize) { markerClusterer.setGridSize(gridSize); },
+
+  ignoreHidden(markerClusterer, ignoreHidden) { markerClusterer.setIgnoreHidden(ignoreHidden); },
+
+  imageExtension(markerClusterer, imageExtension) {
+    markerClusterer.setImageExtension(imageExtension);
+  },
+
+  imagePath(markerClusterer, imagePath) { markerClusterer.setImagePath(imagePath); },
+
+  imageSizes(markerClusterer, imageSizes) { markerClusterer.setImageSizes(imageSizes); },
+
+  maxZoom(markerClusterer, maxZoom) { markerClusterer.setMaxZoom(maxZoom); },
+
+  minimumClusterSize(markerClusterer, minimumClusterSize) {
+    markerClusterer.setMinimumClusterSize(minimumClusterSize);
+  },
+
+  styles(markerClusterer, styles) { markerClusterer.setStyles(styles); },
+
+  title(markerClusterer, title) { markerClusterer.setTitle(title); },
+
+  zoomOnClick(markerClusterer, zoomOnClick) { markerClusterer.setZoomOnClick(zoomOnClick); },
+};
+
+function getInstanceFromComponent(component) {
+  return component.state[MARKER_CLUSTERER];
+}
+
+export default _.flowRight(
+  React.createClass,
+  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+)({
+  displayName: `MarkerClusterer`,
+
+  propTypes: {
+    ...controlledPropTypes,
+    ...defaultUncontrolledPropTypes,
+  },
+
+  contextTypes: {
+    [MAP]: PropTypes.object,
+  },
+
+  childContextTypes: {
+    [ANCHOR]: PropTypes.object,
+    [MARKER_CLUSTERER]: PropTypes.object,
+  },
+
+  getInitialState() {
+    // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html#events
+    const markerClusterer = new MarkerClustererPlus(
+      this.context[MAP],
+      [],
+      collectUncontrolledAndControlledProps(
+        defaultUncontrolledPropTypes,
+        controlledPropTypes,
+        this.props
+      )
     );
+    return {
+      [MARKER_CLUSTERER]: markerClusterer,
+    };
+  },
 
-    this.setState({ markerClusterer });
-  }
+  getChildContext() {
+    const markerClusterer = getInstanceFromComponent(this);
+    return {
+      [ANCHOR]: markerClusterer,
+      [MARKER_CLUSTERER]: markerClusterer,
+    };
+  },
+
+  componentDidUpdate() {
+    const markerClusterer = getInstanceFromComponent(this);
+    markerClusterer.repaint();
+  },
+
+  componentWillUnmount() {
+    const markerClusterer = getInstanceFromComponent(this);
+    if (markerClusterer) {
+      markerClusterer.setMap(null);
+    }
+  },
 
   render() {
-    if (this.state.markerClusterer) {
-      return (
-        <MarkerClustererCreator markerClusterer={this.state.markerClusterer} {...this.props}>
-          {this.props.children}
-        </MarkerClustererCreator>
-      );
-    } else {
-      return <noscript />;
-    }
-  }
-}
+    const {
+      children,
+    } = this.props;
+
+    return (
+      <div>
+        {children}
+      </div>
+    );
+  },
+});

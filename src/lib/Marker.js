@@ -10,6 +10,7 @@ import {
   MAP,
   MARKER,
   ANCHOR,
+  MARKER_CLUSTERER,
 } from "./constants";
 
 import {
@@ -192,6 +193,7 @@ export default _.flowRight(
 
   contextTypes: {
     [MAP]: PropTypes.object,
+    [MARKER_CLUSTERER]: PropTypes.object,
   },
 
   childContextTypes: {
@@ -200,14 +202,19 @@ export default _.flowRight(
 
   getInitialState() {
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
-    const marker = new google.maps.Marker({
-      map: this.context[MAP],
-      ...collectUncontrolledAndControlledProps(
+    const marker = new google.maps.Marker(
+      collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
         controlledPropTypes,
         this.props
-      ),
-    });
+      )
+    );
+    const markerClusterer = this.context[MARKER_CLUSTERER];
+    if (markerClusterer) {
+      markerClusterer.addMarker(marker);
+    } else {
+      marker.setMap(this.context[MAP]);
+    }
     return {
       [MARKER]: marker,
     };
@@ -215,13 +222,17 @@ export default _.flowRight(
 
   getChildContext() {
     return {
-      [ANCHOR]: this.state[MARKER],
+      [ANCHOR]: this.context[ANCHOR] || getInstanceFromComponent(this),
     };
   },
 
   componentWillUnmount() {
     const marker = getInstanceFromComponent(this);
     if (marker) {
+      const markerClusterer = this.context[MARKER_CLUSTERER];
+      if (markerClusterer) {
+        markerClusterer.removeMarker(marker);
+      }
       marker.setMap(null);
     }
   },

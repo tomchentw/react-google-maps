@@ -29,3 +29,7 @@ export {
 export {
   default as KmlLayer,
 } from "./KmlLayer";
+
+export {
+  default as DirectionsRenderer,
+} from "./DirectionsRenderer";

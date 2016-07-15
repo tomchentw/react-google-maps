@@ -1,84 +1,109 @@
+/* global google */
+import _ from "lodash";
+
 import {
   default as React,
-  Component,
   PropTypes,
 } from "react";
 
 import {
-  default as canUseDOM,
-} from "can-use-dom";
+  MAP,
+  DIRECTIONS_RENDERER,
+} from "./constants";
 
 import {
-  default as DirectionsRendererCreator,
-  directionsRendererDefaultPropTypes,
-  directionsRendererControlledPropTypes,
-  directionsRendererEventPropTypes,
-} from "./creators/DirectionsRendererCreator";
+  addDefaultPrefixToPropTypes,
+  collectUncontrolledAndControlledProps,
+  default as enhanceElement,
+} from "./enhanceElement";
 
-import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+const controlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
+  directions: PropTypes.any,
+  options: PropTypes.object,
+  panel: PropTypes.object,
+  routeIndex: PropTypes.number,
+};
 
-/*
- * Original author: @alexishevia
- * Original PR: https://github.com/tomchentw/react-google-maps/pull/22
- */
-export default class DirectionsRenderer extends Component {
-  static propTypes = {
-    // Uncontrolled default[props] - used only in componentDidMount
-    ...directionsRendererDefaultPropTypes,
-    // Controlled [props] - used in componentDidMount/componentDidUpdate
-    ...directionsRendererControlledPropTypes,
-    // Event [onEventName]
-    ...directionsRendererEventPropTypes,
-  }
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
-  static contextTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
-  }
+const eventMap = {
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  onDirectionsChanged: `directions_changed`,
+};
 
+const publicMethodMap = {
   // Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
-  //    .filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getDirections() { return this.state.directionsRenderer.getDirections(); }
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+  getDirections(directionsRenderer) { return directionsRenderer.getDirections(); },
 
-  getPanel() { return this.state.directionsRenderer.getPanel(); }
+  getPanel(directionsRenderer) { return directionsRenderer.getPanel(); },
 
-  getRouteIndex() { return this.state.directionsRenderer.getRouteIndex(); }
+  getRouteIndex(directionsRenderer) { return directionsRenderer.getRouteIndex(); },
   // END - Public APIs
-  //
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
+};
 
-  state = {
-  }
+const controlledPropUpdaterMap = {
+  directions(directionsRenderer, directions) { directionsRenderer.setDirections(directions); },
+  options(directionsRenderer, options) { directionsRenderer.setOptions(options); },
+  panel(directionsRenderer, panel) { directionsRenderer.setPanel(panel); },
+  routeIndex(directionsRenderer, routeIndex) { directionsRenderer.setRouteIndex(routeIndex); },
+};
 
-  componentWillMount() {
-    const { mapHolderRef } = this.context;
+function getInstanceFromComponent(component) {
+  return component.state[DIRECTIONS_RENDERER];
+}
 
-    if (!canUseDOM) {
-      return;
-    }
-    const directionsRenderer = DirectionsRendererCreator._createDirectionsRenderer({
-      ...this.props,
-      mapHolderRef,
+export default _.flowRight(
+  React.createClass,
+  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+)({
+  displayName: `DirectionsRenderer`,
+
+  propTypes: {
+    ...controlledPropTypes,
+    ...defaultUncontrolledPropTypes,
+  },
+
+  contextTypes: {
+    [MAP]: PropTypes.object,
+  },
+
+  getInitialState() {
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
+    const directionsRenderer = new google.maps.DirectionsRenderer({
+      map: this.context[MAP],
+      ...collectUncontrolledAndControlledProps(
+        defaultUncontrolledPropTypes,
+        controlledPropTypes,
+        this.props
+      ),
     });
+    return {
+      [DIRECTIONS_RENDERER]: directionsRenderer,
+    };
+  },
 
-    this.setState({ directionsRenderer });
-  }
+  componentWillUnmount() {
+    const directionsRenderer = getInstanceFromComponent(this);
+    if (directionsRenderer) {
+      directionsRenderer.setMap(null);
+    }
+  },
 
   render() {
-    if (this.state.directionsRenderer) {
-      return (
-        <DirectionsRendererCreator
-          directionsRenderer={this.state.directionsRenderer}
-          {...this.props}
-        >
-          {this.props.children}
-        </DirectionsRendererCreator>
-      );
-    } else {
-      return (<noscript />);
-    }
-  }
-}
+    return false;
+  },
+});

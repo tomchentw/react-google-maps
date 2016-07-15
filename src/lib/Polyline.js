@@ -1,79 +1,133 @@
+/* global google */
+import _ from "lodash";
+
 import {
   default as React,
-  Component,
   PropTypes,
 } from "react";
 
 import {
-  default as canUseDOM,
-} from "can-use-dom";
+  MAP,
+  POLYLINE,
+} from "./constants";
 
 import {
-  default as PolylineCreator,
-  polylineDefaultPropTypes,
-  polylineControlledPropTypes,
-  polylineEventPropTypes,
-} from "./creators/PolylineCreator";
+  addDefaultPrefixToPropTypes,
+  collectUncontrolledAndControlledProps,
+  default as enhanceElement,
+} from "./enhanceElement";
 
-import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+const controlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
+  draggable: PropTypes.bool,
+  editable: PropTypes.bool,
+  options: PropTypes.object,
+  path: PropTypes.any,
+  visible: PropTypes.bool,
+};
 
-export default class Polyline extends Component {
-  static propTypes = {
-    // Uncontrolled default[props] - used only in componentDidMount
-    ...polylineDefaultPropTypes,
-    // Controlled [props] - used in componentDidMount/componentDidUpdate
-    ...polylineControlledPropTypes,
-    // Event [onEventName]
-    ...polylineEventPropTypes,
-  }
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
-  static contextTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
-  }
+const eventMap = {
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  onClick: `click`,
 
+  onDblClick: `dblclick`,
+
+  onDrag: `drag`,
+
+  onDragEnd: `dragend`,
+
+  onDragStart: `dragstart`,
+
+  onMouseDown: `mousedown`,
+
+  onMouseMove: `mousemove`,
+
+  onMouseOut: `mouseout`,
+
+  onMouseOver: `mouseover`,
+
+  onMouseUp: `mouseup`,
+
+  onRightClick: `rightclick`,
+};
+
+const publicMethodMap = {
   // Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
-  //    .filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getDraggable() { return this.state.polyline.getDraggable(); }
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+  getDraggable(polyline) { return polyline.getDraggable(); },
 
-  getEditable() { return this.state.polyline.getEditable(); }
+  getEditable(polyline) { return polyline.getEditable(); },
 
-  getPath() { return this.state.polyline.getPath(); }
+  getPath(polyline) { return polyline.getPath(); },
 
-  getVisible() { return this.state.polyline.getVisible(); }
+  getVisible(polyline) { return polyline.getVisible(); },
   // END - Public APIs
-  //
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
+};
 
-  state = {
-  }
+const controlledPropUpdaterMap = {
+  draggable(polyline, draggable) { polyline.setDraggable(draggable); },
+  editable(polyline, editable) { polyline.setEditable(editable); },
+  options(polyline, options) { polyline.setOptions(options); },
+  path(polyline, path) { polyline.setPath(path); },
+  visible(polyline, visible) { polyline.setVisible(visible); },
+};
 
-  componentWillMount() {
-    const { mapHolderRef } = this.context;
+function getInstanceFromComponent(component) {
+  return component.state[POLYLINE];
+}
 
-    if (!canUseDOM) {
-      return;
-    }
-    const polyline = PolylineCreator._createPolyline({
-      ...this.props,
-      mapHolderRef,
+export default _.flowRight(
+  React.createClass,
+  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+)({
+  displayName: `Polyline`,
+
+  propTypes: {
+    ...controlledPropTypes,
+    ...defaultUncontrolledPropTypes,
+  },
+
+  contextTypes: {
+    [MAP]: PropTypes.object,
+  },
+
+  getInitialState() {
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
+    const polyline = new google.maps.Polyline({
+      map: this.context[MAP],
+      ...collectUncontrolledAndControlledProps(
+        defaultUncontrolledPropTypes,
+        controlledPropTypes,
+        this.props
+      ),
     });
+    return {
+      [POLYLINE]: polyline,
+    };
+  },
 
-    this.setState({ polyline });
-  }
+  componentWillUnmount() {
+    const polyline = getInstanceFromComponent(this);
+    if (polyline) {
+      polyline.setMap(null);
+    }
+  },
 
   render() {
-    if (this.state.polyline) {
-      return (
-        <PolylineCreator polyline={this.state.polyline} {...this.props}>
-          {this.props.children}
-        </PolylineCreator>
-      );
-    } else {
-      return (<noscript />);
-    }
-  }
-}
+    return false;
+  },
+});

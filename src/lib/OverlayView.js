@@ -1,101 +1,151 @@
+/* global google */
+import _ from "lodash";
+
 import {
   default as React,
-  Component,
   PropTypes,
 } from "react";
 
 import {
-  default as canUseDOM,
-} from "can-use-dom";
+  MAP,
+  OVERLAY_VIEW,
+} from "./constants";
 
 import {
-  default as OverlayViewCreator,
-  overlayViewDefaultPropTypes,
-  overlayViewControlledPropTypes,
-} from "./creators/OverlayViewCreator";
+  addDefaultPrefixToPropTypes,
+  collectUncontrolledAndControlledProps,
+  default as enhanceElement,
+} from "./enhanceElement";
 
-import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+import * as helpers from "./utils/OverlayViewHelper";
 
-/*
- * Original author: @petebrowne
- * Original PR: https://github.com/tomchentw/react-google-maps/pull/63
- */
-export default class OverlayView extends Component {
+const controlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
+  mapPaneName: PropTypes.string,
+  position: PropTypes.object,
+  bounds: PropTypes.object,
+};
 
-  static FLOAT_PANE = `floatPane`
-  static MAP_PANE = `mapPane`
-  static MARKER_LAYER = `markerLayer`
-  static OVERLAY_LAYER = `overlayLayer`
-  static OVERLAY_MOUSE_TARGET = `overlayMouseTarget`
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
-  static propTypes = {
-    // Uncontrolled default[props] - used only in componentDidMount
-    ...overlayViewDefaultPropTypes,
-    // Controlled [props] - used in componentDidMount/componentDidUpdate
-    ...overlayViewControlledPropTypes,
-  }
+const eventMap = {
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+};
 
-  static contextTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
-  }
-
-  static defaultProps = {
-    mapPaneName: OverlayView.OVERLAY_LAYER,
-  }
-
+const publicMethodMap = {
   // Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
-  //    .filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getPanes() { return this.state.overlayView.getPanes(); }
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+  getPanes(overlayView) { return overlayView.getPanes(); },
 
-  getProjection() { return this.state.overlayView.getProjection(); }
+  getProjection(overlayView) { return overlayView.getProjection(); },
   // END - Public APIs
-  //
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
+};
 
-  state = {
-  }
+const controlledPropUpdaterMap = {
+};
 
-  componentWillMount() {
-    if (!canUseDOM) {
-      return;
-    }
-    const overlayView = OverlayViewCreator._createOverlayView(this.props);
+function getInstanceFromComponent(component) {
+  return component.state[OVERLAY_VIEW];
+}
 
-    this.setState({ overlayView });
-  }
+export default _.flowRight(
+  React.createClass,
+  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+)({
+  displayName: `OverlayView`,
+
+  statics: {
+    FLOAT_PANE: `floatPane`,
+    MAP_PANE: `mapPane`,
+    MARKER_LAYER: `markerLayer`,
+    OVERLAY_LAYER: `overlayLayer`,
+    OVERLAY_MOUSE_TARGET: `overlayMouseTarget`,
+  },
+
+  propTypes: {
+    ...controlledPropTypes,
+    ...defaultUncontrolledPropTypes,
+    children: PropTypes.node.isRequired,
+    getPixelPositionOffset: PropTypes.func,
+  },
+
+  contextTypes: {
+    [MAP]: PropTypes.object,
+  },
+
+  getInitialState() {
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
+    const overlayView = new google.maps.OverlayView();
+    // You must implement three methods: onAdd(), draw(), and onRemove().
+    overlayView.onAdd = this.onAdd;
+    overlayView.draw = this.draw;
+    overlayView.onRemove = this.onRemove;
+    // You must call setMap() with a valid Map object to trigger the call to
+    // the onAdd() method and setMap(null) in order to trigger the onRemove() method.
+    overlayView.setMap(this.context[MAP]);
+    return {
+      [OVERLAY_VIEW]: overlayView,
+    };
+  },
+
+  onAdd() {
+    this._containerElement = helpers.createContainerElement();
+  },
+
+  draw() {
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
+    const overlayView = getInstanceFromComponent(this);
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#MapPanes
+    const mapPanes = overlayView.getPanes();
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#MapCanvasProjection
+    const mapCanvasProjection = overlayView.getProjection();
+    //
+    const props = {
+      ...collectUncontrolledAndControlledProps(
+        defaultUncontrolledPropTypes,
+        controlledPropTypes,
+        this.props
+      ),
+      children: this.props.children,
+      getPixelPositionOffset: this.props.getPixelPositionOffset,
+    };
+    helpers.mountContainerElementToPane(mapPanes, this._containerElement, props);
+    helpers.renderChildToContainerElement(mapCanvasProjection, this._containerElement, props);
+  },
+
+  onRemove() {
+    helpers.unmountAndDestroyContainerElement(this._containerElement);
+    this._containerElement = null;
+  },
+
+  componentDidUpdate() {
+    _.delay(this.draw)
+  },
 
   componentWillUnmount() {
-    if (!canUseDOM) {
-      return;
+    const overlayView = getInstanceFromComponent(this);
+    if (overlayView) {
+      overlayView.setMap(null);
+      // You must implement three methods: onAdd(), draw(), and onRemove().
+      overlayView.onAdd = null;
+      overlayView.draw = null;
+      overlayView.onRemove = null;
     }
-
-    const { anchorHolderRef } = this.props;
-    const { overlayView } = this.state;
-
-    if (anchorHolderRef) {
-      if (`MarkerClusterer` === anchorHolderRef.getAnchorType()) {
-        anchorHolderRef.getAnchor().removeMarker(overlayView);
-      }
-    }
-  }
+  },
 
   render() {
-    const { mapHolderRef } = this.context;
-    if (this.state.overlayView) {
-      return (
-        <OverlayViewCreator
-          mapHolderRef={mapHolderRef}
-          overlayView={this.state.overlayView} {...this.props}
-        >
-          {this.props.children}
-        </OverlayViewCreator>
-      );
-    } else {
-      return (<noscript />);
-    }
-  }
-}
+    return false;
+  },
+});

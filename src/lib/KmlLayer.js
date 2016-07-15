@@ -1,82 +1,119 @@
+/* global google */
+import _ from "lodash";
+
 import {
   default as React,
-  Component,
   PropTypes,
 } from "react";
 
 import {
-  default as canUseDOM,
-} from "can-use-dom";
+  MAP,
+  KML_LAYER,
+} from "./constants";
 
 import {
-  default as KmlLayerCreator,
-  kmlLayerDefaultPropTypes,
-  kmlLayerControlledPropTypes,
-  kmlLayerEventPropTypes,
-} from "./creators/KmlLayerCreator";
+  addDefaultPrefixToPropTypes,
+  collectUncontrolledAndControlledProps,
+  default as enhanceElement,
+} from "./enhanceElement";
 
-import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+const controlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
+  defaultViewport: PropTypes.any,
+  metadata: PropTypes.any,
+  status: PropTypes.any,
+  url: PropTypes.string,
+  zIndex: PropTypes.number,
+};
 
-export default class KmlLayer extends Component {
-  static propTypes = {
-    // Uncontrolled default[props] - used only in componentDidMount
-    ...kmlLayerDefaultPropTypes,
-    // Controlled [props] - used in componentDidMount/componentDidUpdate
-    ...kmlLayerControlledPropTypes,
-    // Event [onEventName]
-    ...kmlLayerEventPropTypes,
-  }
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
-  static contextTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
-  }
+const eventMap = {
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  onClick: `click`,
 
+  onDefaultViewportChanged: `defaultviewport_changed`,
+  
+  onStatusChanged: `status_changed`,
+};
+
+const publicMethodMap = {
   // Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getDefaultViewport() { return this.state.kmlLayer.getDefaultViewport(); }
+  getDefaultViewport(kmlLayer) { return kmlLayer.getDefaultViewport(); },
 
-  getMetadata() { return this.state.kmlLayer.getMetadata(); }
+  getMetadata(kmlLayer) { return kmlLayer.getMetadata(); },
 
-  getStatus() { return this.state.kmlLayer.getStatus(); }
+  getStatus(kmlLayer) { return kmlLayer.getStatus(); },
 
-  getUrl() { return this.state.kmlLayer.getUrl(); }
+  getUrl(kmlLayer) { return kmlLayer.getUrl(); },
 
-  getZIndex() { return this.state.marker.getZIndex(); }
+  getZIndex(kmlLayer) { return kmlLayer.getZIndex(); },
   // END - Public APIs
-  //
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
+};
 
-  state = {
-  }
+const controlledPropUpdaterMap = {
+  defaultViewport(kmlLayer, defaultViewport) { kmlLayer.setDefaultViewport(defaultViewport); },
+  metadata(kmlLayer, metadata) { kmlLayer.setMetadata(metadata); },
+  status(kmlLayer, status) { kmlLayer.setStatus(status); },
+  url(kmlLayer, url) { kmlLayer.setUrl(url); },
+  zIndex(kmlLayer, zIndex) { kmlLayer.setZIndex(zIndex); },
+};
 
-  componentWillMount() {
-    const { mapHolderRef } = this.context;
+function getInstanceFromComponent(component) {
+  return component.state[KML_LAYER];
+}
 
-    if (!canUseDOM) {
-      return;
-    }
-    const kmlLayer = KmlLayerCreator._createKmlLayer({
-      ...this.props,
-      mapHolderRef,
+export default _.flowRight(
+  React.createClass,
+  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+)({
+  displayName: `KmlLayer`,
+
+  propTypes: {
+    ...controlledPropTypes,
+    ...defaultUncontrolledPropTypes,
+  },
+
+  contextTypes: {
+    [MAP]: PropTypes.object,
+  },
+
+  getInitialState() {
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
+    const kmlLayer = new google.maps.KmlLayer({
+      map: this.context[MAP],
+      ...collectUncontrolledAndControlledProps(
+        defaultUncontrolledPropTypes,
+        controlledPropTypes,
+        this.props
+      ),
     });
+    return {
+      [KML_LAYER]: kmlLayer,
+    };
+  },
 
-    this.setState({ kmlLayer });
-  }
+  componentWillUnmount() {
+    const kmlLayer = getInstanceFromComponent(this);
+    if (kmlLayer) {
+      kmlLayer.setMap(null);
+    }
+  },
 
   render() {
-    const { mapHolderRef } = this.context;
-    if (this.state.kmlLayer) {
-      return (
-        <KmlLayerCreator mapHolderRef={mapHolderRef} kmlLayer={this.state.kmlLayer} {...this.props}>
-          {this.props.children}
-        </KmlLayerCreator>
-      );
-    } else {
-      return (<noscript />);
-    }
-  }
-}
+    return false;
+  },
+});

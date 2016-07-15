@@ -25,3 +25,7 @@ export {
 export {
   default as Circle,
 } from "./Circle";
+
+export {
+  default as KmlLayer,
+} from "./KmlLayer";

@@ -1,83 +1,135 @@
+/* global google */
+import _ from "lodash";
+
 import {
   default as React,
-  Component,
   PropTypes,
 } from "react";
 
 import {
-  default as canUseDOM,
-} from "can-use-dom";
+  MAP,
+  RECTANGLE,
+} from "./constants";
 
 import {
-  default as RectangleCreator,
-  rectangleDefaultPropTypes,
-  rectangleControlledPropTypes,
-  rectangleEventPropTypes,
-} from "./creators/RectangleCreator";
+  addDefaultPrefixToPropTypes,
+  collectUncontrolledAndControlledProps,
+  default as enhanceElement,
+} from "./enhanceElement";
 
-import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+const controlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
+  bounds: PropTypes.any,
+  draggable: PropTypes.bool,
+  editable: PropTypes.bool,
+  options: PropTypes.object,
+  visible: PropTypes.bool,
+};
 
-/*
- * Original author: @alistairjcbrown
- * Original PR: https://github.com/tomchentw/react-google-maps/pull/80
- */
-export default class Rectangle extends Component {
-  static propTypes = {
-    // Uncontrolled default[props] - used only in componentDidMount
-    ...rectangleDefaultPropTypes,
-    // Controlled [props] - used in componentDidMount/componentDidUpdate
-    ...rectangleControlledPropTypes,
-    // Event [onEventName]
-    ...rectangleEventPropTypes,
-  }
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
-  static contextTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
-  }
+const eventMap = {
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  onBoundsChanged: `bounds_changed`,
 
+  onClick: `click`,
+
+  onDblClick: `dblclick`,
+
+  onDrag: `drag`,
+
+  onDragEnd: `dragend`,
+
+  onDragStart: `dragstart`,
+
+  onMouseDown: `mousedown`,
+
+  onMouseMove: `mousemove`,
+
+  onMouseOut: `mouseout`,
+
+  onMouseOver: `mouseover`,
+
+  onMouseUp: `mouseup`,
+
+  onRightClick: `rightclick`,
+};
+
+const publicMethodMap = {
   // Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
-  //    .filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getBounds() { return this.state.rectangle.getBounds(); }
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+  getBounds(rectangle) { return rectangle.getBounds(); },
 
-  getDraggable() { return this.state.rectangle.getDraggable(); }
+  getDraggable(rectangle) { return rectangle.getDraggable(); },
 
-  getEditable() { return this.state.rectangle.getEditable(); }
+  getEditable(rectangle) { return rectangle.getEditable(); },
 
-  getVisible() { return this.state.rectangle.getVisible(); }
+  getVisible(rectangle) { return rectangle.getVisible(); },
   // END - Public APIs
-  //
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
+};
 
-  state = {
-  }
+const controlledPropUpdaterMap = {
+  bounds(rectangle, bounds) { rectangle.setBounds(bounds); },
+  draggable(rectangle, draggable) { rectangle.setDraggable(draggable); },
+  editable(rectangle, editable) { rectangle.setEditable(editable); },
+  options(rectangle, options) { rectangle.setOptions(options); },
+  visible(rectangle, visible) { rectangle.setVisible(visible); },
+};
 
-  componentWillMount() {
-    const { mapHolderRef } = this.context;
+function getInstanceFromComponent(component) {
+  return component.state[RECTANGLE];
+}
 
-    if (!canUseDOM) {
-      return;
-    }
-    const rectangle = RectangleCreator._createRectangle({
-      ...this.props,
-      mapHolderRef,
+export default _.flowRight(
+  React.createClass,
+  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+)({
+  displayName: `Rectangle`,
+
+  propTypes: {
+    ...controlledPropTypes,
+    ...defaultUncontrolledPropTypes,
+  },
+
+  contextTypes: {
+    [MAP]: PropTypes.object,
+  },
+
+  getInitialState() {
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
+    const rectangle = new google.maps.Rectangle({
+      map: this.context[MAP],
+      ...collectUncontrolledAndControlledProps(
+        defaultUncontrolledPropTypes,
+        controlledPropTypes,
+        this.props
+      ),
     });
+    return {
+      [RECTANGLE]: rectangle,
+    };
+  },
 
-    this.setState({ rectangle });
-  }
+  componentWillUnmount() {
+    const rectangle = getInstanceFromComponent(this);
+    if (rectangle) {
+      rectangle.setMap(null);
+    }
+  },
 
   render() {
-    if (this.state.rectangle) {
-      return (
-        <RectangleCreator rectangle={this.state.rectangle} {...this.props}>
-          {this.props.children}
-        </RectangleCreator>
-      );
-    } else {
-      return (<noscript />);
-    }
-  }
-}
+    return false;
+  },
+});

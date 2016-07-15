@@ -1,72 +1,95 @@
+/* global google */
+import _ from "lodash";
+
 import {
   default as React,
-  Component,
   PropTypes,
 } from "react";
 
 import {
-  default as canUseDOM,
-} from "can-use-dom";
+  MAP,
+  SKELETON,
+} from "./constants";
 
 import {
-  default as SkeletonCreator,
-  skeletonDefaultPropTypes,
-  skeletonControlledPropTypes,
-  skeletonEventPropTypes,
-} from "./creators/_SkeletonCreator";
+  addDefaultPrefixToPropTypes,
+  collectUncontrolledAndControlledProps,
+  default as enhanceElement,
+} from "./enhanceElement";
 
-import GoogleMapHolder from "./creators/GoogleMapHolder";
+const controlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Skeleton
+};
 
-export default class Skeleton extends Component {
-  static propTypes = {
-    // Uncontrolled default[props] - used only in componentDidMount
-    ...skeletonDefaultPropTypes,
-    // Controlled [props] - used in componentDidMount/componentDidUpdate
-    ...skeletonControlledPropTypes,
-    // Event [onEventName]
-    ...skeletonEventPropTypes,
-  }
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
-  static contextTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
-  }
+const eventMap = {
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Skeleton
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+};
 
+const publicMethodMap = {
   // Public APIs
   //
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Skeleton
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
-  //    .filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getAnimation() { return this.state.skeleton.getAnimation(); }
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
   // END - Public APIs
-  //
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference
+};
 
-  state = {
-  }
+const controlledPropUpdaterMap = {
+};
 
-  componentWillMount() {
-    const { mapHolderRef } = this.context;
-    if (!canUseDOM) {
-      return;
-    }
-    const skeleton = SkeletonCreator._createSkeleton({
-      ...this.props,
-      mapHolderRef,
+function getInstanceFromComponent(component) {
+  return component.state[SKELETON];
+}
+
+export default _.flowRight(
+  React.createClass,
+  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+)({
+  displayName: `Skeleton`,
+
+  propTypes: {
+    ...controlledPropTypes,
+    ...defaultUncontrolledPropTypes,
+  },
+
+  contextTypes: {
+    [MAP]: PropTypes.object,
+  },
+
+  getInitialState() {
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Skeleton
+    const skeleton = new google.maps.Skeleton({
+      map: this.context[MAP],
+      ...collectUncontrolledAndControlledProps(
+        defaultUncontrolledPropTypes,
+        controlledPropTypes,
+        this.props
+      ),
     });
+    return {
+      [SKELETON]: skeleton,
+    };
+  },
 
-    this.setState({ skeleton });
-  }
+  componentWillUnmount() {
+    const skeleton = getInstanceFromComponent(this);
+    if (skeleton) {
+      skeleton.setMap(null);
+    }
+  },
 
   render() {
-    if (this.state.skeleton) {
-      return (
-        <SkeletonCreator skeleton={this.state.skeleton} {...this.props}>
-          {this.props.children}
-        </SkeletonCreator>
-      );
-    } else {
-      return (<noscript />);
-    }
-  }
-}
+    return false;
+  },
+});

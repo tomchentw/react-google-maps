@@ -1,114 +1,221 @@
+/* global google */
+import _ from "lodash";
+
 import {
   default as React,
-  Component,
   PropTypes,
 } from "react";
 
 import {
-  default as canUseDOM,
-} from "can-use-dom";
+  MAP,
+  MARKER,
+} from "./constants";
 
 import {
-  default as MarkerCreator,
-  markerDefaultPropTypes,
-  markerControlledPropTypes,
-  markerEventPropTypes,
-} from "./creators/MarkerCreator";
+  addDefaultPrefixToPropTypes,
+  collectUncontrolledAndControlledProps,
+  default as enhanceElement,
+} from "./enhanceElement";
 
-import GoogleMapHolder from "./creators/GoogleMapHolder";
+const controlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
+  animation: PropTypes.any,
 
-export default class Marker extends Component {
-  static propTypes = {
-    // Uncontrolled default[props] - used only in componentDidMount
-    ...markerDefaultPropTypes,
-    // Controlled [props] - used in componentDidMount/componentDidUpdate
-    ...markerControlledPropTypes,
-    // Event [onEventName]
-    ...markerEventPropTypes,
-  }
+  attribution: PropTypes.any,
 
-  static contextTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
-  }
+  clickable: PropTypes.bool,
 
+  cursor: PropTypes.string,
+
+  draggable: PropTypes.bool,
+
+  icon: PropTypes.any,
+
+  label: PropTypes.any,
+
+  opacity: PropTypes.number,
+
+  options: PropTypes.object,
+
+  place: PropTypes.any,
+
+  position: PropTypes.any,
+
+  shape: PropTypes.any,
+
+  title: PropTypes.string,
+
+  visible: PropTypes.bool,
+
+  zIndex: PropTypes.number,
+};
+
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
+
+const eventMap = {
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  onAnimationChanged: `animation_changed`,
+
+  onClick: `click`,
+
+  onClickableChanged: `clickable_changed`,
+
+  onCursorChanged: `cursor_changed`,
+
+  onDblClick: `dblclick`,
+
+  onDrag: `drag`,
+
+  onDragEnd: `dragend`,
+
+  onDraggableChanged: `draggable_changed`,
+
+  onDragStart: `dragstart`,
+
+  onFlatChanged: `flat_changed`,
+
+  onIconChanged: `icon_changed`,
+
+  onMouseDown: `mousedown`,
+
+  onMouseOut: `mouseout`,
+
+  onMouseOver: `mouseover`,
+
+  onMouseUp: `mouseup`,
+
+  onPositionChanged: `position_changed`,
+
+  onRightClick: `rightclick`,
+
+  onShapeChanged: `shape_changed`,
+
+  onTitleChanged: `title_changed`,
+
+  onVisibleChanged: `visible_changed`,
+
+  onZindexChanged: `zindex_changed`,
+};
+
+const publicMethodMap = {
   // Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getAnimation() { return this.state.marker.getAnimation(); }
+  getAnimation(marker) { return marker.getAnimation(); },
 
-  getAttribution() { return this.state.marker.getAttribution(); }
+  getAttribution(marker) { return marker.getAttribution(); },
 
-  getClickable() { return this.state.marker.getClickable(); }
+  getClickable(marker) { return marker.getClickable(); },
 
-  getCursor() { return this.state.marker.getCursor(); }
+  getCursor(marker) { return marker.getCursor(); },
 
-  getDraggable() { return this.state.marker.getDraggable(); }
+  getDraggable(marker) { return marker.getDraggable(); },
 
-  getIcon() { return this.state.marker.getIcon(); }
+  getIcon(marker) { return marker.getIcon(); },
 
-  getLabel() { return this.state.marker.getLabel(); }
+  getLabel(marker) { return marker.getLabel(); },
 
-  getOpacity() { return this.state.marker.getOpacity(); }
+  getOpacity(marker) { return marker.getOpacity(); },
 
-  getPlace() { return this.state.marker.getPlace(); }
+  getPlace(marker) { return marker.getPlace(); },
 
-  getPosition() { return this.state.marker.getPosition(); }
+  getPosition(marker) { return marker.getPosition(); },
 
-  getShape() { return this.state.marker.getShape(); }
+  getShape(marker) { return marker.getShape(); },
 
-  getTitle() { return this.state.marker.getTitle(); }
+  getTitle(marker) { return marker.getTitle(); },
 
-  getVisible() { return this.state.marker.getVisible(); }
+  getVisible(marker) { return marker.getVisible(); },
 
-  getZIndex() { return this.state.marker.getZIndex(); }
+  getZIndex(marker) { return marker.getZIndex(); },
   // END - Public APIs
-  //
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
+};
 
-  state = {
-  }
+const controlledPropUpdaterMap = {
+  animation(marker, animation) { marker.setAnimation(animation); },
 
-  componentWillMount() {
-    const { mapHolderRef } = this.context;
-    if (!canUseDOM) {
-      return;
-    }
-    const marker = MarkerCreator._createMarker({
-      ...this.props,
-      mapHolderRef,
+  attribution(marker, attribution) { marker.setAttribution(attribution); },
+
+  clickable(marker, clickable) { marker.setClickable(clickable); },
+
+  cursor(marker, cursor) { marker.setCursor(cursor); },
+
+  draggable(marker, draggable) { marker.setDraggable(draggable); },
+
+  icon(marker, icon) { marker.setIcon(icon); },
+
+  label(marker, label) { marker.setLabel(label); },
+
+  opacity(marker, opacity) { marker.setOpacity(opacity); },
+
+  options(marker, options) { marker.setOptions(options); },
+
+  place(marker, place) { marker.setPlace(place); },
+
+  position(marker, position) { marker.setPosition(position); },
+
+  shape(marker, shape) { marker.setShape(shape); },
+
+  title(marker, title) { marker.setTitle(title); },
+
+  visible(marker, visible) { marker.setVisible(visible); },
+
+  zIndex(marker, zIndex) { marker.setZIndex(zIndex); },
+};
+
+function getInstanceFromComponent(component) {
+  return component.state[MARKER];
+}
+
+export default _.flowRight(
+  React.createClass,
+  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+)({
+  displayName: `Marker`,
+
+  propTypes: {
+    ...controlledPropTypes,
+    ...defaultUncontrolledPropTypes,
+  },
+
+  contextTypes: {
+    [MAP]: PropTypes.object,
+  },
+
+  getInitialState() {
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
+    const marker = new google.maps.Marker({
+      map: this.context[MAP],
+      ...collectUncontrolledAndControlledProps(
+        defaultUncontrolledPropTypes,
+        controlledPropTypes,
+        this.props
+      ),
     });
-
-    this.setState({ marker });
-  }
+    return {
+      [MARKER]: marker,
+    };
+  },
 
   componentWillUnmount() {
-    if (!canUseDOM) {
-      return;
+    const marker = getInstanceFromComponent(this);
+    if (marker) {
+      marker.setMap(null);
     }
-
-    const { anchorHolderRef } = this.props;
-    const { marker } = this.state;
-
-
-    if (anchorHolderRef) {
-      if (`MarkerClusterer` === anchorHolderRef.getAnchorType()) {
-        anchorHolderRef.getAnchor().removeMarker(marker);
-      }
-    }
-  }
+  },
 
   render() {
-    if (this.state.marker) {
-      return (
-        <MarkerCreator marker={this.state.marker} {...this.props}>
-          {this.props.children}
-        </MarkerCreator>
-      );
-    } else {
-      return (<noscript />);
-    }
-  }
-}
+    return false;
+  },
+});

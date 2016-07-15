@@ -1,80 +1,137 @@
+/* global google */
+import _ from "lodash";
+
 import {
   default as React,
-  Component,
   PropTypes,
 } from "react";
 
 import {
-  default as canUseDOM,
-} from "can-use-dom";
+  MAP,
+  POLYGON,
+} from "./constants";
 
 import {
-  default as PolygonCreator,
-  polygonDefaultPropTypes,
-  polygonControlledPropTypes,
-  polygonEventPropTypes,
-} from "./creators/PolygonCreator";
+  addDefaultPrefixToPropTypes,
+  collectUncontrolledAndControlledProps,
+  default as enhanceElement,
+} from "./enhanceElement";
 
-import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+const controlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
+  draggable: PropTypes.bool,
+  editable: PropTypes.bool,
+  options: PropTypes.object,
+  path: PropTypes.any,
+  paths: PropTypes.any,
+  visible: PropTypes.bool,
+};
 
-export default class Polygon extends Component {
-  static propTypes = {
-    // Uncontrolled default[props] - used only in componentDidMount
-    ...polygonDefaultPropTypes,
-    // Controlled [props] - used in componentDidMount/componentDidUpdate
-    ...polygonControlledPropTypes,
-    // Event [onEventName]
-    ...polygonEventPropTypes,
-  }
-  static contextTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
-  }
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
+const eventMap = {
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  onClick: `click`,
+
+  onDblClick: `dblclick`,
+
+  onDrag: `drag`,
+
+  onDragEnd: `dragend`,
+
+  onDragStart: `dragstart`,
+
+  onMouseDown: `mousedown`,
+
+  onMouseMove: `mousemove`,
+
+  onMouseOut: `mouseout`,
+
+  onMouseOver: `mouseover`,
+
+  onMouseUp: `mouseup`,
+
+  onRightClick: `rightclick`,
+};
+
+const publicMethodMap = {
   // Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
-  //    .filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getDraggable() { return this.state.polygon.getDraggable(); }
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+  getDraggable(polygon) { return polygon.getDraggable(); },
 
-  getEditable() { return this.state.polygon.getEditable(); }
+  getEditable(polygon) { return polygon.getEditable(); },
 
-  getPath() { return this.state.polygon.getPath(); }
+  getPath(polygon) { return polygon.getPath(); },
 
-  getPaths() { return this.state.polygon.getPaths(); }
+  getPaths(polygon) { return polygon.getPaths(); },
 
-  getVisible() { return this.state.polygon.getVisible(); }
+  getVisible(polygon) { return polygon.getVisible(); },
   // END - Public APIs
-  //
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
+};
 
-  state = {
-  }
+const controlledPropUpdaterMap = {
+  draggable(polygon, draggable) { polygon.setDraggable(draggable); },
+  editable(polygon, editable) { polygon.setEditable(editable); },
+  options(polygon, options) { polygon.setOptions(options); },
+  path(polygon, path) { polygon.setPath(path); },
+  paths(polygon, paths) { polygon.setPaths(paths); },
+  visible(polygon, visible) { polygon.setVisible(visible); },
+};
 
-  componentWillMount() {
-    const { mapHolderRef } = this.context;
+function getInstanceFromComponent(component) {
+  return component.state[POLYGON];
+}
 
-    if (!canUseDOM) {
-      return;
-    }
-    const polygon = PolygonCreator._createPolygon({
-      ...this.props,
-      mapHolderRef,
+export default _.flowRight(
+  React.createClass,
+  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+)({
+  displayName: `Polygon`,
+
+  propTypes: {
+    ...controlledPropTypes,
+    ...defaultUncontrolledPropTypes,
+  },
+
+  contextTypes: {
+    [MAP]: PropTypes.object,
+  },
+
+  getInitialState() {
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
+    const polygon = new google.maps.Polygon({
+      map: this.context[MAP],
+      ...collectUncontrolledAndControlledProps(
+        defaultUncontrolledPropTypes,
+        controlledPropTypes,
+        this.props
+      ),
     });
+    return {
+      [POLYGON]: polygon,
+    };
+  },
 
-    this.setState({ polygon });
-  }
+  componentWillUnmount() {
+    const polygon = getInstanceFromComponent(this);
+    if (polygon) {
+      polygon.setMap(null);
+    }
+  },
 
   render() {
-    if (this.state.polygon) {
-      return (
-        <PolygonCreator polygon={this.state.polygon} {...this.props}>
-          {this.props.children}
-        </PolygonCreator>
-      );
-    } else {
-      return (<noscript />);
-    }
-  }
-}
+    return false;
+  },
+});

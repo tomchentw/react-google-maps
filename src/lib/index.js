@@ -17,3 +17,7 @@ export {
 export {
   default as Polyline,
 } from "./Polyline";
+
+export {
+  default as Polygon,
+} from "./Polygon";

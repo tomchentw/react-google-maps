@@ -21,3 +21,7 @@ export {
 export {
   default as Polygon,
 } from "./Polygon";
+
+export {
+  default as Circle,
+} from "./Circle";

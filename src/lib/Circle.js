@@ -1,85 +1,145 @@
+/* global google */
+import _ from "lodash";
+
 import {
   default as React,
-  Component,
   PropTypes,
 } from "react";
 
 import {
-  default as canUseDOM,
-} from "can-use-dom";
+  MAP,
+  CIRCLE,
+} from "./constants";
 
 import {
-  default as CircleCreator,
-  circleDefaultPropTypes,
-  circleControlledPropTypes,
-  circleEventPropTypes,
-} from "./creators/CircleCreator";
+  addDefaultPrefixToPropTypes,
+  collectUncontrolledAndControlledProps,
+  default as enhanceElement,
+} from "./enhanceElement";
 
-import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+const controlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
+  center: PropTypes.any,
+  draggable: PropTypes.bool,
+  editable: PropTypes.bool,
+  options: PropTypes.object,
+  radius: PropTypes.number,
+  visible: PropTypes.bool,
+};
 
-export default class Circle extends Component {
-  static propTypes = {
-    // Uncontrolled default[props] - used only in componentDidMount
-    ...circleDefaultPropTypes,
-    // Controlled [props] - used in componentDidMount/componentDidUpdate
-    ...circleControlledPropTypes,
-    // Event [onEventName]
-    ...circleEventPropTypes,
-  }
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
-  static contextTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
-  }
+const eventMap = {
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  onCenterChanged: `center_changed`,
 
+  onClick: `click`,
+
+  onDblClick: `dblclick`,
+
+  onDrag: `drag`,
+
+  onDragEnd: `dragend`,
+
+  onDragStart: `dragstart`,
+
+  onMouseDown: `mousedown`,
+
+  onMouseMove: `mousemove`,
+
+  onMouseOut: `mouseout`,
+
+  onMouseOver: `mouseover`,
+
+  onMouseUp: `mouseup`,
+
+  onRadiusChanged: `radius_changed`,
+
+  onRightClick: `rightclick`,
+};
+
+const publicMethodMap = {
   // Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
-  //    .filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getBounds() { return this.state.circle.getBounds(); }
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+  getBounds(circle) { return circle.getBounds(); },
 
-  getCenter() { return this.state.circle.getCenter(); }
+  getCenter(circle) { return circle.getCenter(); },
 
-  getDraggable() { return this.state.circle.getDraggable(); }
+  getDraggable(circle) { return circle.getDraggable(); },
 
-  getEditable() { return this.state.circle.getEditable(); }
+  getEditable(circle) { return circle.getEditable(); },
 
-  getMap() { return this.state.circle.getMap(); }
+  getMap(circle) { return circle.getMap(); },
 
-  getRadius() { return this.state.circle.getRadius(); }
+  getRadius(circle) { return circle.getRadius(); },
 
-  getVisible() { return this.state.circle.getVisible(); }
+  getVisible(circle) { return circle.getVisible(); },
   // END - Public APIs
-  //
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
+};
 
-  state = {
-  }
+const controlledPropUpdaterMap = {
+  center(circle, center) { circle.setCenter(center); },
+  draggable(circle, draggable) { circle.setDraggable(draggable); },
+  editable(circle, editable) { circle.setEditable(editable); },
+  options(circle, options) { circle.setOptions(options); },
+  radius(circle, radius) { circle.setRadius(radius); },
+  visible(circle, visible) { circle.setVisible(visible); },
+};
 
-  componentWillMount() {
-    const { mapHolderRef } = this.context;
+function getInstanceFromComponent(component) {
+  return component.state[CIRCLE];
+}
 
-    if (!canUseDOM) {
-      return;
-    }
-    const circle = CircleCreator._createCircle({
-      ...this.props,
-      mapHolderRef,
+export default _.flowRight(
+  React.createClass,
+  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+)({
+  displayName: `Circle`,
+
+  propTypes: {
+    ...controlledPropTypes,
+    ...defaultUncontrolledPropTypes,
+  },
+
+  contextTypes: {
+    [MAP]: PropTypes.object,
+  },
+
+  getInitialState() {
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
+    const circle = new google.maps.Circle({
+      map: this.context[MAP],
+      ...collectUncontrolledAndControlledProps(
+        defaultUncontrolledPropTypes,
+        controlledPropTypes,
+        this.props
+      ),
     });
+    return {
+      [CIRCLE]: circle,
+    };
+  },
 
-    this.setState({ circle });
-  }
+  componentWillUnmount() {
+    const circle = getInstanceFromComponent(this);
+    if (circle) {
+      circle.setMap(null);
+    }
+  },
 
   render() {
-    if (this.state.circle) {
-      return (
-        <CircleCreator circle={this.state.circle} {...this.props}>
-          {this.props.children}
-        </CircleCreator>
-      );
-    } else {
-      return (<noscript />);
-    }
-  }
-}
+    return false;
+  },
+});

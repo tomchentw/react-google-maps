@@ -1,77 +1,160 @@
+/* global google */
+import _ from "lodash";
+
+import invariant from "invariant";
+
 import {
   default as React,
-  Component,
   PropTypes,
+  Children,
 } from "react";
 
 import {
-  default as canUseDOM,
-} from "can-use-dom";
+  render,
+  unmountComponentAtNode,
+} from "react-dom";
 
 import {
-  default as InfoWindowCreator,
-  infoWindowDefaultPropTypes,
-  infoWindowControlledPropTypes,
-  infoWindowEventPropTypes,
-} from "./creators/InfoWindowCreator";
+  MAP,
+  ANCHOR,
+  INFO_WINDOW,
+} from "./constants";
 
-import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+import {
+  addDefaultPrefixToPropTypes,
+  collectUncontrolledAndControlledProps,
+  default as enhanceElement,
+} from "./enhanceElement";
 
-export default class InfoWindow extends Component {
-  static propTypes = {
-    // Uncontrolled default[props] - used only in componentDidMount
-    ...infoWindowDefaultPropTypes,
-    // Controlled [props] - used in componentDidMount/componentDidUpdate
-    ...infoWindowControlledPropTypes,
-    // Event [onEventName]
-    ...infoWindowEventPropTypes,
-  }
+const controlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
+  children: PropTypes.element,
+  options: PropTypes.object,
+  position: PropTypes.any,
+  zIndex: PropTypes.number,
+};
 
-  static contextTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
-  }
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
+const eventMap = {
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  onCloseClick: `closeclick`,
+  
+  onContentChanged: `content_changed`,
+
+  onDomReady: `domready`,
+
+  onPositionChanged: `position_changed`,
+
+  onZIndexChanged: `zindex_changed`,
+};
+
+const publicMethodMap = {
   // Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
-  //    .filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getContent() { /* TODO: children */ }
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+  getPosition(infoWindow) { return infoWindow.getPosition(); },
 
-  getPosition() { return this.state.infoWindow.getPosition(); }
-
-  getZIndex() { return this.state.infoWindow.getZIndex(); }
+  getZIndex(infoWindow) { return infoWindow.getZIndex(); },
   // END - Public APIs
-  //
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
+};
 
-  state = {
-  }
+const controlledPropUpdaterMap = {
+  children(infoWindow, children) {
+    render(Children.only(children), infoWindow.getContent());
+  },
+  options(infoWindow, options) { infoWindow.setOptions(options); },
+  position(infoWindow, position) { infoWindow.setPosition(position); },
+  zIndex(infoWindow, zIndex) { infoWindow.setZIndex(zIndex); },
+};
 
-  componentWillMount() {
-    const { mapHolderRef } = this.context;
+function getInstanceFromComponent(component) {
+  return component.state[INFO_WINDOW];
+}
 
-    if (!canUseDOM) {
-      return;
-    }
-    const infoWindow = InfoWindowCreator._createInfoWindow({
-      ...this.props,
-      mapHolderRef,
-    });
-
-    this.setState({ infoWindow });
-  }
-
-  render() {
-    if (this.state.infoWindow) {
-      return (
-        <InfoWindowCreator infoWindow={this.state.infoWindow} {...this.props}>
-          {this.props.children}
-        </InfoWindowCreator>
-      );
-    } else {
-      return (<noscript />);
-    }
+function openInfoWindow(context, infoWindow) {
+  const map = context[MAP];
+  const anchor = context[ANCHOR];
+  if (anchor) {
+    infoWindow.open(map, anchor);
+  } else if (infoWindow.getPosition()) {
+    infoWindow.open(map);
+  } else {
+    invariant(false,
+`You must provide either an anchor (typically a <Marker>) or a position for <InfoWindow>.`
+    );
   }
 }
+
+export default _.flowRight(
+  React.createClass,
+  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+)({
+  displayName: `InfoWindow`,
+
+  propTypes: {
+    ...controlledPropTypes,
+    ...defaultUncontrolledPropTypes,
+  },
+
+  contextTypes: {
+    [MAP]: PropTypes.object,
+    [ANCHOR]: PropTypes.object,
+  },
+
+  getInitialState() {
+    const map = this.context[MAP];
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
+    const infoWindow = new google.maps.InfoWindow({
+      map,
+      ...collectUncontrolledAndControlledProps(
+        defaultUncontrolledPropTypes,
+        controlledPropTypes,
+        this.props
+      ),
+      // Override props of ReactElement type
+      content: document.createElement(`div`),
+      children: undefined,
+    });
+    openInfoWindow(this.context, infoWindow);
+    return {
+      [INFO_WINDOW]: infoWindow,
+    };
+  },
+
+  componentDidMount() {
+    const infoWindow = getInstanceFromComponent(this);
+    controlledPropUpdaterMap.children(infoWindow, this.props.children);
+  },
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    const anchorChanged = this.context[ANCHOR] !== nextContext[ANCHOR];
+    if (anchorChanged) {
+      const infoWindow = getInstanceFromComponent(this);
+      openInfoWindow(nextContext, infoWindow);
+    }
+  },
+
+  componentWillUnmount() {
+    const infoWindow = getInstanceFromComponent(this);
+    if (infoWindow) {
+      unmountComponentAtNode(infoWindow.getContent());
+      infoWindow.setMap(null);
+    }
+  },
+
+  render() {
+    return false;
+  },
+});

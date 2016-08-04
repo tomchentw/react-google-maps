@@ -3,13 +3,11 @@ import {
   Component,
 } from "react";
 
-import { default as update } from "react-addons-update";
+import update from "react-addons-update";
 
-import { default as SimpleMap } from "./SimpleMap";
+import SimpleMap from "./SimpleMap";
 
-require(`../styles/index.scss`);
-
-export default class ReactRoot extends Component {
+export default class App extends Component {
   state = {
     markers: [{
       position: {
@@ -19,7 +17,10 @@ export default class ReactRoot extends Component {
       key: `Taiwan`,
       defaultAnimation: 2,
     }],
-  }
+  };
+
+  handleMapClick = this.handleMapClick.bind(this);
+  handleMarkerRightclick = this.handleMarkerRightclick.bind(this);
 
   componentDidMount() {
     setTimeout(() => {
@@ -44,7 +45,7 @@ export default class ReactRoot extends Component {
    * This is called when you click on the map.
    * Go and try click now.
    */
-  _handle_map_click(event) {
+  handleMapClick(event) {
     let { markers } = this.state;
     markers = update(markers, {
       $push: [
@@ -58,7 +59,7 @@ export default class ReactRoot extends Component {
     this.setState({ markers });
   }
 
-  _handle_marker_rightclick(index, event) {
+  handleMarkerRightclick(index, event) {
     /*
      * All you modify is data, and the view is driven by data.
      * This is so called data-driven-development. (And yes, it's now in
@@ -77,10 +78,9 @@ export default class ReactRoot extends Component {
     return (
       <SimpleMap
         markers={this.state.markers}
-        onMapClick={::this._handle_map_click}
-        onMarkerRightclick={::this._handle_marker_rightclick}
+        onMapClick={this.handleMapClick}
+        onMarkerRightclick={this.handleMarkerRightclick}
       />
     );
   }
 }
-

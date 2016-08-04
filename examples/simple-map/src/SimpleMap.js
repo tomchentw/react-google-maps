@@ -1,5 +1,9 @@
-import { default as React } from "react";
-import { GoogleMapLoader, GoogleMap, Marker } from "react-google-maps";
+import React from "react";
+import {
+  GoogleMapLoader,
+  GoogleMap,
+  Marker,
+} from "react-google-maps";
 
 /*
  * This is the modify version of:
@@ -10,7 +14,6 @@ import { GoogleMapLoader, GoogleMap, Marker } from "react-google-maps";
  * We use React 0.14 stateless function components here.
  * https://facebook.github.io/react/blog/2015/09/10/react-v0.14-rc1.html#stateless-function-components
  */
-
 const SimpleMap = props => (
   <section style={{ height: `100%` }}>
     <GoogleMapLoader
@@ -42,3 +45,4 @@ const SimpleMap = props => (
 );
 
 export default SimpleMap;
+

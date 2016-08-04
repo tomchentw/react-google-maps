@@ -37,6 +37,6 @@
     "react": "^15.3.0",
     "react-addons-update": "^15.3.0",
     "react-dom": "^15.3.0",
-    "react-google-maps": "^4.11.0"
+    "react-google-maps": "file:../.."
   }
 }

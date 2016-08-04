@@ -1,0 +1,20 @@
+@import url("//fonts.googleapis.com/css?family=Lato:400,900");
+
+@import "./bootstrap_variables";
+@import "./bootstrap_override";
+
+@mixin full-height {
+  height: 100%;
+}
+
+html, body, #react-container, #react-root {
+  @include full-height;
+}
+
+.container--full-height {
+  height: calc(100% - #{ $navbar-height + 20px * 2 });
+}
+
+.row--full-height {
+  @include full-height;
+}

@@ -1,0 +1,31 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+  },
+  "ecmaFeatures": {
+    "arrowFunctions": true,
+    "classes": true,
+    "modules": true,
+    "jsx": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    // Possible Errors
+    "comma-dangle": [2, "always-multiline"],
+    // Best Practices
+    "consistent-return": [0],
+    "yoda": [2, "always"],
+    // Variables
+    "no-use-before-define": [2, "nofunc"],
+    // Stylistic Issues
+    "camelcase": [0],
+    "no-underscore-dangle": [0],
+  },
+  "globals": {
+    "google": true,
+  }
+}

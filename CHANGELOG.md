@@ -1,3 +1,93 @@
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/tomchentw/react-google-maps/compare/v4.11.0...v5.0.0) (2016-08-04)
+
+
+### Bug Fixes
+
+* **src:** eslint errors ([f2b242a](https://github.com/tomchentw/react-google-maps/commit/f2b242a))
+
+
+### Features
+
+* **.babelrc:** add transform-runtime and lodash to plugins ([5db33f9](https://github.com/tomchentw/react-google-maps/commit/5db33f9))
+* **GoogleMap:** remove deprecated props and behaviour ([cf5b8f1](https://github.com/tomchentw/react-google-maps/commit/cf5b8f1))
+* **GoogleMapLoader:** switch to new behaviour ([7e40269](https://github.com/tomchentw/react-google-maps/commit/7e40269))
+* **package.json:** add babel-runtime and lodash to dependencies ([5e37d3c](https://github.com/tomchentw/react-google-maps/commit/5e37d3c))
+* **package.json:** upgrade devDependencies ([47a400c](https://github.com/tomchentw/react-google-maps/commit/47a400c))
+* **src:** switch to use lodash directly ([304f465](https://github.com/tomchentw/react-google-maps/commit/304f465))
+
+
+### Performance Improvements
+
+* **src:** switch mapHolderRef from props to context ([c2d265c](https://github.com/tomchentw/react-google-maps/commit/c2d265c)), closes [#135](https://github.com/tomchentw/react-google-maps/issues/135) [#210](https://github.com/tomchentw/react-google-maps/issues/210) [#216](https://github.com/tomchentw/react-google-maps/issues/216)
+
+
+### BREAKING CHANGES
+
+* GoogleMap: You need to use GoogleMapLoader with props.googleMapElement={<GoogleMap />} now.
+
+Before:
+
+```js
+<GoogleMap containerProps={{
+    ...this.props,
+    style: {
+      height: "100%",
+    },
+  }}
+  ref="map"
+  defaultZoom={3}
+  defaultCenter={{lat: -25.363882, lng: 131.044922}}
+  onClick={::this.handleMapClick}>
+  {this.state.markers.map((marker, index) => {
+    return (
+      <Marker
+        {...marker}
+        onRightclick={this.handleMarkerRightclick.bind(this, index)} />
+    );
+  })}
+</GoogleMap>
+```
+
+After:
+
+```js
+<GoogleMapLoader
+  containerElement={
+    <div
+      {...this.props}
+      style={{
+        height: "100%",
+      }}
+    />
+  }
+  googleMapElement={
+    <GoogleMap
+      ref={(map) => console.log(map)}
+      defaultZoom={3}
+      defaultCenter={{lat: -25.363882, lng: 131.044922}}
+      onClick={::this.handleMapClick}>
+      {this.state.markers.map((marker, index) => {
+        return (
+          <Marker
+            {...marker}
+            onRightclick={this.handleMarkerRightclick.bind(this, index)} />
+        );
+      })}
+    </GoogleMap>
+  }
+/>
+```
+* src: If you're just using the library and didn't make custom components before, feel free to ignore this implementation changes.
+
+Now, mapHolderRef for each component are now passed in via context. This doesn't affect all components interface in general. But if you do custom components before and relies on the implementation of react-google-maps, you should be aware of this and make some changes.
+
+
+
 <a name="4.11.0"></a>
 # [4.11.0](https://github.com/tomchentw/react-google-maps/compare/v4.10.3...v4.11.0) (2016-05-29)
 
@@ -822,4 +912,3 @@ But sometimes, we may want the marker's position changed according to current st
 * **Polygon:** add component and client example ([556b9be9](https://github.com/tomchentw/react-google-maps/commit/556b9be93542a796b5ca447b90d717a193f8d618))
 * **Polyline:** component with example ([d0b802bb](https://github.com/tomchentw/react-google-maps/commit/d0b802bbf108a73554be67b3f81f1cb0f149f557))
 * **index:** create common child components by factory ([43b791d2](https://github.com/tomchentw/react-google-maps/commit/43b791d2610fa86083832b8579f25703a01f0ad7))
-

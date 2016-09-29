@@ -33,12 +33,7 @@ const { eventPropTypes, registerEvents } = eventHandlerCreator(HeatmapLayerEvent
 
 export const heatmapLayerEventPropTypes = eventPropTypes;
 
-@componentLifecycleDecorator({
-  registerEvents,
-  instanceMethodName: `getHeatmapLayer`,
-  updaters: heatmapLayerUpdaters,
-})
-export default class HeatmapLayerCreator extends Component {
+class HeatmapLayerCreator extends Component {
 
   static propTypes = {
     mapHolderRef: PropTypes.instanceOf(GoogleMapHolder).isRequired,
@@ -65,3 +60,11 @@ export default class HeatmapLayerCreator extends Component {
     return (<noscript />);
   }
 }
+
+
+export default componentLifecycleDecorator({
+  registerEvents,
+  instanceMethodName: `getHeatmapLayer`,
+  updaters: heatmapLayerUpdaters,
+})(HeatmapLayerCreator);
+

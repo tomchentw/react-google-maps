@@ -35,13 +35,3 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
-
-
-### Project ###
-
-.module-cache
-public/assets
-public/**/assets
-public/**/*.html
-public/*.gz
-tmp/*

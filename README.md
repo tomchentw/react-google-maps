@@ -13,7 +13,7 @@ As the author ([tomchentw][tomchentw]) currently doesn't actively use this modul
 
 Declare your Google Maps components using React components.
 
-```js
+```jsx
 import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
 
 export default function SimpleMap (props) {
@@ -79,7 +79,7 @@ Anything that is inside components' `options` property can __ONLY__ be accessibl
 
 Event handlers on these components can be bound using React component convention. There's a list of event names that exist in the `eventLists` folder. Find the supported event name and use the form of `on${ camelizedEventName }`. For example, If I want to add `center_changed` callback to a map instance, I'll do the following with `react-google-maps`:
 
-```js
+```jsx
 <GoogleMap
   // onCenterChanged: on + camelizedEventName(center_change)
   onCenterChanged={this.handleCenterChanged}
@@ -120,7 +120,7 @@ You could do it synchronously like so:
 </script>
 ```
 
-```js
+```jsx
 <GoogleMapLoader
         query={{ libraries: "geometry,drawing,places,visualization" }}
   ...
@@ -128,7 +128,7 @@ You could do it synchronously like so:
 
 Or asynchronously using the ScriptjsLoader:
 
-```js
+```jsx
 <ScriptjsLoader
   hostname={"maps.googleapis.com"}
   pathname={"/maps/api/js"}
@@ -140,7 +140,7 @@ Or asynchronously using the ScriptjsLoader:
 
 `triggerEvent(component, ...args)`: One common event trigger is to resize map after the size of the container div change.
 
-```js
+```jsx
 import {triggerEvent} from "react-google-maps/lib/utils";
 
 function handleWindowResize () {
@@ -154,7 +154,7 @@ function handleWindowResize () {
 
 You could of course import from individual modules to save your [webpack][webpack]'s bundle size.
 
-```js
+```jsx
 import GoogleMap from "react-google-maps/lib/GoogleMap"; // Or import {default as GoogleMap} ...
 ```
 
@@ -162,7 +162,7 @@ import GoogleMap from "react-google-maps/lib/GoogleMap"; // Or import {default a
 
 Some addons component could __ONLY__ be accessible via direct import:
 
-```js
+```jsx
 import InfoBox from "react-google-maps/lib/addons/InfoBox";
 ```
 
@@ -171,58 +171,6 @@ import InfoBox from "react-google-maps/lib/addons/InfoBox";
 
 The changelog is automatically generated via [conventional-changelog][conventional-changelog] and [can be found in project root](https://github.com/tomchentw/react-google-maps/blob/master/CHANGELOG.md) as well as npm tarball.
 
-
-## Development
-
-First, clone the project.
-
-```shell
-git clone ...
-```
-
-### With Docker
-
-Install `docker@^1.8.2`, `docker-compose@^1.4.0` and optionally `docker-machine@^0.4.1`. Then,
-
-```shell
-docker-compose run --service-ports web
-```
-
-Then open [http://192.168.59.103:8080](http://192.168.59.103:8080).
-
-**192.168.59.103** is actually your ip from `docker-machine ip`.
-
-If you change code in your local, you'll need to rebuild the image to make changes happen.
-
-If you're previously using `boot2docker`, you may want to migrate to [docker-machine](https://docs.docker.com/machine/migrate-to-machine/) instead.
-
-```shell
-docker-compose build
-```
-
-### Without Docker
-
-Install `node`. Then,
-
-```shell
-npm install
-cd examples/gh-pages
-npm install
-npm start
-```
-
-Then open [http://localhost:8080/webpack-dev-server/](http://localhost:8080/webpack-dev-server/).
-
-
-## Contributing
-
-[![devDependency Status][david-dm-image]][david-dm-url]
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
 
 
 [npm-image]: https://img.shields.io/npm/v/react-google-maps.svg?style=flat-square
@@ -238,8 +186,6 @@ Then open [http://localhost:8080/webpack-dev-server/](http://localhost:8080/webp
 [gemnasium-url]: https://gemnasium.com/tomchentw/react-google-maps
 [gitter-image]: https://badges.gitter.im/Join%20Chat.svg
 [gitter-url]: https://gitter.im/tomchentw/react-google-maps?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-[david-dm-image]: https://img.shields.io/david/dev/tomchentw/react-google-maps.svg?style=flat-square
-[david-dm-url]: https://david-dm.org/tomchentw/react-google-maps#info=devDependencies
 
 
 [tomchentw]: https://github.com/tomchentw

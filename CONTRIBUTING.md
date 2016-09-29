@@ -1,4 +1,33 @@
-# Contributor Guideline
+# Contributing to React-Google-Maps
+
+## Convention
+
+### `src/lib` contains core library
+
+* Please add new features/fix bugs here
+* They'll be compiled by babel into `lib` folder
+* Don't manually modify contents under `lib` folder
+
+### `src/app` contains docs app
+
+* It can be served as local app for core library development
+* It'll be released as `gh-pages` into `build` folder
+* Don't manually modify contents under `build` folder
+
+
+## Development
+
+[![devDependency Status][david-dm-image]][david-dm-url]
+
+
+```shell
+git clone ...
+npm install
+npm start
+```
+
+Now you can develop!
+
 
 ## Reporting bugs
 
@@ -9,13 +38,16 @@ Please provide a test case of some sort that reproduces the bug. Possible ways o
 - a gist that that illustrates the bug.
 - some copy/pastable code is acceptable.
 
+
 ## New or Changed API proposals
 
 Please provide thoughtful comments and some sample code. Proposals without substance will not be considered and closed.
 
+
 ## Issue not getting attention
 
 We do our best to work all the issues, but if you report a bug and need it fixed and nobody is fixing it, we highly appreciate if you can fix it. Issues with no activity for long time may be closed.
+
 
 ## How to make a PR
 
@@ -31,6 +63,7 @@ Simple rules when making a pull request:
 > One golden rule: follow [the commit format][commit-format]
 
 We use [standard-version][standard-version] to automatically generate [CHANGELOG.md][CHANGELOG.md] from the `git commit` history. Please **do** follow [the commit format][commit-format] before commiting.
+
 
 ## For collaborators with write permissions
 
@@ -67,6 +100,9 @@ Right now, only the owner (author) has the write permission on npm. But the proc
 * The last step is release the changes to `origin` and `npm`.
 
 
+
+[david-dm-image]: https://img.shields.io/david/dev/tomchentw/react-google-maps.svg?style=flat-square
+[david-dm-url]: https://david-dm.org/tomchentw/react-google-maps#info=devDependencies
 [standard-version]: https://github.com/conventional-changelog/standard-version
 [CHANGELOG.md]: ./CHANGELOG.md
 [commit-format]: https://github.com/conventional-changelog/standard-version#commit-message-convention-at-a-glance

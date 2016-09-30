@@ -33,3 +33,7 @@ export {
 export {
   default as DirectionsRenderer,
 } from "./DirectionsRenderer";
+
+export {
+  default as HeatmapLayer,
+} from "./HeatmapLayer";

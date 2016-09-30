@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.1.0"></a>
+# [5.1.0](https://github.com/tomchentw/react-google-maps/compare/v5.0.0...v5.1.0) (2016-09-30)
+
+
+### Features
+
+* **HeatmapLayer:** add HeatmapLayer component ([#248](https://github.com/tomchentw/react-google-maps/issues/248)) ([2863cdd](https://github.com/tomchentw/react-google-maps/commit/2863cdd))
+
+
+
 <a name="5.0.0"></a>
 # [5.0.0](https://github.com/tomchentw/react-google-maps/compare/v4.11.0...v5.0.0) (2016-08-04)
 

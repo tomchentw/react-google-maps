@@ -40,10 +40,14 @@ export default class Application extends Component {
     children: PropTypes.element.isRequired,
   };
 
-  _handle_toast = this._handle_toast.bind(this);
+  handleToast = this.handleToast.bind(this);
 
-  _handle_toast(title, message) {
+  handleToast(title, message) {
     this.refs.toast.success(title, message);
+  }
+
+  componentDidMount() {
+    window.ReactGoogleMapsToast = this.handleToast; // For AsyncApp
   }
 
   render() {
@@ -125,7 +129,7 @@ export default class Application extends Component {
           <div className="row full-height">
             <div className="col-xs-6" style={{ height: `100%` }}>
               {React.cloneElement(Children.only(this.props.children), {
-                toast: this._handle_toast,
+                toast: this.handleToast,
               })}
             </div>
             <div className="col-xs-6">

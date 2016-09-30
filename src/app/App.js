@@ -17,8 +17,11 @@ import {
 
 import {
   GettingStartedExample,
-  AsyncGettingStartedExample,
 } from "./pages";
+
+import {
+  PageWithIframeEntry,
+} from "./pages/async";
 
 import {
   SimpleMapExample,
@@ -79,7 +82,7 @@ export default class App extends Component {
           <Route path="addons">
             <Route path="marker-clusterer" component={MarkerClustererExample} />
           </Route>
-          <Route path="async" component={AsyncGettingStartedExample} />
+          <Route path="async" component={PageWithIframeEntry} />
           <Redirect path="*" to="/" />
         </Route>
       </Router>

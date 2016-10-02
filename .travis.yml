@@ -2,6 +2,8 @@ language: node_js
 node_js:
 - '4'
 - '6'
+before_script:
+- rm -rf lib src/app # Temp
 script:
 - npm test -- --coverage
 after_script:

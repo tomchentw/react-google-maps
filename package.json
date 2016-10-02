@@ -88,15 +88,14 @@
     "prismjs": "^1.5.1",
     "raf": "^3.3.0",
     "raw-loader": "^0.5.1",
-    "react": "^0.14.0",
-    "react-addons-pure-render-mixin": "^0.14.0",
-    "react-addons-update": "^0.14.0",
-    "react-bootstrap": "^0.28.0",
-    "react-dom": "^0.14.0",
+    "react": "^15.0.0",
+    "react-addons-update": "^15.0.0",
+    "react-bootstrap": "^0.30.3",
+    "react-dom": "^15.0.0",
     "react-github-fork-ribbon": "^0.4.4",
     "react-helmet": "^3.1.0",
     "react-icons": "^2.2.1",
-    "react-prism": "^3.0.0",
+    "react-prism": "^4.0.0",
     "react-router": "^2.8.1",
     "react-router-bootstrap": "^0.23.1",
     "react-scripts": "0.6.1",
@@ -116,7 +115,7 @@
     "warning": "^3.0.0"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0",
-    "react-dom": "^0.14.0 || ^15.0.0"
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0"
   }
 }

@@ -54,6 +54,10 @@ export default class ScriptjsLoader extends Component {
     isLoaded: false,
   }
 
+  setLoaded() {
+    this.setState({ isLoaded: true });
+  }
+
   shouldUseNewBehavior() {
     const { containerTagName, containerProps } = this.props.googleMapElement.props;
     return (
@@ -84,7 +88,7 @@ See https://github.com/tomchentw/react-google-maps/pull/157 for more details.`
     const { protocol, hostname, port, pathname, query } = this.props;
     const urlObj = { protocol, hostname, port, pathname, query };
     const url = makeUrl(urlObj);
-    scriptjs(url, () => this.setState({ isLoaded: true }));
+    scriptjs(url, () => this.setLoaded());
   }
 
   componentWillReceiveProps(nextProps) {
@@ -98,6 +102,12 @@ Changed props: %s`,
 `[${changedKeys.join(`, `)}]`
       );
     }
+  }
+
+  componentWillUnmount() {
+    // Set this to a no-op so we avoid using setState when the
+    // component is unmounted;
+    this.setLoaded = () => {};
   }
 
   render() {

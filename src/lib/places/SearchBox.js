@@ -1,96 +1,138 @@
+/* global google */
+import _ from "lodash";
+
 import {
   default as React,
-  Component,
   PropTypes,
 } from "react";
 
 import {
-  default as canUseDOM,
-} from "can-use-dom";
+  MAP,
+  SEARCH_BOX,
+} from "../constants";
 
 import {
-  default as SearchBoxCreator,
-  searchBoxDefaultPropTypes,
-  searchBoxControlledPropTypes,
-  searchBoxEventPropTypes,
-} from "./creators/SearchBoxCreator";
+  addDefaultPrefixToPropTypes,
+  collectUncontrolledAndControlledProps,
+  default as enhanceElement,
+} from "../enhanceElement";
 
-import GoogleMapHolder from "./creators/GoogleMapHolder";
+import * as helpers from "../utils/SearchBoxHelper";
 
-/*
- * Original author: @eyebraus
- * Original PR: https://github.com/tomchentw/react-google-maps/pull/110
- */
-export default class SearchBox extends Component {
-  static propTypes = {
-    // Uncontrolled default[props] - used only in componentDidMount
-    ...searchBoxDefaultPropTypes,
-    // Controlled [props] - used in componentDidMount/componentDidUpdate
-    ...searchBoxControlledPropTypes,
-    // Event [onEventName]
-    ...searchBoxEventPropTypes,
-  }
+const controlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
+  bounds: PropTypes.any,
+  inputProps: PropTypes.object,
+  inputStyle: PropTypes.object,
+  inputClassName: PropTypes.string,
+};
 
-  static contextTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
-  }
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
+const eventMap = {
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  onPlacesChanged: `places_changed`,
+};
+
+const publicMethodMap = {
   // Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getBounds() { return this.state.searchBox.getBounds(); }
+  getBounds(searchBox) { return searchBox.getBounds(); },
 
-  getPlaces() { return this.state.searchBox.getPlaces(); }
+  getPlaces(searchBox) { return searchBox.getPlaces(); },
   // END - Public APIs
-  //
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
+};
 
-  state = {}
+const controlledPropUpdaterMap = {
+  bounds(searchBox, bounds) { searchBox.setBounds(bounds); },
+};
+
+function getInstanceFromComponent(component) {
+  return component.state[SEARCH_BOX];
+}
+
+export default _.flowRight(
+  React.createClass,
+  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+)({
+  displayName: `SearchBox`,
+
+  propTypes: {
+    ...controlledPropTypes,
+    ...defaultUncontrolledPropTypes,
+    controlPosition: PropTypes.any.isRequired,
+    inputProps: PropTypes.object,
+    inputStyle: PropTypes.object,
+    inputClassName: PropTypes.string,
+    inputPlaceholder: PropTypes.string,
+  },
+
+  contextTypes: {
+    [MAP]: PropTypes.object,
+  },
 
   componentWillMount() {
-    if (!canUseDOM) {
-      return;
-    }
-    const { classes, style, placeholder, ...searchBoxProps } = this.props;
-
-    // Cannot create input via component - Google Maps will mess with React's internal state
-    // by detaching/attaching.
-    // Allow developers to style the "hidden element" via inputClasses.
-    const domEl = document.createElement(`input`);
-    domEl.className = classes;
-    domEl.type = `text`;
-    domEl.placeholder = placeholder;
-
-    Object.assign(domEl.style, style);
-
-    const searchBox = SearchBoxCreator._createSearchBox(
-      domEl,
-      searchBoxProps
+    this._inputElement = helpers.createInputElement(this.props);
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
+    const searchBox = new google.maps.places.SearchBox(this._inputElement,
+      collectUncontrolledAndControlledProps(
+        defaultUncontrolledPropTypes,
+        controlledPropTypes,
+        this.props
+      )
     );
-
     this.setState({
-      inputElement: domEl,
-      searchBox,
+      [SEARCH_BOX]: searchBox,
     });
-  }
+  },
+
+  componentDidMount() {
+    this._mountIndex = helpers.mountInputElementToControlPositionOnMap(
+      this._inputElement,
+      this.props.controlPosition,
+      this.context[MAP],
+    );
+  },
+
+  componentDidUpdate(prevProps) {
+    if (this.props.controlPosition !== prevProps.controlPosition) {
+      helpers.unmountInputElementFromControlPositionOnMap(
+        this._mountIndex,
+        prevProps.controlPosition,
+        this.context[MAP],
+      );
+      this._mountIndex = helpers.mountInputElementToControlPositionOnMap(
+        this._inputElement,
+        this.props.controlPosition,
+        this.context[MAP],
+      );
+    }
+  },
+
+  componentWillUnmount() {
+    if (this._mountIndex) {
+      helpers.unmountInputElementFromControlPositionOnMap(
+        this._mountIndex,
+        this.props.controlPosition,
+        this.context[MAP],
+      );
+      this._inputElement = null;
+    }
+  },
 
   render() {
-    const { controlPosition } = this.props;
-    const { mapHolderRef } = this.context;
-
-    return this.state.searchBox ? (
-      <SearchBoxCreator
-        controlPosition={controlPosition}
-        inputElement={this.state.inputElement}
-        mapHolderRef={mapHolderRef}
-        searchBox={this.state.searchBox}
-        {...this.props}
-      >
-        {this.props.children}
-      </SearchBoxCreator>
-    ) : (<noscript />);
-  }
-}
+    return false;
+  },
+});

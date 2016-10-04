@@ -1,80 +1,111 @@
+/* global google */
+import _ from "lodash";
+
 import {
   default as React,
-  Component,
   PropTypes,
 } from "react";
 
 import {
-  default as canUseDOM,
-} from "can-use-dom";
+  MAP,
+  DRAWING_MANAGER,
+} from "../constants";
 
 import {
-  default as DrawingManagerCreator,
-  drawingManagerDefaultPropTypes,
-  drawingManagerControlledPropTypes,
-  drawingManagerEventPropTypes,
-} from "./creators/DrawingManagerCreator";
+  addDefaultPrefixToPropTypes,
+  collectUncontrolledAndControlledProps,
+  default as enhanceElement,
+} from "../enhanceElement";
 
-import { default as GoogleMapHolder } from "./creators/GoogleMapHolder";
+const controlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; })
+  //    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
+  drawingMode: PropTypes.any,
+  options: PropTypes.object,
+};
 
-/*
- * Original author: @idolize
- * Original PR: https://github.com/tomchentw/react-google-maps/pull/46
- */
-export default class DrawingManager extends Component {
-  static propTypes = {
-    // Uncontrolled default[props] - used only in componentDidMount
-    ...drawingManagerDefaultPropTypes,
-    // Controlled [props] - used in componentDidMount/componentDidUpdate
-    ...drawingManagerControlledPropTypes,
-    // Event [onEventName]
-    ...drawingManagerEventPropTypes,
-  }
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
-  static contextTypes = {
-    mapHolderRef: PropTypes.instanceOf(GoogleMapHolder),
-  }
+const eventMap = {
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+  onCircleComplete: `circlecomplete`,
 
+  onMarkerComplete: `markercomplete`,
+
+  onOverlayComplete: `overlaycomplete`,
+
+  onPolygonComplete: `polygoncomplete`,
+
+  onPolylineComplete: `polylinecomplete`,
+
+  onRectangleComplete: `rectanglecomplete`,
+};
+
+const publicMethodMap = {
   // Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
-  //    .filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
-  getDrawingMode() { return this.state.drawingManager.getDrawingMode(); }
+  //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+  getDrawingMode(drawingManager) { return drawingManager.getDrawingMode(); },
   // END - Public APIs
-  //
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
+};
 
-  state = {
-  }
+const controlledPropUpdaterMap = {
+  drawingMode(drawingManager, drawingMode) { drawingManager.setDrawingMode(drawingMode); },
+  options(drawingManager, options) { drawingManager.setOptions(options); },
+};
 
-  componentWillMount() {
-    const { mapHolderRef } = this.context;
+function getInstanceFromComponent(component) {
+  return component.state[DRAWING_MANAGER];
+}
 
-    if (!canUseDOM) {
-      return;
-    }
-    const drawingManager = DrawingManagerCreator._createDrawingManager({
-      ...this.props,
-      mapHolderRef,
+export default _.flowRight(
+  React.createClass,
+  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+)({
+  displayName: `DrawingManager`,
+
+  propTypes: {
+    ...controlledPropTypes,
+    ...defaultUncontrolledPropTypes,
+  },
+
+  contextTypes: {
+    [MAP]: PropTypes.object,
+  },
+
+  getInitialState() {
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
+    const drawingManager = new google.maps.drawing.DrawingManager({
+      map: this.context[MAP],
+      ...collectUncontrolledAndControlledProps(
+        defaultUncontrolledPropTypes,
+        controlledPropTypes,
+        this.props
+      ),
     });
+    return {
+      [DRAWING_MANAGER]: drawingManager,
+    };
+  },
 
-    this.setState({ drawingManager });
-  }
+  componentWillUnmount() {
+    const drawingManager = getInstanceFromComponent(this);
+    if (drawingManager) {
+      drawingManager.setMap(null);
+    }
+  },
 
   render() {
-    if (this.state.drawingManager) {
-      return (
-        <DrawingManagerCreator
-          drawingManager={this.state.drawingManager}
-          {...this.props}
-        >
-          {this.props.children}
-        </DrawingManagerCreator>
-      );
-    } else {
-      return (<noscript />);
-    }
-  }
-}
+    return false;
+  },
+});

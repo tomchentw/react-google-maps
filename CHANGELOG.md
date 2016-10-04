@@ -2,6 +2,473 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="6.0.0"></a>
+# [6.0.0](https://github.com/tomchentw/react-google-maps/compare/v5.1.1...v6.0.0) (2016-10-04)
+
+
+### Code Refactoring
+
+* **addons/InfoBox:** rewrite with enhanceElement and cleaner interfaces ([06f2e9b](https://github.com/tomchentw/react-google-maps/commit/06f2e9b))
+* **addons/MarkerClusterer:** rewrite with enhanceElement and cleaner interfaces ([f1032f4](https://github.com/tomchentw/react-google-maps/commit/f1032f4))
+* **Circle:** rewrite with enhanceElement and cleaner interfaces ([da0ebc2](https://github.com/tomchentw/react-google-maps/commit/da0ebc2))
+* **drawing/DrawingManager:** rewrite with enhanceElement and cleaner interfaces ([1b6a937](https://github.com/tomchentw/react-google-maps/commit/1b6a937))
+* **DrawingManager:** move to drawing/DrawingManager ([3226508](https://github.com/tomchentw/react-google-maps/commit/3226508))
+* **GoogleMap:** rewrite with enhanceElement and cleaner interfaces ([4b22e42](https://github.com/tomchentw/react-google-maps/commit/4b22e42))
+* **InfoWindow:** rewrite with enhanceElement and cleaner interfaces ([fc1c25c](https://github.com/tomchentw/react-google-maps/commit/fc1c25c))
+* **KmlLayer:** rewrite with enhanceElement and cleaner interfaces ([2479b88](https://github.com/tomchentw/react-google-maps/commit/2479b88))
+* **Marker:** rewrite with enhanceElement and cleaner interfaces ([c06aff2](https://github.com/tomchentw/react-google-maps/commit/c06aff2))
+* **OverlayView:** rewrite with enhanceElement and cleaner interfaces ([7d28f2f](https://github.com/tomchentw/react-google-maps/commit/7d28f2f))
+* **places/SearchBox:** rewrite with enhanceElement and cleaner interfaces ([bc97f61](https://github.com/tomchentw/react-google-maps/commit/bc97f61))
+* **Polygon:** rewrite with enhanceElement and cleaner interfaces ([1e20d70](https://github.com/tomchentw/react-google-maps/commit/1e20d70))
+* **Polyline:** rewrite with enhanceElement and cleaner interfaces ([5603319](https://github.com/tomchentw/react-google-maps/commit/5603319))
+* **Rectangle:** rewrite with enhanceElement and cleaner interfaces ([ea39062](https://github.com/tomchentw/react-google-maps/commit/ea39062))
+* **SearchBox:** move to places/SearchBox ([cf5a1cb](https://github.com/tomchentw/react-google-maps/commit/cf5a1cb))
+
+
+### Features
+
+* **async/withScriptjs:** provide HOC for loading `googleMapURL` with `scriptjs` ([14d9273](https://github.com/tomchentw/react-google-maps/commit/14d9273))
+* **enhanceElement:** utility for generating Google Maps Components ([2656569](https://github.com/tomchentw/react-google-maps/commit/2656569))
+* **package.json:** add "react-display-name" to dependencies ([2df62c7](https://github.com/tomchentw/react-google-maps/commit/2df62c7))
+* **withGoogleMap:** provide HOC for initialize `google.maps.Map` instance ([f61724c](https://github.com/tomchentw/react-google-maps/commit/f61724c))
+
+
+### BREAKING CHANGES
+
+* addons/InfoBox: Naming convention for event handlers has tweaked to follow React's convention.
+
+Before:
+
+```js
+<InfoBox
+  onCloseclick={_.noop}
+  onDomready={_.noop}
+  onZindexChanged={_.noop}
+/>
+```
+
+After:
+
+```js
+<InfoBox
+  onCloseClick={_.noop}
+  onDomReady={_.noop}
+  onZIndexChanged={_.noop}
+/>
+```
+* withGoogleMap: Wrap all `react-google-maps` components inside `withGoogleMap` HOC.
+
+Before:
+
+```js
+// v5.0.0
+<GoogleMapLoader
+  containerElement={
+    <div
+      {...this.props}
+      style={{
+        height: "100%",
+      }}
+    />
+  }
+  googleMapElement={
+    <GoogleMap
+      ref={(map) => console.log(map)}
+      defaultZoom={3}
+      defaultCenter={{lat: -25.363882, lng: 131.044922}}
+      onClick={::this.handleMapClick}>
+      {this.state.markers.map((marker, index) => {
+        return (
+          <Marker
+            {...marker}
+            onRightclick={this.handleMarkerRightclick.bind(this, index)} />
+        );
+      })}
+    </GoogleMap>
+  }
+/>
+// or v4.0.0
+<GoogleMap containerProps={{
+    ...this.props,
+    style: {
+      height: "100%",
+    },
+  }}
+  ref="map"
+  defaultZoom={3}
+  defaultCenter={{lat: -25.363882, lng: 131.044922}}
+  onClick={::this.handleMapClick}>
+  {this.state.markers.map((marker, index) => {
+    return (
+      <Marker
+        {...marker}
+        onRightclick={this.handleMarkerRightclick.bind(this, index)} />
+    );
+  })}
+</GoogleMap>
+```
+
+After:
+
+```js
+// Wrap all `react-google-maps` components with `withGoogleMap` HOC
+// and name it GettingStartedGoogleMap
+const GettingStartedGoogleMap = withGoogleMap(props => (
+  <GoogleMap
+    ref={props.onMapLoad}
+    defaultZoom={3}
+    defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
+    onClick={props.onMapClick}
+  >
+    {props.markers.map((marker, index) => (
+      <Marker
+        {...marker}
+        onRightClick={() => props.onMarkerRightClick(index)}
+      />
+    ))}
+  </GoogleMap>
+));
+// Then, render it:
+render(
+  <GettingStartedGoogleMap
+    containerElement={
+      <div style={{ height: `100%` }} />
+    }
+    mapElement={
+      <div style={{ height: `100%` }} />
+    }
+    onMapLoad={_.noop}
+    onMapClick={_.noop}
+    markers={markers}
+    onMarkerRightClick={_.noop}
+  />,
+  document.getElementById('root')
+);
+```
+* places/SearchBox: Input props are now under `inputProps`.
+
+This will get passed in directly into the underlying `<input>` component. You can also override it with `inputStyle`, `inputClassName` and `inputPlaceholder`.
+
+Before:
+
+```js
+<SearchBox
+  placeholder="Customized your placeholder"
+  style={INPUT_STYLE}
+/>
+```
+
+After:
+
+```js
+<SearchBox
+  inputPlaceholder="Customized your placeholder"
+  inputStyle={INPUT_STYLE}
+/>
+```
+* SearchBox: move SearchBox to places/SearchBox
+* drawing/DrawingManager: Naming convention for event handlers has tweaked to follow React's convention.
+
+Before:
+
+```js
+<DrawingManager
+  onCirclecomplete={_.noop}
+  onOverlaycomplete={_.noop}
+/>
+```
+
+After:
+
+```js
+<DrawingManager
+  onCircleComplete={_.noop}
+  onOverlayComplete={_.noop}
+/>
+```
+* DrawingManager: move DrawingManager to drawing/DrawingManager
+* OverlayView: `OverlayView` can no longer be rendered under `MarkerClusterer`
+* InfoWindow: Naming convention for event handlers has tweaked to follow React's convention.
+
+Before:
+
+```js
+<InfoWindow
+  onCloseclick={_.noop}
+  onDomready={_.noop}
+  onZindexChanged={_.noop}
+/>
+```
+
+After:
+
+```js
+<InfoWindow
+  onCloseClick={_.noop}
+  onDomReady={_.noop}
+  onZIndexChanged={_.noop}
+/>
+```
+* addons/MarkerClusterer: Naming convention for event handlers has tweaked to follow React's convention.
+
+Before:
+
+```js
+<MarkerClusterer
+  onClusteringbegin={_.noop}
+  onMouseout={_.noop}
+/>
+```
+
+After:
+
+```js
+<MarkerClusterer
+  onClusteringBegin={_.noop}
+  onMouseOut={_.noop}
+/>
+```
+* Circle: Naming convention for event handlers has tweaked to follow React's convention.
+
+Before:
+
+```js
+<Circle
+  onClick={_.noop}
+  onRightclick={_.noop}
+  onDragstart={_.noop}
+/>
+```
+
+After:
+
+```js
+<Circle
+  onClick={_.noop}
+  onRightClick={_.noop}
+  onDragStart={_.noop}
+/>
+```
+* Polygon: Naming convention for event handlers has tweaked to follow React's convention.
+
+Before:
+
+```js
+<Polygon
+  onClick={_.noop}
+  onRightclick={_.noop}
+  onDragstart={_.noop}
+/>
+```
+
+After:
+
+```js
+<Polygon
+  onClick={_.noop}
+  onRightClick={_.noop}
+  onDragStart={_.noop}
+/>
+```
+* Polyline: Naming convention for event handlers has tweaked to follow React's convention.
+
+Before:
+
+```js
+<Polyline
+  onClick={_.noop}
+  onRightclick={_.noop}
+  onDragstart={_.noop}
+/>
+```
+
+After:
+
+```js
+<Polyline
+  onClick={_.noop}
+  onRightClick={_.noop}
+  onDragStart={_.noop}
+/>
+```
+* Rectangle: Naming convention for event handlers has tweaked to follow React's convention.
+
+Before:
+
+```js
+<Rectangle
+  onClick={_.noop}
+  onRightclick={_.noop}
+  onDragstart={_.noop}
+/>
+```
+
+After:
+
+```js
+<Rectangle
+  onClick={_.noop}
+  onRightClick={_.noop}
+  onDragStart={_.noop}
+/>
+```
+* Marker: Naming convention for event handlers has tweaked to follow React's convention.
+
+Before:
+
+```js
+<Marker
+  onClick={_.noop}
+  onRightclick={_.noop}
+  onDragstart={_.noop}
+/>
+```
+
+After:
+
+```js
+<Marker
+  onClick={_.noop}
+  onRightClick={_.noop}
+  onDragStart={_.noop}
+/>
+```
+* GoogleMap: Naming convention for event handlers has tweaked to follow React's convention.
+
+Before:
+
+```js
+<GoogleMap
+  onClick={_.noop}
+  onRightclick={_.noop}
+  onDragstart={_.noop}
+/>
+```
+
+After:
+
+```js
+<GoogleMap
+  onClick={_.noop}
+  onRightClick={_.noop}
+  onDragStart={_.noop}
+/>
+```
+* async/withScriptjs: Apply `withScriptjs` HOC before `withGoogleMaps` HOC.
+
+Before:
+
+```js
+<ScriptjsLoader
+  hostname={"maps.googleapis.com"}
+  pathname={"/maps/api/js"}
+  query={{v: `3.${ AsyncGettingStarted.version }`, libraries: "geometry,drawing,places"}}
+  loadingElement={
+    <div {...this.props} style={{ height: "100%" }}>
+      <FaSpinner />
+    </div>
+  }
+  containerElement={
+    <div {...this.props} style={{ height: "100%" }} />
+  }
+  googleMapElement={
+    <GoogleMap
+      ref={googleMap => {
+        googleMap && console.log(`Zoom: ${ googleMap.getZoom() }`);
+      }}
+      defaultZoom={3}
+      defaultCenter={{lat: -25.363882, lng: 131.044922}}
+      onClick={::this.handleMapClick}
+    >
+      <Marker
+        {...this.state.marker}
+        onRightclick={this.handleMarkerRightclick}
+      />
+    </GoogleMap>
+  }
+/>
+```
+
+After:
+
+```js
+// Wrap all `react-google-maps` components with `withGoogleMap` HOC
+// then wraps it into `withScriptjs` HOC
+// It loads Google Maps JavaScript API v3 for you asynchronously.
+// Name the component AsyncGettingStartedExampleGoogleMap
+const AsyncGettingStartedExampleGoogleMap = withScriptjs(
+  withGoogleMap(
+    props => (
+    <GoogleMap
+      ref={props.onMapLoad}
+      defaultZoom={3}
+      defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
+      onClick={props.onMapClick}
+    >
+      {props.markers.map(marker => (
+        <Marker
+          {...marker}
+          onRightClick={() => props.onMarkerRightClick(marker)}
+        />
+      ))}
+    </GoogleMap>
+  )
+);
+// Then, render it:
+render(
+  <GettingStartedGoogleMap
+    googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp"
+    loadingElement={
+      <div style={{ height: `100%` }}>
+        <FaSpinner
+          style={{
+            display: `block`,
+            width: `80px`,
+            height: `80px`,
+            margin: `150px auto`,
+            animation: `fa-spin 2s infinite linear`,
+          }}
+        />
+      </div>
+    }
+    containerElement={
+      <div style={{ height: `100%` }} />
+    }
+    mapElement={
+      <div style={{ height: `100%` }} />
+    }
+    onMapLoad={_.noop}
+    onMapClick={_.noop}
+    markers={markers}
+    onMarkerRightClick={_.noop}
+  />,
+  document.getElementById('root')
+);
+```
+* KmlLayer: Naming convention for event handlers has tweaked to follow React's convention.
+
+Before:
+
+```js
+<KmlLayer
+  onClick={_.noop}
+  onDefaultviewportChanged={_.noop}
+  onStatusChanged={_.noop}
+/>
+```
+
+After:
+
+```js
+<KmlLayer
+  onClick={_.noop}
+  onDefaultViewportChanged={_.noop}
+  onStatusChanged={_.noop}
+/>
+```
+
+
+
 <a name="5.1.1"></a>
 ## [5.1.1](https://github.com/tomchentw/react-google-maps/compare/v5.1.0...v5.1.1) (2016-10-04)
 

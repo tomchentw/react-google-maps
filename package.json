@@ -1,6 +1,6 @@
 {
   "name": "react-google-maps",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "React.js Google Maps integration component",
   "main": "lib/index.js",
   "files": [

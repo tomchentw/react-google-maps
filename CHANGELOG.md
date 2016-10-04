@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.1.1"></a>
+## [5.1.1](https://github.com/tomchentw/react-google-maps/compare/v5.1.0...v5.1.1) (2016-10-04)
+
+
+### Bug Fixes
+
+* **OverlayView:** fixed bug in OverlayView when nested in MarkerClusterer ([#302](https://github.com/tomchentw/react-google-maps/issues/302)) ([1c5e933](https://github.com/tomchentw/react-google-maps/commit/1c5e933)), closes [#301](https://github.com/tomchentw/react-google-maps/issues/301)
+* **ScriptjsLoader:** Fix setState warning ([#307](https://github.com/tomchentw/react-google-maps/issues/307)) ([999fd89](https://github.com/tomchentw/react-google-maps/commit/999fd89))
+
+
+
 <a name="5.1.0"></a>
 # [5.1.0](https://github.com/tomchentw/react-google-maps/compare/v5.0.0...v5.1.0) (2016-09-30)
 

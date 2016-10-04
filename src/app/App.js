@@ -4,12 +4,16 @@ import {
 } from "react";
 
 import {
+  useRouterHistory,
   Router,
-  browserHistory,
   Route,
   IndexRoute,
   Redirect,
 } from "react-router";
+
+import {
+  createHistory,
+} from "history";
 
 import {
   Application,
@@ -52,10 +56,14 @@ import {
   MarkerClustererExample,
 } from "./pages/addons";
 
+const history = useRouterHistory(createHistory)({
+  basename: `/react-google-maps`,
+});
+
 export default class App extends Component {
   render() {
     return (
-      <Router history={browserHistory}>
+      <Router history={history}>
         <Route path="/" component={Application}>
           <IndexRoute component={GettingStartedExample} />
           <Route path="basics">

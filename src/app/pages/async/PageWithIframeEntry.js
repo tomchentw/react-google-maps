@@ -18,12 +18,12 @@ export default class PageWithIframeEntry extends Component {
       this.isWritten = true;
 
       const [script] = [...document.querySelectorAll(`script`)]
-        .filter(script => script.src.match(/static\/js\/bundle(.+)?\.js$/));
+        .filter(script => script.src.match(/static\/js\/(bundle|main.+)\.js$/));
 
       const scriptTag = script ? script.outerHTML : ``;
 
       const [link] = [...document.querySelectorAll(`link`)]
-        .filter(link => link.href.match(/static\/css\/bundle(.+)?\.css$/));
+        .filter(link => link.href.match(/static\/css\/(bundle|main.+)\.css$/));
 
       const linkTag = link ? link.outerHTML : ``;
 

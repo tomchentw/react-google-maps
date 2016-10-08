@@ -15,7 +15,7 @@ npm install --save react-google-maps@beta
 
 ## Call for maintainers
 
-As the author ([tomchentw][tomchentw]) currently doesn't actively use this module, he's looking for awesome contributors to help and keep the community healthy. Please don't hensitate to [contact him][tomchentw] directly. See [#266][call-for-maintainers] for more information.
+As the author ([tomchentw][tomchentw]) currently doesn't actively use this module, he's looking for awesome contributors to help and keep the community healthy. Please don't hesitate to [contact him][tomchentw] directly. See [#266][call-for-maintainers] for more information.
 
 
 ## Documentation

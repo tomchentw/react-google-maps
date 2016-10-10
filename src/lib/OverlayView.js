@@ -8,6 +8,7 @@ import createReactClass from "create-react-class";
 import {
   MAP,
   OVERLAY_VIEW,
+  MARKER_CLUSTERER,
 } from "./constants";
 
 import {
@@ -82,6 +83,7 @@ export default _.flowRight(
 
   contextTypes: {
     [MAP]: PropTypes.object,
+    [MARKER_CLUSTERER]: PropTypes.object,
   },
 
   getInitialState() {
@@ -91,9 +93,17 @@ export default _.flowRight(
     overlayView.onAdd = this.onAdd;
     overlayView.draw = this.draw;
     overlayView.onRemove = this.onRemove;
+    // getDraggable and getPosition is needed to cluster OverlayView
+    overlayView.getDraggable = this.getDraggable;
+    overlayView.getPosition = this.getPosition;
     // You must call setMap() with a valid Map object to trigger the call to
     // the onAdd() method and setMap(null) in order to trigger the onRemove() method.
-    overlayView.setMap(this.context[MAP]);
+    const markerClusterer = this.context[MARKER_CLUSTERER];
+    if (markerClusterer) {
+      markerClusterer.addMarker(overlayView);
+    } else {
+      overlayView.setMap(this.context[MAP]);
+    }
     return {
       [OVERLAY_VIEW]: overlayView,
     };
@@ -101,6 +111,18 @@ export default _.flowRight(
 
   onAdd() {
     this._containerElement = helpers.createContainerElement();
+  },
+
+  // MarkerClusterer needs getDraggable method,
+  // but since OverlayView is not draggable by default
+  // we just return false
+  getDraggable() {
+    return false;
+  },
+
+  // MarkerClusterer needs maps LatLng object
+  getPosition() {
+    return new google.maps.LatLng(this.props.position);
   },
 
   draw() {
@@ -136,6 +158,10 @@ export default _.flowRight(
   componentWillUnmount() {
     const overlayView = getInstanceFromComponent(this);
     if (overlayView) {
+      const markerClusterer = this.context[MARKER_CLUSTERER];
+      if (markerClusterer) {
+        markerClusterer.removeMarker(overlayView);
+      }
       overlayView.setMap(null);
       // You must implement three methods: onAdd(), draw(), and onRemove().
       overlayView.onAdd = null;

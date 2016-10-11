@@ -27,6 +27,8 @@ Basically just a simple wrapper around [Google Maps Javascript API][Google Maps 
 ### withGoogleMap
 
 ```jsx
+import { withGoogleMap } from "react-google-maps";
+
 // Wrap all `react-google-maps` components with `withGoogleMap` HOC
 // and name it GettingStartedGoogleMap
 const GettingStartedGoogleMap = withGoogleMap(props => (
@@ -182,6 +184,9 @@ render(
 ### async/withScriptjs
 
 ```jsx
+import { withGoogleMap } from "react-google-maps";
+import withScriptjs from "react-google-maps/lib/async/withScriptjs";
+
 // Wrap all `react-google-maps` components with `withGoogleMap` HOC
 // then wraps it into `withScriptjs` HOC
 // It loads Google Maps JavaScript API v3 for you asynchronously.
@@ -206,7 +211,7 @@ const AsyncGettingStartedExampleGoogleMap = withScriptjs(
 );
 // Then, render it:
 render(
-  <GettingStartedGoogleMap
+  <AsyncGettingStartedExampleGoogleMap
     googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp"
     loadingElement={
       <div style={{ height: `100%` }}>

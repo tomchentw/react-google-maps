@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="6.0.1"></a>
+## [6.0.1](https://github.com/tomchentw/react-google-maps/compare/v6.0.0...v6.0.1) (2016-10-14)
+
+
+### Bug Fixes
+
+* **addons/InfoBox:** allow children to receive React's context ([bed461c](https://github.com/tomchentw/react-google-maps/commit/bed461c)), closes [#258](https://github.com/tomchentw/react-google-maps/issues/258)
+* **addons/InfoBox:** allow children to receive React's context ([5748a96](https://github.com/tomchentw/react-google-maps/commit/5748a96))
+* **InfoWindow:** allow children to receive React's context ([ca73c85](https://github.com/tomchentw/react-google-maps/commit/ca73c85))
+* **package.json:** devDependencies of eslint-config-react-app ([e8e3eed](https://github.com/tomchentw/react-google-maps/commit/e8e3eed))
+
+
+
 <a name="6.0.0"></a>
 # [6.0.0](https://github.com/tomchentw/react-google-maps/compare/v5.1.1...v6.0.0) (2016-10-04)
 

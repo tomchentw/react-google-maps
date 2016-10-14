@@ -9,7 +9,7 @@ import {
 } from "react";
 
 import {
-  render,
+  unstable_renderSubtreeIntoContainer,
 } from "react-dom";
 
 import {
@@ -65,8 +65,8 @@ const publicMethodMap = {
 };
 
 const controlledPropUpdaterMap = {
-  children(infoWindow, children) {
-    render(Children.only(children), infoWindow.getContent());
+  children(infoWindow, children, component) {
+    unstable_renderSubtreeIntoContainer(component, Children.only(children), infoWindow.getContent());
   },
   options(infoBox, options) { infoBox.setOptions(options); },
   position(infoBox, position) { infoBox.setPosition(position); },
@@ -142,7 +142,7 @@ export default _.flowRight(
 
   componentDidMount() {
     const infoBox = getInstanceFromComponent(this);
-    controlledPropUpdaterMap.children(infoBox, this.props.children);
+    controlledPropUpdaterMap.children(infoBox, this.props.children, this);
   },
 
   componentWillReceiveProps(nextProps, nextContext) {

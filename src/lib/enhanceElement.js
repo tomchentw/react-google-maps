@@ -87,7 +87,7 @@ const enhanceWithPropTypes = _.curry((
       _.forEach(controlledPropUpdaterMap, (fn, key) => {
         const nextValue = this.props[key];
         if (nextValue !== prevProps[key]) {
-          fn(getInstanceFromComponent(this), nextValue);
+          fn(getInstanceFromComponent(this), nextValue, this);
         }
       });
       componentDidUpdate.call(this, prevProps, prevState);

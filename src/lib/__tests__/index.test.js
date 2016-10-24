@@ -7,6 +7,7 @@ import {
   HeatmapLayer,
   InfoWindow,
   KmlLayer,
+  FusionTablesLayer,
   Marker,
   OverlayView,
   Polygon,
@@ -24,6 +25,7 @@ describe(`index`, () => {
     expect(HeatmapLayer).toBeDefined();
     expect(InfoWindow).toBeDefined();
     expect(KmlLayer).toBeDefined();
+    expect(FusionTablesLayer).toBeDefined();
     expect(Marker).toBeDefined();
     expect(OverlayView).toBeDefined();
     expect(Polygon).toBeDefined();

@@ -134,6 +134,14 @@ render(
 />
 ```
 
+### FusionTablesLayer
+
+```jsx
+<FusionTablesLayer
+  onClick={_.noop}
+/>
+```
+
 ### InfoWindow
 
 ```jsx

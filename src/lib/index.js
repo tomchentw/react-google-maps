@@ -31,6 +31,10 @@ export {
 } from "./KmlLayer";
 
 export {
+  default as FusionTablesLayer,
+} from "./FusionTablesLayer";
+
+export {
   default as DirectionsRenderer,
 } from "./DirectionsRenderer";
 

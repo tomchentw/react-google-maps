@@ -211,7 +211,7 @@ export default _.flowRight(
     );
     const markerClusterer = this.context[MARKER_CLUSTERER];
     if (markerClusterer) {
-      markerClusterer.addMarker(marker);
+      markerClusterer.addMarker(marker, true);
     } else {
       marker.setMap(this.context[MAP]);
     }
@@ -231,7 +231,7 @@ export default _.flowRight(
     if (marker) {
       const markerClusterer = this.context[MARKER_CLUSTERER];
       if (markerClusterer) {
-        markerClusterer.removeMarker(marker);
+        markerClusterer.removeMarker(marker, true);
       }
       marker.setMap(null);
     }

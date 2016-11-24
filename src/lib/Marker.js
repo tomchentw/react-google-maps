@@ -42,6 +42,8 @@ const controlledPropTypes = {
 
   label: PropTypes.any,
 
+  noRedraw: PropTypes.bool,
+
   opacity: PropTypes.number,
 
   options: PropTypes.object,
@@ -211,7 +213,7 @@ export default _.flowRight(
     );
     const markerClusterer = this.context[MARKER_CLUSTERER];
     if (markerClusterer) {
-      markerClusterer.addMarker(marker);
+      markerClusterer.addMarker(marker, !!this.props.noRedraw);
     } else {
       marker.setMap(this.context[MAP]);
     }
@@ -231,7 +233,7 @@ export default _.flowRight(
     if (marker) {
       const markerClusterer = this.context[MARKER_CLUSTERER];
       if (markerClusterer) {
-        markerClusterer.removeMarker(marker);
+        markerClusterer.removeMarker(marker, !!this.props.noRedraw);
       }
       marker.setMap(null);
     }

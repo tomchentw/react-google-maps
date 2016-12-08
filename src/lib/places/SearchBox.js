@@ -89,6 +89,7 @@ export default _.flowRight(
     const searchBox = new google.maps.places.SearchBox(this._inputElement,
       collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
+        {},
         controlledPropTypes,
         this.props
       )

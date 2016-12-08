@@ -193,6 +193,7 @@ export default _.flowRight(
       [],
       collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
+        {},
         controlledPropTypes,
         this.props
       )

@@ -176,6 +176,7 @@ export default _.flowRight(
     map.setOptions(
       collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
+        {},
         controlledPropTypes,
         this.props
       )

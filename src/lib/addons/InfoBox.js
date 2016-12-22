@@ -156,7 +156,7 @@ export default _.flowRight(
   componentWillUnmount() {
     const infoBox = getInstanceFromComponent(this);
     if (infoBox) {
-      infoBox.setMap(null);
+      infoBox.close();
     }
   },
 

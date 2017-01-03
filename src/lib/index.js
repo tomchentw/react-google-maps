@@ -45,3 +45,7 @@ export {
 export {
   default as OverlayView,
 } from "./OverlayView";
+
+export {
+  default as TrafficLayer,
+} from "./TrafficLayer";

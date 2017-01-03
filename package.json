@@ -53,7 +53,8 @@
     "Circle",
     "Directions",
     "InfoWindow",
-    "SearchBox"
+    "SearchBox",
+    "TrafficLayer"
   ],
   "author": {
     "name": "tomchentw",

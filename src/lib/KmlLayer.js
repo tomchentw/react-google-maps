@@ -27,6 +27,7 @@ const controlledPropTypes = {
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
   defaultViewport: PropTypes.any,
+  options: PropTypes.any,
   metadata: PropTypes.any,
   status: PropTypes.any,
   url: PropTypes.string,
@@ -56,6 +57,8 @@ const publicMethodMap = {
 
   getMetadata(kmlLayer) { return kmlLayer.getMetadata(); },
 
+  getOptions(kmlLayer) { return kmlLayer.getOptions(); },
+
   getStatus(kmlLayer) { return kmlLayer.getStatus(); },
 
   getUrl(kmlLayer) { return kmlLayer.getUrl(); },
@@ -67,6 +70,7 @@ const publicMethodMap = {
 const controlledPropUpdaterMap = {
   defaultViewport(kmlLayer, defaultViewport) { kmlLayer.setDefaultViewport(defaultViewport); },
   metadata(kmlLayer, metadata) { kmlLayer.setMetadata(metadata); },
+  options(kmlLayer, options) { kmlLayer.setOptions(options); },
   status(kmlLayer, status) { kmlLayer.setStatus(status); },
   url(kmlLayer, url) { kmlLayer.setUrl(url); },
   zIndex(kmlLayer, zIndex) { kmlLayer.setZIndex(zIndex); },

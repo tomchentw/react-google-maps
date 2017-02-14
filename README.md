@@ -27,7 +27,7 @@ Basically just a simple wrapper around [Google Maps Javascript API][Google Maps 
 ### withGoogleMap
 
 ```jsx
-import { withGoogleMap } from "react-google-maps";
+import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
 // Wrap all `react-google-maps` components with `withGoogleMap` HOC
 // and name it GettingStartedGoogleMap

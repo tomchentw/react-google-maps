@@ -160,6 +160,13 @@ render(
 />
 ```
 
+### StreetViewPanorama
+```jsx
+<StreetViewPanorama
+  element={<div>Optional placeholder to render StreetView panorama separate from map</div>}
+/>
+```
+
 ### drawing/DrawingManager
 
 ```jsx

@@ -12,6 +12,7 @@ import {
   Polygon,
   Polyline,
   Rectangle,
+  StreetViewPanorama,
 } from "../index";
 
 describe(`index`, () => {
@@ -29,5 +30,6 @@ describe(`index`, () => {
     expect(Polygon).toBeDefined();
     expect(Polyline).toBeDefined();
     expect(Rectangle).toBeDefined();
+    expect(StreetViewPanorama).toBeDefined();
   });
 });

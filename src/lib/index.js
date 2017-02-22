@@ -49,3 +49,7 @@ export {
 export {
   default as OverlayView,
 } from "./OverlayView";
+
+export {
+  default as StreetViewPanorama,
+} from "./StreetViewPanorama";

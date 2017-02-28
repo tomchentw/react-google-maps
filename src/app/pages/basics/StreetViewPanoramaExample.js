@@ -8,9 +8,23 @@ import {
   withGoogleMap,
   GoogleMap,
   StreetViewPanorama,
+  OverlayView,
 } from "../../../lib";
 
 const coordinates = { lat: 49.2853171, lng: -123.1119202 };
+
+const STYLES = {
+  overlayView: {
+    background: `red`,
+    color: `white`,
+    padding: 5,
+    borderRadius: `50%`,
+  },
+};
+
+function getPixelPositionOffset(width, height) {
+  return { x: -(width / 2), y: -(height / 2) };
+}
 
 const StreetViewPanoramaExampleGoogleMap = withGoogleMap(props => (
   <GoogleMap
@@ -20,7 +34,17 @@ const StreetViewPanoramaExampleGoogleMap = withGoogleMap(props => (
     <StreetViewPanorama
       defaultPosition={coordinates}
       visible
-    />
+    >
+      <OverlayView
+        position={{ lat: 49.28590291211115, lng: -123.11248166065218 }}
+        mapPaneName={OverlayView.OVERLAY_LAYER}
+        getPixelPositionOffset={getPixelPositionOffset}
+      >
+        <div style={STYLES.overlayView}>
+          OverlayView
+        </div>
+      </OverlayView>
+    </StreetViewPanorama>
   </GoogleMap>
 ));
 
@@ -44,7 +68,7 @@ export default class StreetViewPanoramaExample extends Component {
     return (
       <StreetViewPanoramaExampleGoogleMap
         containerElement={
-          <div style={{ width: `100%`, height: `50%` }} />
+          <div style={{ width: `100%`, height: `100%` }} />
         }
         mapElement={
           <div style={{ width: `100%`, height: `100%` }} />

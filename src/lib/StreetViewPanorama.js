@@ -123,12 +123,22 @@ export default _.flowRight(
     [MAP]: PropTypes.object,
   },
 
+  childContextTypes: {
+    [MAP]: PropTypes.object,
+  },
+
   getInitialOptions() {
     return collectUncontrolledAndControlledProps(
       defaultUncontrolledPropTypes,
       controlledPropTypes,
       this.props,
     );
+  },
+
+  getChildContext() {
+    return {
+      [MAP]: this.state[STREET_VIEW_PANORAMA],
+    };
   },
 
   getInitialState() {
@@ -167,11 +177,13 @@ export default _.flowRight(
   render() {
     if (this.props.element) {
       return (
-        React.cloneElement(this.props.element, {
-          ref: this.handleComponentMount,
-        },
-      ));
+        React.cloneElement(
+          this.props.element,
+          { ref: this.handleComponentMount },
+          this.props.children,
+        )
+      );
     }
-    return false;
+    return <div>{this.props.children}</div>;
   },
 });

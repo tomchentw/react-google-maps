@@ -116,8 +116,6 @@ export default _.flowRight(
 
   getInitialState() {
     const map = this.context[MAP];
-    const div = document.createElement(`div`);
-    render(this.props.children, div);
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
     const infoWindow = new google.maps.InfoWindow({
       map,
@@ -126,7 +124,6 @@ export default _.flowRight(
         controlledPropTypes,
         this.props
       ),
-      content: div,
       // Override props of ReactElement type
       children: undefined,
     });
@@ -138,7 +135,12 @@ export default _.flowRight(
   },
 
   componentDidMount() {
+    const div = document.createElement(`div`);
+    render(this.props.children, div);
+
     const infoWindow = getInstanceFromComponent(this);
+    infoWindow.setContent(div);
+
     controlledPropUpdaterMap.children(infoWindow, this.props.children, this);
   },
 

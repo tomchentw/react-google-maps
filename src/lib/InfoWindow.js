@@ -124,9 +124,10 @@ export default _.flowRight(
         this.props
       ),
       // Override props of ReactElement type
-      content: document.createElement(`div`),
+      content: undefined,
       children: undefined,
     });
+
     openInfoWindow(this.context, infoWindow);
     return {
       [INFO_WINDOW]: infoWindow,
@@ -135,7 +136,12 @@ export default _.flowRight(
 
   componentDidMount() {
     const infoWindow = getInstanceFromComponent(this);
-    controlledPropUpdaterMap.children(infoWindow, this.props.children, this);
+    const content = document.createElement(`div`)
+
+    controlledPropUpdaterMap.children({
+      getContent() { return content },
+    }, this.props.children, this);
+    infoWindow.setContent(content)
   },
 
   componentWillReceiveProps(nextProps, nextContext) {

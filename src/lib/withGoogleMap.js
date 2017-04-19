@@ -1,3 +1,4 @@
+import './button.css';
 /* global google */
 import warning from "warning";
 
@@ -14,6 +15,23 @@ import {
 import {
   MAP,
 } from "./constants";
+
+let button = null;
+const trafficLayer = new google.maps.TrafficLayer();
+const buttonOptions = { name: 'Traffic' };
+const buttonControl = (options) => {
+       const control = document.createElement('DIV');
+       control.innerHTML = options.name;
+       control.className = 'button';
+       control.index = 1;
+
+       // Add the control to the map
+       options.gmap.controls[options.position].push(control);
+
+       // When the button is clicked toggle the taffic view
+       google.maps.event.addDomListener(control, 'click', options.action);
+       return control;
+}
 
 export default function withGoogleMap(WrappedComponent) {
   return class Container extends Component {
@@ -63,7 +81,26 @@ export default function withGoogleMap(WrappedComponent) {
  See https://github.com/tomchentw/react-google-maps/pull/168`
       );
       // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
-      const map = new google.maps.Map(node);
+	  const map = new google.maps.Map(node, {
+          mapTypeControl: true,
+          mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+            mapTypeIds: ['roadmap', 'terrain', 'satellite']
+            }
+      });
+      buttonOptions.gmap = map;
+      buttonOptions.position = google.maps.ControlPosition.TOP_LEFT
+      buttonOptions.action = ()=> {
+        if(!trafficLayer.getMap()){
+          trafficLayer.setMap(map);
+          button.classList.add("button-selected");
+        }else{
+          trafficLayer.setMap(null);
+          button.classList.remove("button-selected");
+        }
+      }
+      button = new buttonControl(buttonOptions);
+
       this.setState({ map });
     }
 

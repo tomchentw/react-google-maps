@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="6.2.0"></a>
+# [6.2.0](https://github.com/tomchentw/react-google-maps/compare/v6.1.0...v6.2.0) (2017-04-20)
+
+
+### Features
+
+* **FusionTablesLayer:** add component ([1d8e478](https://github.com/tomchentw/react-google-maps/commit/1d8e478)), closes [#370](https://github.com/tomchentw/react-google-maps/issues/370)
+* **KmlLayer:** add options to props ([2968efc](https://github.com/tomchentw/react-google-maps/commit/2968efc)), closes [#428](https://github.com/tomchentw/react-google-maps/issues/428) [#406](https://github.com/tomchentw/react-google-maps/issues/406)
+* **TrafficLayer:** add component ([d419fc9](https://github.com/tomchentw/react-google-maps/commit/d419fc9)), closes [#417](https://github.com/tomchentw/react-google-maps/issues/417)
+
+
+
 <a name="6.1.0"></a>
 # [6.1.0](https://github.com/tomchentw/react-google-maps/compare/v6.0.3...v6.1.0) (2017-04-20)
 

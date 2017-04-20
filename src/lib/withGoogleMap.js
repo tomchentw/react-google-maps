@@ -71,7 +71,7 @@ export default function withGoogleMap(WrappedComponent) {
       const {
         containerElement,
         mapElement,
-        ...restProps,
+        ...restProps
       } = this.props;
 
       const {

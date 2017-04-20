@@ -79,7 +79,7 @@ export default function withScriptjs(WrappedComponent) {
       const {
         loadingElement,
         googleMapURL, // eslint-disable-line no-unused-vars
-        ...restProps,
+        ...restProps
       } = this.props;
 
       const {

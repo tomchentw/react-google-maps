@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="6.0.3"></a>
+## [6.0.3](https://github.com/tomchentw/react-google-maps/compare/v6.0.2...v6.0.3) (2017-04-20)
+
+
+### Bug Fixes
+
+* **HeatmapLayer:** HeatmapLayer constructor fix ([#376](https://github.com/tomchentw/react-google-maps/issues/376)) ([24b140d](https://github.com/tomchentw/react-google-maps/commit/24b140d))
+
+
+
 <a name="6.0.2"></a>
 ## [6.0.2](https://github.com/tomchentw/react-google-maps/compare/v6.0.1...v6.0.2) (2017-04-20)
 

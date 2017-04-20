@@ -12,6 +12,7 @@ import {
 import {
   unstable_renderSubtreeIntoContainer,
   unmountComponentAtNode,
+  render,
 } from "react-dom";
 
 import {
@@ -115,6 +116,8 @@ export default _.flowRight(
 
   getInitialState() {
     const map = this.context[MAP];
+    const div = document.createElement(`div`);
+    render(this.props.children, div);
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
     const infoWindow = new google.maps.InfoWindow({
       map,
@@ -124,7 +127,7 @@ export default _.flowRight(
         this.props
       ),
       // Override props of ReactElement type
-      content: document.createElement(`div`),
+      content: div,
       children: undefined,
     });
     openInfoWindow(this.context, infoWindow);

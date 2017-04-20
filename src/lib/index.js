@@ -35,8 +35,9 @@ export {
 } from "./DirectionsRenderer";
 
 export {
+  // Provides backward compatibility. Will remove in 7.0.0
   default as HeatmapLayer,
-} from "./HeatmapLayer";
+} from "./visualization/HeatmapLayer";
 
 export {
   default as InfoWindow,

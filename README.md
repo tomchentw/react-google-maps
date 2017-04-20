@@ -4,6 +4,17 @@
 [![Version][npm-image]][npm-url] [![Travis CI][travis-image]][travis-url] [![Quality][codeclimate-image]][codeclimate-url] [![Coverage][codeclimate-coverage-image]][codeclimate-coverage-url] [![Dependencies][gemnasium-image]][gemnasium-url] [![Gitter][gitter-image]][gitter-url]
 
 
+## Getting Help
+
+**For support or usage questions like “how do I do X with React-Google-Maps” and “my code doesn't work”, please search and ask on StackOverflow [with a google-maps tag](https://stackoverflow.com/questions/tagged/google-maps?sort=votes&pageSize=50) or [use react-google-maps as a keyword](https://stackoverflow.com/search?q=react-google-maps) first.**
+
+We ask you to do this because StackOverflow has a much better job at keeping popular questions visible. Unfortunately good answers get lost and outdated on GitHub.
+
+Some questions take a long time to get an answer. **If your question gets closed or you don't get a reply on StackOverflow for longer than a few days,** we encourage you to post an issue linking to your question. We will close your issue but this will give people watching the repo an opportunity to see your question and reply to it on StackOverflow if they know the answer.
+
+Please be considerate when doing this as this is not the primary purpose of the issue tracker.
+
+
 ## Under development for [v6.0.0](https://github.com/tomchentw/react-google-maps/issues/318)
 
 Try it via:

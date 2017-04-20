@@ -9,13 +9,13 @@ import {
 import {
   MAP,
   HEATMAP_LAYER,
-} from "./constants";
+} from "../constants";
 
 import {
   addDefaultPrefixToPropTypes,
   collectUncontrolledAndControlledProps,
   default as enhanceElement,
-} from "./enhanceElement";
+} from "../enhanceElement";
 
 const controlledPropTypes = {
   // NOTICE!!!!!!

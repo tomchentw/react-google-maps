@@ -115,6 +115,7 @@ export default _.flowRight(
     const props = {
       ...collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
+        {},
         controlledPropTypes,
         this.props
       ),

@@ -26,11 +26,13 @@ function collectProps(propTypes: Object, props: Object, keyTransform = _.identit
 
 export function collectUncontrolledAndControlledProps(
   defaultUncontrolledPropTypes: Object,
+  otherUncontrolledPropTypes: Object,
   controlledPropTypes: Object,
   props: Object
 ) {
   return {
     ...collectProps(defaultUncontrolledPropTypes, props, removeDefaultPrefix),
+    ...collectProps(otherUncontrolledPropTypes, props),
     ...collectProps(controlledPropTypes, props),
   };
 }

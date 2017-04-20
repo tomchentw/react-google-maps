@@ -73,6 +73,7 @@ export default _.flowRight(
       map: this.context[MAP],
       ...collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
+        {},
         controlledPropTypes,
         this.props
       ),

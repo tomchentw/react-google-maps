@@ -142,6 +142,8 @@ render(
   onClick={_.noop}
   onDefaultViewportChanged={_.noop}
   onStatusChanged={_.noop}
+  preserveViewport
+  suppressInfoWindows
 />
 ```
 

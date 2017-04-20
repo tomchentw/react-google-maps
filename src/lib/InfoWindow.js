@@ -47,7 +47,7 @@ const eventMap = {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   onCloseClick: `closeclick`,
-  
+
   onContentChanged: `content_changed`,
 
   onDomReady: `domready`,
@@ -120,6 +120,7 @@ export default _.flowRight(
       map,
       ...collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
+        {},
         controlledPropTypes,
         this.props
       ),

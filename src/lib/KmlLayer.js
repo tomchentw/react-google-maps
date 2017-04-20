@@ -35,13 +35,19 @@ const controlledPropTypes = {
 
 const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
+const otherUncontrolledPropTypes = {
+  preserveViewport: PropTypes.bool,
+  screenOverlays: PropTypes.bool,
+  suppressInfoWindows: PropTypes.bool,
+}
+
 const eventMap = {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   onClick: `click`,
 
   onDefaultViewportChanged: `defaultviewport_changed`,
-  
+
   onStatusChanged: `status_changed`,
 };
 
@@ -85,6 +91,7 @@ export default _.flowRight(
   propTypes: {
     ...controlledPropTypes,
     ...defaultUncontrolledPropTypes,
+    ...otherUncontrolledPropTypes,
   },
 
   contextTypes: {
@@ -97,6 +104,7 @@ export default _.flowRight(
       map: this.context[MAP],
       ...collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
+        otherUncontrolledPropTypes,
         controlledPropTypes,
         this.props
       ),

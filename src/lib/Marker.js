@@ -205,6 +205,7 @@ export default _.flowRight(
     const marker = new google.maps.Marker(
       collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
+        {},
         controlledPropTypes,
         this.props
       )

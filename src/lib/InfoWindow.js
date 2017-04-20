@@ -12,6 +12,7 @@ import {
 import {
   unstable_renderSubtreeIntoContainer,
   unmountComponentAtNode,
+  render,
 } from "react-dom";
 
 import {
@@ -124,9 +125,9 @@ export default _.flowRight(
         this.props
       ),
       // Override props of ReactElement type
-      content: document.createElement(`div`),
       children: undefined,
     });
+
     openInfoWindow(this.context, infoWindow);
     return {
       [INFO_WINDOW]: infoWindow,
@@ -134,7 +135,12 @@ export default _.flowRight(
   },
 
   componentDidMount() {
+    const div = document.createElement(`div`);
+    render(this.props.children, div);
+
     const infoWindow = getInstanceFromComponent(this);
+    infoWindow.setContent(div);
+
     controlledPropUpdaterMap.children(infoWindow, this.props.children, this);
   },
 

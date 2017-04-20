@@ -1,0 +1,27 @@
+.button{
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  text-align: center;
+  position: relative;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 11px;
+	font-weight: 500;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px;
+  color: #000;
+  background-color: rgb(255, 255, 255); 
+  border-radius: 2px;
+  margin: 10px 0 0 0;
+  padding: 8px;
+  height: 28px;
+  width: 69px;
+  overflow: hidden;
+}    
+
+.button-selected {
+  font-weight: bold;
+  background: slategray; 
+}
+

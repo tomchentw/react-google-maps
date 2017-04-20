@@ -35,6 +35,10 @@ export {
 } from "./FusionTablesLayer";
 
 export {
+  default as TrafficLayer,
+} from "./TrafficLayer";
+
+export {
   default as DirectionsRenderer,
 } from "./DirectionsRenderer";
 

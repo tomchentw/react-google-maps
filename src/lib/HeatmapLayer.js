@@ -74,7 +74,7 @@ export default _.flowRight(
 
   getInitialState() {
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#HeatmapLayer
-    const heatmapLayer = new google.maps.HeatmapLayer({
+    const heatmapLayer = new google.maps.visualization.HeatmapLayer({
       map: this.context[MAP],
       ...collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,

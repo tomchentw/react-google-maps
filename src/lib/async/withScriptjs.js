@@ -12,9 +12,9 @@ import {
   Component,
 } from "react";
 
-const LOAIDNG_STATE_NONE = `NONE`;
-const LOAIDNG_STATE_BEGIN = `BEGIN`;
-const LOAIDNG_STATE_LOADED = `LOADED`;
+const LOADING_STATE_NONE = `NONE`;
+const LOADING_STATE_BEGIN = `BEGIN`;
+const LOADING_STATE_LOADED = `LOADED`;
 
 export default function withScriptjs(WrappedComponent) {
   return class Container extends Component {
@@ -26,7 +26,7 @@ export default function withScriptjs(WrappedComponent) {
     };
 
     state = {
-      loadingState: LOAIDNG_STATE_NONE,
+      loadingState: LOADING_STATE_NONE,
     };
 
     isUnmounted = false;
@@ -38,7 +38,7 @@ export default function withScriptjs(WrappedComponent) {
         return;
       }
       this.setState({
-        loadingState: LOAIDNG_STATE_LOADED,
+        loadingState: LOADING_STATE_LOADED,
       });
     }
 
@@ -56,11 +56,11 @@ export default function withScriptjs(WrappedComponent) {
       const {
         loadingState,
       } = this.state;
-      if (loadingState !== LOAIDNG_STATE_NONE || !canUseDOM) {
+      if (loadingState !== LOADING_STATE_NONE || !canUseDOM) {
         return;
       }
       this.setState({
-        loadingState: LOAIDNG_STATE_BEGIN,
+        loadingState: LOADING_STATE_BEGIN,
       });
       // Don't load scriptjs as dependency since we want this module be used on server side.
       // eslint-disable-next-line global-require
@@ -86,7 +86,7 @@ export default function withScriptjs(WrappedComponent) {
         loadingState,
       } = this.state;
 
-      if (loadingState === LOAIDNG_STATE_LOADED) {
+      if (loadingState === LOADING_STATE_LOADED) {
         return (
           <WrappedComponent {...restProps} />
         );

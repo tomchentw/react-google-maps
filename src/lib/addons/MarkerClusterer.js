@@ -1,9 +1,8 @@
 import _ from "lodash";
 
-import {
-  default as React,
-  PropTypes,
-} from "react";
+import PropTypes from "prop-types";
+
+import { default as React } from "react";
 
 import MarkerClustererPlus from "marker-clusterer-plus";
 

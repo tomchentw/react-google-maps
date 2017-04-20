@@ -6,11 +6,9 @@ import canUseDOM from "can-use-dom";
 
 import getDisplayName from "react-display-name";
 
-import {
-  default as React,
-  PropTypes,
-  Component,
-} from "react";
+import PropTypes from "prop-types";
+
+import { default as React, Component } from "react";
 
 const LOADING_STATE_NONE = `NONE`;
 const LOADING_STATE_BEGIN = `BEGIN`;

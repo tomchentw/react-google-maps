@@ -5,11 +5,9 @@ import invariant from "invariant";
 
 import getDisplayName from "react-display-name";
 
-import {
-  default as React,
-  PropTypes,
-  Component,
-} from "react";
+import PropTypes from "prop-types";
+
+import { default as React, Component } from "react";
 
 import {
   MAP,

@@ -2,11 +2,9 @@ import _ from "lodash";
 
 import invariant from "invariant";
 
-import {
-  default as React,
-  PropTypes,
-  Children,
-} from "react";
+import PropTypes from "prop-types";
+
+import { default as React, Children } from "react";
 
 import {
   unstable_renderSubtreeIntoContainer,

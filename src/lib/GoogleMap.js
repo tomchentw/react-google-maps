@@ -3,10 +3,9 @@ import _ from "lodash";
 
 import invariant from "invariant";
 
-import {
-  default as React,
-  PropTypes,
-} from "react";
+import PropTypes from "prop-types";
+
+import { default as React } from "react";
 
 import {
   MAP,

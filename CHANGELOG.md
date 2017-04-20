@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="6.3.0"></a>
+# [6.3.0](https://github.com/tomchentw/react-google-maps/compare/v6.2.0...v6.3.0) (2017-04-20)
+
+
+### Bug Fixes
+
+* **InfoWindow:** long content jank issue ([54ffccc](https://github.com/tomchentw/react-google-maps/commit/54ffccc)), closes [#449](https://github.com/tomchentw/react-google-maps/issues/449) [#444](https://github.com/tomchentw/react-google-maps/issues/444) [#408](https://github.com/tomchentw/react-google-maps/issues/408)
+
+
+### Features
+
+* **Marker:** prevent Marker from redrawing under clusters ([7849f28](https://github.com/tomchentw/react-google-maps/commit/7849f28)), closes [#397](https://github.com/tomchentw/react-google-maps/issues/397)
+
+
+
 <a name="6.2.0"></a>
 # [6.2.0](https://github.com/tomchentw/react-google-maps/compare/v6.1.0...v6.2.0) (2017-04-20)
 

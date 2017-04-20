@@ -20,6 +20,7 @@ const KmlLayerExampleGoogleMap = withGoogleMap(props => (
   >
     <KmlLayer
       url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"
+      options={{preserveViewport: true}}
     />
   </GoogleMap>
 ));

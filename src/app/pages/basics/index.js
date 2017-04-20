@@ -14,6 +14,8 @@ import FusionTablesLayerExample from './FusionTablesLayerExample';
 
 import PopUpInfoWindowExample from "./PopUpInfoWindowExample";
 
+import TrafficLayerExample from './TrafficLayerExample';
+
 SimpleMapExample.__raw = require(`!raw!./SimpleMapExample`);
 StyledMapExample.__raw = require(`!raw!./StyledMapExample`);
 GeolocationExample.__raw = require(`!raw!./GeolocationExample`);
@@ -22,6 +24,7 @@ OverlayViewExample.__raw = require(`!raw!./OverlayViewExample`);
 KmlLayerExample.__raw = require(`!raw!./KmlLayerExample`);
 PopUpInfoWindowExample.__raw = require(`!raw!./PopUpInfoWindowExample`);
 FusionTablesLayerExample.__raw = require(`!raw!./FusionTablesLayerExample`);
+TrafficLayerExample.__raw = require(`!raw!./TrafficLayerExample`);
 
 export {
   SimpleMapExample,
@@ -30,6 +33,7 @@ export {
   DirectionsExample,
   OverlayViewExample,
   KmlLayerExample,
-  FusionTablesLayerExample,
   PopUpInfoWindowExample,
+  FusionTablesLayerExample,
+  TrafficLayerExample,
 };

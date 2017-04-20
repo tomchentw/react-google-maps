@@ -78,6 +78,7 @@ export default class Application extends Component {
               <LinkContainer to="/basics/kml-layer"><MenuItem>KmlLayer</MenuItem></LinkContainer>
               <LinkContainer to="/basics/fusion-tables-layer"><MenuItem>Fusion Tables Layer</MenuItem></LinkContainer>
               <LinkContainer to="/basics/pop-up-window"><MenuItem>Pop-up InfoWindow</MenuItem></LinkContainer>
+              <LinkContainer to="/basics/traffic-layer"><MenuItem>Traffic Layer</MenuItem></LinkContainer>
               <MenuItem divider />
               <LinkContainer to="/events/simple-click-event"><MenuItem>Simple click event</MenuItem></LinkContainer>
               <LinkContainer to="/events/closure-listeners">

@@ -1,22 +1,20 @@
 /* global google */
-import _ from 'lodash';
+import _ from "lodash";
 
 import PropTypes from "prop-types";
 
 import createReactClass from "create-react-class";
 
-import { default as React } from 'react';
-
 import {
     MAP,
     FUSION_TABLES_LAYER,
-} from './constants';
+} from "./constants";
 
 import {
     addDefaultPrefixToPropTypes,
     collectUncontrolledAndControlledProps,
     default as enhanceElement,
-} from './enhanceElement';
+} from "./enhanceElement";
 
 const controlledPropTypes = {
     // NOTICE!!!!!!

@@ -7,7 +7,7 @@ import getDisplayName from "react-display-name";
 
 import PropTypes from "prop-types";
 
-import { default as React, Component } from "react";
+import React, { Component } from "react";
 
 import {
   MAP,

@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 import createReactClass from "create-react-class";
 
-import { default as React, Children } from "react";
+import { Children } from "react";
 
 import {
   unstable_renderSubtreeIntoContainer,

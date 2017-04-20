@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import createReactClass from "create-react-class";
 
-import { default as React } from "react";
+import React from "react";
 
 import MarkerClustererPlus from "marker-clusterer-plus";
 

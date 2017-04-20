@@ -8,7 +8,7 @@ import getDisplayName from "react-display-name";
 
 import PropTypes from "prop-types";
 
-import { default as React, Component } from "react";
+import React, { Component } from "react";
 
 const LOADING_STATE_NONE = `NONE`;
 const LOADING_STATE_BEGIN = `BEGIN`;

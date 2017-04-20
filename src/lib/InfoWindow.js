@@ -5,6 +5,8 @@ import invariant from "invariant";
 
 import PropTypes from "prop-types";
 
+import createReactClass from "create-react-class";
+
 import { default as React, Children } from "react";
 
 import {
@@ -96,7 +98,7 @@ function openInfoWindow(context, infoWindow) {
 }
 
 export default _.flowRight(
-  React.createClass,
+  createReactClass,
   enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
 )({
   displayName: `InfoWindow`,

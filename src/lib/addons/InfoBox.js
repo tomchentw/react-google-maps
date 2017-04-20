@@ -4,6 +4,8 @@ import invariant from "invariant";
 
 import PropTypes from "prop-types";
 
+import createReactClass from "create-react-class";
+
 import { default as React, Children } from "react";
 
 import {
@@ -91,7 +93,7 @@ function openInfoBox(context, infoBox) {
 }
 
 export default _.flowRight(
-  React.createClass,
+  createReactClass,
   enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
 )({
   displayName: `InfoBox`,

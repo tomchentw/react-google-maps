@@ -5,6 +5,8 @@ import invariant from "invariant";
 
 import PropTypes from "prop-types";
 
+import createReactClass from "create-react-class";
+
 import { default as React } from "react";
 
 import {
@@ -151,7 +153,7 @@ function getInstanceFromComponent(component) {
 }
 
 export default _.flowRight(
-  React.createClass,
+  createReactClass,
   enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
 )({
   displayName: `GoogleMap`,

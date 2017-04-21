@@ -4,7 +4,6 @@ import {
   GoogleMap,
   Circle,
   DirectionsRenderer,
-  HeatmapLayer,
   InfoWindow,
   KmlLayer,
   FusionTablesLayer,
@@ -22,7 +21,6 @@ describe(`index`, () => {
     expect(GoogleMap).toBeDefined();
     expect(Circle).toBeDefined();
     expect(DirectionsRenderer).toBeDefined();
-    expect(HeatmapLayer).toBeDefined();
     expect(InfoWindow).toBeDefined();
     expect(KmlLayer).toBeDefined();
     expect(FusionTablesLayer).toBeDefined();

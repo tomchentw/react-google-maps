@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="7.0.0"></a>
+# [7.0.0](https://github.com/tomchentw/react-google-maps/compare/v6.3.0...v7.0.0) (2017-04-21)
+
+
+### Code Refactoring
+
+* **index.js:** remove HeatmapLayer export ([a05e5cb](https://github.com/tomchentw/react-google-maps/commit/a05e5cb))
+
+
+### Features
+
+* **package.json:** add "create-react-class" and "prop-types" to dependencies ([cb2cbff](https://github.com/tomchentw/react-google-maps/commit/cb2cbff))
+* migrate to "create-react-class" package ([d54cc95](https://github.com/tomchentw/react-google-maps/commit/d54cc95)), closes [#463](https://github.com/tomchentw/react-google-maps/issues/463)
+* migrate to "prop-types" package ([129b6e2](https://github.com/tomchentw/react-google-maps/commit/129b6e2)), closes [#463](https://github.com/tomchentw/react-google-maps/issues/463)
+* migrate to implicit default import for React ([f094f1b](https://github.com/tomchentw/react-google-maps/commit/f094f1b))
+* **package.json:** upgrade to ^15.5.4 of react / react-dom in peerDependencies ([d62059e](https://github.com/tomchentw/react-google-maps/commit/d62059e))
+
+
+### BREAKING CHANGES
+
+* **index.js:** remove top-level HeatmapLayer export
+
+Before:
+
+```js
+import { HeatmapLayer } from "react-google-maps"
+```
+
+After:
+
+```js
+import HeatmapLayer from "react-google-maps/lib/visualization/HeatmapLayer"
+```
+* **package.json:** upgrade to ^15.5.4 of react / react-dom in peerDependencies
+
+For react < 15.5.0, use react-google-maps < 7.0.0 instead.
+
+
+
 <a name="6.3.0"></a>
 # [6.3.0](https://github.com/tomchentw/react-google-maps/compare/v6.2.0...v6.3.0) (2017-04-20)
 

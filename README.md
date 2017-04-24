@@ -15,13 +15,10 @@ Some questions take a long time to get an answer. **If your question gets closed
 Please be considerate when doing this as this is not the primary purpose of the issue tracker.
 
 
-## Under development for [v6.0.0](https://github.com/tomchentw/react-google-maps/issues/318)
+## Versions
 
-Try it via:
-
-```sh
-npm install --save react-google-maps@beta
-```
+* For `React >= 15.5`, use [next](https://github.com/tomchentw/react-google-maps/releases/tag/v7.0.0) tag on npm
+* For `React < 15.5`, use [latest](https://github.com/tomchentw/react-google-maps/releases/tag/v6.3.0) tag on npm
 
 
 ## Call for maintainers

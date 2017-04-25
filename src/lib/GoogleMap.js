@@ -129,6 +129,20 @@ const publicMethodMap = {
   panTo(map, args) { return map.panTo(...args); },
 
   panToBounds(map, args) { return map.panToBounds(...args); },
+
+  setCenter(map, args) { return map.setCenter(...args); },
+
+  setHeading(map, args) { return map.setHeading(...args); },
+
+  setMapTypeId(map, args) { return map.setMapTypeId(...args); },
+
+  setOptions(map, args) { return map.setOptions(...args); },
+
+  setStreetView(map, args) { return map.setStreetView(...args); },
+
+  setTilt(map, args) { return map.setTilt(...args); },
+
+  setZoom(map, args) { return map.setZoom(...args); },
   // END - Public APIs - Use this carefully
 };
 

@@ -60,6 +60,8 @@ const controlledPropTypes = {
   visible: PropTypes.bool,
 
   zIndex: PropTypes.number,
+
+  markerClass: PropTypes.any,
 };
 
 const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
@@ -205,7 +207,8 @@ export default _.flowRight(
 
   getInitialState() {
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
-    const marker = new google.maps.Marker(
+    const Marker = this.props.markerClass || google.maps.Marker;
+    const marker = new Marker(
       collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
         controlledPropTypes,

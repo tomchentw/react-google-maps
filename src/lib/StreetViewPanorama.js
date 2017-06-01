@@ -1,10 +1,11 @@
 /* global google */
 import _ from 'lodash';
 
-import {
-  default as React,
-  PropTypes,
-} from "react";
+import PropTypes from "prop-types";
+
+import createReactClass from "create-react-class";
+
+import React from "react";
 
 import {
   MAP,
@@ -109,7 +110,7 @@ function getInstanceFromComponent(component) {
 }
 
 export default _.flowRight(
-  React.createClass,
+  createReactClass,
   enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
 )({
   displayName: `StreetViewPanorama`,

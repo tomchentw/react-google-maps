@@ -49,11 +49,12 @@ const StreetViewPanoramaExampleGoogleMap = withGoogleMap(props => (
 ));
 
 /**
- * You can pass in an `element` to render `StreetViewPanorama` in its own container
- * At this point the `GoogleMap` wrapper and `withGoogleMap` HOC become optional, so you can either render map and StreetView
- * at the same time, or just the StreetView on its own
+ * You can pass in an `containerElement` to render `StreetViewPanorama` in its own container
+ * At this point the `GoogleMap` wrapper and `withGoogleMap` HOC become optional,
+ * so you can either render a map and StreetView at the same time,
+ * or just the StreetView on its own
  *    <StreetViewPanorama
- *      element={<div style={{ width: `100%`, height: `100%` }} />}
+ *      containerElement={<div style={{ width: `100%`, height: `100%` }} />}
  *      defaultPosition={coordinates}
  *      visible
  *    />

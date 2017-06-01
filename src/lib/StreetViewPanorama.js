@@ -145,12 +145,12 @@ export default _.flowRight(
   getInitialState() {
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#StreetViewPanorama
     let streetViewPanorama;
-    if (!this.props.element && this.context[MAP]) {
+    if (!this.props.containerElement && this.context[MAP]) {
       streetViewPanorama = this.context[MAP].getStreetView();
       streetViewPanorama.setOptions(this.getInitialOptions());
     }
-    if (!this.props.element && !this.context[MAP]) {
-      throw new Error(`You need to use the StreetViewPanorama in the context of \`<GoogleMap>\` or pass an \`element\` for it to be rendered in.`);
+    if (!this.props.containerElement && !this.context[MAP]) {
+      throw new Error(`You need to use the StreetViewPanorama in the context of \`<GoogleMap>\` or pass an \`containerElement\` for it to be rendered in.`);
     }
     return {
       [STREET_VIEW_PANORAMA]: streetViewPanorama,
@@ -158,14 +158,21 @@ export default _.flowRight(
   },
 
   handleComponentMount(el) {
-    const streetViewPanorama = new google.maps.StreetViewPanorama(el, {
-      map: this.context[MAP],
-      ...this.getInitialOptions(),
-    });
-    if (this.context[MAP]) {
-      this.context[MAP].setStreetView(streetViewPanorama);
+    this.el = el;
+    if (this.el) {
+      const streetViewPanorama = new google.maps.StreetViewPanorama(this.el, {
+        map: this.context[MAP],
+        ...collectUncontrolledAndControlledProps(
+          defaultUncontrolledPropTypes,
+          controlledPropTypes,
+          this.props,
+        ),
+      });
+      if (this.context[MAP]) {
+        this.context[MAP].setStreetView(streetViewPanorama);
+      }
+      this.setState({ [STREET_VIEW_PANORAMA]: streetViewPanorama });
     }
-    this.setState({ [STREET_VIEW_PANORAMA]: streetViewPanorama });
   },
 
   componentWillUnmount() {
@@ -176,10 +183,10 @@ export default _.flowRight(
   },
 
   render() {
-    if (this.props.element) {
+    if (this.props.containerElement) {
       return (
         React.cloneElement(
-          this.props.element,
+          this.props.containerElement,
           { ref: this.handleComponentMount },
           this.props.children,
         )

@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="7.1.0"></a>
+# [7.1.0](https://github.com/tomchentw/react-google-maps/compare/v7.0.0...v7.1.0) (2017-07-06)
+
+
+### Features
+
+* **StreetViewPanorama:** add OverlayView to example ([7bd8c76](https://github.com/tomchentw/react-google-maps/commit/7bd8c76))
+* **StreetViewPanorama:** add StreetViewPanorama component ([e75c936](https://github.com/tomchentw/react-google-maps/commit/e75c936))
+* **StreetViewPanorama:** fix deprecation warnings ([d80cfe5](https://github.com/tomchentw/react-google-maps/commit/d80cfe5))
+* **StreetViewPanorama:** fix OverlayViewHelper ([ab513a5](https://github.com/tomchentw/react-google-maps/commit/ab513a5))
+* **StreetViewPanorama:** Fix standalone rendering and rename prop ([39373d9](https://github.com/tomchentw/react-google-maps/commit/39373d9))
+* **StreetViewPanorama:** remove log, cosmetics ([4127f7e](https://github.com/tomchentw/react-google-maps/commit/4127f7e))
+* **StreetViewPanorama:** update context for children ([eb86d7e](https://github.com/tomchentw/react-google-maps/commit/eb86d7e))
+
+
+
 <a name="7.0.0"></a>
 # [7.0.0](https://github.com/tomchentw/react-google-maps/compare/v6.3.0...v7.0.0) (2017-04-21)
 

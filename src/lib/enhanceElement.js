@@ -41,7 +41,7 @@ function registerGoogleEventsFromReactProps(
   eventMap: Object
 ) {
   const registered = _.reduce(eventMap, (acc, googleEventName, onEventName) => {
-    if (_.has(props, onEventName)) {
+    if (typeof props[onEventName] === 'function') {
       acc.push(
         google.maps.event.addListener(instance, googleEventName, props[onEventName])
       );

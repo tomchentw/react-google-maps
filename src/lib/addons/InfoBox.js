@@ -29,7 +29,7 @@ const controlledPropTypes = {
   //
   // Only expose those with getters & setters in the table as controlled props.
   //
-  // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/docs/reference.html
+  // http://htmlpreview.github.io/?https://github.com/googlemaps/v3-utility-library/blob/master/infobox/docs/reference.html
   content: PropTypes.any,
   options: PropTypes.object,
   position: PropTypes.any,
@@ -40,7 +40,7 @@ const controlledPropTypes = {
 const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
 const eventMap = {
-  // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/docs/reference.html
+  // http://htmlpreview.github.io/?https://github.com/googlemaps/v3-utility-library/blob/master/infobox/docs/reference.html
   onCloseClick: `closeclick`,
 
   onContentChanged: `content_changed`,
@@ -55,7 +55,7 @@ const eventMap = {
 const publicMethodMap = {
   // Public APIs
   //
-  // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/docs/reference.html
+  // http://htmlpreview.github.io/?https://github.com/googlemaps/v3-utility-library/blob/master/infobox/docs/reference.html
   getPosition(infoBox) { return infoBox.getPosition(); },
 
   getVisible(infoBox) { return infoBox.getVisible(); },
@@ -122,7 +122,7 @@ export default _.flowRight(
       controlledPropTypes,
       this.props
     );
-    // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/docs/reference.html
+    // http://htmlpreview.github.io/?https://github.com/googlemaps/v3-utility-library/blob/master/infobox/docs/reference.html
     const infoBox = new GoogleMapsInfobox({
       map,
       ...infoBoxProps,

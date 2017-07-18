@@ -72,6 +72,7 @@ export default _.flowRight(
     getInitialState() {
         const fusionTablesLayer = new google.maps.FusionTablesLayer({
             map: this.context[MAP],
+            query: this.props.options.query,
             ...collectUncontrolledAndControlledProps(
                 defaultUncontrolledPropTypes,
                 controlledPropTypes,

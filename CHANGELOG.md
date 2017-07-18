@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="7.2.0"></a>
+# [7.2.0](https://github.com/tomchentw/react-google-maps/compare/v7.1.0...v7.2.0) (2017-07-18)
+
+
+### Features
+
+* **MarkerClusterer:** add batchSize option ([#544](https://github.com/tomchentw/react-google-maps/issues/544)) ([ff6b14b](https://github.com/tomchentw/react-google-maps/commit/ff6b14b))
+
+
+
 <a name="7.1.0"></a>
 # [7.1.0](https://github.com/tomchentw/react-google-maps/compare/v7.0.0...v7.1.0) (2017-07-06)
 

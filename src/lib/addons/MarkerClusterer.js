@@ -28,6 +28,7 @@ const controlledPropTypes = {
   // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html
   averageCenter: PropTypes.bool,
   batchSizeIE: PropTypes.number,
+  batchSize: PropTypes.number,
   calculator: PropTypes.func,
   clusterClass: PropTypes.string,
   enableRetinaIcons: PropTypes.bool,
@@ -65,6 +66,8 @@ const publicMethodMap = {
   getAverageCenter(markerClusterer) { return markerClusterer.getAverageCenter(); },
 
   getBatchSizeIE(markerClusterer) { return markerClusterer.getBatchSizeIE(); },
+  
+  getBatchSize(markerClusterer) { return markerClusterer.getBatchSize(); },
 
   getCalculator(markerClusterer) { return markerClusterer.getCalculator(); },
 
@@ -131,7 +134,11 @@ const controlledPropUpdaterMap = {
   batchSizeIE(markerClusterer, batchSizeIE) {
     markerClusterer.setBatchSizeIE(batchSizeIE);
   },
-
+ 
+  batchSize(markerClusterer, batchSize) {
+    markerClusterer.setBatchSize(batchSize);
+  },
+  
   calculator(markerClusterer, calculator) { markerClusterer.setCalculator(calculator); },
 
   enableRetinaIcons(markerClusterer, enableRetinaIcons) {

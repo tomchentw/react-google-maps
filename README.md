@@ -32,6 +32,53 @@ Basically just a simple wrapper around [Google Maps Javascript API][Google Maps 
 
 **Note**: this doc is under development for [v6.0.0](https://github.com/tomchentw/react-google-maps/issues/318). Find docs for [v5.x][docs_v5] and [v4.x][docs_v4] with the git tags.
 
+## Getting Started
+
+1. You need to obtain a Google Maps API Key through Google.  Follow these steps:
+[Google Maps API Key Reference](https://developers.google.com/maps/documentation/javascript/get-api-key)
+
+2. The first step in using the library is to include the Google Maps script in your `index.html` so that the library has a reference to `google.maps`.
+
+**Statically retrieving the Google Maps Library**
+```html
+<html>
+  <head>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY_GOES_HERE"></script>
+    <!-- Note you can add scopes along with the specific api version with the following configuration -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=YOUR_GOOGLE_MAPS_API_KEY_GOES_HERE"></script>
+  </head>
+  <body>
+    <div id="application"></div>
+  </body>
+</html>
+```
+
+Alternatively, if you're going to be loading the map asynchronously through `withScriptjs` and want to set the URL through the component and not through your `index.html` file you can include it as a prop on `<GoogleMap />`
+
+**Dynamically retrieving the Google Maps Library**
+```jsx
+import { GoogleMap, Marker } from "react-google-maps";
+
+const googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=YOUR_GOOGLE_MAPS_API_KEY_GOES_HERE"
+
+  <GoogleMap
+    ref={props.onMapLoad}
+    defaultZoom={3}
+    defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
+    // Pass the map reference here as props
+    googleMapURL={googleMapURL}
+    onClick={props.onMapClick}
+  >
+    {props.markers.map((marker, index) => (
+      <Marker
+        {...marker}
+        onRightClick={() => props.onMarkerRightClick(index)}
+      />
+    ))}
+  </GoogleMap>
+
+```
+
 ### withGoogleMap
 
 ```jsx

@@ -7,13 +7,13 @@ export function addDefaultPrefixToPropTypes(propTypes: Object) {
   );
 }
 
-function removeDefaultPrefix(defaultKey) {
+export function removeDefaultPrefix(defaultKey) {
   // default = 7
   const key = defaultKey.substr(7);
   return `${key.substr(0, 1).toLowerCase()}${key.substr(1)}`;
 }
 
-function collectProps(propTypes: Object, props: Object, keyTransform = _.identity) {
+export function collectProps(propTypes: Object, props: Object, keyTransform = _.identity) {
   return _.reduce(propTypes, (acc, value, key) => {
     if (_.has(props, key)) {
       const nextKey = keyTransform(key);
@@ -134,16 +134,16 @@ const enhanceWithPublicMethod = _.curry((
   publicMethodMap,
   componentSpec
 ) => (
-  _.reduce(publicMethodMap, (acc, fn, publicMethodName) => {
-    // eslint-disable-next-line no-param-reassign
-    acc[publicMethodName] = function publicMethod(...args) {
-      return fn(getInstanceFromComponent(this), args, /* Use with caution */this);
-    };
-    return acc;
-  }, {
-    ...componentSpec,
-  })
-));
+    _.reduce(publicMethodMap, (acc, fn, publicMethodName) => {
+      // eslint-disable-next-line no-param-reassign
+      acc[publicMethodName] = function publicMethod(...args) {
+        return fn(getInstanceFromComponent(this), args, /* Use with caution */this);
+      };
+      return acc;
+    }, {
+        ...componentSpec,
+      })
+  ));
 
 export default function enhanceElement(
   getInstanceFromComponent,

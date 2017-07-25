@@ -87,18 +87,24 @@ export default class SearchBoxExample extends Component {
   handlePlacesChanged() {
     const places = this._searchBox.getPlaces();
 
-    // Add a marker for each place returned from search bar
+    const bounds = new google.maps.LatLngBounds();
+
+    places.map(place => {
+      place.geometry.viewport ? bounds.union(place.geometry.viewport) : bounds.extend(place.geometry.location)
+    });
+
     const markers = places.map(place => ({
       position: place.geometry.location,
     }));
 
-    // Set markers; set map center to first search result
     const mapCenter = markers.length > 0 ? markers[0].position : this.state.center;
 
     this.setState({
       center: mapCenter,
       markers,
     });
+
+    this._map.fitBounds(bounds);
   }
 
   render() {

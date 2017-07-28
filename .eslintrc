@@ -1,7 +1,15 @@
 {
   "extends": ["react-app", "prettier"],
+  "plugins": ["prettier"],
   "rules": {
     "comma-dangle": ["error", "always-multiline"],
-    "jsx-quotes": ["error", "prefer-double"]
+    "jsx-quotes": ["error", "prefer-double"],
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "all"
+      }
+    ]
   }
 }

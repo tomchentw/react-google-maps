@@ -1,23 +1,19 @@
 /* global google */
 import _ from 'lodash';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import createReactClass from "create-react-class";
+import createReactClass from 'create-react-class';
 
-import React from "react";
+import React from 'react';
 
-import {
-  MAP,
-  STREET_VIEW_PANORAMA,
-} from "./constants";
-
+import { MAP, STREET_VIEW_PANORAMA } from './constants';
 
 import {
   addDefaultPrefixToPropTypes,
   collectUncontrolledAndControlledProps,
   default as enhanceElement,
-} from "./enhanceElement";
+} from './enhanceElement';
 
 const controlledPropTypes = {
   // NOTICE!!!!!!
@@ -39,7 +35,9 @@ const controlledPropTypes = {
   zoom: PropTypes.number,
 };
 
-const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(
+  controlledPropTypes,
+);
 
 const eventMap = {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#StreetViewPanorama
@@ -61,7 +59,6 @@ const eventMap = {
   onVisibleChanged: `visible_changed`,
 
   onZoomChanged: `zoom_changed`,
-
 };
 
 const publicMethodMap = {
@@ -71,38 +68,76 @@ const publicMethodMap = {
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getLinks(streetViewPanorama) { return streetViewPanorama.getLinks(); },
+  getLinks(streetViewPanorama) {
+    return streetViewPanorama.getLinks();
+  },
 
-  getLocation(streetViewPanorama) { return streetViewPanorama.getLocation(); },
+  getLocation(streetViewPanorama) {
+    return streetViewPanorama.getLocation();
+  },
 
-  getMotionTracking(streetViewPanorama) { return streetViewPanorama.getMotionTracking(); },
+  getMotionTracking(streetViewPanorama) {
+    return streetViewPanorama.getMotionTracking();
+  },
 
-  getPano(streetViewPanorama) { return streetViewPanorama.getPano(); },
+  getPano(streetViewPanorama) {
+    return streetViewPanorama.getPano();
+  },
 
-  getPhotographerPov(streetViewPanorama) { return streetViewPanorama.getPhotographerPov(); },
+  getPhotographerPov(streetViewPanorama) {
+    return streetViewPanorama.getPhotographerPov();
+  },
 
-  getPosition(streetViewPanorama) { return streetViewPanorama.getPosition(); },
+  getPosition(streetViewPanorama) {
+    return streetViewPanorama.getPosition();
+  },
 
-  getPov(streetViewPanorama) { return streetViewPanorama.getPov(); },
+  getPov(streetViewPanorama) {
+    return streetViewPanorama.getPov();
+  },
 
-  getStatus(streetViewPanorama) { return streetViewPanorama.getStatus(); },
+  getStatus(streetViewPanorama) {
+    return streetViewPanorama.getStatus();
+  },
 
-  getVisible(streetViewPanorama) { return streetViewPanorama.getVisible(); },
+  getVisible(streetViewPanorama) {
+    return streetViewPanorama.getVisible();
+  },
 
-  getZoom(streetViewPanorama) { return streetViewPanorama.getZoom(); },
+  getZoom(streetViewPanorama) {
+    return streetViewPanorama.getZoom();
+  },
   // END - Public APIs
 };
 
 const controlledPropUpdaterMap = {
-  links(streetViewPanorama, links) { streetViewPanorama.setLinks(links); },
-  motionTracking(streetViewPanorama, motionTracking) { streetViewPanorama.setMotionTracking(motionTracking); },
-  options(streetViewPanorama, options) { streetViewPanorama.setOptions(options); },
-  pano(streetViewPanorama, pano) { streetViewPanorama.setPano(pano); },
-  panoProvider(streetViewPanorama, panoProvider) { streetViewPanorama.registerPanoProvider(panoProvider); },
-  position(streetViewPanorama, position) { streetViewPanorama.setPosition(position); },
-  pov(streetViewPanorama, pov) { streetViewPanorama.setPov(pov); },
-  visible(streetViewPanorama, visible) { streetViewPanorama.setVisible(visible); },
-  zoom(streetViewPanorama, zoom) { streetViewPanorama.setZoom(zoom); },
+  links(streetViewPanorama, links) {
+    streetViewPanorama.setLinks(links);
+  },
+  motionTracking(streetViewPanorama, motionTracking) {
+    streetViewPanorama.setMotionTracking(motionTracking);
+  },
+  options(streetViewPanorama, options) {
+    streetViewPanorama.setOptions(options);
+  },
+  pano(streetViewPanorama, pano) {
+    streetViewPanorama.setPano(pano);
+  },
+  panoProvider(streetViewPanorama, panoProvider) {
+    streetViewPanorama.registerPanoProvider(panoProvider);
+  },
+  position(streetViewPanorama, position) {
+    streetViewPanorama.setPosition(position);
+  },
+  pov(streetViewPanorama, pov) {
+    streetViewPanorama.setPov(pov);
+  },
+  visible(streetViewPanorama, visible) {
+    streetViewPanorama.setVisible(visible);
+  },
+  zoom(streetViewPanorama, zoom) {
+    streetViewPanorama.setZoom(zoom);
+  },
 };
 
 function getInstanceFromComponent(component) {
@@ -111,7 +146,12 @@ function getInstanceFromComponent(component) {
 
 export default _.flowRight(
   createReactClass,
-  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+  enhanceElement(
+    getInstanceFromComponent,
+    publicMethodMap,
+    eventMap,
+    controlledPropUpdaterMap,
+  ),
 )({
   displayName: `StreetViewPanorama`,
 
@@ -150,7 +190,9 @@ export default _.flowRight(
       streetViewPanorama.setOptions(this.getInitialOptions());
     }
     if (!this.props.containerElement && !this.context[MAP]) {
-      throw new Error(`You need to use the StreetViewPanorama in the context of \`<GoogleMap>\` or pass an \`containerElement\` for it to be rendered in.`);
+      throw new Error(
+        `You need to use the StreetViewPanorama in the context of \`<GoogleMap>\` or pass an \`containerElement\` for it to be rendered in.`,
+      );
     }
     return {
       [STREET_VIEW_PANORAMA]: streetViewPanorama,
@@ -184,14 +226,16 @@ export default _.flowRight(
 
   render() {
     if (this.props.containerElement) {
-      return (
-        React.cloneElement(
-          this.props.containerElement,
-          { ref: this.handleComponentMount },
-          this.props.children,
-        )
+      return React.cloneElement(
+        this.props.containerElement,
+        { ref: this.handleComponentMount },
+        this.props.children,
       );
     }
-    return <div>{this.props.children}</div>;
+    return (
+      <div>
+        {this.props.children}
+      </div>
+    );
   },
 });

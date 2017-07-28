@@ -1,14 +1,8 @@
-import {
-  default as React,
-  Component,
-} from "react";
+import { default as React, Component } from 'react';
 
-import {
-  AsyncGettingStartedExample,
-} from "./pages/async";
+import { AsyncGettingStartedExample } from './pages/async';
 
 export default class AsyncApp extends Component {
-
   handleToast = this.handleToast.bind(this);
 
   handleToast(...args) {
@@ -16,10 +10,6 @@ export default class AsyncApp extends Component {
   }
 
   render() {
-    return (
-      <AsyncGettingStartedExample
-        toast={this.handleToast}
-      />
-    );
+    return <AsyncGettingStartedExample toast={this.handleToast} />;
   }
 }

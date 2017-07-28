@@ -1,23 +1,21 @@
 /* global google */
-import _ from "lodash";
+import _ from 'lodash';
 
-import invariant from "invariant";
+import invariant from 'invariant';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import createReactClass from "create-react-class";
+import createReactClass from 'create-react-class';
 
-import React from "react";
+import React from 'react';
 
-import {
-  MAP,
-} from "./constants";
+import { MAP } from './constants';
 
 import {
   addDefaultPrefixToPropTypes,
   collectUncontrolledAndControlledProps,
   default as enhanceElement,
-} from "./enhanceElement";
+} from './enhanceElement';
 
 const controlledPropTypes = {
   // NOTICE!!!!!!
@@ -43,7 +41,9 @@ const controlledPropTypes = {
   zoom: PropTypes.number,
 };
 
-const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(
+  controlledPropTypes,
+);
 
 const eventMap = {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
@@ -94,23 +94,41 @@ const publicMethodMap = {
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getBounds(map) { return map.getBounds(); },
+  getBounds(map) {
+    return map.getBounds();
+  },
 
-  getCenter(map) { return map.getCenter(); },
+  getCenter(map) {
+    return map.getCenter();
+  },
 
-  getDiv(map) { return map.getDiv(); },
+  getDiv(map) {
+    return map.getDiv();
+  },
 
-  getHeading(map) { return map.getHeading(); },
+  getHeading(map) {
+    return map.getHeading();
+  },
 
-  getMapTypeId(map) { return map.getMapTypeId(); },
+  getMapTypeId(map) {
+    return map.getMapTypeId();
+  },
 
-  getProjection(map) { return map.getProjection(); },
+  getProjection(map) {
+    return map.getProjection();
+  },
 
-  getStreetView(map) { return map.getStreetView(); },
+  getStreetView(map) {
+    return map.getStreetView();
+  },
 
-  getTilt(map) { return map.getTilt(); },
+  getTilt(map) {
+    return map.getTilt();
+  },
 
-  getZoom(map) { return map.getZoom(); },
+  getZoom(map) {
+    return map.getZoom();
+  },
   // END - Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
@@ -122,30 +140,52 @@ const publicMethodMap = {
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return !it.match(/^get/) && !it.match(/^set/) && !it.match(/Map$/); })
-  fitBounds(map, args) { return map.fitBounds(...args); },
+  fitBounds(map, args) {
+    return map.fitBounds(...args);
+  },
 
-  panBy(map, args) { return map.panBy(...args); },
+  panBy(map, args) {
+    return map.panBy(...args);
+  },
 
-  panTo(map, args) { return map.panTo(...args); },
+  panTo(map, args) {
+    return map.panTo(...args);
+  },
 
-  panToBounds(map, args) { return map.panToBounds(...args); },
+  panToBounds(map, args) {
+    return map.panToBounds(...args);
+  },
   // END - Public APIs - Use this carefully
 };
 
 const controlledPropUpdaterMap = {
-  center(map, center) { map.setCenter(center); },
+  center(map, center) {
+    map.setCenter(center);
+  },
 
-  heading(map, heading) { map.setHeading(heading); },
+  heading(map, heading) {
+    map.setHeading(heading);
+  },
 
-  mapTypeId(map, mapTypeId) { map.setMapTypeId(mapTypeId); },
+  mapTypeId(map, mapTypeId) {
+    map.setMapTypeId(mapTypeId);
+  },
 
-  options(map, options) { map.setOptions(options); },
+  options(map, options) {
+    map.setOptions(options);
+  },
 
-  streetView(map, streetView) { map.setStreetView(streetView); },
+  streetView(map, streetView) {
+    map.setStreetView(streetView);
+  },
 
-  tilt(map, tilt) { map.setTilt(tilt); },
+  tilt(map, tilt) {
+    map.setTilt(tilt);
+  },
 
-  zoom(map, zoom) { map.setZoom(zoom); },
+  zoom(map, zoom) {
+    map.setZoom(zoom);
+  },
 };
 
 function getInstanceFromComponent(component) {
@@ -154,7 +194,12 @@ function getInstanceFromComponent(component) {
 
 export default _.flowRight(
   createReactClass,
-  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+  enhanceElement(
+    getInstanceFromComponent,
+    publicMethodMap,
+    eventMap,
+    controlledPropUpdaterMap,
+  ),
 )({
   displayName: `GoogleMap`,
 
@@ -170,24 +215,23 @@ export default _.flowRight(
   getInitialState() {
     const map = getInstanceFromComponent(this);
 
-    invariant(!!map,
-`Did you wrap <GoogleMap> component with withGoogleMap() HOC?`
+    invariant(
+      !!map,
+      `Did you wrap <GoogleMap> component with withGoogleMap() HOC?`,
     );
 
     map.setOptions(
       collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
         controlledPropTypes,
-        this.props
-      )
+        this.props,
+      ),
     );
     return null;
   },
 
   render() {
-    const {
-      children,
-    } = this.props;
+    const { children } = this.props;
 
     return (
       <div>

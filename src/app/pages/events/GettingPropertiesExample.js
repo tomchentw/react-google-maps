@@ -1,29 +1,22 @@
 /* global google */
-import {
-  default as React,
-  Component,
-} from "react";
+import { default as React, Component } from 'react';
 
-import {
-  withGoogleMap,
-  GoogleMap,
-  InfoWindow,
-} from "../../../lib";
+import { withGoogleMap, GoogleMap, InfoWindow } from '../../../lib';
 
-const GettingPropertiesExampleGoogleMap = withGoogleMap(props => (
+const GettingPropertiesExampleGoogleMap = withGoogleMap(props =>
   <GoogleMap
     ref={props.onMapMounted}
     onZoomChanged={props.onZoomChanged}
     defaultCenter={props.center}
     zoom={props.zoom}
   >
-    <InfoWindow
-      defaultPosition={props.center}
-    >
-      <div>{props.content}</div>
+    <InfoWindow defaultPosition={props.center}>
+      <div>
+        {props.content}
+      </div>
     </InfoWindow>
-  </GoogleMap>
-));
+  </GoogleMap>,
+);
 
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/event-properties
@@ -31,7 +24,6 @@ const GettingPropertiesExampleGoogleMap = withGoogleMap(props => (
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
 export default class GettingPropertiesExample extends Component {
-
   state = {
     zoom: 4,
     content: `Change the zoom level`,
@@ -59,12 +51,8 @@ export default class GettingPropertiesExample extends Component {
   render() {
     return (
       <GettingPropertiesExampleGoogleMap
-        containerElement={
-          <div style={{ height: `100%` }} />
-        }
-        mapElement={
-          <div style={{ height: `100%` }} />
-        }
+        containerElement={<div style={{ height: `100%` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
         onMapMounted={this.handleMapMounted}
         onZoomChanged={this.handleZoomChanged}
         center={new google.maps.LatLng(-25.363882, 131.044922)}

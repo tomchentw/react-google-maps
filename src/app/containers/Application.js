@@ -1,41 +1,20 @@
-import {
-  default as React,
-  Component,
-  PropTypes,
-  Children,
-} from "react";
+import { default as React, Component, PropTypes, Children } from 'react';
 
-import {
-  Link,
-} from "react-router";
+import { Link } from 'react-router';
 
-import {
-  Navbar,
-  Nav,
-  NavItem,
-  NavDropdown,
-  MenuItem,
-} from "react-bootstrap";
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
-import {
-  LinkContainer,
-} from "react-router-bootstrap";
+import { LinkContainer } from 'react-router-bootstrap';
 
-import GitHubForkRibbon from "react-github-fork-ribbon";
+import GitHubForkRibbon from 'react-github-fork-ribbon';
 
-import {
-  ToastContainer,
-  ToastMessage,
-} from "react-toastr";
+import { ToastContainer, ToastMessage } from 'react-toastr';
 
-import {
-  PrismCode,
-} from "react-prism";
+import { PrismCode } from 'react-prism';
 
-import Helmet from "react-helmet";
+import Helmet from 'react-helmet';
 
 export default class Application extends Component {
-
   static propTypes = {
     children: PropTypes.element.isRequired,
   };
@@ -56,8 +35,14 @@ export default class Application extends Component {
         <Helmet
           titleTemplate="%s | React Google Maps | tomchentw"
           meta={[
-            { name: `viewport`, content: `width=device-width, initial-scale=1` },
-            { name: `description`, content: `react-google-maps example application` },
+            {
+              name: `viewport`,
+              content: `width=device-width, initial-scale=1`,
+            },
+            {
+              name: `description`,
+              content: `react-google-maps example application`,
+            },
             { property: `og:type`, content: `article` },
           ]}
         />
@@ -68,44 +53,64 @@ export default class Application extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <NavItem href="https://github.com/tomchentw" target="_blank">by @tomchentw</NavItem>
+            <NavItem href="https://github.com/tomchentw" target="_blank">
+              by @tomchentw
+            </NavItem>
             <NavDropdown id="examples-dropdown" title="Examples">
-              <LinkContainer to="/basics/simple-map"><MenuItem>Simple map</MenuItem></LinkContainer>
-              <LinkContainer to="/basics/styled-map"><MenuItem>Styled map</MenuItem></LinkContainer>
-              <LinkContainer to="/basics/geolocation"><MenuItem>Geolocation</MenuItem></LinkContainer>
-              <LinkContainer to="/basics/directions"><MenuItem>Directions</MenuItem></LinkContainer>
-              <LinkContainer to="/basics/overlay-view"><MenuItem>Overlay view</MenuItem></LinkContainer>
-              <LinkContainer to="/basics/kml-layer"><MenuItem>KmlLayer</MenuItem></LinkContainer>
-              <LinkContainer to="/basics/fusion-tables-layer"><MenuItem>Fusion Tables Layer</MenuItem></LinkContainer>
-              <LinkContainer to="/basics/pop-up-window"><MenuItem>Pop-up InfoWindow</MenuItem></LinkContainer>
-              <LinkContainer to="/basics/traffic-layer"><MenuItem>Traffic Layer</MenuItem></LinkContainer>
-              <LinkContainer to="/basics/streetview-panorama"><MenuItem>StreetView Panorama</MenuItem></LinkContainer>
+              <LinkContainer to="/basics/simple-map">
+                <MenuItem>Simple map</MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/basics/styled-map">
+                <MenuItem>Styled map</MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/basics/geolocation">
+                <MenuItem>Geolocation</MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/basics/directions">
+                <MenuItem>Directions</MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/basics/overlay-view">
+                <MenuItem>Overlay view</MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/basics/kml-layer">
+                <MenuItem>KmlLayer</MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/basics/fusion-tables-layer">
+                <MenuItem>Fusion Tables Layer</MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/basics/pop-up-window">
+                <MenuItem>Pop-up InfoWindow</MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/basics/traffic-layer">
+                <MenuItem>Traffic Layer</MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/basics/streetview-panorama">
+                <MenuItem>StreetView Panorama</MenuItem>
+              </LinkContainer>
               <MenuItem divider />
-              <LinkContainer to="/events/simple-click-event"><MenuItem>Simple click event</MenuItem></LinkContainer>
+              <LinkContainer to="/events/simple-click-event">
+                <MenuItem>Simple click event</MenuItem>
+              </LinkContainer>
               <LinkContainer to="/events/closure-listeners">
-                <MenuItem>
-                  Using closures in event listeners
-                </MenuItem>
+                <MenuItem>Using closures in event listeners</MenuItem>
               </LinkContainer>
               <LinkContainer to="/events/accessing-arguments">
-                <MenuItem>
-                  Accessing arguments in UI events
-                </MenuItem>
+                <MenuItem>Accessing arguments in UI events</MenuItem>
               </LinkContainer>
               <LinkContainer to="/events/getting-properties">
-                <MenuItem>
-                  Getting properties with event handlers
-                </MenuItem>
+                <MenuItem>Getting properties with event handlers</MenuItem>
               </LinkContainer>
               <MenuItem divider />
-              <LinkContainer to="/drawing/drawing-tools"><MenuItem>Drawing tools</MenuItem></LinkContainer>
+              <LinkContainer to="/drawing/drawing-tools">
+                <MenuItem>Drawing tools</MenuItem>
+              </LinkContainer>
               <MenuItem divider />
-              <LinkContainer to="/places/search-box"><MenuItem>Adding a places search box</MenuItem></LinkContainer>
+              <LinkContainer to="/places/search-box">
+                <MenuItem>Adding a places search box</MenuItem>
+              </LinkContainer>
               <MenuItem divider />
               <LinkContainer to="/addons/marker-clusterer">
-                <MenuItem>
-                  Marker clusterer addon with Marker
-                </MenuItem>
+                <MenuItem>Marker clusterer addon with Marker</MenuItem>
               </LinkContainer>
             </NavDropdown>
           </Nav>

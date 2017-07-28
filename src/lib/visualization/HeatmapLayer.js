@@ -1,20 +1,17 @@
 /* global google */
-import _ from "lodash";
+import _ from 'lodash';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import createReactClass from "create-react-class";
+import createReactClass from 'create-react-class';
 
-import {
-  MAP,
-  HEATMAP_LAYER,
-} from "../constants";
+import { MAP, HEATMAP_LAYER } from '../constants';
 
 import {
   addDefaultPrefixToPropTypes,
   collectUncontrolledAndControlledProps,
   default as enhanceElement,
-} from "../enhanceElement";
+} from '../enhanceElement';
 
 const controlledPropTypes = {
   // NOTICE!!!!!!
@@ -29,7 +26,9 @@ const controlledPropTypes = {
   options: PropTypes.object,
 };
 
-const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(
+  controlledPropTypes,
+);
 
 const eventMap = {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#HeatmapLayer
@@ -48,8 +47,12 @@ const publicMethodMap = {
 };
 
 const controlledPropUpdaterMap = {
-  data(heatmapLayer, data) { heatmapLayer.setData(data); },
-  options(heatmapLayer, options) { heatmapLayer.setOptions(options); },
+  data(heatmapLayer, data) {
+    heatmapLayer.setData(data);
+  },
+  options(heatmapLayer, options) {
+    heatmapLayer.setOptions(options);
+  },
 };
 
 function getInstanceFromComponent(component) {
@@ -58,7 +61,12 @@ function getInstanceFromComponent(component) {
 
 export default _.flowRight(
   createReactClass,
-  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+  enhanceElement(
+    getInstanceFromComponent,
+    publicMethodMap,
+    eventMap,
+    controlledPropUpdaterMap,
+  ),
 )({
   displayName: `HeatmapLayer`,
 
@@ -78,7 +86,7 @@ export default _.flowRight(
       ...collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
         controlledPropTypes,
-        this.props
+        this.props,
       ),
     });
     return {

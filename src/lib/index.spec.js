@@ -12,10 +12,9 @@ import {
   Polyline,
   Rectangle,
   StreetViewPanorama,
-} from "./index";
+} from './index';
 
 describe(`index`, () => {
-
   it(`should export withGoogleMap`, () => {
     expect(withGoogleMap).toBeDefined();
   });
@@ -35,7 +34,7 @@ describe(`index`, () => {
   it(`should export InfoWindow`, () => {
     expect(InfoWindow).toBeDefined();
   });
-  
+
   it(`should export KmlLayer`, () => {
     expect(KmlLayer).toBeDefined();
   });
@@ -67,5 +66,4 @@ describe(`index`, () => {
   it(`should export StreetViewPanorama`, () => {
     expect(StreetViewPanorama).toBeDefined();
   });
-
 });

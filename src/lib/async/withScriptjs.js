@@ -1,14 +1,14 @@
-import _ from "lodash";
+import _ from 'lodash';
 
-import invariant from "invariant";
+import invariant from 'invariant';
 
-import canUseDOM from "can-use-dom";
+import canUseDOM from 'can-use-dom';
 
-import getDisplayName from "react-display-name";
+import getDisplayName from 'react-display-name';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 const LOADING_STATE_NONE = `NONE`;
 const LOADING_STATE_BEGIN = `BEGIN`;
@@ -41,19 +41,15 @@ export default function withScriptjs(WrappedComponent) {
     }
 
     componentWillMount() {
-      const {
-        loadingElement,
-        googleMapURL,
-      } = this.props;
-      invariant(!!loadingElement && !!googleMapURL,
-`Required props loadingElement or googleMapURL is missing. You need to provide both of them.`
+      const { loadingElement, googleMapURL } = this.props;
+      invariant(
+        !!loadingElement && !!googleMapURL,
+        `Required props loadingElement or googleMapURL is missing. You need to provide both of them.`,
       );
     }
 
     componentDidMount() {
-      const {
-        loadingState,
-      } = this.state;
+      const { loadingState } = this.state;
       if (loadingState !== LOADING_STATE_NONE || !canUseDOM) {
         return;
       }
@@ -63,9 +59,7 @@ export default function withScriptjs(WrappedComponent) {
       // Don't load scriptjs as dependency since we want this module be used on server side.
       // eslint-disable-next-line global-require
       const scriptjs = require(`scriptjs`);
-      const {
-        googleMapURL,
-      } = this.props;
+      const { googleMapURL } = this.props;
       scriptjs(googleMapURL, this.handleLoaded);
     }
 
@@ -80,14 +74,10 @@ export default function withScriptjs(WrappedComponent) {
         ...restProps
       } = this.props;
 
-      const {
-        loadingState,
-      } = this.state;
+      const { loadingState } = this.state;
 
       if (loadingState === LOADING_STATE_LOADED) {
-        return (
-          <WrappedComponent {...restProps} />
-        );
+        return <WrappedComponent {...restProps} />;
       } else {
         return loadingElement;
       }

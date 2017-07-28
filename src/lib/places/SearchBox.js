@@ -1,22 +1,19 @@
 /* global google */
-import _ from "lodash";
+import _ from 'lodash';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import createReactClass from "create-react-class";
+import createReactClass from 'create-react-class';
 
-import {
-  MAP,
-  SEARCH_BOX,
-} from "../constants";
+import { MAP, SEARCH_BOX } from '../constants';
 
 import {
   addDefaultPrefixToPropTypes,
   collectUncontrolledAndControlledProps,
   default as enhanceElement,
-} from "../enhanceElement";
+} from '../enhanceElement';
 
-import * as helpers from "../utils/SearchBoxHelper";
+import * as helpers from '../utils/SearchBoxHelper';
 
 const controlledPropTypes = {
   // NOTICE!!!!!!
@@ -33,7 +30,9 @@ const controlledPropTypes = {
   inputClassName: PropTypes.string,
 };
 
-const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(
+  controlledPropTypes,
+);
 
 const eventMap = {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
@@ -48,14 +47,20 @@ const publicMethodMap = {
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getBounds(searchBox) { return searchBox.getBounds(); },
+  getBounds(searchBox) {
+    return searchBox.getBounds();
+  },
 
-  getPlaces(searchBox) { return searchBox.getPlaces(); },
+  getPlaces(searchBox) {
+    return searchBox.getPlaces();
+  },
   // END - Public APIs
 };
 
 const controlledPropUpdaterMap = {
-  bounds(searchBox, bounds) { searchBox.setBounds(bounds); },
+  bounds(searchBox, bounds) {
+    searchBox.setBounds(bounds);
+  },
 };
 
 function getInstanceFromComponent(component) {
@@ -64,7 +69,12 @@ function getInstanceFromComponent(component) {
 
 export default _.flowRight(
   createReactClass,
-  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+  enhanceElement(
+    getInstanceFromComponent,
+    publicMethodMap,
+    eventMap,
+    controlledPropUpdaterMap,
+  ),
 )({
   displayName: `SearchBox`,
 
@@ -85,12 +95,13 @@ export default _.flowRight(
   componentWillMount() {
     this._inputElement = helpers.createInputElement(this.props);
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
-    const searchBox = new google.maps.places.SearchBox(this._inputElement,
+    const searchBox = new google.maps.places.SearchBox(
+      this._inputElement,
       collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
         controlledPropTypes,
-        this.props
-      )
+        this.props,
+      ),
     );
     this.setState({
       [SEARCH_BOX]: searchBox,

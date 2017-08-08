@@ -1,9 +1,7 @@
-import InfoBox from "./InfoBox";
+import InfoBox from './InfoBox';
 
 describe(`InfoBox`, () => {
-
   it(`should be exported`, () => {
     expect(InfoBox).toBeDefined();
   });
-
 });

@@ -1,20 +1,17 @@
 /* global google */
-import _ from "lodash";
+import _ from 'lodash';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import createReactClass from "create-react-class";
+import createReactClass from 'create-react-class';
 
-import {
-  MAP,
-  DIRECTIONS_RENDERER,
-} from "./constants";
+import { MAP, DIRECTIONS_RENDERER } from './constants';
 
 import {
   addDefaultPrefixToPropTypes,
   collectUncontrolledAndControlledProps,
   default as enhanceElement,
-} from "./enhanceElement";
+} from './enhanceElement';
 
 const controlledPropTypes = {
   // NOTICE!!!!!!
@@ -31,7 +28,9 @@ const controlledPropTypes = {
   routeIndex: PropTypes.number,
 };
 
-const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(
+  controlledPropTypes,
+);
 
 const eventMap = {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
@@ -46,19 +45,33 @@ const publicMethodMap = {
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getDirections(directionsRenderer) { return directionsRenderer.getDirections(); },
+  getDirections(directionsRenderer) {
+    return directionsRenderer.getDirections();
+  },
 
-  getPanel(directionsRenderer) { return directionsRenderer.getPanel(); },
+  getPanel(directionsRenderer) {
+    return directionsRenderer.getPanel();
+  },
 
-  getRouteIndex(directionsRenderer) { return directionsRenderer.getRouteIndex(); },
+  getRouteIndex(directionsRenderer) {
+    return directionsRenderer.getRouteIndex();
+  },
   // END - Public APIs
 };
 
 const controlledPropUpdaterMap = {
-  directions(directionsRenderer, directions) { directionsRenderer.setDirections(directions); },
-  options(directionsRenderer, options) { directionsRenderer.setOptions(options); },
-  panel(directionsRenderer, panel) { directionsRenderer.setPanel(panel); },
-  routeIndex(directionsRenderer, routeIndex) { directionsRenderer.setRouteIndex(routeIndex); },
+  directions(directionsRenderer, directions) {
+    directionsRenderer.setDirections(directions);
+  },
+  options(directionsRenderer, options) {
+    directionsRenderer.setOptions(options);
+  },
+  panel(directionsRenderer, panel) {
+    directionsRenderer.setPanel(panel);
+  },
+  routeIndex(directionsRenderer, routeIndex) {
+    directionsRenderer.setRouteIndex(routeIndex);
+  },
 };
 
 function getInstanceFromComponent(component) {
@@ -67,7 +80,12 @@ function getInstanceFromComponent(component) {
 
 export default _.flowRight(
   createReactClass,
-  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+  enhanceElement(
+    getInstanceFromComponent,
+    publicMethodMap,
+    eventMap,
+    controlledPropUpdaterMap,
+  ),
 )({
   displayName: `DirectionsRenderer`,
 
@@ -87,7 +105,7 @@ export default _.flowRight(
       ...collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
         controlledPropTypes,
-        this.props
+        this.props,
       ),
     });
     return {

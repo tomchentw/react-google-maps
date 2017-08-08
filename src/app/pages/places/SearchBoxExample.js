@@ -1,16 +1,9 @@
 /* global google */
-import {
-  default as React,
-  Component,
-} from "react";
+import { default as React, Component } from 'react';
 
-import {
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-} from "../../../lib";
+import { withGoogleMap, GoogleMap, Marker } from '../../../lib';
 
-import SearchBox from "../../../lib/places/SearchBox";
+import SearchBox from '../../../lib/places/SearchBox';
 
 const INPUT_STYLE = {
   boxSizing: `border-box`,
@@ -27,7 +20,7 @@ const INPUT_STYLE = {
   textOverflow: `ellipses`,
 };
 
-const SearchBoxExampleGoogleMap = withGoogleMap(props => (
+const SearchBoxExampleGoogleMap = withGoogleMap(props =>
   <GoogleMap
     ref={props.onMapMounted}
     defaultZoom={15}
@@ -42,11 +35,11 @@ const SearchBoxExampleGoogleMap = withGoogleMap(props => (
       inputPlaceholder="Customized your placeholder"
       inputStyle={INPUT_STYLE}
     />
-    {props.markers.map((marker, index) => (
-      <Marker position={marker.position} key={index} />
-    ))}
-  </GoogleMap>
-));
+    {props.markers.map((marker, index) =>
+      <Marker position={marker.position} key={index} />,
+    )}
+  </GoogleMap>,
+);
 
 /*
  * https://developers.google.com/maps/documentation/javascript/examples/places-searchbox
@@ -54,7 +47,6 @@ const SearchBoxExampleGoogleMap = withGoogleMap(props => (
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
 export default class SearchBoxExample extends Component {
-
   state = {
     bounds: null,
     center: {
@@ -90,14 +82,17 @@ export default class SearchBoxExample extends Component {
     const bounds = new google.maps.LatLngBounds();
 
     places.map(place => {
-      place.geometry.viewport ? bounds.union(place.geometry.viewport) : bounds.extend(place.geometry.location)
+      place.geometry.viewport
+        ? bounds.union(place.geometry.viewport)
+        : bounds.extend(place.geometry.location);
     });
 
     const markers = places.map(place => ({
       position: place.geometry.location,
     }));
 
-    const mapCenter = markers.length > 0 ? markers[0].position : this.state.center;
+    const mapCenter =
+      markers.length > 0 ? markers[0].position : this.state.center;
 
     this.setState({
       center: mapCenter,
@@ -110,12 +105,8 @@ export default class SearchBoxExample extends Component {
   render() {
     return (
       <SearchBoxExampleGoogleMap
-        containerElement={
-          <div style={{ height: `100%` }} />
-        }
-        mapElement={
-          <div style={{ height: `100%` }} />
-        }
+        containerElement={<div style={{ height: `100%` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
         center={this.state.center}
         onMapMounted={this.handleMapMounted}
         onBoundsChanged={this.handleBoundsChanged}

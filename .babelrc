@@ -9,7 +9,8 @@
   "plugins": [
     "lodash",
     "transform-flow-comments",
-    "transform-runtime"
+    "transform-runtime",
+    "syntax-trailing-function-commas"
   ],
   "presets": [
     "es2015",

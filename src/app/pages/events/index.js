@@ -1,10 +1,10 @@
-import SimpleClickEventExample from "./SimpleClickEventExample";
+import SimpleClickEventExample from './SimpleClickEventExample';
 
-import ClosureListenersExample from "./ClosureListenersExample";
+import ClosureListenersExample from './ClosureListenersExample';
 
-import AccessingArgumentsExample from "./AccessingArgumentsExample";
+import AccessingArgumentsExample from './AccessingArgumentsExample';
 
-import GettingPropertiesExample from "./GettingPropertiesExample";
+import GettingPropertiesExample from './GettingPropertiesExample';
 
 SimpleClickEventExample.__raw = require(`!raw!./SimpleClickEventExample`);
 ClosureListenersExample.__raw = require(`!raw!./ClosureListenersExample`);

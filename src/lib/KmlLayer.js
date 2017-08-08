@@ -1,20 +1,17 @@
 /* global google */
-import _ from "lodash";
+import _ from 'lodash';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import createReactClass from "create-react-class";
+import createReactClass from 'create-react-class';
 
-import {
-  MAP,
-  KML_LAYER,
-} from "./constants";
+import { MAP, KML_LAYER } from './constants';
 
 import {
   addDefaultPrefixToPropTypes,
   collectUncontrolledAndControlledProps,
   default as enhanceElement,
-} from "./enhanceElement";
+} from './enhanceElement';
 
 const controlledPropTypes = {
   // NOTICE!!!!!!
@@ -33,7 +30,9 @@ const controlledPropTypes = {
   zIndex: PropTypes.number,
 };
 
-const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(
+  controlledPropTypes,
+);
 
 const eventMap = {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
@@ -41,7 +40,7 @@ const eventMap = {
   onClick: `click`,
 
   onDefaultViewportChanged: `defaultviewport_changed`,
-  
+
   onStatusChanged: `status_changed`,
 };
 
@@ -52,27 +51,51 @@ const publicMethodMap = {
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getDefaultViewport(kmlLayer) { return kmlLayer.getDefaultViewport(); },
+  getDefaultViewport(kmlLayer) {
+    return kmlLayer.getDefaultViewport();
+  },
 
-  getMetadata(kmlLayer) { return kmlLayer.getMetadata(); },
+  getMetadata(kmlLayer) {
+    return kmlLayer.getMetadata();
+  },
 
-  getOptions(kmlLayer) { return kmlLayer.getOptions(); },
+  getOptions(kmlLayer) {
+    return kmlLayer.getOptions();
+  },
 
-  getStatus(kmlLayer) { return kmlLayer.getStatus(); },
+  getStatus(kmlLayer) {
+    return kmlLayer.getStatus();
+  },
 
-  getUrl(kmlLayer) { return kmlLayer.getUrl(); },
+  getUrl(kmlLayer) {
+    return kmlLayer.getUrl();
+  },
 
-  getZIndex(kmlLayer) { return kmlLayer.getZIndex(); },
+  getZIndex(kmlLayer) {
+    return kmlLayer.getZIndex();
+  },
   // END - Public APIs
 };
 
 const controlledPropUpdaterMap = {
-  defaultViewport(kmlLayer, defaultViewport) { kmlLayer.setDefaultViewport(defaultViewport); },
-  metadata(kmlLayer, metadata) { kmlLayer.setMetadata(metadata); },
-  options(kmlLayer, options) { kmlLayer.setOptions(options); },
-  status(kmlLayer, status) { kmlLayer.setStatus(status); },
-  url(kmlLayer, url) { kmlLayer.setUrl(url); },
-  zIndex(kmlLayer, zIndex) { kmlLayer.setZIndex(zIndex); },
+  defaultViewport(kmlLayer, defaultViewport) {
+    kmlLayer.setDefaultViewport(defaultViewport);
+  },
+  metadata(kmlLayer, metadata) {
+    kmlLayer.setMetadata(metadata);
+  },
+  options(kmlLayer, options) {
+    kmlLayer.setOptions(options);
+  },
+  status(kmlLayer, status) {
+    kmlLayer.setStatus(status);
+  },
+  url(kmlLayer, url) {
+    kmlLayer.setUrl(url);
+  },
+  zIndex(kmlLayer, zIndex) {
+    kmlLayer.setZIndex(zIndex);
+  },
 };
 
 function getInstanceFromComponent(component) {
@@ -81,7 +104,12 @@ function getInstanceFromComponent(component) {
 
 export default _.flowRight(
   createReactClass,
-  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+  enhanceElement(
+    getInstanceFromComponent,
+    publicMethodMap,
+    eventMap,
+    controlledPropUpdaterMap,
+  ),
 )({
   displayName: `KmlLayer`,
 
@@ -101,7 +129,7 @@ export default _.flowRight(
       ...collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
         controlledPropTypes,
-        this.props
+        this.props,
       ),
     });
     return {

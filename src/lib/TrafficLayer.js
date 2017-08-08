@@ -1,20 +1,17 @@
 /* global google */
-import _ from "lodash";
+import _ from 'lodash';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import createReactClass from "create-react-class";
+import createReactClass from 'create-react-class';
 
-import {
-  MAP,
-  TRAFFIC_LAYER,
-} from "./constants";
+import { MAP, TRAFFIC_LAYER } from './constants';
 
 import {
   addDefaultPrefixToPropTypes,
   collectUncontrolledAndControlledProps,
   default as enhanceElement,
-} from "./enhanceElement";
+} from './enhanceElement';
 
 const controlledPropTypes = {
   // NOTICE!!!!!!
@@ -28,7 +25,9 @@ const controlledPropTypes = {
   options: PropTypes.object,
 };
 
-const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(
+  controlledPropTypes,
+);
 
 const eventMap = {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#TrafficLayer
@@ -46,7 +45,9 @@ const publicMethodMap = {
 };
 
 const controlledPropUpdaterMap = {
-  options(trafficLayer, options) { trafficLayer.setOptions(options); },
+  options(trafficLayer, options) {
+    trafficLayer.setOptions(options);
+  },
 };
 
 function getInstanceFromComponent(component) {
@@ -55,7 +56,12 @@ function getInstanceFromComponent(component) {
 
 export default _.flowRight(
   createReactClass,
-  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+  enhanceElement(
+    getInstanceFromComponent,
+    publicMethodMap,
+    eventMap,
+    controlledPropUpdaterMap,
+  ),
 )({
   displayName: `TrafficLayer`,
 
@@ -75,7 +81,7 @@ export default _.flowRight(
       ...collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
         controlledPropTypes,
-        this.props
+        this.props,
       ),
     });
     return {

@@ -1,30 +1,26 @@
 /* global google */
-import _ from "lodash";
+import _ from 'lodash';
 
-import invariant from "invariant";
+import invariant from 'invariant';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import createReactClass from "create-react-class";
+import createReactClass from 'create-react-class';
 
-import { Children } from "react";
+import { Children } from 'react';
 
 import {
   unstable_renderSubtreeIntoContainer,
   unmountComponentAtNode,
-} from "react-dom";
+} from 'react-dom';
 
-import {
-  MAP,
-  ANCHOR,
-  INFO_WINDOW,
-} from "./constants";
+import { MAP, ANCHOR, INFO_WINDOW } from './constants';
 
 import {
   addDefaultPrefixToPropTypes,
   collectUncontrolledAndControlledProps,
   default as enhanceElement,
-} from "./enhanceElement";
+} from './enhanceElement';
 
 const controlledPropTypes = {
   // NOTICE!!!!!!
@@ -41,13 +37,15 @@ const controlledPropTypes = {
   zIndex: PropTypes.number,
 };
 
-const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(
+  controlledPropTypes,
+);
 
 const eventMap = {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   onCloseClick: `closeclick`,
-  
+
   onContentChanged: `content_changed`,
 
   onDomReady: `domready`,
@@ -64,19 +62,33 @@ const publicMethodMap = {
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getPosition(infoWindow) { return infoWindow.getPosition(); },
+  getPosition(infoWindow) {
+    return infoWindow.getPosition();
+  },
 
-  getZIndex(infoWindow) { return infoWindow.getZIndex(); },
+  getZIndex(infoWindow) {
+    return infoWindow.getZIndex();
+  },
   // END - Public APIs
 };
 
 const controlledPropUpdaterMap = {
   children(infoWindow, children, component) {
-    unstable_renderSubtreeIntoContainer(component, Children.only(children), infoWindow.getContent());
+    unstable_renderSubtreeIntoContainer(
+      component,
+      Children.only(children),
+      infoWindow.getContent(),
+    );
   },
-  options(infoWindow, options) { infoWindow.setOptions(options); },
-  position(infoWindow, position) { infoWindow.setPosition(position); },
-  zIndex(infoWindow, zIndex) { infoWindow.setZIndex(zIndex); },
+  options(infoWindow, options) {
+    infoWindow.setOptions(options);
+  },
+  position(infoWindow, position) {
+    infoWindow.setPosition(position);
+  },
+  zIndex(infoWindow, zIndex) {
+    infoWindow.setZIndex(zIndex);
+  },
 };
 
 function getInstanceFromComponent(component) {
@@ -91,15 +103,21 @@ function openInfoWindow(context, infoWindow) {
   } else if (infoWindow.getPosition()) {
     infoWindow.open(map);
   } else {
-    invariant(false,
-`You must provide either an anchor (typically a <Marker>) or a position for <InfoWindow>.`
+    invariant(
+      false,
+      `You must provide either an anchor (typically a <Marker>) or a position for <InfoWindow>.`,
     );
   }
 }
 
 export default _.flowRight(
   createReactClass,
-  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+  enhanceElement(
+    getInstanceFromComponent,
+    publicMethodMap,
+    eventMap,
+    controlledPropUpdaterMap,
+  ),
 )({
   displayName: `InfoWindow`,
 
@@ -121,7 +139,7 @@ export default _.flowRight(
       ...collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
         controlledPropTypes,
-        this.props
+        this.props,
       ),
       // Override props of ReactElement type
       content: undefined,
@@ -136,12 +154,18 @@ export default _.flowRight(
 
   componentDidMount() {
     const infoWindow = getInstanceFromComponent(this);
-    const content = document.createElement(`div`)
+    const content = document.createElement(`div`);
 
-    controlledPropUpdaterMap.children({
-      getContent() { return content },
-    }, this.props.children, this);
-    infoWindow.setContent(content)
+    controlledPropUpdaterMap.children(
+      {
+        getContent() {
+          return content;
+        },
+      },
+      this.props.children,
+      this,
+    );
+    infoWindow.setContent(content);
   },
 
   componentWillReceiveProps(nextProps, nextContext) {

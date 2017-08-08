@@ -1,16 +1,11 @@
 /* global google */
-import _ from "lodash";
+import _ from 'lodash';
 
-import invariant from "invariant";
+import invariant from 'invariant';
 
-import {
-  Children,
-} from "react";
+import { Children } from 'react';
 
-import {
-  render,
-  unmountComponentAtNode,
-} from "react-dom";
+import { render, unmountComponentAtNode } from 'react-dom';
 
 export function createContainerElement() {
   const containerElement = document.createElement(`div`);
@@ -19,21 +14,18 @@ export function createContainerElement() {
 }
 
 export function mountContainerElementToPane(mapPanes, containerElement, props) {
-  const {
+  const { mapPaneName } = props;
+  invariant(
+    !!mapPaneName,
+    `OverlayView requires either props.mapPaneName or props.defaultMapPaneName but got %s`,
     mapPaneName,
-  } = props;
-  invariant(!!mapPaneName,
-`OverlayView requires either props.mapPaneName or props.defaultMapPaneName but got %s`,
-    mapPaneName
   );
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#MapPanes
   mapPanes[mapPaneName].appendChild(containerElement);
 }
 
 function getOffsetOverride(containerElement, props) {
-  const {
-    getPixelPositionOffset,
-  } = props;
+  const { getPixelPositionOffset } = props;
   //
   // Allows the component to control the visual position of the OverlayView
   // relative to the LatLng pixel position.
@@ -55,7 +47,7 @@ function createLatLng(inst, Type) {
 function createLatLngBounds(inst, Type) {
   return new Type(
     new google.maps.LatLng(inst.ne.lat, inst.ne.lng),
-    new google.maps.LatLng(inst.sw.lat, inst.sw.lng)
+    new google.maps.LatLng(inst.sw.lat, inst.sw.lng),
   );
 }
 
@@ -101,15 +93,27 @@ function getLayoutStylesByPosition(mapCanvasProjection, offset, position) {
 
 function getLayoutStyles(mapCanvasProjection, offset, props) {
   if (props.bounds) {
-    const bounds = ensureOfType(props.bounds, google.maps.LatLngBounds, createLatLngBounds);
+    const bounds = ensureOfType(
+      props.bounds,
+      google.maps.LatLngBounds,
+      createLatLngBounds,
+    );
     return getLayoutStylesByBounds(mapCanvasProjection, offset, bounds);
   } else {
-    const position = ensureOfType(props.position, google.maps.LatLng, createLatLng);
+    const position = ensureOfType(
+      props.position,
+      google.maps.LatLng,
+      createLatLng,
+    );
     return getLayoutStylesByPosition(mapCanvasProjection, offset, position);
   }
 }
 
-export function renderChildToContainerElement(mapCanvasProjection, containerElement, props) {
+export function renderChildToContainerElement(
+  mapCanvasProjection,
+  containerElement,
+  props,
+) {
   const child = Children.only(props.children);
   render(child, containerElement, () => {
     const offset = {

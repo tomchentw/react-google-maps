@@ -1,22 +1,22 @@
-import SimpleMapExample from "./SimpleMapExample";
+import SimpleMapExample from './SimpleMapExample';
 
-import StyledMapExample from "./StyledMapExample";
+import StyledMapExample from './StyledMapExample';
 
-import GeolocationExample from "./GeolocationExample";
+import GeolocationExample from './GeolocationExample';
 
-import DirectionsExample from "./DirectionsExample";
+import DirectionsExample from './DirectionsExample';
 
-import OverlayViewExample from "./OverlayViewExample";
+import OverlayViewExample from './OverlayViewExample';
 
-import KmlLayerExample from "./KmlLayerExample";
+import KmlLayerExample from './KmlLayerExample';
 
 import FusionTablesLayerExample from './FusionTablesLayerExample';
 
-import PopUpInfoWindowExample from "./PopUpInfoWindowExample";
+import PopUpInfoWindowExample from './PopUpInfoWindowExample';
 
 import TrafficLayerExample from './TrafficLayerExample';
 
-import StreetViewPanoramaExample from "./StreetViewPanoramaExample";
+import StreetViewPanoramaExample from './StreetViewPanoramaExample';
 
 SimpleMapExample.__raw = require(`!raw!./SimpleMapExample`);
 StyledMapExample.__raw = require(`!raw!./StyledMapExample`);

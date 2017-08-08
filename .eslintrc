@@ -1,10 +1,15 @@
 {
-  "extends": "react-app",
+  "extends": ["react-app", "prettier"],
+  "plugins": ["prettier"],
   "rules": {
-    // Possible Errors
     "comma-dangle": ["error", "always-multiline"],
-    // Stylistic Issues
     "jsx-quotes": ["error", "prefer-double"],
-    "quotes": ["error", "backtick"]
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "all"
+      }
+    ]
   }
 }

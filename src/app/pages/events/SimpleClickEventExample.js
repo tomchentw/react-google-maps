@@ -1,16 +1,9 @@
 /* global google */
-import {
-  default as React,
-  Component,
-} from "react";
+import { default as React, Component } from 'react';
 
-import {
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-} from "../../../lib";
+import { withGoogleMap, GoogleMap, Marker } from '../../../lib';
 
-const SimpleClickEventExampleGoogleMap = withGoogleMap(props => (
+const SimpleClickEventExampleGoogleMap = withGoogleMap(props =>
   <GoogleMap
     ref={props.onMapMounted}
     zoom={props.zoom}
@@ -22,8 +15,8 @@ const SimpleClickEventExampleGoogleMap = withGoogleMap(props => (
       title="Click to zoom"
       onClick={props.onMarkerClick}
     />
-  </GoogleMap>
-));
+  </GoogleMap>,
+);
 
 const INITIAL_CENTER = { lat: -25.363882, lng: 131.044922 };
 
@@ -33,7 +26,6 @@ const INITIAL_CENTER = { lat: -25.363882, lng: 131.044922 };
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
 export default class SimpleClickEventExample extends Component {
-
   state = {
     zoom: 4,
     center: INITIAL_CENTER,
@@ -86,12 +78,8 @@ export default class SimpleClickEventExample extends Component {
   render() {
     return (
       <SimpleClickEventExampleGoogleMap
-        containerElement={
-          <div style={{ height: `100%` }} />
-        }
-        mapElement={
-          <div style={{ height: `100%` }} />
-        }
+        containerElement={<div style={{ height: `100%` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
         zoom={this.state.zoom}
         center={this.state.center}
         onMapMounted={this.handleMapMounted}

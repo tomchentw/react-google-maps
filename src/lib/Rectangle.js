@@ -1,20 +1,17 @@
 /* global google */
-import _ from "lodash";
+import _ from 'lodash';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import createReactClass from "create-react-class";
+import createReactClass from 'create-react-class';
 
-import {
-  MAP,
-  RECTANGLE,
-} from "./constants";
+import { MAP, RECTANGLE } from './constants';
 
 import {
   addDefaultPrefixToPropTypes,
   collectUncontrolledAndControlledProps,
   default as enhanceElement,
-} from "./enhanceElement";
+} from './enhanceElement';
 
 const controlledPropTypes = {
   // NOTICE!!!!!!
@@ -32,7 +29,9 @@ const controlledPropTypes = {
   visible: PropTypes.bool,
 };
 
-const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(
+  controlledPropTypes,
+);
 
 const eventMap = {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
@@ -69,22 +68,40 @@ const publicMethodMap = {
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getBounds(rectangle) { return rectangle.getBounds(); },
+  getBounds(rectangle) {
+    return rectangle.getBounds();
+  },
 
-  getDraggable(rectangle) { return rectangle.getDraggable(); },
+  getDraggable(rectangle) {
+    return rectangle.getDraggable();
+  },
 
-  getEditable(rectangle) { return rectangle.getEditable(); },
+  getEditable(rectangle) {
+    return rectangle.getEditable();
+  },
 
-  getVisible(rectangle) { return rectangle.getVisible(); },
+  getVisible(rectangle) {
+    return rectangle.getVisible();
+  },
   // END - Public APIs
 };
 
 const controlledPropUpdaterMap = {
-  bounds(rectangle, bounds) { rectangle.setBounds(bounds); },
-  draggable(rectangle, draggable) { rectangle.setDraggable(draggable); },
-  editable(rectangle, editable) { rectangle.setEditable(editable); },
-  options(rectangle, options) { rectangle.setOptions(options); },
-  visible(rectangle, visible) { rectangle.setVisible(visible); },
+  bounds(rectangle, bounds) {
+    rectangle.setBounds(bounds);
+  },
+  draggable(rectangle, draggable) {
+    rectangle.setDraggable(draggable);
+  },
+  editable(rectangle, editable) {
+    rectangle.setEditable(editable);
+  },
+  options(rectangle, options) {
+    rectangle.setOptions(options);
+  },
+  visible(rectangle, visible) {
+    rectangle.setVisible(visible);
+  },
 };
 
 function getInstanceFromComponent(component) {
@@ -93,7 +110,12 @@ function getInstanceFromComponent(component) {
 
 export default _.flowRight(
   createReactClass,
-  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+  enhanceElement(
+    getInstanceFromComponent,
+    publicMethodMap,
+    eventMap,
+    controlledPropUpdaterMap,
+  ),
 )({
   displayName: `Rectangle`,
 
@@ -113,7 +135,7 @@ export default _.flowRight(
       ...collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
         controlledPropTypes,
-        this.props
+        this.props,
       ),
     });
     return {

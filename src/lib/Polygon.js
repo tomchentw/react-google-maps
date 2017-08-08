@@ -1,20 +1,17 @@
 /* global google */
-import _ from "lodash";
+import _ from 'lodash';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import createReactClass from "create-react-class";
+import createReactClass from 'create-react-class';
 
-import {
-  MAP,
-  POLYGON,
-} from "./constants";
+import { MAP, POLYGON } from './constants';
 
 import {
   addDefaultPrefixToPropTypes,
   collectUncontrolledAndControlledProps,
   default as enhanceElement,
-} from "./enhanceElement";
+} from './enhanceElement';
 
 const controlledPropTypes = {
   // NOTICE!!!!!!
@@ -33,7 +30,9 @@ const controlledPropTypes = {
   visible: PropTypes.bool,
 };
 
-const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(
+  controlledPropTypes,
+);
 
 const eventMap = {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
@@ -68,25 +67,47 @@ const publicMethodMap = {
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getDraggable(polygon) { return polygon.getDraggable(); },
+  getDraggable(polygon) {
+    return polygon.getDraggable();
+  },
 
-  getEditable(polygon) { return polygon.getEditable(); },
+  getEditable(polygon) {
+    return polygon.getEditable();
+  },
 
-  getPath(polygon) { return polygon.getPath(); },
+  getPath(polygon) {
+    return polygon.getPath();
+  },
 
-  getPaths(polygon) { return polygon.getPaths(); },
+  getPaths(polygon) {
+    return polygon.getPaths();
+  },
 
-  getVisible(polygon) { return polygon.getVisible(); },
+  getVisible(polygon) {
+    return polygon.getVisible();
+  },
   // END - Public APIs
 };
 
 const controlledPropUpdaterMap = {
-  draggable(polygon, draggable) { polygon.setDraggable(draggable); },
-  editable(polygon, editable) { polygon.setEditable(editable); },
-  options(polygon, options) { polygon.setOptions(options); },
-  path(polygon, path) { polygon.setPath(path); },
-  paths(polygon, paths) { polygon.setPaths(paths); },
-  visible(polygon, visible) { polygon.setVisible(visible); },
+  draggable(polygon, draggable) {
+    polygon.setDraggable(draggable);
+  },
+  editable(polygon, editable) {
+    polygon.setEditable(editable);
+  },
+  options(polygon, options) {
+    polygon.setOptions(options);
+  },
+  path(polygon, path) {
+    polygon.setPath(path);
+  },
+  paths(polygon, paths) {
+    polygon.setPaths(paths);
+  },
+  visible(polygon, visible) {
+    polygon.setVisible(visible);
+  },
 };
 
 function getInstanceFromComponent(component) {
@@ -95,7 +116,12 @@ function getInstanceFromComponent(component) {
 
 export default _.flowRight(
   createReactClass,
-  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+  enhanceElement(
+    getInstanceFromComponent,
+    publicMethodMap,
+    eventMap,
+    controlledPropUpdaterMap,
+  ),
 )({
   displayName: `Polygon`,
 
@@ -115,7 +141,7 @@ export default _.flowRight(
       ...collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
         controlledPropTypes,
-        this.props
+        this.props,
       ),
     });
     return {

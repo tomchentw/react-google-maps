@@ -2,49 +2,44 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import {
-    removeDefaultPrefix,
-    addDefaultPrefixToPropTypes,
-    collectProps,
-    collectUncontrolledAndControlledProps,
+  removeDefaultPrefix,
+  addDefaultPrefixToPropTypes,
+  collectProps,
+  collectUncontrolledAndControlledProps,
 } from './enhanceElement';
 
 describe(`enhanceElement`, () => {
-
   it(`should remove the default prefix from the defaultCenter key and lowercase the key`, () => {
-
     const expected = `center`;
     const defaultKey = `defaultCenter`;
 
-    const actual = removeDefaultPrefix(defaultKey)
-    expect(actual).toEqual(expected)
+    const actual = removeDefaultPrefix(defaultKey);
+    expect(actual).toEqual(expected);
   });
 
   it(`should remove the default prefix from the defaultZoom key and lowercase the key`, () => {
-
     const expected = `zoom`;
     const defaultKey = `defaultZoom`;
 
-    const actual = removeDefaultPrefix(defaultKey)
-    expect(actual).toEqual(expected)
+    const actual = removeDefaultPrefix(defaultKey);
+    expect(actual).toEqual(expected);
   });
 
   it(`should add the default prefix to the center propType`, () => {
-
     const expected = true;
 
     const propTypes = {
       center: PropTypes.object,
     };
 
-    const propTypesWithDefaultPrefix = addDefaultPrefixToPropTypes(propTypes)
+    const propTypesWithDefaultPrefix = addDefaultPrefixToPropTypes(propTypes);
 
     const actual = _.has(propTypesWithDefaultPrefix, `defaultCenter`);
-    expect(actual).toEqual(expected)
+    expect(actual).toEqual(expected);
   });
 
   it(`should add the default prefix to all propTypes`, () => {
-
-    const expected = true
+    const expected = true;
     const propTypes = {
       center: PropTypes.object,
       heading: PropTypes.number,
@@ -55,23 +50,21 @@ describe(`enhanceElement`, () => {
       zoom: PropTypes.number,
     };
 
-    const propTypesWithDefaultPrefix = addDefaultPrefixToPropTypes(propTypes)
+    const propTypesWithDefaultPrefix = addDefaultPrefixToPropTypes(propTypes);
 
     Object.keys(propTypesWithDefaultPrefix).forEach(key => {
       const actual = key.startsWith(`default`);
-      expect(actual).toEqual(expected)
-    })
-
+      expect(actual).toEqual(expected);
+    });
   });
 
   it(`should persist ONLY the props that matched`, () => {
-
     const expected = {
       defaultCenter: {
         lat: -25.363882,
         lng: 131.044922,
       },
-    }
+    };
 
     const propTypes = {
       defaultCenter: PropTypes.object,
@@ -89,23 +82,22 @@ describe(`enhanceElement`, () => {
         lng: 131.044922,
       },
       defaultZoom: 3,
-      onClick() { },
+      onClick() {},
       children: [{}],
-    }
+    };
 
     const actual = collectProps(propTypes, props, keyTransform);
     expect(actual).toEqual(expected);
   });
 
   it(`should collect both uncontrolled and controlled props when calling collectUncontrolledAndControlledProps`, () => {
-
     const expected = {
       center: {
         lat: -25.363882,
         lng: 131.044922,
       },
       zoom: 3,
-    }
+    };
 
     const defaultUncontrolledPropTypes = {
       defaultCenter: PropTypes.object,
@@ -133,12 +125,15 @@ describe(`enhanceElement`, () => {
         lng: 131.044922,
       },
       defaultZoom: 3,
-      onClick() { },
+      onClick() {},
       children: [{}],
-    }
+    };
 
-    const actual = collectUncontrolledAndControlledProps(defaultUncontrolledPropTypes, controlledPropTypes, props);
+    const actual = collectUncontrolledAndControlledProps(
+      defaultUncontrolledPropTypes,
+      controlledPropTypes,
+      props,
+    );
     expect(actual).toEqual(expected);
   });
-
 });

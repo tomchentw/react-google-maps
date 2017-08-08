@@ -1,20 +1,17 @@
 /* global google */
-import _ from "lodash";
+import _ from 'lodash';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import createReactClass from "create-react-class";
+import createReactClass from 'create-react-class';
 
-import {
-  MAP,
-  CIRCLE,
-} from "./constants";
+import { MAP, CIRCLE } from './constants';
 
 import {
   addDefaultPrefixToPropTypes,
   collectUncontrolledAndControlledProps,
   default as enhanceElement,
-} from "./enhanceElement";
+} from './enhanceElement';
 
 const controlledPropTypes = {
   // NOTICE!!!!!!
@@ -33,7 +30,9 @@ const controlledPropTypes = {
   visible: PropTypes.bool,
 };
 
-const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(
+  controlledPropTypes,
+);
 
 const eventMap = {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
@@ -72,29 +71,55 @@ const publicMethodMap = {
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getBounds(circle) { return circle.getBounds(); },
+  getBounds(circle) {
+    return circle.getBounds();
+  },
 
-  getCenter(circle) { return circle.getCenter(); },
+  getCenter(circle) {
+    return circle.getCenter();
+  },
 
-  getDraggable(circle) { return circle.getDraggable(); },
+  getDraggable(circle) {
+    return circle.getDraggable();
+  },
 
-  getEditable(circle) { return circle.getEditable(); },
+  getEditable(circle) {
+    return circle.getEditable();
+  },
 
-  getMap(circle) { return circle.getMap(); },
+  getMap(circle) {
+    return circle.getMap();
+  },
 
-  getRadius(circle) { return circle.getRadius(); },
+  getRadius(circle) {
+    return circle.getRadius();
+  },
 
-  getVisible(circle) { return circle.getVisible(); },
+  getVisible(circle) {
+    return circle.getVisible();
+  },
   // END - Public APIs
 };
 
 const controlledPropUpdaterMap = {
-  center(circle, center) { circle.setCenter(center); },
-  draggable(circle, draggable) { circle.setDraggable(draggable); },
-  editable(circle, editable) { circle.setEditable(editable); },
-  options(circle, options) { circle.setOptions(options); },
-  radius(circle, radius) { circle.setRadius(radius); },
-  visible(circle, visible) { circle.setVisible(visible); },
+  center(circle, center) {
+    circle.setCenter(center);
+  },
+  draggable(circle, draggable) {
+    circle.setDraggable(draggable);
+  },
+  editable(circle, editable) {
+    circle.setEditable(editable);
+  },
+  options(circle, options) {
+    circle.setOptions(options);
+  },
+  radius(circle, radius) {
+    circle.setRadius(radius);
+  },
+  visible(circle, visible) {
+    circle.setVisible(visible);
+  },
 };
 
 function getInstanceFromComponent(component) {
@@ -103,7 +128,12 @@ function getInstanceFromComponent(component) {
 
 export default _.flowRight(
   createReactClass,
-  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+  enhanceElement(
+    getInstanceFromComponent,
+    publicMethodMap,
+    eventMap,
+    controlledPropUpdaterMap,
+  ),
 )({
   displayName: `Circle`,
 
@@ -123,7 +153,7 @@ export default _.flowRight(
       ...collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
         controlledPropTypes,
-        this.props
+        this.props,
       ),
     });
     return {

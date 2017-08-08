@@ -1,24 +1,20 @@
-import _ from "lodash";
+import _ from 'lodash';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import createReactClass from "create-react-class";
+import createReactClass from 'create-react-class';
 
-import React from "react";
+import React from 'react';
 
-import MarkerClustererPlus from "marker-clusterer-plus";
+import MarkerClustererPlus from 'marker-clusterer-plus';
 
-import {
-  MAP,
-  ANCHOR,
-  MARKER_CLUSTERER,
-} from "../constants";
+import { MAP, ANCHOR, MARKER_CLUSTERER } from '../constants';
 
 import {
   addDefaultPrefixToPropTypes,
   collectUncontrolledAndControlledProps,
   default as enhanceElement,
-} from "../enhanceElement";
+} from '../enhanceElement';
 
 const controlledPropTypes = {
   // NOTICE!!!!!!
@@ -44,7 +40,9 @@ const controlledPropTypes = {
   zoomOnClick: PropTypes.bool,
 };
 
-const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
+const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(
+  controlledPropTypes,
+);
 
 const eventMap = {
   // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html
@@ -63,43 +61,81 @@ const publicMethodMap = {
   // Public APIs
   //
   // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html#events
-  getAverageCenter(markerClusterer) { return markerClusterer.getAverageCenter(); },
+  getAverageCenter(markerClusterer) {
+    return markerClusterer.getAverageCenter();
+  },
 
-  getBatchSizeIE(markerClusterer) { return markerClusterer.getBatchSizeIE(); },
-  
-  getBatchSize(markerClusterer) { return markerClusterer.getBatchSize(); },
+  getBatchSizeIE(markerClusterer) {
+    return markerClusterer.getBatchSizeIE();
+  },
 
-  getCalculator(markerClusterer) { return markerClusterer.getCalculator(); },
+  getBatchSize(markerClusterer) {
+    return markerClusterer.getBatchSize();
+  },
 
-  getClusterClass(markerClusterer) { return markerClusterer.getClusterClass(); },
+  getCalculator(markerClusterer) {
+    return markerClusterer.getCalculator();
+  },
 
-  getClusters(markerClusterer) { return markerClusterer.getClusters(); },
+  getClusterClass(markerClusterer) {
+    return markerClusterer.getClusterClass();
+  },
 
-  getEnableRetinaIcons(markerClusterer) { return markerClusterer.getEnableRetinaIcons(); },
+  getClusters(markerClusterer) {
+    return markerClusterer.getClusters();
+  },
 
-  getGridSize(markerClusterer) { return markerClusterer.getGridSize(); },
+  getEnableRetinaIcons(markerClusterer) {
+    return markerClusterer.getEnableRetinaIcons();
+  },
 
-  getIgnoreHidden(markerClusterer) { return markerClusterer.getIgnoreHidden(); },
+  getGridSize(markerClusterer) {
+    return markerClusterer.getGridSize();
+  },
 
-  getImageExtension(markerClusterer) { return markerClusterer.getImageExtension(); },
+  getIgnoreHidden(markerClusterer) {
+    return markerClusterer.getIgnoreHidden();
+  },
 
-  getImagePath(markerClusterer) { return markerClusterer.getImagePath(); },
+  getImageExtension(markerClusterer) {
+    return markerClusterer.getImageExtension();
+  },
 
-  getImageSize(markerClusterer) { return markerClusterer.getImageSize(); },
+  getImagePath(markerClusterer) {
+    return markerClusterer.getImagePath();
+  },
 
-  getMarkers(markerClusterer) { return markerClusterer.getMarkers(); },
+  getImageSize(markerClusterer) {
+    return markerClusterer.getImageSize();
+  },
 
-  getMaxZoom(markerClusterer) { return markerClusterer.getMaxZoom(); },
+  getMarkers(markerClusterer) {
+    return markerClusterer.getMarkers();
+  },
 
-  getMinimumClusterSize(markerClusterer) { return markerClusterer.getMinimumClusterSize(); },
+  getMaxZoom(markerClusterer) {
+    return markerClusterer.getMaxZoom();
+  },
 
-  getStyles(markerClusterer) { return markerClusterer.getStyles(); },
+  getMinimumClusterSize(markerClusterer) {
+    return markerClusterer.getMinimumClusterSize();
+  },
 
-  getTitle(markerClusterer) { return markerClusterer.getTitle(); },
+  getStyles(markerClusterer) {
+    return markerClusterer.getStyles();
+  },
 
-  getTotalClusters(markerClusterer) { return markerClusterer.getTotalClusters(); },
+  getTitle(markerClusterer) {
+    return markerClusterer.getTitle();
+  },
 
-  getZoomOnClick(markerClusterer) { return markerClusterer.getZoomOnClick(); },
+  getTotalClusters(markerClusterer) {
+    return markerClusterer.getTotalClusters();
+  },
+
+  getZoomOnClick(markerClusterer) {
+    return markerClusterer.getZoomOnClick();
+  },
 
   // Public APIs - Use this carefully
   addMarker(markerClusterer, marker, nodraw = false) {
@@ -118,11 +154,17 @@ const publicMethodMap = {
     return markerClusterer.removeMarkers(markers, nodraw);
   },
 
-  clearMarkers(markerClusterer) { return markerClusterer.clearMarkers(); },
+  clearMarkers(markerClusterer) {
+    return markerClusterer.clearMarkers();
+  },
 
-  fitMapToMarkers(markerClusterer) { return markerClusterer.fitMapToMarkers(); },
+  fitMapToMarkers(markerClusterer) {
+    return markerClusterer.fitMapToMarkers();
+  },
 
-  repaint(markerClusterer) { return markerClusterer.repaint(); },
+  repaint(markerClusterer) {
+    return markerClusterer.repaint();
+  },
   // END - Public APIs
 };
 
@@ -134,40 +176,58 @@ const controlledPropUpdaterMap = {
   batchSizeIE(markerClusterer, batchSizeIE) {
     markerClusterer.setBatchSizeIE(batchSizeIE);
   },
- 
+
   batchSize(markerClusterer, batchSize) {
     markerClusterer.setBatchSize(batchSize);
   },
-  
-  calculator(markerClusterer, calculator) { markerClusterer.setCalculator(calculator); },
+
+  calculator(markerClusterer, calculator) {
+    markerClusterer.setCalculator(calculator);
+  },
 
   enableRetinaIcons(markerClusterer, enableRetinaIcons) {
     markerClusterer.setEnableRetinaIcons(enableRetinaIcons);
   },
 
-  gridSize(markerClusterer, gridSize) { markerClusterer.setGridSize(gridSize); },
+  gridSize(markerClusterer, gridSize) {
+    markerClusterer.setGridSize(gridSize);
+  },
 
-  ignoreHidden(markerClusterer, ignoreHidden) { markerClusterer.setIgnoreHidden(ignoreHidden); },
+  ignoreHidden(markerClusterer, ignoreHidden) {
+    markerClusterer.setIgnoreHidden(ignoreHidden);
+  },
 
   imageExtension(markerClusterer, imageExtension) {
     markerClusterer.setImageExtension(imageExtension);
   },
 
-  imagePath(markerClusterer, imagePath) { markerClusterer.setImagePath(imagePath); },
+  imagePath(markerClusterer, imagePath) {
+    markerClusterer.setImagePath(imagePath);
+  },
 
-  imageSizes(markerClusterer, imageSizes) { markerClusterer.setImageSizes(imageSizes); },
+  imageSizes(markerClusterer, imageSizes) {
+    markerClusterer.setImageSizes(imageSizes);
+  },
 
-  maxZoom(markerClusterer, maxZoom) { markerClusterer.setMaxZoom(maxZoom); },
+  maxZoom(markerClusterer, maxZoom) {
+    markerClusterer.setMaxZoom(maxZoom);
+  },
 
   minimumClusterSize(markerClusterer, minimumClusterSize) {
     markerClusterer.setMinimumClusterSize(minimumClusterSize);
   },
 
-  styles(markerClusterer, styles) { markerClusterer.setStyles(styles); },
+  styles(markerClusterer, styles) {
+    markerClusterer.setStyles(styles);
+  },
 
-  title(markerClusterer, title) { markerClusterer.setTitle(title); },
+  title(markerClusterer, title) {
+    markerClusterer.setTitle(title);
+  },
 
-  zoomOnClick(markerClusterer, zoomOnClick) { markerClusterer.setZoomOnClick(zoomOnClick); },
+  zoomOnClick(markerClusterer, zoomOnClick) {
+    markerClusterer.setZoomOnClick(zoomOnClick);
+  },
 };
 
 function getInstanceFromComponent(component) {
@@ -176,7 +236,12 @@ function getInstanceFromComponent(component) {
 
 export default _.flowRight(
   createReactClass,
-  enhanceElement(getInstanceFromComponent, publicMethodMap, eventMap, controlledPropUpdaterMap),
+  enhanceElement(
+    getInstanceFromComponent,
+    publicMethodMap,
+    eventMap,
+    controlledPropUpdaterMap,
+  ),
 )({
   displayName: `MarkerClusterer`,
 
@@ -202,8 +267,8 @@ export default _.flowRight(
       collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
         controlledPropTypes,
-        this.props
-      )
+        this.props,
+      ),
     );
     return {
       [MARKER_CLUSTERER]: markerClusterer,
@@ -231,9 +296,7 @@ export default _.flowRight(
   },
 
   render() {
-    const {
-      children,
-    } = this.props;
+    const { children } = this.props;
 
     return (
       <div>

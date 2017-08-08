@@ -1,17 +1,9 @@
 /* global google */
-import {
-  default as React,
-  Component,
-} from "react";
+import { default as React, Component } from 'react';
 
-import {
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-  InfoWindow,
-} from "../../../lib";
+import { withGoogleMap, GoogleMap, Marker, InfoWindow } from '../../../lib';
 
-const ClosureListenersExampleGoogleMap = withGoogleMap(props => (
+const ClosureListenersExampleGoogleMap = withGoogleMap(props =>
   <GoogleMap
     defaultZoom={4}
     defaultCenter={new google.maps.LatLng(-25.363882, 131.044922)}
@@ -27,20 +19,23 @@ const ClosureListenersExampleGoogleMap = withGoogleMap(props => (
           title={(index + 1).toString()}
           onClick={onClick}
         >
-          {marker.showInfo && (
+          {marker.showInfo &&
             <InfoWindow onCloseClick={onCloseClick}>
               <div>
-                <strong>{marker.content}</strong>
+                <strong>
+                  {marker.content}
+                </strong>
                 <br />
-                <em>The contents of this InfoWindow are actually ReactElements.</em>
+                <em>
+                  The contents of this InfoWindow are actually ReactElements.
+                </em>
               </div>
-            </InfoWindow>
-          )}
+            </InfoWindow>}
         </Marker>
       );
     })}
-  </GoogleMap>
-));
+  </GoogleMap>,
+);
 
 function generateInitialMarkers() {
   const southWest = new google.maps.LatLng(-31.203405, 125.244141);
@@ -53,7 +48,7 @@ function generateInitialMarkers() {
   for (let i = 0; i < 5; i++) {
     const position = new google.maps.LatLng(
       southWest.lat() + latSpan * Math.random(),
-      southWest.lng() + lngSpan * Math.random()
+      southWest.lng() + lngSpan * Math.random(),
     );
     markers.push({
       position,
@@ -70,7 +65,6 @@ function generateInitialMarkers() {
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
 export default class ClosureListenersExample extends Component {
-
   state = {
     markers: generateInitialMarkers(),
   };
@@ -109,12 +103,8 @@ export default class ClosureListenersExample extends Component {
   render() {
     return (
       <ClosureListenersExampleGoogleMap
-        containerElement={
-          <div style={{ height: `100%` }} />
-        }
-        mapElement={
-          <div style={{ height: `100%` }} />
-        }
+        containerElement={<div style={{ height: `100%` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
         onMarkerClick={this.handleMarkerClick}
         onCloseClick={this.handleCloseClick}
         markers={this.state.markers}

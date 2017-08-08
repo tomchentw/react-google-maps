@@ -1,7 +1,4 @@
-import {
-  default as React,
-  Component,
-} from "react";
+import { default as React, Component } from 'react';
 
 import {
   useRouterHistory,
@@ -9,23 +6,15 @@ import {
   Route,
   IndexRoute,
   Redirect,
-} from "react-router";
+} from 'react-router';
 
-import {
-  createHistory,
-} from "history";
+import { createHistory } from 'history';
 
-import {
-  Application,
-} from "./containers";
+import { Application } from './containers';
 
-import {
-  GettingStartedExample,
-} from "./pages";
+import { GettingStartedExample } from './pages';
 
-import {
-  PageWithIframeEntry,
-} from "./pages/async";
+import { PageWithIframeEntry } from './pages/async';
 
 import {
   SimpleMapExample,
@@ -38,26 +27,20 @@ import {
   PopUpInfoWindowExample,
   TrafficLayerExample,
   StreetViewPanoramaExample,
-} from "./pages/basics";
+} from './pages/basics';
 
 import {
   SimpleClickEventExample,
   ClosureListenersExample,
   AccessingArgumentsExample,
   GettingPropertiesExample,
-} from "./pages/events";
+} from './pages/events';
 
-import {
-  DrawingExample,
-} from "./pages/drawing";
+import { DrawingExample } from './pages/drawing';
 
-import {
-  SearchBoxExample,
-} from "./pages/places";
+import { SearchBoxExample } from './pages/places';
 
-import {
-  MarkerClustererExample,
-} from "./pages/addons";
+import { MarkerClustererExample } from './pages/addons';
 
 const history = useRouterHistory(createHistory)({
   basename: `/react-google-maps`,
@@ -76,16 +59,34 @@ export default class App extends Component {
             <Route path="directions" component={DirectionsExample} />
             <Route path="overlay-view" component={OverlayViewExample} />
             <Route path="kml-layer" component={KmlLayerExample} />
-            <Route path="fusion-tables-layer" component={FusionTablesLayerExample} />
+            <Route
+              path="fusion-tables-layer"
+              component={FusionTablesLayerExample}
+            />
             <Route path="pop-up-window" component={PopUpInfoWindowExample} />
             <Route path="traffic-layer" component={TrafficLayerExample} />
-            <Route path="streetview-panorama" component={StreetViewPanoramaExample} />
+            <Route
+              path="streetview-panorama"
+              component={StreetViewPanoramaExample}
+            />
           </Route>
           <Route path="events">
-            <Route path="simple-click-event" component={SimpleClickEventExample} />
-            <Route path="closure-listeners" component={ClosureListenersExample} />
-            <Route path="accessing-arguments" component={AccessingArgumentsExample} />
-            <Route path="getting-properties" component={GettingPropertiesExample} />
+            <Route
+              path="simple-click-event"
+              component={SimpleClickEventExample}
+            />
+            <Route
+              path="closure-listeners"
+              component={ClosureListenersExample}
+            />
+            <Route
+              path="accessing-arguments"
+              component={AccessingArgumentsExample}
+            />
+            <Route
+              path="getting-properties"
+              component={GettingPropertiesExample}
+            />
           </Route>
           <Route path="drawing">
             <Route path="drawing-tools" component={DrawingExample} />

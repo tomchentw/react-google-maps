@@ -182,6 +182,13 @@ const publicMethodMap = {
   getZIndex(marker) {
     return marker.getZIndex();
   },
+
+  // Public Api's
+  // https://github.com/printercu/google-maps-utility-library-v3-read-only/blob/master/markerwithlabel/src/markerwithlabel.js
+  getLabelContent(marker) {
+    return marker.get(`labelContent`);
+  },
+
   // END - Public APIs
 };
 
@@ -208,10 +215,6 @@ const controlledPropUpdaterMap = {
 
   icon(marker, icon) {
     marker.setIcon(icon);
-  },
-
-  label(marker, label) {
-    marker.setLabel(label);
   },
 
   opacity(marker, opacity) {
@@ -245,6 +248,13 @@ const controlledPropUpdaterMap = {
   zIndex(marker, zIndex) {
     marker.setZIndex(zIndex);
   },
+
+  // Public Api's
+  // https://github.com/printercu/google-maps-utility-library-v3-read-only/blob/master/markerwithlabel/src/markerwithlabel.js
+  labelContent(marker, label) {
+    marker.set(`labelContent`, label);
+  },
+
 };
 
 function getInstanceFromComponent(component) {

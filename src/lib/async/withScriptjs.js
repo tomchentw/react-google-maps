@@ -60,7 +60,7 @@ export default function withScriptjs(WrappedComponent) {
       this.setState({
         loadingState: LOADING_STATE_BEGIN,
       });
-      // Don't load scriptjs as dependency since we want this module be used on server side.
+      // Don't load scriptjs as a dependency since we do not want this module be used on server side.
       // eslint-disable-next-line global-require
       const scriptjs = require(`scriptjs`);
       const {

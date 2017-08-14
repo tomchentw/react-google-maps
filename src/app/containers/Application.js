@@ -107,6 +107,11 @@ export default class Application extends Component {
                   Marker clusterer addon with Marker
                 </MenuItem>
               </LinkContainer>
+              <LinkContainer to="/addons/marker-clusterer-overlay-view">
+                <MenuItem>
+                  Marker clusterer addon with OverlayView
+                </MenuItem>
+              </LinkContainer>
             </NavDropdown>
           </Nav>
           <Navbar.Collapse style={{ marginRight: 100 }}>

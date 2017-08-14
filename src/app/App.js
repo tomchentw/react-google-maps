@@ -57,6 +57,7 @@ import {
 
 import {
   MarkerClustererExample,
+  MarkerClustererOverlayViewExample,
 } from "./pages/addons";
 
 const history = useRouterHistory(createHistory)({
@@ -95,6 +96,7 @@ export default class App extends Component {
           </Route>
           <Route path="addons">
             <Route path="marker-clusterer" component={MarkerClustererExample} />
+            <Route path="marker-clusterer-overlay-view" component={MarkerClustererOverlayViewExample} />
           </Route>
           <Route path="async" component={PageWithIframeEntry} />
           <Redirect path="*" to="/" />

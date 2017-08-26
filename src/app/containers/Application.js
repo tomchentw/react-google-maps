@@ -107,6 +107,11 @@ export default class Application extends Component {
                   Marker clusterer addon with Marker
                 </MenuItem>
               </LinkContainer>
+              <LinkContainer to="/addons/marker-with-label">
+                <MenuItem>
+                  Marker with Label
+                </MenuItem>
+              </LinkContainer>
             </NavDropdown>
           </Nav>
           <Navbar.Collapse style={{ marginRight: 100 }}>

@@ -43,6 +43,16 @@ const controlledPropTypes = {
 
   label: PropTypes.any,
 
+  markerWithLabel: PropTypes.func,
+
+  labelClass: PropTypes.string,
+
+  labelAnchor: PropTypes.object,
+
+  labelContent: PropTypes.string,
+
+  labelStyle: PropTypes.object,
+
   noRedraw: PropTypes.bool,
 
   opacity: PropTypes.number,
@@ -117,66 +127,134 @@ const publicMethodMap = {
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
-  getAnimation(marker) { return marker.getAnimation(); },
+  getAnimation(marker) {
+    return marker.getAnimation();
+  },
 
-  getAttribution(marker) { return marker.getAttribution(); },
+  getAttribution(marker) {
+    return marker.getAttribution();
+  },
 
-  getClickable(marker) { return marker.getClickable(); },
+  getClickable(marker) {
+    return marker.getClickable();
+  },
 
-  getCursor(marker) { return marker.getCursor(); },
+  getCursor(marker) {
+    return marker.getCursor();
+  },
 
-  getDraggable(marker) { return marker.getDraggable(); },
+  getDraggable(marker) {
+    return marker.getDraggable();
+  },
 
-  getIcon(marker) { return marker.getIcon(); },
+  getIcon(marker) {
+    return marker.getIcon();
+  },
 
-  getLabel(marker) { return marker.getLabel(); },
+  getLabel(marker) {
+    return marker.getLabel();
+  },
 
-  getOpacity(marker) { return marker.getOpacity(); },
+  getOpacity(marker) {
+    return marker.getOpacity();
+  },
 
-  getPlace(marker) { return marker.getPlace(); },
+  getPlace(marker) {
+    return marker.getPlace();
+  },
 
-  getPosition(marker) { return marker.getPosition(); },
+  getPosition(marker) {
+    return marker.getPosition();
+  },
 
-  getShape(marker) { return marker.getShape(); },
+  getShape(marker) {
+    return marker.getShape();
+  },
 
-  getTitle(marker) { return marker.getTitle(); },
+  getTitle(marker) {
+    return marker.getTitle();
+  },
 
-  getVisible(marker) { return marker.getVisible(); },
+  getVisible(marker) {
+    return marker.getVisible();
+  },
 
-  getZIndex(marker) { return marker.getZIndex(); },
+  getZIndex(marker) {
+    return marker.getZIndex();
+  },
+
+  // Public Api's
+  // https://github.com/printercu/google-maps-utility-library-v3-read-only/blob/master/markerwithlabel/src/markerwithlabel.js
+  getLabelContent(marker) {
+    return marker.get(`labelContent`);
+  },
+
   // END - Public APIs
 };
 
 const controlledPropUpdaterMap = {
-  animation(marker, animation) { marker.setAnimation(animation); },
+  animation(marker, animation) {
+    marker.setAnimation(animation);
+  },
 
-  attribution(marker, attribution) { marker.setAttribution(attribution); },
+  attribution(marker, attribution) {
+    marker.setAttribution(attribution);
+  },
 
-  clickable(marker, clickable) { marker.setClickable(clickable); },
+  clickable(marker, clickable) {
+    marker.setClickable(clickable);
+  },
 
-  cursor(marker, cursor) { marker.setCursor(cursor); },
+  cursor(marker, cursor) {
+    marker.setCursor(cursor);
+  },
 
-  draggable(marker, draggable) { marker.setDraggable(draggable); },
+  draggable(marker, draggable) {
+    marker.setDraggable(draggable);
+  },
 
-  icon(marker, icon) { marker.setIcon(icon); },
+  icon(marker, icon) {
+    marker.setIcon(icon);
+  },
 
-  label(marker, label) { marker.setLabel(label); },
+  opacity(marker, opacity) {
+    marker.setOpacity(opacity);
+  },
 
-  opacity(marker, opacity) { marker.setOpacity(opacity); },
+  options(marker, options) {
+    marker.setOptions(options);
+  },
 
-  options(marker, options) { marker.setOptions(options); },
+  place(marker, place) {
+    marker.setPlace(place);
+  },
 
-  place(marker, place) { marker.setPlace(place); },
+  position(marker, position) {
+    marker.setPosition(position);
+  },
 
-  position(marker, position) { marker.setPosition(position); },
+  shape(marker, shape) {
+    marker.setShape(shape);
+  },
 
-  shape(marker, shape) { marker.setShape(shape); },
+  title(marker, title) {
+    marker.setTitle(title);
+  },
 
-  title(marker, title) { marker.setTitle(title); },
+  visible(marker, visible) {
+    marker.setVisible(visible);
+  },
 
-  visible(marker, visible) { marker.setVisible(visible); },
+  zIndex(marker, zIndex) {
+    marker.setZIndex(zIndex);
+  },
 
-  zIndex(marker, zIndex) { marker.setZIndex(zIndex); },
+  // Public Api's
+  // https://github.com/printercu/google-maps-utility-library-v3-read-only/blob/master/markerwithlabel/src/markerwithlabel.js
+  labelContent(marker, label) {
+    marker.set(`labelContent`, label);
+  },
+
 };
 
 function getInstanceFromComponent(component) {
@@ -205,12 +283,13 @@ export default _.flowRight(
 
   getInitialState() {
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
-    const marker = new google.maps.Marker(
+    const Marker = this.props.markerWithLabel || google.maps.Marker;
+    const marker = new Marker(
       collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
         controlledPropTypes,
         this.props
-      )
+      ),
     );
     const markerClusterer = this.context[MARKER_CLUSTERER];
     if (markerClusterer) {

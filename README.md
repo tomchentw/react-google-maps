@@ -136,8 +136,10 @@ render(
   onClick={_.noop}
   onRightClick={_.noop}
   onDragStart={_.noop}
+  position={{ lat: 29.301940, lng: -100.8204511 }}
 />
 ```
+For a list of props `Marker` takes, [refer to its docs](https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker).
 
 ### Circle
 

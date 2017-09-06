@@ -57,7 +57,7 @@ import {
 
 import {
   MarkerClustererExample,
-  MarkerWithLabelExample
+  MarkerWithLabelExample,
 } from "./pages/addons";
 
 const history = useRouterHistory(createHistory)({

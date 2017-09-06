@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="7.3.0"></a>
+# [7.3.0](https://github.com/tomchentw/react-google-maps/compare/v7.2.0...v7.3.0) (2017-09-06)
+
+
+### Bug Fixes
+
+* **enhanceElement:** handle undefined callbacks gracefully ([e463df3](https://github.com/tomchentw/react-google-maps/commit/e463df3))
+* **fusiontable:** add query param ([b0c637f](https://github.com/tomchentw/react-google-maps/commit/b0c637f))
+* **withScriptsJs:** Fix comment clarity ([74b0ba3](https://github.com/tomchentw/react-google-maps/commit/74b0ba3))
+
+
+### Features
+
+* **marker:** add custom label support ([8e06dd5](https://github.com/tomchentw/react-google-maps/commit/8e06dd5))
+
+
+
 <a name="7.2.0"></a>
 # [7.2.0](https://github.com/tomchentw/react-google-maps/compare/v7.1.0...v7.2.0) (2017-07-18)
 

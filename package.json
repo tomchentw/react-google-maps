@@ -89,9 +89,9 @@
     "prismjs": "1.5.1",
     "raf": "3.3.0",
     "raw-loader": "0.5.1",
-    "react": "15.5.4",
+    "react": "^15.6.1",
     "react-bootstrap": "0.30.3",
-    "react-dom": "15.5.4",
+    "react-dom": "^15.6.1",
     "react-github-fork-ribbon": "0.5.0",
     "react-helmet": "5.0.3",
     "react-icons": "2.2.1",
@@ -118,7 +118,7 @@
     "warning": "3.0.0"
   },
   "peerDependencies": {
-    "react": "15.5.4",
-    "react-dom": "15.5.4"
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
   }
 }

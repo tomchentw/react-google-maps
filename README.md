@@ -219,15 +219,15 @@ For a list of props `Marker` takes, [refer to its docs](https://developers.googl
 />
 ```
 
-### GroundLayer
+### GroundOverlay
 
 ```jsx
-<GroundLayer
+<GroundOverlay
   bounds={new google.maps.LatLngBounds(
     new google.maps.LatLng(40.712216, -74.22655),
     new google.maps.LatLng(40.773941, -74.12544)
   )}
-  opacity={0.5}
+  opacity={.5}
   url="http://image.url.png"
 />
 ```

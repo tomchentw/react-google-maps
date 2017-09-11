@@ -209,6 +209,29 @@ For a list of props `Marker` takes, [refer to its docs](https://developers.googl
 />
 ```
 
+### OverlayView
+
+```jsx
+<OverlayView
+  getPixelPositionOffset={_.noop}
+  mapPaneName={OverlayView.OVERLAY_LAYER} // one of google.maps.MapPanes
+  position={{ lat: 29.301940, lng: -100.8204511 }}
+/>
+```
+
+### GroundOverlay
+
+```jsx
+<GroundOverlay
+  bounds={new google.maps.LatLngBounds(
+    new google.maps.LatLng(40.712216, -74.22655),
+    new google.maps.LatLng(40.773941, -74.12544)
+  )}
+  opacity={.5}
+  url="http://image.url.png"
+/>
+```
+
 ### StreetViewPanorama
 ```jsx
 <StreetViewPanorama

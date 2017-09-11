@@ -33,6 +33,7 @@ import {
   GeolocationExample,
   DirectionsExample,
   OverlayViewExample,
+  GroundOverlayExample,
   KmlLayerExample,
   FusionTablesLayerExample,
   PopUpInfoWindowExample,
@@ -76,6 +77,7 @@ export default class App extends Component {
             <Route path="geolocation" component={GeolocationExample} />
             <Route path="directions" component={DirectionsExample} />
             <Route path="overlay-view" component={OverlayViewExample} />
+            <Route path="ground-overlay" component={GroundOverlayExample} />
             <Route path="kml-layer" component={KmlLayerExample} />
             <Route path="fusion-tables-layer" component={FusionTablesLayerExample} />
             <Route path="pop-up-window" component={PopUpInfoWindowExample} />

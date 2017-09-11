@@ -51,5 +51,9 @@ export {
 } from "./OverlayView";
 
 export {
+  default as GroundOverlay,
+} from "./GroundOverlay";
+
+export {
   default as StreetViewPanorama,
 } from "./StreetViewPanorama";

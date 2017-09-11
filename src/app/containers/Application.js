@@ -75,6 +75,7 @@ export default class Application extends Component {
               <LinkContainer to="/basics/geolocation"><MenuItem>Geolocation</MenuItem></LinkContainer>
               <LinkContainer to="/basics/directions"><MenuItem>Directions</MenuItem></LinkContainer>
               <LinkContainer to="/basics/overlay-view"><MenuItem>Overlay view</MenuItem></LinkContainer>
+              <LinkContainer to="/basics/ground-overlay"><MenuItem>Ground overlay</MenuItem></LinkContainer>
               <LinkContainer to="/basics/kml-layer"><MenuItem>KmlLayer</MenuItem></LinkContainer>
               <LinkContainer to="/basics/fusion-tables-layer"><MenuItem>Fusion Tables Layer</MenuItem></LinkContainer>
               <LinkContainer to="/basics/pop-up-window"><MenuItem>Pop-up InfoWindow</MenuItem></LinkContainer>

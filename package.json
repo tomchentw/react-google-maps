@@ -3,12 +3,12 @@
   "version": "7.3.0",
   "description": "React.js Google Maps integration component",
   "main": "lib/index.js",
-  "files": [
-    "lib/",
-    "src/lib",
-    "CHANGELOG.md"
-  ],
+  "files": ["lib/", "src/lib", "CHANGELOG.md"],
+  "lint-staged": {
+    "*.{js,jsx,json,css}": ["prettier --write", "git add"]
+  },
   "scripts": {
+    "precommit": "lint-staged",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
@@ -18,11 +18,14 @@
     "clean": "rimraf lib",
     "lint": "cross-env NODE_ENV=test eslint .",
     "prebuild:lib": "npm run lint && npm run clean",
-    "build:lib": "cross-env NODE_ENV=production babel src/lib --out-dir lib --ignore spec.js",
+    "build:lib":
+      "cross-env NODE_ENV=production babel src/lib --out-dir lib --ignore spec.js",
     "precommit:lib": "npm run build:lib",
-    "commit:lib": "git add -A && git commit -m 'chore(lib): compile from src/lib using babel'",
+    "commit:lib":
+      "git add -A && git commit -m 'chore(lib): compile from src/lib using babel'",
     "precommit:app": "npm run build:app",
-    "commit:app": "git add -A && git commit -m 'docs: compile from src/app with react-scripts'",
+    "commit:app":
+      "git add -A && git commit -m 'docs: compile from src/app with react-scripts'",
     "prerelease": "npm run commit:lib && npm run commit:app",
     "release": "standard-version"
   },

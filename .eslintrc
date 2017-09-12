@@ -1,10 +1,23 @@
 {
-  "extends": "react-app",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2016,
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "prettier",
+    "prettier/flowtype",
+    "prettier/react"
+  ],
+  "plugins": [
+    "prettier"
+  ],
   "rules": {
-    // Possible Errors
-    "comma-dangle": ["error", "always-multiline"],
-    // Stylistic Issues
-    "jsx-quotes": ["error", "prefer-double"],
-    "quotes": ["error", "backtick"]
+    "prettier/prettier": ["warn"]
   }
 }

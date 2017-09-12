@@ -1,7 +1,9 @@
+dist: trusty
+sudo: required
 language: node_js
 node_js:
-- '4'
 - '6'
+- '8'
 before_script:
 - rm -rf lib src/app # Temp
 script:

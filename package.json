@@ -17,12 +17,13 @@
     "build:app": "react-scripts build",
     "clean": "rimraf lib",
     "lint": "cross-env NODE_ENV=test eslint .",
+    "build:src": "babel-node src/tx/jscodeshift",
     "prebuild:lib": "npm run lint && npm run clean",
     "build:lib":
       "cross-env NODE_ENV=production babel src/lib --out-dir lib --ignore spec.js",
     "precommit:lib": "npm run build:lib",
     "commit:lib":
-      "git add -A && git commit -m 'chore(lib): compile from src/lib using babel'",
+      "git add -A && git commit -m 'chore(lib): compile from src with `babel`'",
     "precommit:app": "npm run build:app",
     "commit:app":
       "git add -A && git commit -m 'docs: compile from src/app with react-scripts'",

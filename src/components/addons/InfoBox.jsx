@@ -183,6 +183,8 @@ export class InfoBox extends React.PureComponent {
   }
 }
 
+export default InfoBox
+
 const open = (infoBox, anchor) => {
   if (anchor) {
     infoBox.open(infoBox.getMap(), anchor)

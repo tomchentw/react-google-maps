@@ -115,14 +115,11 @@
   "dependencies": {
     "babel-runtime": "^6.11.6",
     "can-use-dom": "^0.1.0",
-    "create-react-class": "^15.5.3",
     "google-maps-infobox": "^1.1.13",
     "invariant": "^2.2.1",
     "lodash": "^4.16.2",
     "marker-clusterer-plus": "^2.1.4",
     "prop-types": "^15.5.8",
-    "react-display-name": "^0.2.0",
-    "react-prop-types-element-of-type": "^2.2.0",
     "recompose": "^0.25.0",
     "scriptjs": "^2.5.8",
     "warning": "^3.0.0"

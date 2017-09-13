@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="8.1.0"></a>
+# [8.1.0](https://github.com/tomchentw/react-google-maps/compare/v8.0.0...v8.1.0) (2017-09-15)
+
+
+### Bug Fixes
+
+* **addons/InfoBox:** add default export ([f40b496](https://github.com/tomchentw/react-google-maps/commit/f40b496)), closes [#610](https://github.com/tomchentw/react-google-maps/issues/610) [#611](https://github.com/tomchentw/react-google-maps/issues/611)
+* **addons/MarkerClusterer:** add default export ([87bc259](https://github.com/tomchentw/react-google-maps/commit/87bc259)), closes [#610](https://github.com/tomchentw/react-google-maps/issues/610) [#611](https://github.com/tomchentw/react-google-maps/issues/611)
+
+
+### Features
+
+* **withGoogleMap:** add named export ([8e7e5de](https://github.com/tomchentw/react-google-maps/commit/8e7e5de))
+* **withScriptjs:** add named export ([134f90c](https://github.com/tomchentw/react-google-maps/commit/134f90c))
+
+
+
 <a name="8.0.0"></a>
 # [8.0.0](https://github.com/tomchentw/react-google-maps/compare/v7.3.0...v8.0.0) (2017-09-14)
 

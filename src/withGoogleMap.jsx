@@ -7,7 +7,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import { MAP } from "./constants"
 
-export default function withGoogleMap(BaseComponent) {
+export function withGoogleMap(BaseComponent) {
   const factory = createEagerFactory(BaseComponent)
 
   class Container extends React.PureComponent {
@@ -89,3 +89,5 @@ export default function withGoogleMap(BaseComponent) {
 
   return Container
 }
+
+export default withGoogleMap

@@ -9,7 +9,7 @@ const LOADING_STATE_NONE = `NONE`
 const LOADING_STATE_BEGIN = `BEGIN`
 const LOADING_STATE_LOADED = `LOADED`
 
-export default function withScriptjs(BaseComponent) {
+export function withScriptjs(BaseComponent) {
   const factory = createEagerFactory(BaseComponent)
 
   class Container extends React.PureComponent {
@@ -83,3 +83,5 @@ export default function withScriptjs(BaseComponent) {
 
   return Container
 }
+
+export default withScriptjs

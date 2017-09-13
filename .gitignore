@@ -12,6 +12,7 @@ logs
 pids
 *.pid
 *.seed
+.cache
 
 # OSX
 .DS_Store

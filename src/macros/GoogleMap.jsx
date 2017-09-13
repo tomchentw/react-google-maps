@@ -1,0 +1,107 @@
+import invariant from "invariant"
+import React from "react"
+import PropTypes from "prop-types"
+
+import {
+  construct,
+  componentDidMount,
+  componentDidUpdate,
+  componentWillUnmount,
+} from "../utils/MapChildHelper"
+
+import { MAP } from "../constants"
+
+export const __jscodeshiftPlaceholder__ = `{
+  "eventMapOverrides": {
+    "onDblClick": "dblclick",
+    "onDragEnd": "dragend",
+    "onDragStart": "dragstart",
+    "onMapTypeIdChanged": "maptypeid_changed",
+    "onMouseMove": "mousemove",
+    "onMouseOut": "mouseout",
+    "onMouseOver": "mouseover",
+    "onRightClick": "rightclick",
+    "onTilesLoaded": "tilesloaded"
+  },
+  "getInstanceFromComponent": "this.context[MAP]"
+}`
+
+/**
+ * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+ */
+export class Map extends React.PureComponent {
+  static displayName = "GoogleMap"
+
+  static propTypes = {
+    __jscodeshiftPlaceholder__: null,
+  }
+
+  static contextTypes = {
+    [MAP]: PropTypes.object,
+  }
+
+  /*
+   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+   */
+  fitBounds(...args) {
+    return this.context[MAP].fitBounds(...args)
+  }
+
+  /*
+   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+   */
+  panBy(...args) {
+    return this.context[MAP].panBy(...args)
+  }
+
+  /*
+   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+   */
+  panTo(...args) {
+    return this.context[MAP].panTo(...args)
+  }
+
+  /*
+   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+   */
+  panToBounds(...args) {
+    return this.context[MAP].panToBounds(...args)
+  }
+
+  /*
+   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+   */
+  constructor(props, context) {
+    super(props, context)
+    invariant(
+      !!this.context[MAP],
+      `Did you wrap <GoogleMap> component with withGoogleMap() HOC?`
+    )
+    construct(GoogleMap.propTypes, updaterMap, this.props, this.context[MAP])
+  }
+
+  componentDidMount() {
+    componentDidMount(this, this.context[MAP], eventMap)
+  }
+
+  componentDidUpdate(prevProps) {
+    componentDidUpdate(this, this.context[MAP], eventMap, updaterMap, prevProps)
+  }
+
+  componentWillUnmount() {
+    componentWillUnmount(this)
+  }
+
+  render() {
+    const { children } = this.props
+    return <div>{children}</div>
+  }
+}
+
+export const GoogleMap = Map
+
+export default Map
+
+const eventMap = {}
+
+const updaterMap = {}

@@ -2,6 +2,73 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="8.0.0"></a>
+# [8.0.0](https://github.com/tomchentw/react-google-maps/compare/v7.3.0...v8.0.0) (2017-09-14)
+
+
+### Bug Fixes
+
+* **package.json:** relax peerDependencies ([#596](https://github.com/tomchentw/react-google-maps/issues/596)) ([6f1c88d](https://github.com/tomchentw/react-google-maps/commit/6f1c88d))
+
+
+### Features
+
+* **addons/InfoBox:** revamp to PureComponent ([95269d2](https://github.com/tomchentw/react-google-maps/commit/95269d2))
+* **addons/MarkerClusterer:** revamp to PureComponent ([13cbef2](https://github.com/tomchentw/react-google-maps/commit/13cbef2))
+* **Circle:** revamp with jscodeshift ([c2c98ab](https://github.com/tomchentw/react-google-maps/commit/c2c98ab))
+* **DirectionsRenderer:** revamp with jscodeshift ([7c5532a](https://github.com/tomchentw/react-google-maps/commit/7c5532a))
+* **drawing/DrawingManager:** revamp with jscodeshift ([01bfb80](https://github.com/tomchentw/react-google-maps/commit/01bfb80))
+* **FusionTablesLayer:** revamp with jscodeshift ([a5865a0](https://github.com/tomchentw/react-google-maps/commit/a5865a0))
+* **GoogleMap:** revamp with jscodeshift ([772f363](https://github.com/tomchentw/react-google-maps/commit/772f363))
+* **index.js:** export `withScriptjs` ([4a1c34e](https://github.com/tomchentw/react-google-maps/commit/4a1c34e))
+* **KmlLayer:** revamp with jscodeshift ([18b8a9f](https://github.com/tomchentw/react-google-maps/commit/18b8a9f))
+* **Marker:** revamp with jscodeshift ([08c5687](https://github.com/tomchentw/react-google-maps/commit/08c5687))
+* **OverlayView:** revamp with jscodeshift ([8c66c14](https://github.com/tomchentw/react-google-maps/commit/8c66c14))
+* **package.json:** add `recompose` to dependencies ([f433a50](https://github.com/tomchentw/react-google-maps/commit/f433a50))
+* **package.json:** remove `create-react-class` from dependencies ([ea41411](https://github.com/tomchentw/react-google-maps/commit/ea41411))
+* **places/SearchBox:** revamp with jscodeshift ([bc41752](https://github.com/tomchentw/react-google-maps/commit/bc41752))
+* **Polygon:** revamp with jscodeshift ([a015b95](https://github.com/tomchentw/react-google-maps/commit/a015b95))
+* **Polyline:** revamp with jscodeshift ([2ff6313](https://github.com/tomchentw/react-google-maps/commit/2ff6313))
+* **Rectangle:** revamp with jscodeshift ([5096882](https://github.com/tomchentw/react-google-maps/commit/5096882))
+* **StreetViewPanorama:** revamp with jscodeshift ([a0e6dd4](https://github.com/tomchentw/react-google-maps/commit/a0e6dd4))
+* **TrafficLayer:** revamp with jscodeshift ([92159bd](https://github.com/tomchentw/react-google-maps/commit/92159bd))
+* **tx:** add `MapChild` transform with `jscodeshift` ([b63d9ee](https://github.com/tomchentw/react-google-maps/commit/b63d9ee))
+* **visualization/HeatmapLayer:** revamp with jscodeshift ([b92a570](https://github.com/tomchentw/react-google-maps/commit/b92a570))
+* **withGoogleMap:** revamp with prettier ([c3de3b3](https://github.com/tomchentw/react-google-maps/commit/c3de3b3))
+* **withScriptjs:** revamp with prettier ([8f3b484](https://github.com/tomchentw/react-google-maps/commit/8f3b484))
+
+
+### BREAKING CHANGES
+
+* **places/SearchBox:** input element can now render directly as the only child
+
+Before:
+
+```js
+<SearchBox
+  inputPlaceholder="Customized your placeholder"
+  inputStyle={{ padding: `0 12px`, fontSize: `14px`, outline: `none` }}
+/>
+```
+
+After:
+
+```js
+<SearchBox>
+  <input
+    type="text"
+    placeholder="Customized your placeholder"
+    style={{
+      padding: `0 12px`,
+      fontSize: `14px`,
+      outline: `none`,
+    }}
+  />
+</SearchBox>
+```
+
+
+
 <a name="7.3.0"></a>
 # [7.3.0](https://github.com/tomchentw/react-google-maps/compare/v7.2.0...v7.3.0) (2017-09-06)
 

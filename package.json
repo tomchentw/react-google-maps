@@ -9,25 +9,28 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "start": "react-scripts start",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
     "pretest": "npm run lint",
     "test:once": "cross-env CI=true npm test",
-    "build:app": "react-scripts build",
     "clean": "rimraf lib",
     "lint": "cross-env NODE_ENV=test eslint .",
     "build:src": "babel-node src/tx/jscodeshift",
+    "precommit:src": "npm run build:src",
+    "commit:src":
+      "git add -A && git commit -m 'chore(src/components): compile from src/macros with `babel`'",
     "prebuild:lib": "npm run lint && npm run clean",
     "build:lib":
-      "cross-env NODE_ENV=production babel src/lib --out-dir lib --ignore spec.js",
+      "cross-env NODE_ENV=production babel src --out-dir lib --ignore macros,tx,spec.js",
     "precommit:lib": "npm run build:lib",
     "commit:lib":
       "git add -A && git commit -m 'chore(lib): compile from src with `babel`'",
-    "precommit:app": "npm run build:app",
-    "commit:app":
-      "git add -A && git commit -m 'docs: compile from src/app with react-scripts'",
-    "prerelease": "npm run commit:lib && npm run commit:app",
+    "precommit:docs": "npm run styleguide:build",
+    "commit:docs":
+      "git add -A && git commit -m 'docs: compile from src with `styleguidist`'",
+    "prerelease":
+      "npm run commit:src && npm run commit:lib && npm run commit:docs",
     "release": "standard-version"
   },
   "repository": {
@@ -108,6 +111,7 @@
     "react-router": "^4.2.0",
     "react-router-bootstrap": "^0.24.4",
     "react-scripts": "^1.0.13",
+    "react-styleguidist": "^6.0.24",
     "react-toastr": "^2.9.3",
     "rimraf": "^2.6.2",
     "standard-version": "^4.2.0"

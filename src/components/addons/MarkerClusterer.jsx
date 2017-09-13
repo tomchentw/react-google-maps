@@ -266,6 +266,8 @@ export class MarkerClusterer extends React.PureComponent {
   }
 }
 
+export default MarkerClusterer
+
 /**
  * @url http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html#events
  */

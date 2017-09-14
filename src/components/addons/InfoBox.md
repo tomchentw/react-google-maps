@@ -7,7 +7,7 @@ import {
   withGoogleMap,
   GoogleMap,
 } from "react-google-maps";
-import InfoBox from "react-google-maps/lib/components/addons/InfoBox";
+import { InfoBox } from "react-google-maps/lib/components/addons/InfoBox";
 import demoFancyMapStyles from "./demoFancyMapStyles.json";
 
 const StyledMapWithAnInfoBox = compose(

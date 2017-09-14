@@ -10,7 +10,7 @@ import {
   Marker,
 } from "react-google-maps";
 
-import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
+import { MarkerClusterer } from "react-google-maps/lib/components/addons/MarkerClusterer";
 
 const MapWithAMarkerClusterer = compose(
   withProps({

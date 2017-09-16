@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="8.2.0"></a>
+# [8.2.0](https://github.com/tomchentw/react-google-maps/compare/v8.1.0...v8.2.0) (2017-09-16)
+
+
+### Bug Fixes
+
+* **addons/InfoBox:** use setState in lifecycle ([fb6658e](https://github.com/tomchentw/react-google-maps/commit/fb6658e))
+* **places/SearchBox:** use setState in lifecycle ([671089b](https://github.com/tomchentw/react-google-maps/commit/671089b))
+
+
+### Features
+
+* **places/StandaloneSearchBox:** add component ([51a1da5](https://github.com/tomchentw/react-google-maps/commit/51a1da5)), closes [#618](https://github.com/tomchentw/react-google-maps/issues/618) [#601](https://github.com/tomchentw/react-google-maps/issues/601) [#593](https://github.com/tomchentw/react-google-maps/issues/593)
+
+
+
 <a name="8.1.0"></a>
 # [8.1.0](https://github.com/tomchentw/react-google-maps/compare/v8.0.0...v8.1.0) (2017-09-15)
 

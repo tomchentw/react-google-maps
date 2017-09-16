@@ -11,4 +11,11 @@ module.exports = {
     }
     return `import ${name} from "react-google-maps/lib/components/${dirname}/${name}";`
   },
+  styles: {
+    Playground: {
+      preview: {
+        height: 400 + 2 * 16 + 2 * 1,
+      },
+    },
+  },
 }

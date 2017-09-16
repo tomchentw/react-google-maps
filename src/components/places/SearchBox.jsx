@@ -1,7 +1,6 @@
 /* global google */
 import _ from "lodash"
 import canUseDOM from "can-use-dom"
-import invariant from "invariant"
 import React from "react"
 import ReactDOM from "react-dom"
 import PropTypes from "prop-types"
@@ -20,6 +19,12 @@ import { MAP, SEARCH_BOX } from "../../constants"
  */
 export class SearchBox extends React.PureComponent {
   static propTypes = {
+    /**
+     * Where to put `<SearchBox>` inside a `<GoogleMap>`
+     *
+     * @example google.maps.ControlPosition.TOP_LEFT
+     * @type number
+     */
     controlPosition: PropTypes.number,
 
     /**
@@ -47,7 +52,7 @@ export class SearchBox extends React.PureComponent {
   }
 
   componentWillMount() {
-    if (!canUseDOM || this.state[SEARCH_BOX]) {
+    if (!canUseDOM || this.containerElement) {
       return
     }
     this.containerElement = document.createElement(`div`)
@@ -59,9 +64,9 @@ export class SearchBox extends React.PureComponent {
       this.containerElement.firstChild
     )
     construct(SearchBox.propTypes, updaterMap, this.props, searchBox)
-    this.state = {
+    this.setState({
       [SEARCH_BOX]: searchBox,
-    }
+    })
   }
 
   componentDidMount() {
@@ -110,23 +115,16 @@ export class SearchBox extends React.PureComponent {
 
   handleMountAtControlPosition() {
     if (isValidControlPosition(this.props.controlPosition)) {
-      invariant(
-        this.context[MAP],
-        `If you're using <SearchBox> with controlPosition, please put it as a child of a <GoogleMap> component.`
-      )
       this.mountControlIndex =
+        -1 +
         this.context[MAP].controls[this.props.controlPosition].push(
           this.containerElement.firstChild
-        ) - 1
+        )
     }
   }
 
   handleUnmountAtControlPosition() {
     if (isValidControlPosition(this.props.controlPosition)) {
-      invariant(
-        this.context[MAP],
-        `If you're using <SearchBox> with controlPosition, please put it as a child of a <GoogleMap> component.`
-      )
       const child = this.context[MAP].controls[
         this.props.controlPosition
       ].removeAt(this.mountControlIndex)

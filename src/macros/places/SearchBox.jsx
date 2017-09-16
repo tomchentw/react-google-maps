@@ -39,7 +39,7 @@ export class SearchBox extends React.PureComponent {
   }
 
   componentWillMount() {
-    if (!canUseDOM || this.state[SEARCH_BOX]) {
+    if (!canUseDOM || this.containerElement) {
       return
     }
     this.containerElement = document.createElement(`div`)
@@ -51,9 +51,9 @@ export class SearchBox extends React.PureComponent {
       this.containerElement.firstChild
     )
     construct(SearchBox.propTypes, updaterMap, this.props, searchBox)
-    this.state = {
+    this.setState({
       [SEARCH_BOX]: searchBox,
-    }
+    })
   }
 
   componentDidMount() {

@@ -39653,12 +39653,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  DirectionsRenderer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithADirectionsRenderer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `200px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap,\n  lifecycle({\n    componentDidMount() {\n      const DirectionsService = new google.maps.DirectionsService();\n\n      DirectionsService.route({\n        origin: new google.maps.LatLng(41.8507300, -87.6512600),\n        destination: new google.maps.LatLng(41.8525800, -87.6514100),\n        travelMode: google.maps.TravelMode.DRIVING,\n      }, (result, status) =&gt; {\n        if (status === google.maps.DirectionsStatus.OK) {\n          this.setState({\n            directions: result,\n          });\n        } else {\n          console.error(`error fetching directions ${result}`);\n        }\n      });\n    }\n  })\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={7}\n    defaultCenter={new google.maps.LatLng(41.8507300, -87.6512600)}\n  &gt;\n    {props.directions &amp;&amp; &lt;DirectionsRenderer directions={props.directions} /&gt;}\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithADirectionsRenderer /&gt;\n```\n\n### Map with a DirectionsRenderer',
+          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  DirectionsRenderer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithADirectionsRenderer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap,\n  lifecycle({\n    componentDidMount() {\n      const DirectionsService = new google.maps.DirectionsService();\n\n      DirectionsService.route({\n        origin: new google.maps.LatLng(41.8507300, -87.6512600),\n        destination: new google.maps.LatLng(41.8525800, -87.6514100),\n        travelMode: google.maps.TravelMode.DRIVING,\n      }, (result, status) =&gt; {\n        if (status === google.maps.DirectionsStatus.OK) {\n          this.setState({\n            directions: result,\n          });\n        } else {\n          console.error(`error fetching directions ${result}`);\n        }\n      });\n    }\n  })\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={7}\n    defaultCenter={new google.maps.LatLng(41.8507300, -87.6512600)}\n  &gt;\n    {props.directions &amp;&amp; &lt;DirectionsRenderer directions={props.directions} /&gt;}\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithADirectionsRenderer /&gt;\n```\n\n### Map with a DirectionsRenderer',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps, lifecycle } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  DirectionsRenderer,\n} = require("../index");\n\nconst MapWithADirectionsRenderer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `200px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap,\n  lifecycle({\n    componentDidMount() {\n      const DirectionsService = new google.maps.DirectionsService();\n\n      DirectionsService.route({\n        origin: new google.maps.LatLng(41.8507300, -87.6512600),\n        destination: new google.maps.LatLng(41.8525800, -87.6514100),\n        travelMode: google.maps.TravelMode.DRIVING,\n      }, (result, status) => {\n        if (status === google.maps.DirectionsStatus.OK) {\n          this.setState({\n            directions: result,\n          });\n        } else {\n          console.error(`error fetching directions ${result}`);\n        }\n      });\n    }\n  })\n)(props =>\n  <GoogleMap\n    defaultZoom={7}\n    defaultCenter={new google.maps.LatLng(41.8507300, -87.6512600)}\n  >\n    {props.directions && <DirectionsRenderer directions={props.directions} />}\n  </GoogleMap>\n);\n\n<MapWithADirectionsRenderer />',
+          'const { compose, withProps, lifecycle } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  DirectionsRenderer,\n} = require("../index");\n\nconst MapWithADirectionsRenderer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap,\n  lifecycle({\n    componentDidMount() {\n      const DirectionsService = new google.maps.DirectionsService();\n\n      DirectionsService.route({\n        origin: new google.maps.LatLng(41.8507300, -87.6512600),\n        destination: new google.maps.LatLng(41.8525800, -87.6514100),\n        travelMode: google.maps.TravelMode.DRIVING,\n      }, (result, status) => {\n        if (status === google.maps.DirectionsStatus.OK) {\n          this.setState({\n            directions: result,\n          });\n        } else {\n          console.error(`error fetching directions ${result}`);\n        }\n      });\n    }\n  })\n)(props =>\n  <GoogleMap\n    defaultZoom={7}\n    defaultCenter={new google.maps.LatLng(41.8507300, -87.6512600)}\n  >\n    {props.directions && <DirectionsRenderer directions={props.directions} />}\n  </GoogleMap>\n);\n\n<MapWithADirectionsRenderer />',
         settings: {},
         evalInContext: s,
       },
@@ -39684,12 +39684,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  FusionTablesLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAFusionTablesLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `600px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={11}\n    defaultCenter={{ lat: 41.850033, lng: -87.6500523 }}\n  &gt;\n    &lt;FusionTablesLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{\n        query: {\n          select: `Geocodable address`,\n          from: `1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg`\n        }\n      }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAFusionTablesLayer /&gt;\n```\n\n### Map with a FusionTablesLayer',
+          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  FusionTablesLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAFusionTablesLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={11}\n    defaultCenter={{ lat: 41.850033, lng: -87.6500523 }}\n  &gt;\n    &lt;FusionTablesLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{\n        query: {\n          select: `Geocodable address`,\n          from: `1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg`\n        }\n      }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAFusionTablesLayer /&gt;\n```\n\n### Map with a FusionTablesLayer',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  FusionTablesLayer,\n} = require("../index");\n\nconst MapWithAFusionTablesLayer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `600px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={11}\n    defaultCenter={{ lat: 41.850033, lng: -87.6500523 }}\n  >\n    <FusionTablesLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{\n        query: {\n          select: `Geocodable address`,\n          from: `1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg`\n        }\n      }}\n    />\n  </GoogleMap>\n);\n\n<MapWithAFusionTablesLayer />',
+          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  FusionTablesLayer,\n} = require("../index");\n\nconst MapWithAFusionTablesLayer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={11}\n    defaultCenter={{ lat: 41.850033, lng: -87.6500523 }}\n  >\n    <FusionTablesLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{\n        query: {\n          select: `Geocodable address`,\n          from: `1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg`\n        }\n      }}\n    />\n  </GoogleMap>\n);\n\n<MapWithAFusionTablesLayer />',
         settings: {},
         evalInContext: s,
       },
@@ -39718,12 +39718,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```js\n<span class="hljs-keyword">import</span> { compose, withProps, withState, withHandlers } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> FaAnchor <span class="hljs-keyword">from</span> <span class="hljs-string">"react-icons/lib/fa/ancho"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithControlledZoom = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `200px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withState(\'zoom\', \'onZoomChange\', 8),\n  withHandlers(() =&gt; {\n    const refs = {\n      map: undefined,\n    }\n\n    return {\n      onMapMounted: () =&gt; ref =&gt; {\n        refs.map = ref\n      },\n      onZoomChanged: ({ onZoomChange }) =&gt; () =&gt; {\n        onZoomChange(refs.map.getZoom())\n      }\n    }\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n    zoom={props.zoom}\n    ref={props.onMapMounted}\n    onZoomChanged={props.onZoomChanged}\n  &gt;\n    &lt;Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    &gt;\n      &lt;InfoWindow onCloseClick={props.onToggleOpen}&gt;\n        &lt;div&gt;\n          &lt;FaAnchor /&gt;\n          {" "}\n          Controlled zoom: {props.zoom}\n        &lt;/div&gt;\n      &lt;/InfoWindow&gt;\n    &lt;/Marker&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithControlledZoom /&gt;\n```\n\n### Map with controlled zoom',
+          '## Usage\n\n```js\n<span class="hljs-keyword">import</span> { compose, withProps, withState, withHandlers } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> FaAnchor <span class="hljs-keyword">from</span> <span class="hljs-string">"react-icons/lib/fa/ancho"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithControlledZoom = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withState(\'zoom\', \'onZoomChange\', 8),\n  withHandlers(() =&gt; {\n    const refs = {\n      map: undefined,\n    }\n\n    return {\n      onMapMounted: () =&gt; ref =&gt; {\n        refs.map = ref\n      },\n      onZoomChanged: ({ onZoomChange }) =&gt; () =&gt; {\n        onZoomChange(refs.map.getZoom())\n      }\n    }\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n    zoom={props.zoom}\n    ref={props.onMapMounted}\n    onZoomChanged={props.onZoomChanged}\n  &gt;\n    &lt;Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    &gt;\n      &lt;InfoWindow onCloseClick={props.onToggleOpen}&gt;\n        &lt;div&gt;\n          &lt;FaAnchor /&gt;\n          {" "}\n          Controlled zoom: {props.zoom}\n        &lt;/div&gt;\n      &lt;/InfoWindow&gt;\n    &lt;/Marker&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithControlledZoom /&gt;\n```\n\n### Map with controlled zoom',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps, withState, withHandlers } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} = require("../index");\n\nconst MapWithControlledZoom = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `200px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withState(\'zoom\', \'onZoomChange\', 8),\n  withHandlers(() => {\n    const refs = {\n      map: undefined,\n    }\n\n    return {\n      onMapMounted: () => ref => {\n        refs.map = ref\n      },\n      onZoomChanged: ({ onZoomChange }) => () => {\n        onZoomChange(refs.map.getZoom())\n      }\n    }\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n    zoom={props.zoom}\n    ref={props.onMapMounted}\n    onZoomChanged={props.onZoomChanged}\n  >\n    <Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    >\n      <InfoWindow onCloseClick={props.onToggleOpen}>\n        <div>\n          <FaAnchor />\n          {" "}\n          Controlled zoom: {props.zoom}\n        </div>\n      </InfoWindow>\n    </Marker>\n  </GoogleMap>\n);\n\n<MapWithControlledZoom />',
+          'const { compose, withProps, withState, withHandlers } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} = require("../index");\n\nconst MapWithControlledZoom = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withState(\'zoom\', \'onZoomChange\', 8),\n  withHandlers(() => {\n    const refs = {\n      map: undefined,\n    }\n\n    return {\n      onMapMounted: () => ref => {\n        refs.map = ref\n      },\n      onZoomChanged: ({ onZoomChange }) => () => {\n        onZoomChange(refs.map.getZoom())\n      }\n    }\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n    zoom={props.zoom}\n    ref={props.onMapMounted}\n    onZoomChanged={props.onZoomChanged}\n  >\n    <Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    >\n      <InfoWindow onCloseClick={props.onToggleOpen}>\n        <div>\n          <FaAnchor />\n          {" "}\n          Controlled zoom: {props.zoom}\n        </div>\n      </InfoWindow>\n    </Marker>\n  </GoogleMap>\n);\n\n<MapWithControlledZoom />',
         settings: {},
         evalInContext: s,
       },
@@ -39752,12 +39752,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\nimport { compose, withProps, withStateHandlers } from "recompose";\nimport FaAnchor from "react-icons/lib/fa/ancho";\nimport {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} from "react-google-maps";\n\nconst MapWithAMakredInfoWindow = compose(\n  withStateHandlers(() =&gt; ({\n    isOpen: false,\n  }), {\n    onToggleOpen: ({ isOpen }) =&gt; () =&gt; ({\n      isOpen: !isOpen,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  &gt;\n    &lt;Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    &gt;\n      {props.isOpen &amp;&amp; &lt;InfoWindow onCloseClick={props.onToggleOpen}&gt;\n        &lt;FaAnchor /&gt;\n      &lt;/InfoWindow&gt;}\n    &lt;/Marker&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAMakredInfoWindow\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `200px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Click the Marker to show InfoWindow',
+          '## Usage\n\n```jsx\nimport { compose, withProps, withStateHandlers } from "recompose";\nimport FaAnchor from "react-icons/lib/fa/ancho";\nimport {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} from "react-google-maps";\n\nconst MapWithAMakredInfoWindow = compose(\n  withStateHandlers(() =&gt; ({\n    isOpen: false,\n  }), {\n    onToggleOpen: ({ isOpen }) =&gt; () =&gt; ({\n      isOpen: !isOpen,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  &gt;\n    &lt;Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    &gt;\n      {props.isOpen &amp;&amp; &lt;InfoWindow onCloseClick={props.onToggleOpen}&gt;\n        &lt;FaAnchor /&gt;\n      &lt;/InfoWindow&gt;}\n    &lt;/Marker&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAMakredInfoWindow\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Click the Marker to show InfoWindow',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps, withStateHandlers } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} = require("../index");\n\nconst MapWithAMakredInfoWindow = compose(\n  withStateHandlers(() => ({\n    isOpen: false,\n  }), {\n    onToggleOpen: ({ isOpen }) => () => ({\n      isOpen: !isOpen,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  >\n    <Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    >\n      {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>\n        <FaAnchor />\n      </InfoWindow>}\n    </Marker>\n  </GoogleMap>\n);\n\n<MapWithAMakredInfoWindow\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `200px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
+          'const { compose, withProps, withStateHandlers } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} = require("../index");\n\nconst MapWithAMakredInfoWindow = compose(\n  withStateHandlers(() => ({\n    isOpen: false,\n  }), {\n    onToggleOpen: ({ isOpen }) => () => ({\n      isOpen: !isOpen,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  >\n    <Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    >\n      {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>\n        <FaAnchor />\n      </InfoWindow>}\n    </Marker>\n  </GoogleMap>\n);\n\n<MapWithAMakredInfoWindow\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `400px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
         settings: {},
         evalInContext: s,
       },
@@ -39783,12 +39783,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  KmlLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAKmlLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `200px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={9}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  &gt;\n    &lt;KmlLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{ preserveViewport: true }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAKmlLayer /&gt;\n```\n\n### Map with a KmlLayer',
+          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  KmlLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAKmlLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={9}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  &gt;\n    &lt;KmlLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{ preserveViewport: true }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAKmlLayer /&gt;\n```\n\n### Map with a KmlLayer',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  KmlLayer,\n} = require("../index");\n\nconst MapWithAKmlLayer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `200px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={9}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  >\n    <KmlLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{ preserveViewport: true }}\n    />\n  </GoogleMap>\n);\n\n<MapWithAKmlLayer />',
+          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  KmlLayer,\n} = require("../index");\n\nconst MapWithAKmlLayer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={9}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  >\n    <KmlLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{ preserveViewport: true }}\n    />\n  </GoogleMap>\n);\n\n<MapWithAKmlLayer />',
         settings: {},
         evalInContext: s,
       },
@@ -39814,12 +39814,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAMarker = compose(\n  withScriptjs,\n  withGoogleMap\n)(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">8</span>}\n    defaultCenter={{ <span class="hljs-attr">lat</span>: <span class="hljs-number">-34.397</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">150.644</span> }}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Marker</span>\n      <span class="hljs-attr">position</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">lat:</span> <span class="hljs-attr">-34.397</span>, <span class="hljs-attr">lng:</span> <span class="hljs-attr">150.644</span> }}\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n);\n\n&lt;MapWithAMarker\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `200px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Map with a Marker',
+          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAMarker = compose(\n  withScriptjs,\n  withGoogleMap\n)(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">8</span>}\n    defaultCenter={{ <span class="hljs-attr">lat</span>: <span class="hljs-number">-34.397</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">150.644</span> }}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Marker</span>\n      <span class="hljs-attr">position</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">lat:</span> <span class="hljs-attr">-34.397</span>, <span class="hljs-attr">lng:</span> <span class="hljs-attr">150.644</span> }}\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n);\n\n&lt;MapWithAMarker\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Map with a Marker',
       },
       {
         type: "code",
         content:
-          'const { compose } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} = require("../index");\n\nconst MapWithAMarker = compose(\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  >\n    <Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n    />\n  </GoogleMap>\n);\n\n<MapWithAMarker\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `200px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
+          'const { compose } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} = require("../index");\n\nconst MapWithAMarker = compose(\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  >\n    <Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n    />\n  </GoogleMap>\n);\n\n<MapWithAMarker\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `400px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
         settings: {},
         evalInContext: s,
       },
@@ -39848,12 +39848,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\nimport { compose, withProps, withStateHandlers } from "recompose";\nimport FaAnchor from "react-icons/lib/fa/ancho";\nimport {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  OverlayView,\n} from "react-google-maps";\n\nconst getPixelPositionOffset = (width, height) =&gt; ({\n  x: -(width / 2),\n  y: -(height / 2),\n})\n\nconst MapWithAnOverlayView = compose(\n  withStateHandlers(() =&gt; ({\n    count: 0,\n  }), {\n    onClick: ({ count }) =&gt; () =&gt; ({\n      count: count + 1,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  &gt;\n    &lt;OverlayView\n      position={{ lat: -34.397, lng: 150.644 }}\n      /*\n       * An alternative to specifying position is specifying bounds.\n       * bounds can either be an instance of google.maps.LatLngBounds\n       * or an object in the following format:\n       * bounds={{\n       *    ne: { lat: 62.400471, lng: -150.005608 },\n       *    sw: { lat: 62.281819, lng: -150.287132 }\n       * }}\n       */\n      /*\n       * 1. Specify the pane the OverlayView will be rendered to. For\n       *    mouse interactivity, use `OverlayView.OVERLAY_MOUSE_TARGET`.\n       *    Defaults to `OverlayView.OVERLAY_LAYER`.\n       */\n      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}\n      /*\n       * 2. Tweak the OverlayView\'s pixel position. In this case, we\'re\n       *    centering the content.\n       */\n      getPixelPositionOffset={getPixelPositionOffset}\n      /*\n       * 3. Create OverlayView content using standard React components.\n       */\n    &gt;\n      &lt;div style={{ background: `white`, border: `1px solid #ccc`, padding: 15 }}&gt;\n        &lt;h1&gt;OverlayView&lt;/h1&gt;\n        &lt;button onClick={props.onClick} style={{ height: 60 }}&gt;\n          I have been clicked {props.count} time{props.count &gt; 1 ? `s` : ``}\n        &lt;/button&gt;\n      &lt;/div&gt;\n    &lt;/OverlayView&gt;\n  &lt;/GoogleMap&gt;\n);\n&lt;MapWithAnOverlayView\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `200px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Click the Marker to show OverlayView',
+          '## Usage\n\n```jsx\nimport { compose, withProps, withStateHandlers } from "recompose";\nimport FaAnchor from "react-icons/lib/fa/ancho";\nimport {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  OverlayView,\n} from "react-google-maps";\n\nconst getPixelPositionOffset = (width, height) =&gt; ({\n  x: -(width / 2),\n  y: -(height / 2),\n})\n\nconst MapWithAnOverlayView = compose(\n  withStateHandlers(() =&gt; ({\n    count: 0,\n  }), {\n    onClick: ({ count }) =&gt; () =&gt; ({\n      count: count + 1,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  &gt;\n    &lt;OverlayView\n      position={{ lat: -34.397, lng: 150.644 }}\n      /*\n       * An alternative to specifying position is specifying bounds.\n       * bounds can either be an instance of google.maps.LatLngBounds\n       * or an object in the following format:\n       * bounds={{\n       *    ne: { lat: 62.400471, lng: -150.005608 },\n       *    sw: { lat: 62.281819, lng: -150.287132 }\n       * }}\n       */\n      /*\n       * 1. Specify the pane the OverlayView will be rendered to. For\n       *    mouse interactivity, use `OverlayView.OVERLAY_MOUSE_TARGET`.\n       *    Defaults to `OverlayView.OVERLAY_LAYER`.\n       */\n      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}\n      /*\n       * 2. Tweak the OverlayView\'s pixel position. In this case, we\'re\n       *    centering the content.\n       */\n      getPixelPositionOffset={getPixelPositionOffset}\n      /*\n       * 3. Create OverlayView content using standard React components.\n       */\n    &gt;\n      &lt;div style={{ background: `white`, border: `1px solid #ccc`, padding: 15 }}&gt;\n        &lt;h1&gt;OverlayView&lt;/h1&gt;\n        &lt;button onClick={props.onClick} style={{ height: 60 }}&gt;\n          I have been clicked {props.count} time{props.count &gt; 1 ? `s` : ``}\n        &lt;/button&gt;\n      &lt;/div&gt;\n    &lt;/OverlayView&gt;\n  &lt;/GoogleMap&gt;\n);\n&lt;MapWithAnOverlayView\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Click the Marker to show OverlayView',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps, withStateHandlers } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  OverlayView,\n} = require("../index");\n\nconst getPixelPositionOffset = (width, height) => ({\n  x: -(width / 2),\n  y: -(height / 2),\n})\n\nconst MapWithAnOverlayView = compose(\n  withStateHandlers(() => ({\n    count: 0,\n  }), {\n    onClick: ({ count }) => () => ({\n      count: count + 1,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  >\n    <OverlayView\n      position={{ lat: -34.397, lng: 150.644 }}\n      /*\n       * An alternative to specifying position is specifying bounds.\n       * bounds can either be an instance of google.maps.LatLngBounds\n       * or an object in the following format:\n       * bounds={{\n       *    ne: { lat: 62.400471, lng: -150.005608 },\n       *    sw: { lat: 62.281819, lng: -150.287132 }\n       * }}\n       */\n      /*\n       * 1. Specify the pane the OverlayView will be rendered to. For\n       *    mouse interactivity, use `OverlayView.OVERLAY_MOUSE_TARGET`.\n       *    Defaults to `OverlayView.OVERLAY_LAYER`.\n       */\n      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}\n      /*\n       * 2. Tweak the OverlayView\'s pixel position. In this case, we\'re\n       *    centering the content.\n       */\n      getPixelPositionOffset={getPixelPositionOffset}\n      /*\n       * 3. Create OverlayView content using standard React components.\n       */\n    >\n      <div style={{ background: `white`, border: `1px solid #ccc`, padding: 15 }}>\n        <h1>OverlayView</h1>\n        <button onClick={props.onClick} style={{ height: 60 }}>\n          I have been clicked {props.count} time{props.count > 1 ? `s` : ``}\n        </button>\n      </div>\n    </OverlayView>\n  </GoogleMap>\n);\n\n<MapWithAnOverlayView\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `200px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
+          'const { compose, withProps, withStateHandlers } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  OverlayView,\n} = require("../index");\n\nconst getPixelPositionOffset = (width, height) => ({\n  x: -(width / 2),\n  y: -(height / 2),\n})\n\nconst MapWithAnOverlayView = compose(\n  withStateHandlers(() => ({\n    count: 0,\n  }), {\n    onClick: ({ count }) => () => ({\n      count: count + 1,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  >\n    <OverlayView\n      position={{ lat: -34.397, lng: 150.644 }}\n      /*\n       * An alternative to specifying position is specifying bounds.\n       * bounds can either be an instance of google.maps.LatLngBounds\n       * or an object in the following format:\n       * bounds={{\n       *    ne: { lat: 62.400471, lng: -150.005608 },\n       *    sw: { lat: 62.281819, lng: -150.287132 }\n       * }}\n       */\n      /*\n       * 1. Specify the pane the OverlayView will be rendered to. For\n       *    mouse interactivity, use `OverlayView.OVERLAY_MOUSE_TARGET`.\n       *    Defaults to `OverlayView.OVERLAY_LAYER`.\n       */\n      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}\n      /*\n       * 2. Tweak the OverlayView\'s pixel position. In this case, we\'re\n       *    centering the content.\n       */\n      getPixelPositionOffset={getPixelPositionOffset}\n      /*\n       * 3. Create OverlayView content using standard React components.\n       */\n    >\n      <div style={{ background: `white`, border: `1px solid #ccc`, padding: 15 }}>\n        <h1>OverlayView</h1>\n        <button onClick={props.onClick} style={{ height: 60 }}>\n          I have been clicked {props.count} time{props.count > 1 ? `s` : ``}\n        </button>\n      </div>\n    </OverlayView>\n  </GoogleMap>\n);\n\n<MapWithAnOverlayView\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `400px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
         settings: {},
         evalInContext: s,
       },
@@ -39882,12 +39882,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> FaAnchor <span class="hljs-keyword">from</span> <span class="hljs-string">"react-icons/lib/fa/ancho"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  StreetViewPanorama,\n  OverlayView,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> getPixelPositionOffset = <span class="hljs-function">(<span class="hljs-params">width, height</span>) =&gt;</span> ({\n  <span class="hljs-attr">x</span>: -(width / <span class="hljs-number">2</span>),\n  <span class="hljs-attr">y</span>: -(height / <span class="hljs-number">2</span>),\n})\n\n<span class="hljs-keyword">const</span> StreetViewPanormaWithAnOverlayView = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `600px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n    center: { lat: 49.2853171, lng: -123.1119202 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap defaultZoom={8} defaultCenter={props.center}&gt;\n    &lt;StreetViewPanorama defaultPosition={props.center} visible&gt;\n      &lt;OverlayView\n        position={{ lat: 49.28590291211115, lng: -123.11248166065218 }}\n          mapPaneName={OverlayView.OVERLAY_LAYER}\n          getPixelPositionOffset={getPixelPositionOffset}\n      &gt;\n        &lt;div style={{ background: `red`, color: `white`, padding: 5, borderRadius: `50%` }}&gt;\n          OverlayView\n        &lt;/div&gt;\n      &lt;/OverlayView&gt;\n    &lt;/StreetViewPanorama&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;StreetViewPanormaWithAnOverlayView /&gt;\n```\n\n### Click the Marker to show OverlayView',
+          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> FaAnchor <span class="hljs-keyword">from</span> <span class="hljs-string">"react-icons/lib/fa/ancho"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  StreetViewPanorama,\n  OverlayView,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> getPixelPositionOffset = <span class="hljs-function">(<span class="hljs-params">width, height</span>) =&gt;</span> ({\n  <span class="hljs-attr">x</span>: -(width / <span class="hljs-number">2</span>),\n  <span class="hljs-attr">y</span>: -(height / <span class="hljs-number">2</span>),\n})\n\n<span class="hljs-keyword">const</span> StreetViewPanormaWithAnOverlayView = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n    center: { lat: 49.2853171, lng: -123.1119202 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap defaultZoom={8} defaultCenter={props.center}&gt;\n    &lt;StreetViewPanorama defaultPosition={props.center} visible&gt;\n      &lt;OverlayView\n        position={{ lat: 49.28590291211115, lng: -123.11248166065218 }}\n          mapPaneName={OverlayView.OVERLAY_LAYER}\n          getPixelPositionOffset={getPixelPositionOffset}\n      &gt;\n        &lt;div style={{ background: `red`, color: `white`, padding: 5, borderRadius: `50%` }}&gt;\n          OverlayView\n        &lt;/div&gt;\n      &lt;/OverlayView&gt;\n    &lt;/StreetViewPanorama&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;StreetViewPanormaWithAnOverlayView /&gt;\n```\n\n### Click the Marker to show OverlayView',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  StreetViewPanorama,\n  OverlayView,\n} = require("../index");\n\nconst getPixelPositionOffset = (width, height) => ({\n  x: -(width / 2),\n  y: -(height / 2),\n})\n\nconst StreetViewPanormaWithAnOverlayView = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `600px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n    center: { lat: 49.2853171, lng: -123.1119202 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap defaultZoom={8} defaultCenter={props.center}>\n    <StreetViewPanorama defaultPosition={props.center} visible>\n      <OverlayView\n        position={{ lat: 49.28590291211115, lng: -123.11248166065218 }}\n          mapPaneName={OverlayView.OVERLAY_LAYER}\n          getPixelPositionOffset={getPixelPositionOffset}\n      >\n        <div style={{ background: `red`, color: `white`, padding: 5, borderRadius: `50%` }}>\n          OverlayView\n        </div>\n      </OverlayView>\n    </StreetViewPanorama>\n  </GoogleMap>\n);\n\n<StreetViewPanormaWithAnOverlayView />',
+          'const { compose, withProps } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  StreetViewPanorama,\n  OverlayView,\n} = require("../index");\n\nconst getPixelPositionOffset = (width, height) => ({\n  x: -(width / 2),\n  y: -(height / 2),\n})\n\nconst StreetViewPanormaWithAnOverlayView = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n    center: { lat: 49.2853171, lng: -123.1119202 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap defaultZoom={8} defaultCenter={props.center}>\n    <StreetViewPanorama defaultPosition={props.center} visible>\n      <OverlayView\n        position={{ lat: 49.28590291211115, lng: -123.11248166065218 }}\n          mapPaneName={OverlayView.OVERLAY_LAYER}\n          getPixelPositionOffset={getPixelPositionOffset}\n      >\n        <div style={{ background: `red`, color: `white`, padding: 5, borderRadius: `50%` }}>\n          OverlayView\n        </div>\n      </OverlayView>\n    </StreetViewPanorama>\n  </GoogleMap>\n);\n\n<StreetViewPanormaWithAnOverlayView />',
         settings: {},
         evalInContext: s,
       },
@@ -40015,12 +40015,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> DrawingManager <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/drawing/DrawingManager"</span>;\n\n<span class="hljs-keyword">const</span> MapWithADrawingManager = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `600px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={new google.maps.LatLng(-34.397, 150.644)}\n  &gt;\n    &lt;DrawingManager\n      defaultDrawingMode={google.maps.drawing.OverlayType.CIRCLE}\n      defaultOptions={{\n        drawingControl: true,\n        drawingControlOptions: {\n          position: google.maps.ControlPosition.TOP_CENTER,\n          drawingModes: [\n            google.maps.drawing.OverlayType.CIRCLE,\n            google.maps.drawing.OverlayType.POLYGON,\n            google.maps.drawing.OverlayType.POLYLINE,\n            google.maps.drawing.OverlayType.RECTANGLE,\n          ],\n        },\n        circleOptions: {\n          fillColor: `#ffff00`,\n          fillOpacity: 1,\n          strokeWeight: 5,\n          clickable: false,\n          editable: true,\n          zIndex: 1,\n        },\n      }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithADrawingManager /&gt;\n```\n\n### Map with a DrawingManager',
+          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> DrawingManager <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/drawing/DrawingManager"</span>;\n\n<span class="hljs-keyword">const</span> MapWithADrawingManager = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={new google.maps.LatLng(-34.397, 150.644)}\n  &gt;\n    &lt;DrawingManager\n      defaultDrawingMode={google.maps.drawing.OverlayType.CIRCLE}\n      defaultOptions={{\n        drawingControl: true,\n        drawingControlOptions: {\n          position: google.maps.ControlPosition.TOP_CENTER,\n          drawingModes: [\n            google.maps.drawing.OverlayType.CIRCLE,\n            google.maps.drawing.OverlayType.POLYGON,\n            google.maps.drawing.OverlayType.POLYLINE,\n            google.maps.drawing.OverlayType.RECTANGLE,\n          ],\n        },\n        circleOptions: {\n          fillColor: `#ffff00`,\n          fillOpacity: 1,\n          strokeWeight: 5,\n          clickable: false,\n          editable: true,\n          zIndex: 1,\n        },\n      }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithADrawingManager /&gt;\n```\n\n### Map with a DrawingManager',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} = require("../../index");\nconst { DrawingManager } = require("./DrawingManager");\n\nconst MapWithADrawingManager = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `600px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={new google.maps.LatLng(-34.397, 150.644)}\n  >\n    <DrawingManager\n      defaultDrawingMode={google.maps.drawing.OverlayType.CIRCLE}\n      defaultOptions={{\n        drawingControl: true,\n        drawingControlOptions: {\n          position: google.maps.ControlPosition.TOP_CENTER,\n          drawingModes: [\n            google.maps.drawing.OverlayType.CIRCLE,\n            google.maps.drawing.OverlayType.POLYGON,\n            google.maps.drawing.OverlayType.POLYLINE,\n            google.maps.drawing.OverlayType.RECTANGLE,\n          ],\n        },\n        circleOptions: {\n          fillColor: `#ffff00`,\n          fillOpacity: 1,\n          strokeWeight: 5,\n          clickable: false,\n          editable: true,\n          zIndex: 1,\n        },\n      }}\n    />\n  </GoogleMap>\n);\n\n<MapWithADrawingManager />',
+          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} = require("../../index");\nconst { DrawingManager } = require("./DrawingManager");\n\nconst MapWithADrawingManager = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={new google.maps.LatLng(-34.397, 150.644)}\n  >\n    <DrawingManager\n      defaultDrawingMode={google.maps.drawing.OverlayType.CIRCLE}\n      defaultOptions={{\n        drawingControl: true,\n        drawingControlOptions: {\n          position: google.maps.ControlPosition.TOP_CENTER,\n          drawingModes: [\n            google.maps.drawing.OverlayType.CIRCLE,\n            google.maps.drawing.OverlayType.POLYGON,\n            google.maps.drawing.OverlayType.POLYLINE,\n            google.maps.drawing.OverlayType.RECTANGLE,\n          ],\n        },\n        circleOptions: {\n          fillColor: `#ffff00`,\n          fillOpacity: 1,\n          strokeWeight: 5,\n          clickable: false,\n          editable: true,\n          zIndex: 1,\n        },\n      }}\n    />\n  </GoogleMap>\n);\n\n<MapWithADrawingManager />',
         settings: {},
         evalInContext: s,
       },
@@ -40047,12 +40047,46 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> SearchBox <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/places/SearchBox"</span>;\n\n<span class="hljs-keyword">const</span> MapWithASearchBox = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `200px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        bounds: null,\n        center: {\n          lat: 41.9, lng: -87.624\n        },\n        markers: [],\n        onMapMounted: ref =&gt; {\n          refs.map = ref;\n        },\n        onBoundsChanged: () =&gt; {\n          this.setState({\n            bounds: refs.map.getBounds(),\n            center: refs.map.getCenter(),\n          })\n        },\n        onSearchBoxMounted: ref =&gt; {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () =&gt; {\n          const places = refs.searchBox.getPlaces();\n          const bounds = new google.maps.LatLngBounds();\n\n          places.forEach(place =&gt; {\n            if (place.geometry.viewport) {\n              bounds.union(place.geometry.viewport)\n            } else {\n              bounds.extend(place.geometry.location)\n            }\n          });\n          const nextMarkers = places.map(place =&gt; ({\n            position: place.geometry.location,\n          }));\n          const nextCenter = _.get(nextMarkers, \'0.position\', this.state.center);\n\n          this.setState({\n            center: nextCenter,\n            markers: nextMarkers,\n          });\n          // refs.map.fitBounds(bounds);\n        },\n      })\n    },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    ref={props.onMapMounted}\n    defaultZoom={15}\n    center={props.center}\n    onBoundsChanged={props.onBoundsChanged}\n  &gt;\n    &lt;SearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      controlPosition={google.maps.ControlPosition.TOP_LEFT}\n      onPlacesChanged={props.onPlacesChanged}\n    &gt;\n      &lt;input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          marginTop: `27px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      /&gt;\n    &lt;/SearchBox&gt;\n    {props.markers.map((marker, index) =&gt;\n      &lt;Marker key={index} position={marker.position} /&gt;\n    )}\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithASearchBox /&gt;\n```\n\n### Map with a SearchBox',
+          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> SearchBox <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/places/SearchBox"</span>;\n\n<span class="hljs-keyword">const</span> MapWithASearchBox = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        bounds: null,\n        center: {\n          lat: 41.9, lng: -87.624\n        },\n        markers: [],\n        onMapMounted: ref =&gt; {\n          refs.map = ref;\n        },\n        onBoundsChanged: () =&gt; {\n          this.setState({\n            bounds: refs.map.getBounds(),\n            center: refs.map.getCenter(),\n          })\n        },\n        onSearchBoxMounted: ref =&gt; {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () =&gt; {\n          const places = refs.searchBox.getPlaces();\n          const bounds = new google.maps.LatLngBounds();\n\n          places.forEach(place =&gt; {\n            if (place.geometry.viewport) {\n              bounds.union(place.geometry.viewport)\n            } else {\n              bounds.extend(place.geometry.location)\n            }\n          });\n          const nextMarkers = places.map(place =&gt; ({\n            position: place.geometry.location,\n          }));\n          const nextCenter = _.get(nextMarkers, \'0.position\', this.state.center);\n\n          this.setState({\n            center: nextCenter,\n            markers: nextMarkers,\n          });\n          // refs.map.fitBounds(bounds);\n        },\n      })\n    },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    ref={props.onMapMounted}\n    defaultZoom={15}\n    center={props.center}\n    onBoundsChanged={props.onBoundsChanged}\n  &gt;\n    &lt;SearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      controlPosition={google.maps.ControlPosition.TOP_LEFT}\n      onPlacesChanged={props.onPlacesChanged}\n    &gt;\n      &lt;input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          marginTop: `27px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      /&gt;\n    &lt;/SearchBox&gt;\n    {props.markers.map((marker, index) =&gt;\n      &lt;Marker key={index} position={marker.position} /&gt;\n    )}\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithASearchBox /&gt;\n```\n\n### Map with a SearchBox',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps, lifecycle } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} = require("../../index");\nconst { SearchBox } = require("./SearchBox");\n\nconst MapWithASearchBox = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `200px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        bounds: null,\n        center: {\n          lat: 41.9, lng: -87.624\n        },\n        markers: [],\n        onMapMounted: ref => {\n          refs.map = ref;\n        },\n        onBoundsChanged: () => {\n          this.setState({\n            bounds: refs.map.getBounds(),\n            center: refs.map.getCenter(),\n          })\n        },\n        onSearchBoxMounted: ref => {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () => {\n          const places = refs.searchBox.getPlaces();\n          const bounds = new google.maps.LatLngBounds();\n\n          places.forEach(place => {\n            if (place.geometry.viewport) {\n              bounds.union(place.geometry.viewport)\n            } else {\n              bounds.extend(place.geometry.location)\n            }\n          });\n          const nextMarkers = places.map(place => ({\n            position: place.geometry.location,\n          }));\n          const nextCenter = _.get(nextMarkers, \'0.position\', this.state.center);\n\n          this.setState({\n            center: nextCenter,\n            markers: nextMarkers,\n          });\n          // refs.map.fitBounds(bounds);\n        },\n      })\n    },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    ref={props.onMapMounted}\n    defaultZoom={15}\n    center={props.center}\n    onBoundsChanged={props.onBoundsChanged}\n  >\n    <SearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      controlPosition={google.maps.ControlPosition.TOP_LEFT}\n      onPlacesChanged={props.onPlacesChanged}\n    >\n      <input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          marginTop: `27px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      />\n    </SearchBox>\n    {props.markers.map((marker, index) =>\n      <Marker key={index} position={marker.position} />\n    )}\n  </GoogleMap>\n);\n\n<MapWithASearchBox />',
+          'const { compose, withProps, lifecycle } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} = require("../../index");\nconst { SearchBox } = require("./SearchBox");\n\nconst MapWithASearchBox = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        bounds: null,\n        center: {\n          lat: 41.9, lng: -87.624\n        },\n        markers: [],\n        onMapMounted: ref => {\n          refs.map = ref;\n        },\n        onBoundsChanged: () => {\n          this.setState({\n            bounds: refs.map.getBounds(),\n            center: refs.map.getCenter(),\n          })\n        },\n        onSearchBoxMounted: ref => {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () => {\n          const places = refs.searchBox.getPlaces();\n          const bounds = new google.maps.LatLngBounds();\n\n          places.forEach(place => {\n            if (place.geometry.viewport) {\n              bounds.union(place.geometry.viewport)\n            } else {\n              bounds.extend(place.geometry.location)\n            }\n          });\n          const nextMarkers = places.map(place => ({\n            position: place.geometry.location,\n          }));\n          const nextCenter = _.get(nextMarkers, \'0.position\', this.state.center);\n\n          this.setState({\n            center: nextCenter,\n            markers: nextMarkers,\n          });\n          // refs.map.fitBounds(bounds);\n        },\n      })\n    },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    ref={props.onMapMounted}\n    defaultZoom={15}\n    center={props.center}\n    onBoundsChanged={props.onBoundsChanged}\n  >\n    <SearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      controlPosition={google.maps.ControlPosition.TOP_LEFT}\n      onPlacesChanged={props.onPlacesChanged}\n    >\n      <input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          marginTop: `27px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      />\n    </SearchBox>\n    {props.markers.map((marker, index) =>\n      <Marker key={index} position={marker.position} />\n    )}\n  </GoogleMap>\n);\n\n<MapWithASearchBox />',
+        settings: {},
+        evalInContext: s,
+      },
+    ]
+  },
+  "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/components/places/StandaloneSearchBox.md": function(
+    e,
+    t,
+    n
+  ) {
+    var r = {
+        recompose: n("./node_modules/recompose/es/Recompose.js"),
+        "../../index": n("./src/index.js"),
+        "./StandaloneSearchBox": n(
+          "./src/components/places/StandaloneSearchBox.jsx"
+        ),
+        react: n("./node_modules/react/react.js"),
+      },
+      o = n(
+        "./node_modules/react-styleguidist/loaders/utils/client/requireInRuntime.js"
+      ).bind(null, r),
+      s = n(
+        "./node_modules/react-styleguidist/loaders/utils/client/evalInContext.js"
+      ).bind(null, "var React = require('react');", o)
+    e.exports = [
+      {
+        type: "markdown",
+        content:
+          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> StandaloneSearchBox <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/places/StandaloneSearchBox"</span>;\n\n<span class="hljs-keyword">const</span> PlacesWithStandaloneSearchBox = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        places: [],\n        onSearchBoxMounted: ref =&gt; {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () =&gt; {\n          const places = refs.searchBox.getPlaces();\n\n          this.setState({\n            places,\n          });\n        },\n      })\n    },\n  }),\n  withScriptjs  \n)(props =&gt;\n  &lt;div data-standalone-searchbox=""&gt;\n    &lt;StandaloneSearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      onPlacesChanged={props.onPlacesChanged}\n    &gt;\n      &lt;input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      /&gt;\n    &lt;/StandaloneSearchBox&gt;\n    &lt;ol&gt;\n      {props.places.map(({ place_id, formatted_address, geometry: { location } }) =&gt;\n        &lt;li key={place_id}&gt;\n          {formatted_address}\n          {" at "}\n          ({location.lat()}, {location.lng()})\n        &lt;/li&gt;\n      )}\n    &lt;/ol&gt;\n  &lt;/div&gt;\n);\n\n&lt;PlacesWithStandaloneSearchBox /&gt;\n```\n\n### Standalone SearchBox',
+      },
+      {
+        type: "code",
+        content:
+          'const { compose, withProps, lifecycle } = require("recompose");\nconst {\n  withScriptjs,\n} = require("../../index");\nconst { StandaloneSearchBox } = require("./StandaloneSearchBox");\n\nconst PlacesWithStandaloneSearchBox = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        places: [],\n        onSearchBoxMounted: ref => {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () => {\n          const places = refs.searchBox.getPlaces();\n\n          this.setState({\n            places,\n          });\n        },\n      })\n    },\n  }),\n  withScriptjs  \n)(props =>\n  <div data-standalone-searchbox="">\n    <StandaloneSearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      onPlacesChanged={props.onPlacesChanged}\n    >\n      <input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      />\n    </StandaloneSearchBox>\n    <ol>\n      {props.places.map(({ place_id, formatted_address, geometry: { location } }) =>\n        <li key={place_id}>\n          {formatted_address}\n          {" at "}\n          ({location.lat()}, {location.lng()})\n        </li>\n      )}\n    </ol>\n  </div>\n);\n\n<PlacesWithStandaloneSearchBox />',
         settings: {},
         evalInContext: s,
       },
@@ -42434,8 +42468,15 @@ object-assign
         controlPosition: {
           type: { name: "number" },
           required: !1,
-          description: "",
-          tags: {},
+          description: "Where to put `<SearchBox>` inside a `<GoogleMap>`",
+          tags: {
+            example: [
+              {
+                title: "example",
+                description: "google.maps.ControlPosition.TOP_LEFT",
+              },
+            ],
+          },
         },
         defaultBounds: {
           type: { name: "any" },
@@ -42471,6 +42512,53 @@ object-assign
       },
       examples: n(
         "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/components/places/SearchBox.md"
+      ),
+    }
+  },
+  "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/places/StandaloneSearchBox.jsx": function(
+    e,
+    t,
+    n
+  ) {
+    e.exports = {
+      description: "\n",
+      displayName: "StandaloneSearchBox",
+      methods: [],
+      props: {
+        defaultBounds: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        bounds: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        onPlacesChanged: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+      },
+      doclets: {
+        url:
+          "https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox",
+      },
+      tags: {
+        url: [
+          {
+            title: "url",
+            description:
+              "https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox",
+          },
+        ],
+      },
+      examples: n(
+        "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/components/places/StandaloneSearchBox.md"
       ),
     }
   },
@@ -42549,11 +42637,11 @@ object-assign
         title: "React Google Maps Style Guide",
         highlightTheme: "base16-light",
         showCode: !1,
-        showUsage: !1,
+        showUsage: !0,
         showSidebar: !0,
         previewDelay: 500,
         theme: {},
-        styles: {},
+        styles: { Playground: { preview: { height: 434 } } },
         compilerConfig: { objectAssign: "Object.assign" },
       },
       welcomeScreen: !1,
@@ -42564,7 +42652,8 @@ object-assign
           components: [
             {
               filepath: "src/components/addons/InfoBox.jsx",
-              pathLine: "src/components/addons/InfoBox.jsx",
+              pathLine:
+                'import InfoBox from "react-google-maps/lib/components/addons/InfoBox";',
               module: n("./src/components/addons/InfoBox.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/addons/InfoBox.jsx"
@@ -42574,7 +42663,8 @@ object-assign
             },
             {
               filepath: "src/components/addons/MarkerClusterer.jsx",
-              pathLine: "src/components/addons/MarkerClusterer.jsx",
+              pathLine:
+                'import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";',
               module: n("./src/components/addons/MarkerClusterer.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/addons/MarkerClusterer.jsx"
@@ -42584,7 +42674,7 @@ object-assign
             },
             {
               filepath: "src/components/Circle.jsx",
-              pathLine: "src/components/Circle.jsx",
+              pathLine: 'import { Circle } from "react-google-maps";',
               module: n("./src/components/Circle.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/Circle.jsx"
@@ -42594,7 +42684,8 @@ object-assign
             },
             {
               filepath: "src/components/DirectionsRenderer.jsx",
-              pathLine: "src/components/DirectionsRenderer.jsx",
+              pathLine:
+                'import { DirectionsRenderer } from "react-google-maps";',
               module: n("./src/components/DirectionsRenderer.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/DirectionsRenderer.jsx"
@@ -42604,7 +42695,8 @@ object-assign
             },
             {
               filepath: "src/components/drawing/DrawingManager.jsx",
-              pathLine: "src/components/drawing/DrawingManager.jsx",
+              pathLine:
+                'import DrawingManager from "react-google-maps/lib/components/drawing/DrawingManager";',
               module: n("./src/components/drawing/DrawingManager.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/drawing/DrawingManager.jsx"
@@ -42614,7 +42706,8 @@ object-assign
             },
             {
               filepath: "src/components/FusionTablesLayer.jsx",
-              pathLine: "src/components/FusionTablesLayer.jsx",
+              pathLine:
+                'import { FusionTablesLayer } from "react-google-maps";',
               module: n("./src/components/FusionTablesLayer.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/FusionTablesLayer.jsx"
@@ -42624,7 +42717,7 @@ object-assign
             },
             {
               filepath: "src/components/GoogleMap.jsx",
-              pathLine: "src/components/GoogleMap.jsx",
+              pathLine: 'import { GoogleMap } from "react-google-maps";',
               module: n("./src/components/GoogleMap.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/GoogleMap.jsx"
@@ -42634,7 +42727,7 @@ object-assign
             },
             {
               filepath: "src/components/InfoWindow.jsx",
-              pathLine: "src/components/InfoWindow.jsx",
+              pathLine: 'import { InfoWindow } from "react-google-maps";',
               module: n("./src/components/InfoWindow.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/InfoWindow.jsx"
@@ -42644,7 +42737,7 @@ object-assign
             },
             {
               filepath: "src/components/KmlLayer.jsx",
-              pathLine: "src/components/KmlLayer.jsx",
+              pathLine: 'import { KmlLayer } from "react-google-maps";',
               module: n("./src/components/KmlLayer.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/KmlLayer.jsx"
@@ -42654,7 +42747,7 @@ object-assign
             },
             {
               filepath: "src/components/Marker.jsx",
-              pathLine: "src/components/Marker.jsx",
+              pathLine: 'import { Marker } from "react-google-maps";',
               module: n("./src/components/Marker.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/Marker.jsx"
@@ -42664,7 +42757,7 @@ object-assign
             },
             {
               filepath: "src/components/OverlayView.jsx",
-              pathLine: "src/components/OverlayView.jsx",
+              pathLine: 'import { OverlayView } from "react-google-maps";',
               module: n("./src/components/OverlayView.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/OverlayView.jsx"
@@ -42674,7 +42767,8 @@ object-assign
             },
             {
               filepath: "src/components/places/SearchBox.jsx",
-              pathLine: "src/components/places/SearchBox.jsx",
+              pathLine:
+                'import SearchBox from "react-google-maps/lib/components/places/SearchBox";',
               module: n("./src/components/places/SearchBox.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/places/SearchBox.jsx"
@@ -42683,8 +42777,19 @@ object-assign
               metadata: {},
             },
             {
+              filepath: "src/components/places/StandaloneSearchBox.jsx",
+              pathLine:
+                'import StandaloneSearchBox from "react-google-maps/lib/components/places/StandaloneSearchBox";',
+              module: n("./src/components/places/StandaloneSearchBox.jsx"),
+              props: n(
+                "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/places/StandaloneSearchBox.jsx"
+              ),
+              hasExamples: !0,
+              metadata: {},
+            },
+            {
               filepath: "src/components/Polygon.jsx",
-              pathLine: "src/components/Polygon.jsx",
+              pathLine: 'import { Polygon } from "react-google-maps";',
               module: n("./src/components/Polygon.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/Polygon.jsx"
@@ -42694,7 +42799,7 @@ object-assign
             },
             {
               filepath: "src/components/Polyline.jsx",
-              pathLine: "src/components/Polyline.jsx",
+              pathLine: 'import { Polyline } from "react-google-maps";',
               module: n("./src/components/Polyline.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/Polyline.jsx"
@@ -42704,7 +42809,7 @@ object-assign
             },
             {
               filepath: "src/components/Rectangle.jsx",
-              pathLine: "src/components/Rectangle.jsx",
+              pathLine: 'import { Rectangle } from "react-google-maps";',
               module: n("./src/components/Rectangle.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/Rectangle.jsx"
@@ -42714,7 +42819,8 @@ object-assign
             },
             {
               filepath: "src/components/StreetViewPanorama.jsx",
-              pathLine: "src/components/StreetViewPanorama.jsx",
+              pathLine:
+                'import { StreetViewPanorama } from "react-google-maps";',
               module: n("./src/components/StreetViewPanorama.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/StreetViewPanorama.jsx"
@@ -42724,7 +42830,7 @@ object-assign
             },
             {
               filepath: "src/components/TrafficLayer.jsx",
-              pathLine: "src/components/TrafficLayer.jsx",
+              pathLine: 'import { TrafficLayer } from "react-google-maps";',
               module: n("./src/components/TrafficLayer.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/TrafficLayer.jsx"
@@ -42734,7 +42840,8 @@ object-assign
             },
             {
               filepath: "src/components/visualization/HeatmapLayer.jsx",
-              pathLine: "src/components/visualization/HeatmapLayer.jsx",
+              pathLine:
+                'import HeatmapLayer from "react-google-maps/lib/components/visualization/HeatmapLayer";',
               module: n("./src/components/visualization/HeatmapLayer.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/visualization/HeatmapLayer.jsx"
@@ -51560,7 +51667,7 @@ object-assign
                   ))()
                   Object(h.d)(InfoBox.propTypes, _, this.props, e),
                     e.setMap(this.context[m.j]),
-                    (this.state = _defineProperty({}, m.g, e))
+                    this.setState(_defineProperty({}, m.g, e))
                 }
               },
             },
@@ -52200,23 +52307,21 @@ object-assign
     }
     Object.defineProperty(t, "__esModule", { value: !0 }),
       n.d(t, "SearchBox", function() {
-        return b
+        return g
       })
     var r = n("./node_modules/lodash/lodash.js"),
       o = n.n(r),
       s = n("./node_modules/can-use-dom/index.js"),
       i = n.n(s),
-      a = n("./node_modules/invariant/browser.js"),
+      a = n("./node_modules/react/react.js"),
       l = n.n(a),
-      u = n("./node_modules/react/react.js"),
+      u = n("./node_modules/react-dom/index.js"),
       c = n.n(u),
-      d = n("./node_modules/react-dom/index.js"),
+      d = n("./node_modules/prop-types/index.js"),
       p = n.n(d),
-      f = n("./node_modules/prop-types/index.js"),
-      h = n.n(f),
-      m = n("./src/utils/MapChildHelper.js"),
-      g = n("./src/constants.js"),
-      y = (function() {
+      f = n("./src/utils/MapChildHelper.js"),
+      h = n("./src/constants.js"),
+      m = (function() {
         function defineProperties(e, t) {
           for (var n = 0; n < t.length; n++) {
             var r = t[n]
@@ -52234,7 +52339,7 @@ object-assign
           )
         }
       })(),
-      b = (function(e) {
+      g = (function(e) {
         function SearchBox() {
           var e, t, n, r
           _classCallCheck(this, SearchBox)
@@ -52250,32 +52355,32 @@ object-assign
                 [this].concat(s)
               )
             )),
-            (n.state = _defineProperty({}, g.q, null)),
+            (n.state = _defineProperty({}, h.q, null)),
             (r = t),
             _possibleConstructorReturn(n, r)
           )
         }
         return (
-          _inherits(SearchBox, c.a.PureComponent),
-          y(SearchBox, [
+          _inherits(SearchBox, l.a.PureComponent),
+          m(SearchBox, [
             {
               key: "componentWillMount",
               value: function componentWillMount() {
-                if (i.a && !this.state[g.q]) {
+                if (i.a && !this.containerElement) {
                   ;(this.containerElement = document.createElement("div")),
                     this.handleRenderChildToContainerElement()
                   var e = new google.maps.places.SearchBox(
                     this.containerElement.firstChild
                   )
-                  Object(m.d)(SearchBox.propTypes, j, this.props, e),
-                    (this.state = _defineProperty({}, g.q, e))
+                  Object(f.d)(SearchBox.propTypes, v, this.props, e),
+                    this.setState(_defineProperty({}, h.q, e))
                 }
               },
             },
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(m.a)(this, this.state[g.q], _),
+                Object(f.a)(this, this.state[h.q], b),
                   this.handleMountAtControlPosition()
               },
             },
@@ -52289,7 +52394,7 @@ object-assign
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(m.b)(this, this.state[g.q], _, j, e),
+                Object(f.b)(this, this.state[h.q], b, v, e),
                   this.props.children !== e.children &&
                     this.handleRenderChildToContainerElement(),
                   this.props.controlPosition !== e.controlPosition &&
@@ -52299,19 +52404,19 @@ object-assign
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
-                Object(m.c)(this),
+                Object(f.c)(this),
                   this.handleUnmountAtControlPosition(),
                   this.containerElement &&
-                    (p.a.unmountComponentAtNode(this.containerElement),
+                    (c.a.unmountComponentAtNode(this.containerElement),
                     (this.containerElement = null))
               },
             },
             {
               key: "handleRenderChildToContainerElement",
               value: function handleRenderChildToContainerElement() {
-                p.a.unstable_renderSubtreeIntoContainer(
+                c.a.unstable_renderSubtreeIntoContainer(
                   this,
-                  c.a.Children.only(this.props.children),
+                  l.a.Children.only(this.props.children),
                   this.containerElement
                 )
               },
@@ -52319,26 +52424,19 @@ object-assign
             {
               key: "handleMountAtControlPosition",
               value: function handleMountAtControlPosition() {
-                v(this.props.controlPosition) &&
-                  (l()(
-                    this.context[g.j],
-                    "If you're using <SearchBox> with controlPosition, please put it as a child of a <GoogleMap> component."
-                  ),
+                y(this.props.controlPosition) &&
                   (this.mountControlIndex =
-                    this.context[g.j].controls[this.props.controlPosition].push(
+                    -1 +
+                    this.context[h.j].controls[this.props.controlPosition].push(
                       this.containerElement.firstChild
-                    ) - 1))
+                    ))
               },
             },
             {
               key: "handleUnmountAtControlPosition",
               value: function handleUnmountAtControlPosition() {
-                if (v(this.props.controlPosition)) {
-                  l()(
-                    this.context[g.j],
-                    "If you're using <SearchBox> with controlPosition, please put it as a child of a <GoogleMap> component."
-                  )
-                  var e = this.context[g.j].controls[
+                if (y(this.props.controlPosition)) {
+                  var e = this.context[h.j].controls[
                     this.props.controlPosition
                   ].removeAt(this.mountControlIndex)
                   this.containerElement.appendChild(e)
@@ -52354,30 +52452,187 @@ object-assign
             {
               key: "getBounds",
               value: function getBounds() {
-                return this.state[g.q].getBounds()
+                return this.state[h.q].getBounds()
               },
             },
             {
               key: "getPlaces",
               value: function getPlaces() {
-                return this.state[g.q].getPlaces()
+                return this.state[h.q].getPlaces()
               },
             },
           ]),
           SearchBox
         )
       })()
-    ;(b.propTypes = {
-      controlPosition: h.a.number,
-      defaultBounds: h.a.any,
-      bounds: h.a.any,
-      onPlacesChanged: h.a.func,
+    ;(g.propTypes = {
+      controlPosition: p.a.number,
+      defaultBounds: p.a.any,
+      bounds: p.a.any,
+      onPlacesChanged: p.a.func,
     }),
-      (b.contextTypes = _defineProperty({}, g.j, h.a.object)),
-      (t.default = b)
-    var v = o.a.isNumber,
-      _ = { onPlacesChanged: "places_changed" },
-      j = {
+      (g.contextTypes = _defineProperty({}, h.j, p.a.object)),
+      (t.default = g)
+    var y = o.a.isNumber,
+      b = { onPlacesChanged: "places_changed" },
+      v = {
+        bounds: function bounds(e, t) {
+          e.setBounds(t)
+        },
+      }
+  },
+  "./src/components/places/StandaloneSearchBox.jsx": function(e, t, n) {
+    "use strict"
+    function _defineProperty(e, t, n) {
+      return (
+        t in e
+          ? Object.defineProperty(e, t, {
+              value: n,
+              enumerable: !0,
+              configurable: !0,
+              writable: !0,
+            })
+          : (e[t] = n),
+        e
+      )
+    }
+    function _classCallCheck(e, t) {
+      if (!(e instanceof t))
+        throw new TypeError("Cannot call a class as a function")
+    }
+    function _possibleConstructorReturn(e, t) {
+      if (!e)
+        throw new ReferenceError(
+          "this hasn't been initialised - super() hasn't been called"
+        )
+      return !t || ("object" != typeof t && "function" != typeof t) ? e : t
+    }
+    function _inherits(e, t) {
+      if ("function" != typeof t && null !== t)
+        throw new TypeError(
+          "Super expression must either be null or a function, not " + typeof t
+        )
+      ;(e.prototype = Object.create(t && t.prototype, {
+        constructor: {
+          value: e,
+          enumerable: !1,
+          writable: !0,
+          configurable: !0,
+        },
+      })),
+        t &&
+          (Object.setPrototypeOf
+            ? Object.setPrototypeOf(e, t)
+            : (e.__proto__ = t))
+    }
+    Object.defineProperty(t, "__esModule", { value: !0 }),
+      n.d(t, "StandaloneSearchBox", function() {
+        return f
+      })
+    var r = n("./node_modules/react/react.js"),
+      o = n.n(r),
+      s = n("./node_modules/react-dom/index.js"),
+      i = n.n(s),
+      a = n("./node_modules/prop-types/index.js"),
+      l = n.n(a),
+      u = n("./src/utils/MapChildHelper.js"),
+      c = n("./src/constants.js"),
+      d = (function() {
+        function defineProperties(e, t) {
+          for (var n = 0; n < t.length; n++) {
+            var r = t[n]
+            ;(r.enumerable = r.enumerable || !1),
+              (r.configurable = !0),
+              "value" in r && (r.writable = !0),
+              Object.defineProperty(e, r.key, r)
+          }
+        }
+        return function(e, t, n) {
+          return (
+            t && defineProperties(e.prototype, t),
+            n && defineProperties(e, n),
+            e
+          )
+        }
+      })(),
+      p = (function(e) {
+        function SearchBox() {
+          var e, t, n, r
+          _classCallCheck(this, SearchBox)
+          for (var o = arguments.length, s = Array(o), i = 0; i < o; i++)
+            s[i] = arguments[i]
+          return (
+            (t = n = _possibleConstructorReturn(
+              this,
+              (e =
+                SearchBox.__proto__ ||
+                Object.getPrototypeOf(SearchBox)).call.apply(
+                e,
+                [this].concat(s)
+              )
+            )),
+            (n.state = _defineProperty({}, c.q, null)),
+            (r = t),
+            _possibleConstructorReturn(n, r)
+          )
+        }
+        return (
+          _inherits(SearchBox, o.a.PureComponent),
+          d(SearchBox, [
+            {
+              key: "componentDidMount",
+              value: function componentDidMount() {
+                var e = i.a.findDOMNode(this),
+                  t = new google.maps.places.SearchBox(e)
+                Object(u.d)(SearchBox.propTypes, m, this.props, t),
+                  Object(u.a)(this, t, h),
+                  this.setState(_defineProperty({}, c.q, t))
+              },
+            },
+            {
+              key: "componentDidUpdate",
+              value: function componentDidUpdate(e) {
+                Object(u.b)(this, this.state[c.q], h, m, e)
+              },
+            },
+            {
+              key: "componentWillUnmount",
+              value: function componentWillUnmount() {
+                Object(u.c)(this)
+              },
+            },
+            {
+              key: "render",
+              value: function render() {
+                return o.a.Children.only(this.props.children)
+              },
+            },
+            {
+              key: "getBounds",
+              value: function getBounds() {
+                return this.state[c.q].getBounds()
+              },
+            },
+            {
+              key: "getPlaces",
+              value: function getPlaces() {
+                return this.state[c.q].getPlaces()
+              },
+            },
+          ]),
+          SearchBox
+        )
+      })()
+    ;(p.displayName = "StandaloneSearchBox"),
+      (p.propTypes = {
+        defaultBounds: l.a.any,
+        bounds: l.a.any,
+        onPlacesChanged: l.a.func,
+      })
+    var f = p
+    t.default = f
+    var h = { onPlacesChanged: "places_changed" },
+      m = {
         bounds: function bounds(e, t) {
           e.setBounds(t)
         },

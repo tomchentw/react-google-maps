@@ -2,6 +2,7 @@ const _ = require("lodash")
 const path = require("path")
 
 module.exports = {
+  showUsage: true,
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, ".jsx")
     const dirname = path.basename(path.dirname(componentPath))
@@ -9,5 +10,12 @@ module.exports = {
       return `import { ${name} } from "react-google-maps";`
     }
     return `import ${name} from "react-google-maps/lib/components/${dirname}/${name}";`
+  },
+  styles: {
+    Playground: {
+      preview: {
+        height: 400 + 2 * 16 + 2 * 1,
+      },
+    },
   },
 }

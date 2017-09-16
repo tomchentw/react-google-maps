@@ -108,9 +108,9 @@ export class InfoBox extends React.PureComponent {
     const infoBox = new GoogleMapsInfobox()
     construct(InfoBox.propTypes, updaterMap, this.props, infoBox)
     infoBox.setMap(this.context[MAP])
-    this.state = {
+    this.setState({
       [INFO_BOX]: infoBox,
-    }
+    })
   }
 
   componentDidMount() {

@@ -18,6 +18,6 @@
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": ["warn"]
+    "prettier/prettier": ["warn", { "semi": false, "trailingComma": "es5" }]
   }
 }

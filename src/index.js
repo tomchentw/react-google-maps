@@ -18,6 +18,8 @@ export { default as InfoWindow } from "./components/InfoWindow"
 
 export { default as OverlayView } from "./components/OverlayView"
 
+export { default as GroundOverlay } from "./components/GroundOverlay"
+
 export { default as DirectionsRenderer } from "./components/DirectionsRenderer"
 
 export { default as FusionTablesLayer } from "./components/FusionTablesLayer"

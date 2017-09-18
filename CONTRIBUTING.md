@@ -23,7 +23,8 @@
 ```shell
 git clone ...
 npm install
-npm start
+# run demo app
+npm run styleguide
 ```
 
 Now you can develop!

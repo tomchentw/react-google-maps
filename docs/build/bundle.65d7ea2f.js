@@ -1934,7 +1934,7 @@
                     j,
                     x = this.findScope(!1),
                     w = [],
-                    E = []
+                    k = []
                   if (
                     (this.body.forEach(function(e, n) {
                       if ("constructor" !== e.kind) {
@@ -1960,7 +1960,7 @@
                             )
                           t.remove(e.start, e.key.start),
                             e.static
-                              ? (~E.indexOf(e.key.name) || E.push(e.key.name),
+                              ? (~k.indexOf(e.key.name) || k.push(e.key.name),
                                 j ||
                                   (j = x.createIdentifier("staticAccessors")),
                                 (o = "" + j))
@@ -2000,12 +2000,12 @@
                         t.overwrite(e.key.start, e.key.end, "function" + m)
                       }
                     }),
-                    w.length || E.length)
+                    w.length || k.length)
                   ) {
-                    var k = [],
+                    var E = [],
                       S = []
                     w.length &&
-                      (k.push(
+                      (E.push(
                         "var " +
                           _ +
                           " = { " +
@@ -2023,21 +2023,23 @@
                           _ +
                           " );"
                       )),
-                      E.length &&
-                        (k.push(
+                      k.length &&
+                        (E.push(
                           "var " +
                             j +
                             " = { " +
-                            E.map(function(e) {
-                              return e + ": {}"
-                            }).join(",") +
+                            k
+                              .map(function(e) {
+                                return e + ": {}"
+                              })
+                              .join(",") +
                             " };"
                         ),
                         S.push(
                           "Object.defineProperties( " + i + ", " + j + " );"
                         )),
                       d && (p += "\n\n" + l),
-                      (p += k.join("\n" + l)),
+                      (p += E.join("\n" + l)),
                       d || (p += "\n\n" + l),
                       (f += "\n\n" + l + S.join("\n" + l))
                   }
@@ -2049,7 +2051,7 @@
               ClassBody
             )
           })(h),
-          E = (function(e) {
+          k = (function(e) {
             function ClassDeclaration() {
               e.apply(this, arguments)
             }
@@ -2113,7 +2115,7 @@
               ClassDeclaration
             )
           })(h),
-          k = (function(e) {
+          E = (function(e) {
             function ClassExpression() {
               e.apply(this, arguments)
             }
@@ -3074,7 +3076,7 @@
                 C = function(e, t) {
                   for (var n, r, o = 0, s = e.slice(), i = t.length; o < i; )
                     (s =
-                      (n = t[o]) == (r = t[o + 1] - 1) ? x(s, n) : E(s, n, r)),
+                      (n = t[o]) == (r = t[o + 1] - 1) ? x(s, n) : k(s, n, r)),
                       (o += 2)
                   return s
                 },
@@ -3085,7 +3087,7 @@
                       (o += 2)
                   return s
                 },
-                E = function(e, t, n) {
+                k = function(e, t, n) {
                   if (n < t) throw Error(l.rangeOrder)
                   if (t < 0 || t > 1114111 || n < 0 || n > 1114111)
                     throw RangeError(l.codePointRange)
@@ -3112,7 +3114,7 @@
                   }
                   return i || e.push(t, n + 1), e
                 },
-                k = function(e, t) {
+                E = function(e, t) {
                   var n = 0,
                     r = e.length,
                     o = e[n],
@@ -3126,7 +3128,7 @@
                 },
                 S = function(e, t) {
                   for (var n, r = 0, o = t.length, s = []; r < o; )
-                    (n = t[r]), k(e, n) && s.push(n), ++r
+                    (n = t[r]), E(e, n) && s.push(n), ++r
                   return v(s)
                 },
                 O = function(e) {
@@ -3305,7 +3307,7 @@
                         s && r[0] == s[0] && r[1] == s[1];
 
                       )
-                        (l = P(i) ? x(l, i[0]) : E(l, i[0], i[1] - 1)),
+                        (l = P(i) ? x(l, i[0]) : k(l, i[0], i[1] - 1)),
                           (r = (t = e[++c])[0]),
                           (o = t[1]),
                           (s = (n = e[c + 1]) && n[0]),
@@ -3331,7 +3333,7 @@
                         i == c &&
                         (P(a[0])
                           ? (r[0] = x(r[0], a[0][0]))
-                          : (r[0] = E(r[0], a[0][0], a[0][1] - 1)),
+                          : (r[0] = k(r[0], a[0][0], a[0][1] - 1)),
                         e.splice(n, 1),
                         --n)
                     }
@@ -3444,7 +3446,7 @@
                 addRange: function(e, t) {
                   var n = this
                   return (
-                    (n.data = E(n.data, m(e) ? e : N(e), m(t) ? t : N(t))), n
+                    (n.data = k(n.data, m(e) ? e : N(e), m(t) ? t : N(t))), n
                   )
                 },
                 removeRange: function(e, t) {
@@ -3459,7 +3461,7 @@
                   return (t.data = S(t.data, n)), t
                 },
                 contains: function(e) {
-                  return k(this.data, m(e) ? e : N(e))
+                  return E(this.data, m(e) ? e : N(e))
                 },
                 clone: function() {
                   var e = new G()
@@ -4217,7 +4219,7 @@
                           ? createEscaped("null", 0, "0", t.length + 1)
                           : createEscaped("octal", parseInt(t, 8), t, 1))
                       : !!(e = matchReg(/^[dDsSwW]/)) &&
-                        createCharacterClassEscape(e[0])
+                          createCharacterClassEscape(e[0])
                   }
                   function parseCharacterEscape() {
                     var e
@@ -4803,8 +4805,8 @@
             BreakStatement: j,
             CallExpression: x,
             ClassBody: w,
-            ClassDeclaration: E,
-            ClassExpression: k,
+            ClassDeclaration: k,
+            ClassExpression: E,
             ContinueStatement: S,
             DoWhileStatement: R,
             ExportNamedDeclaration: P,
@@ -5030,14 +5032,14 @@
                         t.insertRight(this.start, "( " + g + " = ")
                     }
                     for (
-                      var C, w = this.properties.length, E = !1, k = 0;
-                      k < w;
-                      k += 1
+                      var C, w = this.properties.length, k = !1, E = 0;
+                      E < w;
+                      E += 1
                     ) {
-                      var S = r.properties[k]
+                      var S = r.properties[E]
                       if (S.computed) {
                         C = S
-                        var O = k > 0 ? r.properties[k - 1].end : _,
+                        var O = E > 0 ? r.properties[E - 1].end : _,
                           P = m ? ";\n" + b + g : ", " + g
                         O < S.start
                           ? t.overwrite(O, S.start, P)
@@ -5048,7 +5050,7 @@
                           S.value.start > R && t.remove(R, S.value.start),
                           t.insertLeft(R, " = "),
                           t.move(O, S.end, j),
-                          k < w - 1 && !E)
+                          E < w - 1 && !k)
                         ) {
                           for (R = S.end; "," !== t.original[R]; ) R += 1
                           t.remove(S.end, R + 1)
@@ -5056,7 +5058,7 @@
                         S.method &&
                           n.conciseMethodProperty &&
                           t.insertRight(S.value.start, "function ")
-                      } else E = !0
+                      } else k = !0
                     }
                     a === w &&
                       t.remove(this.properties[w - 1].end, this.end - 1),
@@ -6106,26 +6108,26 @@
         return e < 65
           ? 36 === e
           : e < 91 ||
-            (e < 97
-              ? 95 === e
-              : e < 123 ||
-                (e <= 65535
-                  ? e >= 170 && i.test(String.fromCharCode(e))
-                  : !1 !== t && isInAstralSet(e, l)))
+              (e < 97
+                ? 95 === e
+                : e < 123 ||
+                  (e <= 65535
+                    ? e >= 170 && i.test(String.fromCharCode(e))
+                    : !1 !== t && isInAstralSet(e, l)))
       }
       function isIdentifierChar(e, t) {
         return e < 48
           ? 36 === e
           : e < 58 ||
-            (!(e < 65) &&
-              (e < 91 ||
-                (e < 97
-                  ? 95 === e
-                  : e < 123 ||
-                    (e <= 65535
-                      ? e >= 170 && a.test(String.fromCharCode(e))
-                      : !1 !== t &&
-                        (isInAstralSet(e, l) || isInAstralSet(e, u))))))
+              (!(e < 65) &&
+                (e < 91 ||
+                  (e < 97
+                    ? 95 === e
+                    : e < 123 ||
+                      (e <= 65535
+                        ? e >= 170 && a.test(String.fromCharCode(e))
+                        : !1 !== t &&
+                          (isInAstralSet(e, l) || isInAstralSet(e, u))))))
       }
       function binop(e, t) {
         return new c(e, { beforeExpr: !0, binop: t })
@@ -7035,7 +7037,7 @@
         (w.unexpected = function(e) {
           this.raise(null != e ? e : this.start, "Unexpected token")
         })
-      var E = function DestructuringErrors() {
+      var k = function DestructuringErrors() {
         ;(this.shorthandAssign = 0), (this.trailingComma = 0)
       }
       ;(w.checkPatternErrors = function(e, t) {
@@ -7052,8 +7054,8 @@
               "Shorthand property assignments are valid only in destructuring patterns"
             )
         })
-      var k = C.prototype
-      k.parseTopLevel = function(e) {
+      var E = C.prototype
+      E.parseTopLevel = function(e) {
         var t = this,
           n = !0
         for (e.body || (e.body = []); this.type !== h.eof; ) {
@@ -7069,7 +7071,7 @@
       }
       var S = { kind: "loop" },
         O = { kind: "switch" }
-      ;(k.isLet = function() {
+      ;(E.isLet = function() {
         if (
           this.type !== h.name ||
           this.options.ecmaVersion < 6 ||
@@ -7092,7 +7094,7 @@
         }
         return !1
       }),
-        (k.parseStatement = function(e, t) {
+        (E.parseStatement = function(e, t) {
           var n,
             r = this.type,
             o = this.startNode()
@@ -7158,13 +7160,13 @@
               var s = this.value,
                 i = this.parseExpression()
               return r === h.name &&
-              "Identifier" === i.type &&
-              this.eat(h.colon)
+                "Identifier" === i.type &&
+                this.eat(h.colon)
                 ? this.parseLabeledStatement(o, s, i)
                 : this.parseExpressionStatement(o, i)
           }
         }),
-        (k.parseBreakContinueStatement = function(e, t) {
+        (E.parseBreakContinueStatement = function(e, t) {
           var n = this,
             r = "break" == t
           this.next(),
@@ -7185,14 +7187,14 @@
             this.finishNode(e, r ? "BreakStatement" : "ContinueStatement")
           )
         }),
-        (k.parseDebuggerStatement = function(e) {
+        (E.parseDebuggerStatement = function(e) {
           return (
             this.next(),
             this.semicolon(),
             this.finishNode(e, "DebuggerStatement")
           )
         }),
-        (k.parseDoStatement = function(e) {
+        (E.parseDoStatement = function(e) {
           return (
             this.next(),
             this.labels.push(S),
@@ -7204,7 +7206,7 @@
             this.finishNode(e, "DoWhileStatement")
           )
         }),
-        (k.parseForStatement = function(e) {
+        (E.parseForStatement = function(e) {
           if (
             (this.next(),
             this.labels.push(S),
@@ -7230,20 +7232,20 @@
                 : this.parseForIn(e, n)
             )
           }
-          var o = new E(),
+          var o = new k(),
             s = this.parseExpression(!0, o)
           return this.type === h._in ||
-          (this.options.ecmaVersion >= 6 && this.isContextual("of"))
+            (this.options.ecmaVersion >= 6 && this.isContextual("of"))
             ? (this.checkPatternErrors(o, !0),
               this.toAssignable(s),
               this.checkLVal(s),
               this.parseForIn(e, s))
             : (this.checkExpressionErrors(o, !0), this.parseFor(e, s))
         }),
-        (k.parseFunctionStatement = function(e) {
+        (E.parseFunctionStatement = function(e) {
           return this.next(), this.parseFunction(e, !0)
         }),
-        (k.parseIfStatement = function(e) {
+        (E.parseIfStatement = function(e) {
           return (
             this.next(),
             (e.test = this.parseParenExpression()),
@@ -7252,7 +7254,7 @@
             this.finishNode(e, "IfStatement")
           )
         }),
-        (k.parseReturnStatement = function(e) {
+        (E.parseReturnStatement = function(e) {
           return (
             this.inFunction ||
               this.options.allowReturnOutsideFunction ||
@@ -7264,7 +7266,7 @@
             this.finishNode(e, "ReturnStatement")
           )
         }),
-        (k.parseSwitchStatement = function(e) {
+        (E.parseSwitchStatement = function(e) {
           var t = this
           this.next(),
             (e.discriminant = this.parseParenExpression()),
@@ -7296,7 +7298,7 @@
             this.finishNode(e, "SwitchStatement")
           )
         }),
-        (k.parseThrowStatement = function(e) {
+        (E.parseThrowStatement = function(e) {
           return (
             this.next(),
             m.test(this.input.slice(this.lastTokEnd, this.start)) &&
@@ -7307,7 +7309,7 @@
           )
         })
       var P = []
-      ;(k.parseTryStatement = function(e) {
+      ;(E.parseTryStatement = function(e) {
         if (
           (this.next(),
           (e.block = this.parseBlock()),
@@ -7331,7 +7333,7 @@
           this.finishNode(e, "TryStatement")
         )
       }),
-        (k.parseVarStatement = function(e, t) {
+        (E.parseVarStatement = function(e, t) {
           return (
             this.next(),
             this.parseVar(e, !1, t),
@@ -7339,7 +7341,7 @@
             this.finishNode(e, "VariableDeclaration")
           )
         }),
-        (k.parseWhileStatement = function(e) {
+        (E.parseWhileStatement = function(e) {
           return (
             this.next(),
             (e.test = this.parseParenExpression()),
@@ -7349,7 +7351,7 @@
             this.finishNode(e, "WhileStatement")
           )
         }),
-        (k.parseWithStatement = function(e) {
+        (E.parseWithStatement = function(e) {
           return (
             this.strict && this.raise(this.start, "'with' in strict mode"),
             this.next(),
@@ -7358,10 +7360,10 @@
             this.finishNode(e, "WithStatement")
           )
         }),
-        (k.parseEmptyStatement = function(e) {
+        (E.parseEmptyStatement = function(e) {
           return this.next(), this.finishNode(e, "EmptyStatement")
         }),
-        (k.parseLabeledStatement = function(e, t, n) {
+        (E.parseLabeledStatement = function(e, t, n) {
           for (var r = this, o = 0; o < this.labels.length; ++o)
             r.labels[o].name === t &&
               r.raise(n.start, "Label '" + t + "' is already declared")
@@ -7385,14 +7387,14 @@
             this.finishNode(e, "LabeledStatement")
           )
         }),
-        (k.parseExpressionStatement = function(e, t) {
+        (E.parseExpressionStatement = function(e, t) {
           return (
             (e.expression = t),
             this.semicolon(),
             this.finishNode(e, "ExpressionStatement")
           )
         }),
-        (k.parseBlock = function(e) {
+        (E.parseBlock = function(e) {
           var t,
             n = this,
             r = this.startNode(),
@@ -7410,7 +7412,7 @@
             !1 === t && this.setStrict(!1), this.finishNode(r, "BlockStatement")
           )
         }),
-        (k.parseFor = function(e, t) {
+        (E.parseFor = function(e, t) {
           return (
             (e.init = t),
             this.expect(h.semi),
@@ -7423,7 +7425,7 @@
             this.finishNode(e, "ForStatement")
           )
         }),
-        (k.parseForIn = function(e, t) {
+        (E.parseForIn = function(e, t) {
           var n = this.type === h._in ? "ForInStatement" : "ForOfStatement"
           return (
             this.next(),
@@ -7435,7 +7437,7 @@
             this.finishNode(e, n)
           )
         }),
-        (k.parseVar = function(e, t, n) {
+        (E.parseVar = function(e, t, n) {
           var r = this
           for (e.declarations = [], e.kind = n; ; ) {
             var o = r.startNode()
@@ -7461,10 +7463,10 @@
           }
           return e
         }),
-        (k.parseVarId = function(e) {
+        (E.parseVarId = function(e) {
           ;(e.id = this.parseBindingAtom()), this.checkLVal(e.id, !0)
         }),
-        (k.parseFunction = function(e, t, n) {
+        (E.parseFunction = function(e, t, n) {
           this.initFunction(e),
             this.options.ecmaVersion >= 6 && (e.generator = this.eat(h.star))
           var r = this.inGenerator
@@ -7477,11 +7479,11 @@
             this.finishNode(e, t ? "FunctionDeclaration" : "FunctionExpression")
           )
         }),
-        (k.parseFunctionParams = function(e) {
+        (E.parseFunctionParams = function(e) {
           this.expect(h.parenL),
             (e.params = this.parseBindingList(h.parenR, !1, !1, !0))
         }),
-        (k.parseClass = function(e, t) {
+        (E.parseClass = function(e, t) {
           var n = this
           this.next(), this.parseClassId(e, t), this.parseClassSuper(e)
           var r = this.startNode(),
@@ -7547,22 +7549,22 @@
             this.finishNode(e, t ? "ClassDeclaration" : "ClassExpression")
           )
         }),
-        (k.parseClassMethod = function(e, t, n) {
+        (E.parseClassMethod = function(e, t, n) {
           ;(t.value = this.parseMethod(n)),
             e.body.push(this.finishNode(t, "MethodDefinition"))
         }),
-        (k.parseClassId = function(e, t) {
+        (E.parseClassId = function(e, t) {
           e.id =
             this.type === h.name
               ? this.parseIdent()
               : t ? this.unexpected() : null
         }),
-        (k.parseClassSuper = function(e) {
+        (E.parseClassSuper = function(e) {
           e.superClass = this.eat(h._extends)
             ? this.parseExprSubscripts()
             : null
         }),
-        (k.parseExport = function(e) {
+        (E.parseExport = function(e) {
           var t = this
           if ((this.next(), this.eat(h.star)))
             return (
@@ -7618,10 +7620,10 @@
           }
           return this.finishNode(e, "ExportNamedDeclaration")
         }),
-        (k.shouldParseExportStatement = function() {
+        (E.shouldParseExportStatement = function() {
           return this.type.keyword || this.isLet()
         }),
-        (k.parseExportSpecifiers = function() {
+        (E.parseExportSpecifiers = function() {
           var e = this,
             t = [],
             n = !0
@@ -7635,7 +7637,7 @@
           }
           return t
         }),
-        (k.parseImport = function(e) {
+        (E.parseImport = function(e) {
           return (
             this.next(),
             this.type === h.string
@@ -7650,7 +7652,7 @@
             this.finishNode(e, "ImportDeclaration")
           )
         }),
-        (k.parseImportSpecifiers = function() {
+        (E.parseImportSpecifiers = function() {
           var e = this,
             t = [],
             n = !0
@@ -7954,14 +7956,14 @@
           if (this.inGenerator && this.isContextual("yield"))
             return this.parseYield()
           var r = !1
-          t || ((t = new E()), (r = !0))
+          t || ((t = new k()), (r = !0))
           var o = this.start,
             s = this.startLoc
           ;(this.type != h.parenL && this.type != h.name) ||
             (this.potentialArrowAt = this.start)
           var i = this.parseMaybeConditional(e, t)
           if ((n && (i = n.call(this, i, o, s)), this.type.isAssign)) {
-            this.checkPatternErrors(t, !0), r || E.call(t)
+            this.checkPatternErrors(t, !0), r || k.call(t)
             var a = this.startNodeAt(o, s)
             return (
               (a.operator = this.value),
@@ -8206,7 +8208,7 @@
                 l = this.startLoc,
                 u = [],
                 c = !0,
-                d = new E();
+                d = new k();
               this.type !== h.parenR;
 
             ) {
@@ -8376,7 +8378,8 @@
               ? ((this.keywords.test(e.key.name) ||
                   (this.strict
                     ? this.reservedWordsStrictBind
-                    : this.reservedWords).test(e.key.name) ||
+                    : this.reservedWords
+                  ).test(e.key.name) ||
                   (this.inGenerator && "yield" == e.key.name)) &&
                   this.raiseRecoverable(
                     e.key.start,
@@ -8500,7 +8503,8 @@
               ? (!e &&
                   (this.strict
                     ? this.reservedWordsStrict
-                    : this.reservedWords).test(this.value) &&
+                    : this.reservedWords
+                  ).test(this.value) &&
                   (this.options.ecmaVersion >= 6 ||
                     -1 ==
                       this.input.slice(this.start, this.end).indexOf("\\")) &&
@@ -8605,12 +8609,12 @@
           return e === h._return
             ? m.test(this.input.slice(this.lastTokEnd, this.start))
             : e === h._else ||
-              e === h.semi ||
-              e === h.eof ||
-              e === h.parenR ||
-              (e == h.braceL
-                ? this.curContext() === N.b_stat
-                : !this.exprAllowed)
+                e === h.semi ||
+                e === h.eof ||
+                e === h.parenR ||
+                (e == h.braceL
+                  ? this.curContext() === N.b_stat
+                  : !this.exprAllowed)
         }),
         (B.updateContext = function(e) {
           var t,
@@ -14715,9 +14719,9 @@
             }
           : function(e) {
               return e &&
-              "function" == typeof Symbol &&
-              e.constructor === Symbol &&
-              e !== Symbol.prototype
+                "function" == typeof Symbol &&
+                e.constructor === Symbol &&
+                e !== Symbol.prototype
                 ? "symbol"
                 : typeof e
             },
@@ -15183,9 +15187,9 @@
           }
         : function(e) {
             return e &&
-            "function" == typeof Symbol &&
-            e.constructor === Symbol &&
-            e !== Symbol.prototype
+              "function" == typeof Symbol &&
+              e.constructor === Symbol &&
+              e !== Symbol.prototype
               ? "symbol"
               : typeof e
           }
@@ -15593,9 +15597,9 @@
             }
           : function(e) {
               return e &&
-              "function" == typeof Symbol &&
-              e.constructor === Symbol &&
-              e !== Symbol.prototype
+                "function" == typeof Symbol &&
+                e.constructor === Symbol &&
+                e !== Symbol.prototype
                 ? "symbol"
                 : typeof e
             },
@@ -17039,9 +17043,9 @@
             }
           : function(e) {
               return e &&
-              "function" == typeof Symbol &&
-              e.constructor === Symbol &&
-              e !== Symbol.prototype
+                "function" == typeof Symbol &&
+                e.constructor === Symbol &&
+                e !== Symbol.prototype
                 ? "symbol"
                 : typeof e
             },
@@ -17246,9 +17250,9 @@
           }
         : function(e) {
             return e &&
-            "function" == typeof Symbol &&
-            e.constructor === Symbol &&
-            e !== Symbol.prototype
+              "function" == typeof Symbol &&
+              e.constructor === Symbol &&
+              e !== Symbol.prototype
               ? "symbol"
               : typeof e
           }
@@ -17334,9 +17338,9 @@
           }
         : function(e) {
             return e &&
-            "function" == typeof Symbol &&
-            e.constructor === Symbol &&
-            e !== Symbol.prototype
+              "function" == typeof Symbol &&
+              e.constructor === Symbol &&
+              e !== Symbol.prototype
               ? "symbol"
               : typeof e
           }
@@ -17489,7 +17493,7 @@
       function baseIsNative(e) {
         return (
           !(!isObject(e) || isMasked(e)) &&
-          (isFunction(e) || isHostObject(e) ? k : h).test(toSource(e))
+          (isFunction(e) || isHostObject(e) ? E : h).test(toSource(e))
         )
       }
       function baseToString(e) {
@@ -17567,7 +17571,7 @@
         return e === t || (e !== e && t !== t)
       }
       function isFunction(e) {
-        var t = isObject(e) ? E.call(e) : ""
+        var t = isObject(e) ? k.call(e) : ""
         return t == s || t == i
       }
       function isObject(e) {
@@ -17578,7 +17582,7 @@
         return !!e && "object" == typeof e
       }
       function isSymbol(e) {
-        return "symbol" == typeof e || (isObjectLike(e) && E.call(e) == a)
+        return "symbol" == typeof e || (isObjectLike(e) && k.call(e) == a)
       }
       function toString(e) {
         return null == e ? "" : baseToString(e)
@@ -17609,8 +17613,8 @@
         })(),
         C = v.toString,
         w = _.hasOwnProperty,
-        E = _.toString,
-        k = RegExp(
+        k = _.toString,
+        E = RegExp(
           "^" +
             C.call(w)
               .replace(p, "\\$&")
@@ -18054,26 +18058,26 @@
         x = _ ? f : a(t),
         C = (j = j == p ? h : j) == h,
         w = (x = x == p ? h : x) == h,
-        E = j == x
-      if (E && u(e)) {
+        k = j == x
+      if (k && u(e)) {
         if (!u(t)) return !1
         ;(v = !0), (C = !1)
       }
-      if (E && !C)
+      if (k && !C)
         return (
           b || (b = new r()),
           v || c(e) ? o(e, t, n, g, y, b) : s(e, t, j, n, g, y, b)
         )
       if (!(n & d)) {
-        var k = C && m.call(e, "__wrapped__"),
+        var E = C && m.call(e, "__wrapped__"),
           S = w && m.call(t, "__wrapped__")
-        if (k || S) {
-          var O = k ? e.value() : e,
+        if (E || S) {
+          var O = E ? e.value() : e,
             P = S ? t.value() : t
           return b || (b = new r()), y(O, P, n, g, b)
         }
       }
-      return !!E && (b || (b = new r()), i(e, t, n, g, y, b))
+      return !!k && (b || (b = new r()), i(e, t, n, g, y, b))
     }
   },
   "./node_modules/lodash/_baseIsMatch.js": function(e, t, n) {
@@ -18285,26 +18289,26 @@
       if (C) r(e, n, C)
       else {
         var w = v ? v(j, x, n + "", e, t, _) : void 0,
-          E = void 0 === w
-        if (E) {
-          var k = u(x),
-            S = !k && d(x),
-            O = !k && !S && m(x)
+          k = void 0 === w
+        if (k) {
+          var E = u(x),
+            S = !E && d(x),
+            O = !E && !S && m(x)
           ;(w = x),
-            k || S || O
+            E || S || O
               ? u(j)
                 ? (w = j)
                 : c(j)
                   ? (w = i(j))
                   : S
-                    ? ((E = !1), (w = o(x, !0)))
-                    : O ? ((E = !1), (w = s(x, !0))) : (w = [])
+                    ? ((k = !1), (w = o(x, !0)))
+                    : O ? ((k = !1), (w = s(x, !0))) : (w = [])
               : h(x) || l(x)
                 ? ((w = j),
                   l(j) ? (w = g(j)) : (!f(j) || (y && p(j))) && (w = a(x)))
-                : (E = !1)
+                : (k = !1)
         }
-        E && (_.set(x, w), b(w, x, y, v, _), _.delete(x)), r(e, n, w)
+        k && (_.set(x, w), b(w, x, y, v, _), _.delete(x)), r(e, n, w)
       }
     }
   },
@@ -18569,7 +18573,7 @@
       j = "[object DataView]",
       x = r ? r.prototype : void 0,
       C = x ? x.valueOf : void 0
-    e.exports = function equalByTag(e, t, n, r, x, w, E) {
+    e.exports = function equalByTag(e, t, n, r, x, w, k) {
       switch (n) {
         case j:
           if (e.byteLength != t.byteLength || e.byteOffset != t.byteOffset)
@@ -18587,15 +18591,15 @@
         case b:
           return e == t + ""
         case h:
-          var k = a
+          var E = a
         case y:
           var S = r & u
-          if ((k || (k = l), e.size != t.size && !S)) return !1
-          var O = E.get(e)
+          if ((E || (E = l), e.size != t.size && !S)) return !1
+          var O = k.get(e)
           if (O) return O == t
-          ;(r |= c), E.set(e, t)
-          var P = i(k(e), k(t), r, x, w, E)
-          return E.delete(e), P
+          ;(r |= c), k.set(e, t)
+          var P = i(E(e), E(t), r, x, w, k)
+          return k.delete(e), P
         case v:
           if (C) return C.call(e) == C.call(t)
       }
@@ -19772,8 +19776,8 @@
           x = 32,
           C = 64,
           w = 128,
-          E = 256,
-          k = 512,
+          k = 256,
+          E = 512,
           S = 30,
           O = "...",
           P = 800,
@@ -19793,10 +19797,10 @@
             ["bindKey", b],
             ["curry", _],
             ["curryRight", j],
-            ["flip", k],
+            ["flip", E],
             ["partial", x],
             ["partialRight", C],
-            ["rearg", E],
+            ["rearg", k],
           ],
           U = "[object Arguments]",
           W = "[object Array]",
@@ -19836,8 +19840,8 @@
           xe = /&(?:amp|lt|gt|quot|#39);/g,
           Ce = /[&<>"']/g,
           we = RegExp(xe.source),
-          Ee = RegExp(Ce.source),
-          ke = /<%-([\s\S]+?)%>/g,
+          ke = RegExp(Ce.source),
+          Ee = /<%-([\s\S]+?)%>/g,
           Se = /<%([\s\S]+?)%>/g,
           Oe = /<%=([\s\S]+?)%>/g,
           Pe = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
@@ -20164,14 +20168,14 @@
             ŉ: "'n",
             ſ: "s",
           },
-          Et = {
+          kt = {
             "&": "&amp;",
             "<": "&lt;",
             ">": "&gt;",
             '"': "&quot;",
             "'": "&#39;",
           },
-          kt = {
+          Et = {
             "&amp;": "&",
             "&lt;": "<",
             "&gt;": ">",
@@ -20209,8 +20213,8 @@
           Vt = Nt && Nt.isTypedArray,
           zt = baseProperty("length"),
           Ht = basePropertyOf(wt),
-          Gt = basePropertyOf(Et),
-          Kt = basePropertyOf(kt),
+          Gt = basePropertyOf(kt),
+          Kt = basePropertyOf(Et),
           $t = (function runInContext(e) {
             function lodash(e) {
               if (isObjectLike(e) && !Pr(e) && !(e instanceof LazyWrapper)) {
@@ -20967,7 +20971,7 @@
             function baseToString(e) {
               if ("string" == typeof e) return e
               if (Pr(e)) return arrayMap(e, baseToString) + ""
-              if (isSymbol(e)) return En ? En.call(e) : ""
+              if (isSymbol(e)) return kn ? kn.call(e) : ""
               var t = e + ""
               return "0" == t && 1 / e == -M ? "-0" : t
             }
@@ -21252,7 +21256,8 @@
               function wrapper() {
                 return (this && this !== Dt && this instanceof wrapper
                   ? o
-                  : e).apply(r ? n : this, arguments)
+                  : e
+                ).apply(r ? n : this, arguments)
               }
               var r = t & y,
                 o = createCtor(e)
@@ -21292,7 +21297,7 @@
                   case 7:
                     return new e(t[0], t[1], t[2], t[3], t[4], t[5], t[6])
                 }
-                var n = kn(e.prototype),
+                var n = En(e.prototype),
                   r = e.apply(n, t)
                 return isObject(r) ? r : n
               }
@@ -21365,7 +21370,7 @@
                   a =
                     c &&
                     isLaziable(c[0]) &&
-                    c[1] == (w | _ | x | E) &&
+                    c[1] == (w | _ | x | k) &&
                     !c[4].length &&
                     1 == c[9]
                       ? a[getFuncName(c[0])].apply(a, c[3])
@@ -21425,7 +21430,7 @@
                 f = n & y,
                 h = n & b,
                 m = n & (_ | j),
-                g = n & k,
+                g = n & E,
                 v = h ? s : createCtor(e)
               return wrapper
             }
@@ -21819,9 +21824,9 @@
               return s || ++r != o
                 ? s
                 : !!(o = null == e ? 0 : e.length) &&
-                  isLength(o) &&
-                  isIndex(i, o) &&
-                  (Pr(e) || Or(e))
+                    isLength(o) &&
+                    isIndex(i, o) &&
+                    (Pr(e) || Or(e))
             }
             function initCloneArray(e) {
               var t = e.length,
@@ -21837,7 +21842,7 @@
             function initCloneObject(e) {
               return "function" != typeof e.constructor || isPrototype(e)
                 ? {}
-                : kn(Et(e))
+                : En(kt(e))
             }
             function initCloneByTag(e, t, n, r) {
               var o = e.constructor
@@ -21922,9 +21927,9 @@
             function isKeyable(e) {
               var t = typeof e
               return "string" == t ||
-              "number" == t ||
-              "symbol" == t ||
-              "boolean" == t
+                "number" == t ||
+                "symbol" == t ||
+                "boolean" == t
                 ? "__proto__" !== e
                 : null === e
             }
@@ -21959,8 +21964,8 @@
                 s = o < (y | b | w),
                 i =
                   (r == w && n == _) ||
-                  (r == w && n == E && e[7].length <= t[8]) ||
-                  (r == (w | E) && t[7].length <= t[8] && n == _)
+                  (r == w && n == k && e[7].length <= t[8]) ||
+                  (r == (w | k) && t[7].length <= t[8] && n == _)
               if (!s && !i) return e
               r & y && ((e[2] = t[2]), (o |= n & y ? 0 : v))
               var a = t[3]
@@ -22332,7 +22337,7 @@
             }
             function isPlainObject(e) {
               if (!isObjectLike(e) || baseGetTag(e) != Q) return !1
-              var t = Et(e)
+              var t = kt(e)
               if (null === t) return !0
               var n = lt.call(t, "constructor") && t.constructor
               return (
@@ -22529,8 +22534,8 @@
               bt = e.Symbol,
               vt = e.Uint8Array,
               wt = yt ? yt.allocUnsafe : s,
-              Et = overArg(Qe.getPrototypeOf, Qe),
-              kt = Qe.create,
+              kt = overArg(Qe.getPrototypeOf, Qe),
+              Et = Qe.create,
               St = st.propertyIsEnumerable,
               Rt = rt.splice,
               Tt = bt ? bt.isConcatSpreadable : s,
@@ -22573,19 +22578,19 @@
               xn = toSource(hn),
               Cn = bt ? bt.prototype : s,
               wn = Cn ? Cn.valueOf : s,
-              En = Cn ? Cn.toString : s,
-              kn = (function() {
+              kn = Cn ? Cn.toString : s,
+              En = (function() {
                 function object() {}
                 return function(e) {
                   if (!isObject(e)) return {}
-                  if (kt) return kt(e)
+                  if (Et) return Et(e)
                   object.prototype = e
                   var t = new object()
                   return (object.prototype = s), t
                 }
               })()
             ;(lodash.templateSettings = {
-              escape: ke,
+              escape: Ee,
               evaluate: Se,
               interpolate: Oe,
               variable: "",
@@ -22593,9 +22598,9 @@
             }),
               (lodash.prototype = baseLodash.prototype),
               (lodash.prototype.constructor = lodash),
-              (LodashWrapper.prototype = kn(baseLodash.prototype)),
+              (LodashWrapper.prototype = En(baseLodash.prototype)),
               (LodashWrapper.prototype.constructor = LodashWrapper),
-              (LazyWrapper.prototype = kn(baseLodash.prototype)),
+              (LazyWrapper.prototype = En(baseLodash.prototype)),
               (LazyWrapper.prototype.constructor = LazyWrapper),
               (Hash.prototype.clear = function hashClear() {
                 ;(this.__data__ = mn ? mn(null) : {}), (this.size = 0)
@@ -22755,7 +22760,7 @@
                 : stubArray,
               Bn = Xt
                 ? function(e) {
-                    for (var t = []; e; ) arrayPush(t, Nn(e)), (e = Et(e))
+                    for (var t = []; e; ) arrayPush(t, Nn(e)), (e = kt(e))
                     return t
                   }
                 : stubArray,
@@ -22933,8 +22938,8 @@
                     return baseAt(t, e)
                   }
                 return !(t > 1 || this.__actions__.length) &&
-                r instanceof LazyWrapper &&
-                isIndex(n)
+                  r instanceof LazyWrapper &&
+                  isIndex(n)
                   ? ((r = r.slice(n, +n + (t ? 1 : 0))).__actions__.push({
                       func: thru,
                       args: [o],
@@ -23033,10 +23038,10 @@
                 var n = replaceHolders(t, getHolder(wr))
                 return createWrap(e, C, s, t, n)
               }),
-              Er = flatRest(function(e, t) {
-                return createWrap(e, E, s, s, s, t)
+              kr = flatRest(function(e, t) {
+                return createWrap(e, k, s, s, s, t)
               }),
-              kr = createRelationalOperation(baseGt),
+              Er = createRelationalOperation(baseGt),
               Sr = createRelationalOperation(function(e, t) {
                 return e >= t
               }),
@@ -23203,10 +23208,10 @@
                 return e / t
               }, 1),
               wo = createRound("floor"),
-              Eo = createMathOperation(function(e, t) {
+              ko = createMathOperation(function(e, t) {
                 return e * t
               }, 1),
-              ko = createRound("round"),
+              Eo = createRound("round"),
               So = createMathOperation(function(e, t) {
                 return e - t
               }, 0)
@@ -23288,7 +23293,7 @@
               (lodash.constant = constant),
               (lodash.countBy = ur),
               (lodash.create = function create(e, t) {
-                var n = kn(e)
+                var n = En(e)
                 return null == t ? n : baseAssign(n, t)
               }),
               (lodash.curry = curry),
@@ -23358,7 +23363,7 @@
                   : []
               }),
               (lodash.flip = function flip(e) {
-                return createWrap(e, k)
+                return createWrap(e, E)
               }),
               (lodash.flow = po),
               (lodash.flowRight = fo),
@@ -23480,7 +23485,7 @@
               (lodash.pullAt = Xn),
               (lodash.range = vo),
               (lodash.rangeRight = _o),
-              (lodash.rearg = Er),
+              (lodash.rearg = kr),
               (lodash.reject = function reject(e, t) {
                 return (Pr(e) ? arrayFilter : baseFilter)(
                   e,
@@ -23625,7 +23630,7 @@
                   var s = e && e.constructor
                   n = o
                     ? r ? new s() : []
-                    : isObject(e) && isFunction(s) ? kn(Et(e)) : {}
+                    : isObject(e) && isFunction(s) ? En(kt(e)) : {}
                 }
                 return (
                   (o ? arrayEach : baseForOwn)(e, function(e, r, o) {
@@ -23734,7 +23739,7 @@
               }),
               (lodash.eq = eq),
               (lodash.escape = function escape(e) {
-                return (e = toString(e)) && Ee.test(e) ? e.replace(Ce, Gt) : e
+                return (e = toString(e)) && ke.test(e) ? e.replace(Ce, Gt) : e
               }),
               (lodash.escapeRegExp = function escapeRegExp(e) {
                 return (e = toString(e)) && Ae.test(e)
@@ -23774,7 +23779,7 @@
                 return e && baseForOwnRight(e, getIteratee(t, 3))
               }),
               (lodash.get = get),
-              (lodash.gt = kr),
+              (lodash.gt = Er),
               (lodash.gte = Sr),
               (lodash.has = function has(e, t) {
                 return null != e && hasPath(e, t, baseHas)
@@ -23955,7 +23960,7 @@
               (lodash.stubTrue = function stubTrue() {
                 return !0
               }),
-              (lodash.multiply = Eo),
+              (lodash.multiply = ko),
               (lodash.nth = function nth(e, t) {
                 return e && e.length ? baseNth(e, toInteger(t)) : s
               }),
@@ -24048,7 +24053,7 @@
                 }
                 return e
               }),
-              (lodash.round = ko),
+              (lodash.round = Eo),
               (lodash.runInContext = runInContext),
               (lodash.sample = function sample(e) {
                 return (Pr(e) ? arraySample : baseSample)(e)
@@ -25085,7 +25090,8 @@
           ;(t = t || {}).exclude &&
             ("number" == typeof t.exclude[0]
               ? [t.exclude]
-              : t.exclude).forEach(function(e) {
+              : t.exclude
+            ).forEach(function(e) {
               for (var t = e[0]; t < e[1]; t += 1) o[t] = !0
             })
           var s = !1 !== t.indentStart,
@@ -25770,7 +25776,7 @@
             !1 === e.loose &&
             (e.children = e.children.map(function(e) {
               return 1 === e.children.length &&
-              "paragraph" === e.children[0].type
+                "paragraph" === e.children[0].type
                 ? f({}, e, { children: e.children[0].children })
                 : e
             })),
@@ -25849,7 +25855,8 @@
       }
       var t = (arguments.length > 1 && void 0 !== arguments[1]
           ? arguments[1]
-          : {}).overrides,
+          : {}
+        ).overrides,
         n = void 0 === t ? {} : t,
         r = void 0,
         s = void 0
@@ -26746,7 +26753,7 @@ object-assign
       var n,
         i,
         a,
-        E,
+        k,
         B,
         F,
         q,
@@ -26791,8 +26798,8 @@ object-assign
         ++ce < ue;
 
       )
-        if ((E === y && (pe = le[de] || 1), (E = at(ce)) !== h))
-          E === y && (fe++, de++, (pe = 0)), E ? ((he += E), pe++) : flush()
+        if ((k === y && (pe = le[de] || 1), (k = at(ce)) !== h))
+          k === y && (fe++, de++, (pe = 0)), k ? ((he += k), pe++) : flush()
         else {
           if (
             (F = at(ce + 1)) === w ||
@@ -26804,14 +26811,14 @@ object-assign
             F === C ||
             (Q && F === Q)
           ) {
-            ;(he += E), pe++
+            ;(he += k), pe++
             continue
           }
           for (
             H = G = ce + 1,
               X = G,
               F !== m
-                ? (K = k)
+                ? (K = E)
                 : (F = at((X = ++H))) === b || F === v
                   ? ((K = S), (X = ++H))
                   : (K = O),
@@ -26823,13 +26830,13 @@ object-assign
             ++X < ue && ((F = at(X)), $(F));
 
           )
-            (a += F), K === k && u.call(o, a) && ((n = a), (z = o[a]))
+            (a += F), K === E && u.call(o, a) && ((n = a), (z = o[a]))
           ;(i = at(X) === g) &&
-            (X++, K === k && u.call(r, a) && ((n = a), (z = r[a]))),
+            (X++, K === E && u.call(r, a) && ((n = a), (z = r[a]))),
             (J = 1 + X - G),
             (i || ee) &&
               (a
-                ? K === k
+                ? K === E
                   ? (i && !z
                       ? q(I, 1)
                       : (n !== a &&
@@ -26853,7 +26860,7 @@ object-assign
                             ((V += c(((B -= 65536) >>> 10) | 55296)),
                             (B = 56320 | (1023 & B))),
                           (B = V + c(B))))
-                : K !== k && q(A, J)),
+                : K !== E && q(A, J)),
             B
               ? (flush(),
                 (Y = now()),
@@ -26895,7 +26902,7 @@ object-assign
         r,
         o = {}
       t || (t = {})
-      for (r in E) (n = t[r]), (o[r] = null === n || void 0 === n ? E[r] : n)
+      for (r in k) (n = t[r]), (o[r] = null === n || void 0 === n ? k[r] : n)
       return (
         (o.position.indent || o.position.start) &&
           ((o.indent = o.position.indent || []),
@@ -26919,7 +26926,7 @@ object-assign
       x = "=",
       C = "",
       w = "\t",
-      E = {
+      k = {
         warning: null,
         reference: null,
         text: null,
@@ -26931,13 +26938,13 @@ object-assign
         attribute: !1,
         nonTerminated: !0,
       },
-      k = "named",
+      E = "named",
       S = "hexadecimal",
       O = "decimal",
       P = {}
     ;(P[S] = 16), (P[O] = 10)
     var R = {}
-    ;(R[k] = l), (R[O] = i), (R[S] = a)
+    ;(R[E] = l), (R[O] = i), (R[S] = a)
     var T = 1,
       D = 2,
       M = 3,
@@ -28513,7 +28520,7 @@ object-assign
             if (shouldIgnoreValue(n, t)) return ""
             var s = n.attributeName
             return n.hasBooleanValue ||
-            (n.hasOverloadedBooleanValue && !0 === t)
+              (n.hasOverloadedBooleanValue && !0 === t)
               ? s + '=""'
               : s + "=" + o(t)
           }
@@ -29257,9 +29264,8 @@ object-assign
         var t = /(=0|=2)/g,
           n = { "=0": "=", "=2": ":" }
         return ("" +
-          ("." === e[0] && "$" === e[1]
-            ? e.substring(2)
-            : e.substring(1))).replace(t, function(e) {
+          ("." === e[0] && "$" === e[1] ? e.substring(2) : e.substring(1))
+        ).replace(t, function(e) {
           return n[e]
         })
       },
@@ -30158,7 +30164,7 @@ object-assign
     function trapBubbledEventsLocal() {
       var e = this
       e._rootNodeID || r("63")
-      var t = k(e)
+      var t = E(e)
       switch ((t || r("64"), e._tag)) {
         case "iframe":
         case "object":
@@ -30252,8 +30258,8 @@ object-assign
       w = (n("./node_modules/react-dom/lib/validateDOMNesting.js"),
       n("./node_modules/fbjs/lib/warning.js"),
       h),
-      E = d.deleteListener,
-      k = m.getNodeFromInstance,
+      k = d.deleteListener,
+      E = m.getNodeFromInstance,
       S = f.listenTo,
       O = p.registrationNameModules,
       P = { string: !0, number: !0 },
@@ -30511,12 +30517,12 @@ object-assign
                 this._previousStyleCopy = null
               } else
                 O.hasOwnProperty(r)
-                  ? e[r] && E(this, r)
+                  ? e[r] && k(this, r)
                   : isCustomComponent(this._tag, e)
                     ? T.hasOwnProperty(r) ||
-                      c.deleteValueForAttribute(k(this), r)
+                      c.deleteValueForAttribute(E(this), r)
                     : (u.properties[r] || u.isCustomAttribute(r)) &&
-                      c.deleteValueForProperty(k(this), r)
+                      c.deleteValueForProperty(E(this), r)
           for (r in t) {
             var d = t[r],
               p =
@@ -30541,17 +30547,17 @@ object-assign
                       ((a = a || {})[s] = d[s])
                 } else a = d
               else if (O.hasOwnProperty(r))
-                d ? enqueuePutListener(this, r, d, n) : p && E(this, r)
+                d ? enqueuePutListener(this, r, d, n) : p && k(this, r)
               else if (isCustomComponent(this._tag, t))
-                T.hasOwnProperty(r) || c.setValueForAttribute(k(this), r, d)
+                T.hasOwnProperty(r) || c.setValueForAttribute(E(this), r, d)
               else if (u.properties[r] || u.isCustomAttribute(r)) {
-                var f = k(this)
+                var f = E(this)
                 null != d
                   ? c.setValueForProperty(f, r, d)
                   : c.deleteValueForProperty(f, r)
               }
           }
-          a && i.setValueForStyles(k(this), a, this)
+          a && i.setValueForStyles(E(this), a, this)
         },
         _updateDOMChildren: function(e, t, n, r) {
           var o = P[typeof e.children] ? e.children : null,
@@ -30572,7 +30578,7 @@ object-assign
                 : null != u && this.updateChildren(u, n, r)
         },
         getHostNode: function() {
-          return k(this)
+          return E(this)
         },
         unmountComponent: function(e) {
           switch (this._tag) {
@@ -30604,7 +30610,7 @@ object-assign
             (this._wrapperState = null)
         },
         getPublicInstance: function() {
-          return k(this)
+          return E(this)
         },
       }),
       o(ReactDOMComponent.prototype, ReactDOMComponent.Mixin, _.Mixin),
@@ -31758,7 +31764,7 @@ object-assign
       }
     }
     function isValidContainer(e) {
-      return !(!e || (e.nodeType !== C && e.nodeType !== w && e.nodeType !== E))
+      return !(!e || (e.nodeType !== C && e.nodeType !== w && e.nodeType !== k))
     }
     function getHostRootInstanceInContainer(e) {
       var t = getReactRootElementInContainer(e),
@@ -31794,8 +31800,8 @@ object-assign
       x = s.ROOT_ATTRIBUTE_NAME,
       C = 1,
       w = 9,
-      E = 11,
-      k = {},
+      k = 11,
+      E = {},
       S = 1,
       O = function() {
         this.rootID = S++
@@ -31807,7 +31813,7 @@ object-assign
       (O.isReactTopLevelWrapper = !0)
     var P = {
       TopLevelWrapper: O,
-      _instancesByReactRootID: k,
+      _instancesByReactRootID: E,
       scrollMonitor: function(e, t) {
         t()
       },
@@ -31825,7 +31831,7 @@ object-assign
         var s = b(e, !1)
         g.batchedUpdates(batchedMountComponentIntoNode, s, t, n, o)
         var i = s._instance.rootID
-        return (k[i] = s), s
+        return (E[i] = s), s
       },
       renderSubtreeIntoContainer: function(e, t, n, o) {
         return (
@@ -31889,7 +31895,7 @@ object-assign
           return !1
         }
         return (
-          delete k[t._instance.rootID],
+          delete E[t._instance.rootID],
           g.batchedUpdates(unmountComponentFromNode, t, e, !1),
           !0
         )
@@ -36131,8 +36137,11 @@ object-assign
           _classCallCheck(this, Playground)
           var n = _possibleConstructorReturn(
               this,
-              (Playground.__proto__ || Object.getPrototypeOf(Playground))
-                .call(this, e, t)
+              (Playground.__proto__ || Object.getPrototypeOf(Playground)).call(
+                this,
+                e,
+                t
+              )
             ),
             r = e.code,
             o = e.settings,
@@ -36467,8 +36476,8 @@ object-assign
           var e = _possibleConstructorReturn(
             this,
             (PreviewComponent.__proto__ ||
-              Object.getPrototypeOf(PreviewComponent))
-              .call(this)
+              Object.getPrototypeOf(PreviewComponent)
+            ).call(this)
           )
           return (
             (e.state = {}),
@@ -37140,9 +37149,8 @@ object-assign
           _classCallCheck(this, ReactComponent)
           var n = _possibleConstructorReturn(
               this,
-              (ReactComponent.__proto__ ||
-                Object.getPrototypeOf(ReactComponent))
-                .call(this, e, t)
+              (ReactComponent.__proto__ || Object.getPrototypeOf(ReactComponent)
+              ).call(this, e, t)
             ),
             r = t.config.showUsage
           return (
@@ -37837,8 +37845,10 @@ object-assign
             _classCallCheck(this, StyleGuide),
             _possibleConstructorReturn(
               this,
-              (StyleGuide.__proto__ || Object.getPrototypeOf(StyleGuide))
-                .apply(this, arguments)
+              (StyleGuide.__proto__ || Object.getPrototypeOf(StyleGuide)).apply(
+                this,
+                arguments
+              )
             )
           )
         }
@@ -38129,8 +38139,10 @@ object-assign
                 _classCallCheck(this, _class),
                 _possibleConstructorReturn(
                   this,
-                  (_class.__proto__ || Object.getPrototypeOf(_class))
-                    .apply(this, arguments)
+                  (_class.__proto__ || Object.getPrototypeOf(_class)).apply(
+                    this,
+                    arguments
+                  )
                 )
               )
             }
@@ -39023,8 +39035,10 @@ object-assign
             _classCallCheck(this, Wrapper),
             _possibleConstructorReturn(
               this,
-              (Wrapper.__proto__ || Object.getPrototypeOf(Wrapper))
-                .apply(this, arguments)
+              (Wrapper.__proto__ || Object.getPrototypeOf(Wrapper)).apply(
+                this,
+                arguments
+              )
             )
           )
         }
@@ -39724,6 +39738,37 @@ object-assign
         type: "code",
         content:
           'const { compose, withProps, withState, withHandlers } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} = require("../index");\n\nconst MapWithControlledZoom = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withState(\'zoom\', \'onZoomChange\', 8),\n  withHandlers(() => {\n    const refs = {\n      map: undefined,\n    }\n\n    return {\n      onMapMounted: () => ref => {\n        refs.map = ref\n      },\n      onZoomChanged: ({ onZoomChange }) => () => {\n        onZoomChange(refs.map.getZoom())\n      }\n    }\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n    zoom={props.zoom}\n    ref={props.onMapMounted}\n    onZoomChanged={props.onZoomChanged}\n  >\n    <Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    >\n      <InfoWindow onCloseClick={props.onToggleOpen}>\n        <div>\n          <FaAnchor />\n          {" "}\n          Controlled zoom: {props.zoom}\n        </div>\n      </InfoWindow>\n    </Marker>\n  </GoogleMap>\n);\n\n<MapWithControlledZoom />',
+        settings: {},
+        evalInContext: s,
+      },
+    ]
+  },
+  "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/components/GroundOverlay.md": function(
+    e,
+    t,
+    n
+  ) {
+    var r = {
+        recompose: n("./node_modules/recompose/es/Recompose.js"),
+        "../index": n("./src/index.js"),
+        react: n("./node_modules/react/react.js"),
+      },
+      o = n(
+        "./node_modules/react-styleguidist/loaders/utils/client/requireInRuntime.js"
+      ).bind(null, r),
+      s = n(
+        "./node_modules/react-styleguidist/loaders/utils/client/evalInContext.js"
+      ).bind(null, "var React = require('react');", o)
+    e.exports = [
+      {
+        type: "markdown",
+        content:
+          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  GroundOverlay,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithGroundOverlay = compose(\n  withScriptjs,\n  withGoogleMap\n)(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">12</span>}\n    defaultCenter={{<span class="hljs-attr">lat</span>: <span class="hljs-number">40.740</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">-74.18</span>}}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">GroundOverlay</span>\n      <span class="hljs-attr">url</span>=<span class="hljs-string">"https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"</span>\n      <span class="hljs-attr">bounds</span>=<span class="hljs-string">{new</span> <span class="hljs-attr">google.maps.LatLngBounds</span>(\n        <span class="hljs-attr">new</span> <span class="hljs-attr">google.maps.LatLng</span>(<span class="hljs-attr">40.712216</span>, <span class="hljs-attr">-74.22655</span>),\n        <span class="hljs-attr">new</span> <span class="hljs-attr">google.maps.LatLng</span>(<span class="hljs-attr">40.773941</span>, <span class="hljs-attr">-74.12544</span>)\n      )}\n      <span class="hljs-attr">defaultOpacity</span>=<span class="hljs-string">{.5}</span>\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n);\n\n&lt;MapWithGroundOverlay\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing.places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Map with Ground Overlay',
+      },
+      {
+        type: "code",
+        content:
+          'const { compose } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  GroundOverlay,\n} = require("../index");\n\nconst MapWithGroundOverlay = compose(\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={12}\n    defaultCenter={{lat: 40.740, lng: -74.18}}\n  >\n    <GroundOverlay\n      url="https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"\n      bounds={new google.maps.LatLngBounds(\n        new google.maps.LatLng(40.712216, -74.22655),\n        new google.maps.LatLng(40.773941, -74.12544)\n      )}\n      defaultOpacity={.5}\n    />\n  </GoogleMap>\n);\n\n<MapWithGroundOverlay\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `400px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
         settings: {},
         evalInContext: s,
       },
@@ -40635,6 +40680,79 @@ object-assign
       },
       examples: n(
         "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/components/GoogleMap.md"
+      ),
+    }
+  },
+  "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/GroundOverlay.jsx": function(
+    e,
+    t,
+    n
+  ) {
+    e.exports = {
+      description: "\n",
+      methods: [],
+      displayName: "GroundOverlay",
+      props: {
+        url: {
+          type: { name: "string" },
+          required: !0,
+          description: "",
+          tags: {},
+        },
+        bounds: {
+          type: { name: "object" },
+          required: !0,
+          description: "",
+          tags: {
+            see: [
+              {
+                title: "see",
+                description:
+                  "https://developers.google.com/maps/documentation/javascript/reference#GroundOverlay",
+              },
+            ],
+          },
+        },
+        defaultOpacity: {
+          type: { name: "number" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        opacity: {
+          type: { name: "number" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        onDblClick: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onClick: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+      },
+      doclets: {
+        url:
+          "https://developers.google.com/maps/documentation/javascript/reference#GroundOverlay",
+      },
+      tags: {
+        url: [
+          {
+            title: "url",
+            description:
+              "https://developers.google.com/maps/documentation/javascript/reference#GroundOverlay",
+          },
+        ],
+      },
+      examples: n(
+        "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/components/GroundOverlay.md"
       ),
     }
   },
@@ -42726,6 +42844,16 @@ object-assign
               metadata: {},
             },
             {
+              filepath: "src/components/GroundOverlay.jsx",
+              pathLine: 'import { GroundOverlay } from "react-google-maps";',
+              module: n("./src/components/GroundOverlay.jsx"),
+              props: n(
+                "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/GroundOverlay.jsx"
+              ),
+              hasExamples: !0,
+              metadata: {},
+            },
+            {
               filepath: "src/components/InfoWindow.jsx",
               pathLine: 'import { InfoWindow } from "react-google-maps";',
               module: n("./src/components/InfoWindow.jsx"),
@@ -42975,9 +43103,8 @@ object-assign
         var t = /(=0|=2)/g,
           n = { "=0": "=", "=2": ":" }
         return ("" +
-          ("." === e[0] && "$" === e[1]
-            ? e.substring(2)
-            : e.substring(1))).replace(t, function(e) {
+          ("." === e[0] && "$" === e[1] ? e.substring(2) : e.substring(1))
+        ).replace(t, function(e) {
           return n[e]
         })
       },
@@ -43931,10 +44058,10 @@ object-assign
     }
     Object.defineProperty(t, "__esModule", { value: !0 }),
       n.d(t, "mapProps", function() {
-        return E
+        return k
       }),
       n.d(t, "withProps", function() {
-        return k
+        return E
       }),
       n.d(t, "withPropsOnChange", function() {
         return O
@@ -44148,7 +44275,7 @@ object-assign
           return j(!1, t, e, n, r)
         }
       },
-      E = function mapProps(e) {
+      k = function mapProps(e) {
         return function(t) {
           var n = w(t),
             r = function MapProps(t) {
@@ -44157,8 +44284,8 @@ object-assign
           return r
         }
       },
-      k = function withProps(e) {
-        var t = E(function(t) {
+      E = function withProps(e) {
+        var t = k(function(t) {
           return y({}, t, "function" == typeof e ? e(t) : e)
         })
         return t
@@ -44277,7 +44404,7 @@ object-assign
         return n
       },
       M = function renameProp(e, t) {
-        var n = E(function(n) {
+        var n = k(function(n) {
           var r
           return y({}, D(n, [e]), ((r = {}), (r[t] = n[e]), r))
         })
@@ -44291,7 +44418,7 @@ object-assign
         }, {})
       },
       L = function renameProps(e) {
-        var t = E(function(t) {
+        var t = k(function(t) {
           return y(
             {},
             D(t, A(e)),
@@ -45274,8 +45401,8 @@ object-assign
           x = e.now(),
           C = x.line,
           w = t.length,
-          E = [],
           k = [],
+          E = [],
           S = [],
           O = 0;
         O < w && ((c = t.charAt(O)) === a || c === i);
@@ -45304,17 +45431,17 @@ object-assign
           if (!g && ((d = t.slice(O)), o(j, _, b, [e, d, !0]))) break
           ;(h = m === O ? f : t.slice(m, p)),
             S.push(O - m),
-            E.push(h),
-            k.push(f),
+            k.push(h),
+            E.push(f),
             (O = p + 1)
         }
-        for (O = -1, w = S.length, u = e(E.join(s)); ++O < w; )
+        for (O = -1, w = S.length, u = e(k.join(s)); ++O < w; )
           (v[C] = (v[C] || 0) + S[O]), C++
         return (
           (y = b.enterBlock()),
-          (k = b.tokenizeBlock(k.join(s), x)),
+          (E = b.tokenizeBlock(E.join(s), x)),
           y(),
-          u({ type: "blockquote", children: k })
+          u({ type: "blockquote", children: E })
         )
       }
     }
@@ -45357,40 +45484,40 @@ object-assign
         x = this,
         C = x.options,
         w = t.length + 1,
-        E = 0,
-        k = ""
+        k = 0,
+        E = ""
       if (C.gfm) {
-        for (; E < w && ((f = t.charAt(E)) === i || f === s); ) (k += f), E++
-        if (((_ = E), (f = t.charAt(E)) === a || f === l)) {
-          for (E++, p = f, d = 1, k += f; E < w && (f = t.charAt(E)) === p; )
-            (k += f), d++, E++
+        for (; k < w && ((f = t.charAt(k)) === i || f === s); ) (E += f), k++
+        if (((_ = k), (f = t.charAt(k)) === a || f === l)) {
+          for (k++, p = f, d = 1, E += f; k < w && (f = t.charAt(k)) === p; )
+            (E += f), d++, k++
           if (!(d < u)) {
-            for (; E < w && ((f = t.charAt(E)) === i || f === s); )
-              (k += f), E++
+            for (; k < w && ((f = t.charAt(k)) === i || f === s); )
+              (E += f), k++
             for (
               h = "", m = "";
-              E < w && (f = t.charAt(E)) !== o && f !== a && f !== l;
+              k < w && (f = t.charAt(k)) !== o && f !== a && f !== l;
 
             )
-              f === i || f === s ? (m += f) : ((h += m + f), (m = "")), E++
-            if (!(f = t.charAt(E)) || f === o) {
+              f === i || f === s ? (m += f) : ((h += m + f), (m = "")), k++
+            if (!(f = t.charAt(k)) || f === o) {
               if (n) return !0
               for (
-                (j = e.now()).column += k.length,
-                  j.offset += k.length,
-                  k += h,
+                (j = e.now()).column += E.length,
+                  j.offset += E.length,
+                  E += h,
                   h = x.decode.raw(x.unescape(h), j),
-                  m && (k += m),
+                  m && (E += m),
                   m = "",
                   b = "",
                   v = "",
                   g = "",
                   y = "";
-                E < w;
+                k < w;
 
               )
                 if (
-                  ((f = t.charAt(E)),
+                  ((f = t.charAt(k)),
                   (g += b),
                   (y += v),
                   (b = ""),
@@ -45398,28 +45525,28 @@ object-assign
                   f === o)
                 ) {
                   for (
-                    g ? ((b += f), (v += f)) : (k += f), m = "", E++;
-                    E < w && (f = t.charAt(E)) === i;
+                    g ? ((b += f), (v += f)) : (E += f), m = "", k++;
+                    k < w && (f = t.charAt(k)) === i;
 
                   )
-                    (m += f), E++
+                    (m += f), k++
                   if (((b += m), (v += m.slice(_)), !(m.length >= c))) {
-                    for (m = ""; E < w && (f = t.charAt(E)) === p; )
-                      (m += f), E++
+                    for (m = ""; k < w && (f = t.charAt(k)) === p; )
+                      (m += f), k++
                     if (((b += m), (v += m), !(m.length < d))) {
                       for (
                         m = "";
-                        E < w && ((f = t.charAt(E)) === i || f === s);
+                        k < w && ((f = t.charAt(k)) === i || f === s);
 
                       )
-                        (b += f), (v += f), E++
+                        (b += f), (v += f), k++
                       if (!f || f === o) break
                     }
                   }
-                } else (g += f), (v += f), E++
+                } else (g += f), (v += f), k++
               return (
-                (k += g + b),
-                e(k)({ type: "code", lang: h || null, value: r(y) })
+                (E += g + b),
+                e(E)({ type: "code", lang: h || null, value: r(y) })
               )
             }
           }
@@ -45533,82 +45660,83 @@ object-assign
           x,
           C,
           w = this,
-          E = w.options.commonmark,
-          k = 0,
+          k = w.options.commonmark,
+          E = 0,
           S = t.length,
           O = "";
-        k < S && ((v = t.charAt(k)) === c || v === u);
+        E < S && ((v = t.charAt(E)) === c || v === u);
 
       )
-        (O += v), k++
-      if ((v = t.charAt(k)) === d) {
-        for (k++, O += v, b = ""; k < S && (v = t.charAt(k)) !== p; )
-          v === a && ((b += v), k++, (v = t.charAt(k))), (b += v), k++
-        if (b && t.charAt(k) === p && t.charAt(k + 1) === m) {
+        (O += v), E++
+      if ((v = t.charAt(E)) === d) {
+        for (E++, O += v, b = ""; E < S && (v = t.charAt(E)) !== p; )
+          v === a && ((b += v), E++, (v = t.charAt(E))), (b += v), E++
+        if (b && t.charAt(E) === p && t.charAt(E + 1) === m) {
           for (
-            j = b, k = (O += b + p + m).length, b = "";
-            k < S && ((v = t.charAt(k)) === u || v === c || v === l);
+            j = b, E = (O += b + p + m).length, b = "";
+            E < S && ((v = t.charAt(E)) === u || v === c || v === l);
 
           )
-            (O += v), k++
-          if (((v = t.charAt(k)), (b = ""), (r = O), v === g)) {
-            for (k++; k < S && ((v = t.charAt(k)), isEnclosedURLCharacter(v)); )
-              (b += v), k++
-            if ((v = t.charAt(k)) === isEnclosedURLCharacter.delimiter)
-              (O += g + b + v), k++
+            (O += v), E++
+          if (((v = t.charAt(E)), (b = ""), (r = O), v === g)) {
+            for (E++; E < S && ((v = t.charAt(E)), isEnclosedURLCharacter(v)); )
+              (b += v), E++
+            if ((v = t.charAt(E)) === isEnclosedURLCharacter.delimiter)
+              (O += g + b + v), E++
             else {
-              if (E) return
-              ;(k -= b.length + 1), (b = "")
+              if (k) return
+              ;(E -= b.length + 1), (b = "")
             }
           }
           if (!b) {
-            for (; k < S && ((v = t.charAt(k)), isUnclosedURLCharacter(v)); )
-              (b += v), k++
+            for (; E < S && ((v = t.charAt(E)), isUnclosedURLCharacter(v)); )
+              (b += v), E++
             O += b
           }
           if (b) {
             for (
               x = b, b = "";
-              k < S && ((v = t.charAt(k)) === u || v === c || v === l);
+              E < S && ((v = t.charAt(E)) === u || v === c || v === l);
 
             )
-              (b += v), k++
+              (b += v), E++
             if (
-              ((v = t.charAt(k)),
+              ((v = t.charAt(E)),
               (_ = null),
               v === s ? (_ = s) : v === i ? (_ = i) : v === f && (_ = h),
               _)
             ) {
               if (!b) return
               for (
-                k = (O += b + v).length, b = "";
-                k < S && (v = t.charAt(k)) !== _;
+                E = (O += b + v).length, b = "";
+                E < S && (v = t.charAt(E)) !== _;
 
               ) {
                 if (v === l) {
-                  if ((k++, (v = t.charAt(k)) === l || v === _)) return
+                  if ((E++, (v = t.charAt(E)) === l || v === _)) return
                   b += l
                 }
-                ;(b += v), k++
+                ;(b += v), E++
               }
-              if ((v = t.charAt(k)) !== _) return
-              ;(y = O), (O += b + v), k++, (C = b), (b = "")
-            } else (b = ""), (k = O.length)
-            for (; k < S && ((v = t.charAt(k)) === u || v === c); )
-              (O += v), k++
-            return (v = t.charAt(k)) && v !== l
+              if ((v = t.charAt(E)) !== _) return
+              ;(y = O), (O += b + v), E++, (C = b), (b = "")
+            } else (b = ""), (E = O.length)
+            for (; E < S && ((v = t.charAt(E)) === u || v === c); )
+              (O += v), E++
+            return (v = t.charAt(E)) && v !== l
               ? void 0
               : !!n ||
-                ((r = e(r).test().end),
-                (x = w.decode.raw(w.unescape(x), r)),
-                C &&
-                  ((y = e(y).test().end), (C = w.decode.raw(w.unescape(C), y))),
-                e(O)({
-                  type: "definition",
-                  identifier: o(j),
-                  title: C || null,
-                  url: x,
-                }))
+                  ((r = e(r).test().end),
+                  (x = w.decode.raw(w.unescape(x), r)),
+                  C &&
+                    ((y = e(y).test().end),
+                    (C = w.decode.raw(w.unescape(C), y))),
+                  e(O)({
+                    type: "definition",
+                    identifier: o(j),
+                    title: C || null,
+                    url: x,
+                  }))
           }
         }
       }
@@ -45770,10 +45898,10 @@ object-assign
         x,
         C,
         w,
-        E,
-        k = this,
-        S = k.offset
-      if (k.options.footnotes) {
+        k,
+        E = this,
+        S = E.offset
+      if (E.options.footnotes) {
         for (
           h = 0, m = t.length, g = "", y = e.now(), b = y.line;
           h < m && ((x = t.charAt(h)), r(x));
@@ -45820,9 +45948,9 @@ object-assign
                 return (S[b] = (S[b] || 0) + e.length), b++, ""
               })),
               (w = e(g)),
-              (E = k.enterBlock()),
-              (v = k.tokenizeBlock(v, y)),
-              E(),
+              (k = E.enterBlock()),
+              (v = E.tokenizeBlock(v, y)),
+              k(),
               w({ type: "footnoteDefinition", identifier: C, children: v })
             )
           }
@@ -46086,8 +46214,8 @@ object-assign
         x,
         C,
         w,
-        E,
         k,
+        E,
         S,
         O,
         P,
@@ -46110,11 +46238,11 @@ object-assign
           I += N,
             P = "",
             L++,
-            k = t.length,
+            E = t.length,
             O = 0,
             (T = e.now()).column += L,
             T.offset += L;
-          L < k;
+          L < E;
 
         ) {
           if (((N = t.charAt(L)), (_ = N), N === f)) {
@@ -46125,7 +46253,7 @@ object-assign
             if ((!y || q) && N === l) {
               if (!O) {
                 if (!B)
-                  for (; L < k && ((N = t.charAt(L + 1)), r(N)); ) (_ += N), L++
+                  for (; L < E && ((N = t.charAt(L + 1)), r(N)); ) (_ += N), L++
                 if (t.charAt(L + 1) !== u) return
                 ;(_ += u), (o = !0), L++
                 break
@@ -46136,12 +46264,12 @@ object-assign
           ;(P += _), (_ = ""), L++
         }
         if (o) {
-          for (w = P, I += P + _, L++; L < k && ((N = t.charAt(L)), r(N)); )
+          for (w = P, I += P + _, L++; L < E && ((N = t.charAt(L)), r(N)); )
             (I += N), L++
           if (
             ((N = t.charAt(L)), (x = F ? m : h), (P = ""), (b = I), N === d)
           ) {
-            for (L++, b += d; L < k && (N = t.charAt(L)) !== p; ) {
+            for (L++, b += d; L < E && (N = t.charAt(L)) !== p; ) {
               if (F && "\n" === N) return
               ;(P += N), L++
             }
@@ -46150,7 +46278,7 @@ object-assign
           } else {
             for (
               N = null, _ = "";
-              L < k && ((N = t.charAt(L)), !_ || !s.call(x, N));
+              L < E && ((N = t.charAt(L)), !_ || !s.call(x, N));
 
             ) {
               if (r(N)) {
@@ -46171,24 +46299,24 @@ object-assign
             }
             ;(R = P), (L = (I += P).length)
           }
-          for (P = ""; L < k && ((N = t.charAt(L)), r(N)); ) (P += N), L++
+          for (P = ""; L < E && ((N = t.charAt(L)), r(N)); ) (P += N), L++
           if (((N = t.charAt(L)), (I += P), P && s.call(x, N)))
-            if ((L++, (I += N), (P = ""), (E = x[N]), (v = I), F)) {
-              for (; L < k && (N = t.charAt(L)) !== E; )
+            if ((L++, (I += N), (P = ""), (k = x[N]), (v = I), F)) {
+              for (; L < E && (N = t.charAt(L)) !== k; )
                 N === i && ((P += i), (N = t.charAt(++L))), L++, (P += N)
-              if ((N = t.charAt(L)) !== E) return
-              for (S = P, I += P + N, L++; L < k && ((N = t.charAt(L)), r(N)); )
+              if ((N = t.charAt(L)) !== k) return
+              for (S = P, I += P + N, L++; L < E && ((N = t.charAt(L)), r(N)); )
                 (I += N), L++
             } else
-              for (_ = ""; L < k; ) {
-                if ((N = t.charAt(L)) === E)
-                  j && ((P += E + _), (_ = "")), (j = !0)
+              for (_ = ""; L < E; ) {
+                if ((N = t.charAt(L)) === k)
+                  j && ((P += k + _), (_ = "")), (j = !0)
                 else if (j) {
                   if (N === c) {
-                    ;(I += P + E + _), (S = P)
+                    ;(I += P + k + _), (S = P)
                     break
                   }
-                  r(N) ? (_ += N) : ((P += E + _ + N), (_ = ""), (j = !1))
+                  r(N) ? (_ += N) : ((P += k + _ + N), (_ = ""), (j = !1))
                 } else P += N
                 L++
               }
@@ -46308,8 +46436,8 @@ object-assign
           v,
           _,
           j,
-          E,
           k,
+          E,
           S,
           O,
           P,
@@ -46401,27 +46529,27 @@ object-assign
                 (_ = !1),
                 (H = v)
             if (
-              ((k = t.slice(v, b)),
-              (E = v === H ? k : t.slice(H, b)),
+              ((E = t.slice(v, b)),
+              (k = v === H ? E : t.slice(H, b)),
               (j === u || j === c || j === d) &&
-                V.thematicBreak.call(q, e, k, !0))
+                V.thematicBreak.call(q, e, E, !0))
             )
               break
-            if (((S = O), (O = !r(E).length), F && D))
-              (D.value = D.value.concat(T, k)), (R = R.concat(T, k)), (T = [])
+            if (((S = O), (O = !r(k).length), F && D))
+              (D.value = D.value.concat(T, E)), (R = R.concat(T, E)), (T = [])
             else if (_)
               0 !== T.length && (D.value.push(""), (D.trail = T.concat())),
-                (D = { value: [k], indent: $, trail: [] }),
+                (D = { value: [E], indent: $, trail: [] }),
                 P.push(D),
-                (R = R.concat(T, k)),
+                (R = R.concat(T, E)),
                 (T = [])
             else if (O) {
               if (S) break
-              T.push(k)
+              T.push(E)
             } else {
               if (S) break
-              if (l(z, V, q, [e, k, !0])) break
-              ;(D.value = D.value.concat(T, k)), (R = R.concat(T, k)), (T = [])
+              if (l(z, V, q, [e, E, !0])) break
+              ;(D.value = D.value.concat(T, E)), (R = R.concat(T, E)), (T = [])
             }
             H = b + 1
           }
@@ -46576,44 +46704,44 @@ object-assign
         x,
         C = this,
         w = t.charAt(0),
-        E = 0,
-        k = t.length,
+        k = 0,
+        E = t.length,
         S = "",
         O = "",
         P = i,
         R = u
-      if (("!" === w && ((P = a), (O = w), (w = t.charAt(++E))), w === h)) {
+      if (("!" === w && ((P = a), (O = w), (w = t.charAt(++k))), w === h)) {
         for (
-          E++,
+          k++,
             O += w,
             _ = "",
             C.options.footnotes &&
               P === i &&
-              t.charAt(E) === p &&
-              ((O += p), E++, (P = l)),
+              t.charAt(k) === p &&
+              ((O += p), k++, (P = l)),
             x = 0;
-          E < k;
+          k < E;
 
         ) {
-          if ((w = t.charAt(E)) === h) (j = !0), x++
+          if ((w = t.charAt(k)) === h) (j = !0), x++
           else if (w === m) {
             if (!x) break
             x--
           }
-          w === f && ((_ += f), (w = t.charAt(++E))), (_ += w), E++
+          w === f && ((_ += f), (w = t.charAt(++k))), (_ += w), k++
         }
-        if (((S = _), (o = _), (w = t.charAt(E)) === m)) {
-          for (E++, S += w, _ = ""; E < k && ((w = t.charAt(E)), r(w)); )
-            (_ += w), E++
-          if (((w = t.charAt(E)), P !== l && w === h)) {
+        if (((S = _), (o = _), (w = t.charAt(k)) === m)) {
+          for (k++, S += w, _ = ""; k < E && ((w = t.charAt(k)), r(w)); )
+            (_ += w), k++
+          if (((w = t.charAt(k)), P !== l && w === h)) {
             for (
-              g = "", _ += w, E++;
-              E < k && (w = t.charAt(E)) !== h && w !== m;
+              g = "", _ += w, k++;
+              k < E && (w = t.charAt(k)) !== h && w !== m;
 
             )
-              w === f && ((g += f), (w = t.charAt(++E))), (g += w), E++
-            ;(w = t.charAt(E)) === m
-              ? ((R = g ? d : c), (_ += g + w), E++)
+              w === f && ((g += f), (w = t.charAt(++k))), (g += w), k++
+            ;(w = t.charAt(k)) === m
+              ? ((R = g ? d : c), (_ += g + w), k++)
               : (g = ""),
               (S += _),
               (_ = "")
@@ -46733,8 +46861,8 @@ object-assign
         x,
         C,
         w,
-        E,
         k,
+        E,
         S,
         O,
         P,
@@ -46774,14 +46902,14 @@ object-assign
           b < C;
 
         ) {
-          if ((k = v.charAt(b)) === a) {
+          if ((E = v.charAt(b)) === a) {
             if (((S = null), !1 === _)) {
               if (!1 === U) return
             } else O.push(_), (_ = !1)
             U = !1
-          } else if (k === i) (S = !0), (_ = _ || y)
-          else if (k === l) _ = _ === h ? m : S && _ === y ? g : h
-          else if (!r(k)) return
+          } else if (E === i) (S = !0), (_ = _ || y)
+          else if (E === l) _ = _ === h ? m : S && _ === y ? g : h
+          else if (!r(E)) return
           b++
         }
         if ((!1 !== _ && O.push(_), !(O.length < p))) {
@@ -46800,7 +46928,7 @@ object-assign
                 e(L).reset(x, B),
                 C = L.length + 1,
                 b = 0,
-                E = "",
+                k = "",
                 P = "",
                 R = !0,
                 T = null,
@@ -46808,42 +46936,42 @@ object-assign
               b < C;
 
             )
-              if ((k = L.charAt(b)) !== d && k !== u) {
-                if ("" === k || k === a)
-                  if (R) e(k)
+              if ((E = L.charAt(b)) !== d && E !== u) {
+                if ("" === E || E === a)
+                  if (R) e(E)
                   else {
-                    if (k && D) {
-                      ;(E += k), b++
+                    if (E && D) {
+                      ;(k += E), b++
                       continue
                     }
-                    ;(!P && !k) ||
+                    ;(!P && !E) ||
                       R ||
                       ((j = P),
-                      E.length > 1 &&
-                        (k
-                          ? ((j += E.slice(0, E.length - 1)),
-                            (E = E.charAt(E.length - 1)))
-                          : ((j += E), (E = ""))),
+                      k.length > 1 &&
+                        (E
+                          ? ((j += k.slice(0, k.length - 1)),
+                            (k = k.charAt(k.length - 1)))
+                          : ((j += k), (k = ""))),
                       (M = e.now()),
                       e(j)(
                         { type: "tableCell", children: W.tokenizeInline(P, M) },
                         x
                       )),
-                      e(E + k),
-                      (E = ""),
+                      e(k + E),
+                      (k = ""),
                       (P = "")
                   }
                 else if (
-                  (E && ((P += E), (E = "")),
-                  (P += k),
-                  k === o && b !== C - 2 && ((P += L.charAt(b + 1)), b++),
-                  k === s)
+                  (k && ((P += k), (k = "")),
+                  (P += E),
+                  E === o && b !== C - 2 && ((P += L.charAt(b + 1)), b++),
+                  E === s)
                 ) {
-                  for (T = 1; L.charAt(b + 1) === k; ) (P += k), b++, T++
+                  for (T = 1; L.charAt(b + 1) === E; ) (P += E), b++, T++
                   D ? T >= D && (D = 0) : (D = T)
                 }
                 ;(R = !1), b++
-              } else P ? (E += k) : e(k), b++
+              } else P ? (k += E) : e(E), b++
             A || e(c + v)
           }
           return B
@@ -46945,9 +47073,9 @@ object-assign
         x,
         C,
         w,
-        E,
-        k = this
-      if (k.options.gfm) {
+        k,
+        E = this
+      if (E.options.gfm) {
         for (s = "", y = -1, j = h; ++y < j; )
           if (((v = f[y]), (_ = t.slice(0, v.length)).toLowerCase() === v)) {
             s = _
@@ -46978,9 +47106,9 @@ object-assign
             }
             return (
               !!n ||
-              ((E = k.enterLink()),
-              (m = k.tokenizeInline(m, e.now())),
-              E(),
+              ((k = E.enterLink()),
+              (m = E.tokenizeInline(m, e.now())),
+              k(),
               e(s)({ type: "link", title: null, url: r(s), children: m }))
             )
           }
@@ -48839,13 +48967,16 @@ object-assign
           _classCallCheck(this, Circle)
           var n = _possibleConstructorReturn(
               this,
-              (Circle.__proto__ || Object.getPrototypeOf(Circle))
-                .call(this, e, t)
+              (Circle.__proto__ || Object.getPrototypeOf(Circle)).call(
+                this,
+                e,
+                t
+              )
             ),
             r = new google.maps.Circle()
           return (
             Object(a.d)(Circle.propTypes, p, n.props, r),
-            r.setMap(n.context[l.j]),
+            r.setMap(n.context[l.k]),
             (n.state = _defineProperty({}, l.b, r)),
             n
           )
@@ -48946,7 +49077,7 @@ object-assign
       onDrag: i.a.func,
       onRadiusChanged: i.a.func,
     }),
-      (c.contextTypes = _defineProperty({}, l.j, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
       (t.default = c)
     var d = {
         onDblClick: "dblclick",
@@ -49062,13 +49193,13 @@ object-assign
           var n = _possibleConstructorReturn(
               this,
               (DirectionsRenderer.__proto__ ||
-                Object.getPrototypeOf(DirectionsRenderer))
-                .call(this, e, t)
+                Object.getPrototypeOf(DirectionsRenderer)
+              ).call(this, e, t)
             ),
             r = new google.maps.DirectionsRenderer()
           return (
             Object(a.d)(DirectionsRenderer.propTypes, p, n.props, r),
-            r.setMap(n.context[l.j]),
+            r.setMap(n.context[l.k]),
             (n.state = _defineProperty({}, l.c, r)),
             n
           )
@@ -49135,7 +49266,7 @@ object-assign
       routeIndex: i.a.number,
       onDirectionsChanged: i.a.func,
     }),
-      (c.contextTypes = _defineProperty({}, l.j, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
       (t.default = c)
     var d = { onDirectionsChanged: "directions_changed" },
       p = {
@@ -49231,13 +49362,13 @@ object-assign
           var n = _possibleConstructorReturn(
               this,
               (FusionTablesLayer.__proto__ ||
-                Object.getPrototypeOf(FusionTablesLayer))
-                .call(this, e, t)
+                Object.getPrototypeOf(FusionTablesLayer)
+              ).call(this, e, t)
             ),
             r = new google.maps.FusionTablesLayer()
           return (
             Object(a.d)(FusionTablesLayer.propTypes, p, n.props, r),
-            r.setMap(n.context[l.j]),
+            r.setMap(n.context[l.k]),
             (n.state = _defineProperty({}, l.e, r)),
             n
           )
@@ -49280,7 +49411,7 @@ object-assign
       options: i.a.any,
       onClick: i.a.func,
     }),
-      (c.contextTypes = _defineProperty({}, l.j, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
       (t.default = c)
     var d = { onClick: "click" },
       p = {
@@ -49362,10 +49493,10 @@ object-assign
           )
           return (
             o()(
-              !!n.context[c.j],
+              !!n.context[c.k],
               "Did you wrap <GoogleMap> component with withGoogleMap() HOC?"
             ),
-            Object(u.d)(f.propTypes, m, n.props, n.context[c.j]),
+            Object(u.d)(f.propTypes, m, n.props, n.context[c.k]),
             n
           )
         }
@@ -49376,28 +49507,28 @@ object-assign
               key: "fitBounds",
               value: function fitBounds() {
                 var e
-                return (e = this.context[c.j]).fitBounds.apply(e, arguments)
+                return (e = this.context[c.k]).fitBounds.apply(e, arguments)
               },
             },
             {
               key: "panBy",
               value: function panBy() {
                 var e
-                return (e = this.context[c.j]).panBy.apply(e, arguments)
+                return (e = this.context[c.k]).panBy.apply(e, arguments)
               },
             },
             {
               key: "panTo",
               value: function panTo() {
                 var e
-                return (e = this.context[c.j]).panTo.apply(e, arguments)
+                return (e = this.context[c.k]).panTo.apply(e, arguments)
               },
             },
             {
               key: "panToBounds",
               value: function panToBounds() {
                 var e
-                return (e = this.context[c.j]).panToBounds.apply(e, arguments)
+                return (e = this.context[c.k]).panToBounds.apply(e, arguments)
               },
             },
           ]),
@@ -49405,13 +49536,13 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(u.a)(this, this.context[c.j], h)
+                Object(u.a)(this, this.context[c.k], h)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(u.b)(this, this.context[c.j], h, m, e)
+                Object(u.b)(this, this.context[c.k], h, m, e)
               },
             },
             {
@@ -49430,61 +49561,61 @@ object-assign
             {
               key: "getBounds",
               value: function getBounds() {
-                return this.context[c.j].getBounds()
+                return this.context[c.k].getBounds()
               },
             },
             {
               key: "getCenter",
               value: function getCenter() {
-                return this.context[c.j].getCenter()
+                return this.context[c.k].getCenter()
               },
             },
             {
               key: "getClickableIcons",
               value: function getClickableIcons() {
-                return this.context[c.j].getClickableIcons()
+                return this.context[c.k].getClickableIcons()
               },
             },
             {
               key: "getDiv",
               value: function getDiv() {
-                return this.context[c.j].getDiv()
+                return this.context[c.k].getDiv()
               },
             },
             {
               key: "getHeading",
               value: function getHeading() {
-                return this.context[c.j].getHeading()
+                return this.context[c.k].getHeading()
               },
             },
             {
               key: "getMapTypeId",
               value: function getMapTypeId() {
-                return this.context[c.j].getMapTypeId()
+                return this.context[c.k].getMapTypeId()
               },
             },
             {
               key: "getProjection",
               value: function getProjection() {
-                return this.context[c.j].getProjection()
+                return this.context[c.k].getProjection()
               },
             },
             {
               key: "getStreetView",
               value: function getStreetView() {
-                return this.context[c.j].getStreetView()
+                return this.context[c.k].getStreetView()
               },
             },
             {
               key: "getTilt",
               value: function getTilt() {
-                return this.context[c.j].getTilt()
+                return this.context[c.k].getTilt()
               },
             },
             {
               key: "getZoom",
               value: function getZoom() {
-                return this.context[c.j].getZoom()
+                return this.context[c.k].getZoom()
               },
             },
           ]),
@@ -49541,7 +49672,7 @@ object-assign
             : (e[t] = n),
           e
         )
-      })({}, c.j, l.a.object))
+      })({}, c.k, l.a.object))
     var f = p
     t.default = p
     var h = {
@@ -49589,6 +49720,162 @@ object-assign
         },
         zoom: function zoom(e, t) {
           e.setZoom(t)
+        },
+      }
+  },
+  "./src/components/GroundOverlay.jsx": function(e, t, n) {
+    "use strict"
+    function _defineProperty(e, t, n) {
+      return (
+        t in e
+          ? Object.defineProperty(e, t, {
+              value: n,
+              enumerable: !0,
+              configurable: !0,
+              writable: !0,
+            })
+          : (e[t] = n),
+        e
+      )
+    }
+    function _classCallCheck(e, t) {
+      if (!(e instanceof t))
+        throw new TypeError("Cannot call a class as a function")
+    }
+    function _possibleConstructorReturn(e, t) {
+      if (!e)
+        throw new ReferenceError(
+          "this hasn't been initialised - super() hasn't been called"
+        )
+      return !t || ("object" != typeof t && "function" != typeof t) ? e : t
+    }
+    function _inherits(e, t) {
+      if ("function" != typeof t && null !== t)
+        throw new TypeError(
+          "Super expression must either be null or a function, not " + typeof t
+        )
+      ;(e.prototype = Object.create(t && t.prototype, {
+        constructor: {
+          value: e,
+          enumerable: !1,
+          writable: !0,
+          configurable: !0,
+        },
+      })),
+        t &&
+          (Object.setPrototypeOf
+            ? Object.setPrototypeOf(e, t)
+            : (e.__proto__ = t))
+    }
+    Object.defineProperty(t, "__esModule", { value: !0 }),
+      n.d(t, "GroundOverlay", function() {
+        return c
+      })
+    var r = n("./node_modules/react/react.js"),
+      o = n.n(r),
+      s = n("./node_modules/prop-types/index.js"),
+      i = n.n(s),
+      a = n("./src/utils/MapChildHelper.js"),
+      l = n("./src/constants.js"),
+      u = (function() {
+        function defineProperties(e, t) {
+          for (var n = 0; n < t.length; n++) {
+            var r = t[n]
+            ;(r.enumerable = r.enumerable || !1),
+              (r.configurable = !0),
+              "value" in r && (r.writable = !0),
+              Object.defineProperty(e, r.key, r)
+          }
+        }
+        return function(e, t, n) {
+          return (
+            t && defineProperties(e.prototype, t),
+            n && defineProperties(e, n),
+            e
+          )
+        }
+      })(),
+      c = (function(e) {
+        function GroundOverlay(e, t) {
+          _classCallCheck(this, GroundOverlay)
+          var n = _possibleConstructorReturn(
+              this,
+              (GroundOverlay.__proto__ || Object.getPrototypeOf(GroundOverlay)
+              ).call(this, e, t)
+            ),
+            r = new google.maps.GroundOverlay(e.url, e.bounds)
+          return (
+            Object(a.d)(GroundOverlay.propTypes, p, n.props, r),
+            r.setMap(n.context[l.k]),
+            (n.state = _defineProperty({}, l.f, r)),
+            n
+          )
+        }
+        return (
+          _inherits(GroundOverlay, o.a.PureComponent),
+          u(GroundOverlay, [
+            {
+              key: "componentDidMount",
+              value: function componentDidMount() {
+                Object(a.a)(this, this.state[l.f], d)
+              },
+            },
+            {
+              key: "componentDidUpdate",
+              value: function componentDidUpdate(e) {
+                Object(a.b)(this, this.state[l.f], d, p, e)
+              },
+            },
+            {
+              key: "componentWillUnmount",
+              value: function componentWillUnmount() {
+                Object(a.c)(this)
+                var e = this.state[l.f]
+                e && e.setMap(null)
+              },
+            },
+            {
+              key: "render",
+              value: function render() {
+                return !1
+              },
+            },
+            {
+              key: "getBounds",
+              value: function getBounds() {
+                return this.state[l.f].getBounds()
+              },
+            },
+            {
+              key: "getOpacity",
+              value: function getOpacity() {
+                return this.state[l.f].getOpacity()
+              },
+            },
+            {
+              key: "getUrl",
+              value: function getUrl() {
+                return this.state[l.f].getUrl()
+              },
+            },
+          ]),
+          GroundOverlay
+        )
+      })()
+    ;(c.propTypes = {
+      url: i.a.string.isRequired,
+      bounds: i.a.object.isRequired,
+      defaultOpacity: i.a.number,
+      opacity: i.a.number,
+      onDblClick: i.a.func,
+      onClick: i.a.func,
+    }),
+      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
+      (t.default = c)
+    var d = { onDblClick: "dblclick", onClick: "click" },
+      p = {
+        opacity: function opacity(e, t) {
+          e.setOpacity(t)
         },
       }
   },
@@ -49674,14 +49961,17 @@ object-assign
           _classCallCheck(this, InfoWindow)
           var n = _possibleConstructorReturn(
               this,
-              (InfoWindow.__proto__ || Object.getPrototypeOf(InfoWindow))
-                .call(this, e, t)
+              (InfoWindow.__proto__ || Object.getPrototypeOf(InfoWindow)).call(
+                this,
+                e,
+                t
+              )
             ),
             r = new google.maps.InfoWindow()
           return (
             Object(p.d)(InfoWindow.propTypes, b, n.props, r),
-            r.setMap(n.context[f.j]),
-            (n.state = _defineProperty({}, f.h, r)),
+            r.setMap(n.context[f.k]),
+            (n.state = _defineProperty({}, f.i, r)),
             n
           )
         }
@@ -49691,35 +49981,35 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(p.a)(this, this.state[f.h], y)
+                Object(p.a)(this, this.state[f.i], y)
                 var e = document.createElement("div")
                 u.a.unstable_renderSubtreeIntoContainer(
                   this,
                   a.a.Children.only(this.props.children),
                   e
                 ),
-                  this.state[f.h].setContent(e),
-                  g(this.state[f.h], this.context[f.a])
+                  this.state[f.i].setContent(e),
+                  g(this.state[f.i], this.context[f.a])
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(p.b)(this, this.state[f.h], y, b, e),
+                Object(p.b)(this, this.state[f.i], y, b, e),
                   this.props.children !== e.children &&
                     u.a.unstable_renderSubtreeIntoContainer(
                       this,
                       a.a.Children.only(this.props.children),
-                      this.state[f.h].getContent()
+                      this.state[f.i].getContent()
                     ),
-                  g(this.state[f.h], this.context[f.a])
+                  g(this.state[f.i], this.context[f.a])
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(p.c)(this)
-                var e = this.state[f.h]
+                var e = this.state[f.i]
                 e &&
                   (e.getContent() && u.a.unmountComponentAtNode(e.getContent()),
                   e.setMap(null))
@@ -49734,13 +50024,13 @@ object-assign
             {
               key: "getPosition",
               value: function getPosition() {
-                return this.state[f.h].getPosition()
+                return this.state[f.i].getPosition()
               },
             },
             {
               key: "getZIndex",
               value: function getZIndex() {
-                return this.state[f.h].getZIndex()
+                return this.state[f.i].getZIndex()
               },
             },
           ]),
@@ -49761,7 +50051,7 @@ object-assign
       onZindexChanged: d.a.func,
     }),
       (m.contextTypes = ((r = {}),
-      _defineProperty(r, f.j, d.a.object),
+      _defineProperty(r, f.k, d.a.object),
       _defineProperty(r, f.a, d.a.object),
       r)),
       (t.default = m)
@@ -49871,14 +50161,17 @@ object-assign
           _classCallCheck(this, KmlLayer)
           var n = _possibleConstructorReturn(
               this,
-              (KmlLayer.__proto__ || Object.getPrototypeOf(KmlLayer))
-                .call(this, e, t)
+              (KmlLayer.__proto__ || Object.getPrototypeOf(KmlLayer)).call(
+                this,
+                e,
+                t
+              )
             ),
             r = new google.maps.KmlLayer()
           return (
             Object(a.d)(KmlLayer.propTypes, p, n.props, r),
-            r.setMap(n.context[l.j]),
-            (n.state = _defineProperty({}, l.i, r)),
+            r.setMap(n.context[l.k]),
+            (n.state = _defineProperty({}, l.j, r)),
             n
           )
         }
@@ -49888,20 +50181,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.i], d)
+                Object(a.a)(this, this.state[l.j], d)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.i], d, p, e)
+                Object(a.b)(this, this.state[l.j], d, p, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.i]
+                var e = this.state[l.j]
                 e && e.setMap(null)
               },
             },
@@ -49914,31 +50207,31 @@ object-assign
             {
               key: "getDefaultViewport",
               value: function getDefaultViewport() {
-                return this.state[l.i].getDefaultViewport()
+                return this.state[l.j].getDefaultViewport()
               },
             },
             {
               key: "getMetadata",
               value: function getMetadata() {
-                return this.state[l.i].getMetadata()
+                return this.state[l.j].getMetadata()
               },
             },
             {
               key: "getStatus",
               value: function getStatus() {
-                return this.state[l.i].getStatus()
+                return this.state[l.j].getStatus()
               },
             },
             {
               key: "getUrl",
               value: function getUrl() {
-                return this.state[l.i].getUrl()
+                return this.state[l.j].getUrl()
               },
             },
             {
               key: "getZIndex",
               value: function getZIndex() {
-                return this.state[l.i].getZIndex()
+                return this.state[l.j].getZIndex()
               },
             },
           ]),
@@ -49956,7 +50249,7 @@ object-assign
       onClick: i.a.func,
       onStatusChanged: i.a.func,
     }),
-      (c.contextTypes = _defineProperty({}, l.j, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
       (t.default = c)
     var d = {
         onDefaultViewportChanged: "defaultviewport_changed",
@@ -50053,15 +50346,18 @@ object-assign
           _classCallCheck(this, Marker)
           var n = _possibleConstructorReturn(
               this,
-              (Marker.__proto__ || Object.getPrototypeOf(Marker))
-                .call(this, e, t)
+              (Marker.__proto__ || Object.getPrototypeOf(Marker)).call(
+                this,
+                e,
+                t
+              )
             ),
             r = new (n.props.markerWithLabel || google.maps.Marker)()
           Object(l.d)(Marker.propTypes, f, n.props, r)
-          var o = n.context[u.l]
+          var o = n.context[u.m]
           return (
-            o ? o.addMarker(r, !!n.props.noRedraw) : r.setMap(n.context[u.j]),
-            (n.state = _defineProperty({}, u.k, r)),
+            o ? o.addMarker(r, !!n.props.noRedraw) : r.setMap(n.context[u.k]),
+            (n.state = _defineProperty({}, u.l, r)),
             n
           )
         }
@@ -50074,29 +50370,29 @@ object-assign
                 return _defineProperty(
                   {},
                   u.a,
-                  this.context[u.a] || this.state[u.k]
+                  this.context[u.a] || this.state[u.l]
                 )
               },
             },
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(l.a)(this, this.state[u.k], p)
+                Object(l.a)(this, this.state[u.l], p)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(l.b)(this, this.state[u.k], p, f, e)
+                Object(l.b)(this, this.state[u.l], p, f, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(l.c)(this)
-                var e = this.state[u.k]
+                var e = this.state[u.l]
                 if (e) {
-                  var t = this.context[u.l]
+                  var t = this.context[u.m]
                   t && t.removeMarker(e, !!this.props.noRedraw), e.setMap(null)
                 }
               },
@@ -50111,79 +50407,79 @@ object-assign
             {
               key: "getAnimation",
               value: function getAnimation() {
-                return this.state[u.k].getAnimation()
+                return this.state[u.l].getAnimation()
               },
             },
             {
               key: "getClickable",
               value: function getClickable() {
-                return this.state[u.k].getClickable()
+                return this.state[u.l].getClickable()
               },
             },
             {
               key: "getCursor",
               value: function getCursor() {
-                return this.state[u.k].getCursor()
+                return this.state[u.l].getCursor()
               },
             },
             {
               key: "getDraggable",
               value: function getDraggable() {
-                return this.state[u.k].getDraggable()
+                return this.state[u.l].getDraggable()
               },
             },
             {
               key: "getIcon",
               value: function getIcon() {
-                return this.state[u.k].getIcon()
+                return this.state[u.l].getIcon()
               },
             },
             {
               key: "getLabel",
               value: function getLabel() {
-                return this.state[u.k].getLabel()
+                return this.state[u.l].getLabel()
               },
             },
             {
               key: "getOpacity",
               value: function getOpacity() {
-                return this.state[u.k].getOpacity()
+                return this.state[u.l].getOpacity()
               },
             },
             {
               key: "getPlace",
               value: function getPlace() {
-                return this.state[u.k].getPlace()
+                return this.state[u.l].getPlace()
               },
             },
             {
               key: "getPosition",
               value: function getPosition() {
-                return this.state[u.k].getPosition()
+                return this.state[u.l].getPosition()
               },
             },
             {
               key: "getShape",
               value: function getShape() {
-                return this.state[u.k].getShape()
+                return this.state[u.l].getShape()
               },
             },
             {
               key: "getTitle",
               value: function getTitle() {
-                return this.state[u.k].getTitle()
+                return this.state[u.l].getTitle()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.state[u.k].getVisible()
+                return this.state[u.l].getVisible()
               },
             },
             {
               key: "getZIndex",
               value: function getZIndex() {
-                return this.state[u.k].getZIndex()
+                return this.state[u.l].getZIndex()
               },
             },
           ]),
@@ -50248,8 +50544,8 @@ object-assign
       onZindexChanged: a.a.func,
     }),
       (d.contextTypes = ((r = {}),
-      _defineProperty(r, u.j, a.a.object),
-      _defineProperty(r, u.l, a.a.object),
+      _defineProperty(r, u.k, a.a.object),
+      _defineProperty(r, u.m, a.a.object),
       r)),
       (d.childContextTypes = _defineProperty({}, u.a, a.a.object)),
       (t.default = d)
@@ -50409,8 +50705,8 @@ object-assign
           _classCallCheck(this, OverlayView)
           var n = _possibleConstructorReturn(
               this,
-              (OverlayView.__proto__ || Object.getPrototypeOf(OverlayView))
-                .call(this, e, t)
+              (OverlayView.__proto__ || Object.getPrototypeOf(OverlayView)
+              ).call(this, e, t)
             ),
             r = new google.maps.OverlayView()
           return (
@@ -50418,8 +50714,8 @@ object-assign
             (r.draw = s.a.bind(n.draw, n)),
             (r.onRemove = s.a.bind(n.onRemove, n)),
             (n.onPositionElement = s.a.bind(n.onPositionElement, n)),
-            r.setMap(n.context[g.j]),
-            (n.state = _defineProperty({}, g.m, r)),
+            r.setMap(n.context[g.k]),
+            (n.state = _defineProperty({}, g.n, r)),
             n
           )
         }
@@ -50442,7 +50738,7 @@ object-assign
                   "OverlayView requires either props.mapPaneName or props.defaultMapPaneName but got %s",
                   e
                 ),
-                  this.state[g.m]
+                  this.state[g.n]
                     .getPanes()
                     [e].appendChild(this.containerElement),
                   d.a.unstable_renderSubtreeIntoContainer(
@@ -50456,7 +50752,7 @@ object-assign
             {
               key: "onPositionElement",
               value: function onPositionElement() {
-                var e = this.state[g.m].getProjection(),
+                var e = this.state[g.n].getProjection(),
                   t = Object.assign(
                     { x: 0, y: 0 },
                     Object(m.b)(this.containerElement, this.props)
@@ -50478,21 +50774,21 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(h.a)(this, this.state[g.m], v)
+                Object(h.a)(this, this.state[g.n], v)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(h.b)(this, this.state[g.m], v, _, e),
-                  s.a.delay(this.state[g.m].draw)
+                Object(h.b)(this, this.state[g.n], v, _, e),
+                  s.a.delay(this.state[g.n].draw)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(h.c)(this)
-                var e = this.state[g.m]
+                var e = this.state[g.n]
                 e &&
                   (e.setMap(null),
                   (e.onAdd = null),
@@ -50509,13 +50805,13 @@ object-assign
             {
               key: "getPanes",
               value: function getPanes() {
-                return this.state[g.m].getPanes()
+                return this.state[g.n].getPanes()
               },
             },
             {
               key: "getProjection",
               value: function getProjection() {
-                return this.state[g.m].getProjection()
+                return this.state[g.n].getProjection()
               },
             },
           ]),
@@ -50535,7 +50831,7 @@ object-assign
         getPixelPositionOffset: f.a.func,
       }),
       (b.contextTypes = ((r = {}),
-      _defineProperty(r, g.j, f.a.object),
+      _defineProperty(r, g.k, f.a.object),
       _defineProperty(r, g.a, f.a.object),
       r)),
       (t.default = b)
@@ -50619,14 +50915,17 @@ object-assign
           _classCallCheck(this, Polygon)
           var n = _possibleConstructorReturn(
               this,
-              (Polygon.__proto__ || Object.getPrototypeOf(Polygon))
-                .call(this, e, t)
+              (Polygon.__proto__ || Object.getPrototypeOf(Polygon)).call(
+                this,
+                e,
+                t
+              )
             ),
             r = new google.maps.Polygon()
           return (
             Object(a.d)(Polygon.propTypes, p, n.props, r),
-            r.setMap(n.context[l.j]),
-            (n.state = _defineProperty({}, l.n, r)),
+            r.setMap(n.context[l.k]),
+            (n.state = _defineProperty({}, l.o, r)),
             n
           )
         }
@@ -50636,20 +50935,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.n], d)
+                Object(a.a)(this, this.state[l.o], d)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.n], d, p, e)
+                Object(a.b)(this, this.state[l.o], d, p, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.n]
+                var e = this.state[l.o]
                 e && e.setMap(null)
               },
             },
@@ -50662,31 +50961,31 @@ object-assign
             {
               key: "getDraggable",
               value: function getDraggable() {
-                return this.state[l.n].getDraggable()
+                return this.state[l.o].getDraggable()
               },
             },
             {
               key: "getEditable",
               value: function getEditable() {
-                return this.state[l.n].getEditable()
+                return this.state[l.o].getEditable()
               },
             },
             {
               key: "getPath",
               value: function getPath() {
-                return this.state[l.n].getPath()
+                return this.state[l.o].getPath()
               },
             },
             {
               key: "getPaths",
               value: function getPaths() {
-                return this.state[l.n].getPaths()
+                return this.state[l.o].getPaths()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.state[l.n].getVisible()
+                return this.state[l.o].getVisible()
               },
             },
           ]),
@@ -50718,7 +51017,7 @@ object-assign
       onClick: i.a.func,
       onDrag: i.a.func,
     }),
-      (c.contextTypes = _defineProperty({}, l.j, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
       (t.default = c)
     var d = {
         onDblClick: "dblclick",
@@ -50831,14 +51130,17 @@ object-assign
           _classCallCheck(this, Polyline)
           var n = _possibleConstructorReturn(
               this,
-              (Polyline.__proto__ || Object.getPrototypeOf(Polyline))
-                .call(this, e, t)
+              (Polyline.__proto__ || Object.getPrototypeOf(Polyline)).call(
+                this,
+                e,
+                t
+              )
             ),
             r = new google.maps.Polyline()
           return (
             Object(a.d)(Polyline.propTypes, p, n.props, r),
-            r.setMap(n.context[l.j]),
-            (n.state = _defineProperty({}, l.o, r)),
+            r.setMap(n.context[l.k]),
+            (n.state = _defineProperty({}, l.p, r)),
             n
           )
         }
@@ -50848,20 +51150,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.o], d)
+                Object(a.a)(this, this.state[l.p], d)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.o], d, p, e)
+                Object(a.b)(this, this.state[l.p], d, p, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.o]
+                var e = this.state[l.p]
                 e && e.setMap(null)
               },
             },
@@ -50874,25 +51176,25 @@ object-assign
             {
               key: "getDraggable",
               value: function getDraggable() {
-                return this.state[l.o].getDraggable()
+                return this.state[l.p].getDraggable()
               },
             },
             {
               key: "getEditable",
               value: function getEditable() {
-                return this.state[l.o].getEditable()
+                return this.state[l.p].getEditable()
               },
             },
             {
               key: "getPath",
               value: function getPath() {
-                return this.state[l.o].getPath()
+                return this.state[l.p].getPath()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.state[l.o].getVisible()
+                return this.state[l.p].getVisible()
               },
             },
           ]),
@@ -50922,7 +51224,7 @@ object-assign
       onClick: i.a.func,
       onDrag: i.a.func,
     }),
-      (c.contextTypes = _defineProperty({}, l.j, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
       (t.default = c)
     var d = {
         onDblClick: "dblclick",
@@ -51032,14 +51334,17 @@ object-assign
           _classCallCheck(this, Rectangle)
           var n = _possibleConstructorReturn(
               this,
-              (Rectangle.__proto__ || Object.getPrototypeOf(Rectangle))
-                .call(this, e, t)
+              (Rectangle.__proto__ || Object.getPrototypeOf(Rectangle)).call(
+                this,
+                e,
+                t
+              )
             ),
             r = new google.maps.Rectangle()
           return (
             Object(a.d)(Rectangle.propTypes, p, n.props, r),
-            r.setMap(n.context[l.j]),
-            (n.state = _defineProperty({}, l.p, r)),
+            r.setMap(n.context[l.k]),
+            (n.state = _defineProperty({}, l.q, r)),
             n
           )
         }
@@ -51049,20 +51354,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.p], d)
+                Object(a.a)(this, this.state[l.q], d)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.p], d, p, e)
+                Object(a.b)(this, this.state[l.q], d, p, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.p]
+                var e = this.state[l.q]
                 e && e.setMap(null)
               },
             },
@@ -51075,25 +51380,25 @@ object-assign
             {
               key: "getBounds",
               value: function getBounds() {
-                return this.state[l.p].getBounds()
+                return this.state[l.q].getBounds()
               },
             },
             {
               key: "getDraggable",
               value: function getDraggable() {
-                return this.state[l.p].getDraggable()
+                return this.state[l.q].getDraggable()
               },
             },
             {
               key: "getEditable",
               value: function getEditable() {
-                return this.state[l.p].getEditable()
+                return this.state[l.q].getEditable()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.state[l.p].getVisible()
+                return this.state[l.q].getVisible()
               },
             },
           ]),
@@ -51124,7 +51429,7 @@ object-assign
       onClick: i.a.func,
       onDrag: i.a.func,
     }),
-      (c.contextTypes = _defineProperty({}, l.j, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
       (t.default = c)
     var d = {
         onDblClick: "dblclick",
@@ -51238,19 +51543,19 @@ object-assign
           var n = _possibleConstructorReturn(
             this,
             (StreetViewPanorama.__proto__ ||
-              Object.getPrototypeOf(StreetViewPanorama))
-              .call(this, e, t)
+              Object.getPrototypeOf(StreetViewPanorama)
+            ).call(this, e, t)
           )
           return (
             o()(
-              !!n.context[c.j],
+              !!n.context[c.k],
               "Did you render <StreetViewPanorama> as a child of <GoogleMap> with withGoogleMap() HOC?"
             ),
             Object(u.d)(
               StreetViewPanorama.propTypes,
               h,
               n.props,
-              n.context[c.j].getStreetView()
+              n.context[c.k].getStreetView()
             ),
             n
           )
@@ -51263,28 +51568,28 @@ object-assign
               value: function getChildContext() {
                 return _defineProperty(
                   {},
-                  c.j,
-                  this.context[c.j].getStreetView()
+                  c.k,
+                  this.context[c.k].getStreetView()
                 )
               },
             },
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(u.a)(this, this.context[c.j].getStreetView(), f)
+                Object(u.a)(this, this.context[c.k].getStreetView(), f)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(u.b)(this, this.context[c.j].getStreetView(), f, h, e)
+                Object(u.b)(this, this.context[c.k].getStreetView(), f, h, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(u.c)(this)
-                var e = this.context[c.j].getStreetView()
+                var e = this.context[c.k].getStreetView()
                 e && e.setVisible(!1)
               },
             },
@@ -51298,61 +51603,61 @@ object-assign
             {
               key: "getLinks",
               value: function getLinks() {
-                return this.context[c.j].getLinks()
+                return this.context[c.k].getLinks()
               },
             },
             {
               key: "getLocation",
               value: function getLocation() {
-                return this.context[c.j].getLocation()
+                return this.context[c.k].getLocation()
               },
             },
             {
               key: "getMotionTracking",
               value: function getMotionTracking() {
-                return this.context[c.j].getMotionTracking()
+                return this.context[c.k].getMotionTracking()
               },
             },
             {
               key: "getPano",
               value: function getPano() {
-                return this.context[c.j].getPano()
+                return this.context[c.k].getPano()
               },
             },
             {
               key: "getPhotographerPov",
               value: function getPhotographerPov() {
-                return this.context[c.j].getPhotographerPov()
+                return this.context[c.k].getPhotographerPov()
               },
             },
             {
               key: "getPosition",
               value: function getPosition() {
-                return this.context[c.j].getPosition()
+                return this.context[c.k].getPosition()
               },
             },
             {
               key: "getPov",
               value: function getPov() {
-                return this.context[c.j].getPov()
+                return this.context[c.k].getPov()
               },
             },
             {
               key: "getStatus",
               value: function getStatus() {
-                return this.context[c.j].getStatus()
+                return this.context[c.k].getStatus()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.context[c.j].getVisible()
+                return this.context[c.k].getVisible()
               },
             },
             {
               key: "getZoom",
               value: function getZoom() {
-                return this.context[c.j].getZoom()
+                return this.context[c.k].getZoom()
               },
             },
           ]),
@@ -51385,8 +51690,8 @@ object-assign
       onVisibleChanged: l.a.func,
       onZoomChanged: l.a.func,
     }),
-      (p.contextTypes = _defineProperty({}, c.j, l.a.object)),
-      (p.childContextTypes = _defineProperty({}, c.j, l.a.object)),
+      (p.contextTypes = _defineProperty({}, c.k, l.a.object)),
+      (p.childContextTypes = _defineProperty({}, c.k, l.a.object)),
       (t.default = p)
     var f = {
         onCloseClick: "closeclick",
@@ -51502,14 +51807,14 @@ object-assign
           _classCallCheck(this, TrafficLayer)
           var n = _possibleConstructorReturn(
               this,
-              (TrafficLayer.__proto__ || Object.getPrototypeOf(TrafficLayer))
-                .call(this, e, t)
+              (TrafficLayer.__proto__ || Object.getPrototypeOf(TrafficLayer)
+              ).call(this, e, t)
             ),
             r = new google.maps.TrafficLayer()
           return (
             Object(a.d)(TrafficLayer.propTypes, p, n.props, r),
-            r.setMap(n.context[l.j]),
-            (n.state = _defineProperty({}, l.r, r)),
+            r.setMap(n.context[l.k]),
+            (n.state = _defineProperty({}, l.s, r)),
             n
           )
         }
@@ -51519,20 +51824,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.r], d)
+                Object(a.a)(this, this.state[l.s], d)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.r], d, p, e)
+                Object(a.b)(this, this.state[l.s], d, p, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.r]
+                var e = this.state[l.s]
                 e && e.setMap(null)
               },
             },
@@ -51547,7 +51852,7 @@ object-assign
         )
       })()
     ;(c.propTypes = { defaultOptions: i.a.any, options: i.a.any }),
-      (c.contextTypes = _defineProperty({}, l.j, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
       (t.default = c)
     var d = {},
       p = {
@@ -51650,7 +51955,7 @@ object-assign
                 [this].concat(s)
               )
             )),
-            (n.state = _defineProperty({}, m.g, null)),
+            (n.state = _defineProperty({}, m.h, null)),
             (r = t),
             _possibleConstructorReturn(n, r)
           )
@@ -51661,48 +51966,48 @@ object-assign
             {
               key: "componentWillMount",
               value: function componentWillMount() {
-                if (s.a && !this.state[m.g]) {
+                if (s.a && !this.state[m.h]) {
                   var e = new (n(
                     "./node_modules/google-maps-infobox/infobox-module.js"
                   ))()
                   Object(h.d)(InfoBox.propTypes, _, this.props, e),
-                    e.setMap(this.context[m.j]),
-                    this.setState(_defineProperty({}, m.g, e))
+                    e.setMap(this.context[m.k]),
+                    this.setState(_defineProperty({}, m.h, e))
                 }
               },
             },
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(h.a)(this, this.state[m.g], v)
+                Object(h.a)(this, this.state[m.h], v)
                 var e = document.createElement("div")
                 d.a.unstable_renderSubtreeIntoContainer(
                   this,
                   u.a.Children.only(this.props.children),
                   e
                 ),
-                  this.state[m.g].setContent(e),
-                  b(this.state[m.g], this.context[m.a])
+                  this.state[m.h].setContent(e),
+                  b(this.state[m.h], this.context[m.a])
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(h.b)(this, this.state[m.g], v, _, e),
+                Object(h.b)(this, this.state[m.h], v, _, e),
                   this.props.children !== e.children &&
                     d.a.unstable_renderSubtreeIntoContainer(
                       this,
                       u.a.Children.only(this.props.children),
-                      this.state[m.g].getContent()
+                      this.state[m.h].getContent()
                     ),
-                  b(this.state[m.g], this.context[m.a])
+                  b(this.state[m.h], this.context[m.a])
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(h.c)(this)
-                var e = this.state[m.g]
+                var e = this.state[m.h]
                 e &&
                   (e.getContent() && d.a.unmountComponentAtNode(e.getContent()),
                   e.setMap(null))
@@ -51717,19 +52022,19 @@ object-assign
             {
               key: "getPosition",
               value: function getPosition() {
-                return this.state[m.g].getPosition()
+                return this.state[m.h].getPosition()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.state[m.g].getVisible()
+                return this.state[m.h].getVisible()
               },
             },
             {
               key: "getZIndex",
               value: function getZIndex() {
-                return this.state[m.g].getZIndex()
+                return this.state[m.h].getZIndex()
               },
             },
           ]),
@@ -51752,7 +52057,7 @@ object-assign
       onZindexChanged: f.a.func,
     }),
       (y.contextTypes = ((r = {}),
-      _defineProperty(r, m.j, f.a.object),
+      _defineProperty(r, m.k, f.a.object),
       _defineProperty(r, m.a, f.a.object),
       r)),
       (t.default = y)
@@ -51869,14 +52174,14 @@ object-assign
           var n = _possibleConstructorReturn(
               this,
               (MarkerClusterer.__proto__ ||
-                Object.getPrototypeOf(MarkerClusterer))
-                .call(this, e, t)
+                Object.getPrototypeOf(MarkerClusterer)
+              ).call(this, e, t)
             ),
             r = new u.a()
           return (
             Object(c.d)(MarkerClusterer.propTypes, m, n.props, r),
-            r.setMap(n.context[d.j]),
-            (n.state = _defineProperty({}, d.l, r)),
+            r.setMap(n.context[d.k]),
+            (n.state = _defineProperty({}, d.m, r)),
             n
           )
         }
@@ -51887,11 +52192,11 @@ object-assign
               key: "getChildContext",
               value: function getChildContext() {
                 var e,
-                  t = this.state[d.l]
+                  t = this.state[d.m]
                 return (
                   (e = {}),
                   _defineProperty(e, d.a, t),
-                  _defineProperty(e, d.l, t),
+                  _defineProperty(e, d.m, t),
                   e
                 )
               },
@@ -51899,21 +52204,21 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(c.a)(this, this.state[d.l], h)
+                Object(c.a)(this, this.state[d.m], h)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(c.b)(this, this.state[d.l], h, m, e),
-                  this.state[d.l].repaint()
+                Object(c.b)(this, this.state[d.m], h, m, e),
+                  this.state[d.m].repaint()
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(c.c)(this)
-                var e = this.state[d.l]
+                var e = this.state[d.m]
                 e && e.setMap(null)
               },
             },
@@ -51967,10 +52272,10 @@ object-assign
       onMouseOut: a.a.func,
       onMouseOver: a.a.func,
     }),
-      (f.contextTypes = _defineProperty({}, d.j, a.a.object)),
+      (f.contextTypes = _defineProperty({}, d.k, a.a.object)),
       (f.childContextTypes = ((r = {}),
       _defineProperty(r, d.a, a.a.object),
-      _defineProperty(r, d.l, a.a.object),
+      _defineProperty(r, d.m, a.a.object),
       r)),
       (t.default = f)
     var h = {
@@ -52176,8 +52481,8 @@ object-assign
           _classCallCheck(this, DrawingManager)
           var n = _possibleConstructorReturn(
             this,
-            (DrawingManager.__proto__ || Object.getPrototypeOf(DrawingManager))
-              .call(this, e, t)
+            (DrawingManager.__proto__ || Object.getPrototypeOf(DrawingManager)
+            ).call(this, e, t)
           )
           o()(
             google.maps.drawing,
@@ -52186,7 +52491,7 @@ object-assign
           var r = new google.maps.drawing.DrawingManager()
           return (
             Object(u.d)(DrawingManager.propTypes, h, n.props, r),
-            r.setMap(n.context[c.j]),
+            r.setMap(n.context[c.k]),
             (n.state = _defineProperty({}, c.d, r)),
             n
           )
@@ -52242,7 +52547,7 @@ object-assign
       onPolylineComplete: l.a.func,
       onRectangleComplete: l.a.func,
     }),
-      (p.contextTypes = _defineProperty({}, c.j, l.a.object)),
+      (p.contextTypes = _defineProperty({}, c.k, l.a.object)),
       (t.default = p)
     var f = {
         onCircleComplete: "circlecomplete",
@@ -52355,7 +52660,7 @@ object-assign
                 [this].concat(s)
               )
             )),
-            (n.state = _defineProperty({}, h.q, null)),
+            (n.state = _defineProperty({}, h.r, null)),
             (r = t),
             _possibleConstructorReturn(n, r)
           )
@@ -52373,14 +52678,14 @@ object-assign
                     this.containerElement.firstChild
                   )
                   Object(f.d)(SearchBox.propTypes, v, this.props, e),
-                    this.setState(_defineProperty({}, h.q, e))
+                    this.setState(_defineProperty({}, h.r, e))
                 }
               },
             },
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(f.a)(this, this.state[h.q], b),
+                Object(f.a)(this, this.state[h.r], b),
                   this.handleMountAtControlPosition()
               },
             },
@@ -52394,7 +52699,7 @@ object-assign
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(f.b)(this, this.state[h.q], b, v, e),
+                Object(f.b)(this, this.state[h.r], b, v, e),
                   this.props.children !== e.children &&
                     this.handleRenderChildToContainerElement(),
                   this.props.controlPosition !== e.controlPosition &&
@@ -52427,7 +52732,7 @@ object-assign
                 y(this.props.controlPosition) &&
                   (this.mountControlIndex =
                     -1 +
-                    this.context[h.j].controls[this.props.controlPosition].push(
+                    this.context[h.k].controls[this.props.controlPosition].push(
                       this.containerElement.firstChild
                     ))
               },
@@ -52436,7 +52741,7 @@ object-assign
               key: "handleUnmountAtControlPosition",
               value: function handleUnmountAtControlPosition() {
                 if (y(this.props.controlPosition)) {
-                  var e = this.context[h.j].controls[
+                  var e = this.context[h.k].controls[
                     this.props.controlPosition
                   ].removeAt(this.mountControlIndex)
                   this.containerElement.appendChild(e)
@@ -52452,13 +52757,13 @@ object-assign
             {
               key: "getBounds",
               value: function getBounds() {
-                return this.state[h.q].getBounds()
+                return this.state[h.r].getBounds()
               },
             },
             {
               key: "getPlaces",
               value: function getPlaces() {
-                return this.state[h.q].getPlaces()
+                return this.state[h.r].getPlaces()
               },
             },
           ]),
@@ -52471,7 +52776,7 @@ object-assign
       bounds: p.a.any,
       onPlacesChanged: p.a.func,
     }),
-      (g.contextTypes = _defineProperty({}, h.j, p.a.object)),
+      (g.contextTypes = _defineProperty({}, h.k, p.a.object)),
       (t.default = g)
     var y = o.a.isNumber,
       b = { onPlacesChanged: "places_changed" },
@@ -52571,7 +52876,7 @@ object-assign
                 [this].concat(s)
               )
             )),
-            (n.state = _defineProperty({}, c.q, null)),
+            (n.state = _defineProperty({}, c.r, null)),
             (r = t),
             _possibleConstructorReturn(n, r)
           )
@@ -52586,13 +52891,13 @@ object-assign
                   t = new google.maps.places.SearchBox(e)
                 Object(u.d)(SearchBox.propTypes, m, this.props, t),
                   Object(u.a)(this, t, h),
-                  this.setState(_defineProperty({}, c.q, t))
+                  this.setState(_defineProperty({}, c.r, t))
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(u.b)(this, this.state[c.q], h, m, e)
+                Object(u.b)(this, this.state[c.r], h, m, e)
               },
             },
             {
@@ -52610,13 +52915,13 @@ object-assign
             {
               key: "getBounds",
               value: function getBounds() {
-                return this.state[c.q].getBounds()
+                return this.state[c.r].getBounds()
               },
             },
             {
               key: "getPlaces",
               value: function getPlaces() {
-                return this.state[c.q].getPlaces()
+                return this.state[c.r].getPlaces()
               },
             },
           ]),
@@ -52715,14 +53020,14 @@ object-assign
           _classCallCheck(this, HeatmapLayer)
           var n = _possibleConstructorReturn(
               this,
-              (HeatmapLayer.__proto__ || Object.getPrototypeOf(HeatmapLayer))
-                .call(this, e, t)
+              (HeatmapLayer.__proto__ || Object.getPrototypeOf(HeatmapLayer)
+              ).call(this, e, t)
             ),
             r = new google.maps.visualization.HeatmapLayer()
           return (
             Object(a.d)(HeatmapLayer.propTypes, p, n.props, r),
-            r.setMap(n.context[l.j]),
-            (n.state = _defineProperty({}, l.f, r)),
+            r.setMap(n.context[l.k]),
+            (n.state = _defineProperty({}, l.g, r)),
             n
           )
         }
@@ -52732,20 +53037,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.f], d)
+                Object(a.a)(this, this.state[l.g], d)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.f], d, p, e)
+                Object(a.b)(this, this.state[l.g], d, p, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.f]
+                var e = this.state[l.g]
                 e && e.setMap(null)
               },
             },
@@ -52758,7 +53063,7 @@ object-assign
             {
               key: "getData",
               value: function getData() {
-                return this.state[l.f].getData()
+                return this.state[l.g].getData()
               },
             },
           ]),
@@ -52771,7 +53076,7 @@ object-assign
       data: i.a.any,
       options: i.a.any,
     }),
-      (c.contextTypes = _defineProperty({}, l.j, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
       (t.default = c)
     var d = {},
       p = {
@@ -52785,31 +53090,31 @@ object-assign
   },
   "./src/constants.js": function(e, t, n) {
     "use strict"
-    n.d(t, "j", function() {
+    n.d(t, "k", function() {
       return r
     }),
-      n.d(t, "k", function() {
+      n.d(t, "l", function() {
         return o
       }),
-      n.d(t, "p", function() {
+      n.d(t, "q", function() {
         return s
       }),
-      n.d(t, "o", function() {
+      n.d(t, "p", function() {
         return i
       }),
-      n.d(t, "n", function() {
+      n.d(t, "o", function() {
         return a
       }),
       n.d(t, "b", function() {
         return l
       }),
-      n.d(t, "i", function() {
+      n.d(t, "j", function() {
         return u
       }),
       n.d(t, "c", function() {
         return c
       }),
-      n.d(t, "f", function() {
+      n.d(t, "g", function() {
         return d
       }),
       n.d(t, "e", function() {
@@ -52818,26 +53123,29 @@ object-assign
       n.d(t, "a", function() {
         return f
       }),
-      n.d(t, "h", function() {
+      n.d(t, "i", function() {
         return h
       }),
-      n.d(t, "m", function() {
+      n.d(t, "n", function() {
         return m
       }),
-      n.d(t, "d", function() {
+      n.d(t, "f", function() {
         return g
       }),
-      n.d(t, "q", function() {
+      n.d(t, "d", function() {
         return y
       }),
-      n.d(t, "l", function() {
+      n.d(t, "r", function() {
         return b
       }),
-      n.d(t, "g", function() {
+      n.d(t, "m", function() {
         return v
       }),
-      n.d(t, "r", function() {
+      n.d(t, "h", function() {
         return _
+      }),
+      n.d(t, "s", function() {
+        return j
       })
     var r = "__SECRET_MAP_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
       o = "__SECRET_MARKER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
@@ -52852,11 +53160,12 @@ object-assign
       f = "__SECRET_ANCHOR_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
       h = "__SECRET_INFO_WINDOW_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
       m = "__SECRET_OVERLAY_VIEW_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      g = "__SECRET_DRAWING_MANAGER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      y = "__SECRET_SEARCH_BOX_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      b = "__SECRET_MARKER_CLUSTERER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      v = "__SECRET_INFO_BOX_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      _ = "__SECRET_TRAFFIC_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED"
+      g = "__SECRET_GROUND_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      y = "__SECRET_DRAWING_MANAGER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      b = "__SECRET_SEARCH_BOX_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      v = "__SECRET_MARKER_CLUSTERER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      _ = "__SECRET_INFO_BOX_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      j = "__SECRET_TRAFFIC_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED"
   },
   "./src/index.js": function(e, t, n) {
     "use strict"
@@ -52901,25 +53210,29 @@ object-assign
     n.d(t, "OverlayView", function() {
       return p.default
     })
-    var f = n("./src/components/DirectionsRenderer.jsx")
-    n.d(t, "DirectionsRenderer", function() {
+    var f = n("./src/components/GroundOverlay.jsx")
+    n.d(t, "GroundOverlay", function() {
       return f.default
     })
-    var h = n("./src/components/FusionTablesLayer.jsx")
-    n.d(t, "FusionTablesLayer", function() {
+    var h = n("./src/components/DirectionsRenderer.jsx")
+    n.d(t, "DirectionsRenderer", function() {
       return h.default
     })
-    var m = n("./src/components/KmlLayer.jsx")
-    n.d(t, "KmlLayer", function() {
+    var m = n("./src/components/FusionTablesLayer.jsx")
+    n.d(t, "FusionTablesLayer", function() {
       return m.default
     })
-    var g = n("./src/components/TrafficLayer.jsx")
-    n.d(t, "TrafficLayer", function() {
+    var g = n("./src/components/KmlLayer.jsx")
+    n.d(t, "KmlLayer", function() {
       return g.default
     })
-    var y = n("./src/components/StreetViewPanorama.jsx")
-    n.d(t, "StreetViewPanorama", function() {
+    var y = n("./src/components/TrafficLayer.jsx")
+    n.d(t, "TrafficLayer", function() {
       return y.default
+    })
+    var b = n("./src/components/StreetViewPanorama.jsx")
+    n.d(t, "StreetViewPanorama", function() {
+      return b.default
     })
   },
   "./src/utils/MapChildHelper.js": function(e, t, n) {
@@ -53152,7 +53465,7 @@ object-assign
               {
                 key: "getChildContext",
                 value: function getChildContext() {
-                  return _defineProperty({}, h.j, this.state.map)
+                  return _defineProperty({}, h.k, this.state.map)
                 },
               },
               {
@@ -53215,7 +53528,7 @@ object-assign
           containerElement: d.a.node.isRequired,
           mapElement: d.a.node.isRequired,
         }),
-        (n.childContextTypes = _defineProperty({}, h.j, d.a.object)),
+        (n.childContextTypes = _defineProperty({}, h.k, d.a.object)),
         n
       )
     }

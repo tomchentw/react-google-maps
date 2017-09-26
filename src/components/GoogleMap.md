@@ -2,7 +2,7 @@
 
 ```js static
 import { compose, withProps, withState, withHandlers } from "recompose";
-import FaAnchor from "react-icons/lib/fa/ancho";
+import FaAnchor from "react-icons/lib/fa/anchor";
 import {
   withScriptjs,
   withGoogleMap,

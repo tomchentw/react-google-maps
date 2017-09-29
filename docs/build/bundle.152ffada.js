@@ -308,7 +308,7 @@
         }
         function extractNames(e) {
           var t = []
-          return T[e.type](t, e), t
+          return M[e.type](t, e), t
         }
         function destructure(e, t, n, r, o, s) {
           A[n.type](e, t, n, r, o, s)
@@ -393,9 +393,9 @@
                 (e.remove(n, (n = r.start)),
                 r.elements.filter(Boolean).length > 1)
               ) {
-                var f = t.createIdentifier(o)
+                var h = t.createIdentifier(o)
                 i.push(function(t, s, i) {
-                  e.insertRight(r.start, s + "var " + f + " = "),
+                  e.insertRight(r.start, s + "var " + h + " = "),
                     e.overwrite(r.start, (n = r.start + 1), o),
                     e.insertLeft(n, i),
                     e.move(r.start, n, t)
@@ -408,27 +408,27 @@
                             t,
                             n,
                             r.argument,
-                            f + ".slice(" + o + ")",
+                            h + ".slice(" + o + ")",
                             s,
                             i
                           )
-                        : handleProperty(e, t, n, r, f + "[" + o + "]", s, i),
+                        : handleProperty(e, t, n, r, h + "[" + o + "]", s, i),
                       (n = r.end))
                   })
               } else {
-                var h = findIndex(r.elements, Boolean),
-                  m = r.elements[h]
+                var f = findIndex(r.elements, Boolean),
+                  m = r.elements[f]
                 "RestElement" === m.type
                   ? handleProperty(
                       e,
                       t,
                       n,
                       m.argument,
-                      o + ".slice(" + h + ")",
+                      o + ".slice(" + f + ")",
                       s,
                       i
                     )
-                  : handleProperty(e, t, n, m, o + "[" + h + "]", s, i),
+                  : handleProperty(e, t, n, m, o + "[" + f + "]", s, i),
                   (n = m.end)
               }
               e.remove(n, r.end)
@@ -475,8 +475,8 @@
             if ("length" in e) for (var n = e.length; n--; ) wrap(e[n], t)
             else if (!e.__wrapped) {
               ;(e.__wrapped = !0),
-                f[e.type] ||
-                  (f[e.type] = Object.keys(e).filter(function(t) {
+                h[e.type] ||
+                  (h[e.type] = Object.keys(e).filter(function(t) {
                     return "object" == typeof e[t]
                   }))
               var r = le[e.type]
@@ -490,8 +490,8 @@
                   synthetic: !0,
                 }
               }
-              new h(e, t)
-              var s = ("BlockStatement" === e.type ? ce : ae[e.type]) || h
+              new f(e, t)
+              var s = ("BlockStatement" === e.type ? ce : ae[e.type]) || f
               e.__proto__ = s.prototype
             }
         }
@@ -567,7 +567,7 @@
             pe.forEach(function(e, r) {
               n[e] = !(t & (1 << r))
             }),
-            he.forEach(function(e) {
+            fe.forEach(function(e) {
               n[e] = !1
             }),
             n
@@ -1261,39 +1261,39 @@
             }
           }),
           p = d && "object" == typeof d && "default" in d ? d.default : d,
-          f = { Program: ["body"], Literal: [] },
-          h = function Node(e, t) {
+          h = { Program: ["body"], Literal: [] },
+          f = function Node(e, t) {
             ;(e.parent = t),
               (e.program = t.program || t),
               (e.depth = t.depth + 1),
-              (e.keys = f[e.type]),
+              (e.keys = h[e.type]),
               (e.indentation = void 0)
-            for (var n = 0, r = f[e.type]; n < r.length; n += 1)
+            for (var n = 0, r = h[e.type]; n < r.length; n += 1)
               wrap(e[r[n]], e)
             e.program.magicString.addSourcemapLocation(e.start),
               e.program.magicString.addSourcemapLocation(e.end)
           }
-        ;(h.prototype.ancestor = function ancestor(e) {
+        ;(f.prototype.ancestor = function ancestor(e) {
           for (var t = this; e--; ) if (!(t = t.parent)) return null
           return t
         }),
-          (h.prototype.contains = function contains(e) {
+          (f.prototype.contains = function contains(e) {
             for (var t = this; e; ) {
               if (e === t) return !0
               e = e.parent
             }
             return !1
           }),
-          (h.prototype.findLexicalBoundary = function findLexicalBoundary() {
+          (f.prototype.findLexicalBoundary = function findLexicalBoundary() {
             return this.parent.findLexicalBoundary()
           }),
-          (h.prototype.findNearest = function findNearest(e) {
+          (f.prototype.findNearest = function findNearest(e) {
             return (
               "string" == typeof e && (e = new RegExp("^" + e + "$")),
               e.test(this.type) ? this : this.parent.findNearest(e)
             )
           }),
-          (h.prototype.unparenthesizedParent = function unparenthesizedParent() {
+          (f.prototype.unparenthesizedParent = function unparenthesizedParent() {
             for (
               var e = this.parent;
               e && "ParenthesizedExpression" === e.type;
@@ -1302,18 +1302,18 @@
               e = e.parent
             return e
           }),
-          (h.prototype.unparenthesize = function unparenthesize() {
+          (f.prototype.unparenthesize = function unparenthesize() {
             for (var e = this; "ParenthesizedExpression" === e.type; )
               e = e.expression
             return e
           }),
-          (h.prototype.findScope = function findScope(e) {
+          (f.prototype.findScope = function findScope(e) {
             return this.parent.findScope(e)
           }),
-          (h.prototype.getIndentation = function getIndentation() {
+          (f.prototype.getIndentation = function getIndentation() {
             return this.parent.getIndentation()
           }),
-          (h.prototype.initialise = function initialise(e) {
+          (f.prototype.initialise = function initialise(e) {
             for (var t = 0, n = this.keys; t < n.length; t += 1) {
               var r = this[n[t]]
               Array.isArray(r)
@@ -1323,13 +1323,13 @@
                 : r && "object" == typeof r && r.initialise(e)
             }
           }),
-          (h.prototype.toJSON = function toJSON$1() {
+          (f.prototype.toJSON = function toJSON$1() {
             return toJSON(this)
           }),
-          (h.prototype.toString = function toString() {
+          (f.prototype.toString = function toString() {
             return this.program.magicString.original.slice(this.start, this.end)
           }),
-          (h.prototype.transpile = function transpile(e, t) {
+          (f.prototype.transpile = function transpile(e, t) {
             for (var n = 0, r = this.keys; n < r.length; n += 1) {
               var o = this[r[n]]
               Array.isArray(o)
@@ -1400,7 +1400,7 @@
               }),
               ArrayExpression
             )
-          })(h),
+          })(f),
           g = (function(e) {
             function ArrowFunctionExpression() {
               e.apply(this, arguments)
@@ -1436,7 +1436,7 @@
               }),
               ArrowFunctionExpression
             )
-          })(h),
+          })(f),
           y = (function(e) {
             function CompileError(t, n) {
               e.call(this)
@@ -1555,12 +1555,12 @@
                       )
                     var p = n.properties
                     if (1 == p.length) {
-                      var f = p[0],
-                        h =
-                          f.computed || "Identifier" !== f.key.type
-                            ? o + "[" + e.slice(f.key.start, f.key.end) + "]"
-                            : o + "." + f.key.name
-                      destructure(f.value, h, !1)
+                      var h = p[0],
+                        f =
+                          h.computed || "Identifier" !== h.key.type
+                            ? o + "[" + e.slice(h.key.start, h.key.end) + "]"
+                            : o + "." + h.key.name
+                      destructure(h.value, f, !1)
                     } else {
                       if (!s) {
                         var m = t.createIdentifier("obj")
@@ -1694,7 +1694,7 @@
               }),
               AssignmentExpression
             )
-          })(h),
+          })(f),
           v = (function(e) {
             function BinaryExpression() {
               e.apply(this, arguments)
@@ -1713,7 +1713,7 @@
               }),
               BinaryExpression
             )
-          })(h),
+          })(f),
           _ = /(?:For(?:In|Of)?|While)Statement/,
           j = (function(e) {
             function BreakStatement() {
@@ -1742,7 +1742,7 @@
               }),
               BreakStatement
             )
-          })(h),
+          })(f),
           x = (function(e) {
             function CallExpression() {
               e.apply(this, arguments)
@@ -1832,7 +1832,7 @@
               }),
               CallExpression
             )
-          })(h),
+          })(f),
           C = Object.create(null)
         "do if in for let new try var case else enum eval null this true void with await break catch class const false super throw while yield delete export import public return static switch typeof default extends finally package private continue debugger function arguments interface protected implements instanceof"
           .split(" ")
@@ -1859,7 +1859,7 @@
                     }),
                     d = this.body[c],
                     p = "",
-                    f = ""
+                    h = ""
                   if (
                     (this.body.length
                       ? (t.remove(this.start, this.body[0].start),
@@ -1868,10 +1868,10 @@
                     d)
                   ) {
                     d.value.body.isConstructorBody = !0
-                    var h = this.body[c - 1],
+                    var f = this.body[c - 1],
                       m = this.body[c + 1]
                     c > 0 &&
-                      (t.remove(h.end, d.start),
+                      (t.remove(f.end, d.start),
                       t.move(
                         d.start,
                         m ? m.start : this.end - 1,
@@ -1985,14 +1985,14 @@
                             p += 1
                           }
                         t.insertRight(e.start, o)
-                        var f = e.computed || a || !g ? "" : u + " ",
-                          h =
+                        var h = e.computed || a || !g ? "" : u + " ",
+                          f =
                             (a ? "." + e.kind : "") +
                             " = function" +
                             (e.value.generator ? "* " : " ") +
-                            f
+                            h
                         t.remove(p, e.value.start),
-                          t.insertRight(e.value.start, h),
+                          t.insertRight(e.value.start, f),
                           t.insertLeft(e.end, ";"),
                           e.value.generator && t.remove(e.start, e.key.start)
                       } else {
@@ -2041,16 +2041,16 @@
                       d && (p += "\n\n" + l),
                       (p += E.join("\n" + l)),
                       d || (p += "\n\n" + l),
-                      (f += "\n\n" + l + S.join("\n" + l))
+                      (h += "\n\n" + l + S.join("\n" + l))
                   }
                   d ? t.insertLeft(d.end, p) : t.insertRight(this.start, p),
-                    t.insertLeft(this.end, f)
+                    t.insertLeft(this.end, h)
                 }
                 e.prototype.transpile.call(this, t, n)
               }),
               ClassBody
             )
-          })(h),
+          })(f),
           k = (function(e) {
             function ClassDeclaration() {
               e.apply(this, arguments)
@@ -2114,7 +2114,7 @@
               }),
               ClassDeclaration
             )
-          })(h),
+          })(f),
           E = (function(e) {
             function ClassExpression() {
               e.apply(this, arguments)
@@ -2166,7 +2166,7 @@
               }),
               ClassExpression
             )
-          })(h),
+          })(f),
           S = (function(e) {
             function ContinueStatement() {
               e.apply(this, arguments)
@@ -2187,8 +2187,8 @@
               }),
               ContinueStatement
             )
-          })(h),
-          O = (function(e) {
+          })(f),
+          R = (function(e) {
             function ExportDefaultDeclaration() {
               e.apply(this, arguments)
             }
@@ -2206,8 +2206,8 @@
               }),
               ExportDefaultDeclaration
             )
-          })(h),
-          P = (function(e) {
+          })(f),
+          O = (function(e) {
             function ExportNamedDeclaration() {
               e.apply(this, arguments)
             }
@@ -2225,8 +2225,8 @@
               }),
               ExportNamedDeclaration
             )
-          })(h),
-          R = (function(e) {
+          })(f),
+          P = (function(e) {
             function LoopStatement() {
               e.apply(this, arguments)
             }
@@ -2302,23 +2302,23 @@
                     this.canBreak || this.canReturn)
                   ) {
                     var p = l.createIdentifier("returned"),
-                      f = "{\n" + s + "var " + p + " = " + u + "(" + i + ");\n"
+                      h = "{\n" + s + "var " + p + " = " + u + "(" + i + ");\n"
                     this.canBreak &&
-                      (f += "\n" + s + "if ( " + p + " === 'break' ) break;"),
+                      (h += "\n" + s + "if ( " + p + " === 'break' ) break;"),
                       this.canReturn &&
-                        (f +=
+                        (h +=
                           "\n" + s + "if ( " + p + " ) return " + p + ".v;"),
-                      (f += "\n" + o + "}"),
-                      t.insertRight(this.body.end, f)
+                      (h += "\n" + o + "}"),
+                      t.insertRight(this.body.end, h)
                   } else {
-                    var h = u + "(" + i + ");"
+                    var f = u + "(" + i + ");"
                     "DoWhileStatement" === this.type
                       ? t.overwrite(
                           this.start,
                           this.body.start,
-                          "do {\n" + s + h + "\n" + o + "}"
+                          "do {\n" + s + f + "\n" + o + "}"
                         )
-                      : t.insertRight(this.body.end, h)
+                      : t.insertRight(this.body.end, f)
                   }
                 } else
                   r &&
@@ -2328,31 +2328,31 @@
               }),
               LoopStatement
             )
-          })(h),
-          T = {
+          })(f),
+          M = {
             Identifier: function Identifier(e, t) {
               e.push(t)
             },
             ObjectPattern: function ObjectPattern(e, t) {
               for (var n = 0, r = t.properties; n < r.length; n += 1) {
                 var o = r[n]
-                T[o.value.type](e, o.value)
+                M[o.value.type](e, o.value)
               }
             },
             ArrayPattern: function ArrayPattern(e, t) {
               for (var n = 0, r = t.elements; n < r.length; n += 1) {
                 var o = r[n]
-                o && T[o.type](e, o)
+                o && M[o.type](e, o)
               }
             },
             RestElement: function RestElement(e, t) {
-              T[t.argument.type](e, t.argument)
+              M[t.argument.type](e, t.argument)
             },
             AssignmentPattern: function AssignmentPattern(e, t) {
-              T[t.left.type](e, t.left)
+              M[t.left.type](e, t.left)
             },
           },
-          D = (function(e) {
+          T = (function(e) {
             function ForStatement() {
               e.apply(this, arguments)
             }
@@ -2400,8 +2400,8 @@
               }),
               ForStatement
             )
-          })(R),
-          M = (function(e) {
+          })(P),
+          D = (function(e) {
             function ForInStatement() {
               e.apply(this, arguments)
             }
@@ -2437,7 +2437,7 @@
               }),
               ForInStatement
             )
-          })(R),
+          })(P),
           A = {
             Identifier: destructureIdentifier,
             AssignmentPattern: function destructureAssignmentPattern(
@@ -2566,7 +2566,7 @@
               }),
               ForOfStatement
             )
-          })(R),
+          })(P),
           L = (function(e) {
             function FunctionDeclaration() {
               e.apply(this, arguments)
@@ -2586,7 +2586,7 @@
               }),
               FunctionDeclaration
             )
-          })(h),
+          })(f),
           N = (function(e) {
             function FunctionExpression() {
               e.apply(this, arguments)
@@ -2638,7 +2638,7 @@
               }),
               FunctionExpression
             )
-          })(h),
+          })(f),
           B = (function(e) {
             function Identifier() {
               e.apply(this, arguments)
@@ -2680,8 +2680,8 @@
               }),
               Identifier
             )
-          })(h),
-          F = (function(e) {
+          })(f),
+          q = (function(e) {
             function IfStatement() {
               e.apply(this, arguments)
             }
@@ -2709,8 +2709,8 @@
               }),
               IfStatement
             )
-          })(h),
-          q = (function(e) {
+          })(f),
+          F = (function(e) {
             function ImportDeclaration() {
               e.apply(this, arguments)
             }
@@ -2724,7 +2724,7 @@
               }),
               ImportDeclaration
             )
-          })(h),
+          })(f),
           U = (function(e) {
             function ImportDefaultSpecifier() {
               e.apply(this, arguments)
@@ -2743,7 +2743,7 @@
               }),
               ImportDefaultSpecifier
             )
-          })(h),
+          })(f),
           W = (function(e) {
             function ImportSpecifier() {
               e.apply(this, arguments)
@@ -2758,7 +2758,7 @@
               }),
               ImportSpecifier
             )
-          })(h),
+          })(f),
           V = /-/,
           z = (function(e) {
             function JSXAttribute() {
@@ -2786,8 +2786,8 @@
               }),
               JSXAttribute
             )
-          })(h),
-          H = (function(e) {
+          })(f),
+          G = (function(e) {
             function JSXClosingElement() {
               e.apply(this, arguments)
             }
@@ -2805,8 +2805,8 @@
               }),
               JSXClosingElement
             )
-          })(h),
-          G = (function(e) {
+          })(f),
+          H = (function(e) {
             function JSXElement() {
               e.apply(this, arguments)
             }
@@ -2848,7 +2848,7 @@
               }),
               JSXElement
             )
-          })(h),
+          })(f),
           K = (function(e) {
             function JSXExpressionContainer() {
               e.apply(this, arguments)
@@ -2869,7 +2869,7 @@
               }),
               JSXExpressionContainer
             )
-          })(h),
+          })(f),
           $ = (function(e) {
             function JSXOpeningElement() {
               e.apply(this, arguments)
@@ -2917,22 +2917,22 @@
                     }
                     i = u.end
                   }
-                  var p, f
+                  var p, h
                   if (l)
-                    if (1 === s) f = o ? "'," : ","
+                    if (1 === s) h = o ? "'," : ","
                     else {
                       if (!this.program.options.objectAssign)
                         throw new y(
                           this,
                           "Mixed JSX attributes ending in spread requires specified objectAssign option with 'Object.assign' or polyfill helper."
                         )
-                      ;(f = o
+                      ;(h = o
                         ? "', " + this.program.options.objectAssign + "({},"
                         : ", " + this.program.options.objectAssign + "({},"),
                         (p = ")")
                     }
-                  else (f = o ? "', {" : ", {"), (p = " }")
-                  t.insertRight(this.name.end, f),
+                  else (h = o ? "', {" : ", {"), (p = " }")
+                  t.insertRight(this.name.end, h),
                     p && t.insertLeft(this.attributes[s - 1].end, p)
                 } else
                   t.insertLeft(this.name.end, o ? "', null" : ", null"),
@@ -2948,8 +2948,8 @@
               }),
               JSXOpeningElement
             )
-          })(h),
-          Y = (function(e) {
+          })(f),
+          Z = (function(e) {
             function JSXSpreadAttribute() {
               e.apply(this, arguments)
             }
@@ -2967,8 +2967,8 @@
               }),
               JSXSpreadAttribute
             )
-          })(h),
-          Z = __commonjs(function(e, t, o) {
+          })(f),
+          Y = __commonjs(function(e, t, o) {
             !(function(s) {
               var i = "object" == typeof t && t,
                 a = ("object" == typeof e && e && e.exports,
@@ -2985,12 +2985,12 @@
                 p = function(e, t) {
                   for (var n = -1, r = e.length; ++n < r; ) t(e[n], n)
                 },
-                f = c.toString,
-                h = function(e) {
-                  return "[object Array]" == f.call(e)
+                h = c.toString,
+                f = function(e) {
+                  return "[object Array]" == h.call(e)
                 },
                 m = function(e) {
-                  return "number" == typeof e || "[object Number]" == f.call(e)
+                  return "number" == typeof e || "[object Number]" == h.call(e)
                 },
                 g = function(e, t) {
                   var n = String(e)
@@ -3131,24 +3131,24 @@
                     (n = t[r]), E(e, n) && s.push(n), ++r
                   return v(s)
                 },
-                O = function(e) {
+                R = function(e) {
                   return !e.length
                 },
-                P = function(e) {
+                O = function(e) {
                   return 2 == e.length && e[0] + 1 == e[1]
                 },
-                R = function(e) {
+                P = function(e) {
                   for (var t, n, r = 0, o = [], s = e.length; r < s; ) {
                     for (t = e[r], n = e[r + 1]; t < n; ) o.push(t), ++t
                     r += 2
                   }
                   return o
                 },
-                T = Math.floor,
-                D = function(e) {
-                  return parseInt(T((e - 65536) / 1024) + 55296, 10)
+                M = Math.floor,
+                T = function(e) {
+                  return parseInt(M((e - 65536) / 1024) + 55296, 10)
                 },
-                M = function(e) {
+                D = function(e) {
                   return parseInt((e - 65536) % 1024 + 56320, 10)
                 },
                 A = String.fromCharCode,
@@ -3197,7 +3197,7 @@
                     r = "",
                     o = 0,
                     s = e.length
-                  if (P(e)) return I(e[0])
+                  if (O(e)) return I(e[0])
                   for (; o < s; )
                     (r +=
                       (t = e[o]) == (n = e[o + 1] - 1)
@@ -3206,13 +3206,13 @@
                       (o += 2)
                   return "[" + r + "]"
                 },
-                F = function(e) {
+                q = function(e) {
                   var t,
                     n,
                     r = "",
                     o = 0,
                     s = e.length
-                  if (P(e)) return L(e[0])
+                  if (O(e)) return L(e[0])
                   for (; o < s; )
                     (r +=
                       (t = e[o]) == (n = e[o + 1] - 1)
@@ -3221,7 +3221,7 @@
                       (o += 2)
                   return "[" + r + "]"
                 },
-                q = function(e) {
+                F = function(e) {
                   for (
                     var t,
                       n,
@@ -3307,7 +3307,7 @@
                         s && r[0] == s[0] && r[1] == s[1];
 
                       )
-                        (l = P(i) ? x(l, i[0]) : k(l, i[0], i[1] - 1)),
+                        (l = O(i) ? x(l, i[0]) : k(l, i[0], i[1] - 1)),
                           (r = (t = e[++c])[0]),
                           (o = t[1]),
                           (s = (n = e[c + 1]) && n[0]),
@@ -3331,7 +3331,7 @@
                         c = l[1]
                       s == u &&
                         i == c &&
-                        (P(a[0])
+                        (O(a[0])
                           ? (r[0] = x(r[0], a[0][0]))
                           : (r[0] = k(r[0], a[0][0], a[0][1] - 1)),
                         e.splice(n, 1),
@@ -3349,11 +3349,11 @@
                   ) {
                     ;(t = e[a]),
                       (n = e[a + 1] - 1),
-                      (r = D(t)),
-                      (o = M(t)),
-                      (s = D(n))
+                      (r = T(t)),
+                      (o = D(t)),
+                      (s = T(n))
                     var c = 56320 == o,
-                      d = 57343 == (i = M(n)),
+                      d = 57343 == (i = D(n)),
                       p = !1
                     r == s || (c && d)
                       ? (l.push([[r, s + 1], [o, i + 1]]), (p = !0))
@@ -3381,36 +3381,36 @@
                     t.join("|")
                   )
                 },
-                H = function(e, t, n) {
-                  if (n) return F(e)
+                G = function(e, t, n) {
+                  if (n) return q(e)
                   var r = [],
-                    o = q(e),
+                    o = F(e),
                     s = o.loneHighSurrogates,
                     i = o.loneLowSurrogates,
                     a = o.bmp,
                     l = o.astral,
-                    u = (O(o.astral), !O(s)),
-                    c = !O(i),
+                    u = (R(o.astral), !R(s)),
+                    c = !R(i),
                     d = V(l)
                   return (
                     t && ((a = C(a, s)), (u = !1), (a = C(a, i)), (c = !1)),
-                    O(a) || r.push(B(a)),
+                    R(a) || r.push(B(a)),
                     d.length && r.push(z(d)),
                     u && r.push(B(s) + "(?![\\uDC00-\\uDFFF])"),
                     c && r.push("(?:[^\\uD800-\\uDBFF]|^)" + B(i)),
                     r.join("|")
                   )
                 },
-                G = function(e) {
+                H = function(e) {
                   return (
                     arguments.length > 1 && (e = b.call(arguments)),
-                    this instanceof G
+                    this instanceof H
                       ? ((this.data = []), e ? this.add(e) : this)
-                      : new G().add(e)
+                      : new H().add(e)
                   )
                 }
-              G.version = "1.3.1"
-              var K = G.prototype
+              H.version = "1.3.1"
+              var K = H.prototype
               !(function(e, t) {
                 var n
                 for (n in t) d.call(t, n) && (e[n] = t[n])
@@ -3419,10 +3419,10 @@
                   var t = this
                   return null == e
                     ? t
-                    : e instanceof G
+                    : e instanceof H
                       ? ((t.data = C(t.data, e.data)), t)
                       : (arguments.length > 1 && (e = b.call(arguments)),
-                        h(e)
+                        f(e)
                           ? (p(e, function(e) {
                               t.add(e)
                             }),
@@ -3433,10 +3433,10 @@
                   var t = this
                   return null == e
                     ? t
-                    : e instanceof G
+                    : e instanceof H
                       ? ((t.data = w(t.data, e.data)), t)
                       : (arguments.length > 1 && (e = b.call(arguments)),
-                        h(e)
+                        f(e)
                           ? (p(e, function(e) {
                               t.remove(e)
                             }),
@@ -3457,18 +3457,18 @@
                 },
                 intersection: function(e) {
                   var t = this,
-                    n = e instanceof G ? R(e.data) : e
+                    n = e instanceof H ? P(e.data) : e
                   return (t.data = S(t.data, n)), t
                 },
                 contains: function(e) {
                   return E(this.data, m(e) ? e : N(e))
                 },
                 clone: function() {
-                  var e = new G()
+                  var e = new H()
                   return (e.data = this.data.slice(0)), e
                 },
                 toString: function(e) {
-                  var t = H(
+                  var t = G(
                     this.data,
                     !!e && e.bmpOnly,
                     !!e && e.hasUnicodeFlag
@@ -3482,17 +3482,17 @@
                   return RegExp(t, e || "")
                 },
                 valueOf: function() {
-                  return R(this.data)
+                  return P(this.data)
                 },
               }),
                 (K.toArray = K.valueOf),
                 void 0 !==
                   (r = function() {
-                    return G
+                    return H
                   }.call(t, n, t, e)) && (e.exports = r)
             })()
           }),
-          J = Z && "object" == typeof Z && "default" in Z ? Z.default : Z,
+          J = Y && "object" == typeof Y && "default" in Y ? Y.default : Y,
           X = __commonjs(function(e, t) {
             var n = J
             ;(t.REGULAR = {
@@ -4808,25 +4808,25 @@
             ClassDeclaration: k,
             ClassExpression: E,
             ContinueStatement: S,
-            DoWhileStatement: R,
-            ExportNamedDeclaration: P,
-            ExportDefaultDeclaration: O,
-            ForStatement: D,
-            ForInStatement: M,
+            DoWhileStatement: P,
+            ExportNamedDeclaration: O,
+            ExportDefaultDeclaration: R,
+            ForStatement: T,
+            ForInStatement: D,
             ForOfStatement: I,
             FunctionDeclaration: L,
             FunctionExpression: N,
             Identifier: B,
-            IfStatement: F,
-            ImportDeclaration: q,
+            IfStatement: q,
+            ImportDeclaration: F,
             ImportDefaultSpecifier: U,
             ImportSpecifier: W,
             JSXAttribute: z,
-            JSXClosingElement: H,
-            JSXElement: G,
+            JSXClosingElement: G,
+            JSXElement: H,
             JSXExpressionContainer: K,
             JSXOpeningElement: $,
-            JSXSpreadAttribute: Y,
+            JSXSpreadAttribute: Z,
             Literal: (function(e) {
               function Literal() {
                 e.apply(this, arguments)
@@ -4865,7 +4865,7 @@
                 }),
                 Literal
               )
-            })(h),
+            })(f),
             MemberExpression: (function(e) {
               function MemberExpression() {
                 e.apply(this, arguments)
@@ -4886,7 +4886,7 @@
                 }),
                 MemberExpression
               )
-            })(h),
+            })(f),
             NewExpression: (function(e) {
               function NewExpression() {
                 e.apply(this, arguments)
@@ -4940,7 +4940,7 @@
                 }),
                 NewExpression
               )
-            })(h),
+            })(f),
             ObjectExpression: (function(e) {
               function ObjectExpression() {
                 e.apply(this, arguments)
@@ -4983,11 +4983,11 @@
                       for (; d--; ) {
                         var p = r.properties[d]
                         if ("Property" === p.type && !p.computed) {
-                          var f = r.properties[d - 1],
-                            h = r.properties[d + 1]
-                          ;(f && "Property" === f.type && !f.computed) ||
+                          var h = r.properties[d - 1],
+                            f = r.properties[d + 1]
+                          ;(h && "Property" === h.type && !h.computed) ||
                             t.insertRight(p.start, "{"),
-                            (h && "Property" === h.type && !h.computed) ||
+                            (f && "Property" === f.type && !f.computed) ||
                               t.insertLeft(p.end, "}")
                         }
                       }
@@ -5039,21 +5039,21 @@
                       var S = r.properties[E]
                       if (S.computed) {
                         C = S
-                        var O = E > 0 ? r.properties[E - 1].end : _,
-                          P = m ? ";\n" + b + g : ", " + g
-                        O < S.start
-                          ? t.overwrite(O, S.start, P)
-                          : t.insertRight(S.start, P)
-                        for (var R = S.key.end; "]" !== t.original[R]; ) R += 1
+                        var R = E > 0 ? r.properties[E - 1].end : _,
+                          O = m ? ";\n" + b + g : ", " + g
+                        R < S.start
+                          ? t.overwrite(R, S.start, O)
+                          : t.insertRight(S.start, O)
+                        for (var P = S.key.end; "]" !== t.original[P]; ) P += 1
                         if (
-                          ((R += 1),
-                          S.value.start > R && t.remove(R, S.value.start),
-                          t.insertLeft(R, " = "),
-                          t.move(O, S.end, j),
+                          ((P += 1),
+                          S.value.start > P && t.remove(P, S.value.start),
+                          t.insertLeft(P, " = "),
+                          t.move(R, S.end, j),
                           E < w - 1 && !k)
                         ) {
-                          for (R = S.end; "," !== t.original[R]; ) R += 1
-                          t.remove(S.end, R + 1)
+                          for (P = S.end; "," !== t.original[P]; ) P += 1
+                          t.remove(S.end, P + 1)
                         }
                         S.method &&
                           n.conciseMethodProperty &&
@@ -5067,7 +5067,7 @@
                 }),
                 ObjectExpression
               )
-            })(h),
+            })(f),
             Property: (function(e) {
               function Property() {
                 e.apply(this, arguments)
@@ -5123,7 +5123,7 @@
                 }),
                 Property
               )
-            })(h),
+            })(f),
             ReturnStatement: (function(e) {
               function ReturnStatement() {
                 e.apply(this, arguments)
@@ -5157,7 +5157,7 @@
                 }),
                 ReturnStatement
               )
-            })(h),
+            })(f),
             SpreadProperty: (function(e) {
               function SpreadProperty() {
                 e.apply(this, arguments)
@@ -5173,7 +5173,7 @@
                 }),
                 SpreadProperty
               )
-            })(h),
+            })(f),
             Super: (function(e) {
               function Super() {
                 e.apply(this, arguments)
@@ -5248,7 +5248,7 @@
                 }),
                 Super
               )
-            })(h),
+            })(f),
             TaggedTemplateExpression: (function(e) {
               function TaggedTemplateExpression() {
                 e.apply(this, arguments)
@@ -5300,7 +5300,7 @@
                 }),
                 TaggedTemplateExpression
               )
-            })(h),
+            })(f),
             TemplateElement: (function(e) {
               function TemplateElement() {
                 e.apply(this, arguments)
@@ -5314,7 +5314,7 @@
                 }),
                 TemplateElement
               )
-            })(h),
+            })(f),
             TemplateLiteral: (function(e) {
               function TemplateLiteral() {
                 e.apply(this, arguments)
@@ -5383,7 +5383,7 @@
                 }),
                 TemplateLiteral
               )
-            })(h),
+            })(f),
             ThisExpression: (function(e) {
               function ThisExpression() {
                 e.apply(this, arguments)
@@ -5409,7 +5409,7 @@
                 }),
                 ThisExpression
               )
-            })(h),
+            })(f),
             UpdateExpression: (function(e) {
               function UpdateExpression() {
                 e.apply(this, arguments)
@@ -5437,7 +5437,7 @@
                 }),
                 UpdateExpression
               )
-            })(h),
+            })(f),
             VariableDeclaration: (function(e) {
               function VariableDeclaration() {
                 e.apply(this, arguments)
@@ -5502,12 +5502,12 @@
                             }),
                           destructure(e, o.findScope(!1), o.id, c, l, d)
                         var p = l ? "var " : "",
-                          f = l ? ", " : ";\n" + r
+                          h = l ? ", " : ";\n" + r
                         d.forEach(function(e, t) {
                           a === n.declarations.length - 1 &&
                             t === d.length - 1 &&
-                            (f = l ? "" : ";"),
-                            e(o.start, 0 === t ? p : "", f)
+                            (h = l ? "" : ";"),
+                            e(o.start, 0 === t ? p : "", h)
                         })
                       }
                       o.transpile(e, t),
@@ -5522,7 +5522,7 @@
                 }),
                 VariableDeclaration
               )
-            })(h),
+            })(f),
             VariableDeclarator: (function(e) {
               function VariableDeclarator() {
                 e.apply(this, arguments)
@@ -5572,8 +5572,8 @@
                 }),
                 VariableDeclarator
               )
-            })(h),
-            WhileStatement: R,
+            })(f),
+            WhileStatement: P,
           },
           le = {
             IfStatement: "consequent",
@@ -5867,8 +5867,8 @@
                       }
                       var d = i.argument.name,
                         p = o.scope.createIdentifier("len"),
-                        f = s.length - 1
-                      f
+                        h = s.length - 1
+                      h
                         ? e.insertLeft(
                             t,
                             r +
@@ -5877,7 +5877,7 @@
                               " = [], " +
                               p +
                               " = arguments.length - " +
-                              f +
+                              h +
                               ";\n" +
                               n +
                               "while ( " +
@@ -5889,7 +5889,7 @@
                               " ] = arguments[ " +
                               p +
                               " + " +
-                              f +
+                              h +
                               " ]" +
                               a
                           )
@@ -5944,20 +5944,20 @@
                         (a.aliases[n] = { outer: l, inner: u })
                       for (var c = 0, d = s.instances; c < d.length; c += 1) {
                         var p = d[c],
-                          f = a.body.contains(p) ? u : l
-                        n !== f && e.overwrite(p.start, p.end, f, !0)
+                          h = a.body.contains(p) ? u : l
+                        n !== h && e.overwrite(p.start, p.end, h, !0)
                       }
                       i = !0
                     }
                   }
                   if (!i) {
-                    var h = t.scope.createIdentifier(n)
-                    if (n !== h) {
-                      ;(s.name = h),
-                        e.overwrite(s.node.start, s.node.end, h, !0)
+                    var f = t.scope.createIdentifier(n)
+                    if (n !== f) {
+                      ;(s.name = f),
+                        e.overwrite(s.node.start, s.node.end, f, !0)
                       for (var m = 0, g = s.instances; m < g.length; m += 1) {
                         var y = g[m]
-                        ;(y.rewritten = !0), e.overwrite(y.start, y.end, h, !0)
+                        ;(y.rewritten = !0), e.overwrite(y.start, y.end, f, !0)
                       }
                     }
                   }
@@ -5966,7 +5966,7 @@
             }),
             BlockStatement
           )
-        })(h)
+        })(f)
         Program.prototype = {
           export: function export$1(e) {
             return (
@@ -6048,16 +6048,16 @@
             "exponentiation",
             "reservedProperties",
           ],
-          fe = [p, c].reduce(function(e, t) {
+          he = [p, c].reduce(function(e, t) {
             return t(e)
           }, o).parse,
-          he = ["dangerousTaggedTemplateString", "dangerousForOf"]
+          fe = ["dangerousTaggedTemplateString", "dangerousForOf"]
         ;(t.target = target),
           (t.transform = function transform(e, t) {
             void 0 === t && (t = {})
             var n
             try {
-              n = fe(e, {
+              n = he(e, {
                 ecmaVersion: 7,
                 preserveParens: !0,
                 sourceType: "module",
@@ -6133,7 +6133,7 @@
         return new c(e, { beforeExpr: !0, binop: t })
       }
       function kw(e, t) {
-        return void 0 === t && (t = {}), (t.keyword = e), (f[e] = new c(e, t))
+        return void 0 === t && (t = {}), (t.keyword = e), (h[e] = new c(e, t))
       }
       function isNewLine(e) {
         return 10 === e || 13 === e || 8232 === e || 8233 == e
@@ -6796,8 +6796,8 @@
         },
         d = { beforeExpr: !0 },
         p = { startsExpr: !0 },
-        f = {},
-        h = {
+        h = {},
+        f = {
           num: new c("num", p),
           regexp: new c("regexp", p),
           string: new c("string", p),
@@ -6939,7 +6939,7 @@
                   .slice(0, this.lineStart)
                   .split(m).length))
               : ((this.pos = this.lineStart = 0), (this.curLine = 1)),
-            (this.type = h.eof),
+            (this.type = f.eof),
             (this.value = null),
             (this.start = this.end = this.pos),
             (this.startLoc = this.endLoc = this.curPosition()),
@@ -6990,18 +6990,18 @@
           return this.type === e && (this.next(), !0)
         }),
         (w.isContextual = function(e) {
-          return this.type === h.name && this.value === e
+          return this.type === f.name && this.value === e
         }),
         (w.eatContextual = function(e) {
-          return this.value === e && this.eat(h.name)
+          return this.value === e && this.eat(f.name)
         }),
         (w.expectContextual = function(e) {
           this.eatContextual(e) || this.unexpected()
         }),
         (w.canInsertSemicolon = function() {
           return (
-            this.type === h.eof ||
-            this.type === h.braceR ||
+            this.type === f.eof ||
+            this.type === f.braceR ||
             m.test(this.input.slice(this.lastTokEnd, this.start))
           )
         }),
@@ -7017,7 +7017,7 @@
             )
         }),
         (w.semicolon = function() {
-          this.eat(h.semi) || this.insertSemicolon() || this.unexpected()
+          this.eat(f.semi) || this.insertSemicolon() || this.unexpected()
         }),
         (w.afterTrailingComma = function(e) {
           if (this.type == e)
@@ -7058,7 +7058,7 @@
       E.parseTopLevel = function(e) {
         var t = this,
           n = !0
-        for (e.body || (e.body = []); this.type !== h.eof; ) {
+        for (e.body || (e.body = []); this.type !== f.eof; ) {
           var r = t.parseStatement(!0, !0)
           e.body.push(r), n && (t.isUseStrict(r) && t.setStrict(!0), (n = !1))
         }
@@ -7070,10 +7070,10 @@
         )
       }
       var S = { kind: "loop" },
-        O = { kind: "switch" }
+        R = { kind: "switch" }
       ;(E.isLet = function() {
         if (
-          this.type !== h.name ||
+          this.type !== f.name ||
           this.options.ecmaVersion < 6 ||
           "let" != this.value
         )
@@ -7098,50 +7098,50 @@
           var n,
             r = this.type,
             o = this.startNode()
-          switch ((this.isLet() && ((r = h._var), (n = "let")), r)) {
-            case h._break:
-            case h._continue:
+          switch ((this.isLet() && ((r = f._var), (n = "let")), r)) {
+            case f._break:
+            case f._continue:
               return this.parseBreakContinueStatement(o, r.keyword)
-            case h._debugger:
+            case f._debugger:
               return this.parseDebuggerStatement(o)
-            case h._do:
+            case f._do:
               return this.parseDoStatement(o)
-            case h._for:
+            case f._for:
               return this.parseForStatement(o)
-            case h._function:
+            case f._function:
               return (
                 !e && this.options.ecmaVersion >= 6 && this.unexpected(),
                 this.parseFunctionStatement(o)
               )
-            case h._class:
+            case f._class:
               return e || this.unexpected(), this.parseClass(o, !0)
-            case h._if:
+            case f._if:
               return this.parseIfStatement(o)
-            case h._return:
+            case f._return:
               return this.parseReturnStatement(o)
-            case h._switch:
+            case f._switch:
               return this.parseSwitchStatement(o)
-            case h._throw:
+            case f._throw:
               return this.parseThrowStatement(o)
-            case h._try:
+            case f._try:
               return this.parseTryStatement(o)
-            case h._const:
-            case h._var:
+            case f._const:
+            case f._var:
               return (
                 (n = n || this.value),
                 e || "var" == n || this.unexpected(),
                 this.parseVarStatement(o, n)
               )
-            case h._while:
+            case f._while:
               return this.parseWhileStatement(o)
-            case h._with:
+            case f._with:
               return this.parseWithStatement(o)
-            case h.braceL:
+            case f.braceL:
               return this.parseBlock()
-            case h.semi:
+            case f.semi:
               return this.parseEmptyStatement(o)
-            case h._export:
-            case h._import:
+            case f._export:
+            case f._import:
               return (
                 this.options.allowImportExportEverywhere ||
                   (t ||
@@ -7154,14 +7154,14 @@
                       this.start,
                       "'import' and 'export' may appear only with 'sourceType: module'"
                     )),
-                r === h._import ? this.parseImport(o) : this.parseExport(o)
+                r === f._import ? this.parseImport(o) : this.parseExport(o)
               )
             default:
               var s = this.value,
                 i = this.parseExpression()
-              return r === h.name &&
+              return r === f.name &&
                 "Identifier" === i.type &&
-                this.eat(h.colon)
+                this.eat(f.colon)
                 ? this.parseLabeledStatement(o, s, i)
                 : this.parseExpressionStatement(o, i)
           }
@@ -7170,9 +7170,9 @@
           var n = this,
             r = "break" == t
           this.next(),
-            this.eat(h.semi) || this.insertSemicolon()
+            this.eat(f.semi) || this.insertSemicolon()
               ? (e.label = null)
-              : this.type !== h.name
+              : this.type !== f.name
                 ? this.unexpected()
                 : ((e.label = this.parseIdent()), this.semicolon())
           for (var o = 0; o < this.labels.length; ++o) {
@@ -7200,9 +7200,9 @@
             this.labels.push(S),
             (e.body = this.parseStatement(!1)),
             this.labels.pop(),
-            this.expect(h._while),
+            this.expect(f._while),
             (e.test = this.parseParenExpression()),
-            this.options.ecmaVersion >= 6 ? this.eat(h.semi) : this.semicolon(),
+            this.options.ecmaVersion >= 6 ? this.eat(f.semi) : this.semicolon(),
             this.finishNode(e, "DoWhileStatement")
           )
         }),
@@ -7210,12 +7210,12 @@
           if (
             (this.next(),
             this.labels.push(S),
-            this.expect(h.parenL),
-            this.type === h.semi)
+            this.expect(f.parenL),
+            this.type === f.semi)
           )
             return this.parseFor(e, null)
           var t = this.isLet()
-          if (this.type === h._var || this.type === h._const || t) {
+          if (this.type === f._var || this.type === f._const || t) {
             var n = this.startNode(),
               r = t ? "let" : this.value
             return (
@@ -7223,7 +7223,7 @@
               this.parseVar(n, !0, r),
               this.finishNode(n, "VariableDeclaration"),
               !(
-                this.type === h._in ||
+                this.type === f._in ||
                 (this.options.ecmaVersion >= 6 && this.isContextual("of"))
               ) ||
               1 !== n.declarations.length ||
@@ -7234,7 +7234,7 @@
           }
           var o = new k(),
             s = this.parseExpression(!0, o)
-          return this.type === h._in ||
+          return this.type === f._in ||
             (this.options.ecmaVersion >= 6 && this.isContextual("of"))
             ? (this.checkPatternErrors(o, !0),
               this.toAssignable(s),
@@ -7250,7 +7250,7 @@
             this.next(),
             (e.test = this.parseParenExpression()),
             (e.consequent = this.parseStatement(!1)),
-            (e.alternate = this.eat(h._else) ? this.parseStatement(!1) : null),
+            (e.alternate = this.eat(f._else) ? this.parseStatement(!1) : null),
             this.finishNode(e, "IfStatement")
           )
         }),
@@ -7260,7 +7260,7 @@
               this.options.allowReturnOutsideFunction ||
               this.raise(this.start, "'return' outside of function"),
             this.next(),
-            this.eat(h.semi) || this.insertSemicolon()
+            this.eat(f.semi) || this.insertSemicolon()
               ? (e.argument = null)
               : ((e.argument = this.parseExpression()), this.semicolon()),
             this.finishNode(e, "ReturnStatement")
@@ -7271,11 +7271,11 @@
           this.next(),
             (e.discriminant = this.parseParenExpression()),
             (e.cases = []),
-            this.expect(h.braceL),
-            this.labels.push(O)
-          for (var n, r = !1; this.type != h.braceR; )
-            if (t.type === h._case || t.type === h._default) {
-              var o = t.type === h._case
+            this.expect(f.braceL),
+            this.labels.push(R)
+          for (var n, r = !1; this.type != f.braceR; )
+            if (t.type === f._case || t.type === f._default) {
+              var o = t.type === f._case
               n && t.finishNode(n, "SwitchCase"),
                 e.cases.push((n = t.startNode())),
                 (n.consequent = []),
@@ -7289,7 +7289,7 @@
                       ),
                     (r = !0),
                     (n.test = null)),
-                t.expect(h.colon)
+                t.expect(f.colon)
             } else n || t.unexpected(), n.consequent.push(t.parseStatement(!0))
           return (
             n && this.finishNode(n, "SwitchCase"),
@@ -7308,25 +7308,25 @@
             this.finishNode(e, "ThrowStatement")
           )
         })
-      var P = []
+      var O = []
       ;(E.parseTryStatement = function(e) {
         if (
           (this.next(),
           (e.block = this.parseBlock()),
           (e.handler = null),
-          this.type === h._catch)
+          this.type === f._catch)
         ) {
           var t = this.startNode()
           this.next(),
-            this.expect(h.parenL),
+            this.expect(f.parenL),
             (t.param = this.parseBindingAtom()),
             this.checkLVal(t.param, !0),
-            this.expect(h.parenR),
+            this.expect(f.parenR),
             (t.body = this.parseBlock()),
             (e.handler = this.finishNode(t, "CatchClause"))
         }
         return (
-          (e.finalizer = this.eat(h._finally) ? this.parseBlock() : null),
+          (e.finalizer = this.eat(f._finally) ? this.parseBlock() : null),
           e.handler ||
             e.finalizer ||
             this.raise(e.start, "Missing catch or finally clause"),
@@ -7370,7 +7370,7 @@
           for (
             var s = this.type.isLoop
                 ? "loop"
-                : this.type === h._switch ? "switch" : null,
+                : this.type === f._switch ? "switch" : null,
               i = this.labels.length - 1;
             i >= 0;
             i--
@@ -7399,7 +7399,7 @@
             n = this,
             r = this.startNode(),
             o = !0
-          for (r.body = [], this.expect(h.braceL); !this.eat(h.braceR); ) {
+          for (r.body = [], this.expect(f.braceL); !this.eat(f.braceR); ) {
             var s = n.parseStatement(!0)
             r.body.push(s),
               o &&
@@ -7415,23 +7415,23 @@
         (E.parseFor = function(e, t) {
           return (
             (e.init = t),
-            this.expect(h.semi),
-            (e.test = this.type === h.semi ? null : this.parseExpression()),
-            this.expect(h.semi),
-            (e.update = this.type === h.parenR ? null : this.parseExpression()),
-            this.expect(h.parenR),
+            this.expect(f.semi),
+            (e.test = this.type === f.semi ? null : this.parseExpression()),
+            this.expect(f.semi),
+            (e.update = this.type === f.parenR ? null : this.parseExpression()),
+            this.expect(f.parenR),
             (e.body = this.parseStatement(!1)),
             this.labels.pop(),
             this.finishNode(e, "ForStatement")
           )
         }),
         (E.parseForIn = function(e, t) {
-          var n = this.type === h._in ? "ForInStatement" : "ForOfStatement"
+          var n = this.type === f._in ? "ForInStatement" : "ForOfStatement"
           return (
             this.next(),
             (e.left = t),
             (e.right = this.parseExpression()),
-            this.expect(h.parenR),
+            this.expect(f.parenR),
             (e.body = this.parseStatement(!1)),
             this.labels.pop(),
             this.finishNode(e, n)
@@ -7443,13 +7443,13 @@
             var o = r.startNode()
             if (
               (r.parseVarId(o),
-              r.eat(h.eq)
+              r.eat(f.eq)
                 ? (o.init = r.parseMaybeAssign(t))
                 : "const" !== n ||
-                  r.type === h._in ||
+                  r.type === f._in ||
                   (r.options.ecmaVersion >= 6 && r.isContextual("of"))
                   ? "Identifier" == o.id.type ||
-                    (t && (r.type === h._in || r.isContextual("of")))
+                    (t && (r.type === f._in || r.isContextual("of")))
                     ? (o.init = null)
                     : r.raise(
                         r.lastTokEnd,
@@ -7457,7 +7457,7 @@
                       )
                   : r.unexpected(),
               e.declarations.push(r.finishNode(o, "VariableDeclarator")),
-              !r.eat(h.comma))
+              !r.eat(f.comma))
             )
               break
           }
@@ -7468,11 +7468,11 @@
         }),
         (E.parseFunction = function(e, t, n) {
           this.initFunction(e),
-            this.options.ecmaVersion >= 6 && (e.generator = this.eat(h.star))
+            this.options.ecmaVersion >= 6 && (e.generator = this.eat(f.star))
           var r = this.inGenerator
           return (
             (this.inGenerator = e.generator),
-            (t || this.type === h.name) && (e.id = this.parseIdent()),
+            (t || this.type === f.name) && (e.id = this.parseIdent()),
             this.parseFunctionParams(e),
             this.parseFunctionBody(e, n),
             (this.inGenerator = r),
@@ -7480,24 +7480,24 @@
           )
         }),
         (E.parseFunctionParams = function(e) {
-          this.expect(h.parenL),
-            (e.params = this.parseBindingList(h.parenR, !1, !1, !0))
+          this.expect(f.parenL),
+            (e.params = this.parseBindingList(f.parenR, !1, !1, !0))
         }),
         (E.parseClass = function(e, t) {
           var n = this
           this.next(), this.parseClassId(e, t), this.parseClassSuper(e)
           var r = this.startNode(),
             o = !1
-          for (r.body = [], this.expect(h.braceL); !this.eat(h.braceR); )
-            if (!n.eat(h.semi)) {
+          for (r.body = [], this.expect(f.braceL); !this.eat(f.braceR); )
+            if (!n.eat(f.semi)) {
               var s = n.startNode(),
-                i = n.eat(h.star),
-                a = n.type === h.name && "static" === n.value
+                i = n.eat(f.star),
+                a = n.type === f.name && "static" === n.value
               n.parsePropertyName(s),
-                (s.static = a && n.type !== h.parenL),
+                (s.static = a && n.type !== f.parenL),
                 s.static &&
                   (i && n.unexpected(),
-                  (i = n.eat(h.star)),
+                  (i = n.eat(f.star)),
                   n.parsePropertyName(s)),
                 (s.kind = "method")
               var l = !1
@@ -7505,7 +7505,7 @@
                 var u = s.key
                 i ||
                   "Identifier" !== u.type ||
-                  n.type === h.parenL ||
+                  n.type === f.parenL ||
                   ("get" !== u.name && "set" !== u.name) ||
                   ((l = !0), (s.kind = u.name), (u = n.parsePropertyName(s))),
                   !s.static &&
@@ -7555,29 +7555,29 @@
         }),
         (E.parseClassId = function(e, t) {
           e.id =
-            this.type === h.name
+            this.type === f.name
               ? this.parseIdent()
               : t ? this.unexpected() : null
         }),
         (E.parseClassSuper = function(e) {
-          e.superClass = this.eat(h._extends)
+          e.superClass = this.eat(f._extends)
             ? this.parseExprSubscripts()
             : null
         }),
         (E.parseExport = function(e) {
           var t = this
-          if ((this.next(), this.eat(h.star)))
+          if ((this.next(), this.eat(f.star)))
             return (
               this.expectContextual("from"),
               (e.source =
-                this.type === h.string
+                this.type === f.string
                   ? this.parseExprAtom()
                   : this.unexpected()),
               this.semicolon(),
               this.finishNode(e, "ExportAllDeclaration")
             )
-          if (this.eat(h._default)) {
-            var n = this.type == h.parenL,
+          if (this.eat(f._default)) {
+            var n = this.type == f.parenL,
               r = this.parseMaybeAssign(),
               o = !0
             return (
@@ -7606,7 +7606,7 @@
               this.eatContextual("from"))
             )
               e.source =
-                this.type === h.string
+                this.type === f.string
                   ? this.parseExprAtom()
                   : this.unexpected()
             else {
@@ -7627,11 +7627,11 @@
           var e = this,
             t = [],
             n = !0
-          for (this.expect(h.braceL); !this.eat(h.braceR); ) {
+          for (this.expect(f.braceL); !this.eat(f.braceR); ) {
             if (n) n = !1
-            else if ((e.expect(h.comma), e.afterTrailingComma(h.braceR))) break
+            else if ((e.expect(f.comma), e.afterTrailingComma(f.braceR))) break
             var r = e.startNode()
-            ;(r.local = e.parseIdent(e.type === h._default)),
+            ;(r.local = e.parseIdent(e.type === f._default)),
               (r.exported = e.eatContextual("as") ? e.parseIdent(!0) : r.local),
               t.push(e.finishNode(r, "ExportSpecifier"))
           }
@@ -7640,12 +7640,12 @@
         (E.parseImport = function(e) {
           return (
             this.next(),
-            this.type === h.string
-              ? ((e.specifiers = P), (e.source = this.parseExprAtom()))
+            this.type === f.string
+              ? ((e.specifiers = O), (e.source = this.parseExprAtom()))
               : ((e.specifiers = this.parseImportSpecifiers()),
                 this.expectContextual("from"),
                 (e.source =
-                  this.type === h.string
+                  this.type === f.string
                     ? this.parseExprAtom()
                     : this.unexpected())),
             this.semicolon(),
@@ -7656,17 +7656,17 @@
           var e = this,
             t = [],
             n = !0
-          if (this.type === h.name) {
+          if (this.type === f.name) {
             var r = this.startNode()
             if (
               ((r.local = this.parseIdent()),
               this.checkLVal(r.local, !0),
               t.push(this.finishNode(r, "ImportDefaultSpecifier")),
-              !this.eat(h.comma))
+              !this.eat(f.comma))
             )
               return t
           }
-          if (this.type === h.star) {
+          if (this.type === f.star) {
             var o = this.startNode()
             return (
               this.next(),
@@ -7677,9 +7677,9 @@
               t
             )
           }
-          for (this.expect(h.braceL); !this.eat(h.braceR); ) {
+          for (this.expect(f.braceL); !this.eat(f.braceR); ) {
             if (n) n = !1
-            else if ((e.expect(h.comma), e.afterTrailingComma(h.braceR))) break
+            else if ((e.expect(f.comma), e.afterTrailingComma(f.braceR))) break
             var s = e.startNode()
             ;(s.imported = e.parseIdent(!0)),
               e.eatContextual("as")
@@ -7696,8 +7696,8 @@
           }
           return t
         })
-      var R = C.prototype
-      ;(R.toAssignable = function(e, t) {
+      var P = C.prototype
+      ;(P.toAssignable = function(e, t) {
         var n = this
         if (this.options.ecmaVersion >= 6 && e)
           switch (e.type) {
@@ -7746,7 +7746,7 @@
           }
         return e
       }),
-        (R.toAssignableList = function(e, t) {
+        (P.toAssignableList = function(e, t) {
           var n = this,
             r = e.length
           if (r) {
@@ -7774,7 +7774,7 @@
           }
           return e
         }),
-        (R.parseSpread = function(e) {
+        (P.parseSpread = function(e) {
           var t = this.startNode()
           return (
             this.next(),
@@ -7782,47 +7782,47 @@
             this.finishNode(t, "SpreadElement")
           )
         }),
-        (R.parseRest = function(e) {
+        (P.parseRest = function(e) {
           var t = this.startNode()
           return (
             this.next(),
             (t.argument = e
-              ? this.type === h.name ? this.parseIdent() : this.unexpected()
-              : this.type === h.name || this.type === h.bracketL
+              ? this.type === f.name ? this.parseIdent() : this.unexpected()
+              : this.type === f.name || this.type === f.bracketL
                 ? this.parseBindingAtom()
                 : this.unexpected()),
             this.finishNode(t, "RestElement")
           )
         }),
-        (R.parseBindingAtom = function() {
+        (P.parseBindingAtom = function() {
           if (this.options.ecmaVersion < 6) return this.parseIdent()
           switch (this.type) {
-            case h.name:
+            case f.name:
               return this.parseIdent()
-            case h.bracketL:
+            case f.bracketL:
               var e = this.startNode()
               return (
                 this.next(),
-                (e.elements = this.parseBindingList(h.bracketR, !0, !0)),
+                (e.elements = this.parseBindingList(f.bracketR, !0, !0)),
                 this.finishNode(e, "ArrayPattern")
               )
-            case h.braceL:
+            case f.braceL:
               return this.parseObj(!0)
             default:
               this.unexpected()
           }
         }),
-        (R.parseBindingList = function(e, t, n, r) {
+        (P.parseBindingList = function(e, t, n, r) {
           for (var o = this, s = [], i = !0; !this.eat(e); )
-            if ((i ? (i = !1) : o.expect(h.comma), t && o.type === h.comma))
+            if ((i ? (i = !1) : o.expect(f.comma), t && o.type === f.comma))
               s.push(null)
             else {
               if (n && o.afterTrailingComma(e)) break
-              if (o.type === h.ellipsis) {
+              if (o.type === f.ellipsis) {
                 var a = o.parseRest(r)
                 o.parseBindingListItem(a),
                   s.push(a),
-                  o.type === h.comma &&
+                  o.type === f.comma &&
                     o.raise(
                       o.start,
                       "Comma is not permitted after the rest element"
@@ -7835,13 +7835,13 @@
             }
           return s
         }),
-        (R.parseBindingListItem = function(e) {
+        (P.parseBindingListItem = function(e) {
           return e
         }),
-        (R.parseMaybeDefault = function(e, t, n) {
+        (P.parseMaybeDefault = function(e, t, n) {
           if (
             ((n = n || this.parseBindingAtom()),
-            this.options.ecmaVersion < 6 || !this.eat(h.eq))
+            this.options.ecmaVersion < 6 || !this.eat(f.eq))
           )
             return n
           var r = this.startNodeAt(e, t)
@@ -7851,7 +7851,7 @@
             this.finishNode(r, "AssignmentPattern")
           )
         }),
-        (R.checkLVal = function(e, t, n) {
+        (P.checkLVal = function(e, t, n) {
           var r = this
           switch (e.type) {
             case "Identifier":
@@ -7898,8 +7898,8 @@
               this.raise(e.start, (t ? "Binding" : "Assigning to") + " rvalue")
           }
         })
-      var T = C.prototype
-      ;(T.checkPropClash = function(e, t) {
+      var M = C.prototype
+      ;(M.checkPropClash = function(e, t) {
         if (
           !(
             this.options.ecmaVersion >= 6 &&
@@ -7939,27 +7939,27 @@
           }
         }
       }),
-        (T.parseExpression = function(e, t) {
+        (M.parseExpression = function(e, t) {
           var n = this,
             r = this.start,
             o = this.startLoc,
             s = this.parseMaybeAssign(e, t)
-          if (this.type === h.comma) {
+          if (this.type === f.comma) {
             var i = this.startNodeAt(r, o)
-            for (i.expressions = [s]; this.eat(h.comma); )
+            for (i.expressions = [s]; this.eat(f.comma); )
               i.expressions.push(n.parseMaybeAssign(e, t))
             return this.finishNode(i, "SequenceExpression")
           }
           return s
         }),
-        (T.parseMaybeAssign = function(e, t, n) {
+        (M.parseMaybeAssign = function(e, t, n) {
           if (this.inGenerator && this.isContextual("yield"))
             return this.parseYield()
           var r = !1
           t || ((t = new k()), (r = !0))
           var o = this.start,
             s = this.startLoc
-          ;(this.type != h.parenL && this.type != h.name) ||
+          ;(this.type != f.parenL && this.type != f.name) ||
             (this.potentialArrowAt = this.start)
           var i = this.parseMaybeConditional(e, t)
           if ((n && (i = n.call(this, i, o, s)), this.type.isAssign)) {
@@ -7967,7 +7967,7 @@
             var a = this.startNodeAt(o, s)
             return (
               (a.operator = this.value),
-              (a.left = this.type === h.eq ? this.toAssignable(i) : i),
+              (a.left = this.type === f.eq ? this.toAssignable(i) : i),
               (t.shorthandAssign = 0),
               this.checkLVal(i),
               this.next(),
@@ -7977,24 +7977,24 @@
           }
           return r && this.checkExpressionErrors(t, !0), i
         }),
-        (T.parseMaybeConditional = function(e, t) {
+        (M.parseMaybeConditional = function(e, t) {
           var n = this.start,
             r = this.startLoc,
             o = this.parseExprOps(e, t)
           if (this.checkExpressionErrors(t)) return o
-          if (this.eat(h.question)) {
+          if (this.eat(f.question)) {
             var s = this.startNodeAt(n, r)
             return (
               (s.test = o),
               (s.consequent = this.parseMaybeAssign()),
-              this.expect(h.colon),
+              this.expect(f.colon),
               (s.alternate = this.parseMaybeAssign(e)),
               this.finishNode(s, "ConditionalExpression")
             )
           }
           return o
         }),
-        (T.parseExprOps = function(e, t) {
+        (M.parseExprOps = function(e, t) {
           var n = this.start,
             r = this.startLoc,
             o = this.parseMaybeUnary(t, !1)
@@ -8002,10 +8002,10 @@
             ? o
             : this.parseExprOp(o, n, r, -1, e)
         }),
-        (T.parseExprOp = function(e, t, n, r, o) {
+        (M.parseExprOp = function(e, t, n, r, o) {
           var s = this.type.binop
-          if (null != s && (!o || this.type !== h._in) && s > r) {
-            var i = this.type === h.logicalOR || this.type === h.logicalAND,
+          if (null != s && (!o || this.type !== f._in) && s > r) {
+            var i = this.type === f.logicalOR || this.type === f.logicalAND,
               a = this.value
             this.next()
             var l = this.start,
@@ -8016,7 +8016,7 @@
           }
           return e
         }),
-        (T.buildBinary = function(e, t, n, r, o, s) {
+        (M.buildBinary = function(e, t, n, r, o, s) {
           var i = this.startNodeAt(e, t)
           return (
             (i.left = n),
@@ -8025,14 +8025,14 @@
             this.finishNode(i, s ? "LogicalExpression" : "BinaryExpression")
           )
         }),
-        (T.parseMaybeUnary = function(e, t) {
+        (M.parseMaybeUnary = function(e, t) {
           var n,
             r = this,
             o = this.start,
             s = this.startLoc
           if (this.type.prefix) {
             var i = this.startNode(),
-              a = this.type === h.incDec
+              a = this.type === f.incDec
             ;(i.operator = this.value),
               (i.prefix = !0),
               this.next(),
@@ -8067,7 +8067,7 @@
                 (n = r.finishNode(l, "UpdateExpression"))
             }
           }
-          return !t && this.eat(h.starstar)
+          return !t && this.eat(f.starstar)
             ? this.buildBinary(
                 o,
                 s,
@@ -8078,7 +8078,7 @@
               )
             : n
         }),
-        (T.parseExprSubscripts = function(e) {
+        (M.parseExprSubscripts = function(e) {
           var t = this.start,
             n = this.startLoc,
             r = this.parseExprAtom(e),
@@ -8089,98 +8089,98 @@
             ? r
             : this.parseSubscripts(r, t, n)
         }),
-        (T.parseSubscripts = function(e, t, n, r) {
+        (M.parseSubscripts = function(e, t, n, r) {
           for (var o = this; ; )
-            if (o.eat(h.dot)) {
+            if (o.eat(f.dot)) {
               var s = o.startNodeAt(t, n)
               ;(s.object = e),
                 (s.property = o.parseIdent(!0)),
                 (s.computed = !1),
                 (e = o.finishNode(s, "MemberExpression"))
-            } else if (o.eat(h.bracketL)) {
+            } else if (o.eat(f.bracketL)) {
               var i = o.startNodeAt(t, n)
               ;(i.object = e),
                 (i.property = o.parseExpression()),
                 (i.computed = !0),
-                o.expect(h.bracketR),
+                o.expect(f.bracketR),
                 (e = o.finishNode(i, "MemberExpression"))
-            } else if (!r && o.eat(h.parenL)) {
+            } else if (!r && o.eat(f.parenL)) {
               var a = o.startNodeAt(t, n)
               ;(a.callee = e),
-                (a.arguments = o.parseExprList(h.parenR, !1)),
+                (a.arguments = o.parseExprList(f.parenR, !1)),
                 (e = o.finishNode(a, "CallExpression"))
             } else {
-              if (o.type !== h.backQuote) return e
+              if (o.type !== f.backQuote) return e
               var l = o.startNodeAt(t, n)
               ;(l.tag = e),
                 (l.quasi = o.parseTemplate()),
                 (e = o.finishNode(l, "TaggedTemplateExpression"))
             }
         }),
-        (T.parseExprAtom = function(e) {
+        (M.parseExprAtom = function(e) {
           var t,
             n = this.potentialArrowAt == this.start
           switch (this.type) {
-            case h._super:
+            case f._super:
               this.inFunction ||
                 this.raise(this.start, "'super' outside of function or class")
-            case h._this:
-              var r = this.type === h._this ? "ThisExpression" : "Super"
+            case f._this:
+              var r = this.type === f._this ? "ThisExpression" : "Super"
               return (t = this.startNode()), this.next(), this.finishNode(t, r)
-            case h.name:
+            case f.name:
               var o = this.start,
                 s = this.startLoc,
-                i = this.parseIdent(this.type !== h.name)
-              return n && !this.canInsertSemicolon() && this.eat(h.arrow)
+                i = this.parseIdent(this.type !== f.name)
+              return n && !this.canInsertSemicolon() && this.eat(f.arrow)
                 ? this.parseArrowExpression(this.startNodeAt(o, s), [i])
                 : i
-            case h.regexp:
+            case f.regexp:
               var a = this.value
               return (
                 (t = this.parseLiteral(a.value)),
                 (t.regex = { pattern: a.pattern, flags: a.flags }),
                 t
               )
-            case h.num:
-            case h.string:
+            case f.num:
+            case f.string:
               return this.parseLiteral(this.value)
-            case h._null:
-            case h._true:
-            case h._false:
+            case f._null:
+            case f._true:
+            case f._false:
               return (
                 (t = this.startNode()),
                 (t.value =
-                  this.type === h._null ? null : this.type === h._true),
+                  this.type === f._null ? null : this.type === f._true),
                 (t.raw = this.type.keyword),
                 this.next(),
                 this.finishNode(t, "Literal")
               )
-            case h.parenL:
+            case f.parenL:
               return this.parseParenAndDistinguishExpression(n)
-            case h.bracketL:
+            case f.bracketL:
               return (
                 (t = this.startNode()),
                 this.next(),
-                (t.elements = this.parseExprList(h.bracketR, !0, !0, e)),
+                (t.elements = this.parseExprList(f.bracketR, !0, !0, e)),
                 this.finishNode(t, "ArrayExpression")
               )
-            case h.braceL:
+            case f.braceL:
               return this.parseObj(!1, e)
-            case h._function:
+            case f._function:
               return (
                 (t = this.startNode()), this.next(), this.parseFunction(t, !1)
               )
-            case h._class:
+            case f._class:
               return this.parseClass(this.startNode(), !1)
-            case h._new:
+            case f._new:
               return this.parseNew()
-            case h.backQuote:
+            case f.backQuote:
               return this.parseTemplate()
             default:
               this.unexpected()
           }
         }),
-        (T.parseLiteral = function(e) {
+        (M.parseLiteral = function(e) {
           var t = this.startNode()
           return (
             (t.value = e),
@@ -8189,12 +8189,12 @@
             this.finishNode(t, "Literal")
           )
         }),
-        (T.parseParenExpression = function() {
-          this.expect(h.parenL)
+        (M.parseParenExpression = function() {
+          this.expect(f.parenL)
           var e = this.parseExpression()
-          return this.expect(h.parenR), e
+          return this.expect(f.parenR), e
         }),
-        (T.parseParenAndDistinguishExpression = function(e) {
+        (M.parseParenAndDistinguishExpression = function(e) {
           var t,
             n = this,
             r = this.start,
@@ -8209,21 +8209,21 @@
                 u = [],
                 c = !0,
                 d = new k();
-              this.type !== h.parenR;
+              this.type !== f.parenR;
 
             ) {
-              if ((c ? (c = !1) : n.expect(h.comma), n.type === h.ellipsis)) {
+              if ((c ? (c = !1) : n.expect(f.comma), n.type === f.ellipsis)) {
                 ;(s = n.start), u.push(n.parseParenItem(n.parseRest()))
                 break
               }
-              n.type !== h.parenL || i || (i = n.start),
+              n.type !== f.parenL || i || (i = n.start),
                 u.push(n.parseMaybeAssign(!1, d, n.parseParenItem))
             }
             var p = this.start,
-              f = this.startLoc
+              h = this.startLoc
             if (
-              (this.expect(h.parenR),
-              e && !this.canInsertSemicolon() && this.eat(h.arrow))
+              (this.expect(f.parenR),
+              e && !this.canInsertSemicolon() && this.eat(f.arrow))
             )
               return (
                 this.checkPatternErrors(d, !0),
@@ -8235,7 +8235,7 @@
               this.checkExpressionErrors(d, !0),
               u.length > 1
                 ? (((t = this.startNodeAt(a, l)).expressions = u),
-                  this.finishNodeAt(t, "SequenceExpression", p, f))
+                  this.finishNodeAt(t, "SequenceExpression", p, h))
                 : (t = u[0])
           } else t = this.parseParenExpression()
           if (this.options.preserveParens) {
@@ -8246,17 +8246,17 @@
           }
           return t
         }),
-        (T.parseParenItem = function(e) {
+        (M.parseParenItem = function(e) {
           return e
         }),
-        (T.parseParenArrowList = function(e, t, n) {
+        (M.parseParenArrowList = function(e, t, n) {
           return this.parseArrowExpression(this.startNodeAt(e, t), n)
         })
-      var D = []
-      ;(T.parseNew = function() {
+      var T = []
+      ;(M.parseNew = function() {
         var e = this.startNode(),
           t = this.parseIdent(!0)
-        if (this.options.ecmaVersion >= 6 && this.eat(h.dot))
+        if (this.options.ecmaVersion >= 6 && this.eat(f.dot))
           return (
             (e.meta = t),
             (e.property = this.parseIdent(!0)),
@@ -8276,13 +8276,13 @@
           r = this.startLoc
         return (
           (e.callee = this.parseSubscripts(this.parseExprAtom(), n, r, !0)),
-          this.eat(h.parenL)
-            ? (e.arguments = this.parseExprList(h.parenR, !1))
-            : (e.arguments = D),
+          this.eat(f.parenL)
+            ? (e.arguments = this.parseExprList(f.parenR, !1))
+            : (e.arguments = T),
           this.finishNode(e, "NewExpression")
         )
       }),
-        (T.parseTemplateElement = function() {
+        (M.parseTemplateElement = function() {
           var e = this.startNode()
           return (
             (e.value = {
@@ -8292,30 +8292,30 @@
               cooked: this.value,
             }),
             this.next(),
-            (e.tail = this.type === h.backQuote),
+            (e.tail = this.type === f.backQuote),
             this.finishNode(e, "TemplateElement")
           )
         }),
-        (T.parseTemplate = function() {
+        (M.parseTemplate = function() {
           var e = this,
             t = this.startNode()
           this.next(), (t.expressions = [])
           var n = this.parseTemplateElement()
           for (t.quasis = [n]; !n.tail; )
-            e.expect(h.dollarBraceL),
+            e.expect(f.dollarBraceL),
               t.expressions.push(e.parseExpression()),
-              e.expect(h.braceR),
+              e.expect(f.braceR),
               t.quasis.push((n = e.parseTemplateElement()))
           return this.next(), this.finishNode(t, "TemplateLiteral")
         }),
-        (T.parseObj = function(e, t) {
+        (M.parseObj = function(e, t) {
           var n = this,
             r = this.startNode(),
             o = !0,
             s = {}
-          for (r.properties = [], this.next(); !this.eat(h.braceR); ) {
+          for (r.properties = [], this.next(); !this.eat(f.braceR); ) {
             if (o) o = !1
-            else if ((n.expect(h.comma), n.afterTrailingComma(h.braceR))) break
+            else if ((n.expect(f.comma), n.afterTrailingComma(f.braceR))) break
             var i,
               a,
               l,
@@ -8324,7 +8324,7 @@
               ((u.method = !1),
               (u.shorthand = !1),
               (e || t) && ((a = n.start), (l = n.startLoc)),
-              e || (i = n.eat(h.star))),
+              e || (i = n.eat(f.star))),
               n.parsePropertyName(u),
               n.parsePropertyValue(u, e, i, a, l, t),
               n.checkPropClash(u, s),
@@ -8332,13 +8332,13 @@
           }
           return this.finishNode(r, e ? "ObjectPattern" : "ObjectExpression")
         }),
-        (T.parsePropertyValue = function(e, t, n, r, o, s) {
-          if (this.eat(h.colon))
+        (M.parsePropertyValue = function(e, t, n, r, o, s) {
+          if (this.eat(f.colon))
             (e.value = t
               ? this.parseMaybeDefault(this.start, this.startLoc)
               : this.parseMaybeAssign(!1, s)),
               (e.kind = "init")
-          else if (this.options.ecmaVersion >= 6 && this.type === h.parenL)
+          else if (this.options.ecmaVersion >= 6 && this.type === f.parenL)
             t && this.unexpected(),
               (e.kind = "init"),
               (e.method = !0),
@@ -8348,8 +8348,8 @@
             !e.computed &&
             "Identifier" === e.key.type &&
             ("get" === e.key.name || "set" === e.key.name) &&
-            this.type != h.comma &&
-            this.type != h.braceR
+            this.type != f.comma &&
+            this.type != f.braceR
           ) {
             ;(n || t) && this.unexpected(),
               (e.kind = e.key.name),
@@ -8388,49 +8388,49 @@
                 (e.kind = "init"),
                 t
                   ? (e.value = this.parseMaybeDefault(r, o, e.key))
-                  : this.type === h.eq && s
+                  : this.type === f.eq && s
                     ? (s.shorthandAssign || (s.shorthandAssign = this.start),
                       (e.value = this.parseMaybeDefault(r, o, e.key)))
                     : (e.value = e.key),
                 (e.shorthand = !0))
               : this.unexpected()
         }),
-        (T.parsePropertyName = function(e) {
+        (M.parsePropertyName = function(e) {
           if (this.options.ecmaVersion >= 6) {
-            if (this.eat(h.bracketL))
+            if (this.eat(f.bracketL))
               return (
                 (e.computed = !0),
                 (e.key = this.parseMaybeAssign()),
-                this.expect(h.bracketR),
+                this.expect(f.bracketR),
                 e.key
               )
             e.computed = !1
           }
           return (e.key =
-            this.type === h.num || this.type === h.string
+            this.type === f.num || this.type === f.string
               ? this.parseExprAtom()
               : this.parseIdent(!0))
         }),
-        (T.initFunction = function(e) {
+        (M.initFunction = function(e) {
           ;(e.id = null),
             this.options.ecmaVersion >= 6 &&
               ((e.generator = !1), (e.expression = !1))
         }),
-        (T.parseMethod = function(e) {
+        (M.parseMethod = function(e) {
           var t = this.startNode(),
             n = this.inGenerator
           return (
             (this.inGenerator = e),
             this.initFunction(t),
-            this.expect(h.parenL),
-            (t.params = this.parseBindingList(h.parenR, !1, !1)),
+            this.expect(f.parenL),
+            (t.params = this.parseBindingList(f.parenR, !1, !1)),
             this.options.ecmaVersion >= 6 && (t.generator = e),
             this.parseFunctionBody(t, !1),
             (this.inGenerator = n),
             this.finishNode(t, "FunctionExpression")
           )
         }),
-        (T.parseArrowExpression = function(e, t) {
+        (M.parseArrowExpression = function(e, t) {
           var n = this.inGenerator
           return (
             (this.inGenerator = !1),
@@ -8441,8 +8441,8 @@
             this.finishNode(e, "ArrowFunctionExpression")
           )
         }),
-        (T.parseFunctionBody = function(e, t) {
-          var n = t && this.type !== h.braceL
+        (M.parseFunctionBody = function(e, t) {
+          var n = t && this.type !== f.braceL
           if (n) (e.body = this.parseMaybeAssign()), (e.expression = !0)
           else {
             var r = this.inFunction,
@@ -8466,7 +8466,7 @@
               (this.strict = i)
           } else t && this.checkParams(e, s)
         }),
-        (T.checkParams = function(e, t) {
+        (M.checkParams = function(e, t) {
           for (var n = this, r = {}, o = 0; o < e.params.length; o++)
             t &&
               n.options.ecmaVersion >= 7 &&
@@ -8477,16 +8477,16 @@
               ),
               n.checkLVal(e.params[o], !0, r)
         }),
-        (T.parseExprList = function(e, t, n, r) {
+        (M.parseExprList = function(e, t, n, r) {
           for (var o = this, s = [], i = !0; !this.eat(e); ) {
             if (i) i = !1
-            else if ((o.expect(h.comma), t && o.afterTrailingComma(e))) break
+            else if ((o.expect(f.comma), t && o.afterTrailingComma(e))) break
             var a
-            n && o.type === h.comma
+            n && o.type === f.comma
               ? (a = null)
-              : o.type === h.ellipsis
+              : o.type === f.ellipsis
                 ? ((a = o.parseSpread(r)),
-                  o.type === h.comma &&
+                  o.type === f.comma &&
                     r &&
                     !r.trailingComma &&
                     (r.trailingComma = o.lastTokStart))
@@ -8495,11 +8495,11 @@
           }
           return s
         }),
-        (T.parseIdent = function(e) {
+        (M.parseIdent = function(e) {
           var t = this.startNode()
           return (
             e && "never" == this.options.allowReserved && (e = !1),
-            this.type === h.name
+            this.type === f.name
               ? (!e &&
                   (this.strict
                     ? this.reservedWordsStrict
@@ -8527,28 +8527,28 @@
             this.finishNode(t, "Identifier")
           )
         }),
-        (T.parseYield = function() {
+        (M.parseYield = function() {
           var e = this.startNode()
           return (
             this.next(),
-            this.type == h.semi ||
+            this.type == f.semi ||
             this.canInsertSemicolon() ||
-            (this.type != h.star && !this.type.startsExpr)
+            (this.type != f.star && !this.type.startsExpr)
               ? ((e.delegate = !1), (e.argument = null))
-              : ((e.delegate = this.eat(h.star)),
+              : ((e.delegate = this.eat(f.star)),
                 (e.argument = this.parseMaybeAssign())),
             this.finishNode(e, "YieldExpression")
           )
         })
-      var M = C.prototype
-      ;(M.raise = function(e, t) {
+      var D = C.prototype
+      ;(D.raise = function(e, t) {
         var n = getLineInfo(this.input, e)
         t += " (" + n.line + ":" + n.column + ")"
         var r = new SyntaxError(t)
         throw ((r.pos = e), (r.loc = n), (r.raisedAt = this.pos), r)
       }),
-        (M.raiseRecoverable = M.raise),
-        (M.curPosition = function() {
+        (D.raiseRecoverable = D.raise),
+        (D.curPosition = function() {
           if (this.options.locations)
             return new v(this.curLine, this.pos - this.lineStart)
         })
@@ -8602,30 +8602,30 @@
         return [N.b_stat]
       }),
         (B.braceIsBlock = function(e) {
-          if (e === h.colon) {
+          if (e === f.colon) {
             var t = this.curContext()
             if (t === N.b_stat || t === N.b_expr) return !t.isExpr
           }
-          return e === h._return
+          return e === f._return
             ? m.test(this.input.slice(this.lastTokEnd, this.start))
-            : e === h._else ||
-                e === h.semi ||
-                e === h.eof ||
-                e === h.parenR ||
-                (e == h.braceL
+            : e === f._else ||
+                e === f.semi ||
+                e === f.eof ||
+                e === f.parenR ||
+                (e == f.braceL
                   ? this.curContext() === N.b_stat
                   : !this.exprAllowed)
         }),
         (B.updateContext = function(e) {
           var t,
             n = this.type
-          n.keyword && e == h.dot
+          n.keyword && e == f.dot
             ? (this.exprAllowed = !1)
             : (t = n.updateContext)
               ? t.call(this, e)
               : (this.exprAllowed = n.beforeExpr)
         }),
-        (h.parenR.updateContext = h.braceR.updateContext = function() {
+        (f.parenR.updateContext = f.braceR.updateContext = function() {
           if (1 != this.context.length) {
             var e = this.context.pop()
             e === N.b_stat && this.curContext() === N.f_expr
@@ -8633,34 +8633,34 @@
               : (this.exprAllowed = e === N.b_tmpl || !e.isExpr)
           } else this.exprAllowed = !0
         }),
-        (h.braceL.updateContext = function(e) {
+        (f.braceL.updateContext = function(e) {
           this.context.push(this.braceIsBlock(e) ? N.b_stat : N.b_expr),
             (this.exprAllowed = !0)
         }),
-        (h.dollarBraceL.updateContext = function() {
+        (f.dollarBraceL.updateContext = function() {
           this.context.push(N.b_tmpl), (this.exprAllowed = !0)
         }),
-        (h.parenL.updateContext = function(e) {
-          var t = e === h._if || e === h._for || e === h._with || e === h._while
+        (f.parenL.updateContext = function(e) {
+          var t = e === f._if || e === f._for || e === f._with || e === f._while
           this.context.push(t ? N.p_stat : N.p_expr), (this.exprAllowed = !0)
         }),
-        (h.incDec.updateContext = function() {}),
-        (h._function.updateContext = function(e) {
+        (f.incDec.updateContext = function() {}),
+        (f._function.updateContext = function(e) {
           e.beforeExpr &&
-            e !== h.semi &&
-            e !== h._else &&
-            ((e !== h.colon && e !== h.braceL) ||
+            e !== f.semi &&
+            e !== f._else &&
+            ((e !== f.colon && e !== f.braceL) ||
               this.curContext() !== N.b_stat) &&
             this.context.push(N.f_expr),
             (this.exprAllowed = !1)
         }),
-        (h.backQuote.updateContext = function() {
+        (f.backQuote.updateContext = function() {
           this.curContext() === N.q_tmpl
             ? this.context.pop()
             : this.context.push(N.q_tmpl),
             (this.exprAllowed = !1)
         })
-      var F = function Token(e) {
+      var q = function Token(e) {
           ;(this.type = e.type),
             (this.value = e.value),
             (this.start = e.start),
@@ -8668,35 +8668,35 @@
             e.options.locations && (this.loc = new _(e, e.startLoc, e.endLoc)),
             e.options.ranges && (this.range = [e.start, e.end])
         },
-        q = C.prototype,
+        F = C.prototype,
         U =
           "object" == typeof Packages &&
           "[object JavaPackage]" == Object.prototype.toString.call(Packages)
-      ;(q.next = function() {
-        this.options.onToken && this.options.onToken(new F(this)),
+      ;(F.next = function() {
+        this.options.onToken && this.options.onToken(new q(this)),
           (this.lastTokEnd = this.end),
           (this.lastTokStart = this.start),
           (this.lastTokEndLoc = this.endLoc),
           (this.lastTokStartLoc = this.startLoc),
           this.nextToken()
       }),
-        (q.getToken = function() {
-          return this.next(), new F(this)
+        (F.getToken = function() {
+          return this.next(), new q(this)
         }),
         "undefined" != typeof Symbol &&
-          (q[Symbol.iterator] = function() {
+          (F[Symbol.iterator] = function() {
             var e = this
             return {
               next: function() {
                 var t = e.getToken()
-                return { done: t.type === h.eof, value: t }
+                return { done: t.type === f.eof, value: t }
               },
             }
           }),
-        (q.setStrict = function(e) {
+        (F.setStrict = function(e) {
           var t = this
           if (
-            ((this.strict = e), this.type === h.num || this.type === h.string)
+            ((this.strict = e), this.type === f.num || this.type === f.string)
           ) {
             if (((this.pos = this.start), this.options.locations))
               for (; this.pos < this.lineStart; )
@@ -8705,34 +8705,34 @@
             this.nextToken()
           }
         }),
-        (q.curContext = function() {
+        (F.curContext = function() {
           return this.context[this.context.length - 1]
         }),
-        (q.nextToken = function() {
+        (F.nextToken = function() {
           var e = this.curContext()
           return (
             (e && e.preserveSpace) || this.skipSpace(),
             (this.start = this.pos),
             this.options.locations && (this.startLoc = this.curPosition()),
             this.pos >= this.input.length
-              ? this.finishToken(h.eof)
+              ? this.finishToken(f.eof)
               : e.override
                 ? e.override(this)
                 : void this.readToken(this.fullCharCodeAtPos())
           )
         }),
-        (q.readToken = function(e) {
+        (F.readToken = function(e) {
           return isIdentifierStart(e, this.options.ecmaVersion >= 6) || 92 === e
             ? this.readWord()
             : this.getTokenFromCode(e)
         }),
-        (q.fullCharCodeAtPos = function() {
+        (F.fullCharCodeAtPos = function() {
           var e = this.input.charCodeAt(this.pos)
           return e <= 55295 || e >= 57344
             ? e
             : (e << 10) + this.input.charCodeAt(this.pos + 1) - 56613888
         }),
-        (q.skipBlockComment = function() {
+        (F.skipBlockComment = function() {
           var e = this,
             t = this.options.onComment && this.curPosition(),
             n = this.pos,
@@ -8756,7 +8756,7 @@
               this.curPosition()
             )
         }),
-        (q.skipLineComment = function(e) {
+        (F.skipLineComment = function(e) {
           for (
             var t = this,
               n = this.pos,
@@ -8780,7 +8780,7 @@
               this.curPosition()
             )
         }),
-        (q.skipSpace = function() {
+        (F.skipSpace = function() {
           var e = this
           e: for (; this.pos < this.input.length; ) {
             var t = e.input.charCodeAt(e.pos)
@@ -8821,73 +8821,73 @@
             }
           }
         }),
-        (q.finishToken = function(e, t) {
+        (F.finishToken = function(e, t) {
           ;(this.end = this.pos),
             this.options.locations && (this.endLoc = this.curPosition())
           var n = this.type
           ;(this.type = e), (this.value = t), this.updateContext(n)
         }),
-        (q.readToken_dot = function() {
+        (F.readToken_dot = function() {
           var e = this.input.charCodeAt(this.pos + 1)
           if (e >= 48 && e <= 57) return this.readNumber(!0)
           var t = this.input.charCodeAt(this.pos + 2)
           return this.options.ecmaVersion >= 6 && 46 === e && 46 === t
-            ? ((this.pos += 3), this.finishToken(h.ellipsis))
-            : (++this.pos, this.finishToken(h.dot))
+            ? ((this.pos += 3), this.finishToken(f.ellipsis))
+            : (++this.pos, this.finishToken(f.dot))
         }),
-        (q.readToken_slash = function() {
+        (F.readToken_slash = function() {
           var e = this.input.charCodeAt(this.pos + 1)
           return this.exprAllowed
             ? (++this.pos, this.readRegexp())
-            : 61 === e ? this.finishOp(h.assign, 2) : this.finishOp(h.slash, 1)
+            : 61 === e ? this.finishOp(f.assign, 2) : this.finishOp(f.slash, 1)
         }),
-        (q.readToken_mult_modulo_exp = function(e) {
+        (F.readToken_mult_modulo_exp = function(e) {
           var t = this.input.charCodeAt(this.pos + 1),
             n = 1,
-            r = 42 === e ? h.star : h.modulo
+            r = 42 === e ? f.star : f.modulo
           return (
             this.options.ecmaVersion >= 7 &&
               42 === t &&
               (++n,
-              (r = h.starstar),
+              (r = f.starstar),
               (t = this.input.charCodeAt(this.pos + 2))),
-            61 === t ? this.finishOp(h.assign, n + 1) : this.finishOp(r, n)
+            61 === t ? this.finishOp(f.assign, n + 1) : this.finishOp(r, n)
           )
         }),
-        (q.readToken_pipe_amp = function(e) {
+        (F.readToken_pipe_amp = function(e) {
           var t = this.input.charCodeAt(this.pos + 1)
           return t === e
-            ? this.finishOp(124 === e ? h.logicalOR : h.logicalAND, 2)
+            ? this.finishOp(124 === e ? f.logicalOR : f.logicalAND, 2)
             : 61 === t
-              ? this.finishOp(h.assign, 2)
-              : this.finishOp(124 === e ? h.bitwiseOR : h.bitwiseAND, 1)
+              ? this.finishOp(f.assign, 2)
+              : this.finishOp(124 === e ? f.bitwiseOR : f.bitwiseAND, 1)
         }),
-        (q.readToken_caret = function() {
+        (F.readToken_caret = function() {
           return 61 === this.input.charCodeAt(this.pos + 1)
-            ? this.finishOp(h.assign, 2)
-            : this.finishOp(h.bitwiseXOR, 1)
+            ? this.finishOp(f.assign, 2)
+            : this.finishOp(f.bitwiseXOR, 1)
         }),
-        (q.readToken_plus_min = function(e) {
+        (F.readToken_plus_min = function(e) {
           var t = this.input.charCodeAt(this.pos + 1)
           return t === e
             ? 45 == t &&
               62 == this.input.charCodeAt(this.pos + 2) &&
               m.test(this.input.slice(this.lastTokEnd, this.pos))
               ? (this.skipLineComment(3), this.skipSpace(), this.nextToken())
-              : this.finishOp(h.incDec, 2)
+              : this.finishOp(f.incDec, 2)
             : 61 === t
-              ? this.finishOp(h.assign, 2)
-              : this.finishOp(h.plusMin, 1)
+              ? this.finishOp(f.assign, 2)
+              : this.finishOp(f.plusMin, 1)
         }),
-        (q.readToken_lt_gt = function(e) {
+        (F.readToken_lt_gt = function(e) {
           var t = this.input.charCodeAt(this.pos + 1),
             n = 1
           return t === e
             ? ((n =
                 62 === e && 62 === this.input.charCodeAt(this.pos + 2) ? 3 : 2),
               61 === this.input.charCodeAt(this.pos + n)
-                ? this.finishOp(h.assign, n + 1)
-                : this.finishOp(h.bitShift, n))
+                ? this.finishOp(f.assign, n + 1)
+                : this.finishOp(f.bitShift, n))
             : 33 == t &&
               60 == e &&
               45 == this.input.charCodeAt(this.pos + 2) &&
@@ -8896,46 +8896,46 @@
                 this.skipLineComment(4),
                 this.skipSpace(),
                 this.nextToken())
-              : (61 === t && (n = 2), this.finishOp(h.relational, n))
+              : (61 === t && (n = 2), this.finishOp(f.relational, n))
         }),
-        (q.readToken_eq_excl = function(e) {
+        (F.readToken_eq_excl = function(e) {
           var t = this.input.charCodeAt(this.pos + 1)
           return 61 === t
             ? this.finishOp(
-                h.equality,
+                f.equality,
                 61 === this.input.charCodeAt(this.pos + 2) ? 3 : 2
               )
             : 61 === e && 62 === t && this.options.ecmaVersion >= 6
-              ? ((this.pos += 2), this.finishToken(h.arrow))
-              : this.finishOp(61 === e ? h.eq : h.prefix, 1)
+              ? ((this.pos += 2), this.finishToken(f.arrow))
+              : this.finishOp(61 === e ? f.eq : f.prefix, 1)
         }),
-        (q.getTokenFromCode = function(e) {
+        (F.getTokenFromCode = function(e) {
           switch (e) {
             case 46:
               return this.readToken_dot()
             case 40:
-              return ++this.pos, this.finishToken(h.parenL)
+              return ++this.pos, this.finishToken(f.parenL)
             case 41:
-              return ++this.pos, this.finishToken(h.parenR)
+              return ++this.pos, this.finishToken(f.parenR)
             case 59:
-              return ++this.pos, this.finishToken(h.semi)
+              return ++this.pos, this.finishToken(f.semi)
             case 44:
-              return ++this.pos, this.finishToken(h.comma)
+              return ++this.pos, this.finishToken(f.comma)
             case 91:
-              return ++this.pos, this.finishToken(h.bracketL)
+              return ++this.pos, this.finishToken(f.bracketL)
             case 93:
-              return ++this.pos, this.finishToken(h.bracketR)
+              return ++this.pos, this.finishToken(f.bracketR)
             case 123:
-              return ++this.pos, this.finishToken(h.braceL)
+              return ++this.pos, this.finishToken(f.braceL)
             case 125:
-              return ++this.pos, this.finishToken(h.braceR)
+              return ++this.pos, this.finishToken(f.braceR)
             case 58:
-              return ++this.pos, this.finishToken(h.colon)
+              return ++this.pos, this.finishToken(f.colon)
             case 63:
-              return ++this.pos, this.finishToken(h.question)
+              return ++this.pos, this.finishToken(f.question)
             case 96:
               if (this.options.ecmaVersion < 6) break
-              return ++this.pos, this.finishToken(h.backQuote)
+              return ++this.pos, this.finishToken(f.backQuote)
             case 48:
               var t = this.input.charCodeAt(this.pos + 1)
               if (120 === t || 88 === t) return this.readRadixNumber(16)
@@ -8976,19 +8976,19 @@
             case 33:
               return this.readToken_eq_excl(e)
             case 126:
-              return this.finishOp(h.prefix, 1)
+              return this.finishOp(f.prefix, 1)
           }
           this.raise(
             this.pos,
             "Unexpected character '" + codePointToString(e) + "'"
           )
         }),
-        (q.finishOp = function(e, t) {
+        (F.finishOp = function(e, t) {
           var n = this.input.slice(this.pos, this.pos + t)
           return (this.pos += t), this.finishToken(e, n)
         })
       var W = !!tryCreateRegexp("￿", "u")
-      ;(q.readRegexp = function() {
+      ;(F.readRegexp = function() {
         for (var e, t, n = this, r = this.pos; ; ) {
           n.pos >= n.input.length &&
             n.raise(r, "Unterminated regular expression")
@@ -9034,10 +9034,10 @@
         var c = null
         return (
           U || (tryCreateRegexp(a, l, r, this), (c = tryCreateRegexp(s, i))),
-          this.finishToken(h.regexp, { pattern: s, flags: i, value: c })
+          this.finishToken(f.regexp, { pattern: s, flags: i, value: c })
         )
       }),
-        (q.readInt = function(e, t) {
+        (F.readInt = function(e, t) {
           for (
             var n = this, r = this.pos, o = 0, s = 0, i = null == t ? 1 / 0 : t;
             s < i;
@@ -9058,7 +9058,7 @@
           }
           return this.pos === r || (null != t && this.pos - r !== t) ? null : o
         }),
-        (q.readRadixNumber = function(e) {
+        (F.readRadixNumber = function(e) {
           this.pos += 2
           var t = this.readInt(e)
           return (
@@ -9066,10 +9066,10 @@
               this.raise(this.start + 2, "Expected number in radix " + e),
             isIdentifierStart(this.fullCharCodeAtPos()) &&
               this.raise(this.pos, "Identifier directly after number"),
-            this.finishToken(h.num, t)
+            this.finishToken(f.num, t)
           )
         }),
-        (q.readNumber = function(e) {
+        (F.readNumber = function(e) {
           var t = this.pos,
             n = !1,
             r = 48 === this.input.charCodeAt(this.pos)
@@ -9097,10 +9097,10 @@
                   ? this.raise(t, "Invalid number")
                   : (s = parseInt(i, 8))
                 : (s = parseInt(i, 10)),
-            this.finishToken(h.num, s)
+            this.finishToken(f.num, s)
           )
         }),
-        (q.readCodePoint = function() {
+        (F.readCodePoint = function() {
           var e
           if (123 === this.input.charCodeAt(this.pos)) {
             this.options.ecmaVersion < 6 && this.unexpected()
@@ -9113,7 +9113,7 @@
           } else e = this.readHexChar(4)
           return e
         }),
-        (q.readString = function(e) {
+        (F.readString = function(e) {
           for (var t = this, n = "", r = ++this.pos; ; ) {
             t.pos >= t.input.length &&
               t.raise(t.start, "Unterminated string constant")
@@ -9129,19 +9129,19 @@
           }
           return (
             (n += this.input.slice(r, this.pos++)),
-            this.finishToken(h.string, n)
+            this.finishToken(f.string, n)
           )
         }),
-        (q.readTmplToken = function() {
+        (F.readTmplToken = function() {
           for (var e = this, t = "", n = this.pos; ; ) {
             e.pos >= e.input.length && e.raise(e.start, "Unterminated template")
             var r = e.input.charCodeAt(e.pos)
             if (96 === r || (36 === r && 123 === e.input.charCodeAt(e.pos + 1)))
-              return e.pos === e.start && e.type === h.template
+              return e.pos === e.start && e.type === f.template
                 ? 36 === r
-                  ? ((e.pos += 2), e.finishToken(h.dollarBraceL))
-                  : (++e.pos, e.finishToken(h.backQuote))
-                : ((t += e.input.slice(n, e.pos)), e.finishToken(h.template, t))
+                  ? ((e.pos += 2), e.finishToken(f.dollarBraceL))
+                  : (++e.pos, e.finishToken(f.backQuote))
+                : ((t += e.input.slice(n, e.pos)), e.finishToken(f.template, t))
             if (92 === r)
               (t += e.input.slice(n, e.pos)),
                 (t += e.readEscapedChar(!0)),
@@ -9161,7 +9161,7 @@
             } else ++e.pos
           }
         }),
-        (q.readEscapedChar = function(e) {
+        (F.readEscapedChar = function(e) {
           var t = this.input.charCodeAt(++this.pos)
           switch ((++this.pos, t)) {
             case 110:
@@ -9204,12 +9204,12 @@
               return String.fromCharCode(t)
           }
         }),
-        (q.readHexChar = function(e) {
+        (F.readHexChar = function(e) {
           var t = this.pos,
             n = this.readInt(16, e)
           return null === n && this.raise(t, "Bad character escape sequence"), n
         }),
-        (q.readWord1 = function() {
+        (F.readWord1 = function() {
           var e = this
           this.containsEsc = !1
           for (
@@ -9236,13 +9236,13 @@
           }
           return t + this.input.slice(r, this.pos)
         }),
-        (q.readWord = function() {
+        (F.readWord = function() {
           var e = this.readWord1(),
-            t = h.name
+            t = f.name
           return (
             (this.options.ecmaVersion >= 6 || !this.containsEsc) &&
               this.keywords.test(e) &&
-              (t = f[e]),
+              (t = h[e]),
             this.finishToken(t, e)
           )
         })
@@ -9265,12 +9265,12 @@
         (e.getLineInfo = getLineInfo),
         (e.Node = A),
         (e.TokenType = c),
-        (e.tokTypes = h),
+        (e.tokTypes = f),
         (e.TokContext = L),
         (e.tokContexts = N),
         (e.isIdentifierChar = isIdentifierChar),
         (e.isIdentifierStart = isIdentifierStart),
-        (e.Token = F),
+        (e.Token = q),
         (e.isNewLine = isNewLine),
         (e.lineBreak = m),
         (e.lineBreakG = g),
@@ -12919,16 +12919,16 @@
                 var p = l.hasOwnProperty(a)
                 if ("function" != typeof c || p || d || !1 === n.autobind)
                   if (d) {
-                    var f = l[a]
+                    var h = l[a]
                     s(
-                      p && ("DEFINE_MANY_MERGED" === f || "DEFINE_MANY" === f),
+                      p && ("DEFINE_MANY_MERGED" === h || "DEFINE_MANY" === h),
                       "ReactClass: Unexpected spec policy %s for key %s when mixing in component specs.",
-                      f,
+                      h,
                       a
                     ),
-                      "DEFINE_MANY_MERGED" === f
+                      "DEFINE_MANY_MERGED" === h
                         ? (r[a] = createMergedResultFunction(r[a], c))
-                        : "DEFINE_MANY" === f &&
+                        : "DEFINE_MANY" === h &&
                           (r[a] = createChainedFunction(r[a], c))
                   } else r[a] = c
                 else o.push(a, c), (r[a] = c)
@@ -13067,9 +13067,9 @@
             return !!this.__isMounted
           },
         },
-        f = function() {}
+        h = function() {}
       return (
-        r(f.prototype, e.prototype, p),
+        r(h.prototype, e.prototype, p),
         function createClass(e) {
           var t = identity(function(e, r, i) {
             this.__reactAutoBindPairs.length && bindAutoBindMethods(this),
@@ -13086,7 +13086,7 @@
             ),
               (this.state = a)
           })
-          ;(t.prototype = new f()),
+          ;(t.prototype = new h()),
             (t.prototype.constructor = t),
             (t.prototype.__reactAutoBindPairs = []),
             a.forEach(mixSpecIntoComponent.bind(null, t)),
@@ -13185,7 +13185,7 @@
         }
         function flush() {
           for (var e = 0; e < s; e += 2)
-            (0, h[e])(h[e + 1]), (h[e] = void 0), (h[e + 1] = void 0)
+            (0, f[e])(f[e + 1]), (f[e] = void 0), (f[e + 1] = void 0)
           s = 0
         }
         function then(e, t) {
@@ -13425,7 +13425,7 @@
           i = void 0,
           a = void 0,
           l = function asap(e, t) {
-            ;(h[s] = e), (h[s + 1] = t), 2 === (s += 2) && (a ? a(flush) : m())
+            ;(f[s] = e), (f[s + 1] = t), 2 === (s += 2) && (a ? a(flush) : m())
           },
           u = "undefined" != typeof window ? window : void 0,
           c = u || {},
@@ -13434,11 +13434,11 @@
             "undefined" == typeof self &&
             void 0 !== t &&
             "[object process]" === {}.toString.call(t),
-          f =
+          h =
             "undefined" != typeof Uint8ClampedArray &&
             "undefined" != typeof importScripts &&
             "undefined" != typeof MessageChannel,
-          h = new Array(1e3),
+          f = new Array(1e3),
           m = void 0
         m = p
           ? (function useNextTick() {
@@ -13458,7 +13458,7 @@
                   }
                 )
               })()
-            : f
+            : h
               ? (function useMessageChannel() {
                   var e = new MessageChannel()
                   return (
@@ -14306,18 +14306,18 @@
             c = this.div_.offsetHeight,
             d = this.infoBoxClearance_.width,
             p = this.infoBoxClearance_.height,
-            f = this.getProjection().fromLatLngToContainerPixel(this.position_)
+            h = this.getProjection().fromLatLngToContainerPixel(this.position_)
           if (
-            (f.x < -a + d
-              ? (n = f.x + a - d)
-              : f.x + u + a + d > s && (n = f.x + u + a + d - s),
+            (h.x < -a + d
+              ? (n = h.x + a - d)
+              : h.x + u + a + d > s && (n = h.x + u + a + d - s),
             this.alignBottom_
-              ? f.y < -l + p + c
-                ? (r = f.y + l - p - c)
-                : f.y + l + p > i && (r = f.y + l + p - i)
-              : f.y < -l + p
-                ? (r = f.y + l - p)
-                : f.y + c + l + p > i && (r = f.y + c + l + p - i),
+              ? h.y < -l + p + c
+                ? (r = h.y + l - p - c)
+                : h.y + l + p > i && (r = h.y + l + p - i)
+              : h.y < -l + p
+                ? (r = h.y + l - p)
+                : h.y + c + l + p > i && (r = h.y + c + l + p - i),
             0 !== n || 0 !== r)
           ) {
             t.getCenter()
@@ -14554,9 +14554,9 @@
         c = -7,
         d = n ? o - 1 : 0,
         p = n ? -1 : 1,
-        f = e[t + d]
+        h = e[t + d]
       for (
-        d += p, s = f & ((1 << -c) - 1), f >>= -c, c += a;
+        d += p, s = h & ((1 << -c) - 1), h >>= -c, c += a;
         c > 0;
         s = 256 * s + e[t + d], d += p, c -= 8
       );
@@ -14567,10 +14567,10 @@
       );
       if (0 === s) s = 1 - u
       else {
-        if (s === l) return i ? NaN : 1 / 0 * (f ? -1 : 1)
+        if (s === l) return i ? NaN : 1 / 0 * (h ? -1 : 1)
         ;(i += Math.pow(2, r)), (s -= u)
       }
-      return (f ? -1 : 1) * i * Math.pow(2, s - r)
+      return (h ? -1 : 1) * i * Math.pow(2, s - r)
     }),
       (t.write = function(e, t, n, r, o, s) {
         var i,
@@ -14580,8 +14580,8 @@
           c = (1 << u) - 1,
           d = c >> 1,
           p = 23 === o ? Math.pow(2, -24) - Math.pow(2, -77) : 0,
-          f = r ? 0 : s - 1,
-          h = r ? 1 : -1,
+          h = r ? 0 : s - 1,
+          f = r ? 1 : -1,
           m = t < 0 || (0 === t && 1 / t < 0) ? 1 : 0
         for (
           t = Math.abs(t),
@@ -14597,14 +14597,14 @@
                     ? ((a = (t * l - 1) * Math.pow(2, o)), (i += d))
                     : ((a = t * Math.pow(2, d - 1) * Math.pow(2, o)), (i = 0)));
           o >= 8;
-          e[n + f] = 255 & a, f += h, a /= 256, o -= 8
+          e[n + h] = 255 & a, h += f, a /= 256, o -= 8
         );
         for (
           i = (i << o) | a, u += o;
           u > 0;
-          e[n + f] = 255 & i, f += h, i /= 256, u -= 8
+          e[n + h] = 255 & i, h += f, i /= 256, u -= 8
         );
-        e[n + f - h] |= 128 * m
+        e[n + h - f] |= 128 * m
       })
   },
   "./node_modules/inherits/inherits_browser.js": function(e, t) {
@@ -14898,7 +14898,7 @@
           function next(e, t) {
             if (!i || void 0 !== e) {
               l.push(t)
-              var n = f(e, stringify)
+              var n = h(e, stringify)
               return l.pop(), n
             }
           }
@@ -14914,7 +14914,7 @@
             c = [],
             d = [],
             p = [],
-            f = s
+            h = s
               ? function(e, t) {
                   if (e && ("object" == typeof e || "function" == typeof e)) {
                     var r = c.indexOf(e)
@@ -14931,8 +14931,8 @@
                   }
                 }
           if ("function" == typeof t) {
-            b = f
-            f = function(e, n) {
+            b = h
+            h = function(e, n) {
               return b(e, function(e, r, o) {
                 return t(e, r, function(e) {
                   return n(e, r, o)
@@ -14940,14 +14940,14 @@
               })
             }
           }
-          var h = f(e, stringify)
+          var f = h(e, stringify)
           if (p.length) {
             for (
               var m = n ? "\n" : "",
                 g = n ? " = " : "=",
                 y = ";" + m,
                 b = n ? "(function () {" : "(function(){",
-                v = ["var x" + g + h],
+                v = ["var x" + g + f],
                 _ = 0;
               _ < p.length;
               _ += 2
@@ -14955,7 +14955,7 @@
               v.push("x" + toPath(p[_]) + g + "x" + toPath(p[_ + 1]))
             return v.push("return x"), b + m + v.join(y) + y + "}())"
           }
-          return h
+          return f
         }
       })
     }.call(t, n("./node_modules/buffer/index.js").Buffer))
@@ -15646,7 +15646,7 @@
       p = _interopRequireDefault(
         n("./node_modules/jss/lib/utils/findRenderer.js")
       ),
-      f = (function() {
+      h = (function() {
         function Jss(e) {
           _classCallCheck(this, Jss),
             (this.version = "8.1.0"),
@@ -15749,7 +15749,7 @@
           Jss
         )
       })()
-    t.default = f
+    t.default = h
   },
   "./node_modules/jss/lib/PluginsRegistry.js": function(e, t, n) {
     "use strict"
@@ -17395,19 +17395,19 @@
             }
           else
             for (var p in a) {
-              var f = a[p]
-              null != f &&
-                (o += "\n" + indentStr(p + ": " + (0, r.default)(f) + ";", i))
+              var h = a[p]
+              null != h &&
+                (o += "\n" + indentStr(p + ": " + (0, r.default)(h) + ";", i))
             }
-        var h = !1
+        var f = !1
         for (var m in t) {
           var g = t[m]
-          "function" == typeof g && ((g = t["$" + m]), (h = !0)),
+          "function" == typeof g && ((g = t["$" + m]), (f = !0)),
             null != g &&
               "fallbacks" !== m &&
               (o += "\n" + indentStr(m + ": " + (0, r.default)(g) + ";", i))
         }
-        return o || h
+        return o || f
           ? (i--, (o = indentStr(e + " {" + o + "\n", i) + indentStr("}", i)))
           : o
       })
@@ -17493,17 +17493,17 @@
       function baseIsNative(e) {
         return (
           !(!isObject(e) || isMasked(e)) &&
-          (isFunction(e) || isHostObject(e) ? E : h).test(toSource(e))
+          (isFunction(e) || isHostObject(e) ? E : f).test(toSource(e))
         )
       }
       function baseToString(e) {
         if ("string" == typeof e) return e
-        if (isSymbol(e)) return D ? D.call(e) : ""
+        if (isSymbol(e)) return T ? T.call(e) : ""
         var t = e + ""
         return "0" == t && 1 / e == -o ? "-0" : t
       }
       function castPath(e) {
-        return A(e) ? e : M(e)
+        return A(e) ? e : D(e)
       }
       function getMapData(e, t) {
         var n = e.__data__
@@ -17598,8 +17598,8 @@
         c = /^\./,
         d = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,
         p = /[\\^$.*+?()[\]{}|]/g,
-        f = /\\(\\)?/g,
-        h = /^\[object .+?Constructor\]$/,
+        h = /\\(\\)?/g,
+        f = /^\[object .+?Constructor\]$/,
         m = "object" == typeof t && t && t.Object === Object && t,
         g = "object" == typeof self && self && self.Object === Object && self,
         y = m || g || Function("return this")(),
@@ -17625,20 +17625,20 @@
             "$"
         ),
         S = y.Symbol,
-        O = b.splice,
-        P = getNative(y, "Map"),
-        R = getNative(Object, "create"),
-        T = S ? S.prototype : void 0,
-        D = T ? T.toString : void 0
+        R = b.splice,
+        O = getNative(y, "Map"),
+        P = getNative(Object, "create"),
+        M = S ? S.prototype : void 0,
+        T = M ? M.toString : void 0
       ;(Hash.prototype.clear = function hashClear() {
-        this.__data__ = R ? R(null) : {}
+        this.__data__ = P ? P(null) : {}
       }),
         (Hash.prototype.delete = function hashDelete(e) {
           return this.has(e) && delete this.__data__[e]
         }),
         (Hash.prototype.get = function hashGet(e) {
           var t = this.__data__
-          if (R) {
+          if (P) {
             var n = t[e]
             return n === r ? void 0 : n
           }
@@ -17646,10 +17646,10 @@
         }),
         (Hash.prototype.has = function hashHas(e) {
           var t = this.__data__
-          return R ? void 0 !== t[e] : w.call(t, e)
+          return P ? void 0 !== t[e] : w.call(t, e)
         }),
         (Hash.prototype.set = function hashSet(e, t) {
-          return (this.__data__[e] = R && void 0 === t ? r : t), this
+          return (this.__data__[e] = P && void 0 === t ? r : t), this
         }),
         (ListCache.prototype.clear = function listCacheClear() {
           this.__data__ = []
@@ -17657,7 +17657,7 @@
         (ListCache.prototype.delete = function listCacheDelete(e) {
           var t = this.__data__,
             n = assocIndexOf(t, e)
-          return !(n < 0 || (n == t.length - 1 ? t.pop() : O.call(t, n, 1), 0))
+          return !(n < 0 || (n == t.length - 1 ? t.pop() : R.call(t, n, 1), 0))
         }),
         (ListCache.prototype.get = function listCacheGet(e) {
           var t = this.__data__,
@@ -17675,7 +17675,7 @@
         (MapCache.prototype.clear = function mapCacheClear() {
           this.__data__ = {
             hash: new Hash(),
-            map: new (P || ListCache)(),
+            map: new (O || ListCache)(),
             string: new Hash(),
           }
         }),
@@ -17691,13 +17691,13 @@
         (MapCache.prototype.set = function mapCacheSet(e, t) {
           return getMapData(this, e).set(e, t), this
         })
-      var M = memoize(function(e) {
+      var D = memoize(function(e) {
         e = toString(e)
         var t = []
         return (
           c.test(e) && t.push(""),
           e.replace(d, function(e, n, r, o) {
-            t.push(r ? o.replace(f, "$1") : n || e)
+            t.push(r ? o.replace(h, "$1") : n || e)
           }),
           t
         )
@@ -17884,19 +17884,19 @@
         c = !n && o(e),
         d = !n && !c && i(e),
         p = !n && !c && !d && l(e),
-        f = n || c || d || p,
-        h = f ? r(e.length, String) : [],
-        m = h.length
+        h = n || c || d || p,
+        f = h ? r(e.length, String) : [],
+        m = f.length
       for (var g in e)
         (!t && !u.call(e, g)) ||
-          (f &&
+          (h &&
             ("length" == g ||
               (d && ("offset" == g || "parent" == g)) ||
               (p &&
                 ("buffer" == g || "byteLength" == g || "byteOffset" == g)) ||
               a(g, m))) ||
-          h.push(g)
-      return h
+          f.push(g)
+      return f
     }
   },
   "./node_modules/lodash/_arrayMap.js": function(e, t) {
@@ -18048,16 +18048,16 @@
       c = n("./node_modules/lodash/isTypedArray.js"),
       d = 1,
       p = "[object Arguments]",
-      f = "[object Array]",
-      h = "[object Object]",
+      h = "[object Array]",
+      f = "[object Object]",
       m = Object.prototype.hasOwnProperty
     e.exports = function baseIsEqualDeep(e, t, n, g, y, b) {
       var v = l(e),
         _ = l(t),
-        j = v ? f : a(e),
-        x = _ ? f : a(t),
-        C = (j = j == p ? h : j) == h,
-        w = (x = x == p ? h : x) == h,
+        j = v ? h : a(e),
+        x = _ ? h : a(t),
+        C = (j = j == p ? f : j) == f,
+        w = (x = x == p ? f : x) == f,
         k = j == x
       if (k && u(e)) {
         if (!u(t)) return !1
@@ -18072,9 +18072,9 @@
         var E = C && m.call(e, "__wrapped__"),
           S = w && m.call(t, "__wrapped__")
         if (E || S) {
-          var O = E ? e.value() : e,
-            P = S ? t.value() : t
-          return b || (b = new r()), y(O, P, n, g, b)
+          var R = E ? e.value() : e,
+            O = S ? t.value() : t
+          return b || (b = new r()), y(R, O, n, g, b)
         }
       }
       return !!k && (b || (b = new r()), i(e, t, n, g, y, b))
@@ -18096,14 +18096,14 @@
       }
       for (; ++l < u; ) {
         var p = (d = n[l])[0],
-          f = e[p],
-          h = d[1]
+          h = e[p],
+          f = d[1]
         if (c && d[2]) {
-          if (void 0 === f && !(p in e)) return !1
+          if (void 0 === h && !(p in e)) return !1
         } else {
           var m = new r()
-          if (a) var g = a(f, h, p, e, t, m)
-          if (!(void 0 === g ? o(h, f, s | i, a, m) : g)) return !1
+          if (a) var g = a(h, f, p, e, t, m)
+          if (!(void 0 === g ? o(f, h, s | i, a, m) : g)) return !1
         }
       }
       return !0
@@ -18120,7 +18120,7 @@
       c = Object.prototype,
       d = u.toString,
       p = c.hasOwnProperty,
-      f = RegExp(
+      h = RegExp(
         "^" +
           d
             .call(p)
@@ -18132,7 +18132,7 @@
           "$"
       )
     e.exports = function baseIsNative(e) {
-      return !(!s(e) || o(e)) && (r(e) ? f : l).test(i(e))
+      return !(!s(e) || o(e)) && (r(e) ? h : l).test(i(e))
     }
   },
   "./node_modules/lodash/_baseIsTypedArray.js": function(e, t, n) {
@@ -18278,8 +18278,8 @@
       c = n("./node_modules/lodash/isArrayLikeObject.js"),
       d = n("./node_modules/lodash/isBuffer.js"),
       p = n("./node_modules/lodash/isFunction.js"),
-      f = n("./node_modules/lodash/isObject.js"),
-      h = n("./node_modules/lodash/isPlainObject.js"),
+      h = n("./node_modules/lodash/isObject.js"),
+      f = n("./node_modules/lodash/isPlainObject.js"),
       m = n("./node_modules/lodash/isTypedArray.js"),
       g = n("./node_modules/lodash/toPlainObject.js")
     e.exports = function baseMergeDeep(e, t, n, y, b, v, _) {
@@ -18293,19 +18293,19 @@
         if (k) {
           var E = u(x),
             S = !E && d(x),
-            O = !E && !S && m(x)
+            R = !E && !S && m(x)
           ;(w = x),
-            E || S || O
+            E || S || R
               ? u(j)
                 ? (w = j)
                 : c(j)
                   ? (w = i(j))
                   : S
                     ? ((k = !1), (w = o(x, !0)))
-                    : O ? ((k = !1), (w = s(x, !0))) : (w = [])
-              : h(x) || l(x)
+                    : R ? ((k = !1), (w = s(x, !0))) : (w = [])
+              : f(x) || l(x)
                 ? ((w = j),
-                  l(j) ? (w = g(j)) : (!f(j) || (y && p(j))) && (w = a(x)))
+                  l(j) ? (w = g(j)) : (!h(j) || (y && p(j))) && (w = a(x)))
                 : (k = !1)
         }
         k && (_.set(x, w), b(w, x, y, v, _), _.delete(x)), r(e, n, w)
@@ -18518,10 +18518,10 @@
     e.exports = function equalArrays(e, t, n, l, u, c) {
       var d = n & i,
         p = e.length,
-        f = t.length
-      if (p != f && !(d && f > p)) return !1
-      var h = c.get(e)
-      if (h && c.get(t)) return h == t
+        h = t.length
+      if (p != h && !(d && h > p)) return !1
+      var f = c.get(e)
+      if (f && c.get(t)) return f == t
       var m = -1,
         g = !0,
         y = n & a ? new r() : void 0
@@ -18562,8 +18562,8 @@
       c = 2,
       d = "[object Boolean]",
       p = "[object Date]",
-      f = "[object Error]",
-      h = "[object Map]",
+      h = "[object Error]",
+      f = "[object Map]",
       m = "[object Number]",
       g = "[object RegExp]",
       y = "[object Set]",
@@ -18585,21 +18585,21 @@
         case p:
         case m:
           return s(+e, +t)
-        case f:
+        case h:
           return e.name == t.name && e.message == t.message
         case g:
         case b:
           return e == t + ""
-        case h:
+        case f:
           var E = a
         case y:
           var S = r & u
           if ((E || (E = l), e.size != t.size && !S)) return !1
-          var O = k.get(e)
-          if (O) return O == t
+          var R = k.get(e)
+          if (R) return R == t
           ;(r |= c), k.set(e, t)
-          var P = i(E(e), E(t), r, x, w, k)
-          return k.delete(e), P
+          var O = i(E(e), E(t), r, x, w, k)
+          return k.delete(e), O
         case v:
           if (C) return C.call(e) == C.call(t)
       }
@@ -18616,22 +18616,22 @@
         d = c.length
       if (d != r(t).length && !u) return !1
       for (var p = d; p--; ) {
-        var f = c[p]
-        if (!(u ? f in t : s.call(t, f))) return !1
+        var h = c[p]
+        if (!(u ? h in t : s.call(t, h))) return !1
       }
-      var h = l.get(e)
-      if (h && l.get(t)) return h == t
+      var f = l.get(e)
+      if (f && l.get(t)) return f == t
       var m = !0
       l.set(e, t), l.set(t, e)
       for (var g = u; ++p < d; ) {
-        var y = e[(f = c[p])],
-          b = t[f]
-        if (i) var v = u ? i(b, y, f, t, e, l) : i(y, b, f, e, t, l)
+        var y = e[(h = c[p])],
+          b = t[h]
+        if (i) var v = u ? i(b, y, h, t, e, l) : i(y, b, h, e, t, l)
         if (!(void 0 === v ? y === b || a(y, b, n, i, l) : v)) {
           m = !1
           break
         }
-        g || (g = "constructor" == f)
+        g || (g = "constructor" == h)
       }
       if (m && !g) {
         var _ = e.constructor,
@@ -18743,8 +18743,8 @@
       c = u(r),
       d = u(o),
       p = u(s),
-      f = u(i),
-      h = u(a),
+      h = u(i),
+      f = u(a),
       m = l
     ;((r && "[object DataView]" != m(new r(new ArrayBuffer(1)))) ||
       (o && "[object Map]" != m(new o())) ||
@@ -18763,9 +18763,9 @@
               return "[object Map]"
             case p:
               return "[object Promise]"
-            case f:
-              return "[object Set]"
             case h:
+              return "[object Set]"
+            case f:
               return "[object WeakMap]"
           }
         return t
@@ -19248,41 +19248,41 @@
         return (u = c = void 0), (m = t), (p = e.apply(r, n))
       }
       function leadingEdge(e) {
-        return (m = e), (f = setTimeout(timerExpired, t)), g ? invokeFunc(e) : p
+        return (m = e), (h = setTimeout(timerExpired, t)), g ? invokeFunc(e) : p
       }
       function remainingWait(e) {
         var n = e - m,
-          r = t - (e - h)
+          r = t - (e - f)
         return y ? l(r, d - n) : r
       }
       function shouldInvoke(e) {
-        var n = e - h,
+        var n = e - f,
           r = e - m
-        return void 0 === h || n >= t || n < 0 || (y && r >= d)
+        return void 0 === f || n >= t || n < 0 || (y && r >= d)
       }
       function timerExpired() {
         var e = o()
         if (shouldInvoke(e)) return trailingEdge(e)
-        f = setTimeout(timerExpired, remainingWait(e))
+        h = setTimeout(timerExpired, remainingWait(e))
       }
       function trailingEdge(e) {
-        return (f = void 0), b && u ? invokeFunc(e) : ((u = c = void 0), p)
+        return (h = void 0), b && u ? invokeFunc(e) : ((u = c = void 0), p)
       }
       function debounced() {
         var e = o(),
           n = shouldInvoke(e)
-        if (((u = arguments), (c = this), (h = e), n)) {
-          if (void 0 === f) return leadingEdge(h)
-          if (y) return (f = setTimeout(timerExpired, t)), invokeFunc(h)
+        if (((u = arguments), (c = this), (f = e), n)) {
+          if (void 0 === h) return leadingEdge(f)
+          if (y) return (h = setTimeout(timerExpired, t)), invokeFunc(f)
         }
-        return void 0 === f && (f = setTimeout(timerExpired, t)), p
+        return void 0 === h && (h = setTimeout(timerExpired, t)), p
       }
       var u,
         c,
         d,
         p,
-        f,
         h,
+        f,
         m = 0,
         g = !1,
         y = !1,
@@ -19295,10 +19295,10 @@
           (d = (y = "maxWait" in n) ? a(s(n.maxWait) || 0, t) : d),
           (b = "trailing" in n ? !!n.trailing : b)),
         (debounced.cancel = function cancel() {
-          void 0 !== f && clearTimeout(f), (m = 0), (u = h = c = f = void 0)
+          void 0 !== h && clearTimeout(h), (m = 0), (u = f = c = h = void 0)
         }),
         (debounced.flush = function flush() {
-          return void 0 === f ? p : trailingEdge(o())
+          return void 0 === h ? p : trailingEdge(o())
         }),
         debounced
       )
@@ -19764,8 +19764,8 @@
           c = 500,
           d = "__lodash_placeholder__",
           p = 1,
-          f = 2,
-          h = 4,
+          h = 2,
+          f = 4,
           m = 1,
           g = 2,
           y = 1,
@@ -19779,19 +19779,19 @@
           k = 256,
           E = 512,
           S = 30,
-          O = "...",
-          P = 800,
-          R = 16,
-          T = 1,
-          D = 2,
-          M = 1 / 0,
+          R = "...",
+          O = 800,
+          P = 16,
+          M = 1,
+          T = 2,
+          D = 1 / 0,
           A = 9007199254740991,
           I = 1.7976931348623157e308,
           L = NaN,
           N = 4294967295,
           B = N - 1,
-          F = N >>> 1,
-          q = [
+          q = N >>> 1,
+          F = [
             ["ary", w],
             ["bind", y],
             ["bindKey", b],
@@ -19806,12 +19806,12 @@
           W = "[object Array]",
           V = "[object AsyncFunction]",
           z = "[object Boolean]",
-          H = "[object Date]",
-          G = "[object DOMException]",
+          G = "[object Date]",
+          H = "[object DOMException]",
           K = "[object Error]",
           $ = "[object Function]",
-          Y = "[object GeneratorFunction]",
-          Z = "[object Map]",
+          Z = "[object GeneratorFunction]",
+          Y = "[object Map]",
           J = "[object Number]",
           X = "[object Null]",
           Q = "[object Object]",
@@ -19828,8 +19828,8 @@
           ce = "[object Float32Array]",
           de = "[object Float64Array]",
           pe = "[object Int8Array]",
-          fe = "[object Int16Array]",
-          he = "[object Int32Array]",
+          he = "[object Int16Array]",
+          fe = "[object Int32Array]",
           me = "[object Uint8Array]",
           ge = "[object Uint8ClampedArray]",
           ye = "[object Uint16Array]",
@@ -19843,29 +19843,29 @@
           ke = RegExp(Ce.source),
           Ee = /<%-([\s\S]+?)%>/g,
           Se = /<%([\s\S]+?)%>/g,
-          Oe = /<%=([\s\S]+?)%>/g,
-          Pe = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
-          Re = /^\w*$/,
-          Te = /^\./,
-          De = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,
-          Me = /[\\^$.*+?()[\]{}|]/g,
-          Ae = RegExp(Me.source),
+          Re = /<%=([\s\S]+?)%>/g,
+          Oe = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
+          Pe = /^\w*$/,
+          Me = /^\./,
+          Te = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,
+          De = /[\\^$.*+?()[\]{}|]/g,
+          Ae = RegExp(De.source),
           Ie = /^\s+|\s+$/g,
           Le = /^\s+/,
           Ne = /\s+$/,
           Be = /\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/,
-          Fe = /\{\n\/\* \[wrapped with (.+)\] \*/,
-          qe = /,? & /,
+          qe = /\{\n\/\* \[wrapped with (.+)\] \*/,
+          Fe = /,? & /,
           Ue = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g,
           We = /\\(\\)?/g,
           Ve = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g,
           ze = /\w*$/,
-          He = /^[-+]0x[0-9a-f]+$/i,
-          Ge = /^0b[01]+$/i,
+          Ge = /^[-+]0x[0-9a-f]+$/i,
+          He = /^0b[01]+$/i,
           Ke = /^\[object .+?Constructor\]$/,
           $e = /^0o[0-7]+$/i,
-          Ye = /^(?:0|[1-9]\d*)$/,
-          Ze = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g,
+          Ze = /^(?:0|[1-9]\d*)$/,
+          Ye = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g,
           Je = /($^)/,
           Xe = /['\n\r\u2028\u2029\\]/g,
           Qe = "\\u0300-\\u036f\\ufe20-\\ufe2f\\u20d0-\\u20ff",
@@ -19894,7 +19894,7 @@
               ct +
               ")*"),
           pt = "(?:" + ["[\\u2700-\\u27bf]", it, at].join("|") + ")" + dt,
-          ft =
+          ht =
             "(?:" +
             [
               "[^\\ud800-\\udfff]" + nt + "?",
@@ -19904,9 +19904,9 @@
               "[\\ud800-\\udfff]",
             ].join("|") +
             ")",
-          ht = RegExp("['’]", "g"),
+          ft = RegExp("['’]", "g"),
           mt = RegExp(nt, "g"),
-          gt = RegExp(st + "(?=" + st + ")|" + ft + dt, "g"),
+          gt = RegExp(st + "(?=" + st + ")|" + ht + dt, "g"),
           yt = RegExp(
             [
               lt +
@@ -19963,16 +19963,16 @@
           ],
           jt = -1,
           xt = {}
-        ;(xt[ce] = xt[de] = xt[pe] = xt[fe] = xt[he] = xt[me] = xt[ge] = xt[
+        ;(xt[ce] = xt[de] = xt[pe] = xt[he] = xt[fe] = xt[me] = xt[ge] = xt[
           ye
         ] = xt[be] = !0),
-          (xt[U] = xt[W] = xt[le] = xt[z] = xt[ue] = xt[H] = xt[K] = xt[$] = xt[
-            Z
+          (xt[U] = xt[W] = xt[le] = xt[z] = xt[ue] = xt[G] = xt[K] = xt[$] = xt[
+            Y
           ] = xt[J] = xt[Q] = xt[te] = xt[ne] = xt[re] = xt[ie] = !1)
         var Ct = {}
-        ;(Ct[U] = Ct[W] = Ct[le] = Ct[ue] = Ct[z] = Ct[H] = Ct[ce] = Ct[
+        ;(Ct[U] = Ct[W] = Ct[le] = Ct[ue] = Ct[z] = Ct[G] = Ct[ce] = Ct[
           de
-        ] = Ct[pe] = Ct[fe] = Ct[he] = Ct[Z] = Ct[J] = Ct[Q] = Ct[te] = Ct[
+        ] = Ct[pe] = Ct[he] = Ct[fe] = Ct[Y] = Ct[J] = Ct[Q] = Ct[te] = Ct[
           ne
         ] = Ct[re] = Ct[oe] = Ct[me] = Ct[ge] = Ct[ye] = Ct[be] = !0),
           (Ct[K] = Ct[$] = Ct[ie] = !1)
@@ -20190,34 +20190,34 @@
             "\u2028": "u2028",
             "\u2029": "u2029",
           },
-          Ot = parseFloat,
-          Pt = parseInt,
-          Rt = "object" == typeof e && e && e.Object === Object && e,
-          Tt =
+          Rt = parseFloat,
+          Ot = parseInt,
+          Pt = "object" == typeof e && e && e.Object === Object && e,
+          Mt =
             "object" == typeof self && self && self.Object === Object && self,
-          Dt = Rt || Tt || Function("return this")(),
-          Mt = "object" == typeof t && t && !t.nodeType && t,
-          At = Mt && "object" == typeof r && r && !r.nodeType && r,
-          It = At && At.exports === Mt,
-          Lt = It && Rt.process,
+          Tt = Pt || Mt || Function("return this")(),
+          Dt = "object" == typeof t && t && !t.nodeType && t,
+          At = Dt && "object" == typeof r && r && !r.nodeType && r,
+          It = At && At.exports === Dt,
+          Lt = It && Pt.process,
           Nt = (function() {
             try {
               return Lt && Lt.binding && Lt.binding("util")
             } catch (e) {}
           })(),
           Bt = Nt && Nt.isArrayBuffer,
-          Ft = Nt && Nt.isDate,
-          qt = Nt && Nt.isMap,
+          qt = Nt && Nt.isDate,
+          Ft = Nt && Nt.isMap,
           Ut = Nt && Nt.isRegExp,
           Wt = Nt && Nt.isSet,
           Vt = Nt && Nt.isTypedArray,
           zt = baseProperty("length"),
-          Ht = basePropertyOf(wt),
-          Gt = basePropertyOf(kt),
+          Gt = basePropertyOf(wt),
+          Ht = basePropertyOf(kt),
           Kt = basePropertyOf(Et),
           $t = (function runInContext(e) {
             function lodash(e) {
-              if (isObjectLike(e) && !Pr(e) && !(e instanceof LazyWrapper)) {
+              if (isObjectLike(e) && !Or(e) && !(e instanceof LazyWrapper)) {
                 if (e instanceof LodashWrapper) return e
                 if (lt.call(e, "__wrapped__")) return wrapperClone(e)
               }
@@ -20274,9 +20274,9 @@
               this.size = t.size
             }
             function arrayLikeKeys(e, t) {
-              var n = Pr(e),
-                r = !n && Or(e),
-                o = !n && !r && Tr(e),
+              var n = Or(e),
+                r = !n && Rr(e),
+                o = !n && !r && Mr(e),
                 s = !n && !r && !o && Lr(e),
                 i = n || r || o || s,
                 a = i ? baseTimes(e.length, tt) : [],
@@ -20357,17 +20357,17 @@
             function baseClone(e, t, n, r, o, i) {
               var a,
                 l = t & p,
-                u = t & f,
-                c = t & h
+                u = t & h,
+                c = t & f
               if ((n && (a = o ? n(e, r, o, i) : n(e)), a !== s)) return a
               if (!isObject(e)) return e
-              var d = Pr(e)
+              var d = Or(e)
               if (d) {
                 if (((a = initCloneArray(e)), !l)) return copyArray(e, a)
               } else {
-                var m = Fn(e),
-                  g = m == $ || m == Y
-                if (Tr(e)) return cloneBuffer(e, l)
+                var m = qn(e),
+                  g = m == $ || m == Z
+                if (Mr(e)) return cloneBuffer(e, l)
                 if (m == Q || m == U || (g && !o)) {
                   if (((a = u || g ? {} : initCloneObject(e)), !l))
                     return u
@@ -20432,7 +20432,7 @@
                 var d = e[o],
                   p = null == n ? d : n(d)
                 if (((d = r || 0 !== d ? d : 0), a && p === p)) {
-                  for (var f = c; f--; ) if (t[f] === p) continue e
+                  for (var h = c; h--; ) if (t[h] === p) continue e
                   u.push(d)
                 } else s(t, p, r) || u.push(d)
               }
@@ -20490,10 +20490,10 @@
               return o
             }
             function baseForOwn(e, t) {
-              return e && Pn(e, t, keys)
+              return e && On(e, t, keys)
             }
             function baseForOwnRight(e, t) {
-              return e && Rn(e, t, keys)
+              return e && Pn(e, t, keys)
             }
             function baseFunctions(e, t) {
               return arrayFilter(t, function(t) {
@@ -20511,7 +20511,7 @@
             }
             function baseGetAllKeys(e, t, n) {
               var r = t(e)
-              return Pr(e) ? r : arrayPush(r, n(e))
+              return Or(e) ? r : arrayPush(r, n(e))
             }
             function baseGetTag(e) {
               return null == e
@@ -20551,20 +20551,20 @@
                       : s)
               }
               p = e[0]
-              var f = -1,
-                h = u[0]
-              e: for (; ++f < i && d.length < c; ) {
-                var m = p[f],
+              var h = -1,
+                f = u[0]
+              e: for (; ++h < i && d.length < c; ) {
+                var m = p[h],
                   g = n ? n(m) : m
                 if (
                   ((m = r || 0 !== m ? m : 0),
-                  !(h ? cacheHas(h, g) : o(d, g, r)))
+                  !(f ? cacheHas(f, g) : o(d, g, r)))
                 ) {
                   for (l = a; --l; ) {
                     var y = u[l]
                     if (!(y ? cacheHas(y, g) : o(e[l], g, r))) continue e
                   }
-                  h && h.push(g), d.push(m)
+                  f && f.push(g), d.push(m)
                 }
               }
               return d
@@ -20598,15 +20598,15 @@
               )
             }
             function baseIsEqualDeep(e, t, n, r, o, s) {
-              var i = Pr(e),
-                a = Pr(t),
-                l = i ? W : Fn(e),
-                u = a ? W : Fn(t),
+              var i = Or(e),
+                a = Or(t),
+                l = i ? W : qn(e),
+                u = a ? W : qn(t),
                 c = (l = l == U ? Q : l) == Q,
                 d = (u = u == U ? Q : u) == Q,
                 p = l == u
-              if (p && Tr(e)) {
-                if (!Tr(t)) return !1
+              if (p && Mr(e)) {
+                if (!Mr(t)) return !1
                 ;(i = !0), (c = !1)
               }
               if (p && !c)
@@ -20617,11 +20617,11 @@
                     : equalByTag(e, t, l, n, r, o, s)
                 )
               if (!(n & m)) {
-                var f = c && lt.call(e, "__wrapped__"),
-                  h = d && lt.call(t, "__wrapped__")
-                if (f || h) {
-                  var g = f ? e.value() : e,
-                    y = h ? t.value() : t
+                var h = c && lt.call(e, "__wrapped__"),
+                  f = d && lt.call(t, "__wrapped__")
+                if (h || f) {
+                  var g = h ? e.value() : e,
+                    y = f ? t.value() : t
                   return s || (s = new Stack()), o(g, y, n, r, s)
                 }
               }
@@ -20646,8 +20646,8 @@
                   if (c === s && !(u in e)) return !1
                 } else {
                   var p = new Stack()
-                  if (r) var f = r(c, d, u, e, t, p)
-                  if (!(f === s ? baseIsEqual(d, c, m | g, r, p) : f)) return !1
+                  if (r) var h = r(c, d, u, e, t, p)
+                  if (!(h === s ? baseIsEqual(d, c, m | g, r, p) : h)) return !1
                 }
               }
               return !0
@@ -20664,7 +20664,7 @@
                 : null == e
                   ? identity
                   : "object" == typeof e
-                    ? Pr(e) ? baseMatchesProperty(e[0], e[1]) : baseMatches(e)
+                    ? Or(e) ? baseMatchesProperty(e[0], e[1]) : baseMatches(e)
                     : property(e)
             }
             function baseKeys(e) {
@@ -20715,7 +20715,7 @@
             }
             function baseMerge(e, t, n, r, o) {
               e !== t &&
-                Pn(
+                On(
                   t,
                   function(i, a) {
                     if (isObject(i))
@@ -20738,23 +20738,23 @@
                 var d = i ? i(l, u, n + "", e, t, a) : s,
                   p = d === s
                 if (p) {
-                  var f = Pr(u),
-                    h = !f && Tr(u),
-                    m = !f && !h && Lr(u)
+                  var h = Or(u),
+                    f = !h && Mr(u),
+                    m = !h && !f && Lr(u)
                   ;(d = u),
-                    f || h || m
-                      ? Pr(l)
+                    h || f || m
+                      ? Or(l)
                         ? (d = l)
                         : isArrayLikeObject(l)
                           ? (d = copyArray(l))
-                          : h
+                          : f
                             ? ((p = !1), (d = cloneBuffer(u, !0)))
                             : m
                               ? ((p = !1), (d = cloneTypedArray(u, !0)))
                               : (d = [])
-                      : isPlainObject(u) || Or(u)
+                      : isPlainObject(u) || Rr(u)
                         ? ((d = l),
-                          Or(l)
+                          Rr(l)
                             ? (d = toPlainObject(l))
                             : (!isObject(l) || (r && isFunction(l))) &&
                               (d = initCloneObject(u)))
@@ -20825,7 +20825,7 @@
                   (l = o(a, c, l, r)) > -1;
 
                 )
-                  a !== e && Rt.call(a, l, 1), Rt.call(e, l, 1)
+                  a !== e && Pt.call(a, l, 1), Pt.call(e, l, 1)
               return e
             }
             function basePullAt(e, t) {
@@ -20833,7 +20833,7 @@
                 var o = t[n]
                 if (n == r || o !== s) {
                   var s = o
-                  isIndex(o) ? Rt.call(e, o, 1) : baseUnset(e, o)
+                  isIndex(o) ? Pt.call(e, o, 1) : baseUnset(e, o)
                 }
               }
               return e
@@ -20843,7 +20843,7 @@
             }
             function baseRange(e, n, r, o) {
               for (
-                var s = -1, i = rn(Zt((n - e) / (r || 1)), 0), a = t(i);
+                var s = -1, i = rn(Yt((n - e) / (r || 1)), 0), a = t(i);
                 i--;
 
               )
@@ -20911,7 +20911,7 @@
             function baseSortedIndex(e, t, n) {
               var r = 0,
                 o = null == e ? r : e.length
-              if ("number" == typeof t && t === t && o <= F) {
+              if ("number" == typeof t && t === t && o <= q) {
                 for (; r < o; ) {
                   var s = (r + o) >>> 1,
                     i = e[s]
@@ -20937,19 +20937,19 @@
               ) {
                 var d = Jt((o + i) / 2),
                   p = n(e[d]),
-                  f = p !== s,
-                  h = null === p,
+                  h = p !== s,
+                  f = null === p,
                   m = p === p,
                   g = isSymbol(p)
                 if (a) var y = r || m
                 else
                   y = c
-                    ? m && (r || f)
+                    ? m && (r || h)
                     : l
-                      ? m && f && (r || !h)
+                      ? m && h && (r || !f)
                       : u
-                        ? m && f && !h && (r || !g)
-                        : !h && !g && (r ? p <= t : p < t)
+                        ? m && h && !f && (r || !g)
+                        : !f && !g && (r ? p <= t : p < t)
                 y ? (o = d + 1) : (i = d)
               }
               return on(i, B)
@@ -20970,10 +20970,10 @@
             }
             function baseToString(e) {
               if ("string" == typeof e) return e
-              if (Pr(e)) return arrayMap(e, baseToString) + ""
+              if (Or(e)) return arrayMap(e, baseToString) + ""
               if (isSymbol(e)) return kn ? kn.call(e) : ""
               var t = e + ""
-              return "0" == t && 1 / e == -M ? "-0" : t
+              return "0" == t && 1 / e == -D ? "-0" : t
             }
             function baseUniq(e, t, n) {
               var r = -1,
@@ -20992,7 +20992,7 @@
                 var d = e[r],
                   p = t ? t(d) : d
                 if (((d = n || 0 !== d ? d : 0), a && p === p)) {
-                  for (var f = u.length; f--; ) if (u[f] === p) continue e
+                  for (var h = u.length; h--; ) if (u[h] === p) continue e
                   t && u.push(p), l.push(d)
                 } else o(u, p, n) || (u !== l && u.push(p), l.push(d))
               }
@@ -21052,7 +21052,7 @@
               return "function" == typeof e ? e : identity
             }
             function castPath(e, t) {
-              return Pr(e) ? e : isKey(e, t) ? [e] : zn(toString(e))
+              return Or(e) ? e : isKey(e, t) ? [e] : zn(toString(e))
             }
             function castSlice(e, t, n) {
               var r = e.length
@@ -21171,13 +21171,13 @@
                   c = n.length,
                   d = rn(i - l, 0),
                   p = t(d + c),
-                  f = !o;
+                  h = !o;
                 ++s < d;
 
               )
                 p[s] = e[s]
-              for (var h = s; ++u < c; ) p[h + u] = n[u]
-              for (; ++a < l; ) (f || s < i) && (p[h + r[a]] = e[s++])
+              for (var f = s; ++u < c; ) p[f + u] = n[u]
+              for (; ++a < l; ) (h || s < i) && (p[f + r[a]] = e[s++])
               return p
             }
             function copyArray(e, n) {
@@ -21205,7 +21205,7 @@
             }
             function createAggregator(e, t) {
               return function(n, r) {
-                var o = Pr(n) ? arrayAggregator : baseAggregator,
+                var o = Or(n) ? arrayAggregator : baseAggregator,
                   s = t ? t() : {}
                 return o(n, e, getIteratee(r, 2), s)
               }
@@ -21254,7 +21254,7 @@
             }
             function createBind(e, t, n) {
               function wrapper() {
-                return (this && this !== Dt && this instanceof wrapper
+                return (this && this !== Tt && this instanceof wrapper
                   ? o
                   : e
                 ).apply(r ? n : this, arguments)
@@ -21273,7 +21273,7 @@
             }
             function createCompounder(e) {
               return function(t) {
-                return arrayReduce(words(deburr(t).replace(ht, "")), e, "")
+                return arrayReduce(words(deburr(t).replace(ft, "")), e, "")
               }
             }
             function createCtor(e) {
@@ -21331,7 +21331,7 @@
                       r - i
                     )
                   : apply(
-                      this && this !== Dt && this instanceof wrapper ? o : e,
+                      this && this !== Tt && this instanceof wrapper ? o : e,
                       this,
                       a
                     )
@@ -21379,7 +21379,7 @@
                 return function() {
                   var e = arguments,
                     r = e[0]
-                  if (a && 1 == e.length && Pr(r)) return a.plant(r).value()
+                  if (a && 1 == e.length && Or(r)) return a.plant(r).value()
                   for (var o = 0, s = n ? t[o].apply(this, e) : r; ++o < n; )
                     s = t[o].call(this, s)
                   return s
@@ -21413,25 +21413,25 @@
                     d - s
                   )
                 }
-                var C = f ? r : this,
-                  w = h ? C[e] : e
+                var C = h ? r : this,
+                  w = f ? C[e] : e
                 return (
                   (s = y.length),
                   u ? (y = reorder(y, u)) : g && s > 1 && y.reverse(),
                   p && c < s && (y.length = c),
                   this &&
-                    this !== Dt &&
+                    this !== Tt &&
                     this instanceof wrapper &&
                     (w = v || createCtor(w)),
                   w.apply(C, y)
                 )
               }
               var p = n & w,
-                f = n & y,
-                h = n & b,
+                h = n & y,
+                f = n & b,
                 m = n & (_ | j),
                 g = n & E,
-                v = h ? s : createCtor(e)
+                v = f ? s : createCtor(e)
               return wrapper
             }
             function createInverter(e, t) {
@@ -21469,7 +21469,7 @@
             function createPadding(e, t) {
               var n = (t = t === s ? " " : baseToString(t)).length
               if (n < 2) return n ? baseRepeat(t, e) : t
-              var r = baseRepeat(t, Zt(e / stringSize(t)))
+              var r = baseRepeat(t, Yt(e / stringSize(t)))
               return hasUnicode(t)
                 ? castSlice(stringToArray(r), 0, e).join("")
                 : r.slice(0, e)
@@ -21482,7 +21482,7 @@
                     l = -1,
                     u = o.length,
                     c = t(u + a),
-                    d = this && this !== Dt && this instanceof wrapper ? i : e;
+                    d = this && this !== Tt && this instanceof wrapper ? i : e;
                   ++l < u;
 
                 )
@@ -21520,11 +21520,11 @@
             function createRecurry(e, t, n, r, o, i, a, l, u, c) {
               var d = t & _,
                 p = d ? a : s,
-                f = d ? s : a,
-                h = d ? i : s,
+                h = d ? s : a,
+                f = d ? i : s,
                 m = d ? s : i
               ;(t |= d ? x : C), (t &= ~(d ? C : x)) & v || (t &= ~(y | b))
-              var g = [e, t, o, h, p, m, f, l, u, c],
+              var g = [e, t, o, f, p, m, h, l, u, c],
                 j = n.apply(s, g)
               return (
                 isLaziable(e) && Un(j, g),
@@ -21553,8 +21553,8 @@
             }
             function createToPairs(e) {
               return function(t) {
-                var n = Fn(t)
-                return n == Z
+                var n = qn(t)
+                return n == Y
                   ? mapToArray(t)
                   : n == ne ? setToPairs(t) : baseToPairs(t, e(t))
               }
@@ -21571,13 +21571,13 @@
                 t & C)
               ) {
                 var p = r,
-                  f = o
+                  h = o
                 r = o = s
               }
-              var h = c ? s : Ln(e),
-                m = [e, t, n, r, o, p, f, i, a, u]
+              var f = c ? s : Ln(e),
+                m = [e, t, n, r, o, p, h, i, a, u]
               if (
-                (h && mergeData(m, h),
+                (f && mergeData(m, f),
                 (e = m[0]),
                 (t = m[1]),
                 (n = m[2]),
@@ -21596,7 +21596,7 @@
                       ? createHybrid.apply(s, m)
                       : createPartial(e, t, n, r)
               else var g = createBind(e, t, n)
-              return setWrapToString((h ? Tn : Un)(g, m), e, t)
+              return setWrapToString((f ? Mn : Un)(g, m), e, t)
             }
             function customDefaultsAssignIn(e, t, n, r) {
               return e === s || (eq(e, st[n]) && !lt.call(r, n)) ? t : e
@@ -21623,27 +21623,27 @@
               if (c && i.get(t)) return c == t
               var d = -1,
                 p = !0,
-                f = n & g ? new SetCache() : s
+                h = n & g ? new SetCache() : s
               for (i.set(e, t), i.set(t, e); ++d < l; ) {
-                var h = e[d],
+                var f = e[d],
                   y = t[d]
-                if (r) var b = a ? r(y, h, d, t, e, i) : r(h, y, d, e, t, i)
+                if (r) var b = a ? r(y, f, d, t, e, i) : r(f, y, d, e, t, i)
                 if (b !== s) {
                   if (b) continue
                   p = !1
                   break
                 }
-                if (f) {
+                if (h) {
                   if (
                     !arraySome(t, function(e, t) {
-                      if (!cacheHas(f, t) && (h === e || o(h, e, n, r, i)))
-                        return f.push(t)
+                      if (!cacheHas(h, t) && (f === e || o(f, e, n, r, i)))
+                        return h.push(t)
                     })
                   ) {
                     p = !1
                     break
                   }
-                } else if (h !== y && !o(h, y, n, r, i)) {
+                } else if (f !== y && !o(f, y, n, r, i)) {
                   p = !1
                   break
                 }
@@ -21664,7 +21664,7 @@
                     e.byteLength != t.byteLength || !s(new vt(e), new vt(t))
                   )
                 case z:
-                case H:
+                case G:
                 case J:
                   return eq(+e, +t)
                 case K:
@@ -21672,7 +21672,7 @@
                 case te:
                 case re:
                   return e == t + ""
-                case Z:
+                case Y:
                   var a = mapToArray
                 case ne:
                   var l = r & m
@@ -21698,19 +21698,19 @@
               }
               var p = i.get(e)
               if (p && i.get(t)) return p == t
-              var f = !0
+              var h = !0
               i.set(e, t), i.set(t, e)
-              for (var h = a; ++c < u; ) {
+              for (var f = a; ++c < u; ) {
                 var g = e[(d = l[c])],
                   y = t[d]
                 if (r) var b = a ? r(y, g, d, t, e, i) : r(g, y, d, e, t, i)
                 if (!(b === s ? g === y || o(g, y, n, r, i) : b)) {
-                  f = !1
+                  h = !1
                   break
                 }
-                h || (h = "constructor" == d)
+                f || (f = "constructor" == d)
               }
-              if (f && !h) {
+              if (h && !f) {
                 var v = e.constructor,
                   _ = t.constructor
                 v != _ &&
@@ -21722,9 +21722,9 @@
                     "function" == typeof _ &&
                     _ instanceof _
                   ) &&
-                  (f = !1)
+                  (h = !1)
               }
-              return i.delete(e), i.delete(t), f
+              return i.delete(e), i.delete(t), h
             }
             function flatRest(e) {
               return Vn(overRest(e, s, flatten), e + "")
@@ -21808,8 +21808,8 @@
               return { start: e, end: t }
             }
             function getWrapDetails(e) {
-              var t = e.match(Fe)
-              return t ? t[1].split(qe) : []
+              var t = e.match(qe)
+              return t ? t[1].split(Fe) : []
             }
             function hasPath(e, t, n) {
               for (
@@ -21826,7 +21826,7 @@
                 : !!(o = null == e ? 0 : e.length) &&
                     isLength(o) &&
                     isIndex(i, o) &&
-                    (Pr(e) || Or(e))
+                    (Or(e) || Rr(e))
             }
             function initCloneArray(e) {
               var t = e.length,
@@ -21850,21 +21850,21 @@
                 case le:
                   return cloneArrayBuffer(e)
                 case z:
-                case H:
+                case G:
                   return new o(+e)
                 case ue:
                   return cloneDataView(e, r)
                 case ce:
                 case de:
                 case pe:
-                case fe:
                 case he:
+                case fe:
                 case me:
                 case ge:
                 case ye:
                 case be:
                   return cloneTypedArray(e, r)
-                case Z:
+                case Y:
                   return cloneMap(e, r, n)
                 case J:
                 case re:
@@ -21888,12 +21888,12 @@
               )
             }
             function isFlattenable(e) {
-              return Pr(e) || Or(e) || !!(Tt && e && e[Tt])
+              return Or(e) || Rr(e) || !!(Mt && e && e[Mt])
             }
             function isIndex(e, t) {
               return (
                 !!(t = null == t ? A : t) &&
-                ("number" == typeof e || Ye.test(e)) &&
+                ("number" == typeof e || Ze.test(e)) &&
                 e > -1 &&
                 e % 1 == 0 &&
                 e < t
@@ -21909,7 +21909,7 @@
               )
             }
             function isKey(e, t) {
-              if (Pr(e)) return !1
+              if (Or(e)) return !1
               var n = typeof e
               return (
                 !(
@@ -21919,8 +21919,8 @@
                   null != e &&
                   !isSymbol(e)
                 ) ||
-                Re.test(e) ||
-                !Pe.test(e) ||
+                Pe.test(e) ||
+                !Oe.test(e) ||
                 (null != t && e in Qe(t))
               )
             }
@@ -22040,9 +22040,9 @@
                 n = 0
               return function() {
                 var r = sn(),
-                  o = R - (r - n)
+                  o = P - (r - n)
                 if (((n = r), o > 0)) {
-                  if (++t >= P) return arguments[0]
+                  if (++t >= O) return arguments[0]
                 } else t = 0
                 return e.apply(s, arguments)
               }
@@ -22061,7 +22061,7 @@
             function toKey(e) {
               if ("string" == typeof e || isSymbol(e)) return e
               var t = e + ""
-              return "0" == t && 1 / e == -M ? "-0" : t
+              return "0" == t && 1 / e == -D ? "-0" : t
             }
             function toSource(e) {
               if (null != e) {
@@ -22076,7 +22076,7 @@
             }
             function updateWrapDetails(e, t) {
               return (
-                arrayEach(q, function(n) {
+                arrayEach(F, function(n) {
                   var r = "_." + n[0]
                   t & n[1] && !arrayIncludes(e, r) && e.push(r)
                 }),
@@ -22158,13 +22158,13 @@
               return t(e)
             }
             function forEach(e, t) {
-              return (Pr(e) ? arrayEach : Sn)(e, getIteratee(t, 3))
+              return (Or(e) ? arrayEach : Sn)(e, getIteratee(t, 3))
             }
             function forEachRight(e, t) {
-              return (Pr(e) ? arrayEachRight : On)(e, getIteratee(t, 3))
+              return (Or(e) ? arrayEachRight : Rn)(e, getIteratee(t, 3))
             }
             function map(e, t) {
-              return (Pr(e) ? arrayMap : baseMap)(e, getIteratee(t, 3))
+              return (Or(e) ? arrayMap : baseMap)(e, getIteratee(t, 3))
             }
             function ary(e, t, n) {
               return (
@@ -22207,12 +22207,12 @@
               function remainingWait(e) {
                 var n = e - d,
                   r = t - (e - c)
-                return f ? on(r, i - n) : r
+                return h ? on(r, i - n) : r
               }
               function shouldInvoke(e) {
                 var n = e - c,
                   r = e - d
-                return c === s || n >= t || n < 0 || (f && r >= i)
+                return c === s || n >= t || n < 0 || (h && r >= i)
               }
               function timerExpired() {
                 var e = yr()
@@ -22220,14 +22220,14 @@
                 u = Wn(timerExpired, remainingWait(e))
               }
               function trailingEdge(e) {
-                return (u = s), h && r ? invokeFunc(e) : ((r = o = s), a)
+                return (u = s), f && r ? invokeFunc(e) : ((r = o = s), a)
               }
               function debounced() {
                 var e = yr(),
                   n = shouldInvoke(e)
                 if (((r = arguments), (o = this), (c = e), n)) {
                   if (u === s) return leadingEdge(c)
-                  if (f) return (u = Wn(timerExpired, t)), invokeFunc(c)
+                  if (h) return (u = Wn(timerExpired, t)), invokeFunc(c)
                 }
                 return u === s && (u = Wn(timerExpired, t)), a
               }
@@ -22239,17 +22239,17 @@
                 c,
                 d = 0,
                 p = !1,
-                f = !1,
-                h = !0
+                h = !1,
+                f = !0
               if ("function" != typeof e) throw new nt(l)
               return (
                 (t = toNumber(t) || 0),
                 isObject(n) &&
                   ((p = !!n.leading),
-                  (i = (f = "maxWait" in n)
+                  (i = (h = "maxWait" in n)
                     ? rn(toNumber(n.maxWait) || 0, t)
                     : i),
-                  (h = "trailing" in n ? !!n.trailing : h)),
+                  (f = "trailing" in n ? !!n.trailing : f)),
                 (debounced.cancel = function cancel() {
                   u !== s && An(u), (d = 0), (r = c = o = u = s)
                 }),
@@ -22306,7 +22306,7 @@
               var t = baseGetTag(e)
               return (
                 t == K ||
-                t == G ||
+                t == H ||
                 ("string" == typeof e.message &&
                   "string" == typeof e.name &&
                   !isPlainObject(e))
@@ -22315,7 +22315,7 @@
             function isFunction(e) {
               if (!isObject(e)) return !1
               var t = baseGetTag(e)
-              return t == $ || t == Y || t == V || t == ee
+              return t == $ || t == Z || t == V || t == ee
             }
             function isInteger(e) {
               return "number" == typeof e && e == toInteger(e)
@@ -22347,7 +22347,7 @@
             function isString(e) {
               return (
                 "string" == typeof e ||
-                (!Pr(e) && isObjectLike(e) && baseGetTag(e) == re)
+                (!Or(e) && isObjectLike(e) && baseGetTag(e) == re)
               )
             }
             function isSymbol(e) {
@@ -22359,13 +22359,13 @@
               if (!e) return []
               if (isArrayLike(e))
                 return isString(e) ? stringToArray(e) : copyArray(e)
-              if (Mt && e[Mt]) return iteratorToArray(e[Mt]())
-              var t = Fn(e)
-              return (t == Z ? mapToArray : t == ne ? setToArray : values)(e)
+              if (Dt && e[Dt]) return iteratorToArray(e[Dt]())
+              var t = qn(e)
+              return (t == Y ? mapToArray : t == ne ? setToArray : values)(e)
             }
             function toFinite(e) {
               return e
-                ? (e = toNumber(e)) === M || e === -M
+                ? (e = toNumber(e)) === D || e === -D
                   ? (e < 0 ? -1 : 1) * I
                   : e === e ? e : 0
                 : 0 === e ? e : 0
@@ -22387,10 +22387,10 @@
               }
               if ("string" != typeof e) return 0 === e ? e : +e
               e = e.replace(Ie, "")
-              var n = Ge.test(e)
+              var n = He.test(e)
               return n || $e.test(e)
-                ? Pt(e.slice(2), n ? 2 : 8)
-                : He.test(e) ? L : +e
+                ? Ot(e.slice(2), n ? 2 : 8)
+                : Ge.test(e) ? L : +e
             }
             function toPlainObject(e) {
               return copyObject(e, keysIn(e))
@@ -22430,7 +22430,7 @@
               return lo(toString(e).toLowerCase())
             }
             function deburr(e) {
-              return (e = toString(e)) && e.replace(Ze, Ht).replace(mt, "")
+              return (e = toString(e)) && e.replace(Ye, Gt).replace(mt, "")
             }
             function words(e, t, n) {
               return (
@@ -22495,7 +22495,7 @@
               return !1
             }
             var t = (e =
-                null == e ? Dt : $t.defaults(Dt.Object(), e, $t.pick(Dt, _t)))
+                null == e ? Tt : $t.defaults(Tt.Object(), e, $t.pick(Tt, _t)))
                 .Array,
               n = e.Date,
               r = e.Error,
@@ -22518,12 +22518,12 @@
               })(),
               dt = st.toString,
               pt = at.call(Qe),
-              ft = Dt._,
+              ht = Tt._,
               gt = et(
                 "^" +
                   at
                     .call(lt)
-                    .replace(Me, "\\$&")
+                    .replace(De, "\\$&")
                     .replace(
                       /hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,
                       "$1.*?"
@@ -22537,9 +22537,9 @@
               kt = overArg(Qe.getPrototypeOf, Qe),
               Et = Qe.create,
               St = st.propertyIsEnumerable,
-              Rt = rt.splice,
-              Tt = bt ? bt.isConcatSpreadable : s,
-              Mt = bt ? bt.iterator : s,
+              Pt = rt.splice,
+              Mt = bt ? bt.isConcatSpreadable : s,
+              Dt = bt ? bt.iterator : s,
               At = bt ? bt.toStringTag : s,
               Lt = (function() {
                 try {
@@ -22547,10 +22547,10 @@
                   return e({}, "", {}), e
                 } catch (e) {}
               })(),
-              Nt = e.clearTimeout !== Dt.clearTimeout && e.clearTimeout,
-              zt = n && n.now !== Dt.Date.now && n.now,
-              Yt = e.setTimeout !== Dt.setTimeout && e.setTimeout,
-              Zt = Ue.ceil,
+              Nt = e.clearTimeout !== Tt.clearTimeout && e.clearTimeout,
+              zt = n && n.now !== Tt.Date.now && n.now,
+              Zt = e.setTimeout !== Tt.setTimeout && e.setTimeout,
+              Yt = Ue.ceil,
               Jt = Ue.floor,
               Xt = Qe.getOwnPropertySymbols,
               Qt = yt ? yt.isBuffer : s,
@@ -22566,16 +22566,16 @@
               cn = getNative(e, "DataView"),
               dn = getNative(e, "Map"),
               pn = getNative(e, "Promise"),
-              fn = getNative(e, "Set"),
-              hn = getNative(e, "WeakMap"),
+              hn = getNative(e, "Set"),
+              fn = getNative(e, "WeakMap"),
               mn = getNative(Qe, "create"),
-              gn = hn && new hn(),
+              gn = fn && new fn(),
               yn = {},
               bn = toSource(cn),
               vn = toSource(dn),
               _n = toSource(pn),
-              jn = toSource(fn),
-              xn = toSource(hn),
+              jn = toSource(hn),
+              xn = toSource(fn),
               Cn = bt ? bt.prototype : s,
               wn = Cn ? Cn.valueOf : s,
               kn = Cn ? Cn.toString : s,
@@ -22592,7 +22592,7 @@
             ;(lodash.templateSettings = {
               escape: Ee,
               evaluate: Se,
-              interpolate: Oe,
+              interpolate: Re,
               variable: "",
               imports: { _: lodash },
             }),
@@ -22637,7 +22637,7 @@
                   n = assocIndexOf(t, e)
                 return !(
                   n < 0 ||
-                  (n == t.length - 1 ? t.pop() : Rt.call(t, n, 1),
+                  (n == t.length - 1 ? t.pop() : Pt.call(t, n, 1),
                   --this.size,
                   0)
                 )
@@ -22713,15 +22713,15 @@
                 return n.set(e, t), (this.size = n.size), this
               })
             var Sn = createBaseEach(baseForOwn),
-              On = createBaseEach(baseForOwnRight, !0),
-              Pn = createBaseFor(),
-              Rn = createBaseFor(!0),
-              Tn = gn
+              Rn = createBaseEach(baseForOwnRight, !0),
+              On = createBaseFor(),
+              Pn = createBaseFor(!0),
+              Mn = gn
                 ? function(e, t) {
                     return gn.set(e, t), e
                   }
                 : identity,
-              Dn = Lt
+              Tn = Lt
                 ? function(e, t) {
                     return Lt(e, "toString", {
                       configurable: !0,
@@ -22731,16 +22731,16 @@
                     })
                   }
                 : identity,
-              Mn = baseRest,
+              Dn = baseRest,
               An =
                 Nt ||
                 function(e) {
-                  return Dt.clearTimeout(e)
+                  return Tt.clearTimeout(e)
                 },
               In =
-                fn && 1 / setToArray(new fn([, -0]))[1] == M
+                hn && 1 / setToArray(new hn([, -0]))[1] == D
                   ? function(e) {
-                      return new fn(e)
+                      return new hn(e)
                     }
                   : noop,
               Ln = gn
@@ -22764,13 +22764,13 @@
                     return t
                   }
                 : stubArray,
-              Fn = baseGetTag
-            ;((cn && Fn(new cn(new ArrayBuffer(1))) != ue) ||
-              (dn && Fn(new dn()) != Z) ||
-              (pn && "[object Promise]" != Fn(pn.resolve())) ||
-              (fn && Fn(new fn()) != ne) ||
-              (hn && Fn(new hn()) != ie)) &&
-              (Fn = function(e) {
+              qn = baseGetTag
+            ;((cn && qn(new cn(new ArrayBuffer(1))) != ue) ||
+              (dn && qn(new dn()) != Y) ||
+              (pn && "[object Promise]" != qn(pn.resolve())) ||
+              (hn && qn(new hn()) != ne) ||
+              (fn && qn(new fn()) != ie)) &&
+              (qn = function(e) {
                 var t = baseGetTag(e),
                   n = t == Q ? e.constructor : s,
                   r = n ? toSource(n) : ""
@@ -22779,7 +22779,7 @@
                     case bn:
                       return ue
                     case vn:
-                      return Z
+                      return Y
                     case _n:
                       return "[object Promise]"
                     case jn:
@@ -22789,14 +22789,14 @@
                   }
                 return t
               })
-            var qn = it ? isFunction : stubFalse,
-              Un = shortOut(Tn),
+            var Fn = it ? isFunction : stubFalse,
+              Un = shortOut(Mn),
               Wn =
-                Yt ||
+                Zt ||
                 function(e, t) {
-                  return Dt.setTimeout(e, t)
+                  return Tt.setTimeout(e, t)
                 },
-              Vn = shortOut(Dn),
+              Vn = shortOut(Tn),
               zn = (function memoizeCapped(e) {
                 var t = memoize(e, function(e) {
                     return n.size === c && n.clear(), e
@@ -22806,19 +22806,19 @@
               })(function(e) {
                 var t = []
                 return (
-                  Te.test(e) && t.push(""),
-                  e.replace(De, function(e, n, r, o) {
+                  Me.test(e) && t.push(""),
+                  e.replace(Te, function(e, n, r, o) {
                     t.push(r ? o.replace(We, "$1") : n || e)
                   }),
                   t
                 )
               }),
-              Hn = baseRest(function(e, t) {
+              Gn = baseRest(function(e, t) {
                 return isArrayLikeObject(e)
                   ? baseDifference(e, baseFlatten(t, 1, isArrayLikeObject, !0))
                   : []
               }),
-              Gn = baseRest(function(e, t) {
+              Hn = baseRest(function(e, t) {
                 var n = last(t)
                 return (
                   isArrayLikeObject(n) && (n = s),
@@ -22849,7 +22849,7 @@
                 var t = arrayMap(e, castArrayLikeObject)
                 return t.length && t[0] === e[0] ? baseIntersection(t) : []
               }),
-              Yn = baseRest(function(e) {
+              Zn = baseRest(function(e) {
                 var t = last(e),
                   n = arrayMap(e, castArrayLikeObject)
                 return (
@@ -22859,7 +22859,7 @@
                     : []
                 )
               }),
-              Zn = baseRest(function(e) {
+              Yn = baseRest(function(e) {
                 var t = last(e),
                   n = arrayMap(e, castArrayLikeObject)
                 return (
@@ -22958,7 +22958,7 @@
               pr = createAggregator(function(e, t, n) {
                 lt.call(e, n) ? e[n].push(t) : baseAssignValue(e, n, [t])
               }),
-              fr = baseRest(function(e, n, r) {
+              hr = baseRest(function(e, n, r) {
                 var o = -1,
                   s = "function" == typeof n,
                   i = isArrayLike(e) ? t(e.length) : []
@@ -22969,7 +22969,7 @@
                   i
                 )
               }),
-              hr = createAggregator(function(e, t, n) {
+              fr = createAggregator(function(e, t, n) {
                 baseAssignValue(e, n, t)
               }),
               mr = createAggregator(
@@ -22993,7 +22993,7 @@
               yr =
                 zt ||
                 function() {
-                  return Dt.Date.now()
+                  return Tt.Date.now()
                 },
               br = baseRest(function(e, t, n) {
                 var r = y
@@ -23018,9 +23018,9 @@
                 return baseDelay(e, toNumber(t) || 0, n)
               })
             memoize.Cache = MapCache
-            var xr = Mn(function(e, t) {
+            var xr = Dn(function(e, t) {
                 var n = (t =
-                  1 == t.length && Pr(t[0])
+                  1 == t.length && Or(t[0])
                     ? arrayMap(t[0], baseUnary(getIteratee()))
                     : arrayMap(baseFlatten(t, 1), baseUnary(getIteratee())))
                   .length
@@ -23045,7 +23045,7 @@
               Sr = createRelationalOperation(function(e, t) {
                 return e >= t
               }),
-              Or = baseIsArguments(
+              Rr = baseIsArguments(
                 (function() {
                   return arguments
                 })()
@@ -23058,22 +23058,22 @@
                       !St.call(e, "callee")
                     )
                   },
-              Pr = t.isArray,
-              Rr = Bt
+              Or = t.isArray,
+              Pr = Bt
                 ? baseUnary(Bt)
                 : function baseIsArrayBuffer(e) {
                     return isObjectLike(e) && baseGetTag(e) == le
                   },
-              Tr = Qt || stubFalse,
+              Mr = Qt || stubFalse,
+              Tr = qt
+                ? baseUnary(qt)
+                : function baseIsDate(e) {
+                    return isObjectLike(e) && baseGetTag(e) == G
+                  },
               Dr = Ft
                 ? baseUnary(Ft)
-                : function baseIsDate(e) {
-                    return isObjectLike(e) && baseGetTag(e) == H
-                  },
-              Mr = qt
-                ? baseUnary(qt)
                 : function baseIsMap(e) {
-                    return isObjectLike(e) && Fn(e) == Z
+                    return isObjectLike(e) && qn(e) == Y
                   },
               Ar = Ut
                 ? baseUnary(Ut)
@@ -23083,7 +23083,7 @@
               Ir = Wt
                 ? baseUnary(Wt)
                 : function baseIsSet(e) {
-                    return isObjectLike(e) && Fn(e) == ne
+                    return isObjectLike(e) && qn(e) == ne
                   },
               Lr = Vt
                 ? baseUnary(Vt)
@@ -23098,11 +23098,11 @@
               Br = createRelationalOperation(function(e, t) {
                 return e <= t
               }),
-              Fr = createAssigner(function(e, t) {
+              qr = createAssigner(function(e, t) {
                 if (isPrototype(t) || isArrayLike(t)) copyObject(t, keys(t), e)
                 else for (var n in t) lt.call(t, n) && assignValue(e, n, t[n])
               }),
-              qr = createAssigner(function(e, t) {
+              Fr = createAssigner(function(e, t) {
                 copyObject(t, keysIn(t), e)
               }),
               Ur = createAssigner(function(e, t, n, r) {
@@ -23115,20 +23115,20 @@
               zr = baseRest(function(e) {
                 return e.push(s, customDefaultsAssignIn), apply(Ur, s, e)
               }),
-              Hr = baseRest(function(e) {
-                return e.push(s, customDefaultsMerge), apply(Zr, s, e)
+              Gr = baseRest(function(e) {
+                return e.push(s, customDefaultsMerge), apply(Yr, s, e)
               }),
-              Gr = createInverter(function(e, t, n) {
+              Hr = createInverter(function(e, t, n) {
                 e[t] = n
               }, constant(identity)),
               Kr = createInverter(function(e, t, n) {
                 lt.call(e, t) ? e[t].push(n) : (e[t] = [n])
               }, getIteratee),
               $r = baseRest(baseInvoke),
-              Yr = createAssigner(function(e, t, n) {
+              Zr = createAssigner(function(e, t, n) {
                 baseMerge(e, t, n)
               }),
-              Zr = createAssigner(function(e, t, n, r) {
+              Yr = createAssigner(function(e, t, n, r) {
                 baseMerge(e, t, n, r)
               }),
               Jr = flatRest(function(e, t) {
@@ -23139,7 +23139,7 @@
                   return (t = castPath(t, e)), r || (r = t.length > 1), t
                 })),
                   copyObject(e, getAllKeysIn(e), n),
-                  r && (n = baseClone(n, p | f | h, customOmitClone))
+                  r && (n = baseClone(n, p | h | f, customOmitClone))
                 for (var o = t.length; o--; ) baseUnset(n, t[o])
                 return n
               }),
@@ -23184,8 +23184,8 @@
                 )
               }),
               po = createFlow(),
-              fo = createFlow(!0),
-              ho = baseRest(function(e, t) {
+              ho = createFlow(!0),
+              fo = baseRest(function(e, t) {
                 return function(n) {
                   return baseInvoke(n, e, t)
                 }
@@ -23226,8 +23226,8 @@
                 )
               }),
               (lodash.ary = ary),
-              (lodash.assign = Fr),
-              (lodash.assignIn = qr),
+              (lodash.assign = qr),
+              (lodash.assignIn = Fr),
               (lodash.assignInWith = Ur),
               (lodash.assignWith = Wr),
               (lodash.at = Vr),
@@ -23238,7 +23238,7 @@
               (lodash.castArray = function castArray() {
                 if (!arguments.length) return []
                 var e = arguments[0]
-                return Pr(e) ? e : [e]
+                return Or(e) ? e : [e]
               }),
               (lodash.chain = chain),
               (lodash.chunk = function chunk(e, n, r) {
@@ -23247,7 +23247,7 @@
                   : rn(toInteger(n), 0)
                 var o = null == e ? 0 : e.length
                 if (!o || n < 1) return []
-                for (var i = 0, a = 0, l = t(Zt(o / n)); i < o; )
+                for (var i = 0, a = 0, l = t(Yt(o / n)); i < o; )
                   l[a++] = baseSlice(e, i, (i += n))
                 return l
               }),
@@ -23267,7 +23267,7 @@
                 if (!e) return []
                 for (var n = t(e - 1), r = arguments[0], o = e; o--; )
                   n[o - 1] = arguments[o]
-                return arrayPush(Pr(r) ? copyArray(r) : [r], baseFlatten(n, 1))
+                return arrayPush(Or(r) ? copyArray(r) : [r], baseFlatten(n, 1))
               }),
               (lodash.cond = function cond(e) {
                 var t = null == e ? 0 : e.length,
@@ -23300,11 +23300,11 @@
               (lodash.curryRight = curryRight),
               (lodash.debounce = debounce),
               (lodash.defaults = zr),
-              (lodash.defaultsDeep = Hr),
+              (lodash.defaultsDeep = Gr),
               (lodash.defer = _r),
               (lodash.delay = jr),
-              (lodash.difference = Hn),
-              (lodash.differenceBy = Gn),
+              (lodash.difference = Gn),
+              (lodash.differenceBy = Hn),
               (lodash.differenceWith = Kn),
               (lodash.drop = function drop(e, t, n) {
                 var r = null == e ? 0 : e.length
@@ -23340,13 +23340,13 @@
                   : []
               }),
               (lodash.filter = function filter(e, t) {
-                return (Pr(e) ? arrayFilter : baseFilter)(e, getIteratee(t, 3))
+                return (Or(e) ? arrayFilter : baseFilter)(e, getIteratee(t, 3))
               }),
               (lodash.flatMap = function flatMap(e, t) {
                 return baseFlatten(map(e, t), 1)
               }),
               (lodash.flatMapDeep = function flatMapDeep(e, t) {
-                return baseFlatten(map(e, t), M)
+                return baseFlatten(map(e, t), D)
               }),
               (lodash.flatMapDepth = function flatMapDepth(e, t, n) {
                 return (
@@ -23355,7 +23355,7 @@
               }),
               (lodash.flatten = flatten),
               (lodash.flattenDeep = function flattenDeep(e) {
-                return (null == e ? 0 : e.length) ? baseFlatten(e, M) : []
+                return (null == e ? 0 : e.length) ? baseFlatten(e, D) : []
               }),
               (lodash.flattenDepth = function flattenDepth(e, t) {
                 return (null == e ? 0 : e.length)
@@ -23366,7 +23366,7 @@
                 return createWrap(e, E)
               }),
               (lodash.flow = po),
-              (lodash.flowRight = fo),
+              (lodash.flowRight = ho),
               (lodash.fromPairs = function fromPairs(e) {
                 for (
                   var t = -1, n = null == e ? 0 : e.length, r = {};
@@ -23389,13 +23389,13 @@
                 return (null == e ? 0 : e.length) ? baseSlice(e, 0, -1) : []
               }),
               (lodash.intersection = $n),
-              (lodash.intersectionBy = Yn),
-              (lodash.intersectionWith = Zn),
-              (lodash.invert = Gr),
+              (lodash.intersectionBy = Zn),
+              (lodash.intersectionWith = Yn),
+              (lodash.invert = Hr),
               (lodash.invertBy = Kr),
-              (lodash.invokeMap = fr),
+              (lodash.invokeMap = hr),
               (lodash.iteratee = iteratee),
-              (lodash.keyBy = hr),
+              (lodash.keyBy = fr),
               (lodash.keys = keys),
               (lodash.keysIn = keysIn),
               (lodash.map = map),
@@ -23426,9 +23426,9 @@
                 return baseMatchesProperty(e, baseClone(t, p))
               }),
               (lodash.memoize = memoize),
-              (lodash.merge = Yr),
-              (lodash.mergeWith = Zr),
-              (lodash.method = ho),
+              (lodash.merge = Zr),
+              (lodash.mergeWith = Yr),
+              (lodash.method = fo),
               (lodash.methodOf = mo),
               (lodash.mixin = mixin),
               (lodash.negate = negate),
@@ -23450,9 +23450,9 @@
               (lodash.orderBy = function orderBy(e, t, n, r) {
                 return null == e
                   ? []
-                  : (Pr(t) || (t = null == t ? [] : [t]),
+                  : (Or(t) || (t = null == t ? [] : [t]),
                     (n = r ? s : n),
-                    Pr(n) || (n = null == n ? [] : [n]),
+                    Or(n) || (n = null == n ? [] : [n]),
                     baseOrderBy(e, t, n))
               }),
               (lodash.over = go),
@@ -23487,7 +23487,7 @@
               (lodash.rangeRight = _o),
               (lodash.rearg = kr),
               (lodash.reject = function reject(e, t) {
-                return (Pr(e) ? arrayFilter : baseFilter)(
+                return (Or(e) ? arrayFilter : baseFilter)(
                   e,
                   negate(getIteratee(t, 3))
                 )
@@ -23514,7 +23514,7 @@
                   (t = (n ? isIterateeCall(e, t, n) : t === s)
                     ? 1
                     : toInteger(t)),
-                  (Pr(e) ? arraySampleSize : baseSampleSize)(e, t)
+                  (Or(e) ? arraySampleSize : baseSampleSize)(e, t)
                 )
               }),
               (lodash.set = function set(e, t, n) {
@@ -23527,7 +23527,7 @@
                 )
               }),
               (lodash.shuffle = function shuffle(e) {
-                return (Pr(e) ? arrayShuffle : baseShuffle)(e)
+                return (Or(e) ? arrayShuffle : baseShuffle)(e)
               }),
               (lodash.slice = function slice(e, t, n) {
                 var r = null == e ? 0 : e.length
@@ -23618,14 +23618,14 @@
               (lodash.toPairs = Qr),
               (lodash.toPairsIn = eo),
               (lodash.toPath = function toPath(e) {
-                return Pr(e)
+                return Or(e)
                   ? arrayMap(e, toKey)
                   : isSymbol(e) ? [e] : copyArray(zn(toString(e)))
               }),
               (lodash.toPlainObject = toPlainObject),
               (lodash.transform = function transform(e, t, n) {
-                var r = Pr(e),
-                  o = r || Tr(e) || Lr(e)
+                var r = Or(e),
+                  o = r || Mr(e) || Lr(e)
                 if (((t = getIteratee(t, 4)), null == n)) {
                   var s = e && e.constructor
                   n = o
@@ -23693,7 +23693,7 @@
               (lodash.zipWith = ar),
               (lodash.entries = Qr),
               (lodash.entriesIn = eo),
-              (lodash.extend = qr),
+              (lodash.extend = Fr),
               (lodash.extendWith = Ur),
               mixin(lodash, lodash),
               (lodash.add = jo),
@@ -23710,18 +23710,18 @@
                 )
               }),
               (lodash.clone = function clone(e) {
-                return baseClone(e, h)
+                return baseClone(e, f)
               }),
               (lodash.cloneDeep = function cloneDeep(e) {
-                return baseClone(e, p | h)
+                return baseClone(e, p | f)
               }),
               (lodash.cloneDeepWith = function cloneDeepWith(e, t) {
                 return (
-                  (t = "function" == typeof t ? t : s), baseClone(e, p | h, t)
+                  (t = "function" == typeof t ? t : s), baseClone(e, p | f, t)
                 )
               }),
               (lodash.cloneWith = function cloneWith(e, t) {
-                return (t = "function" == typeof t ? t : s), baseClone(e, h, t)
+                return (t = "function" == typeof t ? t : s), baseClone(e, f, t)
               }),
               (lodash.conformsTo = function conformsTo(e, t) {
                 return null == t || baseConformsTo(e, t, keys(t))
@@ -23739,15 +23739,15 @@
               }),
               (lodash.eq = eq),
               (lodash.escape = function escape(e) {
-                return (e = toString(e)) && ke.test(e) ? e.replace(Ce, Gt) : e
+                return (e = toString(e)) && ke.test(e) ? e.replace(Ce, Ht) : e
               }),
               (lodash.escapeRegExp = function escapeRegExp(e) {
                 return (e = toString(e)) && Ae.test(e)
-                  ? e.replace(Me, "\\$&")
+                  ? e.replace(De, "\\$&")
                   : e
               }),
               (lodash.every = function every(e, t, n) {
-                var r = Pr(e) ? arrayEvery : baseEvery
+                var r = Or(e) ? arrayEvery : baseEvery
                 return (
                   n && isIterateeCall(e, t, n) && (t = s),
                   r(e, getIteratee(t, 3))
@@ -23767,10 +23767,10 @@
               (lodash.forEach = forEach),
               (lodash.forEachRight = forEachRight),
               (lodash.forIn = function forIn(e, t) {
-                return null == e ? e : Pn(e, getIteratee(t, 3), keysIn)
+                return null == e ? e : On(e, getIteratee(t, 3), keysIn)
               }),
               (lodash.forInRight = function forInRight(e, t) {
-                return null == e ? e : Rn(e, getIteratee(t, 3), keysIn)
+                return null == e ? e : Pn(e, getIteratee(t, 3), keysIn)
               }),
               (lodash.forOwn = function forOwn(e, t) {
                 return e && baseForOwn(e, getIteratee(t, 3))
@@ -23813,9 +23813,9 @@
                 )
               }),
               (lodash.invoke = $r),
-              (lodash.isArguments = Or),
-              (lodash.isArray = Pr),
-              (lodash.isArrayBuffer = Rr),
+              (lodash.isArguments = Rr),
+              (lodash.isArray = Or),
+              (lodash.isArrayBuffer = Pr),
               (lodash.isArrayLike = isArrayLike),
               (lodash.isArrayLikeObject = isArrayLikeObject),
               (lodash.isBoolean = function isBoolean(e) {
@@ -23825,8 +23825,8 @@
                   (isObjectLike(e) && baseGetTag(e) == z)
                 )
               }),
-              (lodash.isBuffer = Tr),
-              (lodash.isDate = Dr),
+              (lodash.isBuffer = Mr),
+              (lodash.isDate = Tr),
               (lodash.isElement = function isElement(e) {
                 return isObjectLike(e) && 1 === e.nodeType && !isPlainObject(e)
               }),
@@ -23834,16 +23834,16 @@
                 if (null == e) return !0
                 if (
                   isArrayLike(e) &&
-                  (Pr(e) ||
+                  (Or(e) ||
                     "string" == typeof e ||
                     "function" == typeof e.splice ||
-                    Tr(e) ||
+                    Mr(e) ||
                     Lr(e) ||
-                    Or(e))
+                    Rr(e))
                 )
                   return !e.length
-                var t = Fn(e)
-                if (t == Z || t == ne) return !e.size
+                var t = qn(e)
+                if (t == Y || t == ne) return !e.size
                 if (isPrototype(e)) return !baseKeys(e).length
                 for (var n in e) if (lt.call(e, n)) return !1
                 return !0
@@ -23862,7 +23862,7 @@
               (lodash.isFunction = isFunction),
               (lodash.isInteger = isInteger),
               (lodash.isLength = isLength),
-              (lodash.isMap = Mr),
+              (lodash.isMap = Dr),
               (lodash.isMatch = function isMatch(e, t) {
                 return e === t || baseIsMatch(e, t, getMatchData(t))
               }),
@@ -23876,7 +23876,7 @@
                 return isNumber(e) && e != +e
               }),
               (lodash.isNative = function isNative(e) {
-                if (qn(e)) throw new r(a)
+                if (Fn(e)) throw new r(a)
                 return baseIsNative(e)
               }),
               (lodash.isNil = function isNil(e) {
@@ -23901,7 +23901,7 @@
                 return e === s
               }),
               (lodash.isWeakMap = function isWeakMap(e) {
-                return isObjectLike(e) && Fn(e) == ie
+                return isObjectLike(e) && qn(e) == ie
               }),
               (lodash.isWeakSet = function isWeakSet(e) {
                 return isObjectLike(e) && baseGetTag(e) == ae
@@ -23965,7 +23965,7 @@
                 return e && e.length ? baseNth(e, toInteger(t)) : s
               }),
               (lodash.noConflict = function noConflict() {
-                return Dt._ === this && (Dt._ = ft), this
+                return Tt._ === this && (Tt._ = ht), this
               }),
               (lodash.noop = noop),
               (lodash.now = yr),
@@ -23974,7 +23974,7 @@
                 var r = (t = toInteger(t)) ? stringSize(e) : 0
                 if (!t || r >= t) return e
                 var o = (t - r) / 2
-                return createPadding(Jt(o), n) + e + createPadding(Zt(o), n)
+                return createPadding(Jt(o), n) + e + createPadding(Yt(o), n)
               }),
               (lodash.padEnd = function padEnd(e, t, n) {
                 e = toString(e)
@@ -24014,21 +24014,21 @@
                 if (n || e % 1 || t % 1) {
                   var o = ln()
                   return on(
-                    e + o * (t - e + Ot("1e-" + ((o + "").length - 1))),
+                    e + o * (t - e + Rt("1e-" + ((o + "").length - 1))),
                     t
                   )
                 }
                 return baseRandom(e, t)
               }),
               (lodash.reduce = function reduce(e, t, n) {
-                var r = Pr(e) ? arrayReduce : baseReduce,
+                var r = Or(e) ? arrayReduce : baseReduce,
                   o = arguments.length < 3
                 return r(e, getIteratee(t, 4), n, o, Sn)
               }),
               (lodash.reduceRight = function reduceRight(e, t, n) {
-                var r = Pr(e) ? arrayReduceRight : baseReduce,
+                var r = Or(e) ? arrayReduceRight : baseReduce,
                   o = arguments.length < 3
-                return r(e, getIteratee(t, 4), n, o, On)
+                return r(e, getIteratee(t, 4), n, o, Rn)
               }),
               (lodash.repeat = function repeat(e, t, n) {
                 return (
@@ -24056,18 +24056,18 @@
               (lodash.round = Eo),
               (lodash.runInContext = runInContext),
               (lodash.sample = function sample(e) {
-                return (Pr(e) ? arraySample : baseSample)(e)
+                return (Or(e) ? arraySample : baseSample)(e)
               }),
               (lodash.size = function size(e) {
                 if (null == e) return 0
                 if (isArrayLike(e))
                   return isString(e) ? stringSize(e) : e.length
-                var t = Fn(e)
-                return t == Z || t == ne ? e.size : baseKeys(e).length
+                var t = qn(e)
+                return t == Y || t == ne ? e.size : baseKeys(e).length
               }),
               (lodash.snakeCase = so),
               (lodash.some = function some(e, t, n) {
-                var r = Pr(e) ? arraySome : baseSome
+                var r = Or(e) ? arraySome : baseSome
                 return (
                   n && isIterateeCall(e, t, n) && (t = s),
                   r(e, getIteratee(t, 3))
@@ -24128,13 +24128,13 @@
                   c = baseValues(l, u),
                   d = 0,
                   p = t.interpolate || Je,
-                  f = "__p += '",
-                  h = et(
+                  h = "__p += '",
+                  f = et(
                     (t.escape || Je).source +
                       "|" +
                       p.source +
                       "|" +
-                      (p === Oe ? Ve : Je).source +
+                      (p === Re ? Ve : Je).source +
                       "|" +
                       (t.evaluate || Je).source +
                       "|$",
@@ -24146,26 +24146,26 @@
                       ? t.sourceURL
                       : "lodash.templateSources[" + ++jt + "]") +
                     "\n"
-                e.replace(h, function(t, n, r, o, s, l) {
+                e.replace(f, function(t, n, r, o, s, l) {
                   return (
                     r || (r = o),
-                    (f += e.slice(d, l).replace(Xe, escapeStringChar)),
-                    n && ((i = !0), (f += "' +\n__e(" + n + ") +\n'")),
-                    s && ((a = !0), (f += "';\n" + s + ";\n__p += '")),
+                    (h += e.slice(d, l).replace(Xe, escapeStringChar)),
+                    n && ((i = !0), (h += "' +\n__e(" + n + ") +\n'")),
+                    s && ((a = !0), (h += "';\n" + s + ";\n__p += '")),
                     r &&
-                      (f +=
+                      (h +=
                         "' +\n((__t = (" + r + ")) == null ? '' : __t) +\n'"),
                     (d = l + t.length),
                     t
                   )
                 }),
-                  (f += "';\n")
+                  (h += "';\n")
                 var g = t.variable
-                g || (f = "with (obj) {\n" + f + "\n}\n"),
-                  (f = (a ? f.replace(ve, "") : f)
+                g || (h = "with (obj) {\n" + h + "\n}\n"),
+                  (h = (a ? h.replace(ve, "") : h)
                     .replace(_e, "$1")
                     .replace(je, "$1;")),
-                  (f =
+                  (h =
                     "function(" +
                     (g || "obj") +
                     ") {\n" +
@@ -24175,12 +24175,12 @@
                     (a
                       ? ", __j = Array.prototype.join;\nfunction print() { __p += __j.call(arguments, '') }\n"
                       : ";\n") +
-                    f +
+                    h +
                     "return __p\n}")
                 var y = uo(function() {
-                  return o(u, m + "return " + f).apply(s, c)
+                  return o(u, m + "return " + h).apply(s, c)
                 })
-                if (((y.source = f), isError(y))) throw y
+                if (((y.source = h), isError(y))) throw y
                 return y
               }),
               (lodash.times = function times(e, t) {
@@ -24239,7 +24239,7 @@
               }),
               (lodash.truncate = function truncate(e, t) {
                 var n = S,
-                  r = O
+                  r = R
                 if (isObject(t)) {
                   var o = "separator" in t ? t.separator : o
                   ;(n = "length" in t ? toInteger(t.length) : n),
@@ -24270,8 +24270,8 @@
                     u = u.slice(0, p === s ? l : p)
                   }
                 } else if (e.indexOf(baseToString(o), l) != l) {
-                  var f = u.lastIndexOf(o)
-                  f > -1 && (u = u.slice(0, f))
+                  var h = u.lastIndexOf(o)
+                  h > -1 && (u = u.slice(0, h))
                 }
                 return u + r
               }),
@@ -24339,7 +24339,7 @@
               }),
               arrayEach(["filter", "map", "takeWhile"], function(e, t) {
                 var n = t + 1,
-                  r = n == T || 3 == n
+                  r = n == M || 3 == n
                 LazyWrapper.prototype[e] = function(e) {
                   var t = this.clone()
                   return (
@@ -24415,7 +24415,7 @@
                       a = r ? [1] : arguments,
                       l = t instanceof LazyWrapper,
                       u = a[0],
-                      c = l || Pr(t),
+                      c = l || Or(t),
                       d = function(e) {
                         var t = o.apply(lodash, arrayPush([e], a))
                         return r && p ? t[0] : t
@@ -24426,9 +24426,9 @@
                       1 != u.length &&
                       (l = c = !1)
                     var p = this.__chain__,
-                      f = !!this.__actions__.length,
-                      h = i && !p,
-                      m = l && !f
+                      h = !!this.__actions__.length,
+                      f = i && !p,
+                      m = l && !h
                     if (!i && c) {
                       t = m ? t : new LazyWrapper(this)
                       var g = e.apply(t, a)
@@ -24441,10 +24441,10 @@
                         new LodashWrapper(g, p)
                       )
                     }
-                    return h && m
+                    return f && m
                       ? e.apply(this, a)
                       : ((g = this.thru(d)),
-                        h ? (r ? g.value()[0] : g.value()) : g)
+                        f ? (r ? g.value()[0] : g.value()) : g)
                   })
               }),
               arrayEach(
@@ -24457,10 +24457,10 @@
                     var e = arguments
                     if (r && !this.__chain__) {
                       var o = this.value()
-                      return t.apply(Pr(o) ? o : [], e)
+                      return t.apply(Or(o) ? o : [], e)
                     }
                     return this[n](function(n) {
-                      return t.apply(Pr(n) ? n : [], e)
+                      return t.apply(Or(n) ? n : [], e)
                     })
                   }
                 }
@@ -24495,7 +24495,7 @@
               (LazyWrapper.prototype.value = function lazyValue() {
                 var e = this.__wrapped__.value(),
                   t = this.__dir__,
-                  n = Pr(e),
+                  n = Or(e),
                   r = t < 0,
                   o = n ? e.length : 0,
                   s = getView(0, o, this.__views__),
@@ -24506,25 +24506,25 @@
                   c = this.__iteratees__,
                   d = c.length,
                   p = 0,
-                  f = on(l, this.__takeCount__)
-                if (!n || (!r && o == l && f == l))
+                  h = on(l, this.__takeCount__)
+                if (!n || (!r && o == l && h == l))
                   return baseWrapperValue(e, this.__actions__)
-                var h = []
-                e: for (; l-- && p < f; ) {
+                var f = []
+                e: for (; l-- && p < h; ) {
                   for (var m = -1, g = e[(u += t)]; ++m < d; ) {
                     var y = c[m],
                       b = y.iteratee,
                       v = y.type,
                       _ = b(g)
-                    if (v == D) g = _
+                    if (v == T) g = _
                     else if (!_) {
-                      if (v == T) continue e
+                      if (v == M) continue e
                       break e
                     }
                   }
-                  h[p++] = g
+                  f[p++] = g
                 }
-                return h
+                return f
               }),
               (lodash.prototype.at = lr),
               (lodash.prototype.chain = function wrapperChain() {
@@ -24573,14 +24573,14 @@
                 return baseWrapperValue(this.__wrapped__, this.__actions__)
               }),
               (lodash.prototype.first = lodash.prototype.head),
-              Mt &&
-                (lodash.prototype[Mt] = function wrapperToIterator() {
+              Dt &&
+                (lodash.prototype[Dt] = function wrapperToIterator() {
                   return this
                 }),
               lodash
             )
           })()
-        ;(Dt._ = $t),
+        ;(Tt._ = $t),
           (o = function() {
             return $t
           }.call(t, n, t, r)) !== s && (r.exports = o)
@@ -24791,17 +24791,17 @@
             c = t.split("\n").length - 1,
             d = (u[c] = []),
             p = 0,
-            f = getLocator(e);
+            h = getLocator(e);
           n;
 
         ) {
-          var h = f(n.start)
-          n.intro.length && addEdit(n.intro, "", h, -1, !!n.previous),
+          var f = h(n.start)
+          n.intro.length && addEdit(n.intro, "", f, -1, !!n.previous),
             n.edited
               ? addEdit(
                   n.content,
                   n.original,
-                  h,
+                  f,
                   n.storeName ? l.indexOf(n.original) : -1,
                   !!n.previous
                 )
@@ -24824,8 +24824,8 @@
                         : ((n.column += 1), (p += 1)),
                       (r += 1),
                       (a = !1)
-                })(n, h),
-            n.outro.length && addEdit(n.outro, "", h, -1, !!n.previous),
+                })(n, f),
+            n.outro.length && addEdit(n.outro, "", f, -1, !!n.previous),
             (n = n.next)
         }
         return (
@@ -25621,27 +25621,27 @@
         n = arguments[2]
       switch (t.type) {
         case "footnoteReference":
-          return f({}, e, { href: "#" + t.identifier })
+          return h({}, e, { href: "#" + t.identifier })
         case "image":
-          return f({}, e, { title: t.title, alt: t.alt, src: t.url })
+          return h({}, e, { title: t.title, alt: t.alt, src: t.url })
         case "imageReference":
-          return f({}, e, {
+          return h({}, e, {
             title: l()(n, "['" + t.identifier + "'].title"),
             alt: t.alt,
             src: l()(n, "['" + t.identifier + "'].url"),
           })
         case "link":
-          return f({}, e, { title: t.title, href: t.url })
+          return h({}, e, { title: t.title, href: t.url })
         case "linkReference":
-          return f({}, e, {
+          return h({}, e, {
             title: l()(n, "['" + t.identifier + "'].title"),
             href: l()(n, "['" + t.identifier + "'].url"),
           })
         case "list":
-          return f({}, e, { start: t.start })
+          return h({}, e, { start: t.start })
         case "tableCell":
         case "th":
-          return f({}, e, { style: { textAlign: t.align } })
+          return h({}, e, { style: { textAlign: t.align } })
       }
       return e
     }
@@ -25695,7 +25695,7 @@
           e.children.length &&
           (e.children = e.children.map(function mapper(e, n) {
             return "tableCell" === e.type
-              ? f({}, e, { align: t[n] })
+              ? h({}, e, { align: t[n] })
               : Array.isArray(e.children) && e.children.length
                 ? e.children.map(mapper)
                 : e
@@ -25761,10 +25761,10 @@
         if (-1 !== v.indexOf(e.type)) return e.value
         var s = t || "0"
         if ("code" === e.type && e.value) {
-          var i = f({}, l()(n, "pre.props", {}), { key: s }),
+          var i = h({}, l()(n, "pre.props", {}), { key: s }),
             a = "lang-" + e.lang,
             u = l()(n, "code.props", {}),
-            c = f({}, u, { className: u.className ? u.className + " " + a : a })
+            c = h({}, u, { className: u.className ? u.className + " " + a : a })
           return o.a.createElement(
             l()(n, "pre.component", "pre"),
             i,
@@ -25777,13 +25777,13 @@
             (e.children = e.children.map(function(e) {
               return 1 === e.children.length &&
                 "paragraph" === e.children[0].type
-                ? f({}, e, { children: e.children[0].children })
+                ? h({}, e, { children: e.children[0].children })
                 : e
             })),
           "listItem" === e.type && (!0 === e.checked || !1 === e.checked))
         ) {
-          var d = f({}, l()(n, "li.props", {}), { key: s }),
-            p = f({}, l()(n, "input.props", {}), {
+          var d = h({}, l()(n, "li.props", {}), { key: s }),
+            p = h({}, l()(n, "input.props", {}), {
               key: "checkbox",
               type: "checkbox",
               checked: e.checked,
@@ -25800,7 +25800,7 @@
             dangerouslySetInnerHTML: { __html: e.value },
           })
         if ("table" === e.type) {
-          var h = { type: "tbody", children: [] }
+          var f = { type: "tbody", children: [] }
           e.children = e.children.reduce(
             function(t, n, r) {
               return (
@@ -25808,7 +25808,7 @@
                   ? ((n.type = "tableHeader"),
                     t.unshift(seekCellsAndAlignThemIfNecessary(n, e.align)))
                   : "tableRow" === n.type
-                    ? h.children.push(
+                    ? f.children.push(
                         seekCellsAndAlignThemIfNecessary(n, e.align)
                       )
                     : "tableFooter" === n.type &&
@@ -25816,7 +25816,7 @@
                 t
               )
             },
-            [h]
+            [f]
           )
         }
         "tableFooter" === e.type &&
@@ -25834,7 +25834,7 @@
             (e.children = [{ type: "sup", value: e.identifier }])
         var m = getHTMLNodeTypeFromASTNodeType(e)
         if (null === m) return null
-        var g = f({ key: s }, e.props)
+        var g = h({ key: s }, e.props)
         Array.isArray(e.children) &&
           1 === e.children.length &&
           "html" === e.children[0].type &&
@@ -25842,7 +25842,7 @@
           (e.children = null))
         var y = n[m]
         y &&
-          (y.component && (m = y.component), y.props && (g = f({}, y.props, g)))
+          (y.component && (m = y.component), y.props && (g = h({}, y.props, g)))
         var b = formExtraPropsForHTMLNodeType(g, e, r)
         e.children &&
           1 === e.children.length &&
@@ -25897,7 +25897,7 @@
       c = n.n(u),
       d = n("./node_modules/remark-parse/index.js"),
       p = n.n(d),
-      f =
+      h =
         Object.assign ||
         function(e) {
           for (var t = 1; t < arguments.length; t++) {
@@ -25907,7 +25907,7 @@
           }
           return e
         },
-      h = [
+      f = [
         "article",
         "aside",
         "blockquote",
@@ -25961,7 +25961,7 @@
         "ul",
         "video",
       ],
-      m = new RegExp("^<(" + h.join("|") + ")", "i"),
+      m = new RegExp("^<(" + f.join("|") + ")", "i"),
       g = /([-A-Za-z0-9_]+)(?:\s*=\s*(?:(?:"((?:\\.|[^"])*)")|(?:'((?:\\.|[^'])*)')|([^>\s]+)))?/g,
       y = [
         "area",
@@ -26739,33 +26739,33 @@ object-assign
     "use strict"
     function parse(e, t) {
       function now() {
-        return { line: fe, column: pe, offset: ce + (ae.offset || 0) }
+        return { line: he, column: pe, offset: ce + (ae.offset || 0) }
       }
       function at(t) {
         return e.charAt(t)
       }
       function flush() {
-        he &&
-          (me.push(he),
-          te && te.call(oe, he, { start: Y, end: now() }),
-          (he = C))
+        fe &&
+          (me.push(fe),
+          te && te.call(oe, fe, { start: Z, end: now() }),
+          (fe = C))
       }
       var n,
         i,
         a,
         k,
         B,
-        F,
         q,
+        F,
         W,
         V,
         z,
-        H,
         G,
+        H,
         K,
         $,
-        Y,
         Z,
+        Y,
         J,
         X,
         Q = t.additional,
@@ -26782,12 +26782,12 @@ object-assign
         ce = 0,
         de = -1,
         pe = ae.column || 1,
-        fe = ae.line || 1,
-        he = C,
+        he = ae.line || 1,
+        fe = C,
         me = []
       for (
-        Y = now(),
-          q = re
+        Z = now(),
+          F = re
             ? function parseError(e, t) {
                 var n = now()
                 ;(n.column += t), (n.offset += t), re.call(ie, U[e], n, e)
@@ -26798,80 +26798,80 @@ object-assign
         ++ce < ue;
 
       )
-        if ((k === y && (pe = le[de] || 1), (k = at(ce)) !== h))
-          k === y && (fe++, de++, (pe = 0)), k ? ((he += k), pe++) : flush()
+        if ((k === y && (pe = le[de] || 1), (k = at(ce)) !== f))
+          k === y && (he++, de++, (pe = 0)), k ? ((fe += k), pe++) : flush()
         else {
           if (
-            (F = at(ce + 1)) === w ||
-            F === y ||
-            F === f ||
-            F === _ ||
-            F === j ||
-            F === h ||
-            F === C ||
-            (Q && F === Q)
+            (q = at(ce + 1)) === w ||
+            q === y ||
+            q === h ||
+            q === _ ||
+            q === j ||
+            q === f ||
+            q === C ||
+            (Q && q === Q)
           ) {
-            ;(he += k), pe++
+            ;(fe += k), pe++
             continue
           }
           for (
-            H = G = ce + 1,
-              X = G,
-              F !== m
+            G = H = ce + 1,
+              X = H,
+              q !== m
                 ? (K = E)
-                : (F = at((X = ++H))) === b || F === v
-                  ? ((K = S), (X = ++H))
-                  : (K = O),
+                : (q = at((X = ++G))) === b || q === v
+                  ? ((K = S), (X = ++G))
+                  : (K = R),
               n = C,
               z = C,
               a = C,
-              $ = R[K],
+              $ = P[K],
               X--;
-            ++X < ue && ((F = at(X)), $(F));
+            ++X < ue && ((q = at(X)), $(q));
 
           )
-            (a += F), K === E && u.call(o, a) && ((n = a), (z = o[a]))
+            (a += q), K === E && u.call(o, a) && ((n = a), (z = o[a]))
           ;(i = at(X) === g) &&
             (X++, K === E && u.call(r, a) && ((n = a), (z = r[a]))),
-            (J = 1 + X - G),
+            (J = 1 + X - H),
             (i || ee) &&
               (a
                 ? K === E
                   ? (i && !z
-                      ? q(I, 1)
+                      ? F(I, 1)
                       : (n !== a &&
-                          ((J = 1 + (X = H + n.length) - H), (i = !1)),
+                          ((J = 1 + (X = G + n.length) - G), (i = !1)),
                         i ||
-                          ((W = n ? T : M),
+                          ((W = n ? M : D),
                           t.attribute
-                            ? (F = at(X)) === x
-                              ? (q(W, J), (z = null))
-                              : l(F) ? (z = null) : q(W, J)
-                            : q(W, J))),
+                            ? (q = at(X)) === x
+                              ? (F(W, J), (z = null))
+                              : l(q) ? (z = null) : F(W, J)
+                            : F(W, J))),
                     (B = z))
-                  : (i || q(D, J),
-                    isProhibited((B = parseInt(a, P[K])))
-                      ? (q(N, J), (B = p))
+                  : (i || F(T, J),
+                    isProhibited((B = parseInt(a, O[K])))
+                      ? (F(N, J), (B = p))
                       : B in s
-                        ? (q(L, J), (B = s[B]))
+                        ? (F(L, J), (B = s[B]))
                         : ((V = C),
-                          isWarning(B) && q(L, J),
+                          isWarning(B) && F(L, J),
                           B > 65535 &&
                             ((V += c(((B -= 65536) >>> 10) | 55296)),
                             (B = 56320 | (1023 & B))),
                           (B = V + c(B))))
-                : K !== E && q(A, J)),
+                : K !== E && F(A, J)),
             B
               ? (flush(),
-                (Y = now()),
+                (Z = now()),
                 (ce = X - 1),
-                (pe += X - G + 1),
+                (pe += X - H + 1),
                 me.push(B),
-                (Z = now()).offset++,
-                ne && ne.call(se, B, { start: Y, end: Z }, e.slice(G - 1, X)),
-                (Y = Z))
-              : ((a = e.slice(G - 1, X)),
-                (he += a),
+                (Y = now()).offset++,
+                ne && ne.call(se, B, { start: Z, end: Y }, e.slice(H - 1, X)),
+                (Z = Y))
+              : ((a = e.slice(H - 1, X)),
+                (fe += a),
                 (pe += a.length),
                 (ce = X - 1))
         }
@@ -26914,8 +26914,8 @@ object-assign
       c = String.fromCharCode,
       d = Function.prototype,
       p = "�",
-      f = "\f",
-      h = "&",
+      h = "\f",
+      f = "&",
       m = "#",
       g = ";",
       y = "\n",
@@ -26940,26 +26940,26 @@ object-assign
       },
       E = "named",
       S = "hexadecimal",
-      O = "decimal",
-      P = {}
-    ;(P[S] = 16), (P[O] = 10)
-    var R = {}
-    ;(R[E] = l), (R[O] = i), (R[S] = a)
-    var T = 1,
-      D = 2,
-      M = 3,
+      R = "decimal",
+      O = {}
+    ;(O[S] = 16), (O[R] = 10)
+    var P = {}
+    ;(P[E] = l), (P[R] = i), (P[S] = a)
+    var M = 1,
+      T = 2,
+      D = 3,
       A = 4,
       I = 5,
       L = 6,
       N = 7,
       B = "Numeric character references",
-      F = " must be terminated by a semicolon",
-      q = " cannot be empty",
+      q = " must be terminated by a semicolon",
+      F = " cannot be empty",
       U = {}
-    ;(U[T] = "Named character references" + F),
-      (U[D] = B + F),
-      (U[M] = "Named character references" + q),
-      (U[A] = B + q),
+    ;(U[M] = "Named character references" + q),
+      (U[T] = B + q),
+      (U[D] = "Named character references" + F),
+      (U[A] = B + F),
       (U[I] = "Named character references must be known"),
       (U[L] = B + " cannot be disallowed"),
       (U[N] = B + " cannot be outside the permissible Unicode range")
@@ -27724,7 +27724,7 @@ object-assign
         !a)
       )
         return null
-      f &&
+      h &&
         (b || a !== g.compositionStart
           ? a === g.compositionEnd && b && (l = b.getData())
           : (b = s.getPooled(o)))
@@ -27741,7 +27741,7 @@ object-assign
         case "topCompositionEnd":
           return getDataFromCustomEvent(t)
         case "topKeyPress":
-          return t.which !== h ? null : ((y = !0), m)
+          return t.which !== f ? null : ((y = !0), m)
         case "topTextInput":
           var n = t.data
           return n === m && y ? null : n
@@ -27768,7 +27768,7 @@ object-assign
             ? String.fromCharCode(t.which)
             : null
         case "topCompositionEnd":
-          return f ? null : t.data
+          return h ? null : t.data
         default:
           return null
       }
@@ -27806,9 +27806,9 @@ object-assign
             parseInt(e.version(), 10) <= 12
           )
         })(),
-      f = o.canUseDOM && (!c || (d && d > 8 && d <= 11)),
-      h = 32,
-      m = String.fromCharCode(h),
+      h = o.canUseDOM && (!c || (d && d > 8 && d <= 11)),
+      f = 32,
+      m = String.fromCharCode(f),
       g = {
         beforeInput: {
           phasedRegistrationNames: {
@@ -28091,7 +28091,7 @@ object-assign
   "./node_modules/react-dom/lib/ChangeEventPlugin.js": function(e, t, n) {
     "use strict"
     function createAndAccumulateChangeEvent(e, t, n) {
-      var r = l.getPooled(f.change, e, t, n)
+      var r = l.getPooled(h.change, e, t, n)
       return (r.type = "change"), o.accumulateTwoPhaseDispatches(r), r
     }
     function shouldUseChangeEvent(e) {
@@ -28106,12 +28106,12 @@ object-assign
       r.enqueueEvents(e), r.processEventQueue(!1)
     }
     function startWatchingForChangeEventIE8(e, t) {
-      ;(m = t), (h = e).attachEvent("onchange", manualDispatchChangeEvent)
+      ;(m = t), (f = e).attachEvent("onchange", manualDispatchChangeEvent)
     }
     function stopWatchingForChangeEventIE8() {
-      h &&
-        (h.detachEvent("onchange", manualDispatchChangeEvent),
-        (h = null),
+      f &&
+        (f.detachEvent("onchange", manualDispatchChangeEvent),
+        (f = null),
         (m = null))
     }
     function getInstIfValueChanged(e, t) {
@@ -28129,12 +28129,12 @@ object-assign
         : "topBlur" === e && stopWatchingForChangeEventIE8()
     }
     function startWatchingForValueChange(e, t) {
-      ;(m = t), (h = e).attachEvent("onpropertychange", handlePropertyChange)
+      ;(m = t), (f = e).attachEvent("onpropertychange", handlePropertyChange)
     }
     function stopWatchingForValueChange() {
-      h &&
-        (h.detachEvent("onpropertychange", handlePropertyChange),
-        (h = null),
+      f &&
+        (f.detachEvent("onpropertychange", handlePropertyChange),
+        (f = null),
         (m = null))
     }
     function handlePropertyChange(e) {
@@ -28185,7 +28185,7 @@ object-assign
       c = n("./node_modules/react-dom/lib/getEventTarget.js"),
       d = n("./node_modules/react-dom/lib/isEventSupported.js"),
       p = n("./node_modules/react-dom/lib/isTextInputElement.js"),
-      f = {
+      h = {
         change: {
           phasedRegistrationNames: {
             bubbled: "onChange",
@@ -28203,7 +28203,7 @@ object-assign
           ],
         },
       },
-      h = null,
+      f = null,
       m = null,
       g = !1
     s.canUseDOM &&
@@ -28214,7 +28214,7 @@ object-assign
         d("input") &&
         (!("documentMode" in document) || document.documentMode > 9))
     var b = {
-      eventTypes: f,
+      eventTypes: h,
       _allowSimulatedPassThrough: !0,
       _isInputEventSupported: y,
       extractEvents: function(e, t, n, r) {
@@ -28416,7 +28416,7 @@ object-assign
             i.properties.hasOwnProperty(c) && r("48", c)
             var d = c.toLowerCase(),
               p = n[c],
-              f = {
+              h = {
                 attributeName: d,
                 attributeNamespace: null,
                 propertyName: c,
@@ -28434,19 +28434,19 @@ object-assign
                 ),
               }
             if (
-              (f.hasBooleanValue +
-                f.hasNumericValue +
-                f.hasOverloadedBooleanValue <=
+              (h.hasBooleanValue +
+                h.hasNumericValue +
+                h.hasOverloadedBooleanValue <=
                 1 || r("50", c),
               a.hasOwnProperty(c))
             ) {
-              var h = a[c]
-              f.attributeName = h
+              var f = a[c]
+              h.attributeName = f
             }
-            s.hasOwnProperty(c) && (f.attributeNamespace = s[c]),
-              l.hasOwnProperty(c) && (f.propertyName = l[c]),
-              u.hasOwnProperty(c) && (f.mutationMethod = u[c]),
-              (i.properties[c] = f)
+            s.hasOwnProperty(c) && (h.attributeNamespace = s[c]),
+              l.hasOwnProperty(c) && (h.propertyName = l[c]),
+              u.hasOwnProperty(c) && (h.mutationMethod = u[c]),
+              (i.properties[c] = h)
           }
         },
       }),
@@ -28646,15 +28646,15 @@ object-assign
             d = p ? o.getClosestInstanceFromNode(p) : null
           } else (c = null), (d = t)
           if (c === d) return null
-          var f = null == c ? l : o.getNodeFromInstance(c),
-            h = null == d ? l : o.getNodeFromInstance(d),
+          var h = null == c ? l : o.getNodeFromInstance(c),
+            f = null == d ? l : o.getNodeFromInstance(d),
             m = s.getPooled(i.mouseLeave, c, n, a)
-          ;(m.type = "mouseleave"), (m.target = f), (m.relatedTarget = h)
+          ;(m.type = "mouseleave"), (m.target = h), (m.relatedTarget = f)
           var g = s.getPooled(i.mouseEnter, d, n, a)
           return (
             (g.type = "mouseenter"),
-            (g.target = h),
-            (g.relatedTarget = f),
+            (g.target = f),
+            (g.relatedTarget = h),
             r.accumulateEnterLeaveDispatches(m, g, c, d),
             [m, g]
           )
@@ -28702,10 +28702,10 @@ object-assign
       p = function(e) {
         return d(e, !0)
       },
-      f = function(e) {
+      h = function(e) {
         return d(e, !1)
       },
-      h = function(e) {
+      f = function(e) {
         return "." + e._rootNodeID
       },
       m = {
@@ -28715,7 +28715,7 @@ object-assign
         },
         putListener: function(e, t, n) {
           "function" != typeof n && r("94", t, typeof n)
-          var s = h(e)
+          var s = f(e)
           ;(u[t] || (u[t] = {}))[s] = n
           var i = o.registrationNameModules[t]
           i && i.didPutListener && i.didPutListener(e, t, n)
@@ -28730,17 +28730,17 @@ object-assign
             )
           )
             return null
-          var r = h(e)
+          var r = f(e)
           return n && n[r]
         },
         deleteListener: function(e, t) {
           var n = o.registrationNameModules[t]
           n && n.willDeleteListener && n.willDeleteListener(e, t)
           var r = u[t]
-          r && delete r[h(e)]
+          r && delete r[f(e)]
         },
         deleteAllListeners: function(e) {
-          var t = h(e)
+          var t = f(e)
           for (var n in u)
             if (u.hasOwnProperty(n) && u[n][t]) {
               var r = o.registrationNameModules[n]
@@ -28764,7 +28764,7 @@ object-assign
         processEventQueue: function(e) {
           var t = c
           ;(c = null),
-            e ? l(t, p) : l(t, f),
+            e ? l(t, p) : l(t, h),
             c && r("95"),
             i.rethrowCaughtError()
         },
@@ -29421,9 +29421,9 @@ object-assign
     "use strict"
     function getListeningForDocument(e) {
       return (
-        Object.prototype.hasOwnProperty.call(e, h) ||
-          ((e[h] = p++), (c[e[h]] = {})),
-        c[e[h]]
+        Object.prototype.hasOwnProperty.call(e, f) ||
+          ((e[f] = p++), (c[e[f]] = {})),
+        c[e[f]]
       )
     }
     var r,
@@ -29436,7 +29436,7 @@ object-assign
       c = {},
       d = !1,
       p = 0,
-      f = {
+      h = {
         topAbort: "abort",
         topAnimationEnd: l("animationend") || "animationend",
         topAnimationIteration: l("animationiteration") || "animationiteration",
@@ -29502,7 +29502,7 @@ object-assign
         topWaiting: "waiting",
         topWheel: "wheel",
       },
-      h = "_reactListenersID" + String(Math.random()).slice(2),
+      f = "_reactListenersID" + String(Math.random()).slice(2),
       m = o({}, i, {
         ReactEventListener: null,
         injection: {
@@ -29582,8 +29582,8 @@ object-assign
                           )),
                       (r.topBlur = !0),
                       (r.topFocus = !0))
-                    : f.hasOwnProperty(a) &&
-                      m.ReactEventListener.trapBubbledEvent(a, f[a], n),
+                    : h.hasOwnProperty(a) &&
+                      m.ReactEventListener.trapBubbledEvent(a, h[a], n),
               (r[a] = !0))
           }
         },
@@ -29629,15 +29629,15 @@ object-assign
         },
         updateChildren: function(e, t, n, i, a, l, u, c, d) {
           if (t || e) {
-            var p, f
+            var p, h
             for (p in t)
               if (t.hasOwnProperty(p)) {
-                var h = (f = e && e[p]) && f._currentElement,
+                var f = (h = e && e[p]) && h._currentElement,
                   m = t[p]
-                if (null != f && s(h, m))
-                  r.receiveComponent(f, m, a, c), (t[p] = f)
+                if (null != h && s(f, m))
+                  r.receiveComponent(h, m, a, c), (t[p] = h)
                 else {
-                  f && ((i[p] = r.getHostNode(f)), r.unmountComponent(f, !1))
+                  h && ((i[p] = r.getHostNode(h)), r.unmountComponent(h, !1))
                   var g = o(m, !0)
                   t[p] = g
                   var y = r.mountComponent(g, a, l, u, c, d)
@@ -29647,9 +29647,9 @@ object-assign
             for (p in e)
               !e.hasOwnProperty(p) ||
                 (t && t.hasOwnProperty(p)) ||
-                ((f = e[p]),
-                (i[p] = r.getHostNode(f)),
-                r.unmountComponent(f, !1))
+                ((h = e[p]),
+                (i[p] = r.getHostNode(h)),
+                r.unmountComponent(h, !1))
           }
         },
         unmountChildren: function(e, t) {
@@ -29721,9 +29721,9 @@ object-assign
       n("./node_modules/react-dom/lib/ReactNodeTypes.js")),
       d = n("./node_modules/react-dom/lib/ReactReconciler.js"),
       p = n("./node_modules/fbjs/lib/emptyObject.js"),
-      f = (n("./node_modules/fbjs/lib/invariant.js"),
+      h = (n("./node_modules/fbjs/lib/invariant.js"),
       n("./node_modules/fbjs/lib/shallowEqual.js")),
-      h = n("./node_modules/react-dom/lib/shouldUpdateReactComponent.js"),
+      f = n("./node_modules/react-dom/lib/shouldUpdateReactComponent.js"),
       m = (n("./node_modules/fbjs/lib/warning.js"),
       { ImpureClass: 0, PureClass: 1, StatelessFunctional: 2 })
     StatelessComponent.prototype.render = function() {
@@ -29763,28 +29763,28 @@ object-assign
             l = this._processContext(o),
             c = this._currentElement.type,
             d = e.getUpdateQueue(),
-            f = shouldConstruct(c),
-            h = this._constructComponent(f, a, l, d)
-          f || (null != h && null != h.render)
+            h = shouldConstruct(c),
+            f = this._constructComponent(h, a, l, d)
+          h || (null != f && null != f.render)
             ? isPureComponent(c)
               ? (this._compositeType = m.PureClass)
               : (this._compositeType = m.ImpureClass)
-            : ((i = h),
+            : ((i = f),
               warnIfInvalidElement(),
-              null === h ||
-                !1 === h ||
-                s.isValidElement(h) ||
+              null === f ||
+                !1 === f ||
+                s.isValidElement(f) ||
                 r("105", c.displayName || c.name || "Component"),
-              (h = new StatelessComponent(c)),
+              (f = new StatelessComponent(c)),
               (this._compositeType = m.StatelessFunctional))
-          ;(h.props = a),
-            (h.context = l),
-            (h.refs = p),
-            (h.updater = d),
-            (this._instance = h),
-            u.set(h, this)
-          var y = h.state
-          void 0 === y && (h.state = y = null),
+          ;(f.props = a),
+            (f.context = l),
+            (f.refs = p),
+            (f.updater = d),
+            (this._instance = f),
+            u.set(f, this)
+          var y = f.state
+          void 0 === y && (f.state = y = null),
             ("object" != typeof y || Array.isArray(y)) &&
               r("106", this.getName() || "ReactCompositeComponent"),
             (this._pendingStateQueue = null),
@@ -29792,11 +29792,11 @@ object-assign
             (this._pendingForceUpdate = !1)
           var b
           return (
-            (b = h.unstable_handleError
+            (b = f.unstable_handleError
               ? this.performInitialMountWithErrorHandling(i, t, n, e, o)
               : this.performInitialMount(i, t, n, e, o)),
-            h.componentDidMount &&
-              e.getReactMountReady().enqueue(h.componentDidMount, h),
+            f.componentDidMount &&
+              e.getReactMountReady().enqueue(f.componentDidMount, f),
             b
           )
         },
@@ -29932,7 +29932,7 @@ object-assign
             (i.shouldComponentUpdate
               ? (p = i.shouldComponentUpdate(c, d, a))
               : this._compositeType === m.PureClass &&
-                (p = !f(u, c) || !f(i.state, d))),
+                (p = !h(u, c) || !h(i.state, d))),
             (this._updateBatchNumber = null),
             p
               ? ((this._pendingForceUpdate = !1),
@@ -29988,7 +29988,7 @@ object-assign
             r = n._currentElement,
             o = this._renderValidatedComponent(),
             s = 0
-          if (h(r, o)) d.receiveComponent(n, o, e, this._processChildContext(t))
+          if (f(r, o)) d.receiveComponent(n, o, e, this._processChildContext(t))
           else {
             var i = d.getHostNode(n)
             d.unmountComponent(n, !1)
@@ -30126,7 +30126,7 @@ object-assign
         null != t.dangerouslySetInnerHTML &&
           (null != t.children && r("60"),
           ("object" == typeof t.dangerouslySetInnerHTML &&
-            R in t.dangerouslySetInnerHTML) ||
+            P in t.dangerouslySetInnerHTML) ||
             r("61")),
         null != t.style &&
           "object" != typeof t.style &&
@@ -30135,7 +30135,7 @@ object-assign
     function enqueuePutListener(e, t, n, r) {
       if (!(r instanceof j)) {
         var o = e._hostContainerInfo,
-          s = o._node && o._node.nodeType === D ? o._node : o._ownerDocument
+          s = o._node && o._node.nodeType === T ? o._node : o._ownerDocument
         S(t, s),
           r
             .getReactMountReady()
@@ -30168,37 +30168,37 @@ object-assign
       switch ((t || r("64"), e._tag)) {
         case "iframe":
         case "object":
-          e._wrapperState.listeners = [f.trapBubbledEvent("topLoad", "load", t)]
+          e._wrapperState.listeners = [h.trapBubbledEvent("topLoad", "load", t)]
           break
         case "video":
         case "audio":
           e._wrapperState.listeners = []
-          for (var n in M)
-            M.hasOwnProperty(n) &&
-              e._wrapperState.listeners.push(f.trapBubbledEvent(n, M[n], t))
+          for (var n in D)
+            D.hasOwnProperty(n) &&
+              e._wrapperState.listeners.push(h.trapBubbledEvent(n, D[n], t))
           break
         case "source":
           e._wrapperState.listeners = [
-            f.trapBubbledEvent("topError", "error", t),
+            h.trapBubbledEvent("topError", "error", t),
           ]
           break
         case "img":
           e._wrapperState.listeners = [
-            f.trapBubbledEvent("topError", "error", t),
-            f.trapBubbledEvent("topLoad", "load", t),
+            h.trapBubbledEvent("topError", "error", t),
+            h.trapBubbledEvent("topLoad", "load", t),
           ]
           break
         case "form":
           e._wrapperState.listeners = [
-            f.trapBubbledEvent("topReset", "reset", t),
-            f.trapBubbledEvent("topSubmit", "submit", t),
+            h.trapBubbledEvent("topReset", "reset", t),
+            h.trapBubbledEvent("topSubmit", "submit", t),
           ]
           break
         case "input":
         case "select":
         case "textarea":
           e._wrapperState.listeners = [
-            f.trapBubbledEvent("topInvalid", "invalid", t),
+            h.trapBubbledEvent("topInvalid", "invalid", t),
           ]
       }
     }
@@ -30206,7 +30206,7 @@ object-assign
       b.postUpdateWrapper(this)
     }
     function validateDangerousTag(e) {
-      F.call(B, e) || (N.test(e) || r("65", e), (B[e] = !0))
+      q.call(B, e) || (N.test(e) || r("65", e), (B[e] = !0))
     }
     function isCustomComponent(e, t) {
       return e.indexOf("-") >= 0 || null != t.is
@@ -30239,8 +30239,8 @@ object-assign
       c = n("./node_modules/react-dom/lib/DOMPropertyOperations.js"),
       d = n("./node_modules/react-dom/lib/EventPluginHub.js"),
       p = n("./node_modules/react-dom/lib/EventPluginRegistry.js"),
-      f = n("./node_modules/react-dom/lib/ReactBrowserEventEmitter.js"),
-      h = n("./node_modules/react-dom/lib/ReactDOMComponentFlags.js"),
+      h = n("./node_modules/react-dom/lib/ReactBrowserEventEmitter.js"),
+      f = n("./node_modules/react-dom/lib/ReactDOMComponentFlags.js"),
       m = n("./node_modules/react-dom/lib/ReactDOMComponentTree.js"),
       g = n("./node_modules/react-dom/lib/ReactDOMInput.js"),
       y = n("./node_modules/react-dom/lib/ReactDOMOption.js"),
@@ -30257,20 +30257,20 @@ object-assign
       n("./node_modules/react-dom/lib/inputValueTracking.js")),
       w = (n("./node_modules/react-dom/lib/validateDOMNesting.js"),
       n("./node_modules/fbjs/lib/warning.js"),
-      h),
+      f),
       k = d.deleteListener,
       E = m.getNodeFromInstance,
-      S = f.listenTo,
-      O = p.registrationNameModules,
-      P = { string: !0, number: !0 },
-      R = "__html",
-      T = {
+      S = h.listenTo,
+      R = p.registrationNameModules,
+      O = { string: !0, number: !0 },
+      P = "__html",
+      M = {
         children: null,
         dangerouslySetInnerHTML: null,
         suppressContentEditableWarning: null,
       },
-      D = 11,
-      M = {
+      T = 11,
+      D = {
         topAbort: "abort",
         topCanPlay: "canplay",
         topCanPlayThrough: "canplaythrough",
@@ -30316,12 +30316,12 @@ object-assign
       L = o({ menuitem: !0 }, A),
       N = /^[a-zA-Z][a-zA-Z:_\.\-\d]*$/,
       B = {},
-      F = {}.hasOwnProperty,
-      q = 1
+      q = {}.hasOwnProperty,
+      F = 1
     ;(ReactDOMComponent.displayName = "ReactDOMComponent"),
       (ReactDOMComponent.Mixin = {
         mountComponent: function(e, t, n, r) {
-          ;(this._rootNodeID = q++),
+          ;(this._rootNodeID = F++),
             (this._domID = n._idCounter++),
             (this._hostParent = t),
             (this._hostContainerInfo = n)
@@ -30373,18 +30373,18 @@ object-assign
           var d
           if (e.useCreateElement) {
             var p,
-              f = n._ownerDocument
+              h = n._ownerDocument
             if (i === l.html)
               if ("script" === this._tag) {
-                var h = f.createElement("div"),
+                var f = h.createElement("div"),
                   _ = this._currentElement.type
-                ;(h.innerHTML = "<" + _ + "></" + _ + ">"),
-                  (p = h.removeChild(h.firstChild))
+                ;(f.innerHTML = "<" + _ + "></" + _ + ">"),
+                  (p = f.removeChild(f.firstChild))
               } else
                 p = o.is
-                  ? f.createElement(this._currentElement.type, o.is)
-                  : f.createElement(this._currentElement.type)
-            else p = f.createElementNS(i, this._currentElement.type)
+                  ? h.createElement(this._currentElement.type, o.is)
+                  : h.createElement(this._currentElement.type)
+            else p = h.createElementNS(i, this._currentElement.type)
             m.precacheNode(this, p),
               (this._flags |= w.hasCachedChildNodes),
               this._hostParent || c.setAttributeForRoot(p),
@@ -30426,14 +30426,14 @@ object-assign
             if (t.hasOwnProperty(r)) {
               var s = t[r]
               if (null != s)
-                if (O.hasOwnProperty(r)) s && enqueuePutListener(this, r, s, e)
+                if (R.hasOwnProperty(r)) s && enqueuePutListener(this, r, s, e)
                 else {
                   "style" === r &&
                     (s && (s = this._previousStyleCopy = o({}, t.style)),
                     (s = i.createMarkupForStyles(s, this)))
                   var a = null
                   null != this._tag && isCustomComponent(this._tag, t)
-                    ? T.hasOwnProperty(r) ||
+                    ? M.hasOwnProperty(r) ||
                       (a = c.createMarkupForCustomAttribute(r, s))
                     : (a = c.createMarkupForProperty(r, s)),
                     a && (n += " " + a)
@@ -30449,7 +30449,7 @@ object-assign
             o = t.dangerouslySetInnerHTML
           if (null != o) null != o.__html && (r = o.__html)
           else {
-            var s = P[typeof t.children] ? t.children : null,
+            var s = O[typeof t.children] ? t.children : null,
               i = null != s ? null : t.children
             null != s
               ? (r = x(s))
@@ -30461,7 +30461,7 @@ object-assign
           var o = t.dangerouslySetInnerHTML
           if (null != o) null != o.__html && a.queueHTML(r, o.__html)
           else {
-            var s = P[typeof t.children] ? t.children : null,
+            var s = O[typeof t.children] ? t.children : null,
               i = null != s ? null : t.children
             if (null != s) "" !== s && a.queueText(r, s)
             else if (null != i)
@@ -30516,10 +30516,10 @@ object-assign
                 for (s in l) l.hasOwnProperty(s) && ((a = a || {})[s] = "")
                 this._previousStyleCopy = null
               } else
-                O.hasOwnProperty(r)
+                R.hasOwnProperty(r)
                   ? e[r] && k(this, r)
                   : isCustomComponent(this._tag, e)
-                    ? T.hasOwnProperty(r) ||
+                    ? M.hasOwnProperty(r) ||
                       c.deleteValueForAttribute(E(this), r)
                     : (u.properties[r] || u.isCustomAttribute(r)) &&
                       c.deleteValueForProperty(E(this), r)
@@ -30546,22 +30546,22 @@ object-assign
                       p[s] !== d[s] &&
                       ((a = a || {})[s] = d[s])
                 } else a = d
-              else if (O.hasOwnProperty(r))
+              else if (R.hasOwnProperty(r))
                 d ? enqueuePutListener(this, r, d, n) : p && k(this, r)
               else if (isCustomComponent(this._tag, t))
-                T.hasOwnProperty(r) || c.setValueForAttribute(E(this), r, d)
+                M.hasOwnProperty(r) || c.setValueForAttribute(E(this), r, d)
               else if (u.properties[r] || u.isCustomAttribute(r)) {
-                var f = E(this)
+                var h = E(this)
                 null != d
-                  ? c.setValueForProperty(f, r, d)
-                  : c.deleteValueForProperty(f, r)
+                  ? c.setValueForProperty(h, r, d)
+                  : c.deleteValueForProperty(h, r)
               }
           }
           a && i.setValueForStyles(E(this), a, this)
         },
         _updateDOMChildren: function(e, t, n, r) {
-          var o = P[typeof e.children] ? e.children : null,
-            s = P[typeof t.children] ? t.children : null,
+          var o = O[typeof e.children] ? e.children : null,
+            s = O[typeof t.children] ? t.children : null,
             i = e.dangerouslySetInnerHTML && e.dangerouslySetInnerHTML.__html,
             a = t.dangerouslySetInnerHTML && t.dangerouslySetInnerHTML.__html,
             l = null != o ? null : e.children,
@@ -30797,8 +30797,8 @@ object-assign
         ) {
           var p = c[d]
           if (p !== s && p.form === s.form) {
-            var f = a.getInstanceFromNode(p)
-            f || r("90"), l.asap(forceUpdateIfMounted, f)
+            var h = a.getInstanceFromNode(p)
+            h || r("90"), l.asap(forceUpdateIfMounted, h)
           }
         }
       }
@@ -31161,10 +31161,10 @@ object-assign
             p
           )
         }
-        var f = l(this._stringText)
+        var h = l(this._stringText)
         return e.renderToStaticMarkup
-          ? f
-          : "\x3c!--" + s + "--\x3e" + f + "\x3c!-- /react-text --\x3e"
+          ? h
+          : "\x3c!--" + s + "--\x3e" + h + "\x3c!-- /react-text --\x3e"
       },
       receiveComponent: function(e, t) {
         if (e !== this._currentElement) {
@@ -31371,8 +31371,8 @@ object-assign
       c = n("./node_modules/react-dom/lib/ReactDOMComponent.js"),
       d = n("./node_modules/react-dom/lib/ReactDOMComponentTree.js"),
       p = n("./node_modules/react-dom/lib/ReactDOMEmptyComponent.js"),
-      f = n("./node_modules/react-dom/lib/ReactDOMTreeTraversal.js"),
-      h = n("./node_modules/react-dom/lib/ReactDOMTextComponent.js"),
+      h = n("./node_modules/react-dom/lib/ReactDOMTreeTraversal.js"),
+      f = n("./node_modules/react-dom/lib/ReactDOMTextComponent.js"),
       m = n("./node_modules/react-dom/lib/ReactDefaultBatchingStrategy.js"),
       g = n("./node_modules/react-dom/lib/ReactEventListener.js"),
       y = n("./node_modules/react-dom/lib/ReactInjection.js"),
@@ -31388,7 +31388,7 @@ object-assign
           y.EventEmitter.injectReactEventListener(g),
           y.EventPluginHub.injectEventPluginOrder(i),
           y.EventPluginUtils.injectComponentTree(d),
-          y.EventPluginUtils.injectTreeTraversal(f),
+          y.EventPluginUtils.injectTreeTraversal(h),
           y.EventPluginHub.injectEventPluginsByName({
             SimpleEventPlugin: j,
             EnterLeaveEventPlugin: a,
@@ -31397,7 +31397,7 @@ object-assign
             BeforeInputEventPlugin: o,
           }),
           y.HostComponent.injectGenericComponentClass(c),
-          y.HostComponent.injectTextComponentClass(h),
+          y.HostComponent.injectTextComponentClass(f),
           y.DOMProperty.injectDOMPropertyConfig(r),
           y.DOMProperty.injectDOMPropertyConfig(l),
           y.DOMProperty.injectDOMPropertyConfig(v),
@@ -31738,10 +31738,10 @@ object-assign
           ("string" == typeof i ? i : i.displayName || i.name)),
           console.time(s)
       }
-      var a = h.mountComponent(e, n, null, u(e, t), o, 0)
+      var a = f.mountComponent(e, n, null, u(e, t), o, 0)
       s && console.timeEnd(s),
         (e._renderedComponent._topLevelWrapper = e),
-        P._mountImageIntoNode(a, t, e, r, n)
+        O._mountImageIntoNode(a, t, e, r, n)
     }
     function batchedMountComponentIntoNode(e, t, n, r) {
       var o = g.ReactReconcileTransaction.getPooled(!n && c.useCreateElement)
@@ -31750,7 +31750,7 @@ object-assign
     }
     function unmountComponentFromNode(e, t, n) {
       for (
-        h.unmountComponent(e, n), t.nodeType === w && (t = t.documentElement);
+        f.unmountComponent(e, n), t.nodeType === w && (t = t.documentElement);
         t.lastChild;
 
       )
@@ -31786,9 +31786,9 @@ object-assign
       c = n("./node_modules/react-dom/lib/ReactDOMFeatureFlags.js"),
       d = n("./node_modules/react-dom/lib/ReactFeatureFlags.js"),
       p = n("./node_modules/react-dom/lib/ReactInstanceMap.js"),
-      f = (n("./node_modules/react-dom/lib/ReactInstrumentation.js"),
+      h = (n("./node_modules/react-dom/lib/ReactInstrumentation.js"),
       n("./node_modules/react-dom/lib/ReactMarkupChecksum.js")),
-      h = n("./node_modules/react-dom/lib/ReactReconciler.js"),
+      f = n("./node_modules/react-dom/lib/ReactReconciler.js"),
       m = n("./node_modules/react-dom/lib/ReactUpdateQueue.js"),
       g = n("./node_modules/react-dom/lib/ReactUpdates.js"),
       y = n("./node_modules/fbjs/lib/emptyObject.js"),
@@ -31803,23 +31803,23 @@ object-assign
       k = 11,
       E = {},
       S = 1,
-      O = function() {
+      R = function() {
         this.rootID = S++
       }
-    ;(O.prototype.isReactComponent = {}),
-      (O.prototype.render = function() {
+    ;(R.prototype.isReactComponent = {}),
+      (R.prototype.render = function() {
         return this.props.child
       }),
-      (O.isReactTopLevelWrapper = !0)
-    var P = {
-      TopLevelWrapper: O,
+      (R.isReactTopLevelWrapper = !0)
+    var O = {
+      TopLevelWrapper: R,
       _instancesByReactRootID: E,
       scrollMonitor: function(e, t) {
         t()
       },
       _updateRootComponent: function(e, t, n, r, o) {
         return (
-          P.scrollMonitor(r, function() {
+          O.scrollMonitor(r, function() {
             m.enqueueElementInternal(e, t, n),
               o && m.enqueueCallbackInternal(e, o)
           }),
@@ -31836,7 +31836,7 @@ object-assign
       renderSubtreeIntoContainer: function(e, t, n, o) {
         return (
           (null != e && p.has(e)) || r("38"),
-          P._renderSubtreeIntoContainer(e, t, n, o)
+          O._renderSubtreeIntoContainer(e, t, n, o)
         )
       },
       _renderSubtreeIntoContainer: function(e, t, n, o) {
@@ -31853,7 +31853,7 @@ object-assign
                     : ""
             )
         var s,
-          a = i.createElement(O, { child: t })
+          a = i.createElement(R, { child: t })
         if (e) {
           var l = p.get(e)
           s = l._processChildContext(l._context)
@@ -31863,20 +31863,20 @@ object-assign
           var c = u._currentElement.props.child
           if (_(c, t)) {
             var d = u._renderedComponent.getPublicInstance(),
-              f =
+              h =
                 o &&
                 function() {
                   o.call(d)
                 }
-            return P._updateRootComponent(u, a, s, n, f), d
+            return O._updateRootComponent(u, a, s, n, h), d
           }
-          P.unmountComponentAtNode(n)
+          O.unmountComponentAtNode(n)
         }
-        var h = getReactRootElementInContainer(n),
-          g = h && !!internalGetID(h),
+        var f = getReactRootElementInContainer(n),
+          g = f && !!internalGetID(f),
           b = hasNonRootReactChild(n),
           v = g && !u && !b,
-          j = P._renderNewRootComponent(
+          j = O._renderNewRootComponent(
             a,
             n,
             v,
@@ -31885,7 +31885,7 @@ object-assign
         return o && o.call(j), j
       },
       render: function(e, t, n) {
-        return P._renderSubtreeIntoContainer(null, e, t, n)
+        return O._renderSubtreeIntoContainer(null, e, t, n)
       },
       unmountComponentAtNode: function(e) {
         isValidContainer(e) || r("40")
@@ -31903,19 +31903,19 @@ object-assign
       _mountImageIntoNode: function(e, t, n, s, i) {
         if ((isValidContainer(t) || r("41"), s)) {
           var a = getReactRootElementInContainer(t)
-          if (f.canReuseMarkup(e, a)) return void l.precacheNode(n, a)
-          var u = a.getAttribute(f.CHECKSUM_ATTR_NAME)
-          a.removeAttribute(f.CHECKSUM_ATTR_NAME)
+          if (h.canReuseMarkup(e, a)) return void l.precacheNode(n, a)
+          var u = a.getAttribute(h.CHECKSUM_ATTR_NAME)
+          a.removeAttribute(h.CHECKSUM_ATTR_NAME)
           var c = a.outerHTML
-          a.setAttribute(f.CHECKSUM_ATTR_NAME, u)
+          a.setAttribute(h.CHECKSUM_ATTR_NAME, u)
           var d = e,
             p = firstDifferenceIndex(d, c),
-            h =
+            f =
               " (client) " +
               d.substring(p - 20, p + 20) +
               "\n (server) " +
               c.substring(p - 20, p + 20)
-          t.nodeType === w && r("42", h)
+          t.nodeType === w && r("42", f)
         }
         if ((t.nodeType === w && r("43"), i.useCreateElement)) {
           for (; t.lastChild; ) t.removeChild(t.lastChild)
@@ -31923,7 +31923,7 @@ object-assign
         } else v(t, e), l.precacheNode(n, t.firstChild)
       },
     }
-    e.exports = P
+    e.exports = O
   },
   "./node_modules/react-dom/lib/ReactMultiChild.js": function(e, t, n) {
     "use strict"
@@ -32064,23 +32064,23 @@ object-assign
                 c = 0,
                 d = 0,
                 p = 0,
-                f = null
+                h = null
               for (l in a)
                 if (a.hasOwnProperty(l)) {
-                  var h = r && r[l],
+                  var f = r && r[l],
                     m = a[l]
-                  h === m
-                    ? ((u = enqueue(u, this.moveChild(h, f, c, d))),
-                      (d = Math.max(h._mountIndex, d)),
-                      (h._mountIndex = c))
-                    : (h && (d = Math.max(h._mountIndex, d)),
+                  f === m
+                    ? ((u = enqueue(u, this.moveChild(f, h, c, d))),
+                      (d = Math.max(f._mountIndex, d)),
+                      (f._mountIndex = c))
+                    : (f && (d = Math.max(f._mountIndex, d)),
                       (u = enqueue(
                         u,
-                        this._mountChildAtIndex(m, i[p], f, c, t, n)
+                        this._mountChildAtIndex(m, i[p], h, c, t, n)
                       )),
                       p++),
                     c++,
-                    (f = s.getHostNode(m))
+                    (h = s.getHostNode(m))
                 }
               for (l in o)
                 o.hasOwnProperty(l) &&
@@ -32475,7 +32475,7 @@ object-assign
   "./node_modules/react-dom/lib/ReactUpdates.js": function(e, t, n) {
     "use strict"
     function ensureInjected() {
-      ;(y.ReactReconcileTransaction && h) || r("123")
+      ;(y.ReactReconcileTransaction && f) || r("123")
     }
     function ReactUpdatesFlushTransaction() {
       this.reinitializeTransaction(),
@@ -32512,10 +32512,10 @@ object-assign
     }
     function enqueueUpdate(e) {
       ensureInjected(),
-        h.isBatchingUpdates
+        f.isBatchingUpdates
           ? (c.push(e),
             null == e._updateBatchNumber && (e._updateBatchNumber = d + 1))
-          : h.batchedUpdates(enqueueUpdate, e)
+          : f.batchedUpdates(enqueueUpdate, e)
     }
     var r = n("./node_modules/react-dom/lib/reactProdInvariant.js"),
       o = n("./node_modules/object-assign/index.js"),
@@ -32527,8 +32527,8 @@ object-assign
       c = (n("./node_modules/fbjs/lib/invariant.js"), []),
       d = 0,
       p = s.getPooled(),
-      f = !1,
-      h = null,
+      h = !1,
+      f = null,
       m = [
         {
           initialize: function() {
@@ -32573,14 +32573,14 @@ object-assign
     }),
       i.addPoolingTo(ReactUpdatesFlushTransaction)
     var g = function() {
-        for (; c.length || f; ) {
+        for (; c.length || h; ) {
           if (c.length) {
             var e = ReactUpdatesFlushTransaction.getPooled()
             e.perform(runBatchedUpdates, null, e),
               ReactUpdatesFlushTransaction.release(e)
           }
-          if (f) {
-            f = !1
+          if (h) {
+            h = !1
             var t = p
             ;(p = s.getPooled()), t.notifyAll(), s.release(t)
           }
@@ -32589,7 +32589,7 @@ object-assign
       y = {
         ReactReconcileTransaction: null,
         batchedUpdates: function batchedUpdates(e, t, n, r, o, s) {
-          return ensureInjected(), h.batchedUpdates(e, t, n, r, o, s)
+          return ensureInjected(), f.batchedUpdates(e, t, n, r, o, s)
         },
         enqueueUpdate: enqueueUpdate,
         flushBatchedUpdates: g,
@@ -32601,11 +32601,11 @@ object-assign
             e || r("127"),
               "function" != typeof e.batchedUpdates && r("128"),
               "boolean" != typeof e.isBatchingUpdates && r("129"),
-              (h = e)
+              (f = e)
           },
         },
         asap: function asap(e, t) {
-          h.isBatchingUpdates || r("125"), p.enqueue(e, t), (f = !0)
+          f.isBatchingUpdates || r("125"), p.enqueue(e, t), (h = !0)
         },
       }
     e.exports = y
@@ -32907,14 +32907,14 @@ object-assign
       }
     }
     function constructSelectEvent(e, t) {
-      if (g || null == f || f !== l()) return null
-      var n = getSelection(f)
+      if (g || null == h || h !== l()) return null
+      var n = getSelection(h)
       if (!m || !c(m, n)) {
         m = n
-        var o = a.getPooled(p.select, h, e, t)
+        var o = a.getPooled(p.select, f, e, t)
         return (
           (o.type = "select"),
-          (o.target = f),
+          (o.target = h),
           r.accumulateTwoPhaseDispatches(o),
           o
         )
@@ -32951,8 +32951,8 @@ object-assign
           ],
         },
       },
-      f = null,
       h = null,
+      f = null,
       m = null,
       g = !1,
       y = !1,
@@ -32964,10 +32964,10 @@ object-assign
           switch (e) {
             case "topFocus":
               ;(u(o) || "true" === o.contentEditable) &&
-                ((f = o), (h = t), (m = null))
+                ((h = o), (f = t), (m = null))
               break
             case "topBlur":
-              ;(f = null), (h = null), (m = null)
+              ;(h = null), (f = null), (m = null)
               break
             case "topMouseDown":
               g = !0
@@ -33009,8 +33009,8 @@ object-assign
       c = n("./node_modules/react-dom/lib/SyntheticFocusEvent.js"),
       d = n("./node_modules/react-dom/lib/SyntheticKeyboardEvent.js"),
       p = n("./node_modules/react-dom/lib/SyntheticMouseEvent.js"),
-      f = n("./node_modules/react-dom/lib/SyntheticDragEvent.js"),
-      h = n("./node_modules/react-dom/lib/SyntheticTouchEvent.js"),
+      h = n("./node_modules/react-dom/lib/SyntheticDragEvent.js"),
+      f = n("./node_modules/react-dom/lib/SyntheticTouchEvent.js"),
       m = n("./node_modules/react-dom/lib/SyntheticTransitionEvent.js"),
       g = n("./node_modules/react-dom/lib/SyntheticUIEvent.js"),
       y = n("./node_modules/react-dom/lib/SyntheticWheelEvent.js"),
@@ -33158,13 +33158,13 @@ object-assign
             case "topDragOver":
             case "topDragStart":
             case "topDrop":
-              b = f
+              b = h
               break
             case "topTouchCancel":
             case "topTouchEnd":
             case "topTouchMove":
             case "topTouchStart":
-              b = h
+              b = f
               break
             case "topAnimationEnd":
             case "topAnimationIteration":
@@ -34295,12 +34295,12 @@ object-assign
         return n(u, e, "" === t ? a + getComponentKey(e, 0) : t), 1
       var d,
         p = 0,
-        f = "" === t ? a : t + l
+        h = "" === t ? a : t + l
       if (Array.isArray(e))
-        for (var h = 0; h < e.length; h++)
+        for (var f = 0; f < e.length; f++)
           p += traverseAllChildrenImpl(
-            (d = e[h]),
-            f + getComponentKey(d, h),
+            (d = e[f]),
+            h + getComponentKey(d, f),
             n,
             u
           )
@@ -34313,7 +34313,7 @@ object-assign
             for (var b = 0; !(g = y.next()).done; )
               p += traverseAllChildrenImpl(
                 (d = g.value),
-                f + getComponentKey(d, b++),
+                h + getComponentKey(d, b++),
                 n,
                 u
               )
@@ -34323,7 +34323,7 @@ object-assign
               v &&
                 (p += traverseAllChildrenImpl(
                   (d = v[1]),
-                  f + i.escape(v[0]) + l + getComponentKey(d, 0),
+                  h + i.escape(v[0]) + l + getComponentKey(d, 0),
                   n,
                   u
                 ))
@@ -34624,24 +34624,24 @@ object-assign
         r = Object(d.f)(),
         s = r.targetName,
         a = r.targetIndex,
-        f = !1,
         h = !1,
+        f = !1,
         m = !1
       if (s) {
         var g = Object(d.b)(t, s)
-        if (g.length) (t = [{ components: g }]), (f = !0)
+        if (g.length) (t = [{ components: g }]), (h = !0)
         else {
           var y = Object(d.e)(t, s)
           ;(t = y ? [y] : []), (m = !0)
         }
         l()(a) &&
           (1 === g.length
-            ? ((g[0] = Object(d.a)(g[0], a)), (h = !0))
-            : 1 === t.length && ((t[0] = Object(d.c)(t[0], a)), (h = !0)))
+            ? ((g[0] = Object(d.a)(g[0], a)), (f = !0))
+            : 1 === t.length && ((t[0] = Object(d.c)(t[0], a)), (f = !0)))
       }
       d.j.reset(), (t = Object(d.i)(t))
       var b = e.config.title
-      f || h
+      h || f
         ? (b = t[0].components[0].name + " — " + b)
         : m && (b = t[0].name + " — " + b),
         (document.title = b),
@@ -34653,8 +34653,8 @@ object-assign
             welcomeScreen: e.welcomeScreen,
             patterns: e.patterns,
             sections: t,
-            isolatedComponent: f,
-            isolatedExample: h,
+            isolatedComponent: h,
+            isolatedExample: f,
             isolatedSection: m,
           }),
           document.getElementById("app")
@@ -34715,7 +34715,7 @@ object-assign
         ])
       return o.a.createElement(
         p.a,
-        f({ className: a && t.block }, d),
+        h({ className: a && t.block }, d),
         i && "Returns",
         n &&
           o.a.createElement(
@@ -34746,7 +34746,7 @@ object-assign
       ),
       d = n("./node_modules/react-group/index.js"),
       p = n.n(d),
-      f =
+      h =
         Object.assign ||
         function(e) {
           for (var t = 1; t < arguments.length; t++) {
@@ -35372,7 +35372,7 @@ object-assign
   ) {
     "use strict"
     function getMarkdown(e) {
-      return u()(f, function(t, n) {
+      return u()(h, function(t, n) {
         return e[n] && t(e[n])
       })
         .filter(Boolean)
@@ -35409,7 +35409,7 @@ object-assign
           })
           .join("\n\n")
       },
-      f = {
+      h = {
         deprecated: function deprecated(e) {
           return "**Deprecated:** " + e[0].description
         },
@@ -35624,7 +35624,7 @@ object-assign
       p = n(
         "./node_modules/react-styleguidist/lib/rsg-components/Para/index.js"
       ),
-      f =
+      h =
         Object.assign ||
         function(e) {
           for (var t = 1; t < arguments.length; t++) {
@@ -35637,21 +35637,21 @@ object-assign
     n(
       "./node_modules/react-styleguidist/loaders/style-loader.js!./node_modules/react-styleguidist/loaders/css-loader.js!./node_modules/highlight.js/styles/tomorrow.css"
     )
-    var h = function memoize(e) {
+    var f = function memoize(e) {
       return e
     }
     Code.propTypes = { children: i.a.node, className: i.a.string }
-    var m = h(function(e) {
+    var m = f(function(e) {
         var t = u()(e, function(e) {
           return { props: { className: e } }
         })
-        return f({}, t, {
+        return h({}, t, {
           code: { component: Code, props: { className: e.code } },
         })
       }),
-      g = h(function(e) {
+      g = f(function(e) {
         var t = m(e)
-        return f({}, t, {
+        return h({}, t, {
           p: { component: "span", props: { className: e.base } },
         })
       })
@@ -35759,7 +35759,7 @@ object-assign
     "use strict"
     function MethodsRenderer(e) {
       var t = e.methods
-      return o.a.createElement(p.a, { columns: m, rows: t, getRowKey: h })
+      return o.a.createElement(p.a, { columns: m, rows: t, getRowKey: f })
     }
     t.a = MethodsRenderer
     var r = n("./node_modules/react/react.js"),
@@ -35784,7 +35784,7 @@ object-assign
       p = n(
         "./node_modules/react-styleguidist/lib/rsg-components/Table/index.js"
       ),
-      f =
+      h =
         Object.assign ||
         function(e) {
           for (var t = 1; t < arguments.length; t++) {
@@ -35794,7 +35794,7 @@ object-assign
           }
           return e
         },
-      h = function getRowKey(e) {
+      f = function getRowKey(e) {
         return e.name
       },
       m = [
@@ -35830,7 +35830,7 @@ object-assign
               "div",
               null,
               t && o.a.createElement(a.a, { text: t }),
-              n && o.a.createElement(l.a, f({ block: !0, returns: !0 }, n)),
+              n && o.a.createElement(l.a, h({ block: !0, returns: !0 }, n)),
               o.a.createElement(d.a, s)
             )
           },
@@ -36111,10 +36111,10 @@ object-assign
       p = n(
         "./node_modules/react-styleguidist/lib/rsg-components/Playground/PlaygroundRenderer.js"
       ),
-      f = n(
+      h = n(
         "./node_modules/react-styleguidist/lib/rsg-components/slots/index.js"
       ),
-      h = (function() {
+      f = (function() {
         function defineProperties(e, t) {
           for (var n = 0; n < t.length; n++) {
             var r = t[n]
@@ -36148,7 +36148,7 @@ object-assign
             s = t.config,
             i = void 0 !== o.showcode ? o.showcode : s.showCode
           return (
-            (n.state = { code: r, activeTab: i ? f.b : void 0 }),
+            (n.state = { code: r, activeTab: i ? h.b : void 0 }),
             (n.handleTabChange = n.handleTabChange.bind(n)),
             (n.handleChange = l()(n.handleChange.bind(n), s.previewDelay)),
             n
@@ -36156,7 +36156,7 @@ object-assign
         }
         return (
           _inherits(Playground, r["Component"]),
-          h(Playground, [
+          f(Playground, [
             {
               key: "componentWillReceiveProps",
               value: function componentWillReceiveProps(e) {
@@ -36204,13 +36204,13 @@ object-assign
                   i = r.index,
                   a = r.name,
                   l = r.settings,
-                  f = this.context.isolatedExample,
-                  h = o.a.createElement(u.a, { code: t, evalInContext: s })
+                  h = this.context.isolatedExample,
+                  f = o.a.createElement(u.a, { code: t, evalInContext: s })
                 return l.noeditor
-                  ? o.a.createElement(c.a, null, h)
+                  ? o.a.createElement(c.a, null, f)
                   : o.a.createElement(p.a, {
                       name: a,
-                      preview: h,
+                      preview: f,
                       previewProps: l.props || {},
                       tabButtons: o.a.createElement(d.a, {
                         name: "exampleTabButtons",
@@ -36225,7 +36225,7 @@ object-assign
                       }),
                       toolbar: o.a.createElement(d.a, {
                         name: "exampleToolbar",
-                        props: { name: a, isolated: f, example: i },
+                        props: { name: a, isolated: h, example: i },
                       }),
                     })
               },
@@ -36446,10 +36446,10 @@ object-assign
       n(
         "./node_modules/react-styleguidist/lib/rsg-components/PlaygroundError/index.js"
       )),
-      f = n(
+      h = n(
         "./node_modules/react-styleguidist/lib/rsg-components/Wrapper/index.js"
       ),
-      h = (function() {
+      f = (function() {
         function defineProperties(e, t) {
           for (var n = 0; n < t.length; n++) {
             var r = t[n]
@@ -36488,7 +36488,7 @@ object-assign
         }
         return (
           _inherits(PreviewComponent, r["Component"]),
-          h(PreviewComponent, [
+          f(PreviewComponent, [
             {
               key: "setInitialState",
               value: function setInitialState(e) {
@@ -36532,7 +36532,7 @@ object-assign
       }
       return (
         _inherits(Preview, r["Component"]),
-        h(Preview, [
+        f(Preview, [
           {
             key: "componentDidMount",
             value: function componentDidMount() {
@@ -36574,7 +36574,7 @@ object-assign
                 if (n) {
                   var r = this.evalInContext(n),
                     s = o.a.createElement(
-                      f.a,
+                      h.a,
                       null,
                       o.a.createElement(g, { component: r })
                     )
@@ -37110,10 +37110,10 @@ object-assign
       p = n(
         "./node_modules/react-styleguidist/lib/rsg-components/ReactComponent/ReactComponentRenderer.js"
       ),
-      f = n(
+      h = n(
         "./node_modules/react-styleguidist/lib/rsg-components/slots/index.js"
       ),
-      h =
+      f =
         Object.assign ||
         function(e) {
           for (var t = 1; t < arguments.length; t++) {
@@ -37155,7 +37155,7 @@ object-assign
             r = t.config.showUsage
           return (
             (n.handleTabChange = n.handleTabChange.bind(n)),
-            (n.state = { activeTab: r ? f.a : void 0 }),
+            (n.state = { activeTab: r ? h.a : void 0 }),
             n
           )
         }
@@ -37179,7 +37179,7 @@ object-assign
                   r = n.component,
                   s = n.depth,
                   i = r.name,
-                  f = r.slug,
+                  h = r.slug,
                   m = r.pathLine,
                   y = r.props,
                   b = y.description,
@@ -37190,17 +37190,17 @@ object-assign
                 return i
                   ? o.a.createElement(p.a, {
                       name: i,
-                      slug: f,
+                      slug: h,
                       pathLine: m,
                       docs: o.a.createElement(u.a, x),
                       description: b && o.a.createElement(c.a, { text: b }),
                       heading: o.a.createElement(
                         l.a,
                         {
-                          id: f,
+                          id: h,
                           deprecated: !!x.deprecated,
                           slotName: "componentToolbar",
-                          slotProps: h({}, r, { isolated: t }),
+                          slotProps: f({}, r, { isolated: t }),
                           depth: s,
                         },
                         i
@@ -37212,7 +37212,7 @@ object-assign
                       tabButtons: o.a.createElement(d.a, {
                         name: "docsTabButtons",
                         active: e,
-                        props: h({}, r, { onClick: this.handleTabChange }),
+                        props: f({}, r, { onClick: this.handleTabChange }),
                       }),
                       tabBody: o.a.createElement(d.a, {
                         name: "docsTabs",
@@ -37335,11 +37335,11 @@ object-assign
         i = void 0 !== s && s,
         d = n.name,
         p = n.slug,
-        f = n.content,
-        h = n.components,
+        h = n.content,
+        f = n.components,
         m = n.sections,
-        g = f && o.a.createElement(a.a, { examples: f, name: d }),
-        y = h && o.a.createElement(l.a, { components: h, depth: r + 1 }),
+        g = h && o.a.createElement(a.a, { examples: h, name: d }),
+        y = f && o.a.createElement(l.a, { components: f, depth: r + 1 }),
         b = m && o.a.createElement(u.a, { sections: m, depth: r + 1 })
       return o.a.createElement(c.a, {
         name: d,
@@ -37839,7 +37839,7 @@ object-assign
           )
         }
       })()),
-      f = (function(e) {
+      h = (function(e) {
         function StyleGuide() {
           return (
             _classCallCheck(this, StyleGuide),
@@ -37895,7 +37895,7 @@ object-assign
           StyleGuide
         )
       })()
-    ;(f.propTypes = {
+    ;(h.propTypes = {
       codeRevision: i.a.number.isRequired,
       config: i.a.object.isRequired,
       slots: i.a.object.isRequired,
@@ -37906,7 +37906,7 @@ object-assign
       isolatedExample: i.a.bool,
       isolatedSection: i.a.bool,
     }),
-      (f.childContextTypes = {
+      (h.childContextTypes = {
         codeRevision: i.a.number.isRequired,
         config: i.a.object.isRequired,
         slots: i.a.object.isRequired,
@@ -37914,8 +37914,8 @@ object-assign
         isolatedExample: i.a.bool,
         isolatedSection: i.a.bool,
       }),
-      (f.defaultProps = { isolatedComponent: !1 }),
-      (t.a = f)
+      (h.defaultProps = { isolatedComponent: !1 }),
+      (t.a = h)
   },
   "./node_modules/react-styleguidist/lib/rsg-components/StyleGuide/StyleGuideRenderer.js": function(
     e,
@@ -39111,7 +39111,7 @@ object-assign
         "./node_modules/react-styleguidist/lib/rsg-components/ToolbarButton/index.js"
       ),
       p = n("./node_modules/react-styleguidist/lib/utils/utils.js"),
-      f = function IsolateButton(e) {
+      h = function IsolateButton(e) {
         var t = e.name,
           n = e.example
         return e.isolated
@@ -39129,12 +39129,12 @@ object-assign
               o.a.createElement(l.a, null)
             )
       }
-    ;(f.propTypes = {
+    ;(h.propTypes = {
       name: i.a.string.isRequired,
       example: i.a.number,
       isolated: i.a.bool,
     }),
-      (t.a = f)
+      (t.a = h)
   },
   "./node_modules/react-styleguidist/lib/rsg-components/slots/UsageTabButton.js": function(
     e,
@@ -39305,9 +39305,9 @@ object-assign
       c = n("./node_modules/jss-camel-case/lib/index.js"),
       d = n.n(c),
       p = n("./node_modules/jss-default-unit/lib/index.js"),
-      f = n.n(p),
-      h = n("./node_modules/jss-compose/lib/index.js"),
-      m = n.n(h),
+      h = n.n(p),
+      f = n("./node_modules/jss-compose/lib/index.js"),
+      m = n.n(f),
       g = n(
         "./node_modules/react-styleguidist/lib/styles/nonInheritedProps.js"
       ),
@@ -39340,7 +39340,7 @@ object-assign
           }),
           u()(),
           d()(),
-          f()(),
+          h()(),
           m()(),
         ],
       })
@@ -39667,7 +39667,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  DirectionsRenderer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithADirectionsRenderer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap,\n  lifecycle({\n    componentDidMount() {\n      const DirectionsService = new google.maps.DirectionsService();\n\n      DirectionsService.route({\n        origin: new google.maps.LatLng(41.8507300, -87.6512600),\n        destination: new google.maps.LatLng(41.8525800, -87.6514100),\n        travelMode: google.maps.TravelMode.DRIVING,\n      }, (result, status) =&gt; {\n        if (status === google.maps.DirectionsStatus.OK) {\n          this.setState({\n            directions: result,\n          });\n        } else {\n          console.error(`error fetching directions ${result}`);\n        }\n      });\n    }\n  })\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={7}\n    defaultCenter={new google.maps.LatLng(41.8507300, -87.6512600)}\n  &gt;\n    {props.directions &amp;&amp; &lt;DirectionsRenderer directions={props.directions} /&gt;}\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithADirectionsRenderer /&gt;\n```\n\n### Map with a DirectionsRenderer',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  DirectionsRenderer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithADirectionsRenderer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap,\n  lifecycle({\n    componentDidMount() {\n      const DirectionsService = new google.maps.DirectionsService();\n\n      DirectionsService.route({\n        origin: new google.maps.LatLng(41.8507300, -87.6512600),\n        destination: new google.maps.LatLng(41.8525800, -87.6514100),\n        travelMode: google.maps.TravelMode.DRIVING,\n      }, (result, status) =&gt; {\n        if (status === google.maps.DirectionsStatus.OK) {\n          this.setState({\n            directions: result,\n          });\n        } else {\n          console.error(`error fetching directions ${result}`);\n        }\n      });\n    }\n  })\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={7}\n    defaultCenter={new google.maps.LatLng(41.8507300, -87.6512600)}\n  &gt;\n    {props.directions &amp;&amp; &lt;DirectionsRenderer directions={props.directions} /&gt;}\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithADirectionsRenderer /&gt;\n```\n\n### Map with a DirectionsRenderer',
       },
       {
         type: "code",
@@ -39698,7 +39698,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  FusionTablesLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAFusionTablesLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={11}\n    defaultCenter={{ lat: 41.850033, lng: -87.6500523 }}\n  &gt;\n    &lt;FusionTablesLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{\n        query: {\n          select: `Geocodable address`,\n          from: `1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg`\n        }\n      }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAFusionTablesLayer /&gt;\n```\n\n### Map with a FusionTablesLayer',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  FusionTablesLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAFusionTablesLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={11}\n    defaultCenter={{ lat: 41.850033, lng: -87.6500523 }}\n  &gt;\n    &lt;FusionTablesLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{\n        query: {\n          select: `Geocodable address`,\n          from: `1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg`\n        }\n      }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAFusionTablesLayer /&gt;\n```\n\n### Map with a FusionTablesLayer',
       },
       {
         type: "code",
@@ -39732,7 +39732,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```js\n<span class="hljs-keyword">import</span> { compose, withProps, withState, withHandlers } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> FaAnchor <span class="hljs-keyword">from</span> <span class="hljs-string">"react-icons/lib/fa/ancho"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithControlledZoom = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withState(\'zoom\', \'onZoomChange\', 8),\n  withHandlers(() =&gt; {\n    const refs = {\n      map: undefined,\n    }\n\n    return {\n      onMapMounted: () =&gt; ref =&gt; {\n        refs.map = ref\n      },\n      onZoomChanged: ({ onZoomChange }) =&gt; () =&gt; {\n        onZoomChange(refs.map.getZoom())\n      }\n    }\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n    zoom={props.zoom}\n    ref={props.onMapMounted}\n    onZoomChanged={props.onZoomChanged}\n  &gt;\n    &lt;Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    &gt;\n      &lt;InfoWindow onCloseClick={props.onToggleOpen}&gt;\n        &lt;div&gt;\n          &lt;FaAnchor /&gt;\n          {" "}\n          Controlled zoom: {props.zoom}\n        &lt;/div&gt;\n      &lt;/InfoWindow&gt;\n    &lt;/Marker&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithControlledZoom /&gt;\n```\n\n### Map with controlled zoom',
+          '### Usage\n\n```js\n<span class="hljs-keyword">import</span> { compose, withProps, withState, withHandlers } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> FaAnchor <span class="hljs-keyword">from</span> <span class="hljs-string">"react-icons/lib/fa/anchor"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithControlledZoom = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withState(\'zoom\', \'onZoomChange\', 8),\n  withHandlers(() =&gt; {\n    const refs = {\n      map: undefined,\n    }\n\n    return {\n      onMapMounted: () =&gt; ref =&gt; {\n        refs.map = ref\n      },\n      onZoomChanged: ({ onZoomChange }) =&gt; () =&gt; {\n        onZoomChange(refs.map.getZoom())\n      }\n    }\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n    zoom={props.zoom}\n    ref={props.onMapMounted}\n    onZoomChanged={props.onZoomChanged}\n  &gt;\n    &lt;Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    &gt;\n      &lt;InfoWindow onCloseClick={props.onToggleOpen}&gt;\n        &lt;div&gt;\n          &lt;FaAnchor /&gt;\n          {" "}\n          Controlled zoom: {props.zoom}\n        &lt;/div&gt;\n      &lt;/InfoWindow&gt;\n    &lt;/Marker&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithControlledZoom /&gt;\n```\n\n### Map with controlled zoom',
       },
       {
         type: "code",
@@ -39763,7 +39763,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  GroundOverlay,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithGroundOverlay = compose(\n  withScriptjs,\n  withGoogleMap\n)(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">12</span>}\n    defaultCenter={{<span class="hljs-attr">lat</span>: <span class="hljs-number">40.740</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">-74.18</span>}}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">GroundOverlay</span>\n      <span class="hljs-attr">url</span>=<span class="hljs-string">"https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"</span>\n      <span class="hljs-attr">bounds</span>=<span class="hljs-string">{new</span> <span class="hljs-attr">google.maps.LatLngBounds</span>(\n        <span class="hljs-attr">new</span> <span class="hljs-attr">google.maps.LatLng</span>(<span class="hljs-attr">40.712216</span>, <span class="hljs-attr">-74.22655</span>),\n        <span class="hljs-attr">new</span> <span class="hljs-attr">google.maps.LatLng</span>(<span class="hljs-attr">40.773941</span>, <span class="hljs-attr">-74.12544</span>)\n      )}\n      <span class="hljs-attr">defaultOpacity</span>=<span class="hljs-string">{.5}</span>\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n);\n\n&lt;MapWithGroundOverlay\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing.places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Map with Ground Overlay',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  GroundOverlay,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithGroundOverlay = compose(\n  withScriptjs,\n  withGoogleMap\n)(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">12</span>}\n    defaultCenter={{<span class="hljs-attr">lat</span>: <span class="hljs-number">40.740</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">-74.18</span>}}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">GroundOverlay</span>\n      <span class="hljs-attr">url</span>=<span class="hljs-string">"https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"</span>\n      <span class="hljs-attr">bounds</span>=<span class="hljs-string">{new</span> <span class="hljs-attr">google.maps.LatLngBounds</span>(\n        <span class="hljs-attr">new</span> <span class="hljs-attr">google.maps.LatLng</span>(<span class="hljs-attr">40.712216</span>, <span class="hljs-attr">-74.22655</span>),\n        <span class="hljs-attr">new</span> <span class="hljs-attr">google.maps.LatLng</span>(<span class="hljs-attr">40.773941</span>, <span class="hljs-attr">-74.12544</span>)\n      )}\n      <span class="hljs-attr">defaultOpacity</span>=<span class="hljs-string">{.5}</span>\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n);\n\n&lt;MapWithGroundOverlay\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing.places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Map with Ground Overlay',
       },
       {
         type: "code",
@@ -39797,7 +39797,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\nimport { compose, withProps, withStateHandlers } from "recompose";\nimport FaAnchor from "react-icons/lib/fa/ancho";\nimport {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} from "react-google-maps";\n\nconst MapWithAMakredInfoWindow = compose(\n  withStateHandlers(() =&gt; ({\n    isOpen: false,\n  }), {\n    onToggleOpen: ({ isOpen }) =&gt; () =&gt; ({\n      isOpen: !isOpen,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  &gt;\n    &lt;Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    &gt;\n      {props.isOpen &amp;&amp; &lt;InfoWindow onCloseClick={props.onToggleOpen}&gt;\n        &lt;FaAnchor /&gt;\n      &lt;/InfoWindow&gt;}\n    &lt;/Marker&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAMakredInfoWindow\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Click the Marker to show InfoWindow',
+          '### Usage\n\n```jsx\nimport { compose, withProps, withStateHandlers } from "recompose";\nimport FaAnchor from "react-icons/lib/fa/ancho";\nimport {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} from "react-google-maps";\n\nconst MapWithAMakredInfoWindow = compose(\n  withStateHandlers(() =&gt; ({\n    isOpen: false,\n  }), {\n    onToggleOpen: ({ isOpen }) =&gt; () =&gt; ({\n      isOpen: !isOpen,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  &gt;\n    &lt;Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    &gt;\n      {props.isOpen &amp;&amp; &lt;InfoWindow onCloseClick={props.onToggleOpen}&gt;\n        &lt;FaAnchor /&gt;\n      &lt;/InfoWindow&gt;}\n    &lt;/Marker&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAMakredInfoWindow\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Click the Marker to show InfoWindow',
       },
       {
         type: "code",
@@ -39828,7 +39828,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  KmlLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAKmlLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={9}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  &gt;\n    &lt;KmlLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{ preserveViewport: true }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAKmlLayer /&gt;\n```\n\n### Map with a KmlLayer',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  KmlLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAKmlLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={9}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  &gt;\n    &lt;KmlLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{ preserveViewport: true }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAKmlLayer /&gt;\n```\n\n### Map with a KmlLayer',
       },
       {
         type: "code",
@@ -39859,7 +39859,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAMarker = compose(\n  withScriptjs,\n  withGoogleMap\n)(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">8</span>}\n    defaultCenter={{ <span class="hljs-attr">lat</span>: <span class="hljs-number">-34.397</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">150.644</span> }}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Marker</span>\n      <span class="hljs-attr">position</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">lat:</span> <span class="hljs-attr">-34.397</span>, <span class="hljs-attr">lng:</span> <span class="hljs-attr">150.644</span> }}\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n);\n\n&lt;MapWithAMarker\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Map with a Marker',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAMarker = compose(\n  withScriptjs,\n  withGoogleMap\n)(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">8</span>}\n    defaultCenter={{ <span class="hljs-attr">lat</span>: <span class="hljs-number">-34.397</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">150.644</span> }}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Marker</span>\n      <span class="hljs-attr">position</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">lat:</span> <span class="hljs-attr">-34.397</span>, <span class="hljs-attr">lng:</span> <span class="hljs-attr">150.644</span> }}\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n);\n\n&lt;MapWithAMarker\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Map with a Marker',
       },
       {
         type: "code",
@@ -39893,7 +39893,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\nimport { compose, withProps, withStateHandlers } from "recompose";\nimport FaAnchor from "react-icons/lib/fa/ancho";\nimport {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  OverlayView,\n} from "react-google-maps";\n\nconst getPixelPositionOffset = (width, height) =&gt; ({\n  x: -(width / 2),\n  y: -(height / 2),\n})\n\nconst MapWithAnOverlayView = compose(\n  withStateHandlers(() =&gt; ({\n    count: 0,\n  }), {\n    onClick: ({ count }) =&gt; () =&gt; ({\n      count: count + 1,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  &gt;\n    &lt;OverlayView\n      position={{ lat: -34.397, lng: 150.644 }}\n      /*\n       * An alternative to specifying position is specifying bounds.\n       * bounds can either be an instance of google.maps.LatLngBounds\n       * or an object in the following format:\n       * bounds={{\n       *    ne: { lat: 62.400471, lng: -150.005608 },\n       *    sw: { lat: 62.281819, lng: -150.287132 }\n       * }}\n       */\n      /*\n       * 1. Specify the pane the OverlayView will be rendered to. For\n       *    mouse interactivity, use `OverlayView.OVERLAY_MOUSE_TARGET`.\n       *    Defaults to `OverlayView.OVERLAY_LAYER`.\n       */\n      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}\n      /*\n       * 2. Tweak the OverlayView\'s pixel position. In this case, we\'re\n       *    centering the content.\n       */\n      getPixelPositionOffset={getPixelPositionOffset}\n      /*\n       * 3. Create OverlayView content using standard React components.\n       */\n    &gt;\n      &lt;div style={{ background: `white`, border: `1px solid #ccc`, padding: 15 }}&gt;\n        &lt;h1&gt;OverlayView&lt;/h1&gt;\n        &lt;button onClick={props.onClick} style={{ height: 60 }}&gt;\n          I have been clicked {props.count} time{props.count &gt; 1 ? `s` : ``}\n        &lt;/button&gt;\n      &lt;/div&gt;\n    &lt;/OverlayView&gt;\n  &lt;/GoogleMap&gt;\n);\n&lt;MapWithAnOverlayView\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Click the Marker to show OverlayView',
+          '### Usage\n\n```jsx\nimport { compose, withProps, withStateHandlers } from "recompose";\nimport FaAnchor from "react-icons/lib/fa/ancho";\nimport {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  OverlayView,\n} from "react-google-maps";\n\nconst getPixelPositionOffset = (width, height) =&gt; ({\n  x: -(width / 2),\n  y: -(height / 2),\n})\n\nconst MapWithAnOverlayView = compose(\n  withStateHandlers(() =&gt; ({\n    count: 0,\n  }), {\n    onClick: ({ count }) =&gt; () =&gt; ({\n      count: count + 1,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  &gt;\n    &lt;OverlayView\n      position={{ lat: -34.397, lng: 150.644 }}\n      /*\n       * An alternative to specifying position is specifying bounds.\n       * bounds can either be an instance of google.maps.LatLngBounds\n       * or an object in the following format:\n       * bounds={{\n       *    ne: { lat: 62.400471, lng: -150.005608 },\n       *    sw: { lat: 62.281819, lng: -150.287132 }\n       * }}\n       */\n      /*\n       * 1. Specify the pane the OverlayView will be rendered to. For\n       *    mouse interactivity, use `OverlayView.OVERLAY_MOUSE_TARGET`.\n       *    Defaults to `OverlayView.OVERLAY_LAYER`.\n       */\n      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}\n      /*\n       * 2. Tweak the OverlayView\'s pixel position. In this case, we\'re\n       *    centering the content.\n       */\n      getPixelPositionOffset={getPixelPositionOffset}\n      /*\n       * 3. Create OverlayView content using standard React components.\n       */\n    &gt;\n      &lt;div style={{ background: `white`, border: `1px solid #ccc`, padding: 15 }}&gt;\n        &lt;h1&gt;OverlayView&lt;/h1&gt;\n        &lt;button onClick={props.onClick} style={{ height: 60 }}&gt;\n          I have been clicked {props.count} time{props.count &gt; 1 ? `s` : ``}\n        &lt;/button&gt;\n      &lt;/div&gt;\n    &lt;/OverlayView&gt;\n  &lt;/GoogleMap&gt;\n);\n&lt;MapWithAnOverlayView\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Click the Marker to show OverlayView',
       },
       {
         type: "code",
@@ -39927,7 +39927,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> FaAnchor <span class="hljs-keyword">from</span> <span class="hljs-string">"react-icons/lib/fa/ancho"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  StreetViewPanorama,\n  OverlayView,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> getPixelPositionOffset = <span class="hljs-function">(<span class="hljs-params">width, height</span>) =&gt;</span> ({\n  <span class="hljs-attr">x</span>: -(width / <span class="hljs-number">2</span>),\n  <span class="hljs-attr">y</span>: -(height / <span class="hljs-number">2</span>),\n})\n\n<span class="hljs-keyword">const</span> StreetViewPanormaWithAnOverlayView = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n    center: { lat: 49.2853171, lng: -123.1119202 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap defaultZoom={8} defaultCenter={props.center}&gt;\n    &lt;StreetViewPanorama defaultPosition={props.center} visible&gt;\n      &lt;OverlayView\n        position={{ lat: 49.28590291211115, lng: -123.11248166065218 }}\n          mapPaneName={OverlayView.OVERLAY_LAYER}\n          getPixelPositionOffset={getPixelPositionOffset}\n      &gt;\n        &lt;div style={{ background: `red`, color: `white`, padding: 5, borderRadius: `50%` }}&gt;\n          OverlayView\n        &lt;/div&gt;\n      &lt;/OverlayView&gt;\n    &lt;/StreetViewPanorama&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;StreetViewPanormaWithAnOverlayView /&gt;\n```\n\n### Click the Marker to show OverlayView',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> FaAnchor <span class="hljs-keyword">from</span> <span class="hljs-string">"react-icons/lib/fa/ancho"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  StreetViewPanorama,\n  OverlayView,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> getPixelPositionOffset = <span class="hljs-function">(<span class="hljs-params">width, height</span>) =&gt;</span> ({\n  <span class="hljs-attr">x</span>: -(width / <span class="hljs-number">2</span>),\n  <span class="hljs-attr">y</span>: -(height / <span class="hljs-number">2</span>),\n})\n\n<span class="hljs-keyword">const</span> StreetViewPanormaWithAnOverlayView = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n    center: { lat: 49.2853171, lng: -123.1119202 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap defaultZoom={8} defaultCenter={props.center}&gt;\n    &lt;StreetViewPanorama defaultPosition={props.center} visible&gt;\n      &lt;OverlayView\n        position={{ lat: 49.28590291211115, lng: -123.11248166065218 }}\n          mapPaneName={OverlayView.OVERLAY_LAYER}\n          getPixelPositionOffset={getPixelPositionOffset}\n      &gt;\n        &lt;div style={{ background: `red`, color: `white`, padding: 5, borderRadius: `50%` }}&gt;\n          OverlayView\n        &lt;/div&gt;\n      &lt;/OverlayView&gt;\n    &lt;/StreetViewPanorama&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;StreetViewPanormaWithAnOverlayView /&gt;\n```\n\n### Click the Marker to show OverlayView',
       },
       {
         type: "code",
@@ -39958,7 +39958,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  TrafficLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithATrafficLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  &gt;\n    &lt;TrafficLayer autoUpdate /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithATrafficLayer /&gt;\n```\n\n### Map with a TrafficLayer',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  TrafficLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithATrafficLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  &gt;\n    &lt;TrafficLayer autoUpdate /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithATrafficLayer /&gt;\n```\n\n### Map with a TrafficLayer',
       },
       {
         type: "code",
@@ -39993,7 +39993,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> InfoBox <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/addons/InfoBox"</span>;\n<span class="hljs-keyword">import</span> demoFancyMapStyles <span class="hljs-keyword">from</span> <span class="hljs-string">"./demoFancyMapStyles.json"</span>;\n\n<span class="hljs-keyword">const</span> StyledMapWithAnInfoBox = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n    center: { lat: 25.03, lng: 121.6 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={5}\n    defaultCenter={props.center}\n    defaultOptions={{ styles: demoFancyMapStyles }}\n  &gt;\n    &lt;InfoBox\n      defaultPosition={new google.maps.LatLng(props.center.lat, props.center.lng)}\n      options={{ closeBoxURL: ``, enableEventPropagation: true }}\n    &gt;\n      &lt;div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}&gt;\n        &lt;div style={{ fontSize: `16px`, fontColor: `#08233B` }}&gt;\n          Hello from Taipei\n        &lt;/div&gt;\n      &lt;/div&gt;\n    &lt;/InfoBox&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;StyledMapWithAnInfoBox /&gt;\n```\n\n### Styled Map with an InfoBox',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> InfoBox <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/addons/InfoBox"</span>;\n<span class="hljs-keyword">import</span> demoFancyMapStyles <span class="hljs-keyword">from</span> <span class="hljs-string">"./demoFancyMapStyles.json"</span>;\n\n<span class="hljs-keyword">const</span> StyledMapWithAnInfoBox = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n    center: { lat: 25.03, lng: 121.6 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={5}\n    defaultCenter={props.center}\n    defaultOptions={{ styles: demoFancyMapStyles }}\n  &gt;\n    &lt;InfoBox\n      defaultPosition={new google.maps.LatLng(props.center.lat, props.center.lng)}\n      options={{ closeBoxURL: ``, enableEventPropagation: true }}\n    &gt;\n      &lt;div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}&gt;\n        &lt;div style={{ fontSize: `16px`, fontColor: `#08233B` }}&gt;\n          Hello from Taipei\n        &lt;/div&gt;\n      &lt;/div&gt;\n    &lt;/InfoBox&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;StyledMapWithAnInfoBox /&gt;\n```\n\n### Styled Map with an InfoBox',
       },
       {
         type: "code",
@@ -40028,7 +40028,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> fetch <span class="hljs-keyword">from</span> <span class="hljs-string">"isomorphic-fetch"</span>;\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">import</span> MarkerClusterer <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/addons/MarkerClusterer"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAMarkerClusterer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap,\n  lifecycle({\n    componentWillMount() {\n      this.setState({ markers: [] })\n    },\n\n    componentDidMount() {\n      const url = [\n        // Length issue\n        `https://gist.githubusercontent.com`,\n        `/farrrr/dfda7dd7fccfec5474d3`,\n        `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`\n      ].join("")\n\n      fetch(url)\n        .then(res =&gt; res.json())\n        .then(data =&gt; {\n          this.setState({ markers: data.photos });\n        });\n    }\n  })\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={3}\n    defaultCenter={{ lat: 25.0391667, lng: 121.525 }}\n  &gt;\n    &lt;MarkerClusterer\n      averageCenter\n      enableRetinaIcons\n      gridSize={60}\n    &gt;\n      {props.markers.map(marker =&gt; (\n        &lt;Marker\n          key={marker.photo_id}\n          position={{ lat: marker.latitude, lng: marker.longitude }}\n        /&gt;\n      ))}\n    &lt;/MarkerClusterer&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAMarkerClusterer /&gt;\n```\n\n### Map with a MarkerClusterer',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> fetch <span class="hljs-keyword">from</span> <span class="hljs-string">"isomorphic-fetch"</span>;\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">import</span> MarkerClusterer <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/addons/MarkerClusterer"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAMarkerClusterer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap,\n  lifecycle({\n    componentWillMount() {\n      this.setState({ markers: [] })\n    },\n\n    componentDidMount() {\n      const url = [\n        // Length issue\n        `https://gist.githubusercontent.com`,\n        `/farrrr/dfda7dd7fccfec5474d3`,\n        `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`\n      ].join("")\n\n      fetch(url)\n        .then(res =&gt; res.json())\n        .then(data =&gt; {\n          this.setState({ markers: data.photos });\n        });\n    }\n  })\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={3}\n    defaultCenter={{ lat: 25.0391667, lng: 121.525 }}\n  &gt;\n    &lt;MarkerClusterer\n      averageCenter\n      enableRetinaIcons\n      gridSize={60}\n    &gt;\n      {props.markers.map(marker =&gt; (\n        &lt;Marker\n          key={marker.photo_id}\n          position={{ lat: marker.latitude, lng: marker.longitude }}\n        /&gt;\n      ))}\n    &lt;/MarkerClusterer&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAMarkerClusterer /&gt;\n```\n\n### Map with a MarkerClusterer',
       },
       {
         type: "code",
@@ -40060,7 +40060,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> DrawingManager <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/drawing/DrawingManager"</span>;\n\n<span class="hljs-keyword">const</span> MapWithADrawingManager = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={new google.maps.LatLng(-34.397, 150.644)}\n  &gt;\n    &lt;DrawingManager\n      defaultDrawingMode={google.maps.drawing.OverlayType.CIRCLE}\n      defaultOptions={{\n        drawingControl: true,\n        drawingControlOptions: {\n          position: google.maps.ControlPosition.TOP_CENTER,\n          drawingModes: [\n            google.maps.drawing.OverlayType.CIRCLE,\n            google.maps.drawing.OverlayType.POLYGON,\n            google.maps.drawing.OverlayType.POLYLINE,\n            google.maps.drawing.OverlayType.RECTANGLE,\n          ],\n        },\n        circleOptions: {\n          fillColor: `#ffff00`,\n          fillOpacity: 1,\n          strokeWeight: 5,\n          clickable: false,\n          editable: true,\n          zIndex: 1,\n        },\n      }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithADrawingManager /&gt;\n```\n\n### Map with a DrawingManager',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> DrawingManager <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/drawing/DrawingManager"</span>;\n\n<span class="hljs-keyword">const</span> MapWithADrawingManager = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={new google.maps.LatLng(-34.397, 150.644)}\n  &gt;\n    &lt;DrawingManager\n      defaultDrawingMode={google.maps.drawing.OverlayType.CIRCLE}\n      defaultOptions={{\n        drawingControl: true,\n        drawingControlOptions: {\n          position: google.maps.ControlPosition.TOP_CENTER,\n          drawingModes: [\n            google.maps.drawing.OverlayType.CIRCLE,\n            google.maps.drawing.OverlayType.POLYGON,\n            google.maps.drawing.OverlayType.POLYLINE,\n            google.maps.drawing.OverlayType.RECTANGLE,\n          ],\n        },\n        circleOptions: {\n          fillColor: `#ffff00`,\n          fillOpacity: 1,\n          strokeWeight: 5,\n          clickable: false,\n          editable: true,\n          zIndex: 1,\n        },\n      }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithADrawingManager /&gt;\n```\n\n### Map with a DrawingManager',
       },
       {
         type: "code",
@@ -40092,7 +40092,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> SearchBox <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/places/SearchBox"</span>;\n\n<span class="hljs-keyword">const</span> MapWithASearchBox = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        bounds: null,\n        center: {\n          lat: 41.9, lng: -87.624\n        },\n        markers: [],\n        onMapMounted: ref =&gt; {\n          refs.map = ref;\n        },\n        onBoundsChanged: () =&gt; {\n          this.setState({\n            bounds: refs.map.getBounds(),\n            center: refs.map.getCenter(),\n          })\n        },\n        onSearchBoxMounted: ref =&gt; {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () =&gt; {\n          const places = refs.searchBox.getPlaces();\n          const bounds = new google.maps.LatLngBounds();\n\n          places.forEach(place =&gt; {\n            if (place.geometry.viewport) {\n              bounds.union(place.geometry.viewport)\n            } else {\n              bounds.extend(place.geometry.location)\n            }\n          });\n          const nextMarkers = places.map(place =&gt; ({\n            position: place.geometry.location,\n          }));\n          const nextCenter = _.get(nextMarkers, \'0.position\', this.state.center);\n\n          this.setState({\n            center: nextCenter,\n            markers: nextMarkers,\n          });\n          // refs.map.fitBounds(bounds);\n        },\n      })\n    },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    ref={props.onMapMounted}\n    defaultZoom={15}\n    center={props.center}\n    onBoundsChanged={props.onBoundsChanged}\n  &gt;\n    &lt;SearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      controlPosition={google.maps.ControlPosition.TOP_LEFT}\n      onPlacesChanged={props.onPlacesChanged}\n    &gt;\n      &lt;input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          marginTop: `27px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      /&gt;\n    &lt;/SearchBox&gt;\n    {props.markers.map((marker, index) =&gt;\n      &lt;Marker key={index} position={marker.position} /&gt;\n    )}\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithASearchBox /&gt;\n```\n\n### Map with a SearchBox',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> SearchBox <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/places/SearchBox"</span>;\n\n<span class="hljs-keyword">const</span> MapWithASearchBox = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        bounds: null,\n        center: {\n          lat: 41.9, lng: -87.624\n        },\n        markers: [],\n        onMapMounted: ref =&gt; {\n          refs.map = ref;\n        },\n        onBoundsChanged: () =&gt; {\n          this.setState({\n            bounds: refs.map.getBounds(),\n            center: refs.map.getCenter(),\n          })\n        },\n        onSearchBoxMounted: ref =&gt; {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () =&gt; {\n          const places = refs.searchBox.getPlaces();\n          const bounds = new google.maps.LatLngBounds();\n\n          places.forEach(place =&gt; {\n            if (place.geometry.viewport) {\n              bounds.union(place.geometry.viewport)\n            } else {\n              bounds.extend(place.geometry.location)\n            }\n          });\n          const nextMarkers = places.map(place =&gt; ({\n            position: place.geometry.location,\n          }));\n          const nextCenter = _.get(nextMarkers, \'0.position\', this.state.center);\n\n          this.setState({\n            center: nextCenter,\n            markers: nextMarkers,\n          });\n          // refs.map.fitBounds(bounds);\n        },\n      })\n    },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    ref={props.onMapMounted}\n    defaultZoom={15}\n    center={props.center}\n    onBoundsChanged={props.onBoundsChanged}\n  &gt;\n    &lt;SearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      controlPosition={google.maps.ControlPosition.TOP_LEFT}\n      onPlacesChanged={props.onPlacesChanged}\n    &gt;\n      &lt;input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          marginTop: `27px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      /&gt;\n    &lt;/SearchBox&gt;\n    {props.markers.map((marker, index) =&gt;\n      &lt;Marker key={index} position={marker.position} /&gt;\n    )}\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithASearchBox /&gt;\n```\n\n### Map with a SearchBox',
       },
       {
         type: "code",
@@ -40126,7 +40126,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '## Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> StandaloneSearchBox <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/places/StandaloneSearchBox"</span>;\n\n<span class="hljs-keyword">const</span> PlacesWithStandaloneSearchBox = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        places: [],\n        onSearchBoxMounted: ref =&gt; {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () =&gt; {\n          const places = refs.searchBox.getPlaces();\n\n          this.setState({\n            places,\n          });\n        },\n      })\n    },\n  }),\n  withScriptjs  \n)(props =&gt;\n  &lt;div data-standalone-searchbox=""&gt;\n    &lt;StandaloneSearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      onPlacesChanged={props.onPlacesChanged}\n    &gt;\n      &lt;input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      /&gt;\n    &lt;/StandaloneSearchBox&gt;\n    &lt;ol&gt;\n      {props.places.map(({ place_id, formatted_address, geometry: { location } }) =&gt;\n        &lt;li key={place_id}&gt;\n          {formatted_address}\n          {" at "}\n          ({location.lat()}, {location.lng()})\n        &lt;/li&gt;\n      )}\n    &lt;/ol&gt;\n  &lt;/div&gt;\n);\n\n&lt;PlacesWithStandaloneSearchBox /&gt;\n```\n\n### Standalone SearchBox',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> StandaloneSearchBox <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/places/StandaloneSearchBox"</span>;\n\n<span class="hljs-keyword">const</span> PlacesWithStandaloneSearchBox = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        places: [],\n        onSearchBoxMounted: ref =&gt; {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () =&gt; {\n          const places = refs.searchBox.getPlaces();\n\n          this.setState({\n            places,\n          });\n        },\n      })\n    },\n  }),\n  withScriptjs  \n)(props =&gt;\n  &lt;div data-standalone-searchbox=""&gt;\n    &lt;StandaloneSearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      onPlacesChanged={props.onPlacesChanged}\n    &gt;\n      &lt;input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      /&gt;\n    &lt;/StandaloneSearchBox&gt;\n    &lt;ol&gt;\n      {props.places.map(({ place_id, formatted_address, geometry: { location } }) =&gt;\n        &lt;li key={place_id}&gt;\n          {formatted_address}\n          {" at "}\n          ({location.lat()}, {location.lng()})\n        &lt;/li&gt;\n      )}\n    &lt;/ol&gt;\n  &lt;/div&gt;\n);\n\n&lt;PlacesWithStandaloneSearchBox /&gt;\n```\n\n### Standalone SearchBox',
       },
       {
         type: "code",
@@ -40137,6 +40137,106 @@ object-assign
       },
     ]
   },
+  "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/docs/configuration.md": function(
+    e,
+    t,
+    n
+  ) {
+    var r = { react: n("./node_modules/react/react.js") },
+      o = n(
+        "./node_modules/react-styleguidist/loaders/utils/client/requireInRuntime.js"
+      ).bind(null, r)
+    n(
+      "./node_modules/react-styleguidist/loaders/utils/client/evalInContext.js"
+    ).bind(null, "var React = require('react');", o)
+    e.exports = [
+      {
+        type: "markdown",
+        content:
+          'There\'re some steps to take to create your custom map components. Follow on:\n\n### Step 1\n\n**Everything inside a <GoogleMap> component will be mounted automatically on the map**\nAnd it will be automatically unmounted from the map if you don\'t render it.\n\n```js\n<span class="hljs-keyword">import</span> { GoogleMap, Marker } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>\n\n<span class="hljs-keyword">const</span> MyMapComponent = <span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span>\n  &lt;GoogleMap&gt;\n    {props.isMarkerShown &amp;&amp; <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Marker</span> /&gt;</span>}\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n\n&lt;MyMapComponent isMarkerShown /&gt;<span class="hljs-comment">// Map with a Marker</span>\n&lt;MyMapComponent isMarkerShown={<span class="hljs-literal">false</span>} /&gt;<span class="hljs-comment">// Just only Map</span>\n```\n\n### Step 2\n\nIn order to initialize the `MyMapComponent` with DOM instances, you\'ll need to wrap it with [`withGoogleMap`][withgooglemap] HOC.\n\n```js\n<span class="hljs-keyword">import</span> { withGoogleMap, GoogleMap, Marker } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>\n\n<span class="hljs-keyword">const</span> MyMapComponent = withGoogleMap(<span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span>\n  &lt;GoogleMap&gt;\n    {props.isMarkerShown &amp;&amp; <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Marker</span> /&gt;</span>}\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n)\n\n&lt;MyMapComponent isMarkerShown /&gt;<span class="hljs-comment">// Map with a Marker</span>\n&lt;MyMapComponent isMarkerShown={<span class="hljs-literal">false</span>} /&gt;<span class="hljs-comment">// Just only Map</span>\n```\n\n### Step 3\n\nIn order to correctly load [Google Maps JavaScript API v3][gmjsav3], you\'ll need to wrap it with [`withScriptjs`][withscriptjs] HOC.\n\n```js\n<span class="hljs-keyword">import</span> { withScriptjs, withGoogleMap, GoogleMap, Marker } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>\n\n<span class="hljs-keyword">const</span> MyMapComponent = withScriptjs(withGoogleMap(<span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span>\n  &lt;GoogleMap&gt;\n    {props.isMarkerShown &amp;&amp; <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Marker</span> /&gt;</span>}\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n))\n\n&lt;MyMapComponent isMarkerShown /&gt;<span class="hljs-comment">// Map with a Marker</span>\n&lt;MyMapComponent isMarkerShown={<span class="hljs-literal">false</span>} /&gt;<span class="hljs-comment">// Just only Map</span>\n```\n\n_If you don\'t use `withScriptjs`, you have to put a `<script/>` tag for [Google Maps JavaScript API v3][gmjsav3] in your HTML\'s `<head/>` element_\n\n### Step 4\n\nNotice there\'re some required props for [`withGoogleMap`][withgooglemap] and [`withScriptjs`][withscriptjs] HOC.\n\n```js\n<span class="hljs-keyword">import</span> { withScriptjs, withGoogleMap, GoogleMap, Marker } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>\n\n<span class="hljs-keyword">const</span> MyMapComponent = withScriptjs(withGoogleMap(<span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span>\n  &lt;GoogleMap&gt;\n    {props.isMarkerShown &amp;&amp; <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Marker</span> /&gt;</span>}\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n))\n\n&lt;MyMapComponent\n  isMarkerShown\n  googleMapURL=<span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>\n  loadingElement={&lt;div style={{ <span class="hljs-attr">height</span>: <span class="hljs-string">`100%`</span> }} /&gt;}\n  containerElement={&lt;div style={{ <span class="hljs-attr">height</span>: <span class="hljs-string">`400px`</span> }} /&gt;}\n  mapElement={&lt;div style={{ <span class="hljs-attr">height</span>: <span class="hljs-string">`100%`</span> }} /&gt;}\n/&gt;\n```\n\nFor _simplicity_, in this documentation, I will use [`recompose`][recompose] to simplify the component. It\'ll look something like this with `recompose`:\n\n```js\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>\n<span class="hljs-keyword">import</span> { withScriptjs, withGoogleMap, GoogleMap, Marker } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>\n\n<span class="hljs-keyword">const</span> MyMapComponent = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)((props) =&gt;\n  &lt;GoogleMap&gt;\n    {props.isMarkerShown &amp;&amp; &lt;Marker /&gt;}\n  &lt;/GoogleMap&gt;\n))\n\n&lt;MyMapComponent isMarkerShown /&gt;\n```\n\n[withgooglemap]: https://tomchentw.github.io/react-google-maps/#withgooglemap\n\n[gmjsav3]: https://developers.google.com/maps/documentation/javascript/\n\n[withscriptjs]: https://tomchentw.github.io/react-google-maps/#withscriptjs\n\n[recompose]: https://github.com/acdlite/recompose/blob/master/docs/API.md',
+      },
+    ]
+  },
+  "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/docs/installation.md": function(
+    e,
+    t,
+    n
+  ) {
+    var r = { react: n("./node_modules/react/react.js") },
+      o = n(
+        "./node_modules/react-styleguidist/loaders/utils/client/requireInRuntime.js"
+      ).bind(null, r)
+    n(
+      "./node_modules/react-styleguidist/loaders/utils/client/evalInContext.js"
+    ).bind(null, "var React = require('react');", o)
+    e.exports = [
+      {
+        type: "markdown",
+        content:
+          '```sh\nnpm install --save react-google-maps <span class="hljs-comment"># or</span>\nyarn add react-google-maps\n```',
+      },
+    ]
+  },
+  "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/docs/introduction.md": function(
+    e,
+    t,
+    n
+  ) {
+    var r = { react: n("./node_modules/react/react.js") },
+      o = n(
+        "./node_modules/react-styleguidist/loaders/utils/client/requireInRuntime.js"
+      ).bind(null, r)
+    n(
+      "./node_modules/react-styleguidist/loaders/utils/client/evalInContext.js"
+    ).bind(null, "var React = require('react');", o)
+    e.exports = [
+      {
+        type: "markdown",
+        content:
+          "[`react-google-maps`][react-google-maps] provides a set of React components wrapping the underlying [Google Maps JavaScript API v3][gmjsav3] instances. Thw wrapping simply do\n\n-   **props delegation** \n-   **events as callbacks**\n-   **lifecycle management**\n-   **auto-mount on map**\n\nThat's it. _Nothing more_. If you find some limitations, that might be due to [Google Maps JavaScript API v3][gmjsav3] but not [`react-google-maps`][react-google-maps].\n\nThis documentation site is created with the awesome [react-styleguidist][react-styleguidist]. It comes with components documentation with props, public methods and **live demo**. The live demos come with **live updates** by clicking the `CODE` button on the bottom-left corner and editing there. \n\n[react-google-maps]: https://tomchentw.github.io/react-google-maps/\n\n[gmjsav3]: https://developers.google.com/maps/documentation/javascript/\n\n[react-styleguidist]: https://react-styleguidist.js.org/",
+      },
+    ]
+  },
+  "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/withGoogleMap.md": function(
+    e,
+    t,
+    n
+  ) {
+    var r = { react: n("./node_modules/react/react.js") },
+      o = n(
+        "./node_modules/react-styleguidist/loaders/utils/client/requireInRuntime.js"
+      ).bind(null, r)
+    n(
+      "./node_modules/react-styleguidist/loaders/utils/client/evalInContext.js"
+    ).bind(null, "var React = require('react');", o)
+    e.exports = [
+      {
+        type: "markdown",
+        content:
+          '### Props\n\n-   containerElement: ReactElement\n-   mapElement: ReactElement\n\n### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> {\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAMarker = withGoogleMap(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">8</span>}\n    defaultCenter={{ <span class="hljs-attr">lat</span>: <span class="hljs-number">-34.397</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">150.644</span> }}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Marker</span>\n      <span class="hljs-attr">position</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">lat:</span> <span class="hljs-attr">-34.397</span>, <span class="hljs-attr">lng:</span> <span class="hljs-attr">150.644</span> }}\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n);\n\n&lt;MapWithAMarker\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```',
+      },
+    ]
+  },
+  "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/withScriptjs.md": function(
+    e,
+    t,
+    n
+  ) {
+    var r = { react: n("./node_modules/react/react.js") },
+      o = n(
+        "./node_modules/react-styleguidist/loaders/utils/client/requireInRuntime.js"
+      ).bind(null, r)
+    n(
+      "./node_modules/react-styleguidist/loaders/utils/client/evalInContext.js"
+    ).bind(null, "var React = require('react');", o)
+    e.exports = [
+      {
+        type: "markdown",
+        content:
+          '### Props\n\n-   googleMapURL: String\n-   loadingElement: ReactElement\n\n### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAMarker = withScriptjs(withGoogleMap(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">8</span>}\n    defaultCenter={{ <span class="hljs-attr">lat</span>: <span class="hljs-number">-34.397</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">150.644</span> }}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Marker</span>\n      <span class="hljs-attr">position</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">lat:</span> <span class="hljs-attr">-34.397</span>, <span class="hljs-attr">lng:</span> <span class="hljs-attr">150.644</span> }}\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n));\n\n&lt;MapWithAMarker\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```',
+      },
+    ]
+  },
   "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/Circle.jsx": function(
     e,
     t,
@@ -40144,7 +40244,68 @@ object-assign
   ) {
     e.exports = {
       description: "\n",
-      methods: [],
+      methods: [
+        {
+          name: "getBounds",
+          docblock:
+            "Gets the LatLngBounds of this Circle.\n@type LatLngBoundsLatLngBounds\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Gets the LatLngBounds of this Circle.",
+          tags: {},
+        },
+        {
+          name: "getCenter",
+          docblock: "Returns the center of this circle.\n@type LatLng\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Returns the center of this circle.",
+          tags: {},
+        },
+        {
+          name: "getDraggable",
+          docblock:
+            "Returns whether this circle can be dragged by the user.\n@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns whether this circle can be dragged by the user.",
+          tags: {},
+        },
+        {
+          name: "getEditable",
+          docblock:
+            "Returns whether this circle can be edited by the user.\n@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Returns whether this circle can be edited by the user.",
+          tags: {},
+        },
+        {
+          name: "getRadius",
+          docblock:
+            "Returns the radius of this circle (in meters).\n@type number\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Returns the radius of this circle (in meters).",
+          tags: {},
+        },
+        {
+          name: "getVisible",
+          docblock:
+            "Returns whether this circle is visible on the map.\n@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Returns whether this circle is visible on the map.",
+          tags: {},
+        },
+      ],
       displayName: "Circle",
       props: {
         defaultCenter: {
@@ -40321,7 +40482,40 @@ object-assign
   ) {
     e.exports = {
       description: "\n",
-      methods: [],
+      methods: [
+        {
+          name: "getDirections",
+          docblock:
+            "Returns the renderer's current set of directions.\n@type DirectionsResult\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Returns the renderer's current set of directions.",
+          tags: {},
+        },
+        {
+          name: "getPanel",
+          docblock:
+            "Returns the panel <div> in which the DirectionsResult is rendered.\n@type Node<div>DirectionsResult\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the panel <div> in which the DirectionsResult is rendered.",
+          tags: {},
+        },
+        {
+          name: "getRouteIndex",
+          docblock:
+            "Returns the current (zero-based) route index in use by this DirectionsRenderer object.\n@type numberDirectionsRenderer\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the current (zero-based) route index in use by this DirectionsRenderer object.",
+          tags: {},
+        },
+      ],
       displayName: "DirectionsRenderer",
       props: {
         defaultDirections: {
@@ -40452,7 +40646,112 @@ object-assign
     e.exports = {
       description: "\n",
       displayName: "GoogleMap",
-      methods: [],
+      methods: [
+        {
+          name: "getBounds",
+          docblock:
+            "Returns the lat/lng bounds of the current viewport. If more than one copy of the world is visible, the bounds range in longitude from -180 to 180 degrees inclusive. If the map is not yet initialized (i.e. the mapType is still null), or center and zoom have not been set then the result is null or undefined.\n@type LatLngBoundsnullundefined\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the lat/lng bounds of the current viewport. If more than one copy of the world is visible, the bounds range in longitude from -180 to 180 degrees inclusive. If the map is not yet initialized (i.e. the mapType is still null), or center and zoom have not been set then the result is null or undefined.",
+          tags: {},
+        },
+        {
+          name: "getCenter",
+          docblock:
+            "Returns the position displayed at the center of the map. Note that this LatLng object is not wrapped. See LatLng for more information.\n@type LatLngLatLngLatLng\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the position displayed at the center of the map. Note that this LatLng object is not wrapped. See LatLng for more information.",
+          tags: {},
+        },
+        {
+          name: "getClickableIcons",
+          docblock:
+            "Returns the clickability of the map icons. A map icon represents a point of interest, also known as a POI. If the returned value is true, then the icons are clickable on the map.\n@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the clickability of the map icons. A map icon represents a point of interest, also known as a POI. If the returned value is true, then the icons are clickable on the map.",
+          tags: {},
+        },
+        {
+          name: "getDiv",
+          docblock: "@type Element\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getHeading",
+          docblock:
+            "Returns the compass heading of aerial imagery. The heading value is measured in degrees (clockwise) from cardinal direction North.\n@type number\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the compass heading of aerial imagery. The heading value is measured in degrees (clockwise) from cardinal direction North.",
+          tags: {},
+        },
+        {
+          name: "getMapTypeId",
+          docblock: "@type MapTypeId|string\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getProjection",
+          docblock:
+            "Returns the current Projection. If the map is not yet initialized (i.e. the mapType is still null) then the result is null. Listen to projection_changed and check its value to ensure it is not null.\n@type ProjectionProjectionprojection_changed\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the current Projection. If the map is not yet initialized (i.e. the mapType is still null) then the result is null. Listen to projection_changed and check its value to ensure it is not null.",
+          tags: {},
+        },
+        {
+          name: "getStreetView",
+          docblock:
+            "Returns the default StreetViewPanorama bound to the map, which may be a default panorama embedded within the map, or the panorama set using setStreetView(). Changes to the map's streetViewControl will be reflected in the display of such a bound panorama.\n@type StreetViewPanoramaStreetViewPanoramasetStreetView()streetViewControl\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the default StreetViewPanorama bound to the map, which may be a default panorama embedded within the map, or the panorama set using setStreetView(). Changes to the map's streetViewControl will be reflected in the display of such a bound panorama.",
+          tags: {},
+        },
+        {
+          name: "getTilt",
+          docblock:
+            "Returns the current angle of incidence of the map, in degrees from the viewport plane to the map plane. The result will be 0 for imagery taken directly overhead or 45 for 45° imagery. 45° imagery is only available for satellite and hybrid map types, within some locations, and at some zoom levels. Note: This method does not return the value set by setTilt. See setTilt for details.\n@type number045satellitehybridsetTiltsetTilt\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the current angle of incidence of the map, in degrees from the viewport plane to the map plane. The result will be 0 for imagery taken directly overhead or 45 for 45° imagery. 45° imagery is only available for satellite and hybrid map types, within some locations, and at some zoom levels. Note: This method does not return the value set by setTilt. See setTilt for details.",
+          tags: {},
+        },
+        {
+          name: "getZoom",
+          docblock: "@type number\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+      ],
       props: {
         defaultCenter: {
           type: { name: "any" },
@@ -40690,7 +40989,38 @@ object-assign
   ) {
     e.exports = {
       description: "\n",
-      methods: [],
+      methods: [
+        {
+          name: "getBounds",
+          docblock:
+            "Gets the LatLngBounds of this overlay.\n@type LatLngBoundsLatLngBounds\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Gets the LatLngBounds of this overlay.",
+          tags: {},
+        },
+        {
+          name: "getOpacity",
+          docblock:
+            "Returns the opacity of this ground overlay.\n@type number\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Returns the opacity of this ground overlay.",
+          tags: {},
+        },
+        {
+          name: "getUrl",
+          docblock:
+            "Gets the url of the projected image.\n@type string\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Gets the url of the projected image.",
+          tags: {},
+        },
+      ],
       displayName: "GroundOverlay",
       props: {
         url: {
@@ -40763,7 +41093,26 @@ object-assign
   ) {
     e.exports = {
       description: "\n",
-      methods: [],
+      methods: [
+        {
+          name: "getPosition",
+          docblock: "@type LatLng\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getZIndex",
+          docblock: "@type number\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+      ],
       displayName: "InfoWindow",
       props: {
         defaultOptions: {
@@ -40858,7 +41207,60 @@ object-assign
   ) {
     e.exports = {
       description: "\n",
-      methods: [],
+      methods: [
+        {
+          name: "getDefaultViewport",
+          docblock:
+            "Get the default viewport for the layer being displayed.\n@type LatLngBounds\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Get the default viewport for the layer being displayed.",
+          tags: {},
+        },
+        {
+          name: "getMetadata",
+          docblock:
+            "Get the metadata associated with this layer, as specified in the layer markup.\n@type KmlLayerMetadata\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Get the metadata associated with this layer, as specified in the layer markup.",
+          tags: {},
+        },
+        {
+          name: "getStatus",
+          docblock:
+            "Get the status of the layer, set once the requested document has loaded.\n@type KmlLayerStatus\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Get the status of the layer, set once the requested document has loaded.",
+          tags: {},
+        },
+        {
+          name: "getUrl",
+          docblock:
+            "Gets the URL of the KML file being displayed.\n@type string\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Gets the URL of the KML file being displayed.",
+          tags: {},
+        },
+        {
+          name: "getZIndex",
+          docblock: "Gets the z-index of the KML Layer.\n@type number\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Gets the z-index of the KML Layer.",
+          tags: {},
+        },
+      ],
       displayName: "KmlLayer",
       props: {
         defaultOptions: {
@@ -40941,7 +41343,125 @@ object-assign
   ) {
     e.exports = {
       description: "\n",
-      methods: [],
+      methods: [
+        {
+          name: "getAnimation",
+          docblock: "@type Animation\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getClickable",
+          docblock: "@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getCursor",
+          docblock: "@type string\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getDraggable",
+          docblock: "@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getIcon",
+          docblock: "@type string|Icon|Symbol\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getLabel",
+          docblock: "@type MarkerLabel\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getOpacity",
+          docblock: "@type number\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getPlace",
+          docblock: "@type MarkerPlace\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getPosition",
+          docblock: "@type LatLng\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getShape",
+          docblock: "@type MarkerShape\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getTitle",
+          docblock: "@type string\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getVisible",
+          docblock: "@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getZIndex",
+          docblock: "@type number\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+      ],
       displayName: "Marker",
       props: {
         noRedraw: {
@@ -41348,7 +41868,30 @@ object-assign
   ) {
     e.exports = {
       description: "\n",
-      methods: [],
+      methods: [
+        {
+          name: "getPanes",
+          docblock:
+            "Returns the panes in which this OverlayView can be rendered. The panes are not initialized until onAdd is called by the API.\n@type MapPanesonAdd\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the panes in which this OverlayView can be rendered. The panes are not initialized until onAdd is called by the API.",
+          tags: {},
+        },
+        {
+          name: "getProjection",
+          docblock:
+            "Returns the MapCanvasProjection object associated with this OverlayView. The projection is not initialized until onAdd is called by the API.\n@type MapCanvasProjectionMapCanvasProjectionOverlayViewonAdd\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the MapCanvasProjection object associated with this OverlayView. The projection is not initialized until onAdd is called by the API.",
+          tags: {},
+        },
+      ],
       displayName: "OverlayView",
       props: {
         mapPaneName: {
@@ -41447,7 +41990,58 @@ object-assign
   ) {
     e.exports = {
       description: "\n",
-      methods: [],
+      methods: [
+        {
+          name: "getDraggable",
+          docblock:
+            "Returns whether this shape can be dragged by the user.\n@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Returns whether this shape can be dragged by the user.",
+          tags: {},
+        },
+        {
+          name: "getEditable",
+          docblock:
+            "Returns whether this shape can be edited by the user.\n@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Returns whether this shape can be edited by the user.",
+          tags: {},
+        },
+        {
+          name: "getPath",
+          docblock:
+            "Retrieves the first path.\n@type MVCArray<LatLng>\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Retrieves the first path.",
+          tags: {},
+        },
+        {
+          name: "getPaths",
+          docblock:
+            "Retrieves the paths for this polygon.\n@type MVCArray<MVCArray<LatLng>>\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Retrieves the paths for this polygon.",
+          tags: {},
+        },
+        {
+          name: "getVisible",
+          docblock:
+            "Returns whether this poly is visible on the map.\n@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Returns whether this poly is visible on the map.",
+          tags: {},
+        },
+      ],
       displayName: "Polygon",
       props: {
         defaultDraggable: {
@@ -41612,7 +42206,47 @@ object-assign
   ) {
     e.exports = {
       description: "\n",
-      methods: [],
+      methods: [
+        {
+          name: "getDraggable",
+          docblock:
+            "Returns whether this shape can be dragged by the user.\n@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Returns whether this shape can be dragged by the user.",
+          tags: {},
+        },
+        {
+          name: "getEditable",
+          docblock:
+            "Returns whether this shape can be edited by the user.\n@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Returns whether this shape can be edited by the user.",
+          tags: {},
+        },
+        {
+          name: "getPath",
+          docblock: "Retrieves the path.\n@type MVCArray<LatLng>\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Retrieves the path.",
+          tags: {},
+        },
+        {
+          name: "getVisible",
+          docblock:
+            "Returns whether this poly is visible on the map.\n@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Returns whether this poly is visible on the map.",
+          tags: {},
+        },
+      ],
       displayName: "Polyline",
       props: {
         defaultDraggable: {
@@ -41765,7 +42399,50 @@ object-assign
   ) {
     e.exports = {
       description: "\n",
-      methods: [],
+      methods: [
+        {
+          name: "getBounds",
+          docblock:
+            "Returns the bounds of this rectangle.\n@type LatLngBounds\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Returns the bounds of this rectangle.",
+          tags: {},
+        },
+        {
+          name: "getDraggable",
+          docblock:
+            "Returns whether this rectangle can be dragged by the user.\n@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns whether this rectangle can be dragged by the user.",
+          tags: {},
+        },
+        {
+          name: "getEditable",
+          docblock:
+            "Returns whether this rectangle can be edited by the user.\n@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns whether this rectangle can be edited by the user.",
+          tags: {},
+        },
+        {
+          name: "getVisible",
+          docblock:
+            "Returns whether this rectangle is visible on the map.\n@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Returns whether this rectangle is visible on the map.",
+          tags: {},
+        },
+      ],
       displayName: "Rectangle",
       props: {
         defaultBounds: {
@@ -41924,7 +42601,118 @@ object-assign
   ) {
     e.exports = {
       description: "\n",
-      methods: [],
+      methods: [
+        {
+          name: "getLinks",
+          docblock:
+            "Returns the set of navigation links for the Street View panorama.\n@type Array<StreetViewLink>\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the set of navigation links for the Street View panorama.",
+          tags: {},
+        },
+        {
+          name: "getLocation",
+          docblock:
+            "Returns the StreetViewLocation of the current panorama.\n@type StreetViewLocation\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the StreetViewLocation of the current panorama.",
+          tags: {},
+        },
+        {
+          name: "getMotionTracking",
+          docblock:
+            "Returns the state of motion tracker. If true when the user physically moves the device and the browser supports it, the Street View Panorama tracks the physical movements.\n@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the state of motion tracker. If true when the user physically moves the device and the browser supports it, the Street View Panorama tracks the physical movements.",
+          tags: {},
+        },
+        {
+          name: "getPano",
+          docblock:
+            "Returns the current panorama ID for the Street View panorama. This id is stable within the browser's current session only.\n@type string\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the current panorama ID for the Street View panorama. This id is stable within the browser's current session only.",
+          tags: {},
+        },
+        {
+          name: "getPhotographerPov",
+          docblock:
+            "Returns the heading and pitch of the photographer when this panorama was taken. For Street View panoramas on the road, this also reveals in which direction the car was travelling. This data is available after the pano_changed event.\n@type StreetViewPovpano_changed\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the heading and pitch of the photographer when this panorama was taken. For Street View panoramas on the road, this also reveals in which direction the car was travelling. This data is available after the pano_changed event.",
+          tags: {},
+        },
+        {
+          name: "getPosition",
+          docblock:
+            "Returns the current LatLng position for the Street View panorama.\n@type LatLngLatLng\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the current LatLng position for the Street View panorama.",
+          tags: {},
+        },
+        {
+          name: "getPov",
+          docblock:
+            "Returns the current point of view for the Street View panorama.\n@type StreetViewPov\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the current point of view for the Street View panorama.",
+          tags: {},
+        },
+        {
+          name: "getStatus",
+          docblock:
+            "Returns the status of the panorama on completion of the setPosition() or setPano() request.\n@type StreetViewStatussetPosition()setPano()\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the status of the panorama on completion of the setPosition() or setPano() request.",
+          tags: {},
+        },
+        {
+          name: "getVisible",
+          docblock:
+            "Returns true if the panorama is visible. It does not specify whether Street View imagery is available at the specified position.\n@type booleantrue\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns true if the panorama is visible. It does not specify whether Street View imagery is available at the specified position.",
+          tags: {},
+        },
+        {
+          name: "getZoom",
+          docblock:
+            "Returns the zoom level of the panorama. Fully zoomed-out is level 0, where the field of view is 180 degrees. Zooming in increases the zoom level.\n@type number\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the zoom level of the panorama. Fully zoomed-out is level 0, where the field of view is 180 degrees. Zooming in increases the zoom level.",
+          tags: {},
+        },
+      ],
       displayName: "StreetViewPanorama",
       props: {
         defaultLinks: {
@@ -42491,7 +43279,18 @@ object-assign
   ) {
     e.exports = {
       description: "\n",
-      methods: [],
+      methods: [
+        {
+          name: "getDrawingMode",
+          docblock:
+            "Returns the DrawingManager's drawing mode.\n@type OverlayTypeDrawingManager\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: "Returns the DrawingManager's drawing mode.",
+          tags: {},
+        },
+      ],
       displayName: "DrawingManager",
       props: {
         defaultDrawingMode: {
@@ -42580,7 +43379,30 @@ object-assign
   ) {
     e.exports = {
       description: "\n",
-      methods: [],
+      methods: [
+        {
+          name: "getBounds",
+          docblock:
+            "Returns the bounds to which query predictions are biased.\n@type LatLngBounds\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the bounds to which query predictions are biased.",
+          tags: {},
+        },
+        {
+          name: "getPlaces",
+          docblock:
+            "Returns the query selected by the user, or null if no places have been found yet, to be used with places_changed event.\n@type Array<PlaceResult>nullplaces_changed\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the query selected by the user, or null if no places have been found yet, to be used with places_changed event.",
+          tags: {},
+        },
+      ],
       displayName: "SearchBox",
       props: {
         controlPosition: {
@@ -42641,7 +43463,30 @@ object-assign
     e.exports = {
       description: "\n",
       displayName: "StandaloneSearchBox",
-      methods: [],
+      methods: [
+        {
+          name: "getBounds",
+          docblock:
+            "Returns the bounds to which query predictions are biased.\n@type LatLngBounds\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the bounds to which query predictions are biased.",
+          tags: {},
+        },
+        {
+          name: "getPlaces",
+          docblock:
+            "Returns the query selected by the user, or null if no places have been found yet, to be used with places_changed event.\n@type Array<PlaceResult>nullplaces_changed\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the query selected by the user, or null if no places have been found yet, to be used with places_changed event.",
+          tags: {},
+        },
+      ],
       props: {
         defaultBounds: {
           type: { name: "any" },
@@ -42687,7 +43532,19 @@ object-assign
   ) {
     e.exports = {
       description: "\n",
-      methods: [],
+      methods: [
+        {
+          name: "getData",
+          docblock:
+            "Returns the data points currently displayed by this heatmap.\n@type MVCArray<LatLng|WeightedLocation>\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description:
+            "Returns the data points currently displayed by this heatmap.",
+          tags: {},
+        },
+      ],
       displayName: "HeatmapLayer",
       props: {
         defaultData: {
@@ -42766,7 +43623,61 @@ object-assign
       patterns: void 0,
       sections: [
         {
-          name: void 0,
+          name: "Introduction",
+          components: [],
+          sections: [],
+          content: n(
+            "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/docs/introduction.md"
+          ),
+        },
+        {
+          name: "Documentation",
+          components: [],
+          sections: [
+            {
+              name: "Installation",
+              components: [],
+              sections: [],
+              content: n(
+                "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/docs/installation.md"
+              ),
+            },
+            {
+              name: "Usage & Configuration",
+              components: [],
+              sections: [],
+              content: n(
+                "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/docs/configuration.md"
+              ),
+            },
+          ],
+          content: void 0,
+        },
+        {
+          name: "HOCs",
+          components: [],
+          sections: [
+            {
+              name: "withGoogleMap",
+              components: [],
+              sections: [],
+              content: n(
+                "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/withGoogleMap.md"
+              ),
+            },
+            {
+              name: "withScriptjs",
+              components: [],
+              sections: [],
+              content: n(
+                "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/withScriptjs.md"
+              ),
+            },
+          ],
+          content: void 0,
+        },
+        {
+          name: "UI Components",
           components: [
             {
               filepath: "src/components/addons/InfoBox.jsx",
@@ -43181,8 +44092,8 @@ object-assign
       c = n("./node_modules/react/lib/createClass.js"),
       d = n("./node_modules/react/lib/onlyChild.js"),
       p = a.createElement,
-      f = a.createFactory,
-      h = a.cloneElement,
+      h = a.createFactory,
+      f = a.cloneElement,
       m = r,
       g = function(e) {
         return e
@@ -43198,11 +44109,11 @@ object-assign
         Component: o.Component,
         PureComponent: o.PureComponent,
         createElement: p,
-        cloneElement: h,
+        cloneElement: f,
         isValidElement: a.isValidElement,
         PropTypes: l,
         createClass: c,
-        createFactory: f,
+        createFactory: h,
         createMixin: g,
         DOM: i,
         version: u,
@@ -43430,7 +44341,7 @@ object-assign
       isNative(Set.prototype.keys)
     ) {
       var p = new Map(),
-        f = new Set()
+        h = new Set()
       ;(r = function(e, t) {
         p.set(e, t)
       }),
@@ -43444,16 +44355,16 @@ object-assign
           return Array.from(p.keys())
         }),
         (a = function(e) {
-          f.add(e)
+          h.add(e)
         }),
         (l = function(e) {
-          f.delete(e)
+          h.delete(e)
         }),
         (u = function() {
-          return Array.from(f.keys())
+          return Array.from(h.keys())
         })
     } else {
-      var h = {},
+      var f = {},
         m = {},
         g = function(e) {
           return "." + e
@@ -43463,18 +44374,18 @@ object-assign
         }
       ;(r = function(e, t) {
         var n = g(e)
-        h[n] = t
+        f[n] = t
       }),
         (o = function(e) {
           var t = g(e)
-          return h[t]
+          return f[t]
         }),
         (s = function(e) {
           var t = g(e)
-          delete h[t]
+          delete f[t]
         }),
         (i = function() {
-          return Object.keys(h).map(y)
+          return Object.keys(f).map(y)
         }),
         (a = function(e) {
           var t = g(e)
@@ -43808,12 +44719,12 @@ object-assign
       var d = arguments.length - 2
       if (1 === d) i.children = n
       else if (d > 1) {
-        for (var p = Array(d), f = 0; f < d; f++) p[f] = arguments[f + 2]
+        for (var p = Array(d), h = 0; h < d; h++) p[h] = arguments[h + 2]
         i.children = p
       }
       if (e && e.defaultProps) {
-        var h = e.defaultProps
-        for (r in h) void 0 === i[r] && (i[r] = h[r])
+        var f = e.defaultProps
+        for (r in f) void 0 === i[r] && (i[r] = f[r])
       }
       return l(e, u, c, 0, 0, o.current, i)
     }),
@@ -43833,17 +44744,17 @@ object-assign
         if (null != t) {
           hasValidRef(t) && ((d = t.ref), (p = o.current)),
             hasValidKey(t) && (c = "" + t.key)
-          var f
-          e.type && e.type.defaultProps && (f = e.type.defaultProps)
+          var h
+          e.type && e.type.defaultProps && (h = e.type.defaultProps)
           for (i in t)
             s.call(t, i) &&
               !a.hasOwnProperty(i) &&
-              (void 0 === t[i] && void 0 !== f ? (u[i] = f[i]) : (u[i] = t[i]))
+              (void 0 === t[i] && void 0 !== h ? (u[i] = h[i]) : (u[i] = t[i]))
         }
-        var h = arguments.length - 2
-        if (1 === h) u.children = n
-        else if (h > 1) {
-          for (var m = Array(h), g = 0; g < h; g++) m[g] = arguments[g + 2]
+        var f = arguments.length - 2
+        if (1 === f) u.children = n
+        else if (f > 1) {
+          for (var m = Array(f), g = 0; g < f; g++) m[g] = arguments[g + 2]
           u.children = m
         }
         return l(e.type, c, d, 0, 0, p, u)
@@ -43976,12 +44887,12 @@ object-assign
         return n(u, e, "" === t ? a + getComponentKey(e, 0) : t), 1
       var d,
         p = 0,
-        f = "" === t ? a : t + l
+        h = "" === t ? a : t + l
       if (Array.isArray(e))
-        for (var h = 0; h < e.length; h++)
+        for (var f = 0; f < e.length; f++)
           p += traverseAllChildrenImpl(
-            (d = e[h]),
-            f + getComponentKey(d, h),
+            (d = e[f]),
+            h + getComponentKey(d, f),
             n,
             u
           )
@@ -43994,7 +44905,7 @@ object-assign
             for (var b = 0; !(g = y.next()).done; )
               p += traverseAllChildrenImpl(
                 (d = g.value),
-                f + getComponentKey(d, b++),
+                h + getComponentKey(d, b++),
                 n,
                 u
               )
@@ -44004,7 +44915,7 @@ object-assign
               v &&
                 (p += traverseAllChildrenImpl(
                   (d = v[1]),
-                  f + i.escape(v[0]) + l + getComponentKey(d, 0),
+                  h + i.escape(v[0]) + l + getComponentKey(d, 0),
                   n,
                   u
                 ))
@@ -44064,16 +44975,16 @@ object-assign
         return E
       }),
       n.d(t, "withPropsOnChange", function() {
-        return O
-      }),
-      n.d(t, "withHandlers", function() {
         return R
       }),
+      n.d(t, "withHandlers", function() {
+        return P
+      }),
       n.d(t, "defaultProps", function() {
-        return T
+        return M
       }),
       n.d(t, "renameProp", function() {
-        return M
+        return D
       }),
       n.d(t, "renameProps", function() {
         return L
@@ -44085,10 +44996,10 @@ object-assign
         return B
       }),
       n.d(t, "withStateHandlers", function() {
-        return F
+        return q
       }),
       n.d(t, "withReducer", function() {
-        return q
+        return F
       }),
       n.d(t, "branch", function() {
         return W
@@ -44097,10 +45008,10 @@ object-assign
         return V
       }),
       n.d(t, "renderNothing", function() {
-        return H
+        return G
       }),
       n.d(t, "shouldUpdate", function() {
-        return G
+        return H
       }),
       n.d(t, "pure", function() {
         return K
@@ -44109,10 +45020,10 @@ object-assign
         return $
       }),
       n.d(t, "onlyUpdateForPropTypes", function() {
-        return Y
+        return Z
       }),
       n.d(t, "withContext", function() {
-        return Z
+        return Y
       }),
       n.d(t, "getContext", function() {
         return J
@@ -44130,13 +45041,13 @@ object-assign
         return ee
       }),
       n.d(t, "setDisplayName", function() {
-        return f
+        return h
       }),
       n.d(t, "compose", function() {
         return compose
       }),
       n.d(t, "getDisplayName", function() {
-        return h
+        return f
       }),
       n.d(t, "wrapDisplayName", function() {
         return m
@@ -44169,13 +45080,13 @@ object-assign
         return ue
       }),
       n.d(t, "mapPropsStream", function() {
-        return fe
+        return he
       }),
       n.d(t, "mapPropsStreamWithConfig", function() {
         return pe
       }),
       n.d(t, "createEventHandler", function() {
-        return he
+        return fe
       }),
       n.d(t, "setObservableConfig", function() {
         return ae
@@ -44197,15 +45108,15 @@ object-assign
           return (n[e] = t), n
         }
       },
-      f = function setDisplayName(e) {
+      h = function setDisplayName(e) {
         return p("displayName", e)
       },
-      h = function getDisplayName(e) {
+      f = function getDisplayName(e) {
         if ("string" == typeof e) return e
         if (e) return e.displayName || e.name || "Component"
       },
       m = function wrapDisplayName(e, t) {
-        return t + "(" + h(e) + ")"
+        return t + "(" + f(e) + ")"
       },
       g = function(e, t) {
         if (!(e instanceof t))
@@ -44297,7 +45208,7 @@ object-assign
         }
         return n
       },
-      O = function withPropsOnChange(e, t) {
+      R = function withPropsOnChange(e, t) {
         return function(n) {
           var o = w(n),
             s =
@@ -44335,12 +45246,12 @@ object-assign
           return a
         }
       },
-      P = function mapValues(e, t) {
+      O = function mapValues(e, t) {
         var n = {}
         for (var r in e) e.hasOwnProperty(r) && (n[r] = t(e[r], r))
         return n
       },
-      R = function withHandlers(e) {
+      P = function withHandlers(e) {
         return function(t) {
           var n = w(t),
             o = (function(e) {
@@ -44370,7 +45281,7 @@ object-assign
             s = function _initialiseProps() {
               var t = this
               ;(this.cachedHandlers = {}),
-                (this.handlers = P(
+                (this.handlers = O(
                   "function" == typeof e ? e(this.props) : e,
                   function(e, n) {
                     return function() {
@@ -44387,7 +45298,7 @@ object-assign
           return o
         }
       },
-      T = function defaultProps(e) {
+      M = function defaultProps(e) {
         return function(t) {
           var n = w(t),
             r = function DefaultProps(e) {
@@ -44396,17 +45307,17 @@ object-assign
           return (r.defaultProps = e), r
         }
       },
-      D = function omit(e, t) {
+      T = function omit(e, t) {
         for (var n = v(e, []), r = 0; r < t.length; r++) {
           var o = t[r]
           n.hasOwnProperty(o) && delete n[o]
         }
         return n
       },
-      M = function renameProp(e, t) {
+      D = function renameProp(e, t) {
         var n = k(function(n) {
           var r
-          return y({}, D(n, [e]), ((r = {}), (r[t] = n[e]), r))
+          return y({}, T(n, [e]), ((r = {}), (r[t] = n[e]), r))
         })
         return n
       },
@@ -44421,7 +45332,7 @@ object-assign
         var t = k(function(t) {
           return y(
             {},
-            D(t, A(e)),
+            T(t, A(e)),
             I(S(t, A(e)), function(t, n) {
               return e[n]
             })
@@ -44483,7 +45394,7 @@ object-assign
           return i
         }
       },
-      F = function withStateHandlers(e, t) {
+      q = function withStateHandlers(e, t) {
         return function(n) {
           var o = w(n),
             s = (function(e) {
@@ -44518,7 +45429,7 @@ object-assign
             a = function _initialiseProps() {
               var n = this
               ;(this.state = "function" == typeof e ? e(this.props) : e),
-                (this.stateUpdaters = P(t, function(e) {
+                (this.stateUpdaters = O(t, function(e) {
                   return function(t) {
                     for (
                       var r = arguments.length,
@@ -44538,7 +45449,7 @@ object-assign
           return s
         }
       },
-      q = function withReducer(e, t, n, o) {
+      F = function withReducer(e, t, n, o) {
         return function(s) {
           var i = w(s),
             a = (function(r) {
@@ -44622,10 +45533,10 @@ object-assign
           Nothing
         )
       })(r.Component),
-      H = function renderNothing(e) {
+      G = function renderNothing(e) {
         return z
       },
-      G = function shouldUpdate(e) {
+      H = function shouldUpdate(e) {
         return function(t) {
           var n = w(t),
             o = (function(t) {
@@ -44649,24 +45560,24 @@ object-assign
         }
       },
       K = function pure(e) {
-        var t = G(function(e, t) {
+        var t = H(function(e, t) {
           return !i()(e, t)
         })
         return t(e)
       },
       $ = function onlyUpdateForKeys(e) {
-        var t = G(function(t, n) {
+        var t = H(function(t, n) {
           return !i()(S(n, e), S(t, e))
         })
         return t
       },
-      Y = function onlyUpdateForPropTypes(e) {
+      Z = function onlyUpdateForPropTypes(e) {
         var t = e.propTypes,
           n = Object.keys(t || {}),
           r = $(n)(e)
         return r
       },
-      Z = function withContext(e, t) {
+      Y = function withContext(e, t) {
         return function(n) {
           var o = w(n),
             s = (function(e) {
@@ -44744,7 +45655,7 @@ object-assign
           )
         })(r.Component)
         return (
-          (t.displayName = h(e)),
+          (t.displayName = f(e)),
           (t.propTypes = e.propTypes),
           (t.contextTypes = e.contextTypes),
           (t.defaultProps = e.defaultProps),
@@ -44783,7 +45694,7 @@ object-assign
       },
       re = function componentFromProp(e) {
         var t = function Component$$1(t) {
-          return te(t[e], D(t, [e]))
+          return te(t[e], T(t, [e]))
         }
         return (t.displayName = "componentFromProp(" + e + ")"), t
       },
@@ -44926,11 +45837,11 @@ object-assign
           }
         }
       },
-      fe = function mapPropsStream(e) {
+      he = function mapPropsStream(e) {
         var t = pe(le)(e)
         return t
       },
-      he = (function createEventHandlerWithConfig(e) {
+      fe = (function createEventHandlerWithConfig(e) {
         return function() {
           var t,
             n = Object(u.createChangeEmitter)(),
@@ -45313,38 +46224,38 @@ object-assign
   "./node_modules/remark-parse/lib/tokenize/auto-link.js": function(e, t, n) {
     "use strict"
     function autoLink(e, t, n) {
-      var s, p, f, h, m, g, y, b, v, _, j, x
+      var s, p, h, f, m, g, y, b, v, _, j, x
       if (t.charAt(0) === i) {
         for (
           s = this,
             p = "",
-            f = t.length,
-            h = 0,
+            h = t.length,
+            f = 0,
             m = "",
             y = !1,
             b = "",
-            h++,
+            f++,
             p = i;
-          h < f &&
-          ((g = t.charAt(h)),
+          f < h &&
+          ((g = t.charAt(f)),
           !(
             r(g) ||
             g === a ||
             g === l ||
-            (":" === g && t.charAt(h + 1) === u)
+            (":" === g && t.charAt(f + 1) === u)
           ));
 
         )
-          (m += g), h++
+          (m += g), f++
         if (m) {
-          if (((b += m), (m = ""), (g = t.charAt(h)), (b += g), h++, g === l))
+          if (((b += m), (m = ""), (g = t.charAt(f)), (b += g), f++, g === l))
             y = !0
           else {
-            if (":" !== g || t.charAt(h + 1) !== u) return
-            ;(b += u), h++
+            if (":" !== g || t.charAt(f + 1) !== u) return
+            ;(b += u), f++
           }
-          for (; h < f && ((g = t.charAt(h)), !r(g) && g !== a); ) (m += g), h++
-          if (((g = t.charAt(h)), m && g === a))
+          for (; f < h && ((g = t.charAt(f)), !r(g) && g !== a); ) (m += g), f++
+          if (((g = t.charAt(f)), m && g === a))
             return (
               !!n ||
               ((b += m),
@@ -45389,8 +46300,8 @@ object-assign
           c,
           d,
           p,
-          f,
           h,
+          f,
           m,
           g,
           y,
@@ -45404,39 +46315,39 @@ object-assign
           k = [],
           E = [],
           S = [],
-          O = 0;
-        O < w && ((c = t.charAt(O)) === a || c === i);
+          R = 0;
+        R < w && ((c = t.charAt(R)) === a || c === i);
 
       )
-        O++
-      if (t.charAt(O) === l) {
+        R++
+      if (t.charAt(R) === l) {
         if (n) return !0
-        for (O = 0; O < w; ) {
+        for (R = 0; R < w; ) {
           for (
-            m = O, g = !1, -1 === (p = t.indexOf(s, O)) && (p = w);
-            O < w && ((c = t.charAt(O)) === a || c === i);
+            m = R, g = !1, -1 === (p = t.indexOf(s, R)) && (p = w);
+            R < w && ((c = t.charAt(R)) === a || c === i);
 
           )
-            O++
+            R++
           if (
-            (t.charAt(O) === l
-              ? (O++, (g = !0), t.charAt(O) === a && O++)
-              : (O = m),
-            (f = t.slice(O, p)),
-            !g && !r(f))
+            (t.charAt(R) === l
+              ? (R++, (g = !0), t.charAt(R) === a && R++)
+              : (R = m),
+            (h = t.slice(R, p)),
+            !g && !r(h))
           ) {
-            O = m
+            R = m
             break
           }
-          if (!g && ((d = t.slice(O)), o(j, _, b, [e, d, !0]))) break
-          ;(h = m === O ? f : t.slice(m, p)),
-            S.push(O - m),
-            k.push(h),
-            E.push(f),
-            (O = p + 1)
+          if (!g && ((d = t.slice(R)), o(j, _, b, [e, d, !0]))) break
+          ;(f = m === R ? h : t.slice(m, p)),
+            S.push(R - m),
+            k.push(f),
+            E.push(h),
+            (R = p + 1)
         }
-        for (O = -1, w = S.length, u = e(k.join(s)); ++O < w; )
-          (v[C] = (v[C] || 0) + S[O]), C++
+        for (R = -1, w = S.length, u = e(k.join(s)); ++R < w; )
+          (v[C] = (v[C] || 0) + S[R]), C++
         return (
           (y = b.enterBlock()),
           (E = b.tokenizeBlock(E.join(s), x)),
@@ -45472,8 +46383,8 @@ object-assign
     e.exports = function fencedCode(e, t, n) {
       var d,
         p,
-        f,
         h,
+        f,
         m,
         g,
         y,
@@ -45487,26 +46398,26 @@ object-assign
         k = 0,
         E = ""
       if (C.gfm) {
-        for (; k < w && ((f = t.charAt(k)) === i || f === s); ) (E += f), k++
-        if (((_ = k), (f = t.charAt(k)) === a || f === l)) {
-          for (k++, p = f, d = 1, E += f; k < w && (f = t.charAt(k)) === p; )
-            (E += f), d++, k++
+        for (; k < w && ((h = t.charAt(k)) === i || h === s); ) (E += h), k++
+        if (((_ = k), (h = t.charAt(k)) === a || h === l)) {
+          for (k++, p = h, d = 1, E += h; k < w && (h = t.charAt(k)) === p; )
+            (E += h), d++, k++
           if (!(d < u)) {
-            for (; k < w && ((f = t.charAt(k)) === i || f === s); )
-              (E += f), k++
+            for (; k < w && ((h = t.charAt(k)) === i || h === s); )
+              (E += h), k++
             for (
-              h = "", m = "";
-              k < w && (f = t.charAt(k)) !== o && f !== a && f !== l;
+              f = "", m = "";
+              k < w && (h = t.charAt(k)) !== o && h !== a && h !== l;
 
             )
-              f === i || f === s ? (m += f) : ((h += m + f), (m = "")), k++
-            if (!(f = t.charAt(k)) || f === o) {
+              h === i || h === s ? (m += h) : ((f += m + h), (m = "")), k++
+            if (!(h = t.charAt(k)) || h === o) {
               if (n) return !0
               for (
                 (j = e.now()).column += E.length,
                   j.offset += E.length,
-                  E += h,
-                  h = x.decode.raw(x.unescape(h), j),
+                  E += f,
+                  f = x.decode.raw(x.unescape(f), j),
                   m && (E += m),
                   m = "",
                   b = "",
@@ -45517,36 +46428,36 @@ object-assign
 
               )
                 if (
-                  ((f = t.charAt(k)),
+                  ((h = t.charAt(k)),
                   (g += b),
                   (y += v),
                   (b = ""),
                   (v = ""),
-                  f === o)
+                  h === o)
                 ) {
                   for (
-                    g ? ((b += f), (v += f)) : (E += f), m = "", k++;
-                    k < w && (f = t.charAt(k)) === i;
+                    g ? ((b += h), (v += h)) : (E += h), m = "", k++;
+                    k < w && (h = t.charAt(k)) === i;
 
                   )
-                    (m += f), k++
+                    (m += h), k++
                   if (((b += m), (v += m.slice(_)), !(m.length >= c))) {
-                    for (m = ""; k < w && (f = t.charAt(k)) === p; )
-                      (m += f), k++
+                    for (m = ""; k < w && (h = t.charAt(k)) === p; )
+                      (m += h), k++
                     if (((b += m), (v += m), !(m.length < d))) {
                       for (
                         m = "";
-                        k < w && ((f = t.charAt(k)) === i || f === s);
+                        k < w && ((h = t.charAt(k)) === i || h === s);
 
                       )
-                        (b += f), (v += f), k++
-                      if (!f || f === o) break
+                        (b += h), (v += h), k++
+                      if (!h || h === o) break
                     }
                   }
-                } else (g += f), (v += f), k++
+                } else (g += h), (v += h), k++
               return (
                 (E += g + b),
-                e(E)({ type: "code", lang: h || null, value: r(y) })
+                e(E)({ type: "code", lang: f || null, value: r(y) })
               )
             }
           }
@@ -45571,20 +46482,20 @@ object-assign
       o = n("./node_modules/trim-trailing-lines/index.js")
     e.exports = function indentedCode(e, t, n) {
       for (
-        var r, u, c, d = -1, p = t.length, f = "", h = "", m = "", g = "";
+        var r, u, c, d = -1, p = t.length, h = "", f = "", m = "", g = "";
         ++d < p;
 
       )
         if (((r = t.charAt(d)), c))
-          if (((c = !1), (f += m), (h += g), (m = ""), (g = ""), r === s))
+          if (((c = !1), (h += m), (f += g), (m = ""), (g = ""), r === s))
             (m = r), (g = r)
           else
-            for (f += r, h += r; ++d < p; ) {
+            for (h += r, f += r; ++d < p; ) {
               if (!(r = t.charAt(d)) || r === s) {
                 ;(g = r), (m = r)
                 break
               }
-              ;(f += r), (h += r)
+              ;(h += r), (f += r)
             }
         else if (
           r === a &&
@@ -45599,7 +46510,7 @@ object-assign
           if (r !== s) break
           ;(m += u + r), (g += r)
         }
-      if (h) return !!n || e(f)({ type: "code", lang: null, value: o(h) })
+      if (f) return !!n || e(h)({ type: "code", lang: null, value: o(f) })
     }
     var s = "\n",
       i = "\t",
@@ -45610,16 +46521,16 @@ object-assign
     "use strict"
     function inlineCode(e, t, n) {
       for (
-        var o, i, a, l, u, c, d, p, f = t.length, h = 0, m = "", g = "";
-        h < f && t.charAt(h) === s;
+        var o, i, a, l, u, c, d, p, h = t.length, f = 0, m = "", g = "";
+        f < h && t.charAt(f) === s;
 
       )
-        (m += s), h++
+        (m += s), f++
       if (m) {
-        for (u = m, l = h, m = "", p = t.charAt(h), a = 0; h < f; ) {
+        for (u = m, l = f, m = "", p = t.charAt(f), a = 0; f < h; ) {
           if (
             ((c = p),
-            (p = t.charAt(h + 1)),
+            (p = t.charAt(f + 1)),
             c === s ? (a++, (g += c)) : ((a = 0), (m += c)),
             a && p !== s)
           ) {
@@ -45629,15 +46540,15 @@ object-assign
             }
             ;(m += g), (g = "")
           }
-          h++
+          f++
         }
         if (!d) {
           if (l % 2 != 0) return
           m = ""
         }
         if (n) return !0
-        for (o = "", i = "", f = m.length, h = -1; ++h < f; )
-          (c = m.charAt(h)),
+        for (o = "", i = "", h = m.length, f = -1; ++f < h; )
+          (c = m.charAt(f)),
             r(c) ? (i += c) : (i && (o && (o += i), (i = "")), (o += c))
         return e(u)({ type: "inlineCode", value: o })
       }
@@ -45663,26 +46574,26 @@ object-assign
           k = w.options.commonmark,
           E = 0,
           S = t.length,
-          O = "";
+          R = "";
         E < S && ((v = t.charAt(E)) === c || v === u);
 
       )
-        (O += v), E++
+        (R += v), E++
       if ((v = t.charAt(E)) === d) {
-        for (E++, O += v, b = ""; E < S && (v = t.charAt(E)) !== p; )
+        for (E++, R += v, b = ""; E < S && (v = t.charAt(E)) !== p; )
           v === a && ((b += v), E++, (v = t.charAt(E))), (b += v), E++
         if (b && t.charAt(E) === p && t.charAt(E + 1) === m) {
           for (
-            j = b, E = (O += b + p + m).length, b = "";
+            j = b, E = (R += b + p + m).length, b = "";
             E < S && ((v = t.charAt(E)) === u || v === c || v === l);
 
           )
-            (O += v), E++
-          if (((v = t.charAt(E)), (b = ""), (r = O), v === g)) {
+            (R += v), E++
+          if (((v = t.charAt(E)), (b = ""), (r = R), v === g)) {
             for (E++; E < S && ((v = t.charAt(E)), isEnclosedURLCharacter(v)); )
               (b += v), E++
             if ((v = t.charAt(E)) === isEnclosedURLCharacter.delimiter)
-              (O += g + b + v), E++
+              (R += g + b + v), E++
             else {
               if (k) return
               ;(E -= b.length + 1), (b = "")
@@ -45691,7 +46602,7 @@ object-assign
           if (!b) {
             for (; E < S && ((v = t.charAt(E)), isUnclosedURLCharacter(v)); )
               (b += v), E++
-            O += b
+            R += b
           }
           if (b) {
             for (
@@ -45703,12 +46614,12 @@ object-assign
             if (
               ((v = t.charAt(E)),
               (_ = null),
-              v === s ? (_ = s) : v === i ? (_ = i) : v === f && (_ = h),
+              v === s ? (_ = s) : v === i ? (_ = i) : v === h && (_ = f),
               _)
             ) {
               if (!b) return
               for (
-                E = (O += b + v).length, b = "";
+                E = (R += b + v).length, b = "";
                 E < S && (v = t.charAt(E)) !== _;
 
               ) {
@@ -45719,10 +46630,10 @@ object-assign
                 ;(b += v), E++
               }
               if ((v = t.charAt(E)) !== _) return
-              ;(y = O), (O += b + v), E++, (C = b), (b = "")
-            } else (b = ""), (E = O.length)
+              ;(y = R), (R += b + v), E++, (C = b), (b = "")
+            } else (b = ""), (E = R.length)
             for (; E < S && ((v = t.charAt(E)) === u || v === c); )
-              (O += v), E++
+              (R += v), E++
             return (v = t.charAt(E)) && v !== l
               ? void 0
               : !!n ||
@@ -45731,7 +46642,7 @@ object-assign
                   C &&
                     ((y = e(y).test().end),
                     (C = w.decode.raw(w.unescape(C), y))),
-                  e(O)({
+                  e(R)({
                     type: "definition",
                     identifier: o(j),
                     title: C || null,
@@ -45760,8 +46671,8 @@ object-assign
       c = " ",
       d = "[",
       p = "]",
-      f = "(",
-      h = ")",
+      h = "(",
+      f = ")",
       m = ":",
       g = "<",
       y = ">"
@@ -45777,7 +46688,7 @@ object-assign
         c = "",
         d = "",
         p = "",
-        f = ""
+        h = ""
       if (
         u.options.gfm &&
         t.charAt(0) === s &&
@@ -45792,9 +46703,9 @@ object-assign
           if (!((c = t.charAt(o)) !== s || d !== s || (p && r(p))))
             return (
               !!n ||
-              e(i + f + i)({ type: "delete", children: u.tokenizeInline(f, l) })
+              e(i + h + i)({ type: "delete", children: u.tokenizeInline(h, l) })
             )
-          ;(f += d), (p = d), (d = c)
+          ;(h += d), (p = d), (d = c)
         }
     }
     var r = n("./node_modules/is-whitespace-character/index.js"),
@@ -45811,8 +46722,8 @@ object-assign
         c,
         d,
         p,
-        f,
         h,
+        f,
         m = this,
         g = 0,
         y = t.charAt(g)
@@ -45822,17 +46733,17 @@ object-assign
           ((u = m.options.pedantic),
           (p = y),
           (c = y),
-          (f = t.length),
+          (h = t.length),
           g++,
           (d = ""),
           (y = ""),
           u && s(t.charAt(g)))
         )
       )
-        for (; g < f; ) {
-          if (((h = y), !((y = t.charAt(g)) !== c || (u && s(h))))) {
+        for (; g < h; ) {
+          if (((f = y), !((y = t.charAt(g)) !== c || (u && s(f))))) {
             if ((y = t.charAt(++g)) !== c) {
-              if (!r(d) || h === c) return
+              if (!r(d) || f === c) return
               if (!u && c === l && o(y)) {
                 d += c
                 continue
@@ -45887,7 +46798,7 @@ object-assign
   ) {
     "use strict"
     function footnoteDefinition(e, t, n) {
-      var h,
+      var f,
         m,
         g,
         y,
@@ -45903,48 +46814,48 @@ object-assign
         S = E.offset
       if (E.options.footnotes) {
         for (
-          h = 0, m = t.length, g = "", y = e.now(), b = y.line;
-          h < m && ((x = t.charAt(h)), r(x));
+          f = 0, m = t.length, g = "", y = e.now(), b = y.line;
+          f < m && ((x = t.charAt(f)), r(x));
 
         )
-          (g += x), h++
-        if (t.charAt(h) === u && t.charAt(h + 1) === d) {
+          (g += x), f++
+        if (t.charAt(f) === u && t.charAt(f + 1) === d) {
           for (
-            h = (g += u + d).length, _ = "";
-            h < m && (x = t.charAt(h)) !== c;
+            f = (g += u + d).length, _ = "";
+            f < m && (x = t.charAt(f)) !== c;
 
           )
-            x === s && ((_ += x), h++, (x = t.charAt(h))), (_ += x), h++
-          if (_ && t.charAt(h) === c && t.charAt(h + 1) === p) {
+            x === s && ((_ += x), f++, (x = t.charAt(f))), (_ += x), f++
+          if (_ && t.charAt(f) === c && t.charAt(f + 1) === p) {
             if (n) return !0
             for (
-              C = o(_), h = (g += _ + c + p).length;
-              h < m && ((x = t.charAt(h)) === a || x === l);
+              C = o(_), f = (g += _ + c + p).length;
+              f < m && ((x = t.charAt(f)) === a || x === l);
 
             )
-              (g += x), h++
+              (g += x), f++
             for (
               y.column += g.length,
                 y.offset += g.length,
                 _ = "",
                 v = "",
                 j = "";
-              h < m;
+              f < m;
 
             ) {
-              if ((x = t.charAt(h)) === i) {
-                for (j = x, h++; h < m && (x = t.charAt(h)) === i; )
-                  (j += x), h++
-                for (_ += j, j = ""; h < m && (x = t.charAt(h)) === l; )
-                  (j += x), h++
+              if ((x = t.charAt(f)) === i) {
+                for (j = x, f++; f < m && (x = t.charAt(f)) === i; )
+                  (j += x), f++
+                for (_ += j, j = ""; f < m && (x = t.charAt(f)) === l; )
+                  (j += x), f++
                 if (0 === j.length) break
                 _ += j
               }
-              _ && ((v += _), (_ = "")), (v += x), h++
+              _ && ((v += _), (_ = "")), (v += x), f++
             }
             return (
               (g += v),
-              (v = v.replace(f, function(e) {
+              (v = v.replace(h, function(e) {
                 return (S[b] = (S[b] || 0) + e.length), b++, ""
               })),
               (w = e(g)),
@@ -45970,7 +46881,7 @@ object-assign
       c = "]",
       d = "^",
       p = ":",
-      f = /^( {4}|\t)?/gm
+      h = /^( {4}|\t)?/gm
   },
   "./node_modules/remark-parse/lib/tokenize/heading-atx.js": function(e, t, n) {
     "use strict"
@@ -45981,31 +46892,31 @@ object-assign
           c,
           d = this,
           p = d.options,
-          f = t.length + 1,
-          h = -1,
+          h = t.length + 1,
+          f = -1,
           m = e.now(),
           g = "",
           y = "";
-        ++h < f;
+        ++f < h;
 
       ) {
-        if ((l = t.charAt(h)) !== s && l !== o) {
-          h--
+        if ((l = t.charAt(f)) !== s && l !== o) {
+          f--
           break
         }
         g += l
       }
-      for (c = 0; ++h <= f; ) {
-        if ((l = t.charAt(h)) !== i) {
-          h--
+      for (c = 0; ++f <= h; ) {
+        if ((l = t.charAt(f)) !== i) {
+          f--
           break
         }
         ;(g += l), c++
       }
-      if (!(c > a) && c && (p.pedantic || t.charAt(h + 1) !== i)) {
-        for (f = t.length + 1, u = ""; ++h < f; ) {
-          if ((l = t.charAt(h)) !== s && l !== o) {
-            h--
+      if (!(c > a) && c && (p.pedantic || t.charAt(f + 1) !== i)) {
+        for (h = t.length + 1, u = ""; ++f < h; ) {
+          if ((l = t.charAt(f)) !== s && l !== o) {
+            f--
             break
           }
           u += l
@@ -46014,14 +46925,14 @@ object-assign
           if (n) return !0
           for (
             g += u, u = "", y = "";
-            ++h < f && (l = t.charAt(h)) && l !== r;
+            ++f < h && (l = t.charAt(f)) && l !== r;
 
           )
             if (l === s || l === o || l === i) {
-              for (; l === s || l === o; ) (u += l), (l = t.charAt(++h))
-              for (; l === i; ) (u += l), (l = t.charAt(++h))
-              for (; l === s || l === o; ) (u += l), (l = t.charAt(++h))
-              h--
+              for (; l === s || l === o; ) (u += l), (l = t.charAt(++f))
+              for (; l === i; ) (u += l), (l = t.charAt(++f))
+              for (; l === s || l === o; ) (u += l), (l = t.charAt(++f))
+              f--
             } else (y += u + l), (u = "")
           return (
             (m.column += g.length),
@@ -46050,7 +46961,7 @@ object-assign
     "use strict"
     e.exports = function setextHeading(e, t, n) {
       for (
-        var l, u, c, d, p, f = this, h = e.now(), m = t.length, g = -1, y = "";
+        var l, u, c, d, p, h = this, f = e.now(), m = t.length, g = -1, y = "";
         ++g < m;
 
       ) {
@@ -46068,8 +46979,8 @@ object-assign
         c === s || c === o ? (u += c) : ((l += u + c), (u = ""))
       }
       if (
-        ((h.column += y.length),
-        (h.offset += y.length),
+        ((f.column += y.length),
+        (f.offset += y.length),
         (y += l + u),
         (c = t.charAt(++g)),
         (d = t.charAt(++g)),
@@ -46088,7 +46999,7 @@ object-assign
           e(y + u)({
             type: "heading",
             depth: p,
-            children: f.tokenizeInline(l, h),
+            children: h.tokenizeInline(l, f),
           })
         )
       }
@@ -46110,8 +47021,8 @@ object-assign
           c,
           d,
           p,
-          f,
           h,
+          f,
           m = this.options.blocks,
           g = t.length,
           y = 0,
@@ -46146,25 +47057,25 @@ object-assign
 
         )
           if (b[c][0].test(u)) {
-            f = b[c]
+            h = b[c]
             break
           }
-        if (f) {
-          if (n) return f[2]
-          if (((y = l), !f[1].test(u)))
+        if (h) {
+          if (n) return h[2]
+          if (((y = l), !h[1].test(u)))
             for (; y < g; ) {
               if (
                 ((l = t.indexOf(i, y + 1)),
                 (l = -1 === l ? g : l),
                 (u = t.slice(y + 1, l)),
-                f[1].test(u))
+                h[1].test(u))
               ) {
                 u && (y = l)
                 break
               }
               y = l
             }
-          return (h = t.slice(0, y)), e(h)({ type: "html", value: h })
+          return (f = t.slice(0, y)), e(f)({ type: "html", value: f })
         }
       }
     }
@@ -46217,64 +47128,64 @@ object-assign
         k,
         E,
         S,
+        R,
         O,
         P,
-        R,
+        M,
         T,
         D,
-        M,
         A = this,
         I = "",
         L = 0,
         N = t.charAt(0),
         B = A.options.pedantic,
-        F = A.options.commonmark,
-        q = A.options.gfm
+        q = A.options.commonmark,
+        F = A.options.gfm
       if (
         ("!" === N && ((C = !0), (I = N), (N = t.charAt(++L))),
         N === a && (C || !A.inLink))
       ) {
         for (
           I += N,
-            P = "",
+            O = "",
             L++,
             E = t.length,
-            O = 0,
-            (T = e.now()).column += L,
-            T.offset += L;
+            R = 0,
+            (M = e.now()).column += L,
+            M.offset += L;
           L < E;
 
         ) {
-          if (((N = t.charAt(L)), (_ = N), N === f)) {
-            for (g = 1; t.charAt(L + 1) === f; ) (_ += N), L++, g++
+          if (((N = t.charAt(L)), (_ = N), N === h)) {
+            for (g = 1; t.charAt(L + 1) === h; ) (_ += N), L++, g++
             y ? g >= y && (y = 0) : (y = g)
           } else if (N === i) L++, (_ += t.charAt(L))
-          else if ((y && !q) || N !== a) {
-            if ((!y || q) && N === l) {
-              if (!O) {
+          else if ((y && !F) || N !== a) {
+            if ((!y || F) && N === l) {
+              if (!R) {
                 if (!B)
                   for (; L < E && ((N = t.charAt(L + 1)), r(N)); ) (_ += N), L++
                 if (t.charAt(L + 1) !== u) return
                 ;(_ += u), (o = !0), L++
                 break
               }
-              O--
+              R--
             }
-          } else O++
-          ;(P += _), (_ = ""), L++
+          } else R++
+          ;(O += _), (_ = ""), L++
         }
         if (o) {
-          for (w = P, I += P + _, L++; L < E && ((N = t.charAt(L)), r(N)); )
+          for (w = O, I += O + _, L++; L < E && ((N = t.charAt(L)), r(N)); )
             (I += N), L++
           if (
-            ((N = t.charAt(L)), (x = F ? m : h), (P = ""), (b = I), N === d)
+            ((N = t.charAt(L)), (x = q ? m : f), (O = ""), (b = I), N === d)
           ) {
             for (L++, b += d; L < E && (N = t.charAt(L)) !== p; ) {
-              if (F && "\n" === N) return
-              ;(P += N), L++
+              if (q && "\n" === N) return
+              ;(O += N), L++
             }
             if (t.charAt(L) !== p) return
-            ;(I += d + P + p), (R = P), L++
+            ;(I += d + O + p), (P = O), L++
           } else {
             for (
               N = null, _ = "";
@@ -46285,55 +47196,55 @@ object-assign
                 if (!B) break
                 _ += N
               } else {
-                if (N === u) O++
+                if (N === u) R++
                 else if (N === c) {
-                  if (0 === O) break
-                  O--
+                  if (0 === R) break
+                  R--
                 }
-                ;(P += _),
+                ;(O += _),
                   (_ = ""),
-                  N === i && ((P += i), (N = t.charAt(++L))),
-                  (P += N)
+                  N === i && ((O += i), (N = t.charAt(++L))),
+                  (O += N)
               }
               L++
             }
-            ;(R = P), (L = (I += P).length)
+            ;(P = O), (L = (I += O).length)
           }
-          for (P = ""; L < E && ((N = t.charAt(L)), r(N)); ) (P += N), L++
-          if (((N = t.charAt(L)), (I += P), P && s.call(x, N)))
-            if ((L++, (I += N), (P = ""), (k = x[N]), (v = I), F)) {
+          for (O = ""; L < E && ((N = t.charAt(L)), r(N)); ) (O += N), L++
+          if (((N = t.charAt(L)), (I += O), O && s.call(x, N)))
+            if ((L++, (I += N), (O = ""), (k = x[N]), (v = I), q)) {
               for (; L < E && (N = t.charAt(L)) !== k; )
-                N === i && ((P += i), (N = t.charAt(++L))), L++, (P += N)
+                N === i && ((O += i), (N = t.charAt(++L))), L++, (O += N)
               if ((N = t.charAt(L)) !== k) return
-              for (S = P, I += P + N, L++; L < E && ((N = t.charAt(L)), r(N)); )
+              for (S = O, I += O + N, L++; L < E && ((N = t.charAt(L)), r(N)); )
                 (I += N), L++
             } else
               for (_ = ""; L < E; ) {
                 if ((N = t.charAt(L)) === k)
-                  j && ((P += k + _), (_ = "")), (j = !0)
+                  j && ((O += k + _), (_ = "")), (j = !0)
                 else if (j) {
                   if (N === c) {
-                    ;(I += P + k + _), (S = P)
+                    ;(I += O + k + _), (S = O)
                     break
                   }
-                  r(N) ? (_ += N) : ((P += k + _ + N), (_ = ""), (j = !1))
-                } else P += N
+                  r(N) ? (_ += N) : ((O += k + _ + N), (_ = ""), (j = !1))
+                } else O += N
                 L++
               }
           if (t.charAt(L) === c)
             return (
               !!n ||
               ((I += c),
-              (R = A.decode.raw(A.unescape(R), e(b).test().end)),
+              (P = A.decode.raw(A.unescape(P), e(b).test().end)),
               S &&
                 ((v = e(v).test().end), (S = A.decode.raw(A.unescape(S), v))),
-              (M = { type: C ? "image" : "link", title: S || null, url: R }),
+              (D = { type: C ? "image" : "link", title: S || null, url: P }),
               C
-                ? (M.alt = A.decode.raw(A.unescape(w), T) || null)
-                : ((D = A.enterLink()),
-                  (M.children = A.tokenizeInline(w, T)),
-                  D()),
-              e(I)(M))
+                ? (D.alt = A.decode.raw(A.unescape(w), M) || null)
+                : ((T = A.enterLink()),
+                  (D.children = A.tokenizeInline(w, M)),
+                  T()),
+              e(I)(D))
             )
         }
       }
@@ -46349,9 +47260,9 @@ object-assign
       c = ")",
       d = "<",
       p = ">",
-      f = "`",
-      h = {}
-    ;(h['"'] = '"'), (h["'"] = "'")
+      h = "`",
+      f = {}
+    ;(f['"'] = '"'), (f["'"] = "'")
     var m = {}
     ;(m['"'] = '"'), (m["'"] = "'"), (m[u] = c)
   },
@@ -46375,7 +47286,7 @@ object-assign
           (t = t.slice(o))),
         {
           type: "listItem",
-          loose: y.test(t) || t.charAt(t.length - 1) === f,
+          loose: y.test(t) || t.charAt(t.length - 1) === h,
           checked: i,
           children: e.tokenizeBlock(t, n),
         }
@@ -46396,7 +47307,7 @@ object-assign
         u,
         c,
         d,
-        h,
+        f,
         m = e.offset,
         g = n.line
       for (
@@ -46407,17 +47318,17 @@ object-assign
             Number(n) < 10 && s.length % 2 == 1 && (n = p + n),
             (r = t + o(p, n.length) + i) + l
           )
-        })).split(f),
-          (c = a(t, i(r).indent).split(f))[0] = l,
+        })).split(h),
+          (c = a(t, i(r).indent).split(h))[0] = l,
           m[g] = (m[g] || 0) + s.length,
           g++,
           d = 0,
-          h = u.length;
-        ++d < h;
+          f = u.length;
+        ++d < f;
 
       )
         (m[g] = (m[g] || 0) + u[d].length - c[d].length), g++
-      return c.join(f)
+      return c.join(h)
     }
     var r = n("./node_modules/trim/index.js"),
       o = n("./node_modules/repeat-string/index.js"),
@@ -46439,143 +47350,143 @@ object-assign
           k,
           E,
           S,
+          R,
           O,
           P,
-          R,
+          M,
           T,
           D,
-          M,
           A,
           I,
           L,
           N,
           B,
-          F,
-          q = this,
-          U = q.options.commonmark,
-          W = q.options.pedantic,
-          V = q.blockTokenizers,
-          z = q.interruptList,
-          H = 0,
-          G = t.length,
+          q,
+          F = this,
+          U = F.options.commonmark,
+          W = F.options.pedantic,
+          V = F.blockTokenizers,
+          z = F.interruptList,
+          G = 0,
+          H = t.length,
           K = null,
           $ = 0;
-        H < G;
+        G < H;
 
       ) {
-        if ((m = t.charAt(H)) === h) $ += g - $ % g
+        if ((m = t.charAt(G)) === f) $ += g - $ % g
         else {
           if (m !== p) break
           $++
         }
-        H++
+        G++
       }
       if (!($ >= g)) {
-        if (((m = t.charAt(H)), (o = U ? w : C), !0 === x[m])) (y = m), (a = !1)
+        if (((m = t.charAt(G)), (o = U ? w : C), !0 === x[m])) (y = m), (a = !1)
         else {
-          for (a = !0, i = ""; H < G && ((m = t.charAt(H)), s(m)); )
-            (i += m), H++
-          if (((m = t.charAt(H)), !i || !0 !== o[m])) return
+          for (a = !0, i = ""; G < H && ((m = t.charAt(G)), s(m)); )
+            (i += m), G++
+          if (((m = t.charAt(G)), !i || !0 !== o[m])) return
           ;(K = parseInt(i, 10)), (y = m)
         }
-        if ((m = t.charAt(++H)) === p || m === h) {
+        if ((m = t.charAt(++G)) === p || m === f) {
           if (n) return !0
-          for (H = 0, P = [], R = [], T = []; H < G; ) {
+          for (G = 0, O = [], P = [], M = []; G < H; ) {
             for (
-              v = H,
+              v = G,
                 _ = !1,
-                F = !1,
-                -1 === (b = t.indexOf(f, H)) && (b = G),
-                B = H + g,
+                q = !1,
+                -1 === (b = t.indexOf(h, G)) && (b = H),
+                B = G + g,
                 $ = 0;
-              H < G;
+              G < H;
 
             ) {
-              if ((m = t.charAt(H)) === h) $ += g - $ % g
+              if ((m = t.charAt(G)) === f) $ += g - $ % g
               else {
                 if (m !== p) break
                 $++
               }
-              H++
+              G++
             }
             if (
-              ($ >= g && (F = !0),
-              D && $ >= D.indent && (F = !0),
-              (m = t.charAt(H)),
+              ($ >= g && (q = !0),
+              T && $ >= T.indent && (q = !0),
+              (m = t.charAt(G)),
               (j = null),
-              !F)
+              !q)
             ) {
-              if (!0 === x[m]) (j = m), H++, $++
+              if (!0 === x[m]) (j = m), G++, $++
               else {
-                for (i = ""; H < G && ((m = t.charAt(H)), s(m)); ) (i += m), H++
-                ;(m = t.charAt(H)),
-                  H++,
+                for (i = ""; G < H && ((m = t.charAt(G)), s(m)); ) (i += m), G++
+                ;(m = t.charAt(G)),
+                  G++,
                   i && !0 === o[m] && ((j = m), ($ += i.length + 1))
               }
               if (j)
-                if ((m = t.charAt(H)) === h) ($ += g - $ % g), H++
+                if ((m = t.charAt(G)) === f) ($ += g - $ % g), G++
                 else if (m === p) {
-                  for (B = H + g; H < B && t.charAt(H) === p; ) H++, $++
-                  H === B && t.charAt(H) === p && ((H -= g - 1), ($ -= g - 1))
-                } else m !== f && "" !== m && (j = null)
+                  for (B = G + g; G < B && t.charAt(G) === p; ) G++, $++
+                  G === B && t.charAt(G) === p && ((G -= g - 1), ($ -= g - 1))
+                } else m !== h && "" !== m && (j = null)
             }
             if (j) {
               if (!W && y !== j) break
               _ = !0
             } else
-              U || F || t.charAt(v) !== p
-                ? U && D && (F = $ >= D.indent || $ > g)
-                : (F = !0),
+              U || q || t.charAt(v) !== p
+                ? U && T && (q = $ >= T.indent || $ > g)
+                : (q = !0),
                 (_ = !1),
-                (H = v)
+                (G = v)
             if (
               ((E = t.slice(v, b)),
-              (k = v === H ? E : t.slice(H, b)),
+              (k = v === G ? E : t.slice(G, b)),
               (j === u || j === c || j === d) &&
-                V.thematicBreak.call(q, e, E, !0))
+                V.thematicBreak.call(F, e, E, !0))
             )
               break
-            if (((S = O), (O = !r(k).length), F && D))
-              (D.value = D.value.concat(T, E)), (R = R.concat(T, E)), (T = [])
+            if (((S = R), (R = !r(k).length), q && T))
+              (T.value = T.value.concat(M, E)), (P = P.concat(M, E)), (M = [])
             else if (_)
-              0 !== T.length && (D.value.push(""), (D.trail = T.concat())),
-                (D = { value: [E], indent: $, trail: [] }),
-                P.push(D),
-                (R = R.concat(T, E)),
-                (T = [])
-            else if (O) {
+              0 !== M.length && (T.value.push(""), (T.trail = M.concat())),
+                (T = { value: [E], indent: $, trail: [] }),
+                O.push(T),
+                (P = P.concat(M, E)),
+                (M = [])
+            else if (R) {
               if (S) break
-              T.push(E)
+              M.push(E)
             } else {
               if (S) break
-              if (l(z, V, q, [e, E, !0])) break
-              ;(D.value = D.value.concat(T, E)), (R = R.concat(T, E)), (T = [])
+              if (l(z, V, F, [e, E, !0])) break
+              ;(T.value = T.value.concat(M, E)), (P = P.concat(M, E)), (M = [])
             }
-            H = b + 1
+            G = b + 1
           }
           for (
-            L = e(R.join(f)).reset({
+            L = e(P.join(h)).reset({
               type: "list",
               ordered: a,
               start: K,
               loose: null,
               children: [],
             }),
-              M = q.enterList(),
-              A = q.enterBlock(),
+              D = F.enterList(),
+              A = F.enterBlock(),
               I = !1,
-              H = -1,
-              G = P.length;
-            ++H < G;
+              G = -1,
+              H = O.length;
+            ++G < H;
 
           )
-            (D = P[H].value.join(f)),
+            (T = O[G].value.join(h)),
               (N = e.now()),
-              (D = e(D)(listItem(q, D, N), L)).loose && (I = !0),
-              (D = P[H].trail.join(f)),
-              H !== G - 1 && (D += f),
-              e(D)
-          return M(), A(), (L.loose = I), L
+              (T = e(T)(listItem(F, T, N), L)).loose && (I = !0),
+              (T = O[G].trail.join(h)),
+              G !== H - 1 && (T += h),
+              e(T)
+          return D(), A(), (L.loose = I), L
         }
       }
     }
@@ -46583,8 +47494,8 @@ object-assign
       c = "_",
       d = "-",
       p = " ",
-      f = "\n",
-      h = "\t",
+      h = "\n",
+      f = "\t",
       m = "x",
       g = 4,
       y = /\n\n(?!\s*$)/,
@@ -46630,8 +47541,8 @@ object-assign
       for (
         var d,
           p,
-          f,
           h,
+          f,
           m,
           g = this,
           y = g.options,
@@ -46650,15 +47561,15 @@ object-assign
         }
         if (t.charAt(x + 1) === a) break
         if (b) {
-          for (h = 0, d = x + 1; d < C; ) {
-            if ((f = t.charAt(d)) === l) {
-              h = c
+          for (f = 0, d = x + 1; d < C; ) {
+            if ((h = t.charAt(d)) === l) {
+              f = c
               break
             }
-            if (f !== u) break
-            h++, d++
+            if (h !== u) break
+            f++, d++
           }
-          if (h >= c) {
+          if (f >= c) {
             x = t.indexOf(a, x + 1)
             continue
           }
@@ -46707,41 +47618,41 @@ object-assign
         k = 0,
         E = t.length,
         S = "",
-        O = "",
-        P = i,
-        R = u
-      if (("!" === w && ((P = a), (O = w), (w = t.charAt(++k))), w === h)) {
+        R = "",
+        O = i,
+        P = u
+      if (("!" === w && ((O = a), (R = w), (w = t.charAt(++k))), w === f)) {
         for (
           k++,
-            O += w,
+            R += w,
             _ = "",
             C.options.footnotes &&
-              P === i &&
+              O === i &&
               t.charAt(k) === p &&
-              ((O += p), k++, (P = l)),
+              ((R += p), k++, (O = l)),
             x = 0;
           k < E;
 
         ) {
-          if ((w = t.charAt(k)) === h) (j = !0), x++
+          if ((w = t.charAt(k)) === f) (j = !0), x++
           else if (w === m) {
             if (!x) break
             x--
           }
-          w === f && ((_ += f), (w = t.charAt(++k))), (_ += w), k++
+          w === h && ((_ += h), (w = t.charAt(++k))), (_ += w), k++
         }
         if (((S = _), (o = _), (w = t.charAt(k)) === m)) {
           for (k++, S += w, _ = ""; k < E && ((w = t.charAt(k)), r(w)); )
             (_ += w), k++
-          if (((w = t.charAt(k)), P !== l && w === h)) {
+          if (((w = t.charAt(k)), O !== l && w === f)) {
             for (
               g = "", _ += w, k++;
-              k < E && (w = t.charAt(k)) !== h && w !== m;
+              k < E && (w = t.charAt(k)) !== f && w !== m;
 
             )
-              w === f && ((g += f), (w = t.charAt(++k))), (g += w), k++
+              w === h && ((g += h), (w = t.charAt(++k))), (g += w), k++
             ;(w = t.charAt(k)) === m
-              ? ((R = g ? d : c), (_ += g + w), k++)
+              ? ((P = g ? d : c), (_ += g + w), k++)
               : (g = ""),
               (S += _),
               (_ = "")
@@ -46749,28 +47660,28 @@ object-assign
             if (!o) return
             g = o
           }
-          if (R === d || !j)
+          if (P === d || !j)
             return (
-              (S = O + S),
-              P === i && C.inLink
+              (S = R + S),
+              O === i && C.inLink
                 ? null
                 : !!n ||
-                  (P === l && -1 !== o.indexOf(" ")
+                  (O === l && -1 !== o.indexOf(" ")
                     ? e(S)({
                         type: "footnote",
                         children: this.tokenizeInline(o, e.now()),
                       })
                     : ((y = e.now()),
-                      (y.column += O.length),
-                      (y.offset += O.length),
-                      (g = R === d ? g : o),
-                      (b = { type: P + "Reference", identifier: s(g) }),
-                      (P !== i && P !== a) || (b.referenceType = R),
-                      P === i
+                      (y.column += R.length),
+                      (y.offset += R.length),
+                      (g = P === d ? g : o),
+                      (b = { type: O + "Reference", identifier: s(g) }),
+                      (O !== i && O !== a) || (b.referenceType = P),
+                      O === i
                         ? ((v = C.enterLink()),
                           (b.children = C.tokenizeInline(o, y)),
                           v())
-                        : P === a &&
+                        : O === a &&
                           (b.alt = C.decode.raw(C.unescape(o), y) || null),
                       e(S)(b)))
             )
@@ -46788,8 +47699,8 @@ object-assign
       c = "collapsed",
       d = "full",
       p = "^",
-      f = "\\",
-      h = "[",
+      h = "\\",
+      f = "[",
       m = "]"
   },
   "./node_modules/remark-parse/lib/tokenize/strong.js": function(e, t, n) {
@@ -46801,15 +47712,15 @@ object-assign
         c,
         d,
         p,
-        f,
-        h = this,
+        h,
+        f = this,
         m = 0,
         g = t.charAt(m)
       if (
         !(
           (g !== i && g !== a) ||
           t.charAt(++m) !== g ||
-          ((l = h.options.pedantic),
+          ((l = f.options.pedantic),
           (u = g),
           (d = u + u),
           (p = t.length),
@@ -46821,11 +47732,11 @@ object-assign
       )
         for (; m < p; ) {
           if (
-            ((f = g),
+            ((h = g),
             !(
               (g = t.charAt(m)) !== u ||
               t.charAt(m + 1) !== u ||
-              (l && o(f))
+              (l && o(h))
             ) && (g = t.charAt(m + 2)) !== u)
           ) {
             if (!r(c)) return
@@ -46836,7 +47747,7 @@ object-assign
               (s.offset += 2),
               e(d + c + d)({
                 type: "strong",
-                children: h.tokenizeInline(c, s),
+                children: f.tokenizeInline(c, s),
               }))
             )
           }
@@ -46864,33 +47775,33 @@ object-assign
         k,
         E,
         S,
+        R,
         O,
         P,
-        R,
+        M,
         T,
         D,
-        M,
         A,
         I,
         L,
         N,
         B,
-        F,
         q,
+        F,
         U,
         W = this
       if (W.options.gfm) {
         for (b = 0, I = 0, C = t.length + 1, w = []; b < C; ) {
           if (
-            ((F = t.indexOf(c, b)),
-            (q = t.indexOf(a, b + 1)),
-            -1 === F && (F = t.length),
-            -1 === q || q > F)
+            ((q = t.indexOf(c, b)),
+            (F = t.indexOf(a, b + 1)),
+            -1 === q && (q = t.length),
+            -1 === F || F > q)
           ) {
-            if (I < f) return
+            if (I < h) return
             break
           }
-          w.push(t.slice(b, F)), I++, (b = F + 1)
+          w.push(t.slice(b, q)), I++, (b = q + 1)
         }
         for (
           j = w.join(c),
@@ -46898,26 +47809,26 @@ object-assign
             C = (v = w.splice(1, 1)[0] || []).length,
             I--,
             _ = !1,
-            O = [];
+            R = [];
           b < C;
 
         ) {
           if ((E = v.charAt(b)) === a) {
             if (((S = null), !1 === _)) {
               if (!1 === U) return
-            } else O.push(_), (_ = !1)
+            } else R.push(_), (_ = !1)
             U = !1
           } else if (E === i) (S = !0), (_ = _ || y)
-          else if (E === l) _ = _ === h ? m : S && _ === y ? g : h
+          else if (E === l) _ = _ === f ? m : S && _ === y ? g : f
           else if (!r(E)) return
           b++
         }
-        if ((!1 !== _ && O.push(_), !(O.length < p))) {
+        if ((!1 !== _ && R.push(_), !(R.length < p))) {
           if (n) return !0
           for (
             A = -1,
               N = [],
-              B = e(j).reset({ type: "table", align: O, children: N });
+              B = e(j).reset({ type: "table", align: R, children: N });
             ++A < I;
 
           ) {
@@ -46929,49 +47840,49 @@ object-assign
                 C = L.length + 1,
                 b = 0,
                 k = "",
-                P = "",
-                R = !0,
-                T = null,
-                D = null;
+                O = "",
+                P = !0,
+                M = null,
+                T = null;
               b < C;
 
             )
               if ((E = L.charAt(b)) !== d && E !== u) {
                 if ("" === E || E === a)
-                  if (R) e(E)
+                  if (P) e(E)
                   else {
-                    if (E && D) {
+                    if (E && T) {
                       ;(k += E), b++
                       continue
                     }
-                    ;(!P && !E) ||
-                      R ||
-                      ((j = P),
+                    ;(!O && !E) ||
+                      P ||
+                      ((j = O),
                       k.length > 1 &&
                         (E
                           ? ((j += k.slice(0, k.length - 1)),
                             (k = k.charAt(k.length - 1)))
                           : ((j += k), (k = ""))),
-                      (M = e.now()),
+                      (D = e.now()),
                       e(j)(
-                        { type: "tableCell", children: W.tokenizeInline(P, M) },
+                        { type: "tableCell", children: W.tokenizeInline(O, D) },
                         x
                       )),
                       e(k + E),
                       (k = ""),
-                      (P = "")
+                      (O = "")
                   }
                 else if (
-                  (k && ((P += k), (k = "")),
-                  (P += E),
-                  E === o && b !== C - 2 && ((P += L.charAt(b + 1)), b++),
+                  (k && ((O += k), (k = "")),
+                  (O += E),
+                  E === o && b !== C - 2 && ((O += L.charAt(b + 1)), b++),
                   E === s)
                 ) {
-                  for (T = 1; L.charAt(b + 1) === E; ) (P += E), b++, T++
-                  D ? T >= D && (D = 0) : (D = T)
+                  for (M = 1; L.charAt(b + 1) === E; ) (O += E), b++, M++
+                  T ? M >= T && (T = 0) : (T = M)
                 }
-                ;(R = !1), b++
-              } else P ? (k += E) : e(E), b++
+                ;(P = !1), b++
+              } else O ? (k += E) : e(E), b++
             A || e(c + v)
           }
           return B
@@ -46987,8 +47898,8 @@ object-assign
       c = "\n",
       d = "\t",
       p = 1,
-      f = 2,
-      h = "left",
+      h = 2,
+      f = "left",
       m = "center",
       g = "right",
       y = null
@@ -47006,11 +47917,11 @@ object-assign
         c,
         d,
         p,
-        f = this
+        h = this
       if (n) return !0
       for (
-        i = (r = f.inlineMethods).length,
-          o = f.inlineTokenizers,
+        i = (r = h.inlineMethods).length,
+          o = h.inlineTokenizers,
           s = -1,
           d = t.length;
         ++s < i;
@@ -47019,10 +47930,10 @@ object-assign
         "text" !== (c = r[s]) &&
           o[c] &&
           ((u = o[c].locator) || e.file.fail("Missing locator: `" + c + "`"),
-          -1 !== (l = u.call(f, t, 1)) && l < d && (d = l))
+          -1 !== (l = u.call(h, t, 1)) && l < d && (d = l))
       ;(a = t.slice(0, d)),
         (p = e.now()),
-        f.decode(a, p, function(t, n, r) {
+        h.decode(a, p, function(t, n, r) {
           e(r || t)({ type: "text", value: t })
         })
     }
@@ -47035,20 +47946,20 @@ object-assign
     "use strict"
     e.exports = function thematicBreak(e, t, n) {
       for (
-        var c, d, p, f, h = -1, m = t.length + 1, g = "";
-        ++h < m && ((c = t.charAt(h)) === o || c === s);
+        var c, d, p, h, f = -1, m = t.length + 1, g = "";
+        ++f < m && ((c = t.charAt(f)) === o || c === s);
 
       )
         g += c
       if (c === i || c === l || c === a)
-        for (d = c, g += c, p = 1, f = ""; ++h < m; )
-          if ((c = t.charAt(h)) === d) p++, (g += f + d), (f = "")
+        for (d = c, g += c, p = 1, h = ""; ++f < m; )
+          if ((c = t.charAt(f)) === d) p++, (g += h + d), (h = "")
           else {
             if (c !== s)
               return p >= u && (!c || c === r)
-                ? ((g += f), !!n || e(g)({ type: "thematicBreak" }))
+                ? ((g += h), !!n || e(g)({ type: "thematicBreak" }))
                 : void 0
-            f += c
+            h += c
           }
     }
     var r = "\n",
@@ -47076,8 +47987,8 @@ object-assign
         k,
         E = this
       if (E.options.gfm) {
-        for (s = "", y = -1, j = h; ++y < j; )
-          if (((v = f[y]), (_ = t.slice(0, v.length)).toLowerCase() === v)) {
+        for (s = "", y = -1, j = f; ++y < j; )
+          if (((v = h[y]), (_ = t.slice(0, v.length)).toLowerCase() === v)) {
             s = _
             break
           }
@@ -47126,8 +48037,8 @@ object-assign
       c = "<",
       d = "@",
       p = "mailto:",
-      f = ["http://", "https://", p],
-      h = f.length
+      h = ["http://", "https://", p],
+      f = h.length
   },
   "./node_modules/remark-parse/lib/tokenizer.js": function(e, t, n) {
     "use strict"
@@ -47241,17 +48152,17 @@ object-assign
           c = this,
           d = c.offset,
           p = [],
-          f = c[e + "Methods"],
-          h = c[e + "Tokenizers"],
+          h = c[e + "Methods"],
+          f = c[e + "Tokenizers"],
           m = n.line,
           g = n.column
         if (!t) return p
         for (eat.now = now, eat.file = c.file, updatePosition(""); t; ) {
           for (
-            o = -1, s = f.length, l = !1;
+            o = -1, s = h.length, l = !1;
             ++o < s &&
-            ((a = f[o]),
-            !(i = h[a]) ||
+            ((a = h[o]),
+            !(i = f[a]) ||
               (i.onlyAtStart && !c.atStart) ||
               (i.notInList && c.inList) ||
               (i.notInBlock && c.inBlock) ||
@@ -47327,11 +48238,11 @@ object-assign
           c = ["pedantic", "commonmark"],
           d = c.length,
           p = e.length,
-          f = -1;
-        ++f < p;
+          h = -1;
+        ++h < p;
 
       ) {
-        for (s = (o = e[f])[1] || {}, i = o[0], a = -1, u = !1; ++a < d; )
+        for (s = (o = e[h])[1] || {}, i = o[0], a = -1, u = !1; ++a < d; )
           if (((l = c[a]), void 0 !== s[l] && s[l] !== n.options[l])) {
             u = !0
             break
@@ -47363,22 +48274,22 @@ object-assign
         c,
         d,
         p = e.split(a),
-        f = p.length + 1,
-        h = 1 / 0,
+        h = p.length + 1,
+        f = 1 / 0,
         m = []
-      for (p.unshift(o(i, t) + "!"); f--; )
-        if (((u = s(p[f])), (m[f] = u.stops), 0 !== r(p[f]).length)) {
+      for (p.unshift(o(i, t) + "!"); h--; )
+        if (((u = s(p[h])), (m[h] = u.stops), 0 !== r(p[h]).length)) {
           if (!u.indent) {
-            h = 1 / 0
+            f = 1 / 0
             break
           }
-          u.indent > 0 && u.indent < h && (h = u.indent)
+          u.indent > 0 && u.indent < f && (f = u.indent)
         }
-      if (h !== 1 / 0)
-        for (f = p.length; f--; ) {
-          for (c = m[f], n = h; n && !(n in c); ) n--
-          ;(d = 0 !== r(p[f]).length && h && n !== h ? l : ""),
-            (p[f] = d + p[f].slice(n in c ? c[n] + 1 : 0))
+      if (f !== 1 / 0)
+        for (h = p.length; h--; ) {
+          for (c = m[h], n = f; n && !(n in c); ) n--
+          ;(d = 0 !== r(p[h]).length && f && n !== f ? l : ""),
+            (p[h] = d + p[h].slice(n in c ? c[n] + 1 : 0))
         }
       return p.shift(), p.join(a)
     }
@@ -47957,15 +48868,15 @@ object-assign
       }
       function freeze() {
         var n, r, o, s
-        if (f) return processor
-        for (; ++h < e.length; )
-          (r = (n = e[h])[0]),
+        if (h) return processor
+        for (; ++f < e.length; )
+          (r = (n = e[f])[0]),
             (s = null),
             !1 !== (o = n[1]) &&
               (!0 === o && (n[1] = void 0),
               (s = r.apply(processor, n.slice(1))),
               l(s) && t.use(s))
-        return (f = !0), (h = 1 / 0), processor
+        return (h = !0), (f = 1 / 0), processor
       }
       function find(t) {
         for (var n, r = e.length, o = -1; ++o < r; )
@@ -48000,15 +48911,15 @@ object-assign
       var e = [],
         t = i(),
         n = {},
-        f = !1,
-        h = -1
+        h = !1,
+        f = -1
       return (
         (processor.data = function data(e, t) {
           return a(e)
             ? 2 === arguments.length
-              ? (assertUnfrozen("data", f), (n[e] = t), processor)
+              ? (assertUnfrozen("data", h), (n[e] = t), processor)
               : (d.call(n, e) && n[e]) || null
-            : e ? (assertUnfrozen("data", f), (n = e), processor) : n
+            : e ? (assertUnfrozen("data", h), (n = e), processor) : n
         }),
         (processor.freeze = freeze),
         (processor.attachers = e),
@@ -48040,7 +48951,7 @@ object-assign
               : e.push(c.call(arguments))
           }
           var o
-          if ((assertUnfrozen("use", f), null === t || void 0 === t));
+          if ((assertUnfrozen("use", h), null === t || void 0 === t));
           else if (l(t)) addPlugin.apply(null, arguments)
           else {
             if ("object" != typeof t)
@@ -49456,7 +50367,7 @@ object-assign
         return p
       }),
       n.d(t, "GoogleMap", function() {
-        return f
+        return h
       })
     var r = n("./node_modules/invariant/browser.js"),
       o = n.n(r),
@@ -49496,7 +50407,7 @@ object-assign
               !!n.context[c.k],
               "Did you wrap <GoogleMap> component with withGoogleMap() HOC?"
             ),
-            Object(u.d)(f.propTypes, m, n.props, n.context[c.k]),
+            Object(u.d)(h.propTypes, m, n.props, n.context[c.k]),
             n
           )
         }
@@ -49536,13 +50447,13 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(u.a)(this, this.context[c.k], h)
+                Object(u.a)(this, this.context[c.k], f)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(u.b)(this, this.context[c.k], h, m, e)
+                Object(u.b)(this, this.context[c.k], f, m, e)
               },
             },
             {
@@ -49673,9 +50584,9 @@ object-assign
           e
         )
       })({}, c.k, l.a.object))
-    var f = p
+    var h = p
     t.default = p
-    var h = {
+    var f = {
         onDblClick: "dblclick",
         onDragEnd: "dragend",
         onDragStart: "dragstart",
@@ -49937,8 +50848,8 @@ object-assign
       c = n("./node_modules/prop-types/index.js"),
       d = n.n(c),
       p = n("./src/utils/MapChildHelper.js"),
-      f = n("./src/constants.js"),
-      h = (function() {
+      h = n("./src/constants.js"),
+      f = (function() {
         function defineProperties(e, t) {
           for (var n = 0; n < t.length; n++) {
             var r = t[n]
@@ -49970,46 +50881,46 @@ object-assign
             r = new google.maps.InfoWindow()
           return (
             Object(p.d)(InfoWindow.propTypes, b, n.props, r),
-            r.setMap(n.context[f.k]),
-            (n.state = _defineProperty({}, f.i, r)),
+            r.setMap(n.context[h.k]),
+            (n.state = _defineProperty({}, h.i, r)),
             n
           )
         }
         return (
           _inherits(InfoWindow, a.a.PureComponent),
-          h(InfoWindow, [
+          f(InfoWindow, [
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(p.a)(this, this.state[f.i], y)
+                Object(p.a)(this, this.state[h.i], y)
                 var e = document.createElement("div")
                 u.a.unstable_renderSubtreeIntoContainer(
                   this,
                   a.a.Children.only(this.props.children),
                   e
                 ),
-                  this.state[f.i].setContent(e),
-                  g(this.state[f.i], this.context[f.a])
+                  this.state[h.i].setContent(e),
+                  g(this.state[h.i], this.context[h.a])
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(p.b)(this, this.state[f.i], y, b, e),
+                Object(p.b)(this, this.state[h.i], y, b, e),
                   this.props.children !== e.children &&
                     u.a.unstable_renderSubtreeIntoContainer(
                       this,
                       a.a.Children.only(this.props.children),
-                      this.state[f.i].getContent()
+                      this.state[h.i].getContent()
                     ),
-                  g(this.state[f.i], this.context[f.a])
+                  g(this.state[h.i], this.context[h.a])
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(p.c)(this)
-                var e = this.state[f.i]
+                var e = this.state[h.i]
                 e &&
                   (e.getContent() && u.a.unmountComponentAtNode(e.getContent()),
                   e.setMap(null))
@@ -50024,13 +50935,13 @@ object-assign
             {
               key: "getPosition",
               value: function getPosition() {
-                return this.state[f.i].getPosition()
+                return this.state[h.i].getPosition()
               },
             },
             {
               key: "getZIndex",
               value: function getZIndex() {
-                return this.state[f.i].getZIndex()
+                return this.state[h.i].getZIndex()
               },
             },
           ]),
@@ -50051,8 +50962,8 @@ object-assign
       onZindexChanged: d.a.func,
     }),
       (m.contextTypes = ((r = {}),
-      _defineProperty(r, f.k, d.a.object),
-      _defineProperty(r, f.a, d.a.object),
+      _defineProperty(r, h.k, d.a.object),
+      _defineProperty(r, h.a, d.a.object),
       r)),
       (t.default = m)
     var g = function open(e, t) {
@@ -50353,7 +51264,7 @@ object-assign
               )
             ),
             r = new (n.props.markerWithLabel || google.maps.Marker)()
-          Object(l.d)(Marker.propTypes, f, n.props, r)
+          Object(l.d)(Marker.propTypes, h, n.props, r)
           var o = n.context[u.m]
           return (
             o ? o.addMarker(r, !!n.props.noRedraw) : r.setMap(n.context[u.k]),
@@ -50383,7 +51294,7 @@ object-assign
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(l.b)(this, this.state[u.l], p, f, e)
+                Object(l.b)(this, this.state[u.l], p, h, e)
               },
             },
             {
@@ -50572,7 +51483,7 @@ object-assign
         onVisibleChanged: "visible_changed",
         onZindexChanged: "zindex_changed",
       },
-      f = {
+      h = {
         labelContent: function labelContent(e, t) {
           e.set("labelContent", t)
         },
@@ -50678,8 +51589,8 @@ object-assign
       c = n("./node_modules/react-dom/index.js"),
       d = n.n(c),
       p = n("./node_modules/prop-types/index.js"),
-      f = n.n(p),
-      h = n("./src/utils/MapChildHelper.js"),
+      h = n.n(p),
+      f = n("./src/utils/MapChildHelper.js"),
       m = n("./src/utils/OverlayViewHelper.js"),
       g = n("./src/constants.js"),
       y = (function() {
@@ -50774,20 +51685,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(h.a)(this, this.state[g.n], v)
+                Object(f.a)(this, this.state[g.n], v)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(h.b)(this, this.state[g.n], v, _, e),
+                Object(f.b)(this, this.state[g.n], v, _, e),
                   s.a.delay(this.state[g.n].draw)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
-                Object(h.c)(this)
+                Object(f.c)(this)
                 var e = this.state[g.n]
                 e &&
                   (e.setMap(null),
@@ -50824,15 +51735,15 @@ object-assign
       (b.OVERLAY_LAYER = "overlayLayer"),
       (b.OVERLAY_MOUSE_TARGET = "overlayMouseTarget"),
       (b.propTypes = {
-        mapPaneName: f.a.string,
-        position: f.a.object,
-        bounds: f.a.object,
-        children: f.a.node.isRequired,
-        getPixelPositionOffset: f.a.func,
+        mapPaneName: h.a.string,
+        position: h.a.object,
+        bounds: h.a.object,
+        children: h.a.node.isRequired,
+        getPixelPositionOffset: h.a.func,
       }),
       (b.contextTypes = ((r = {}),
-      _defineProperty(r, g.k, f.a.object),
-      _defineProperty(r, g.a, f.a.object),
+      _defineProperty(r, g.k, h.a.object),
+      _defineProperty(r, g.a, h.a.object),
       r)),
       (t.default = b)
     var v = {},
@@ -51553,7 +52464,7 @@ object-assign
             ),
             Object(u.d)(
               StreetViewPanorama.propTypes,
-              h,
+              f,
               n.props,
               n.context[c.k].getStreetView()
             ),
@@ -51576,13 +52487,13 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(u.a)(this, this.context[c.k].getStreetView(), f)
+                Object(u.a)(this, this.context[c.k].getStreetView(), h)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(u.b)(this, this.context[c.k].getStreetView(), f, h, e)
+                Object(u.b)(this, this.context[c.k].getStreetView(), h, f, e)
               },
             },
             {
@@ -51693,7 +52604,7 @@ object-assign
       (p.contextTypes = _defineProperty({}, c.k, l.a.object)),
       (p.childContextTypes = _defineProperty({}, c.k, l.a.object)),
       (t.default = p)
-    var f = {
+    var h = {
         onCloseClick: "closeclick",
         onPanoChanged: "pano_changed",
         onPositionChanged: "position_changed",
@@ -51703,7 +52614,7 @@ object-assign
         onVisibleChanged: "visible_changed",
         onZoomChanged: "zoom_changed",
       },
-      h = {
+      f = {
         links: function links(e, t) {
           e.setLinks(t)
         },
@@ -51919,8 +52830,8 @@ object-assign
       c = n("./node_modules/react-dom/index.js"),
       d = n.n(c),
       p = n("./node_modules/prop-types/index.js"),
-      f = n.n(p),
-      h = n("./src/utils/MapChildHelper.js"),
+      h = n.n(p),
+      f = n("./src/utils/MapChildHelper.js"),
       m = n("./src/constants.js"),
       g = (function() {
         function defineProperties(e, t) {
@@ -51970,7 +52881,7 @@ object-assign
                   var e = new (n(
                     "./node_modules/google-maps-infobox/infobox-module.js"
                   ))()
-                  Object(h.d)(InfoBox.propTypes, _, this.props, e),
+                  Object(f.d)(InfoBox.propTypes, _, this.props, e),
                     e.setMap(this.context[m.k]),
                     this.setState(_defineProperty({}, m.h, e))
                 }
@@ -51979,7 +52890,7 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(h.a)(this, this.state[m.h], v)
+                Object(f.a)(this, this.state[m.h], v)
                 var e = document.createElement("div")
                 d.a.unstable_renderSubtreeIntoContainer(
                   this,
@@ -51993,7 +52904,7 @@ object-assign
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(h.b)(this, this.state[m.h], v, _, e),
+                Object(f.b)(this, this.state[m.h], v, _, e),
                   this.props.children !== e.children &&
                     d.a.unstable_renderSubtreeIntoContainer(
                       this,
@@ -52006,7 +52917,7 @@ object-assign
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
-                Object(h.c)(this)
+                Object(f.c)(this)
                 var e = this.state[m.h]
                 e &&
                   (e.getContent() && d.a.unmountComponentAtNode(e.getContent()),
@@ -52042,23 +52953,23 @@ object-assign
         )
       })()
     ;(y.propTypes = {
-      defaultOptions: f.a.any,
-      defaultPosition: f.a.any,
-      defaultVisible: f.a.bool,
-      defaultZIndex: f.a.number,
-      options: f.a.any,
-      position: f.a.any,
-      visible: f.a.bool,
-      zIndex: f.a.number,
-      onCloseClick: f.a.func,
-      onDomReady: f.a.func,
-      onContentChanged: f.a.func,
-      onPositionChanged: f.a.func,
-      onZindexChanged: f.a.func,
+      defaultOptions: h.a.any,
+      defaultPosition: h.a.any,
+      defaultVisible: h.a.bool,
+      defaultZIndex: h.a.number,
+      options: h.a.any,
+      position: h.a.any,
+      visible: h.a.bool,
+      zIndex: h.a.number,
+      onCloseClick: h.a.func,
+      onDomReady: h.a.func,
+      onContentChanged: h.a.func,
+      onPositionChanged: h.a.func,
+      onZindexChanged: h.a.func,
     }),
       (y.contextTypes = ((r = {}),
-      _defineProperty(r, m.k, f.a.object),
-      _defineProperty(r, m.a, f.a.object),
+      _defineProperty(r, m.k, h.a.object),
+      _defineProperty(r, m.a, h.a.object),
       r)),
       (t.default = y)
     var b = function open(e, t) {
@@ -52139,7 +53050,7 @@ object-assign
     }
     Object.defineProperty(t, "__esModule", { value: !0 }),
       n.d(t, "MarkerClusterer", function() {
-        return f
+        return h
       })
     var r,
       o = n("./node_modules/react/react.js"),
@@ -52168,7 +53079,7 @@ object-assign
           )
         }
       })(),
-      f = (function(e) {
+      h = (function(e) {
         function MarkerClusterer(e, t) {
           _classCallCheck(this, MarkerClusterer)
           var n = _possibleConstructorReturn(
@@ -52204,13 +53115,13 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(c.a)(this, this.state[d.m], h)
+                Object(c.a)(this, this.state[d.m], f)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(c.b)(this, this.state[d.m], h, m, e),
+                Object(c.b)(this, this.state[d.m], f, m, e),
                   this.state[d.m].repaint()
               },
             },
@@ -52233,7 +53144,7 @@ object-assign
           MarkerClusterer
         )
       })()
-    ;(f.propTypes = {
+    ;(h.propTypes = {
       defaultAverageCenter: a.a.bool,
       defaultBatchSizeIE: a.a.number,
       defaultBatchSize: a.a.number,
@@ -52272,13 +53183,13 @@ object-assign
       onMouseOut: a.a.func,
       onMouseOver: a.a.func,
     }),
-      (f.contextTypes = _defineProperty({}, d.k, a.a.object)),
-      (f.childContextTypes = ((r = {}),
+      (h.contextTypes = _defineProperty({}, d.k, a.a.object)),
+      (h.childContextTypes = ((r = {}),
       _defineProperty(r, d.a, a.a.object),
       _defineProperty(r, d.m, a.a.object),
       r)),
-      (t.default = f)
-    var h = {
+      (t.default = h)
+    var f = {
         onClick: "click",
         onClusteringBegin: "clusteringbegin",
         onClusteringEnd: "clusteringend",
@@ -52490,7 +53401,7 @@ object-assign
           )
           var r = new google.maps.drawing.DrawingManager()
           return (
-            Object(u.d)(DrawingManager.propTypes, h, n.props, r),
+            Object(u.d)(DrawingManager.propTypes, f, n.props, r),
             r.setMap(n.context[c.k]),
             (n.state = _defineProperty({}, c.d, r)),
             n
@@ -52502,13 +53413,13 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(u.a)(this, this.state[c.d], f)
+                Object(u.a)(this, this.state[c.d], h)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(u.b)(this, this.state[c.d], f, h, e)
+                Object(u.b)(this, this.state[c.d], h, f, e)
               },
             },
             {
@@ -52549,7 +53460,7 @@ object-assign
     }),
       (p.contextTypes = _defineProperty({}, c.k, l.a.object)),
       (t.default = p)
-    var f = {
+    var h = {
         onCircleComplete: "circlecomplete",
         onMarkerComplete: "markercomplete",
         onOverlayComplete: "overlaycomplete",
@@ -52557,7 +53468,7 @@ object-assign
         onPolylineComplete: "polylinecomplete",
         onRectangleComplete: "rectanglecomplete",
       },
-      h = {
+      f = {
         drawingMode: function drawingMode(e, t) {
           e.setDrawingMode(t)
         },
@@ -52624,8 +53535,8 @@ object-assign
       c = n.n(u),
       d = n("./node_modules/prop-types/index.js"),
       p = n.n(d),
-      f = n("./src/utils/MapChildHelper.js"),
-      h = n("./src/constants.js"),
+      h = n("./src/utils/MapChildHelper.js"),
+      f = n("./src/constants.js"),
       m = (function() {
         function defineProperties(e, t) {
           for (var n = 0; n < t.length; n++) {
@@ -52660,7 +53571,7 @@ object-assign
                 [this].concat(s)
               )
             )),
-            (n.state = _defineProperty({}, h.r, null)),
+            (n.state = _defineProperty({}, f.r, null)),
             (r = t),
             _possibleConstructorReturn(n, r)
           )
@@ -52677,15 +53588,15 @@ object-assign
                   var e = new google.maps.places.SearchBox(
                     this.containerElement.firstChild
                   )
-                  Object(f.d)(SearchBox.propTypes, v, this.props, e),
-                    this.setState(_defineProperty({}, h.r, e))
+                  Object(h.d)(SearchBox.propTypes, v, this.props, e),
+                    this.setState(_defineProperty({}, f.r, e))
                 }
               },
             },
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(f.a)(this, this.state[h.r], b),
+                Object(h.a)(this, this.state[f.r], b),
                   this.handleMountAtControlPosition()
               },
             },
@@ -52699,7 +53610,7 @@ object-assign
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(f.b)(this, this.state[h.r], b, v, e),
+                Object(h.b)(this, this.state[f.r], b, v, e),
                   this.props.children !== e.children &&
                     this.handleRenderChildToContainerElement(),
                   this.props.controlPosition !== e.controlPosition &&
@@ -52709,7 +53620,7 @@ object-assign
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
-                Object(f.c)(this),
+                Object(h.c)(this),
                   this.handleUnmountAtControlPosition(),
                   this.containerElement &&
                     (c.a.unmountComponentAtNode(this.containerElement),
@@ -52732,7 +53643,7 @@ object-assign
                 y(this.props.controlPosition) &&
                   (this.mountControlIndex =
                     -1 +
-                    this.context[h.k].controls[this.props.controlPosition].push(
+                    this.context[f.k].controls[this.props.controlPosition].push(
                       this.containerElement.firstChild
                     ))
               },
@@ -52741,7 +53652,7 @@ object-assign
               key: "handleUnmountAtControlPosition",
               value: function handleUnmountAtControlPosition() {
                 if (y(this.props.controlPosition)) {
-                  var e = this.context[h.k].controls[
+                  var e = this.context[f.k].controls[
                     this.props.controlPosition
                   ].removeAt(this.mountControlIndex)
                   this.containerElement.appendChild(e)
@@ -52757,13 +53668,13 @@ object-assign
             {
               key: "getBounds",
               value: function getBounds() {
-                return this.state[h.r].getBounds()
+                return this.state[f.r].getBounds()
               },
             },
             {
               key: "getPlaces",
               value: function getPlaces() {
-                return this.state[h.r].getPlaces()
+                return this.state[f.r].getPlaces()
               },
             },
           ]),
@@ -52776,7 +53687,7 @@ object-assign
       bounds: p.a.any,
       onPlacesChanged: p.a.func,
     }),
-      (g.contextTypes = _defineProperty({}, h.k, p.a.object)),
+      (g.contextTypes = _defineProperty({}, f.k, p.a.object)),
       (t.default = g)
     var y = o.a.isNumber,
       b = { onPlacesChanged: "places_changed" },
@@ -52832,7 +53743,7 @@ object-assign
     }
     Object.defineProperty(t, "__esModule", { value: !0 }),
       n.d(t, "StandaloneSearchBox", function() {
-        return f
+        return h
       })
     var r = n("./node_modules/react/react.js"),
       o = n.n(r),
@@ -52890,14 +53801,14 @@ object-assign
                 var e = i.a.findDOMNode(this),
                   t = new google.maps.places.SearchBox(e)
                 Object(u.d)(SearchBox.propTypes, m, this.props, t),
-                  Object(u.a)(this, t, h),
+                  Object(u.a)(this, t, f),
                   this.setState(_defineProperty({}, c.r, t))
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(u.b)(this, this.state[c.r], h, m, e)
+                Object(u.b)(this, this.state[c.r], f, m, e)
               },
             },
             {
@@ -52934,9 +53845,9 @@ object-assign
         bounds: l.a.any,
         onPlacesChanged: l.a.func,
       })
-    var f = p
-    t.default = f
-    var h = { onPlacesChanged: "places_changed" },
+    var h = p
+    t.default = h
+    var f = { onPlacesChanged: "places_changed" },
       m = {
         bounds: function bounds(e, t) {
           e.setBounds(t)
@@ -53121,10 +54032,10 @@ object-assign
         return p
       }),
       n.d(t, "a", function() {
-        return f
+        return h
       }),
       n.d(t, "i", function() {
-        return h
+        return f
       }),
       n.d(t, "n", function() {
         return m
@@ -53157,8 +54068,8 @@ object-assign
       c = "__SECRET_DIRECTIONS_RENDERER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
       d = "__SECRET_HEATMAP_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
       p = "__SECRET_FUSION_TABLES_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      f = "__SECRET_ANCHOR_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      h = "__SECRET_INFO_WINDOW_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      h = "__SECRET_ANCHOR_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      f = "__SECRET_INFO_WINDOW_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
       m = "__SECRET_OVERLAY_VIEW_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
       g = "__SECRET_GROUND_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
       y = "__SECRET_DRAWING_MANAGER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
@@ -53210,13 +54121,13 @@ object-assign
     n.d(t, "OverlayView", function() {
       return p.default
     })
-    var f = n("./src/components/GroundOverlay.jsx")
+    var h = n("./src/components/GroundOverlay.jsx")
     n.d(t, "GroundOverlay", function() {
-      return f.default
-    })
-    var h = n("./src/components/DirectionsRenderer.jsx")
-    n.d(t, "DirectionsRenderer", function() {
       return h.default
+    })
+    var f = n("./src/components/DirectionsRenderer.jsx")
+    n.d(t, "DirectionsRenderer", function() {
+      return f.default
     })
     var m = n("./src/components/FusionTablesLayer.jsx")
     n.d(t, "FusionTablesLayer", function() {
@@ -53415,8 +54326,8 @@ object-assign
       c = n("./node_modules/prop-types/index.js"),
       d = n.n(c),
       p = n("./node_modules/react/react.js"),
-      f = n.n(p),
-      h = n("./src/constants.js"),
+      h = n.n(p),
+      f = n("./src/constants.js"),
       m = (function() {
         function defineProperties(e, t) {
           for (var n = 0; n < t.length; n++) {
@@ -53460,12 +54371,12 @@ object-assign
             )
           }
           return (
-            _inherits(Container, f.a.PureComponent),
+            _inherits(Container, h.a.PureComponent),
             m(Container, [
               {
                 key: "getChildContext",
                 value: function getChildContext() {
-                  return _defineProperty({}, h.k, this.state.map)
+                  return _defineProperty({}, f.k, this.state.map)
                 },
               },
               {
@@ -53504,17 +54415,17 @@ object-assign
                       "mapElement",
                     ])
                   return this.state.map
-                    ? f.a.cloneElement(
+                    ? h.a.cloneElement(
                         n,
                         {},
-                        f.a.cloneElement(r, { ref: this.handleComponentMount }),
-                        f.a.createElement("div", null, t(o))
+                        h.a.cloneElement(r, { ref: this.handleComponentMount }),
+                        h.a.createElement("div", null, t(o))
                       )
-                    : f.a.cloneElement(
+                    : h.a.cloneElement(
                         n,
                         {},
-                        f.a.cloneElement(r, { ref: this.handleComponentMount }),
-                        f.a.createElement("div", null)
+                        h.a.cloneElement(r, { ref: this.handleComponentMount }),
+                        h.a.createElement("div", null)
                       )
                 },
               },
@@ -53528,7 +54439,7 @@ object-assign
           containerElement: d.a.node.isRequired,
           mapElement: d.a.node.isRequired,
         }),
-        (n.childContextTypes = _defineProperty({}, h.k, d.a.object)),
+        (n.childContextTypes = _defineProperty({}, f.k, d.a.object)),
         n
       )
     }
@@ -53581,8 +54492,8 @@ object-assign
       c = n("./node_modules/prop-types/index.js"),
       d = n.n(c),
       p = n("./node_modules/react/react.js"),
-      f = n.n(p),
-      h = (function() {
+      h = n.n(p),
+      f = (function() {
         function defineProperties(e, t) {
           for (var n = 0; n < t.length; n++) {
             var r = t[n]
@@ -53629,8 +54540,8 @@ object-assign
             )
           }
           return (
-            _inherits(Container, f.a.PureComponent),
-            h(Container, [
+            _inherits(Container, h.a.PureComponent),
+            f(Container, [
               {
                 key: "handleLoaded",
                 value: function handleLoaded() {

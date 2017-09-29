@@ -18,4 +18,27 @@ module.exports = {
       },
     },
   },
+  sections: [
+    {
+      name: "Introduction",
+      content: "src/docs/introduction.md",
+    },
+    {
+      name: "Documentation",
+      sections: [
+        {
+          name: "Installation",
+          content: "src/docs/installation.md",
+        },
+        {
+          name: "Usage & Configuration",
+          content: "src/docs/configuration.md",
+        },
+      ],
+    },
+    {
+      name: "UI Components",
+      components: "src/components/**/*.jsx",
+    },
+  ],
 }

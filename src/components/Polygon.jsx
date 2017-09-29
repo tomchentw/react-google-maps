@@ -178,6 +178,7 @@ export class Polygon extends React.PureComponent {
   /**
    * Returns whether this shape can be dragged by the user.
    * @type boolean
+   * @public 
    */
   getDraggable() {
     return this.state[POLYGON].getDraggable()
@@ -186,6 +187,7 @@ export class Polygon extends React.PureComponent {
   /**
    * Returns whether this shape can be edited by the user.
    * @type boolean
+   * @public 
    */
   getEditable() {
     return this.state[POLYGON].getEditable()
@@ -194,6 +196,7 @@ export class Polygon extends React.PureComponent {
   /**
    * Retrieves the first path.
    * @type MVCArray<LatLng>
+   * @public 
    */
   getPath() {
     return this.state[POLYGON].getPath()
@@ -202,6 +205,7 @@ export class Polygon extends React.PureComponent {
   /**
    * Retrieves the paths for this polygon.
    * @type MVCArray<MVCArray<LatLng>>
+   * @public 
    */
   getPaths() {
     return this.state[POLYGON].getPaths()
@@ -210,6 +214,7 @@ export class Polygon extends React.PureComponent {
   /**
    * Returns whether this poly is visible on the map.
    * @type boolean
+   * @public 
    */
   getVisible() {
     return this.state[POLYGON].getVisible()

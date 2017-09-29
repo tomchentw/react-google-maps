@@ -188,6 +188,7 @@ export class Circle extends React.PureComponent {
   /**
    * Gets the LatLngBounds of this Circle.
    * @type LatLngBoundsLatLngBounds
+   * @public 
    */
   getBounds() {
     return this.state[CIRCLE].getBounds()
@@ -196,6 +197,7 @@ export class Circle extends React.PureComponent {
   /**
    * Returns the center of this circle.
    * @type LatLng
+   * @public 
    */
   getCenter() {
     return this.state[CIRCLE].getCenter()
@@ -204,6 +206,7 @@ export class Circle extends React.PureComponent {
   /**
    * Returns whether this circle can be dragged by the user.
    * @type boolean
+   * @public 
    */
   getDraggable() {
     return this.state[CIRCLE].getDraggable()
@@ -212,6 +215,7 @@ export class Circle extends React.PureComponent {
   /**
    * Returns whether this circle can be edited by the user.
    * @type boolean
+   * @public 
    */
   getEditable() {
     return this.state[CIRCLE].getEditable()
@@ -220,6 +224,7 @@ export class Circle extends React.PureComponent {
   /**
    * Returns the radius of this circle (in meters).
    * @type number
+   * @public 
    */
   getRadius() {
     return this.state[CIRCLE].getRadius()
@@ -228,6 +233,7 @@ export class Circle extends React.PureComponent {
   /**
    * Returns whether this circle is visible on the map.
    * @type boolean
+   * @public 
    */
   getVisible() {
     return this.state[CIRCLE].getVisible()

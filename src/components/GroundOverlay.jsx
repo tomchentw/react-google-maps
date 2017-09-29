@@ -93,6 +93,7 @@ export class GroundOverlay extends React.PureComponent {
   /**
    * Gets the LatLngBounds of this overlay.
    * @type LatLngBoundsLatLngBounds
+   * @public 
    */
   getBounds() {
     return this.state[GROUND_LAYER].getBounds()
@@ -101,6 +102,7 @@ export class GroundOverlay extends React.PureComponent {
   /**
    * Returns the opacity of this ground overlay.
    * @type number
+   * @public 
    */
   getOpacity() {
     return this.state[GROUND_LAYER].getOpacity()
@@ -109,6 +111,7 @@ export class GroundOverlay extends React.PureComponent {
   /**
    * Gets the url of the projected image.
    * @type string
+   * @public 
    */
   getUrl() {
     return this.state[GROUND_LAYER].getUrl()

@@ -168,6 +168,7 @@ export class Polyline extends React.PureComponent {
   /**
    * Returns whether this shape can be dragged by the user.
    * @type boolean
+   * @public 
    */
   getDraggable() {
     return this.state[POLYLINE].getDraggable()
@@ -176,6 +177,7 @@ export class Polyline extends React.PureComponent {
   /**
    * Returns whether this shape can be edited by the user.
    * @type boolean
+   * @public 
    */
   getEditable() {
     return this.state[POLYLINE].getEditable()
@@ -184,6 +186,7 @@ export class Polyline extends React.PureComponent {
   /**
    * Retrieves the path.
    * @type MVCArray<LatLng>
+   * @public 
    */
   getPath() {
     return this.state[POLYLINE].getPath()
@@ -192,6 +195,7 @@ export class Polyline extends React.PureComponent {
   /**
    * Returns whether this poly is visible on the map.
    * @type boolean
+   * @public 
    */
   getVisible() {
     return this.state[POLYLINE].getVisible()

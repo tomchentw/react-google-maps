@@ -366,6 +366,7 @@ export class Marker extends React.PureComponent {
   /**
    * 
    * @type Animation
+   * @public 
    */
   getAnimation() {
     return this.state[MARKER].getAnimation()
@@ -374,6 +375,7 @@ export class Marker extends React.PureComponent {
   /**
    * 
    * @type boolean
+   * @public 
    */
   getClickable() {
     return this.state[MARKER].getClickable()
@@ -382,6 +384,7 @@ export class Marker extends React.PureComponent {
   /**
    * 
    * @type string
+   * @public 
    */
   getCursor() {
     return this.state[MARKER].getCursor()
@@ -390,6 +393,7 @@ export class Marker extends React.PureComponent {
   /**
    * 
    * @type boolean
+   * @public 
    */
   getDraggable() {
     return this.state[MARKER].getDraggable()
@@ -398,6 +402,7 @@ export class Marker extends React.PureComponent {
   /**
    * 
    * @type string|Icon|Symbol
+   * @public 
    */
   getIcon() {
     return this.state[MARKER].getIcon()
@@ -406,6 +411,7 @@ export class Marker extends React.PureComponent {
   /**
    * 
    * @type MarkerLabel
+   * @public 
    */
   getLabel() {
     return this.state[MARKER].getLabel()
@@ -414,6 +420,7 @@ export class Marker extends React.PureComponent {
   /**
    * 
    * @type number
+   * @public 
    */
   getOpacity() {
     return this.state[MARKER].getOpacity()
@@ -422,6 +429,7 @@ export class Marker extends React.PureComponent {
   /**
    * 
    * @type MarkerPlace
+   * @public 
    */
   getPlace() {
     return this.state[MARKER].getPlace()
@@ -430,6 +438,7 @@ export class Marker extends React.PureComponent {
   /**
    * 
    * @type LatLng
+   * @public 
    */
   getPosition() {
     return this.state[MARKER].getPosition()
@@ -438,6 +447,7 @@ export class Marker extends React.PureComponent {
   /**
    * 
    * @type MarkerShape
+   * @public 
    */
   getShape() {
     return this.state[MARKER].getShape()
@@ -446,6 +456,7 @@ export class Marker extends React.PureComponent {
   /**
    * 
    * @type string
+   * @public 
    */
   getTitle() {
     return this.state[MARKER].getTitle()
@@ -454,6 +465,7 @@ export class Marker extends React.PureComponent {
   /**
    * 
    * @type boolean
+   * @public 
    */
   getVisible() {
     return this.state[MARKER].getVisible()
@@ -462,6 +474,7 @@ export class Marker extends React.PureComponent {
   /**
    * 
    * @type number
+   * @public 
    */
   getZIndex() {
     return this.state[MARKER].getZIndex()

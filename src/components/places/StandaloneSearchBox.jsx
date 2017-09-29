@@ -74,6 +74,7 @@ class SearchBox extends React.PureComponent {
   /**
    * Returns the bounds to which query predictions are biased.
    * @type LatLngBounds
+   * @public 
    */
   getBounds() {
     return this.state[SEARCH_BOX].getBounds()
@@ -82,6 +83,7 @@ class SearchBox extends React.PureComponent {
   /**
    * Returns the query selected by the user, or null if no places have been found yet, to be used with places_changed event.
    * @type Array<PlaceResult>nullplaces_changed
+   * @public 
    */
   getPlaces() {
     return this.state[SEARCH_BOX].getPlaces()

@@ -157,6 +157,7 @@ export class OverlayView extends React.PureComponent {
   /**
    * Returns the panes in which this OverlayView can be rendered. The panes are not initialized until onAdd is called by the API.
    * @type MapPanesonAdd
+   * @public 
    */
   getPanes() {
     return this.state[OVERLAY_VIEW].getPanes()
@@ -165,6 +166,7 @@ export class OverlayView extends React.PureComponent {
   /**
    * Returns the MapCanvasProjection object associated with this OverlayView. The projection is not initialized until onAdd is called by the API.
    * @type MapCanvasProjectionMapCanvasProjectionOverlayViewonAdd
+   * @public 
    */
   getProjection() {
     return this.state[OVERLAY_VIEW].getProjection()

@@ -195,6 +195,7 @@ export class StreetViewPanorama extends React.PureComponent {
   /**
    * Returns the set of navigation links for the Street View panorama.
    * @type Array<StreetViewLink>
+   * @public 
    */
   getLinks() {
     return this.context[MAP].getLinks()
@@ -203,6 +204,7 @@ export class StreetViewPanorama extends React.PureComponent {
   /**
    * Returns the StreetViewLocation of the current panorama.
    * @type StreetViewLocation
+   * @public 
    */
   getLocation() {
     return this.context[MAP].getLocation()
@@ -211,6 +213,7 @@ export class StreetViewPanorama extends React.PureComponent {
   /**
    * Returns the state of motion tracker. If true when the user physically moves the device and the browser supports it, the Street View Panorama tracks the physical movements.
    * @type boolean
+   * @public 
    */
   getMotionTracking() {
     return this.context[MAP].getMotionTracking()
@@ -219,6 +222,7 @@ export class StreetViewPanorama extends React.PureComponent {
   /**
    * Returns the current panorama ID for the Street View panorama. This id is stable within the browser's current session only.
    * @type string
+   * @public 
    */
   getPano() {
     return this.context[MAP].getPano()
@@ -227,6 +231,7 @@ export class StreetViewPanorama extends React.PureComponent {
   /**
    * Returns the heading and pitch of the photographer when this panorama was taken. For Street View panoramas on the road, this also reveals in which direction the car was travelling. This data is available after the pano_changed event.
    * @type StreetViewPovpano_changed
+   * @public 
    */
   getPhotographerPov() {
     return this.context[MAP].getPhotographerPov()
@@ -235,6 +240,7 @@ export class StreetViewPanorama extends React.PureComponent {
   /**
    * Returns the current LatLng position for the Street View panorama.
    * @type LatLngLatLng
+   * @public 
    */
   getPosition() {
     return this.context[MAP].getPosition()
@@ -243,6 +249,7 @@ export class StreetViewPanorama extends React.PureComponent {
   /**
    * Returns the current point of view for the Street View panorama.
    * @type StreetViewPov
+   * @public 
    */
   getPov() {
     return this.context[MAP].getPov()
@@ -251,6 +258,7 @@ export class StreetViewPanorama extends React.PureComponent {
   /**
    * Returns the status of the panorama on completion of the setPosition() or setPano() request.
    * @type StreetViewStatussetPosition()setPano()
+   * @public 
    */
   getStatus() {
     return this.context[MAP].getStatus()
@@ -259,6 +267,7 @@ export class StreetViewPanorama extends React.PureComponent {
   /**
    * Returns true if the panorama is visible. It does not specify whether Street View imagery is available at the specified position.
    * @type booleantrue
+   * @public 
    */
   getVisible() {
     return this.context[MAP].getVisible()
@@ -267,6 +276,7 @@ export class StreetViewPanorama extends React.PureComponent {
   /**
    * Returns the zoom level of the panorama. Fully zoomed-out is level 0, where the field of view is 180 degrees. Zooming in increases the zoom level.
    * @type number
+   * @public 
    */
   getZoom() {
     return this.context[MAP].getZoom()

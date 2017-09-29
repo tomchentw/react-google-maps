@@ -173,6 +173,7 @@ export class Rectangle extends React.PureComponent {
   /**
    * Returns the bounds of this rectangle.
    * @type LatLngBounds
+   * @public 
    */
   getBounds() {
     return this.state[RECTANGLE].getBounds()
@@ -181,6 +182,7 @@ export class Rectangle extends React.PureComponent {
   /**
    * Returns whether this rectangle can be dragged by the user.
    * @type boolean
+   * @public 
    */
   getDraggable() {
     return this.state[RECTANGLE].getDraggable()
@@ -189,6 +191,7 @@ export class Rectangle extends React.PureComponent {
   /**
    * Returns whether this rectangle can be edited by the user.
    * @type boolean
+   * @public 
    */
   getEditable() {
     return this.state[RECTANGLE].getEditable()
@@ -197,6 +200,7 @@ export class Rectangle extends React.PureComponent {
   /**
    * Returns whether this rectangle is visible on the map.
    * @type boolean
+   * @public 
    */
   getVisible() {
     return this.state[RECTANGLE].getVisible()

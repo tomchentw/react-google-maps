@@ -4,13 +4,13 @@
 [![Version][npm-image]][npm-url] [![Travis CI][travis-image]][travis-url] [![Quality][codeclimate-image]][codeclimate-url] [![Coverage][codeclimate-coverage-image]][codeclimate-coverage-url] [![Dependencies][gemnasium-image]][gemnasium-url] [![Gitter][gitter-image]][gitter-url]
 
 
-## Usage / Documentation
+## [Introduction](https://tomchentw.github.io/react-google-maps/#introduction)
 
-```sh
-npm install --save react-google-maps
-```
 
-Then, read the [documentation][documentation].
+## [Installation](https://tomchentw.github.io/react-google-maps/#installation)
+
+
+## [Usage & Configuration](https://tomchentw.github.io/react-google-maps/#usage--configuration)
 
 
 ## Changelog
@@ -60,7 +60,5 @@ Please be considerate when doing this as this is not the primary purpose of the 
 [gitter-url]: https://gitter.im/tomchentw/react-google-maps?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 
 
-[tomchentw]: https://github.com/tomchentw
-[documentation]: https://tomchentw.github.io/react-google-maps/
 [standard-version]: https://github.com/conventional-changelog/standard-version
 [conventional-commits-specification]: https://conventionalcommits.org/

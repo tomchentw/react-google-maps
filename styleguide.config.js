@@ -37,6 +37,19 @@ module.exports = {
       ],
     },
     {
+      name: "HOCs",
+      sections: [
+        {
+          name: "withGoogleMap",
+          content: "src/withGoogleMap.md",
+        },
+        {
+          name: "withScriptjs",
+          content: "src/withScriptjs.md",
+        },
+      ],
+    },
+    {
       name: "UI Components",
       components: "src/components/**/*.jsx",
     },

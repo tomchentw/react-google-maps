@@ -1,4 +1,4 @@
-## Usage
+### Usage
 
 ```jsx static
 import { compose, withProps, lifecycle } from "recompose";

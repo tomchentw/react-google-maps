@@ -1,4 +1,4 @@
-## Usage
+### Usage
 
 ```jsx static
 import fetch from "isomorphic-fetch";

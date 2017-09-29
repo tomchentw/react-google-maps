@@ -1,4 +1,4 @@
-## Usage
+### Usage
 
 ```js static
 import { compose, withProps, withState, withHandlers } from "recompose";

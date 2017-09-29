@@ -177,7 +177,7 @@ export default function transformer(file, api) {
           {
             comments: [
               j.commentBlock(
-                `*\n * ${returnsDesc}\n * @type ${returns}\n `,
+                `*\n * ${returnsDesc}\n * @type ${returns}\n * @public \n `,
                 true
               ),
             ],

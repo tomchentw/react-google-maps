@@ -1,4 +1,5 @@
 /* global google */
+import invariant from "invariant"
 import React from "react"
 import ReactDOM from "react-dom"
 import PropTypes from "prop-types"
@@ -33,6 +34,10 @@ class SearchBox extends React.PureComponent {
   }
 
   componentDidMount() {
+    invariant(
+      google.maps.places,
+      `Did you include "libraries=places" in the URL?`
+    )
     const element = ReactDOM.findDOMNode(this)
     /*
      * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox

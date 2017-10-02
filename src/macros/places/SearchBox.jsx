@@ -1,5 +1,6 @@
 /* global google */
 import _ from "lodash"
+import invariant from "invariant"
 import canUseDOM from "can-use-dom"
 import React from "react"
 import ReactDOM from "react-dom"
@@ -47,6 +48,10 @@ export class SearchBox extends React.PureComponent {
     if (!canUseDOM || this.containerElement) {
       return
     }
+    invariant(
+      google.maps.places,
+      `Did you include "libraries=places" in the URL?`
+    )
     this.containerElement = document.createElement(`div`)
     this.handleRenderChildToContainerElement()
     /*

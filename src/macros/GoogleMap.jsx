@@ -40,29 +40,33 @@ export class Map extends React.PureComponent {
     [MAP]: PropTypes.object,
   }
 
-  /*
+  /**
    * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+   * @public 
    */
   fitBounds(...args) {
     return this.context[MAP].fitBounds(...args)
   }
 
-  /*
+  /**
    * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+   * @public 
    */
   panBy(...args) {
     return this.context[MAP].panBy(...args)
   }
 
-  /*
+  /**
    * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+   * @public 
    */
   panTo(...args) {
     return this.context[MAP].panTo(...args)
   }
 
-  /*
+  /**
    * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+   * @public 
    */
   panToBounds(...args) {
     return this.context[MAP].panToBounds(...args)

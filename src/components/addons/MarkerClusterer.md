@@ -2,7 +2,7 @@
 
 ```jsx static
 import fetch from "isomorphic-fetch";
-import { compose, withProps, lifecycle } from "recompose";
+import { compose, withProps } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
@@ -20,27 +20,7 @@ const MapWithAMarkerClusterer = compose(
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withScriptjs,
-  withGoogleMap,
-  lifecycle({
-    componentWillMount() {
-      this.setState({ markers: [] })
-    },
-
-    componentDidMount() {
-      const url = [
-        // Length issue
-        `https://gist.githubusercontent.com`,
-        `/farrrr/dfda7dd7fccfec5474d3`,
-        `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`
-      ].join("")
-
-      fetch(url)
-        .then(res => res.json())
-        .then(data => {
-          this.setState({ markers: data.photos });
-        });
-    }
-  })
+  withGoogleMap
 )(props =>
   <GoogleMap
     defaultZoom={3}
@@ -61,14 +41,41 @@ const MapWithAMarkerClusterer = compose(
   </GoogleMap>
 );
 
-<MapWithAMarkerClusterer />
+class DemoApp extends React.PureComponent {
+  componentWillMount() {
+    this.setState({ markers: [] })
+  }
+
+  componentDidMount() {
+    const url = [
+      // Length issue
+      `https://gist.githubusercontent.com`,
+      `/farrrr/dfda7dd7fccfec5474d3`,
+      `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`
+    ].join("")
+
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ markers: data.photos });
+      });
+  }
+
+  render() {
+    return (
+      <MapWithAMarkerClusterer markers={this.state.markers} />
+    )
+  }
+}
+
+<DemoApp />
 ```
 
 ### Map with a MarkerClusterer
 
 ```jsx
 const fetch = require("isomorphic-fetch");
-const { compose, withProps, lifecycle } = require("recompose");
+const { compose, withProps } = require("recompose");
 const {
   withScriptjs,
   withGoogleMap,
@@ -85,27 +92,7 @@ const MapWithAMarkerClusterer = compose(
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withScriptjs,
-  withGoogleMap,
-  lifecycle({
-    componentWillMount() {
-      this.setState({ markers: [] })
-    },
-
-    componentDidMount() {
-      const url = [
-        // Length issue
-        `https://gist.githubusercontent.com`,
-        `/farrrr/dfda7dd7fccfec5474d3`,
-        `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`
-      ].join("")
-
-      fetch(url)
-        .then(res => res.json())
-        .then(data => {
-          this.setState({ markers: data.photos });
-        });
-    }
-  })
+  withGoogleMap
 )(props =>
   <GoogleMap
     defaultZoom={3}
@@ -126,5 +113,32 @@ const MapWithAMarkerClusterer = compose(
   </GoogleMap>
 );
 
-<MapWithAMarkerClusterer />
+class DemoApp extends React.PureComponent {
+  componentWillMount() {
+    this.setState({ markers: [] })
+  }
+
+  componentDidMount() {
+    const url = [
+      // Length issue
+      `https://gist.githubusercontent.com`,
+      `/farrrr/dfda7dd7fccfec5474d3`,
+      `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`
+    ].join("")
+
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ markers: data.photos });
+      });
+  }
+
+  render() {
+    return (
+      <MapWithAMarkerClusterer markers={this.state.markers} />
+    )
+  }
+}
+
+<DemoApp />
 ```

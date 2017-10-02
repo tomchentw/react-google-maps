@@ -10,8 +10,11 @@ And it will be automatically unmounted from the map if you don't render it.
 import { GoogleMap, Marker } from "react-google-maps"
 
 const MyMapComponent = (props) =>
-  <GoogleMap>
-    {props.isMarkerShown && <Marker />}
+  <GoogleMap
+    defaultZoom={8}
+    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+  >
+    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
   </GoogleMap>
 
 <MyMapComponent isMarkerShown />// Map with a Marker
@@ -27,8 +30,11 @@ In order to initialize the `MyMapComponent` with DOM instances, you'll need to w
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
 const MyMapComponent = withGoogleMap((props) =>
-  <GoogleMap>
-    {props.isMarkerShown && <Marker />}
+  <GoogleMap
+    defaultZoom={8}
+    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+  >
+    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
   </GoogleMap>
 )
 
@@ -45,8 +51,11 @@ In order to correctly load [Google Maps JavaScript API v3][gmjsav3], you'll need
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
-  <GoogleMap>
-    {props.isMarkerShown && <Marker />}
+  <GoogleMap
+    defaultZoom={8}
+    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+  >
+    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
   </GoogleMap>
 ))
 
@@ -65,8 +74,11 @@ Notice there're some required props for [`withGoogleMap`][withGoogleMap] and [`w
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
-  <GoogleMap>
-    {props.isMarkerShown && <Marker />}
+  <GoogleMap
+    defaultZoom={8}
+    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+  >
+    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
   </GoogleMap>
 ))
 
@@ -96,8 +108,11 @@ const MyMapComponent = compose(
   withScriptjs,
   withGoogleMap
 )((props) =>
-  <GoogleMap>
-    {props.isMarkerShown && <Marker />}
+  <GoogleMap
+    defaultZoom={8}
+    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+  >
+    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
   </GoogleMap>
 ))
 

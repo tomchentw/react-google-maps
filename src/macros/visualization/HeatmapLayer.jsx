@@ -1,4 +1,5 @@
 /* global google */
+import invariant from "invariant"
 import React from "react"
 import PropTypes from "prop-types"
 
@@ -34,6 +35,10 @@ export class HeatmapLayer extends React.PureComponent {
    */
   constructor(props, context) {
     super(props, context)
+    invariant(
+      google.maps.visualization,
+      `Did you include "libraries=visualization" in the URL?`
+    )
     const heatmapLayer = new google.maps.visualization.HeatmapLayer()
     construct(HeatmapLayer.propTypes, updaterMap, this.props, heatmapLayer)
     heatmapLayer.setMap(this.context[MAP])

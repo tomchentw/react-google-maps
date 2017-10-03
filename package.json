@@ -121,7 +121,7 @@
     "warning": "^3.0.0"
   },
   "peerDependencies": {
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0"
   }
 }

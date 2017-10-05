@@ -37,3 +37,9 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# IntelliJ
+.idea
+
+# npm
+package-lock.json

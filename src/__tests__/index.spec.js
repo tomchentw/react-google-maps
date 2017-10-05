@@ -16,6 +16,7 @@ describe("react-google-maps module (index.js)", () => {
     FusionTablesLayer,
     KmlLayer,
     TrafficLayer,
+    BicyclingLayer,
     StreetViewPanorama,
   } = require("../")
 
@@ -42,6 +43,7 @@ describe("react-google-maps module (index.js)", () => {
     expect(FusionTablesLayer).toBeDefined()
     expect(KmlLayer).toBeDefined()
     expect(TrafficLayer).toBeDefined()
+    expect(BicyclingLayer).toBeDefined()
     expect(StreetViewPanorama).toBeDefined()
   })
 })

@@ -29,3 +29,5 @@ export { default as KmlLayer } from "./components/KmlLayer"
 export { default as TrafficLayer } from "./components/TrafficLayer"
 
 export { default as StreetViewPanorama } from "./components/StreetViewPanorama"
+
+export { default as BicyclingLayer } from "./components/BicyclingLayer"

@@ -34,6 +34,12 @@ export class Map extends React.PureComponent {
 
   static propTypes = {
     __jscodeshiftPlaceholder__: null,
+
+    /**
+     * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#MapTypeRegistry
+     * @type Array<[id:string, mapType:MapType|*]>
+     */
+    defaultExtraMapTypes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.any)),
   }
 
   static contextTypes = {
@@ -108,4 +114,8 @@ export default Map
 
 const eventMap = {}
 
-const updaterMap = {}
+const updaterMap = {
+  extraMapTypes(instance, extra) {
+    extra.forEach(it => instance.mapTypes.set(...it))
+  },
+}

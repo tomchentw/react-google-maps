@@ -1,3 +1,9 @@
+/*
+ * -----------------------------------------------------------------------------
+ * This file is auto-generated from the corresponding file at `src/macros/`.
+ * Please **DO NOT** edit this file directly when creating PRs.
+ * -----------------------------------------------------------------------------
+ */
 /* global google */
 import React from "react"
 import PropTypes from "prop-types"
@@ -91,7 +97,7 @@ export class GroundOverlay extends React.PureComponent {
   }
 
   /**
-   * Gets the LatLngBounds of this overlay.
+   * Gets the `LatLngBounds` of this overlay.
    * @type LatLngBoundsLatLngBounds
    * @public 
    */

@@ -1,3 +1,9 @@
+/*
+ * -----------------------------------------------------------------------------
+ * This file is auto-generated from the corresponding file at `src/macros/`.
+ * Please **DO NOT** edit this file directly when creating PRs.
+ * -----------------------------------------------------------------------------
+ */
 import invariant from "invariant"
 import React from "react"
 import PropTypes from "prop-types"
@@ -229,7 +235,7 @@ export class StreetViewPanorama extends React.PureComponent {
   }
 
   /**
-   * Returns the heading and pitch of the photographer when this panorama was taken. For Street View panoramas on the road, this also reveals in which direction the car was travelling. This data is available after the pano_changed event.
+   * Returns the heading and pitch of the photographer when this panorama was taken. For Street View panoramas on the road, this also reveals in which direction the car was travelling. This data is available after the `pano_changed` event.
    * @type StreetViewPovpano_changed
    * @public 
    */
@@ -238,7 +244,7 @@ export class StreetViewPanorama extends React.PureComponent {
   }
 
   /**
-   * Returns the current LatLng position for the Street View panorama.
+   * Returns the current `LatLng` position for the Street View panorama.
    * @type LatLngLatLng
    * @public 
    */
@@ -256,7 +262,7 @@ export class StreetViewPanorama extends React.PureComponent {
   }
 
   /**
-   * Returns the status of the panorama on completion of the setPosition() or setPano() request.
+   * Returns the status of the panorama on completion of the `setPosition()` or `setPano()` request.
    * @type StreetViewStatussetPosition()setPano()
    * @public 
    */
@@ -265,7 +271,7 @@ export class StreetViewPanorama extends React.PureComponent {
   }
 
   /**
-   * Returns true if the panorama is visible. It does not specify whether Street View imagery is available at the specified position.
+   * Returns `true` if the panorama is visible. It does not specify whether Street View imagery is available at the specified position.
    * @type booleantrue
    * @public 
    */

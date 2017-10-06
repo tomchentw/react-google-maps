@@ -1,3 +1,9 @@
+/*
+ * -----------------------------------------------------------------------------
+ * This file is auto-generated from the corresponding file at `src/macros/`.
+ * Please **DO NOT** edit this file directly when creating PRs.
+ * -----------------------------------------------------------------------------
+ */
 /* global google */
 import invariant from "invariant"
 import React from "react"
@@ -86,7 +92,7 @@ class SearchBox extends React.PureComponent {
   }
 
   /**
-   * Returns the query selected by the user, or null if no places have been found yet, to be used with places_changed event.
+   * Returns the query selected by the user, or `null` if no places have been found yet, to be used with `places_changed` event.
    * @type Array<PlaceResult>nullplaces_changed
    * @public 
    */

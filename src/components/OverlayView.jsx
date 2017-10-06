@@ -1,3 +1,9 @@
+/*
+ * -----------------------------------------------------------------------------
+ * This file is auto-generated from the corresponding file at `src/macros/`.
+ * Please **DO NOT** edit this file directly when creating PRs.
+ * -----------------------------------------------------------------------------
+ */
 /* global google */
 import _ from "lodash"
 import invariant from "invariant"
@@ -155,7 +161,7 @@ export class OverlayView extends React.PureComponent {
   }
 
   /**
-   * Returns the panes in which this OverlayView can be rendered. The panes are not initialized until onAdd is called by the API.
+   * Returns the panes in which this OverlayView can be rendered. The panes are not initialized until `onAdd` is called by the API.
    * @type MapPanesonAdd
    * @public 
    */
@@ -164,7 +170,7 @@ export class OverlayView extends React.PureComponent {
   }
 
   /**
-   * Returns the MapCanvasProjection object associated with this OverlayView. The projection is not initialized until onAdd is called by the API.
+   * Returns the `MapCanvasProjection` object associated with this `OverlayView`. The projection is not initialized until `onAdd` is called by the API.
    * @type MapCanvasProjectionMapCanvasProjectionOverlayViewonAdd
    * @public 
    */

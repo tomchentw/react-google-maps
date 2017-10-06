@@ -1,3 +1,9 @@
+/*
+ * -----------------------------------------------------------------------------
+ * This file is auto-generated from the corresponding file at `src/macros/`.
+ * Please **DO NOT** edit this file directly when creating PRs.
+ * -----------------------------------------------------------------------------
+ */
 /* global google */
 import invariant from "invariant"
 import React from "react"
@@ -116,7 +122,7 @@ export class DrawingManager extends React.PureComponent {
   }
 
   /**
-   * Returns the DrawingManager's drawing mode.
+   * Returns the `DrawingManager`'s drawing mode.
    * @type OverlayTypeDrawingManager
    * @public 
    */

@@ -1,3 +1,9 @@
+/*
+ * -----------------------------------------------------------------------------
+ * This file is auto-generated from the corresponding file at `src/macros/`.
+ * Please **DO NOT** edit this file directly when creating PRs.
+ * -----------------------------------------------------------------------------
+ */
 /* global google */
 import React from "react"
 import PropTypes from "prop-types"
@@ -120,7 +126,7 @@ export class DirectionsRenderer extends React.PureComponent {
   }
 
   /**
-   * Returns the panel <div> in which the DirectionsResult is rendered.
+   * Returns the panel `<div>` in which the `DirectionsResult` is rendered.
    * @type Node<div>DirectionsResult
    * @public 
    */
@@ -129,7 +135,7 @@ export class DirectionsRenderer extends React.PureComponent {
   }
 
   /**
-   * Returns the current (zero-based) route index in use by this DirectionsRenderer object.
+   * Returns the current (zero-based) route index in use by this `DirectionsRenderer` object.
    * @type numberDirectionsRenderer
    * @public 
    */

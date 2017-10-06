@@ -2207,7 +2207,7 @@
               ExportDefaultDeclaration
             )
           })(f),
-          O = (function(e) {
+          P = (function(e) {
             function ExportNamedDeclaration() {
               e.apply(this, arguments)
             }
@@ -2226,7 +2226,7 @@
               ExportNamedDeclaration
             )
           })(f),
-          P = (function(e) {
+          O = (function(e) {
             function LoopStatement() {
               e.apply(this, arguments)
             }
@@ -2400,7 +2400,7 @@
               }),
               ForStatement
             )
-          })(P),
+          })(O),
           D = (function(e) {
             function ForInStatement() {
               e.apply(this, arguments)
@@ -2437,7 +2437,7 @@
               }),
               ForInStatement
             )
-          })(P),
+          })(O),
           A = {
             Identifier: destructureIdentifier,
             AssignmentPattern: function destructureAssignmentPattern(
@@ -2566,7 +2566,7 @@
               }),
               ForOfStatement
             )
-          })(P),
+          })(O),
           L = (function(e) {
             function FunctionDeclaration() {
               e.apply(this, arguments)
@@ -2759,8 +2759,8 @@
               ImportSpecifier
             )
           })(f),
-          V = /-/,
-          z = (function(e) {
+          z = /-/,
+          V = (function(e) {
             function JSXAttribute() {
               e.apply(this, arguments)
             }
@@ -2776,7 +2776,7 @@
                       this.name.end,
                       this.name.name + ": true"
                     ),
-                  V.test(this.name.name) &&
+                  z.test(this.name.name) &&
                     t.overwrite(
                       this.name.start,
                       this.name.end,
@@ -3134,10 +3134,10 @@
                 R = function(e) {
                   return !e.length
                 },
-                O = function(e) {
+                P = function(e) {
                   return 2 == e.length && e[0] + 1 == e[1]
                 },
-                P = function(e) {
+                O = function(e) {
                   for (var t, n, r = 0, o = [], s = e.length; r < s; ) {
                     for (t = e[r], n = e[r + 1]; t < n; ) o.push(t), ++t
                     r += 2
@@ -3197,7 +3197,7 @@
                     r = "",
                     o = 0,
                     s = e.length
-                  if (O(e)) return I(e[0])
+                  if (P(e)) return I(e[0])
                   for (; o < s; )
                     (r +=
                       (t = e[o]) == (n = e[o + 1] - 1)
@@ -3212,7 +3212,7 @@
                     r = "",
                     o = 0,
                     s = e.length
-                  if (O(e)) return L(e[0])
+                  if (P(e)) return L(e[0])
                   for (; o < s; )
                     (r +=
                       (t = e[o]) == (n = e[o + 1] - 1)
@@ -3307,7 +3307,7 @@
                         s && r[0] == s[0] && r[1] == s[1];
 
                       )
-                        (l = O(i) ? x(l, i[0]) : k(l, i[0], i[1] - 1)),
+                        (l = P(i) ? x(l, i[0]) : k(l, i[0], i[1] - 1)),
                           (r = (t = e[++c])[0]),
                           (o = t[1]),
                           (s = (n = e[c + 1]) && n[0]),
@@ -3331,7 +3331,7 @@
                         c = l[1]
                       s == u &&
                         i == c &&
-                        (O(a[0])
+                        (P(a[0])
                           ? (r[0] = x(r[0], a[0][0]))
                           : (r[0] = k(r[0], a[0][0], a[0][1] - 1)),
                         e.splice(n, 1),
@@ -3340,7 +3340,7 @@
                   }
                   return e
                 },
-                V = function(e) {
+                z = function(e) {
                   if (!e.length) return []
                   for (
                     var t, n, r, o, s, i, a = 0, l = [], u = e.length;
@@ -3370,7 +3370,7 @@
                   }
                   return U(l)
                 },
-                z = function(e) {
+                V = function(e) {
                   var t = []
                   return (
                     d(e, function(e) {
@@ -3391,11 +3391,11 @@
                     l = o.astral,
                     u = (R(o.astral), !R(s)),
                     c = !R(i),
-                    p = V(l)
+                    p = z(l)
                   return (
                     t && ((a = C(a, s)), (u = !1), (a = C(a, i)), (c = !1)),
                     R(a) || r.push(B(a)),
-                    p.length && r.push(z(p)),
+                    p.length && r.push(V(p)),
                     u && r.push(B(s) + "(?![\\uDC00-\\uDFFF])"),
                     c && r.push("(?:[^\\uD800-\\uDBFF]|^)" + B(i)),
                     r.join("|")
@@ -3457,7 +3457,7 @@
                 },
                 intersection: function(e) {
                   var t = this,
-                    n = e instanceof H ? P(e.data) : e
+                    n = e instanceof H ? O(e.data) : e
                   return (t.data = S(t.data, n)), t
                 },
                 contains: function(e) {
@@ -3482,7 +3482,7 @@
                   return RegExp(t, e || "")
                 },
                 valueOf: function() {
-                  return P(this.data)
+                  return O(this.data)
                 },
               }),
                 (K.toArray = K.valueOf),
@@ -4808,8 +4808,8 @@
             ClassDeclaration: k,
             ClassExpression: E,
             ContinueStatement: S,
-            DoWhileStatement: P,
-            ExportNamedDeclaration: O,
+            DoWhileStatement: O,
+            ExportNamedDeclaration: P,
             ExportDefaultDeclaration: R,
             ForStatement: T,
             ForInStatement: D,
@@ -4821,7 +4821,7 @@
             ImportDeclaration: F,
             ImportDefaultSpecifier: U,
             ImportSpecifier: W,
-            JSXAttribute: z,
+            JSXAttribute: V,
             JSXClosingElement: G,
             JSXElement: H,
             JSXExpressionContainer: K,
@@ -5040,20 +5040,20 @@
                       if (S.computed) {
                         C = S
                         var R = E > 0 ? r.properties[E - 1].end : _,
-                          O = m ? ";\n" + b + g : ", " + g
+                          P = m ? ";\n" + b + g : ", " + g
                         R < S.start
-                          ? t.overwrite(R, S.start, O)
-                          : t.insertRight(S.start, O)
-                        for (var P = S.key.end; "]" !== t.original[P]; ) P += 1
+                          ? t.overwrite(R, S.start, P)
+                          : t.insertRight(S.start, P)
+                        for (var O = S.key.end; "]" !== t.original[O]; ) O += 1
                         if (
-                          ((P += 1),
-                          S.value.start > P && t.remove(P, S.value.start),
-                          t.insertLeft(P, " = "),
+                          ((O += 1),
+                          S.value.start > O && t.remove(O, S.value.start),
+                          t.insertLeft(O, " = "),
                           t.move(R, S.end, j),
                           E < w - 1 && !k)
                         ) {
-                          for (P = S.end; "," !== t.original[P]; ) P += 1
-                          t.remove(S.end, P + 1)
+                          for (O = S.end; "," !== t.original[O]; ) O += 1
+                          t.remove(S.end, O + 1)
                         }
                         S.method &&
                           n.conciseMethodProperty &&
@@ -5573,7 +5573,7 @@
                 VariableDeclarator
               )
             })(f),
-            WhileStatement: P,
+            WhileStatement: O,
           },
           le = {
             IfStatement: "consequent",
@@ -7308,7 +7308,7 @@
             this.finishNode(e, "ThrowStatement")
           )
         })
-      var O = []
+      var P = []
       ;(E.parseTryStatement = function(e) {
         if (
           (this.next(),
@@ -7641,7 +7641,7 @@
           return (
             this.next(),
             this.type === f.string
-              ? ((e.specifiers = O), (e.source = this.parseExprAtom()))
+              ? ((e.specifiers = P), (e.source = this.parseExprAtom()))
               : ((e.specifiers = this.parseImportSpecifiers()),
                 this.expectContextual("from"),
                 (e.source =
@@ -7696,8 +7696,8 @@
           }
           return t
         })
-      var P = C.prototype
-      ;(P.toAssignable = function(e, t) {
+      var O = C.prototype
+      ;(O.toAssignable = function(e, t) {
         var n = this
         if (this.options.ecmaVersion >= 6 && e)
           switch (e.type) {
@@ -7746,7 +7746,7 @@
           }
         return e
       }),
-        (P.toAssignableList = function(e, t) {
+        (O.toAssignableList = function(e, t) {
           var n = this,
             r = e.length
           if (r) {
@@ -7774,7 +7774,7 @@
           }
           return e
         }),
-        (P.parseSpread = function(e) {
+        (O.parseSpread = function(e) {
           var t = this.startNode()
           return (
             this.next(),
@@ -7782,7 +7782,7 @@
             this.finishNode(t, "SpreadElement")
           )
         }),
-        (P.parseRest = function(e) {
+        (O.parseRest = function(e) {
           var t = this.startNode()
           return (
             this.next(),
@@ -7794,7 +7794,7 @@
             this.finishNode(t, "RestElement")
           )
         }),
-        (P.parseBindingAtom = function() {
+        (O.parseBindingAtom = function() {
           if (this.options.ecmaVersion < 6) return this.parseIdent()
           switch (this.type) {
             case f.name:
@@ -7812,7 +7812,7 @@
               this.unexpected()
           }
         }),
-        (P.parseBindingList = function(e, t, n, r) {
+        (O.parseBindingList = function(e, t, n, r) {
           for (var o = this, s = [], i = !0; !this.eat(e); )
             if ((i ? (i = !1) : o.expect(f.comma), t && o.type === f.comma))
               s.push(null)
@@ -7835,10 +7835,10 @@
             }
           return s
         }),
-        (P.parseBindingListItem = function(e) {
+        (O.parseBindingListItem = function(e) {
           return e
         }),
-        (P.parseMaybeDefault = function(e, t, n) {
+        (O.parseMaybeDefault = function(e, t, n) {
           if (
             ((n = n || this.parseBindingAtom()),
             this.options.ecmaVersion < 6 || !this.eat(f.eq))
@@ -7851,7 +7851,7 @@
             this.finishNode(r, "AssignmentPattern")
           )
         }),
-        (P.checkLVal = function(e, t, n) {
+        (O.checkLVal = function(e, t, n) {
           var r = this
           switch (e.type) {
             case "Identifier":
@@ -17626,19 +17626,19 @@
         ),
         S = y.Symbol,
         R = b.splice,
-        O = getNative(y, "Map"),
-        P = getNative(Object, "create"),
+        P = getNative(y, "Map"),
+        O = getNative(Object, "create"),
         M = S ? S.prototype : void 0,
         T = M ? M.toString : void 0
       ;(Hash.prototype.clear = function hashClear() {
-        this.__data__ = P ? P(null) : {}
+        this.__data__ = O ? O(null) : {}
       }),
         (Hash.prototype.delete = function hashDelete(e) {
           return this.has(e) && delete this.__data__[e]
         }),
         (Hash.prototype.get = function hashGet(e) {
           var t = this.__data__
-          if (P) {
+          if (O) {
             var n = t[e]
             return n === r ? void 0 : n
           }
@@ -17646,10 +17646,10 @@
         }),
         (Hash.prototype.has = function hashHas(e) {
           var t = this.__data__
-          return P ? void 0 !== t[e] : w.call(t, e)
+          return O ? void 0 !== t[e] : w.call(t, e)
         }),
         (Hash.prototype.set = function hashSet(e, t) {
-          return (this.__data__[e] = P && void 0 === t ? r : t), this
+          return (this.__data__[e] = O && void 0 === t ? r : t), this
         }),
         (ListCache.prototype.clear = function listCacheClear() {
           this.__data__ = []
@@ -17675,7 +17675,7 @@
         (MapCache.prototype.clear = function mapCacheClear() {
           this.__data__ = {
             hash: new Hash(),
-            map: new (O || ListCache)(),
+            map: new (P || ListCache)(),
             string: new Hash(),
           }
         }),
@@ -18073,8 +18073,8 @@
           S = w && m.call(t, "__wrapped__")
         if (E || S) {
           var R = E ? e.value() : e,
-            O = S ? t.value() : t
-          return b || (b = new r()), y(R, O, n, g, b)
+            P = S ? t.value() : t
+          return b || (b = new r()), y(R, P, n, g, b)
         }
       }
       return !!k && (b || (b = new r()), i(e, t, n, g, y, b))
@@ -18598,8 +18598,8 @@
           var R = k.get(e)
           if (R) return R == t
           ;(r |= c), k.set(e, t)
-          var O = i(E(e), E(t), r, x, w, k)
-          return k.delete(e), O
+          var P = i(E(e), E(t), r, x, w, k)
+          return k.delete(e), P
         case v:
           if (C) return C.call(e) == C.call(t)
       }
@@ -19741,7 +19741,7 @@
           return r
         }
         function stringSize(e) {
-          return hasUnicode(e) ? unicodeSize(e) : zt(e)
+          return hasUnicode(e) ? unicodeSize(e) : Vt(e)
         }
         function stringToArray(e) {
           return hasUnicode(e) ? unicodeToArray(e) : asciiToArray(e)
@@ -19780,8 +19780,8 @@
           E = 512,
           S = 30,
           R = "...",
-          O = 800,
-          P = 16,
+          P = 800,
+          O = 16,
           M = 1,
           T = 2,
           D = 1 / 0,
@@ -19804,8 +19804,8 @@
           ],
           U = "[object Arguments]",
           W = "[object Array]",
-          V = "[object AsyncFunction]",
-          z = "[object Boolean]",
+          z = "[object AsyncFunction]",
+          V = "[object Boolean]",
           G = "[object Date]",
           H = "[object DOMException]",
           K = "[object Error]",
@@ -19844,8 +19844,8 @@
           Ee = /<%-([\s\S]+?)%>/g,
           Se = /<%([\s\S]+?)%>/g,
           Re = /<%=([\s\S]+?)%>/g,
-          Oe = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
-          Pe = /^\w*$/,
+          Pe = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
+          Oe = /^\w*$/,
           Me = /^\./,
           Te = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,
           De = /[\\^$.*+?()[\]{}|]/g,
@@ -19858,8 +19858,8 @@
           Fe = /,? & /,
           Ue = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g,
           We = /\\(\\)?/g,
-          Ve = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g,
-          ze = /\w*$/,
+          ze = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g,
+          Ve = /\w*$/,
           Ge = /^[-+]0x[0-9a-f]+$/i,
           He = /^0b[01]+$/i,
           Ke = /^\[object .+?Constructor\]$/,
@@ -19966,11 +19966,11 @@
         ;(xt[ce] = xt[pe] = xt[de] = xt[he] = xt[fe] = xt[me] = xt[ge] = xt[
           ye
         ] = xt[be] = !0),
-          (xt[U] = xt[W] = xt[le] = xt[z] = xt[ue] = xt[G] = xt[K] = xt[$] = xt[
+          (xt[U] = xt[W] = xt[le] = xt[V] = xt[ue] = xt[G] = xt[K] = xt[$] = xt[
             Y
           ] = xt[J] = xt[Q] = xt[te] = xt[ne] = xt[re] = xt[ie] = !1)
         var Ct = {}
-        ;(Ct[U] = Ct[W] = Ct[le] = Ct[ue] = Ct[z] = Ct[G] = Ct[ce] = Ct[
+        ;(Ct[U] = Ct[W] = Ct[le] = Ct[ue] = Ct[V] = Ct[G] = Ct[ce] = Ct[
           pe
         ] = Ct[de] = Ct[he] = Ct[fe] = Ct[Y] = Ct[J] = Ct[Q] = Ct[te] = Ct[
           ne
@@ -20191,15 +20191,15 @@
             "\u2029": "u2029",
           },
           Rt = parseFloat,
-          Ot = parseInt,
-          Pt = "object" == typeof e && e && e.Object === Object && e,
+          Pt = parseInt,
+          Ot = "object" == typeof e && e && e.Object === Object && e,
           Mt =
             "object" == typeof self && self && self.Object === Object && self,
-          Tt = Pt || Mt || Function("return this")(),
+          Tt = Ot || Mt || Function("return this")(),
           Dt = "object" == typeof t && t && !t.nodeType && t,
           At = Dt && "object" == typeof r && r && !r.nodeType && r,
           It = At && At.exports === Dt,
-          Lt = It && Pt.process,
+          Lt = It && Ot.process,
           Nt = (function() {
             try {
               return Lt && Lt.binding && Lt.binding("util")
@@ -20210,14 +20210,14 @@
           Ft = Nt && Nt.isMap,
           Ut = Nt && Nt.isRegExp,
           Wt = Nt && Nt.isSet,
-          Vt = Nt && Nt.isTypedArray,
-          zt = baseProperty("length"),
+          zt = Nt && Nt.isTypedArray,
+          Vt = baseProperty("length"),
           Gt = basePropertyOf(wt),
           Ht = basePropertyOf(kt),
           Kt = basePropertyOf(Et),
           $t = (function runInContext(e) {
             function lodash(e) {
-              if (isObjectLike(e) && !Or(e) && !(e instanceof LazyWrapper)) {
+              if (isObjectLike(e) && !Pr(e) && !(e instanceof LazyWrapper)) {
                 if (e instanceof LodashWrapper) return e
                 if (lt.call(e, "__wrapped__")) return wrapperClone(e)
               }
@@ -20274,7 +20274,7 @@
               this.size = t.size
             }
             function arrayLikeKeys(e, t) {
-              var n = Or(e),
+              var n = Pr(e),
                 r = !n && Rr(e),
                 o = !n && !r && Mr(e),
                 s = !n && !r && !o && Lr(e),
@@ -20361,7 +20361,7 @@
                 c = t & f
               if ((n && (a = o ? n(e, r, o, i) : n(e)), a !== s)) return a
               if (!isObject(e)) return e
-              var p = Or(e)
+              var p = Pr(e)
               if (p) {
                 if (((a = initCloneArray(e)), !l)) return copyArray(e, a)
               } else {
@@ -20490,10 +20490,10 @@
               return o
             }
             function baseForOwn(e, t) {
-              return e && On(e, t, keys)
+              return e && Pn(e, t, keys)
             }
             function baseForOwnRight(e, t) {
-              return e && Pn(e, t, keys)
+              return e && On(e, t, keys)
             }
             function baseFunctions(e, t) {
               return arrayFilter(t, function(t) {
@@ -20511,7 +20511,7 @@
             }
             function baseGetAllKeys(e, t, n) {
               var r = t(e)
-              return Or(e) ? r : arrayPush(r, n(e))
+              return Pr(e) ? r : arrayPush(r, n(e))
             }
             function baseGetTag(e) {
               return null == e
@@ -20598,8 +20598,8 @@
               )
             }
             function baseIsEqualDeep(e, t, n, r, o, s) {
-              var i = Or(e),
-                a = Or(t),
+              var i = Pr(e),
+                a = Pr(t),
                 l = i ? W : qn(e),
                 u = a ? W : qn(t),
                 c = (l = l == U ? Q : l) == Q,
@@ -20664,7 +20664,7 @@
                 : null == e
                   ? identity
                   : "object" == typeof e
-                    ? Or(e) ? baseMatchesProperty(e[0], e[1]) : baseMatches(e)
+                    ? Pr(e) ? baseMatchesProperty(e[0], e[1]) : baseMatches(e)
                     : property(e)
             }
             function baseKeys(e) {
@@ -20715,7 +20715,7 @@
             }
             function baseMerge(e, t, n, r, o) {
               e !== t &&
-                On(
+                Pn(
                   t,
                   function(i, a) {
                     if (isObject(i))
@@ -20738,12 +20738,12 @@
                 var p = i ? i(l, u, n + "", e, t, a) : s,
                   d = p === s
                 if (d) {
-                  var h = Or(u),
+                  var h = Pr(u),
                     f = !h && Mr(u),
                     m = !h && !f && Lr(u)
                   ;(p = u),
                     h || f || m
-                      ? Or(l)
+                      ? Pr(l)
                         ? (p = l)
                         : isArrayLikeObject(l)
                           ? (p = copyArray(l))
@@ -20825,7 +20825,7 @@
                   (l = o(a, c, l, r)) > -1;
 
                 )
-                  a !== e && Pt.call(a, l, 1), Pt.call(e, l, 1)
+                  a !== e && Ot.call(a, l, 1), Ot.call(e, l, 1)
               return e
             }
             function basePullAt(e, t) {
@@ -20833,7 +20833,7 @@
                 var o = t[n]
                 if (n == r || o !== s) {
                   var s = o
-                  isIndex(o) ? Pt.call(e, o, 1) : baseUnset(e, o)
+                  isIndex(o) ? Ot.call(e, o, 1) : baseUnset(e, o)
                 }
               }
               return e
@@ -20859,7 +20859,7 @@
               return n
             }
             function baseRest(e, t) {
-              return Vn(overRest(e, t, identity), e + "")
+              return zn(overRest(e, t, identity), e + "")
             }
             function baseSample(e) {
               return arraySample(values(e))
@@ -20970,7 +20970,7 @@
             }
             function baseToString(e) {
               if ("string" == typeof e) return e
-              if (Or(e)) return arrayMap(e, baseToString) + ""
+              if (Pr(e)) return arrayMap(e, baseToString) + ""
               if (isSymbol(e)) return kn ? kn.call(e) : ""
               var t = e + ""
               return "0" == t && 1 / e == -D ? "-0" : t
@@ -21052,7 +21052,7 @@
               return "function" == typeof e ? e : identity
             }
             function castPath(e, t) {
-              return Or(e) ? e : isKey(e, t) ? [e] : zn(toString(e))
+              return Pr(e) ? e : isKey(e, t) ? [e] : Vn(toString(e))
             }
             function castSlice(e, t, n) {
               var r = e.length
@@ -21082,7 +21082,7 @@
               )
             }
             function cloneRegExp(e) {
-              var t = new e.constructor(e.source, ze.exec(e))
+              var t = new e.constructor(e.source, Ve.exec(e))
               return (t.lastIndex = e.lastIndex), t
             }
             function cloneSet(e, t, n) {
@@ -21205,7 +21205,7 @@
             }
             function createAggregator(e, t) {
               return function(n, r) {
-                var o = Or(n) ? arrayAggregator : baseAggregator,
+                var o = Pr(n) ? arrayAggregator : baseAggregator,
                   s = t ? t() : {}
                 return o(n, e, getIteratee(r, 2), s)
               }
@@ -21379,7 +21379,7 @@
                 return function() {
                   var e = arguments,
                     r = e[0]
-                  if (a && 1 == e.length && Or(r)) return a.plant(r).value()
+                  if (a && 1 == e.length && Pr(r)) return a.plant(r).value()
                   for (var o = 0, s = n ? t[o].apply(this, e) : r; ++o < n; )
                     s = t[o].call(this, s)
                   return s
@@ -21663,7 +21663,7 @@
                   return !(
                     e.byteLength != t.byteLength || !s(new vt(e), new vt(t))
                   )
-                case z:
+                case V:
                 case G:
                 case J:
                   return eq(+e, +t)
@@ -21727,7 +21727,7 @@
               return i.delete(e), i.delete(t), h
             }
             function flatRest(e) {
-              return Vn(overRest(e, s, flatten), e + "")
+              return zn(overRest(e, s, flatten), e + "")
             }
             function getAllKeys(e) {
               return baseGetAllKeys(e, keys, Nn)
@@ -21826,7 +21826,7 @@
                 : !!(o = null == e ? 0 : e.length) &&
                     isLength(o) &&
                     isIndex(i, o) &&
-                    (Or(e) || Rr(e))
+                    (Pr(e) || Rr(e))
             }
             function initCloneArray(e) {
               var t = e.length,
@@ -21849,7 +21849,7 @@
               switch (t) {
                 case le:
                   return cloneArrayBuffer(e)
-                case z:
+                case V:
                 case G:
                   return new o(+e)
                 case ue:
@@ -21888,7 +21888,7 @@
               )
             }
             function isFlattenable(e) {
-              return Or(e) || Rr(e) || !!(Mt && e && e[Mt])
+              return Pr(e) || Rr(e) || !!(Mt && e && e[Mt])
             }
             function isIndex(e, t) {
               return (
@@ -21909,7 +21909,7 @@
               )
             }
             function isKey(e, t) {
-              if (Or(e)) return !1
+              if (Pr(e)) return !1
               var n = typeof e
               return (
                 !(
@@ -21919,8 +21919,8 @@
                   null != e &&
                   !isSymbol(e)
                 ) ||
-                Pe.test(e) ||
-                !Oe.test(e) ||
+                Oe.test(e) ||
+                !Pe.test(e) ||
                 (null != t && e in Qe(t))
               )
             }
@@ -22030,7 +22030,7 @@
             }
             function setWrapToString(e, t, n) {
               var r = t + ""
-              return Vn(
+              return zn(
                 e,
                 insertWrapDetails(r, updateWrapDetails(getWrapDetails(r), n))
               )
@@ -22040,9 +22040,9 @@
                 n = 0
               return function() {
                 var r = sn(),
-                  o = P - (r - n)
+                  o = O - (r - n)
                 if (((n = r), o > 0)) {
-                  if (++t >= O) return arguments[0]
+                  if (++t >= P) return arguments[0]
                 } else t = 0
                 return e.apply(s, arguments)
               }
@@ -22158,13 +22158,13 @@
               return t(e)
             }
             function forEach(e, t) {
-              return (Or(e) ? arrayEach : Sn)(e, getIteratee(t, 3))
+              return (Pr(e) ? arrayEach : Sn)(e, getIteratee(t, 3))
             }
             function forEachRight(e, t) {
-              return (Or(e) ? arrayEachRight : Rn)(e, getIteratee(t, 3))
+              return (Pr(e) ? arrayEachRight : Rn)(e, getIteratee(t, 3))
             }
             function map(e, t) {
-              return (Or(e) ? arrayMap : baseMap)(e, getIteratee(t, 3))
+              return (Pr(e) ? arrayMap : baseMap)(e, getIteratee(t, 3))
             }
             function ary(e, t, n) {
               return (
@@ -22315,7 +22315,7 @@
             function isFunction(e) {
               if (!isObject(e)) return !1
               var t = baseGetTag(e)
-              return t == $ || t == Z || t == V || t == ee
+              return t == $ || t == Z || t == z || t == ee
             }
             function isInteger(e) {
               return "number" == typeof e && e == toInteger(e)
@@ -22347,7 +22347,7 @@
             function isString(e) {
               return (
                 "string" == typeof e ||
-                (!Or(e) && isObjectLike(e) && baseGetTag(e) == re)
+                (!Pr(e) && isObjectLike(e) && baseGetTag(e) == re)
               )
             }
             function isSymbol(e) {
@@ -22389,7 +22389,7 @@
               e = e.replace(Ie, "")
               var n = He.test(e)
               return n || $e.test(e)
-                ? Ot(e.slice(2), n ? 2 : 8)
+                ? Pt(e.slice(2), n ? 2 : 8)
                 : Ge.test(e) ? L : +e
             }
             function toPlainObject(e) {
@@ -22537,7 +22537,7 @@
               kt = overArg(Qe.getPrototypeOf, Qe),
               Et = Qe.create,
               St = st.propertyIsEnumerable,
-              Pt = rt.splice,
+              Ot = rt.splice,
               Mt = bt ? bt.isConcatSpreadable : s,
               Dt = bt ? bt.iterator : s,
               At = bt ? bt.toStringTag : s,
@@ -22548,7 +22548,7 @@
                 } catch (e) {}
               })(),
               Nt = e.clearTimeout !== Tt.clearTimeout && e.clearTimeout,
-              zt = n && n.now !== Tt.Date.now && n.now,
+              Vt = n && n.now !== Tt.Date.now && n.now,
               Zt = e.setTimeout !== Tt.setTimeout && e.setTimeout,
               Yt = Ue.ceil,
               Jt = Ue.floor,
@@ -22637,7 +22637,7 @@
                   n = assocIndexOf(t, e)
                 return !(
                   n < 0 ||
-                  (n == t.length - 1 ? t.pop() : Pt.call(t, n, 1),
+                  (n == t.length - 1 ? t.pop() : Ot.call(t, n, 1),
                   --this.size,
                   0)
                 )
@@ -22714,8 +22714,8 @@
               })
             var Sn = createBaseEach(baseForOwn),
               Rn = createBaseEach(baseForOwnRight, !0),
-              On = createBaseFor(),
-              Pn = createBaseFor(!0),
+              Pn = createBaseFor(),
+              On = createBaseFor(!0),
               Mn = gn
                 ? function(e, t) {
                     return gn.set(e, t), e
@@ -22796,8 +22796,8 @@
                 function(e, t) {
                   return Tt.setTimeout(e, t)
                 },
-              Vn = shortOut(Tn),
-              zn = (function memoizeCapped(e) {
+              zn = shortOut(Tn),
+              Vn = (function memoizeCapped(e) {
                 var t = memoize(e, function(e) {
                     return n.size === c && n.clear(), e
                   }),
@@ -22991,7 +22991,7 @@
                 )
               }),
               yr =
-                zt ||
+                Vt ||
                 function() {
                   return Tt.Date.now()
                 },
@@ -23020,7 +23020,7 @@
             memoize.Cache = MapCache
             var xr = Dn(function(e, t) {
                 var n = (t =
-                  1 == t.length && Or(t[0])
+                  1 == t.length && Pr(t[0])
                     ? arrayMap(t[0], baseUnary(getIteratee()))
                     : arrayMap(baseFlatten(t, 1), baseUnary(getIteratee())))
                   .length
@@ -23058,8 +23058,8 @@
                       !St.call(e, "callee")
                     )
                   },
-              Or = t.isArray,
-              Pr = Bt
+              Pr = t.isArray,
+              Or = Bt
                 ? baseUnary(Bt)
                 : function baseIsArrayBuffer(e) {
                     return isObjectLike(e) && baseGetTag(e) == le
@@ -23085,8 +23085,8 @@
                 : function baseIsSet(e) {
                     return isObjectLike(e) && qn(e) == ne
                   },
-              Lr = Vt
-                ? baseUnary(Vt)
+              Lr = zt
+                ? baseUnary(zt)
                 : function baseIsTypedArray(e) {
                     return (
                       isObjectLike(e) &&
@@ -23111,8 +23111,8 @@
               Wr = createAssigner(function(e, t, n, r) {
                 copyObject(t, keys(t), e, r)
               }),
-              Vr = flatRest(baseAt),
-              zr = baseRest(function(e) {
+              zr = flatRest(baseAt),
+              Vr = baseRest(function(e) {
                 return e.push(s, customDefaultsAssignIn), apply(Ur, s, e)
               }),
               Gr = baseRest(function(e) {
@@ -23230,7 +23230,7 @@
               (lodash.assignIn = Fr),
               (lodash.assignInWith = Ur),
               (lodash.assignWith = Wr),
-              (lodash.at = Vr),
+              (lodash.at = zr),
               (lodash.before = before),
               (lodash.bind = br),
               (lodash.bindAll = co),
@@ -23238,7 +23238,7 @@
               (lodash.castArray = function castArray() {
                 if (!arguments.length) return []
                 var e = arguments[0]
-                return Or(e) ? e : [e]
+                return Pr(e) ? e : [e]
               }),
               (lodash.chain = chain),
               (lodash.chunk = function chunk(e, n, r) {
@@ -23267,7 +23267,7 @@
                 if (!e) return []
                 for (var n = t(e - 1), r = arguments[0], o = e; o--; )
                   n[o - 1] = arguments[o]
-                return arrayPush(Or(r) ? copyArray(r) : [r], baseFlatten(n, 1))
+                return arrayPush(Pr(r) ? copyArray(r) : [r], baseFlatten(n, 1))
               }),
               (lodash.cond = function cond(e) {
                 var t = null == e ? 0 : e.length,
@@ -23299,7 +23299,7 @@
               (lodash.curry = curry),
               (lodash.curryRight = curryRight),
               (lodash.debounce = debounce),
-              (lodash.defaults = zr),
+              (lodash.defaults = Vr),
               (lodash.defaultsDeep = Gr),
               (lodash.defer = _r),
               (lodash.delay = jr),
@@ -23340,7 +23340,7 @@
                   : []
               }),
               (lodash.filter = function filter(e, t) {
-                return (Or(e) ? arrayFilter : baseFilter)(e, getIteratee(t, 3))
+                return (Pr(e) ? arrayFilter : baseFilter)(e, getIteratee(t, 3))
               }),
               (lodash.flatMap = function flatMap(e, t) {
                 return baseFlatten(map(e, t), 1)
@@ -23450,9 +23450,9 @@
               (lodash.orderBy = function orderBy(e, t, n, r) {
                 return null == e
                   ? []
-                  : (Or(t) || (t = null == t ? [] : [t]),
+                  : (Pr(t) || (t = null == t ? [] : [t]),
                     (n = r ? s : n),
-                    Or(n) || (n = null == n ? [] : [n]),
+                    Pr(n) || (n = null == n ? [] : [n]),
                     baseOrderBy(e, t, n))
               }),
               (lodash.over = go),
@@ -23487,7 +23487,7 @@
               (lodash.rangeRight = _o),
               (lodash.rearg = kr),
               (lodash.reject = function reject(e, t) {
-                return (Or(e) ? arrayFilter : baseFilter)(
+                return (Pr(e) ? arrayFilter : baseFilter)(
                   e,
                   negate(getIteratee(t, 3))
                 )
@@ -23514,7 +23514,7 @@
                   (t = (n ? isIterateeCall(e, t, n) : t === s)
                     ? 1
                     : toInteger(t)),
-                  (Or(e) ? arraySampleSize : baseSampleSize)(e, t)
+                  (Pr(e) ? arraySampleSize : baseSampleSize)(e, t)
                 )
               }),
               (lodash.set = function set(e, t, n) {
@@ -23527,7 +23527,7 @@
                 )
               }),
               (lodash.shuffle = function shuffle(e) {
-                return (Or(e) ? arrayShuffle : baseShuffle)(e)
+                return (Pr(e) ? arrayShuffle : baseShuffle)(e)
               }),
               (lodash.slice = function slice(e, t, n) {
                 var r = null == e ? 0 : e.length
@@ -23618,13 +23618,13 @@
               (lodash.toPairs = Qr),
               (lodash.toPairsIn = eo),
               (lodash.toPath = function toPath(e) {
-                return Or(e)
+                return Pr(e)
                   ? arrayMap(e, toKey)
-                  : isSymbol(e) ? [e] : copyArray(zn(toString(e)))
+                  : isSymbol(e) ? [e] : copyArray(Vn(toString(e)))
               }),
               (lodash.toPlainObject = toPlainObject),
               (lodash.transform = function transform(e, t, n) {
-                var r = Or(e),
+                var r = Pr(e),
                   o = r || Mr(e) || Lr(e)
                 if (((t = getIteratee(t, 4)), null == n)) {
                   var s = e && e.constructor
@@ -23747,7 +23747,7 @@
                   : e
               }),
               (lodash.every = function every(e, t, n) {
-                var r = Or(e) ? arrayEvery : baseEvery
+                var r = Pr(e) ? arrayEvery : baseEvery
                 return (
                   n && isIterateeCall(e, t, n) && (t = s),
                   r(e, getIteratee(t, 3))
@@ -23767,10 +23767,10 @@
               (lodash.forEach = forEach),
               (lodash.forEachRight = forEachRight),
               (lodash.forIn = function forIn(e, t) {
-                return null == e ? e : On(e, getIteratee(t, 3), keysIn)
+                return null == e ? e : Pn(e, getIteratee(t, 3), keysIn)
               }),
               (lodash.forInRight = function forInRight(e, t) {
-                return null == e ? e : Pn(e, getIteratee(t, 3), keysIn)
+                return null == e ? e : On(e, getIteratee(t, 3), keysIn)
               }),
               (lodash.forOwn = function forOwn(e, t) {
                 return e && baseForOwn(e, getIteratee(t, 3))
@@ -23814,15 +23814,15 @@
               }),
               (lodash.invoke = $r),
               (lodash.isArguments = Rr),
-              (lodash.isArray = Or),
-              (lodash.isArrayBuffer = Pr),
+              (lodash.isArray = Pr),
+              (lodash.isArrayBuffer = Or),
               (lodash.isArrayLike = isArrayLike),
               (lodash.isArrayLikeObject = isArrayLikeObject),
               (lodash.isBoolean = function isBoolean(e) {
                 return (
                   !0 === e ||
                   !1 === e ||
-                  (isObjectLike(e) && baseGetTag(e) == z)
+                  (isObjectLike(e) && baseGetTag(e) == V)
                 )
               }),
               (lodash.isBuffer = Mr),
@@ -23834,7 +23834,7 @@
                 if (null == e) return !0
                 if (
                   isArrayLike(e) &&
-                  (Or(e) ||
+                  (Pr(e) ||
                     "string" == typeof e ||
                     "function" == typeof e.splice ||
                     Mr(e) ||
@@ -24021,12 +24021,12 @@
                 return baseRandom(e, t)
               }),
               (lodash.reduce = function reduce(e, t, n) {
-                var r = Or(e) ? arrayReduce : baseReduce,
+                var r = Pr(e) ? arrayReduce : baseReduce,
                   o = arguments.length < 3
                 return r(e, getIteratee(t, 4), n, o, Sn)
               }),
               (lodash.reduceRight = function reduceRight(e, t, n) {
-                var r = Or(e) ? arrayReduceRight : baseReduce,
+                var r = Pr(e) ? arrayReduceRight : baseReduce,
                   o = arguments.length < 3
                 return r(e, getIteratee(t, 4), n, o, Rn)
               }),
@@ -24056,7 +24056,7 @@
               (lodash.round = Eo),
               (lodash.runInContext = runInContext),
               (lodash.sample = function sample(e) {
-                return (Or(e) ? arraySample : baseSample)(e)
+                return (Pr(e) ? arraySample : baseSample)(e)
               }),
               (lodash.size = function size(e) {
                 if (null == e) return 0
@@ -24067,7 +24067,7 @@
               }),
               (lodash.snakeCase = so),
               (lodash.some = function some(e, t, n) {
-                var r = Or(e) ? arraySome : baseSome
+                var r = Pr(e) ? arraySome : baseSome
                 return (
                   n && isIterateeCall(e, t, n) && (t = s),
                   r(e, getIteratee(t, 3))
@@ -24134,7 +24134,7 @@
                       "|" +
                       d.source +
                       "|" +
-                      (d === Re ? Ve : Je).source +
+                      (d === Re ? ze : Je).source +
                       "|" +
                       (t.evaluate || Je).source +
                       "|$",
@@ -24261,7 +24261,7 @@
                       p = u
                     for (
                       o.global ||
-                        (o = et(o.source, toString(ze.exec(o)) + "g")),
+                        (o = et(o.source, toString(Ve.exec(o)) + "g")),
                         o.lastIndex = 0;
                       (c = o.exec(p));
 
@@ -24415,7 +24415,7 @@
                       a = r ? [1] : arguments,
                       l = t instanceof LazyWrapper,
                       u = a[0],
-                      c = l || Or(t),
+                      c = l || Pr(t),
                       p = function(e) {
                         var t = o.apply(lodash, arrayPush([e], a))
                         return r && d ? t[0] : t
@@ -24457,10 +24457,10 @@
                     var e = arguments
                     if (r && !this.__chain__) {
                       var o = this.value()
-                      return t.apply(Or(o) ? o : [], e)
+                      return t.apply(Pr(o) ? o : [], e)
                     }
                     return this[n](function(n) {
-                      return t.apply(Or(n) ? n : [], e)
+                      return t.apply(Pr(n) ? n : [], e)
                     })
                   }
                 }
@@ -24495,7 +24495,7 @@
               (LazyWrapper.prototype.value = function lazyValue() {
                 var e = this.__wrapped__.value(),
                   t = this.__dir__,
-                  n = Or(e),
+                  n = Pr(e),
                   r = t < 0,
                   o = n ? e.length : 0,
                   s = getView(0, o, this.__views__),
@@ -26758,8 +26758,8 @@ object-assign
         q,
         F,
         W,
-        V,
         z,
+        V,
         G,
         H,
         K,
@@ -26823,21 +26823,21 @@ object-assign
                   ? ((K = S), (X = ++G))
                   : (K = R),
               n = C,
-              z = C,
+              V = C,
               a = C,
-              $ = P[K],
+              $ = O[K],
               X--;
             ++X < ue && ((q = at(X)), $(q));
 
           )
-            (a += q), K === E && u.call(o, a) && ((n = a), (z = o[a]))
+            (a += q), K === E && u.call(o, a) && ((n = a), (V = o[a]))
           ;(i = at(X) === g) &&
-            (X++, K === E && u.call(r, a) && ((n = a), (z = r[a]))),
+            (X++, K === E && u.call(r, a) && ((n = a), (V = r[a]))),
             (J = 1 + X - H),
             (i || ee) &&
               (a
                 ? K === E
-                  ? (i && !z
+                  ? (i && !V
                       ? F(I, 1)
                       : (n !== a &&
                           ((J = 1 + (X = G + n.length) - G), (i = !1)),
@@ -26845,21 +26845,21 @@ object-assign
                           ((W = n ? M : D),
                           t.attribute
                             ? (q = at(X)) === x
-                              ? (F(W, J), (z = null))
-                              : l(q) ? (z = null) : F(W, J)
+                              ? (F(W, J), (V = null))
+                              : l(q) ? (V = null) : F(W, J)
                             : F(W, J))),
-                    (B = z))
+                    (B = V))
                   : (i || F(T, J),
-                    isProhibited((B = parseInt(a, O[K])))
+                    isProhibited((B = parseInt(a, P[K])))
                       ? (F(N, J), (B = d))
                       : B in s
                         ? (F(L, J), (B = s[B]))
-                        : ((V = C),
+                        : ((z = C),
                           isWarning(B) && F(L, J),
                           B > 65535 &&
-                            ((V += c(((B -= 65536) >>> 10) | 55296)),
+                            ((z += c(((B -= 65536) >>> 10) | 55296)),
                             (B = 56320 | (1023 & B))),
-                          (B = V + c(B))))
+                          (B = z + c(B))))
                 : K !== E && F(A, J)),
             B
               ? (flush(),
@@ -26941,10 +26941,10 @@ object-assign
       E = "named",
       S = "hexadecimal",
       R = "decimal",
-      O = {}
-    ;(O[S] = 16), (O[R] = 10)
-    var P = {}
-    ;(P[E] = l), (P[R] = i), (P[S] = a)
+      P = {}
+    ;(P[S] = 16), (P[R] = 10)
+    var O = {}
+    ;(O[E] = l), (O[R] = i), (O[S] = a)
     var M = 1,
       T = 2,
       D = 3,
@@ -30126,7 +30126,7 @@ object-assign
         null != t.dangerouslySetInnerHTML &&
           (null != t.children && r("60"),
           ("object" == typeof t.dangerouslySetInnerHTML &&
-            P in t.dangerouslySetInnerHTML) ||
+            O in t.dangerouslySetInnerHTML) ||
             r("61")),
         null != t.style &&
           "object" != typeof t.style &&
@@ -30262,8 +30262,8 @@ object-assign
       E = m.getNodeFromInstance,
       S = h.listenTo,
       R = d.registrationNameModules,
-      O = { string: !0, number: !0 },
-      P = "__html",
+      P = { string: !0, number: !0 },
+      O = "__html",
       M = {
         children: null,
         dangerouslySetInnerHTML: null,
@@ -30449,7 +30449,7 @@ object-assign
             o = t.dangerouslySetInnerHTML
           if (null != o) null != o.__html && (r = o.__html)
           else {
-            var s = O[typeof t.children] ? t.children : null,
+            var s = P[typeof t.children] ? t.children : null,
               i = null != s ? null : t.children
             null != s
               ? (r = x(s))
@@ -30461,7 +30461,7 @@ object-assign
           var o = t.dangerouslySetInnerHTML
           if (null != o) null != o.__html && a.queueHTML(r, o.__html)
           else {
-            var s = O[typeof t.children] ? t.children : null,
+            var s = P[typeof t.children] ? t.children : null,
               i = null != s ? null : t.children
             if (null != s) "" !== s && a.queueText(r, s)
             else if (null != i)
@@ -30560,8 +30560,8 @@ object-assign
           a && i.setValueForStyles(E(this), a, this)
         },
         _updateDOMChildren: function(e, t, n, r) {
-          var o = O[typeof e.children] ? e.children : null,
-            s = O[typeof t.children] ? t.children : null,
+          var o = P[typeof e.children] ? e.children : null,
+            s = P[typeof t.children] ? t.children : null,
             i = e.dangerouslySetInnerHTML && e.dangerouslySetInnerHTML.__html,
             a = t.dangerouslySetInnerHTML && t.dangerouslySetInnerHTML.__html,
             l = null != o ? null : e.children,
@@ -31741,7 +31741,7 @@ object-assign
       var a = f.mountComponent(e, n, null, u(e, t), o, 0)
       s && console.timeEnd(s),
         (e._renderedComponent._topLevelWrapper = e),
-        O._mountImageIntoNode(a, t, e, r, n)
+        P._mountImageIntoNode(a, t, e, r, n)
     }
     function batchedMountComponentIntoNode(e, t, n, r) {
       var o = g.ReactReconcileTransaction.getPooled(!n && c.useCreateElement)
@@ -31811,7 +31811,7 @@ object-assign
         return this.props.child
       }),
       (R.isReactTopLevelWrapper = !0)
-    var O = {
+    var P = {
       TopLevelWrapper: R,
       _instancesByReactRootID: E,
       scrollMonitor: function(e, t) {
@@ -31819,7 +31819,7 @@ object-assign
       },
       _updateRootComponent: function(e, t, n, r, o) {
         return (
-          O.scrollMonitor(r, function() {
+          P.scrollMonitor(r, function() {
             m.enqueueElementInternal(e, t, n),
               o && m.enqueueCallbackInternal(e, o)
           }),
@@ -31836,7 +31836,7 @@ object-assign
       renderSubtreeIntoContainer: function(e, t, n, o) {
         return (
           (null != e && d.has(e)) || r("38"),
-          O._renderSubtreeIntoContainer(e, t, n, o)
+          P._renderSubtreeIntoContainer(e, t, n, o)
         )
       },
       _renderSubtreeIntoContainer: function(e, t, n, o) {
@@ -31868,15 +31868,15 @@ object-assign
                 function() {
                   o.call(p)
                 }
-            return O._updateRootComponent(u, a, s, n, h), p
+            return P._updateRootComponent(u, a, s, n, h), p
           }
-          O.unmountComponentAtNode(n)
+          P.unmountComponentAtNode(n)
         }
         var f = getReactRootElementInContainer(n),
           g = f && !!internalGetID(f),
           b = hasNonRootReactChild(n),
           v = g && !u && !b,
-          j = O._renderNewRootComponent(
+          j = P._renderNewRootComponent(
             a,
             n,
             v,
@@ -31885,7 +31885,7 @@ object-assign
         return o && o.call(j), j
       },
       render: function(e, t, n) {
-        return O._renderSubtreeIntoContainer(null, e, t, n)
+        return P._renderSubtreeIntoContainer(null, e, t, n)
       },
       unmountComponentAtNode: function(e) {
         isValidContainer(e) || r("40")
@@ -31923,7 +31923,7 @@ object-assign
         } else v(t, e), l.precacheNode(n, t.firstChild)
       },
     }
-    e.exports = O
+    e.exports = P
   },
   "./node_modules/react-dom/lib/ReactMultiChild.js": function(e, t, n) {
     "use strict"
@@ -39667,12 +39667,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  DirectionsRenderer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithADirectionsRenderer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap,\n  lifecycle({\n    componentDidMount() {\n      const DirectionsService = new google.maps.DirectionsService();\n\n      DirectionsService.route({\n        origin: new google.maps.LatLng(41.8507300, -87.6512600),\n        destination: new google.maps.LatLng(41.8525800, -87.6514100),\n        travelMode: google.maps.TravelMode.DRIVING,\n      }, (result, status) =&gt; {\n        if (status === google.maps.DirectionsStatus.OK) {\n          this.setState({\n            directions: result,\n          });\n        } else {\n          console.error(`error fetching directions ${result}`);\n        }\n      });\n    }\n  })\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={7}\n    defaultCenter={new google.maps.LatLng(41.8507300, -87.6512600)}\n  &gt;\n    {props.directions &amp;&amp; &lt;DirectionsRenderer directions={props.directions} /&gt;}\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithADirectionsRenderer /&gt;\n```\n\n### Map with a DirectionsRenderer',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  DirectionsRenderer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithADirectionsRenderer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap,\n  lifecycle({\n    componentDidMount() {\n      const DirectionsService = new google.maps.DirectionsService();\n\n      DirectionsService.route({\n        origin: new google.maps.LatLng(41.8507300, -87.6512600),\n        destination: new google.maps.LatLng(41.8525800, -87.6514100),\n        travelMode: google.maps.TravelMode.DRIVING,\n      }, (result, status) =&gt; {\n        if (status === google.maps.DirectionsStatus.OK) {\n          this.setState({\n            directions: result,\n          });\n        } else {\n          console.error(`error fetching directions ${result}`);\n        }\n      });\n    }\n  })\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={7}\n    defaultCenter={new google.maps.LatLng(41.8507300, -87.6512600)}\n  &gt;\n    {props.directions &amp;&amp; &lt;DirectionsRenderer directions={props.directions} /&gt;}\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithADirectionsRenderer /&gt;\n```\n\n### Map with a DirectionsRenderer',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps, lifecycle } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  DirectionsRenderer,\n} = require("../index");\n\nconst MapWithADirectionsRenderer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap,\n  lifecycle({\n    componentDidMount() {\n      const DirectionsService = new google.maps.DirectionsService();\n\n      DirectionsService.route({\n        origin: new google.maps.LatLng(41.8507300, -87.6512600),\n        destination: new google.maps.LatLng(41.8525800, -87.6514100),\n        travelMode: google.maps.TravelMode.DRIVING,\n      }, (result, status) => {\n        if (status === google.maps.DirectionsStatus.OK) {\n          this.setState({\n            directions: result,\n          });\n        } else {\n          console.error(`error fetching directions ${result}`);\n        }\n      });\n    }\n  })\n)(props =>\n  <GoogleMap\n    defaultZoom={7}\n    defaultCenter={new google.maps.LatLng(41.8507300, -87.6512600)}\n  >\n    {props.directions && <DirectionsRenderer directions={props.directions} />}\n  </GoogleMap>\n);\n\n<MapWithADirectionsRenderer />',
+          'const { compose, withProps, lifecycle } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  DirectionsRenderer,\n} = require("../index");\n\nconst MapWithADirectionsRenderer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap,\n  lifecycle({\n    componentDidMount() {\n      const DirectionsService = new google.maps.DirectionsService();\n\n      DirectionsService.route({\n        origin: new google.maps.LatLng(41.8507300, -87.6512600),\n        destination: new google.maps.LatLng(41.8525800, -87.6514100),\n        travelMode: google.maps.TravelMode.DRIVING,\n      }, (result, status) => {\n        if (status === google.maps.DirectionsStatus.OK) {\n          this.setState({\n            directions: result,\n          });\n        } else {\n          console.error(`error fetching directions ${result}`);\n        }\n      });\n    }\n  })\n)(props =>\n  <GoogleMap\n    defaultZoom={7}\n    defaultCenter={new google.maps.LatLng(41.8507300, -87.6512600)}\n  >\n    {props.directions && <DirectionsRenderer directions={props.directions} />}\n  </GoogleMap>\n);\n\n<MapWithADirectionsRenderer />',
         settings: {},
         evalInContext: s,
       },
@@ -39698,12 +39698,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  FusionTablesLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAFusionTablesLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={11}\n    defaultCenter={{ lat: 41.850033, lng: -87.6500523 }}\n  &gt;\n    &lt;FusionTablesLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{\n        query: {\n          select: `Geocodable address`,\n          from: `1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg`\n        }\n      }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAFusionTablesLayer /&gt;\n```\n\n### Map with a FusionTablesLayer',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  FusionTablesLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAFusionTablesLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={11}\n    defaultCenter={{ lat: 41.850033, lng: -87.6500523 }}\n  &gt;\n    &lt;FusionTablesLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{\n        query: {\n          select: `Geocodable address`,\n          from: `1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg`\n        }\n      }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAFusionTablesLayer /&gt;\n```\n\n### Map with a FusionTablesLayer',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  FusionTablesLayer,\n} = require("../index");\n\nconst MapWithAFusionTablesLayer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={11}\n    defaultCenter={{ lat: 41.850033, lng: -87.6500523 }}\n  >\n    <FusionTablesLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{\n        query: {\n          select: `Geocodable address`,\n          from: `1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg`\n        }\n      }}\n    />\n  </GoogleMap>\n);\n\n<MapWithAFusionTablesLayer />',
+          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  FusionTablesLayer,\n} = require("../index");\n\nconst MapWithAFusionTablesLayer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={11}\n    defaultCenter={{ lat: 41.850033, lng: -87.6500523 }}\n  >\n    <FusionTablesLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{\n        query: {\n          select: `Geocodable address`,\n          from: `1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg`\n        }\n      }}\n    />\n  </GoogleMap>\n);\n\n<MapWithAFusionTablesLayer />',
         settings: {},
         evalInContext: s,
       },
@@ -39732,12 +39732,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```js\n<span class="hljs-keyword">import</span> { compose, withProps, withState, withHandlers } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> FaAnchor <span class="hljs-keyword">from</span> <span class="hljs-string">"react-icons/lib/fa/anchor"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithControlledZoom = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withState(\'zoom\', \'onZoomChange\', 8),\n  withHandlers(() =&gt; {\n    const refs = {\n      map: undefined,\n    }\n\n    return {\n      onMapMounted: () =&gt; ref =&gt; {\n        refs.map = ref\n      },\n      onZoomChanged: ({ onZoomChange }) =&gt; () =&gt; {\n        onZoomChange(refs.map.getZoom())\n      }\n    }\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n    zoom={props.zoom}\n    ref={props.onMapMounted}\n    onZoomChanged={props.onZoomChanged}\n  &gt;\n    &lt;Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    &gt;\n      &lt;InfoWindow onCloseClick={props.onToggleOpen}&gt;\n        &lt;div&gt;\n          &lt;FaAnchor /&gt;\n          {" "}\n          Controlled zoom: {props.zoom}\n        &lt;/div&gt;\n      &lt;/InfoWindow&gt;\n    &lt;/Marker&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithControlledZoom /&gt;\n```\n\n### Map with controlled zoom',
+          '### Usage\n\n```js\n<span class="hljs-keyword">import</span> { compose, withProps, withState, withHandlers } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> FaAnchor <span class="hljs-keyword">from</span> <span class="hljs-string">"react-icons/lib/fa/anchor"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithControlledZoom = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withState(\'zoom\', \'onZoomChange\', 8),\n  withHandlers(() =&gt; {\n    const refs = {\n      map: undefined,\n    }\n\n    return {\n      onMapMounted: () =&gt; ref =&gt; {\n        refs.map = ref\n      },\n      onZoomChanged: ({ onZoomChange }) =&gt; () =&gt; {\n        onZoomChange(refs.map.getZoom())\n      }\n    }\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n    zoom={props.zoom}\n    ref={props.onMapMounted}\n    onZoomChanged={props.onZoomChanged}\n  &gt;\n    &lt;Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    &gt;\n      &lt;InfoWindow onCloseClick={props.onToggleOpen}&gt;\n        &lt;div&gt;\n          &lt;FaAnchor /&gt;\n          {" "}\n          Controlled zoom: {props.zoom}\n        &lt;/div&gt;\n      &lt;/InfoWindow&gt;\n    &lt;/Marker&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithControlledZoom /&gt;\n```\n\n### Map with controlled zoom',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps, withState, withHandlers } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} = require("../index");\n\nconst MapWithControlledZoom = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withState(\'zoom\', \'onZoomChange\', 8),\n  withHandlers(() => {\n    const refs = {\n      map: undefined,\n    }\n\n    return {\n      onMapMounted: () => ref => {\n        refs.map = ref\n      },\n      onZoomChanged: ({ onZoomChange }) => () => {\n        onZoomChange(refs.map.getZoom())\n      }\n    }\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n    zoom={props.zoom}\n    ref={props.onMapMounted}\n    onZoomChanged={props.onZoomChanged}\n  >\n    <Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    >\n      <InfoWindow onCloseClick={props.onToggleOpen}>\n        <div>\n          <FaAnchor />\n          {" "}\n          Controlled zoom: {props.zoom}\n        </div>\n      </InfoWindow>\n    </Marker>\n  </GoogleMap>\n);\n\n<MapWithControlledZoom />',
+          'const { compose, withProps, withState, withHandlers } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} = require("../index");\n\nconst MapWithControlledZoom = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withState(\'zoom\', \'onZoomChange\', 8),\n  withHandlers(() => {\n    const refs = {\n      map: undefined,\n    }\n\n    return {\n      onMapMounted: () => ref => {\n        refs.map = ref\n      },\n      onZoomChanged: ({ onZoomChange }) => () => {\n        onZoomChange(refs.map.getZoom())\n      }\n    }\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n    zoom={props.zoom}\n    ref={props.onMapMounted}\n    onZoomChanged={props.onZoomChanged}\n  >\n    <Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    >\n      <InfoWindow onCloseClick={props.onToggleOpen}>\n        <div>\n          <FaAnchor />\n          {" "}\n          Controlled zoom: {props.zoom}\n        </div>\n      </InfoWindow>\n    </Marker>\n  </GoogleMap>\n);\n\n<MapWithControlledZoom />',
         settings: {},
         evalInContext: s,
       },
@@ -39768,7 +39768,7 @@ object-assign
       {
         type: "code",
         content:
-          'const { compose } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  GroundOverlay,\n} = require("../index");\n\nconst MapWithGroundOverlay = compose(\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={12}\n    defaultCenter={{lat: 40.740, lng: -74.18}}\n  >\n    <GroundOverlay\n      url="https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"\n      bounds={new google.maps.LatLngBounds(\n        new google.maps.LatLng(40.712216, -74.22655),\n        new google.maps.LatLng(40.773941, -74.12544)\n      )}\n      defaultOpacity={.5}\n    />\n  </GoogleMap>\n);\n\n<MapWithGroundOverlay\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `400px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
+          'const { compose } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  GroundOverlay,\n} = require("../index");\n\nconst MapWithGroundOverlay = compose(\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={12}\n    defaultCenter={{lat: 40.740, lng: -74.18}}\n  >\n    <GroundOverlay\n      url="https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"\n      bounds={new google.maps.LatLngBounds(\n        new google.maps.LatLng(40.712216, -74.22655),\n        new google.maps.LatLng(40.773941, -74.12544)\n      )}\n      defaultOpacity={.5}\n    />\n  </GoogleMap>\n);\n\n<MapWithGroundOverlay\n  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `400px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
         settings: {},
         evalInContext: s,
       },
@@ -39797,12 +39797,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```jsx\nimport { compose, withProps, withStateHandlers } from "recompose";\nimport FaAnchor from "react-icons/lib/fa/ancho";\nimport {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} from "react-google-maps";\n\nconst MapWithAMakredInfoWindow = compose(\n  withStateHandlers(() =&gt; ({\n    isOpen: false,\n  }), {\n    onToggleOpen: ({ isOpen }) =&gt; () =&gt; ({\n      isOpen: !isOpen,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  &gt;\n    &lt;Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    &gt;\n      {props.isOpen &amp;&amp; &lt;InfoWindow onCloseClick={props.onToggleOpen}&gt;\n        &lt;FaAnchor /&gt;\n      &lt;/InfoWindow&gt;}\n    &lt;/Marker&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAMakredInfoWindow\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Click the Marker to show InfoWindow',
+          '### Usage\n\n```jsx\nimport { compose, withProps, withStateHandlers } from "recompose";\nimport FaAnchor from "react-icons/lib/fa/ancho";\nimport {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} from "react-google-maps";\n\nconst MapWithAMakredInfoWindow = compose(\n  withStateHandlers(() =&gt; ({\n    isOpen: false,\n  }), {\n    onToggleOpen: ({ isOpen }) =&gt; () =&gt; ({\n      isOpen: !isOpen,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  &gt;\n    &lt;Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    &gt;\n      {props.isOpen &amp;&amp; &lt;InfoWindow onCloseClick={props.onToggleOpen}&gt;\n        &lt;FaAnchor /&gt;\n      &lt;/InfoWindow&gt;}\n    &lt;/Marker&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAMakredInfoWindow\n  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Click the Marker to show InfoWindow',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps, withStateHandlers } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} = require("../index");\n\nconst MapWithAMakredInfoWindow = compose(\n  withStateHandlers(() => ({\n    isOpen: false,\n  }), {\n    onToggleOpen: ({ isOpen }) => () => ({\n      isOpen: !isOpen,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  >\n    <Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    >\n      {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>\n        <FaAnchor />\n      </InfoWindow>}\n    </Marker>\n  </GoogleMap>\n);\n\n<MapWithAMakredInfoWindow\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `400px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
+          'const { compose, withProps, withStateHandlers } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n  InfoWindow,\n} = require("../index");\n\nconst MapWithAMakredInfoWindow = compose(\n  withStateHandlers(() => ({\n    isOpen: false,\n  }), {\n    onToggleOpen: ({ isOpen }) => () => ({\n      isOpen: !isOpen,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  >\n    <Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n      onClick={props.onToggleOpen}\n    >\n      {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>\n        <FaAnchor />\n      </InfoWindow>}\n    </Marker>\n  </GoogleMap>\n);\n\n<MapWithAMakredInfoWindow\n  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `400px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
         settings: {},
         evalInContext: s,
       },
@@ -39828,12 +39828,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  KmlLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAKmlLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={9}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  &gt;\n    &lt;KmlLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{ preserveViewport: true }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAKmlLayer /&gt;\n```\n\n### Map with a KmlLayer',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  KmlLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAKmlLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={9}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  &gt;\n    &lt;KmlLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{ preserveViewport: true }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAKmlLayer /&gt;\n```\n\n### Map with a KmlLayer',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  KmlLayer,\n} = require("../index");\n\nconst MapWithAKmlLayer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={9}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  >\n    <KmlLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{ preserveViewport: true }}\n    />\n  </GoogleMap>\n);\n\n<MapWithAKmlLayer />',
+          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  KmlLayer,\n} = require("../index");\n\nconst MapWithAKmlLayer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={9}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  >\n    <KmlLayer\n      url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"\n      options={{ preserveViewport: true }}\n    />\n  </GoogleMap>\n);\n\n<MapWithAKmlLayer />',
         settings: {},
         evalInContext: s,
       },
@@ -39859,12 +39859,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAMarker = compose(\n  withScriptjs,\n  withGoogleMap\n)(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">8</span>}\n    defaultCenter={{ <span class="hljs-attr">lat</span>: <span class="hljs-number">-34.397</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">150.644</span> }}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Marker</span>\n      <span class="hljs-attr">position</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">lat:</span> <span class="hljs-attr">-34.397</span>, <span class="hljs-attr">lng:</span> <span class="hljs-attr">150.644</span> }}\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n);\n\n&lt;MapWithAMarker\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Map with a Marker',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAMarker = compose(\n  withScriptjs,\n  withGoogleMap\n)(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">8</span>}\n    defaultCenter={{ <span class="hljs-attr">lat</span>: <span class="hljs-number">-34.397</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">150.644</span> }}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Marker</span>\n      <span class="hljs-attr">position</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">lat:</span> <span class="hljs-attr">-34.397</span>, <span class="hljs-attr">lng:</span> <span class="hljs-attr">150.644</span> }}\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n);\n\n&lt;MapWithAMarker\n  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Map with a Marker',
       },
       {
         type: "code",
         content:
-          'const { compose } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} = require("../index");\n\nconst MapWithAMarker = compose(\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  >\n    <Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n    />\n  </GoogleMap>\n);\n\n<MapWithAMarker\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `400px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
+          'const { compose } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} = require("../index");\n\nconst MapWithAMarker = compose(\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  >\n    <Marker\n      position={{ lat: -34.397, lng: 150.644 }}\n    />\n  </GoogleMap>\n);\n\n<MapWithAMarker\n  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `400px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
         settings: {},
         evalInContext: s,
       },
@@ -39893,12 +39893,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```jsx\nimport { compose, withProps, withStateHandlers } from "recompose";\nimport FaAnchor from "react-icons/lib/fa/ancho";\nimport {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  OverlayView,\n} from "react-google-maps";\n\nconst getPixelPositionOffset = (width, height) =&gt; ({\n  x: -(width / 2),\n  y: -(height / 2),\n})\n\nconst MapWithAnOverlayView = compose(\n  withStateHandlers(() =&gt; ({\n    count: 0,\n  }), {\n    onClick: ({ count }) =&gt; () =&gt; ({\n      count: count + 1,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  &gt;\n    &lt;OverlayView\n      position={{ lat: -34.397, lng: 150.644 }}\n      /*\n       * An alternative to specifying position is specifying bounds.\n       * bounds can either be an instance of google.maps.LatLngBounds\n       * or an object in the following format:\n       * bounds={{\n       *    ne: { lat: 62.400471, lng: -150.005608 },\n       *    sw: { lat: 62.281819, lng: -150.287132 }\n       * }}\n       */\n      /*\n       * 1. Specify the pane the OverlayView will be rendered to. For\n       *    mouse interactivity, use `OverlayView.OVERLAY_MOUSE_TARGET`.\n       *    Defaults to `OverlayView.OVERLAY_LAYER`.\n       */\n      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}\n      /*\n       * 2. Tweak the OverlayView\'s pixel position. In this case, we\'re\n       *    centering the content.\n       */\n      getPixelPositionOffset={getPixelPositionOffset}\n      /*\n       * 3. Create OverlayView content using standard React components.\n       */\n    &gt;\n      &lt;div style={{ background: `white`, border: `1px solid #ccc`, padding: 15 }}&gt;\n        &lt;h1&gt;OverlayView&lt;/h1&gt;\n        &lt;button onClick={props.onClick} style={{ height: 60 }}&gt;\n          I have been clicked {props.count} time{props.count &gt; 1 ? `s` : ``}\n        &lt;/button&gt;\n      &lt;/div&gt;\n    &lt;/OverlayView&gt;\n  &lt;/GoogleMap&gt;\n);\n&lt;MapWithAnOverlayView\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Click the Marker to show OverlayView',
+          '### Usage\n\n```jsx\nimport { compose, withProps, withStateHandlers } from "recompose";\nimport FaAnchor from "react-icons/lib/fa/ancho";\nimport {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  OverlayView,\n} from "react-google-maps";\n\nconst getPixelPositionOffset = (width, height) =&gt; ({\n  x: -(width / 2),\n  y: -(height / 2),\n})\n\nconst MapWithAnOverlayView = compose(\n  withStateHandlers(() =&gt; ({\n    count: 0,\n  }), {\n    onClick: ({ count }) =&gt; () =&gt; ({\n      count: count + 1,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  &gt;\n    &lt;OverlayView\n      position={{ lat: -34.397, lng: 150.644 }}\n      /*\n       * An alternative to specifying position is specifying bounds.\n       * bounds can either be an instance of google.maps.LatLngBounds\n       * or an object in the following format:\n       * bounds={{\n       *    ne: { lat: 62.400471, lng: -150.005608 },\n       *    sw: { lat: 62.281819, lng: -150.287132 }\n       * }}\n       */\n      /*\n       * 1. Specify the pane the OverlayView will be rendered to. For\n       *    mouse interactivity, use `OverlayView.OVERLAY_MOUSE_TARGET`.\n       *    Defaults to `OverlayView.OVERLAY_LAYER`.\n       */\n      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}\n      /*\n       * 2. Tweak the OverlayView\'s pixel position. In this case, we\'re\n       *    centering the content.\n       */\n      getPixelPositionOffset={getPixelPositionOffset}\n      /*\n       * 3. Create OverlayView content using standard React components.\n       */\n    &gt;\n      &lt;div style={{ background: `white`, border: `1px solid #ccc`, padding: 15 }}&gt;\n        &lt;h1&gt;OverlayView&lt;/h1&gt;\n        &lt;button onClick={props.onClick} style={{ height: 60 }}&gt;\n          I have been clicked {props.count} time{props.count &gt; 1 ? `s` : ``}\n        &lt;/button&gt;\n      &lt;/div&gt;\n    &lt;/OverlayView&gt;\n  &lt;/GoogleMap&gt;\n);\n&lt;MapWithAnOverlayView\n  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Click the Marker to show OverlayView',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps, withStateHandlers } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  OverlayView,\n} = require("../index");\n\nconst getPixelPositionOffset = (width, height) => ({\n  x: -(width / 2),\n  y: -(height / 2),\n})\n\nconst MapWithAnOverlayView = compose(\n  withStateHandlers(() => ({\n    count: 0,\n  }), {\n    onClick: ({ count }) => () => ({\n      count: count + 1,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  >\n    <OverlayView\n      position={{ lat: -34.397, lng: 150.644 }}\n      /*\n       * An alternative to specifying position is specifying bounds.\n       * bounds can either be an instance of google.maps.LatLngBounds\n       * or an object in the following format:\n       * bounds={{\n       *    ne: { lat: 62.400471, lng: -150.005608 },\n       *    sw: { lat: 62.281819, lng: -150.287132 }\n       * }}\n       */\n      /*\n       * 1. Specify the pane the OverlayView will be rendered to. For\n       *    mouse interactivity, use `OverlayView.OVERLAY_MOUSE_TARGET`.\n       *    Defaults to `OverlayView.OVERLAY_LAYER`.\n       */\n      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}\n      /*\n       * 2. Tweak the OverlayView\'s pixel position. In this case, we\'re\n       *    centering the content.\n       */\n      getPixelPositionOffset={getPixelPositionOffset}\n      /*\n       * 3. Create OverlayView content using standard React components.\n       */\n    >\n      <div style={{ background: `white`, border: `1px solid #ccc`, padding: 15 }}>\n        <h1>OverlayView</h1>\n        <button onClick={props.onClick} style={{ height: 60 }}>\n          I have been clicked {props.count} time{props.count > 1 ? `s` : ``}\n        </button>\n      </div>\n    </OverlayView>\n  </GoogleMap>\n);\n\n<MapWithAnOverlayView\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `400px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
+          'const { compose, withProps, withStateHandlers } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  OverlayView,\n} = require("../index");\n\nconst getPixelPositionOffset = (width, height) => ({\n  x: -(width / 2),\n  y: -(height / 2),\n})\n\nconst MapWithAnOverlayView = compose(\n  withStateHandlers(() => ({\n    count: 0,\n  }), {\n    onClick: ({ count }) => () => ({\n      count: count + 1,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  >\n    <OverlayView\n      position={{ lat: -34.397, lng: 150.644 }}\n      /*\n       * An alternative to specifying position is specifying bounds.\n       * bounds can either be an instance of google.maps.LatLngBounds\n       * or an object in the following format:\n       * bounds={{\n       *    ne: { lat: 62.400471, lng: -150.005608 },\n       *    sw: { lat: 62.281819, lng: -150.287132 }\n       * }}\n       */\n      /*\n       * 1. Specify the pane the OverlayView will be rendered to. For\n       *    mouse interactivity, use `OverlayView.OVERLAY_MOUSE_TARGET`.\n       *    Defaults to `OverlayView.OVERLAY_LAYER`.\n       */\n      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}\n      /*\n       * 2. Tweak the OverlayView\'s pixel position. In this case, we\'re\n       *    centering the content.\n       */\n      getPixelPositionOffset={getPixelPositionOffset}\n      /*\n       * 3. Create OverlayView content using standard React components.\n       */\n    >\n      <div style={{ background: `white`, border: `1px solid #ccc`, padding: 15 }}>\n        <h1>OverlayView</h1>\n        <button onClick={props.onClick} style={{ height: 60 }}>\n          I have been clicked {props.count} time{props.count > 1 ? `s` : ``}\n        </button>\n      </div>\n    </OverlayView>\n  </GoogleMap>\n);\n\n<MapWithAnOverlayView\n  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `400px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
         settings: {},
         evalInContext: s,
       },
@@ -39927,12 +39927,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> FaAnchor <span class="hljs-keyword">from</span> <span class="hljs-string">"react-icons/lib/fa/ancho"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  StreetViewPanorama,\n  OverlayView,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> getPixelPositionOffset = <span class="hljs-function">(<span class="hljs-params">width, height</span>) =&gt;</span> ({\n  <span class="hljs-attr">x</span>: -(width / <span class="hljs-number">2</span>),\n  <span class="hljs-attr">y</span>: -(height / <span class="hljs-number">2</span>),\n})\n\n<span class="hljs-keyword">const</span> StreetViewPanormaWithAnOverlayView = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n    center: { lat: 49.2853171, lng: -123.1119202 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap defaultZoom={8} defaultCenter={props.center}&gt;\n    &lt;StreetViewPanorama defaultPosition={props.center} visible&gt;\n      &lt;OverlayView\n        position={{ lat: 49.28590291211115, lng: -123.11248166065218 }}\n          mapPaneName={OverlayView.OVERLAY_LAYER}\n          getPixelPositionOffset={getPixelPositionOffset}\n      &gt;\n        &lt;div style={{ background: `red`, color: `white`, padding: 5, borderRadius: `50%` }}&gt;\n          OverlayView\n        &lt;/div&gt;\n      &lt;/OverlayView&gt;\n    &lt;/StreetViewPanorama&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;StreetViewPanormaWithAnOverlayView /&gt;\n```\n\n### Click the Marker to show OverlayView',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> FaAnchor <span class="hljs-keyword">from</span> <span class="hljs-string">"react-icons/lib/fa/ancho"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  StreetViewPanorama,\n  OverlayView,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> getPixelPositionOffset = <span class="hljs-function">(<span class="hljs-params">width, height</span>) =&gt;</span> ({\n  <span class="hljs-attr">x</span>: -(width / <span class="hljs-number">2</span>),\n  <span class="hljs-attr">y</span>: -(height / <span class="hljs-number">2</span>),\n})\n\n<span class="hljs-keyword">const</span> StreetViewPanormaWithAnOverlayView = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n    center: { lat: 49.2853171, lng: -123.1119202 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap defaultZoom={8} defaultCenter={props.center}&gt;\n    &lt;StreetViewPanorama defaultPosition={props.center} visible&gt;\n      &lt;OverlayView\n        position={{ lat: 49.28590291211115, lng: -123.11248166065218 }}\n          mapPaneName={OverlayView.OVERLAY_LAYER}\n          getPixelPositionOffset={getPixelPositionOffset}\n      &gt;\n        &lt;div style={{ background: `red`, color: `white`, padding: 5, borderRadius: `50%` }}&gt;\n          OverlayView\n        &lt;/div&gt;\n      &lt;/OverlayView&gt;\n    &lt;/StreetViewPanorama&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;StreetViewPanormaWithAnOverlayView /&gt;\n```\n\n### Click the Marker to show OverlayView',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  StreetViewPanorama,\n  OverlayView,\n} = require("../index");\n\nconst getPixelPositionOffset = (width, height) => ({\n  x: -(width / 2),\n  y: -(height / 2),\n})\n\nconst StreetViewPanormaWithAnOverlayView = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n    center: { lat: 49.2853171, lng: -123.1119202 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap defaultZoom={8} defaultCenter={props.center}>\n    <StreetViewPanorama defaultPosition={props.center} visible>\n      <OverlayView\n        position={{ lat: 49.28590291211115, lng: -123.11248166065218 }}\n          mapPaneName={OverlayView.OVERLAY_LAYER}\n          getPixelPositionOffset={getPixelPositionOffset}\n      >\n        <div style={{ background: `red`, color: `white`, padding: 5, borderRadius: `50%` }}>\n          OverlayView\n        </div>\n      </OverlayView>\n    </StreetViewPanorama>\n  </GoogleMap>\n);\n\n<StreetViewPanormaWithAnOverlayView />',
+          'const { compose, withProps } = require("recompose");\nconst FaAnchor = require("react-icons/lib/fa/anchor");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  StreetViewPanorama,\n  OverlayView,\n} = require("../index");\n\nconst getPixelPositionOffset = (width, height) => ({\n  x: -(width / 2),\n  y: -(height / 2),\n})\n\nconst StreetViewPanormaWithAnOverlayView = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n    center: { lat: 49.2853171, lng: -123.1119202 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap defaultZoom={8} defaultCenter={props.center}>\n    <StreetViewPanorama defaultPosition={props.center} visible>\n      <OverlayView\n        position={{ lat: 49.28590291211115, lng: -123.11248166065218 }}\n          mapPaneName={OverlayView.OVERLAY_LAYER}\n          getPixelPositionOffset={getPixelPositionOffset}\n      >\n        <div style={{ background: `red`, color: `white`, padding: 5, borderRadius: `50%` }}>\n          OverlayView\n        </div>\n      </OverlayView>\n    </StreetViewPanorama>\n  </GoogleMap>\n);\n\n<StreetViewPanormaWithAnOverlayView />',
         settings: {},
         evalInContext: s,
       },
@@ -39958,12 +39958,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  TrafficLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithATrafficLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  &gt;\n    &lt;TrafficLayer autoUpdate /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithATrafficLayer /&gt;\n```\n\n### Map with a TrafficLayer',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  TrafficLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithATrafficLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  &gt;\n    &lt;TrafficLayer autoUpdate /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithATrafficLayer /&gt;\n```\n\n### Map with a TrafficLayer',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  TrafficLayer,\n} = require("../index");\n\nconst MapWithATrafficLayer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  >\n    <TrafficLayer autoUpdate />\n  </GoogleMap>\n);\n\n<MapWithATrafficLayer />',
+          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  TrafficLayer,\n} = require("../index");\n\nconst MapWithATrafficLayer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  >\n    <TrafficLayer autoUpdate />\n  </GoogleMap>\n);\n\n<MapWithATrafficLayer />',
         settings: {},
         evalInContext: s,
       },
@@ -39993,12 +39993,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> InfoBox <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/addons/InfoBox"</span>;\n<span class="hljs-keyword">import</span> demoFancyMapStyles <span class="hljs-keyword">from</span> <span class="hljs-string">"./demoFancyMapStyles.json"</span>;\n\n<span class="hljs-keyword">const</span> StyledMapWithAnInfoBox = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n    center: { lat: 25.03, lng: 121.6 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={5}\n    defaultCenter={props.center}\n    defaultOptions={{ styles: demoFancyMapStyles }}\n  &gt;\n    &lt;InfoBox\n      defaultPosition={new google.maps.LatLng(props.center.lat, props.center.lng)}\n      options={{ closeBoxURL: ``, enableEventPropagation: true }}\n    &gt;\n      &lt;div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}&gt;\n        &lt;div style={{ fontSize: `16px`, fontColor: `#08233B` }}&gt;\n          Hello from Taipei\n        &lt;/div&gt;\n      &lt;/div&gt;\n    &lt;/InfoBox&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;StyledMapWithAnInfoBox /&gt;\n```\n\n### Styled Map with an InfoBox',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> InfoBox <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/addons/InfoBox"</span>;\n<span class="hljs-keyword">import</span> demoFancyMapStyles <span class="hljs-keyword">from</span> <span class="hljs-string">"./demoFancyMapStyles.json"</span>;\n\n<span class="hljs-keyword">const</span> StyledMapWithAnInfoBox = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n    center: { lat: 25.03, lng: 121.6 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={5}\n    defaultCenter={props.center}\n    defaultOptions={{ styles: demoFancyMapStyles }}\n  &gt;\n    &lt;InfoBox\n      defaultPosition={new google.maps.LatLng(props.center.lat, props.center.lng)}\n      options={{ closeBoxURL: ``, enableEventPropagation: true }}\n    &gt;\n      &lt;div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}&gt;\n        &lt;div style={{ fontSize: `16px`, fontColor: `#08233B` }}&gt;\n          Hello from Taipei\n        &lt;/div&gt;\n      &lt;/div&gt;\n    &lt;/InfoBox&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;StyledMapWithAnInfoBox /&gt;\n```\n\n### Styled Map with an InfoBox',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} = require("../../index");\nconst { InfoBox } = require("./InfoBox");\nconst demoFancyMapStyles = require("./demoFancyMapStyles.json");\n\nconst StyledMapWithAnInfoBox = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n    center: { lat: 25.03, lng: 121.6 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={5}\n    defaultCenter={props.center}\n    defaultOptions={{ styles: demoFancyMapStyles }}\n  >\n    <InfoBox\n      defaultPosition={new google.maps.LatLng(props.center.lat, props.center.lng)}\n      options={{ closeBoxURL: ``, enableEventPropagation: true }}\n    >\n      <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>\n        <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>\n          Hello from Taipei\n        </div>\n      </div>\n    </InfoBox>\n  </GoogleMap>\n);\n\n<StyledMapWithAnInfoBox />',
+          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} = require("../../index");\nconst { InfoBox } = require("./InfoBox");\nconst demoFancyMapStyles = require("./demoFancyMapStyles.json");\n\nconst StyledMapWithAnInfoBox = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n    center: { lat: 25.03, lng: 121.6 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={5}\n    defaultCenter={props.center}\n    defaultOptions={{ styles: demoFancyMapStyles }}\n  >\n    <InfoBox\n      defaultPosition={new google.maps.LatLng(props.center.lat, props.center.lng)}\n      options={{ closeBoxURL: ``, enableEventPropagation: true }}\n    >\n      <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>\n        <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>\n          Hello from Taipei\n        </div>\n      </div>\n    </InfoBox>\n  </GoogleMap>\n);\n\n<StyledMapWithAnInfoBox />',
         settings: {},
         evalInContext: s,
       },
@@ -40028,12 +40028,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> fetch <span class="hljs-keyword">from</span> <span class="hljs-string">"isomorphic-fetch"</span>;\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">import</span> MarkerClusterer <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/addons/MarkerClusterer"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAMarkerClusterer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={3}\n    defaultCenter={{ lat: 25.0391667, lng: 121.525 }}\n  &gt;\n    &lt;MarkerClusterer\n      averageCenter\n      enableRetinaIcons\n      gridSize={60}\n    &gt;\n      {props.markers.map(marker =&gt; (\n        &lt;Marker\n          key={marker.photo_id}\n          position={{ lat: marker.latitude, lng: marker.longitude }}\n        /&gt;\n      ))}\n    &lt;/MarkerClusterer&gt;\n  &lt;/GoogleMap&gt;\n);\n\nclass DemoApp extends React.PureComponent {\n  componentWillMount() {\n    this.setState({ markers: [] })\n  }\n\n  componentDidMount() {\n    const url = [\n      // Length issue\n      `https://gist.githubusercontent.com`,\n      `/farrrr/dfda7dd7fccfec5474d3`,\n      `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`\n    ].join("")\n\n    fetch(url)\n      .then(res =&gt; res.json())\n      .then(data =&gt; {\n        this.setState({ markers: data.photos });\n      });\n  }\n\n  render() {\n    return (\n      &lt;MapWithAMarkerClusterer markers={this.state.markers} /&gt;\n    )\n  }\n}\n\n&lt;DemoApp /&gt;\n```\n\n### Map with a MarkerClusterer',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> fetch <span class="hljs-keyword">from</span> <span class="hljs-string">"isomorphic-fetch"</span>;\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">import</span> MarkerClusterer <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/addons/MarkerClusterer"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAMarkerClusterer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={3}\n    defaultCenter={{ lat: 25.0391667, lng: 121.525 }}\n  &gt;\n    &lt;MarkerClusterer\n      averageCenter\n      enableRetinaIcons\n      gridSize={60}\n    &gt;\n      {props.markers.map(marker =&gt; (\n        &lt;Marker\n          key={marker.photo_id}\n          position={{ lat: marker.latitude, lng: marker.longitude }}\n        /&gt;\n      ))}\n    &lt;/MarkerClusterer&gt;\n  &lt;/GoogleMap&gt;\n);\n\nclass DemoApp extends React.PureComponent {\n  componentWillMount() {\n    this.setState({ markers: [] })\n  }\n\n  componentDidMount() {\n    const url = [\n      // Length issue\n      `https://gist.githubusercontent.com`,\n      `/farrrr/dfda7dd7fccfec5474d3`,\n      `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`\n    ].join("")\n\n    fetch(url)\n      .then(res =&gt; res.json())\n      .then(data =&gt; {\n        this.setState({ markers: data.photos });\n      });\n  }\n\n  render() {\n    return (\n      &lt;MapWithAMarkerClusterer markers={this.state.markers} /&gt;\n    )\n  }\n}\n\n&lt;DemoApp /&gt;\n```\n\n### Map with a MarkerClusterer',
       },
       {
         type: "code",
         content:
-          'const fetch = require("isomorphic-fetch");\nconst { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} = require("../../index");\nconst { MarkerClusterer } = require("./MarkerClusterer");\n\nconst MapWithAMarkerClusterer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={3}\n    defaultCenter={{ lat: 25.0391667, lng: 121.525 }}\n  >\n    <MarkerClusterer\n      averageCenter\n      enableRetinaIcons\n      gridSize={60}\n    >\n      {props.markers.map(marker => (\n        <Marker\n          key={marker.photo_id}\n          position={{ lat: marker.latitude, lng: marker.longitude }}\n        />\n      ))}\n    </MarkerClusterer>\n  </GoogleMap>\n);\n\nclass DemoApp extends React.PureComponent {\n  componentWillMount() {\n    this.setState({ markers: [] })\n  }\n\n  componentDidMount() {\n    const url = [\n      // Length issue\n      `https://gist.githubusercontent.com`,\n      `/farrrr/dfda7dd7fccfec5474d3`,\n      `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`\n    ].join("")\n\n    fetch(url)\n      .then(res => res.json())\n      .then(data => {\n        this.setState({ markers: data.photos });\n      });\n  }\n\n  render() {\n    return (\n      <MapWithAMarkerClusterer markers={this.state.markers} />\n    )\n  }\n}\n\n<DemoApp />',
+          'const fetch = require("isomorphic-fetch");\nconst { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} = require("../../index");\nconst { MarkerClusterer } = require("./MarkerClusterer");\n\nconst MapWithAMarkerClusterer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={3}\n    defaultCenter={{ lat: 25.0391667, lng: 121.525 }}\n  >\n    <MarkerClusterer\n      averageCenter\n      enableRetinaIcons\n      gridSize={60}\n    >\n      {props.markers.map(marker => (\n        <Marker\n          key={marker.photo_id}\n          position={{ lat: marker.latitude, lng: marker.longitude }}\n        />\n      ))}\n    </MarkerClusterer>\n  </GoogleMap>\n);\n\nclass DemoApp extends React.PureComponent {\n  componentWillMount() {\n    this.setState({ markers: [] })\n  }\n\n  componentDidMount() {\n    const url = [\n      // Length issue\n      `https://gist.githubusercontent.com`,\n      `/farrrr/dfda7dd7fccfec5474d3`,\n      `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`\n    ].join("")\n\n    fetch(url)\n      .then(res => res.json())\n      .then(data => {\n        this.setState({ markers: data.photos });\n      });\n  }\n\n  render() {\n    return (\n      <MapWithAMarkerClusterer markers={this.state.markers} />\n    )\n  }\n}\n\n<DemoApp />',
         settings: {},
         evalInContext: s,
       },
@@ -40060,12 +40060,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> DrawingManager <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/drawing/DrawingManager"</span>;\n\n<span class="hljs-keyword">const</span> MapWithADrawingManager = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={new google.maps.LatLng(-34.397, 150.644)}\n  &gt;\n    &lt;DrawingManager\n      defaultDrawingMode={google.maps.drawing.OverlayType.CIRCLE}\n      defaultOptions={{\n        drawingControl: true,\n        drawingControlOptions: {\n          position: google.maps.ControlPosition.TOP_CENTER,\n          drawingModes: [\n            google.maps.drawing.OverlayType.CIRCLE,\n            google.maps.drawing.OverlayType.POLYGON,\n            google.maps.drawing.OverlayType.POLYLINE,\n            google.maps.drawing.OverlayType.RECTANGLE,\n          ],\n        },\n        circleOptions: {\n          fillColor: `#ffff00`,\n          fillOpacity: 1,\n          strokeWeight: 5,\n          clickable: false,\n          editable: true,\n          zIndex: 1,\n        },\n      }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithADrawingManager /&gt;\n```\n\n### Map with a DrawingManager',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> DrawingManager <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/drawing/DrawingManager"</span>;\n\n<span class="hljs-keyword">const</span> MapWithADrawingManager = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={new google.maps.LatLng(-34.397, 150.644)}\n  &gt;\n    &lt;DrawingManager\n      defaultDrawingMode={google.maps.drawing.OverlayType.CIRCLE}\n      defaultOptions={{\n        drawingControl: true,\n        drawingControlOptions: {\n          position: google.maps.ControlPosition.TOP_CENTER,\n          drawingModes: [\n            google.maps.drawing.OverlayType.CIRCLE,\n            google.maps.drawing.OverlayType.POLYGON,\n            google.maps.drawing.OverlayType.POLYLINE,\n            google.maps.drawing.OverlayType.RECTANGLE,\n          ],\n        },\n        circleOptions: {\n          fillColor: `#ffff00`,\n          fillOpacity: 1,\n          strokeWeight: 5,\n          clickable: false,\n          editable: true,\n          zIndex: 1,\n        },\n      }}\n    /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithADrawingManager /&gt;\n```\n\n### Map with a DrawingManager',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} = require("../../index");\nconst { DrawingManager } = require("./DrawingManager");\n\nconst MapWithADrawingManager = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={new google.maps.LatLng(-34.397, 150.644)}\n  >\n    <DrawingManager\n      defaultDrawingMode={google.maps.drawing.OverlayType.CIRCLE}\n      defaultOptions={{\n        drawingControl: true,\n        drawingControlOptions: {\n          position: google.maps.ControlPosition.TOP_CENTER,\n          drawingModes: [\n            google.maps.drawing.OverlayType.CIRCLE,\n            google.maps.drawing.OverlayType.POLYGON,\n            google.maps.drawing.OverlayType.POLYLINE,\n            google.maps.drawing.OverlayType.RECTANGLE,\n          ],\n        },\n        circleOptions: {\n          fillColor: `#ffff00`,\n          fillOpacity: 1,\n          strokeWeight: 5,\n          clickable: false,\n          editable: true,\n          zIndex: 1,\n        },\n      }}\n    />\n  </GoogleMap>\n);\n\n<MapWithADrawingManager />',
+          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} = require("../../index");\nconst { DrawingManager } = require("./DrawingManager");\n\nconst MapWithADrawingManager = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={new google.maps.LatLng(-34.397, 150.644)}\n  >\n    <DrawingManager\n      defaultDrawingMode={google.maps.drawing.OverlayType.CIRCLE}\n      defaultOptions={{\n        drawingControl: true,\n        drawingControlOptions: {\n          position: google.maps.ControlPosition.TOP_CENTER,\n          drawingModes: [\n            google.maps.drawing.OverlayType.CIRCLE,\n            google.maps.drawing.OverlayType.POLYGON,\n            google.maps.drawing.OverlayType.POLYLINE,\n            google.maps.drawing.OverlayType.RECTANGLE,\n          ],\n        },\n        circleOptions: {\n          fillColor: `#ffff00`,\n          fillOpacity: 1,\n          strokeWeight: 5,\n          clickable: false,\n          editable: true,\n          zIndex: 1,\n        },\n      }}\n    />\n  </GoogleMap>\n);\n\n<MapWithADrawingManager />',
         settings: {},
         evalInContext: s,
       },
@@ -40092,12 +40092,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> SearchBox <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/places/SearchBox"</span>;\n\n<span class="hljs-keyword">const</span> MapWithASearchBox = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        bounds: null,\n        center: {\n          lat: 41.9, lng: -87.624\n        },\n        markers: [],\n        onMapMounted: ref =&gt; {\n          refs.map = ref;\n        },\n        onBoundsChanged: () =&gt; {\n          this.setState({\n            bounds: refs.map.getBounds(),\n            center: refs.map.getCenter(),\n          })\n        },\n        onSearchBoxMounted: ref =&gt; {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () =&gt; {\n          const places = refs.searchBox.getPlaces();\n          const bounds = new google.maps.LatLngBounds();\n\n          places.forEach(place =&gt; {\n            if (place.geometry.viewport) {\n              bounds.union(place.geometry.viewport)\n            } else {\n              bounds.extend(place.geometry.location)\n            }\n          });\n          const nextMarkers = places.map(place =&gt; ({\n            position: place.geometry.location,\n          }));\n          const nextCenter = _.get(nextMarkers, \'0.position\', this.state.center);\n\n          this.setState({\n            center: nextCenter,\n            markers: nextMarkers,\n          });\n          // refs.map.fitBounds(bounds);\n        },\n      })\n    },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    ref={props.onMapMounted}\n    defaultZoom={15}\n    center={props.center}\n    onBoundsChanged={props.onBoundsChanged}\n  &gt;\n    &lt;SearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      controlPosition={google.maps.ControlPosition.TOP_LEFT}\n      onPlacesChanged={props.onPlacesChanged}\n    &gt;\n      &lt;input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          marginTop: `27px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      /&gt;\n    &lt;/SearchBox&gt;\n    {props.markers.map((marker, index) =&gt;\n      &lt;Marker key={index} position={marker.position} /&gt;\n    )}\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithASearchBox /&gt;\n```\n\n### Map with a SearchBox',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> SearchBox <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/places/SearchBox"</span>;\n\n<span class="hljs-keyword">const</span> MapWithASearchBox = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        bounds: null,\n        center: {\n          lat: 41.9, lng: -87.624\n        },\n        markers: [],\n        onMapMounted: ref =&gt; {\n          refs.map = ref;\n        },\n        onBoundsChanged: () =&gt; {\n          this.setState({\n            bounds: refs.map.getBounds(),\n            center: refs.map.getCenter(),\n          })\n        },\n        onSearchBoxMounted: ref =&gt; {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () =&gt; {\n          const places = refs.searchBox.getPlaces();\n          const bounds = new google.maps.LatLngBounds();\n\n          places.forEach(place =&gt; {\n            if (place.geometry.viewport) {\n              bounds.union(place.geometry.viewport)\n            } else {\n              bounds.extend(place.geometry.location)\n            }\n          });\n          const nextMarkers = places.map(place =&gt; ({\n            position: place.geometry.location,\n          }));\n          const nextCenter = _.get(nextMarkers, \'0.position\', this.state.center);\n\n          this.setState({\n            center: nextCenter,\n            markers: nextMarkers,\n          });\n          // refs.map.fitBounds(bounds);\n        },\n      })\n    },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    ref={props.onMapMounted}\n    defaultZoom={15}\n    center={props.center}\n    onBoundsChanged={props.onBoundsChanged}\n  &gt;\n    &lt;SearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      controlPosition={google.maps.ControlPosition.TOP_LEFT}\n      onPlacesChanged={props.onPlacesChanged}\n    &gt;\n      &lt;input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          marginTop: `27px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      /&gt;\n    &lt;/SearchBox&gt;\n    {props.markers.map((marker, index) =&gt;\n      &lt;Marker key={index} position={marker.position} /&gt;\n    )}\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithASearchBox /&gt;\n```\n\n### Map with a SearchBox',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps, lifecycle } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} = require("../../index");\nconst { SearchBox } = require("./SearchBox");\n\nconst MapWithASearchBox = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        bounds: null,\n        center: {\n          lat: 41.9, lng: -87.624\n        },\n        markers: [],\n        onMapMounted: ref => {\n          refs.map = ref;\n        },\n        onBoundsChanged: () => {\n          this.setState({\n            bounds: refs.map.getBounds(),\n            center: refs.map.getCenter(),\n          })\n        },\n        onSearchBoxMounted: ref => {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () => {\n          const places = refs.searchBox.getPlaces();\n          const bounds = new google.maps.LatLngBounds();\n\n          places.forEach(place => {\n            if (place.geometry.viewport) {\n              bounds.union(place.geometry.viewport)\n            } else {\n              bounds.extend(place.geometry.location)\n            }\n          });\n          const nextMarkers = places.map(place => ({\n            position: place.geometry.location,\n          }));\n          const nextCenter = _.get(nextMarkers, \'0.position\', this.state.center);\n\n          this.setState({\n            center: nextCenter,\n            markers: nextMarkers,\n          });\n          // refs.map.fitBounds(bounds);\n        },\n      })\n    },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    ref={props.onMapMounted}\n    defaultZoom={15}\n    center={props.center}\n    onBoundsChanged={props.onBoundsChanged}\n  >\n    <SearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      controlPosition={google.maps.ControlPosition.TOP_LEFT}\n      onPlacesChanged={props.onPlacesChanged}\n    >\n      <input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          marginTop: `27px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      />\n    </SearchBox>\n    {props.markers.map((marker, index) =>\n      <Marker key={index} position={marker.position} />\n    )}\n  </GoogleMap>\n);\n\n<MapWithASearchBox />',
+          'const { compose, withProps, lifecycle } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} = require("../../index");\nconst { SearchBox } = require("./SearchBox");\n\nconst MapWithASearchBox = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        bounds: null,\n        center: {\n          lat: 41.9, lng: -87.624\n        },\n        markers: [],\n        onMapMounted: ref => {\n          refs.map = ref;\n        },\n        onBoundsChanged: () => {\n          this.setState({\n            bounds: refs.map.getBounds(),\n            center: refs.map.getCenter(),\n          })\n        },\n        onSearchBoxMounted: ref => {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () => {\n          const places = refs.searchBox.getPlaces();\n          const bounds = new google.maps.LatLngBounds();\n\n          places.forEach(place => {\n            if (place.geometry.viewport) {\n              bounds.union(place.geometry.viewport)\n            } else {\n              bounds.extend(place.geometry.location)\n            }\n          });\n          const nextMarkers = places.map(place => ({\n            position: place.geometry.location,\n          }));\n          const nextCenter = _.get(nextMarkers, \'0.position\', this.state.center);\n\n          this.setState({\n            center: nextCenter,\n            markers: nextMarkers,\n          });\n          // refs.map.fitBounds(bounds);\n        },\n      })\n    },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    ref={props.onMapMounted}\n    defaultZoom={15}\n    center={props.center}\n    onBoundsChanged={props.onBoundsChanged}\n  >\n    <SearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      controlPosition={google.maps.ControlPosition.TOP_LEFT}\n      onPlacesChanged={props.onPlacesChanged}\n    >\n      <input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          marginTop: `27px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      />\n    </SearchBox>\n    {props.markers.map((marker, index) =>\n      <Marker key={index} position={marker.position} />\n    )}\n  </GoogleMap>\n);\n\n<MapWithASearchBox />',
         settings: {},
         evalInContext: s,
       },
@@ -40126,12 +40126,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> StandaloneSearchBox <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/places/StandaloneSearchBox"</span>;\n\n<span class="hljs-keyword">const</span> PlacesWithStandaloneSearchBox = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        places: [],\n        onSearchBoxMounted: ref =&gt; {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () =&gt; {\n          const places = refs.searchBox.getPlaces();\n\n          this.setState({\n            places,\n          });\n        },\n      })\n    },\n  }),\n  withScriptjs  \n)(props =&gt;\n  &lt;div data-standalone-searchbox=""&gt;\n    &lt;StandaloneSearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      onPlacesChanged={props.onPlacesChanged}\n    &gt;\n      &lt;input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      /&gt;\n    &lt;/StandaloneSearchBox&gt;\n    &lt;ol&gt;\n      {props.places.map(({ place_id, formatted_address, geometry: { location } }) =&gt;\n        &lt;li key={place_id}&gt;\n          {formatted_address}\n          {" at "}\n          ({location.lat()}, {location.lng()})\n        &lt;/li&gt;\n      )}\n    &lt;/ol&gt;\n  &lt;/div&gt;\n);\n\n&lt;PlacesWithStandaloneSearchBox /&gt;\n```\n\n### Standalone SearchBox',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps, lifecycle } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n<span class="hljs-keyword">import</span> StandaloneSearchBox <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps/lib/components/places/StandaloneSearchBox"</span>;\n\n<span class="hljs-keyword">const</span> PlacesWithStandaloneSearchBox = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        places: [],\n        onSearchBoxMounted: ref =&gt; {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () =&gt; {\n          const places = refs.searchBox.getPlaces();\n\n          this.setState({\n            places,\n          });\n        },\n      })\n    },\n  }),\n  withScriptjs  \n)(props =&gt;\n  &lt;div data-standalone-searchbox=""&gt;\n    &lt;StandaloneSearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      onPlacesChanged={props.onPlacesChanged}\n    &gt;\n      &lt;input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      /&gt;\n    &lt;/StandaloneSearchBox&gt;\n    &lt;ol&gt;\n      {props.places.map(({ place_id, formatted_address, geometry: { location } }) =&gt;\n        &lt;li key={place_id}&gt;\n          {formatted_address}\n          {" at "}\n          ({location.lat()}, {location.lng()})\n        &lt;/li&gt;\n      )}\n    &lt;/ol&gt;\n  &lt;/div&gt;\n);\n\n&lt;PlacesWithStandaloneSearchBox /&gt;\n```\n\n### Standalone SearchBox',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps, lifecycle } = require("recompose");\nconst {\n  withScriptjs,\n} = require("../../index");\nconst { StandaloneSearchBox } = require("./StandaloneSearchBox");\n\nconst PlacesWithStandaloneSearchBox = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        places: [],\n        onSearchBoxMounted: ref => {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () => {\n          const places = refs.searchBox.getPlaces();\n\n          this.setState({\n            places,\n          });\n        },\n      })\n    },\n  }),\n  withScriptjs  \n)(props =>\n  <div data-standalone-searchbox="">\n    <StandaloneSearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      onPlacesChanged={props.onPlacesChanged}\n    >\n      <input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      />\n    </StandaloneSearchBox>\n    <ol>\n      {props.places.map(({ place_id, formatted_address, geometry: { location } }) =>\n        <li key={place_id}>\n          {formatted_address}\n          {" at "}\n          ({location.lat()}, {location.lng()})\n        </li>\n      )}\n    </ol>\n  </div>\n);\n\n<PlacesWithStandaloneSearchBox />',
+          'const { compose, withProps, lifecycle } = require("recompose");\nconst {\n  withScriptjs,\n} = require("../../index");\nconst { StandaloneSearchBox } = require("./StandaloneSearchBox");\n\nconst PlacesWithStandaloneSearchBox = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n  }),\n  lifecycle({\n    componentWillMount() {\n      const refs = {}\n\n      this.setState({\n        places: [],\n        onSearchBoxMounted: ref => {\n          refs.searchBox = ref;\n        },\n        onPlacesChanged: () => {\n          const places = refs.searchBox.getPlaces();\n\n          this.setState({\n            places,\n          });\n        },\n      })\n    },\n  }),\n  withScriptjs  \n)(props =>\n  <div data-standalone-searchbox="">\n    <StandaloneSearchBox\n      ref={props.onSearchBoxMounted}\n      bounds={props.bounds}\n      onPlacesChanged={props.onPlacesChanged}\n    >\n      <input\n        type="text"\n        placeholder="Customized your placeholder"\n        style={{\n          boxSizing: `border-box`,\n          border: `1px solid transparent`,\n          width: `240px`,\n          height: `32px`,\n          padding: `0 12px`,\n          borderRadius: `3px`,\n          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,\n          fontSize: `14px`,\n          outline: `none`,\n          textOverflow: `ellipses`,\n        }}\n      />\n    </StandaloneSearchBox>\n    <ol>\n      {props.places.map(({ place_id, formatted_address, geometry: { location } }) =>\n        <li key={place_id}>\n          {formatted_address}\n          {" at "}\n          ({location.lat()}, {location.lng()})\n        </li>\n      )}\n    </ol>\n  </div>\n);\n\n<PlacesWithStandaloneSearchBox />',
         settings: {},
         evalInContext: s,
       },
@@ -40233,7 +40233,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Props\n\n-   googleMapURL: String\n-   loadingElement: ReactElement\n\n### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAMarker = withScriptjs(withGoogleMap(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">8</span>}\n    defaultCenter={{ <span class="hljs-attr">lat</span>: <span class="hljs-number">-34.397</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">150.644</span> }}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Marker</span>\n      <span class="hljs-attr">position</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">lat:</span> <span class="hljs-attr">-34.397</span>, <span class="hljs-attr">lng:</span> <span class="hljs-attr">150.644</span> }}\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n));\n\n&lt;MapWithAMarker\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```',
+          '### Props\n\n-   googleMapURL: String\n-   loadingElement: ReactElement\n\n### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAMarker = withScriptjs(withGoogleMap(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">8</span>}\n    defaultCenter={{ <span class="hljs-attr">lat</span>: <span class="hljs-number">-34.397</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">150.644</span> }}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Marker</span>\n      <span class="hljs-attr">position</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">lat:</span> <span class="hljs-attr">-34.397</span>, <span class="hljs-attr">lng:</span> <span class="hljs-attr">150.644</span> }}\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n));\n\n&lt;MapWithAMarker\n  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```',
       },
     ]
   },
@@ -40248,11 +40248,11 @@ object-assign
         {
           name: "getBounds",
           docblock:
-            "Gets the LatLngBounds of this Circle.\n@type LatLngBoundsLatLngBounds\n@public",
+            "Gets the `LatLngBounds` of this Circle.\n@type LatLngBoundsLatLngBounds\n@public",
           modifiers: [],
           params: [],
           returns: null,
-          description: "Gets the LatLngBounds of this Circle.",
+          description: "Gets the `LatLngBounds` of this Circle.",
           tags: {},
         },
         {
@@ -40496,23 +40496,23 @@ object-assign
         {
           name: "getPanel",
           docblock:
-            "Returns the panel <div> in which the DirectionsResult is rendered.\n@type Node<div>DirectionsResult\n@public",
+            "Returns the panel `<div>` in which the `DirectionsResult` is rendered.\n@type Node<div>DirectionsResult\n@public",
           modifiers: [],
           params: [],
           returns: null,
           description:
-            "Returns the panel <div> in which the DirectionsResult is rendered.",
+            "Returns the panel `<div>` in which the `DirectionsResult` is rendered.",
           tags: {},
         },
         {
           name: "getRouteIndex",
           docblock:
-            "Returns the current (zero-based) route index in use by this DirectionsRenderer object.\n@type numberDirectionsRenderer\n@public",
+            "Returns the current (zero-based) route index in use by this `DirectionsRenderer` object.\n@type numberDirectionsRenderer\n@public",
           modifiers: [],
           params: [],
           returns: null,
           description:
-            "Returns the current (zero-based) route index in use by this DirectionsRenderer object.",
+            "Returns the current (zero-based) route index in use by this `DirectionsRenderer` object.",
           tags: {},
         },
       ],
@@ -40726,23 +40726,23 @@ object-assign
         {
           name: "getBounds",
           docblock:
-            "Returns the lat/lng bounds of the current viewport. If more than one copy of the world is visible, the bounds range in longitude from -180 to 180 degrees inclusive. If the map is not yet initialized (i.e. the mapType is still null), or center and zoom have not been set then the result is null or undefined.\n@type LatLngBoundsnullundefined\n@public",
+            "Returns the lat/lng bounds of the current viewport. If more than one copy of the world is visible, the bounds range in longitude from -180 to 180 degrees inclusive. If the map is not yet initialized (i.e. the mapType is still null), or center and zoom have not been set then the result is `null` or `undefined`.\n@type LatLngBoundsnullundefined\n@public",
           modifiers: [],
           params: [],
           returns: null,
           description:
-            "Returns the lat/lng bounds of the current viewport. If more than one copy of the world is visible, the bounds range in longitude from -180 to 180 degrees inclusive. If the map is not yet initialized (i.e. the mapType is still null), or center and zoom have not been set then the result is null or undefined.",
+            "Returns the lat/lng bounds of the current viewport. If more than one copy of the world is visible, the bounds range in longitude from -180 to 180 degrees inclusive. If the map is not yet initialized (i.e. the mapType is still null), or center and zoom have not been set then the result is `null` or `undefined`.",
           tags: {},
         },
         {
           name: "getCenter",
           docblock:
-            "Returns the position displayed at the center of the map. Note that this LatLng object is not wrapped. See LatLng for more information.\n@type LatLngLatLngLatLng\n@public",
+            "Returns the position displayed at the center of the map. Note that this `LatLng` object is _not_ wrapped. See `[LatLng](#LatLng)` for more information.\n@type LatLngLatLngLatLng\n@public",
           modifiers: [],
           params: [],
           returns: null,
           description:
-            "Returns the position displayed at the center of the map. Note that this LatLng object is not wrapped. See LatLng for more information.",
+            "Returns the position displayed at the center of the map. Note that this `LatLng` object is _not_ wrapped. See `[LatLng](#LatLng)` for more information.",
           tags: {},
         },
         {
@@ -40788,34 +40788,34 @@ object-assign
         {
           name: "getProjection",
           docblock:
-            "Returns the current Projection. If the map is not yet initialized (i.e. the mapType is still null) then the result is null. Listen to projection_changed and check its value to ensure it is not null.\n@type ProjectionProjectionprojection_changed\n@public",
+            "Returns the current `Projection`. If the map is not yet initialized (i.e. the mapType is still null) then the result is null. Listen to `projection_changed` and check its value to ensure it is not null.\n@type ProjectionProjectionprojection_changed\n@public",
           modifiers: [],
           params: [],
           returns: null,
           description:
-            "Returns the current Projection. If the map is not yet initialized (i.e. the mapType is still null) then the result is null. Listen to projection_changed and check its value to ensure it is not null.",
+            "Returns the current `Projection`. If the map is not yet initialized (i.e. the mapType is still null) then the result is null. Listen to `projection_changed` and check its value to ensure it is not null.",
           tags: {},
         },
         {
           name: "getStreetView",
           docblock:
-            "Returns the default StreetViewPanorama bound to the map, which may be a default panorama embedded within the map, or the panorama set using setStreetView(). Changes to the map's streetViewControl will be reflected in the display of such a bound panorama.\n@type StreetViewPanoramaStreetViewPanoramasetStreetView()streetViewControl\n@public",
+            "Returns the default `StreetViewPanorama` bound to the map, which may be a default panorama embedded within the map, or the panorama set using `setStreetView()`. Changes to the map's `streetViewControl` will be reflected in the display of such a bound panorama.\n@type StreetViewPanoramaStreetViewPanoramasetStreetView()streetViewControl\n@public",
           modifiers: [],
           params: [],
           returns: null,
           description:
-            "Returns the default StreetViewPanorama bound to the map, which may be a default panorama embedded within the map, or the panorama set using setStreetView(). Changes to the map's streetViewControl will be reflected in the display of such a bound panorama.",
+            "Returns the default `StreetViewPanorama` bound to the map, which may be a default panorama embedded within the map, or the panorama set using `setStreetView()`. Changes to the map's `streetViewControl` will be reflected in the display of such a bound panorama.",
           tags: {},
         },
         {
           name: "getTilt",
           docblock:
-            "Returns the current angle of incidence of the map, in degrees from the viewport plane to the map plane. The result will be 0 for imagery taken directly overhead or 45 for 45° imagery. 45° imagery is only available for satellite and hybrid map types, within some locations, and at some zoom levels. Note: This method does not return the value set by setTilt. See setTilt for details.\n@type number045satellitehybridsetTiltsetTilt\n@public",
+            "Returns the current angle of incidence of the map, in degrees from the viewport plane to the map plane. The result will be `0` for imagery taken directly overhead or `45` for 45° imagery. 45° imagery is only available for `satellite` and `hybrid` map types, within some locations, and at some zoom levels. **Note:** This method does not return the value set by `setTilt`. See `setTilt` for details.\n@type number045satellitehybridsetTiltsetTilt\n@public",
           modifiers: [],
           params: [],
           returns: null,
           description:
-            "Returns the current angle of incidence of the map, in degrees from the viewport plane to the map plane. The result will be 0 for imagery taken directly overhead or 45 for 45° imagery. 45° imagery is only available for satellite and hybrid map types, within some locations, and at some zoom levels. Note: This method does not return the value set by setTilt. See setTilt for details.",
+            "Returns the current angle of incidence of the map, in degrees from the viewport plane to the map plane. The result will be `0` for imagery taken directly overhead or `45` for 45° imagery. 45° imagery is only available for `satellite` and `hybrid` map types, within some locations, and at some zoom levels. **Note:** This method does not return the value set by `setTilt`. See `setTilt` for details.",
           tags: {},
         },
         {
@@ -41069,11 +41069,11 @@ object-assign
         {
           name: "getBounds",
           docblock:
-            "Gets the LatLngBounds of this overlay.\n@type LatLngBoundsLatLngBounds\n@public",
+            "Gets the `LatLngBounds` of this overlay.\n@type LatLngBoundsLatLngBounds\n@public",
           modifiers: [],
           params: [],
           returns: null,
-          description: "Gets the LatLngBounds of this overlay.",
+          description: "Gets the `LatLngBounds` of this overlay.",
           tags: {},
         },
         {
@@ -41948,23 +41948,23 @@ object-assign
         {
           name: "getPanes",
           docblock:
-            "Returns the panes in which this OverlayView can be rendered. The panes are not initialized until onAdd is called by the API.\n@type MapPanesonAdd\n@public",
+            "Returns the panes in which this OverlayView can be rendered. The panes are not initialized until `onAdd` is called by the API.\n@type MapPanesonAdd\n@public",
           modifiers: [],
           params: [],
           returns: null,
           description:
-            "Returns the panes in which this OverlayView can be rendered. The panes are not initialized until onAdd is called by the API.",
+            "Returns the panes in which this OverlayView can be rendered. The panes are not initialized until `onAdd` is called by the API.",
           tags: {},
         },
         {
           name: "getProjection",
           docblock:
-            "Returns the MapCanvasProjection object associated with this OverlayView. The projection is not initialized until onAdd is called by the API.\n@type MapCanvasProjectionMapCanvasProjectionOverlayViewonAdd\n@public",
+            "Returns the `MapCanvasProjection` object associated with this `OverlayView`. The projection is not initialized until `onAdd` is called by the API.\n@type MapCanvasProjectionMapCanvasProjectionOverlayViewonAdd\n@public",
           modifiers: [],
           params: [],
           returns: null,
           description:
-            "Returns the MapCanvasProjection object associated with this OverlayView. The projection is not initialized until onAdd is called by the API.",
+            "Returns the `MapCanvasProjection` object associated with this `OverlayView`. The projection is not initialized until `onAdd` is called by the API.",
           tags: {},
         },
       ],
@@ -42725,23 +42725,23 @@ object-assign
         {
           name: "getPhotographerPov",
           docblock:
-            "Returns the heading and pitch of the photographer when this panorama was taken. For Street View panoramas on the road, this also reveals in which direction the car was travelling. This data is available after the pano_changed event.\n@type StreetViewPovpano_changed\n@public",
+            "Returns the heading and pitch of the photographer when this panorama was taken. For Street View panoramas on the road, this also reveals in which direction the car was travelling. This data is available after the `pano_changed` event.\n@type StreetViewPovpano_changed\n@public",
           modifiers: [],
           params: [],
           returns: null,
           description:
-            "Returns the heading and pitch of the photographer when this panorama was taken. For Street View panoramas on the road, this also reveals in which direction the car was travelling. This data is available after the pano_changed event.",
+            "Returns the heading and pitch of the photographer when this panorama was taken. For Street View panoramas on the road, this also reveals in which direction the car was travelling. This data is available after the `pano_changed` event.",
           tags: {},
         },
         {
           name: "getPosition",
           docblock:
-            "Returns the current LatLng position for the Street View panorama.\n@type LatLngLatLng\n@public",
+            "Returns the current `LatLng` position for the Street View panorama.\n@type LatLngLatLng\n@public",
           modifiers: [],
           params: [],
           returns: null,
           description:
-            "Returns the current LatLng position for the Street View panorama.",
+            "Returns the current `LatLng` position for the Street View panorama.",
           tags: {},
         },
         {
@@ -42758,23 +42758,23 @@ object-assign
         {
           name: "getStatus",
           docblock:
-            "Returns the status of the panorama on completion of the setPosition() or setPano() request.\n@type StreetViewStatussetPosition()setPano()\n@public",
+            "Returns the status of the panorama on completion of the `setPosition()` or `setPano()` request.\n@type StreetViewStatussetPosition()setPano()\n@public",
           modifiers: [],
           params: [],
           returns: null,
           description:
-            "Returns the status of the panorama on completion of the setPosition() or setPano() request.",
+            "Returns the status of the panorama on completion of the `setPosition()` or `setPano()` request.",
           tags: {},
         },
         {
           name: "getVisible",
           docblock:
-            "Returns true if the panorama is visible. It does not specify whether Street View imagery is available at the specified position.\n@type booleantrue\n@public",
+            "Returns `true` if the panorama is visible. It does not specify whether Street View imagery is available at the specified position.\n@type booleantrue\n@public",
           modifiers: [],
           params: [],
           returns: null,
           description:
-            "Returns true if the panorama is visible. It does not specify whether Street View imagery is available at the specified position.",
+            "Returns `true` if the panorama is visible. It does not specify whether Street View imagery is available at the specified position.",
           tags: {},
         },
         {
@@ -43359,11 +43359,11 @@ object-assign
         {
           name: "getDrawingMode",
           docblock:
-            "Returns the DrawingManager's drawing mode.\n@type OverlayTypeDrawingManager\n@public",
+            "Returns the `DrawingManager`'s drawing mode.\n@type OverlayTypeDrawingManager\n@public",
           modifiers: [],
           params: [],
           returns: null,
-          description: "Returns the DrawingManager's drawing mode.",
+          description: "Returns the `DrawingManager`'s drawing mode.",
           tags: {},
         },
       ],
@@ -43470,12 +43470,12 @@ object-assign
         {
           name: "getPlaces",
           docblock:
-            "Returns the query selected by the user, or null if no places have been found yet, to be used with places_changed event.\n@type Array<PlaceResult>nullplaces_changed\n@public",
+            "Returns the query selected by the user, or `null` if no places have been found yet, to be used with `places_changed` event.\n@type Array<PlaceResult>nullplaces_changed\n@public",
           modifiers: [],
           params: [],
           returns: null,
           description:
-            "Returns the query selected by the user, or null if no places have been found yet, to be used with places_changed event.",
+            "Returns the query selected by the user, or `null` if no places have been found yet, to be used with `places_changed` event.",
           tags: {},
         },
       ],
@@ -43554,12 +43554,12 @@ object-assign
         {
           name: "getPlaces",
           docblock:
-            "Returns the query selected by the user, or null if no places have been found yet, to be used with places_changed event.\n@type Array<PlaceResult>nullplaces_changed\n@public",
+            "Returns the query selected by the user, or `null` if no places have been found yet, to be used with `places_changed` event.\n@type Array<PlaceResult>nullplaces_changed\n@public",
           modifiers: [],
           params: [],
           returns: null,
           description:
-            "Returns the query selected by the user, or null if no places have been found yet, to be used with places_changed event.",
+            "Returns the query selected by the user, or `null` if no places have been found yet, to be used with `places_changed` event.",
           tags: {},
         },
       ],
@@ -45054,7 +45054,7 @@ object-assign
         return R
       }),
       n.d(t, "withHandlers", function() {
-        return P
+        return O
       }),
       n.d(t, "defaultProps", function() {
         return M
@@ -45081,7 +45081,7 @@ object-assign
         return W
       }),
       n.d(t, "renderComponent", function() {
-        return V
+        return z
       }),
       n.d(t, "renderNothing", function() {
         return G
@@ -45322,12 +45322,12 @@ object-assign
           return a
         }
       },
-      O = function mapValues(e, t) {
+      P = function mapValues(e, t) {
         var n = {}
         for (var r in e) e.hasOwnProperty(r) && (n[r] = t(e[r], r))
         return n
       },
-      P = function withHandlers(e) {
+      O = function withHandlers(e) {
         return function(t) {
           var n = w(t),
             o = (function(e) {
@@ -45357,7 +45357,7 @@ object-assign
             s = function _initialiseProps() {
               var t = this
               ;(this.cachedHandlers = {}),
-                (this.handlers = O(
+                (this.handlers = P(
                   "function" == typeof e ? e(this.props) : e,
                   function(e, n) {
                     return function() {
@@ -45505,7 +45505,7 @@ object-assign
             a = function _initialiseProps() {
               var n = this
               ;(this.state = "function" == typeof e ? e(this.props) : e),
-                (this.stateUpdaters = O(t, function(e) {
+                (this.stateUpdaters = P(t, function(e) {
                   return function(t) {
                     for (
                       var r = arguments.length,
@@ -45588,7 +45588,7 @@ object-assign
           return i
         }
       },
-      V = function renderComponent(e) {
+      z = function renderComponent(e) {
         return function(t) {
           var n = w(e),
             r = function RenderComponent(e) {
@@ -45597,7 +45597,7 @@ object-assign
           return r
         }
       },
-      z = (function(e) {
+      V = (function(e) {
         function Nothing() {
           return g(this, Nothing), _(this, e.apply(this, arguments))
         }
@@ -45610,7 +45610,7 @@ object-assign
         )
       })(r.Component),
       G = function renderNothing(e) {
-        return z
+        return V
       },
       H = function shouldUpdate(e) {
         return function(t) {
@@ -47205,8 +47205,8 @@ object-assign
         E,
         S,
         R,
-        O,
         P,
+        O,
         M,
         T,
         D,
@@ -47223,7 +47223,7 @@ object-assign
       ) {
         for (
           I += N,
-            O = "",
+            P = "",
             L++,
             E = t.length,
             R = 0,
@@ -47248,20 +47248,20 @@ object-assign
               R--
             }
           } else R++
-          ;(O += _), (_ = ""), L++
+          ;(P += _), (_ = ""), L++
         }
         if (o) {
-          for (w = O, I += O + _, L++; L < E && ((N = t.charAt(L)), r(N)); )
+          for (w = P, I += P + _, L++; L < E && ((N = t.charAt(L)), r(N)); )
             (I += N), L++
           if (
-            ((N = t.charAt(L)), (x = q ? m : f), (O = ""), (b = I), N === p)
+            ((N = t.charAt(L)), (x = q ? m : f), (P = ""), (b = I), N === p)
           ) {
             for (L++, b += p; L < E && (N = t.charAt(L)) !== d; ) {
               if (q && "\n" === N) return
-              ;(O += N), L++
+              ;(P += N), L++
             }
             if (t.charAt(L) !== d) return
-            ;(I += p + O + d), (P = O), L++
+            ;(I += p + P + d), (O = P), L++
           } else {
             for (
               N = null, _ = "";
@@ -47277,44 +47277,44 @@ object-assign
                   if (0 === R) break
                   R--
                 }
-                ;(O += _),
+                ;(P += _),
                   (_ = ""),
-                  N === i && ((O += i), (N = t.charAt(++L))),
-                  (O += N)
+                  N === i && ((P += i), (N = t.charAt(++L))),
+                  (P += N)
               }
               L++
             }
-            ;(P = O), (L = (I += O).length)
+            ;(O = P), (L = (I += P).length)
           }
-          for (O = ""; L < E && ((N = t.charAt(L)), r(N)); ) (O += N), L++
-          if (((N = t.charAt(L)), (I += O), O && s.call(x, N)))
-            if ((L++, (I += N), (O = ""), (k = x[N]), (v = I), q)) {
+          for (P = ""; L < E && ((N = t.charAt(L)), r(N)); ) (P += N), L++
+          if (((N = t.charAt(L)), (I += P), P && s.call(x, N)))
+            if ((L++, (I += N), (P = ""), (k = x[N]), (v = I), q)) {
               for (; L < E && (N = t.charAt(L)) !== k; )
-                N === i && ((O += i), (N = t.charAt(++L))), L++, (O += N)
+                N === i && ((P += i), (N = t.charAt(++L))), L++, (P += N)
               if ((N = t.charAt(L)) !== k) return
-              for (S = O, I += O + N, L++; L < E && ((N = t.charAt(L)), r(N)); )
+              for (S = P, I += P + N, L++; L < E && ((N = t.charAt(L)), r(N)); )
                 (I += N), L++
             } else
               for (_ = ""; L < E; ) {
                 if ((N = t.charAt(L)) === k)
-                  j && ((O += k + _), (_ = "")), (j = !0)
+                  j && ((P += k + _), (_ = "")), (j = !0)
                 else if (j) {
                   if (N === c) {
-                    ;(I += O + k + _), (S = O)
+                    ;(I += P + k + _), (S = P)
                     break
                   }
-                  r(N) ? (_ += N) : ((O += k + _ + N), (_ = ""), (j = !1))
-                } else O += N
+                  r(N) ? (_ += N) : ((P += k + _ + N), (_ = ""), (j = !1))
+                } else P += N
                 L++
               }
           if (t.charAt(L) === c)
             return (
               !!n ||
               ((I += c),
-              (P = A.decode.raw(A.unescape(P), e(b).test().end)),
+              (O = A.decode.raw(A.unescape(O), e(b).test().end)),
               S &&
                 ((v = e(v).test().end), (S = A.decode.raw(A.unescape(S), v))),
-              (D = { type: C ? "image" : "link", title: S || null, url: P }),
+              (D = { type: C ? "image" : "link", title: S || null, url: O }),
               C
                 ? (D.alt = A.decode.raw(A.unescape(w), M) || null)
                 : ((T = A.enterLink()),
@@ -47427,8 +47427,8 @@ object-assign
           E,
           S,
           R,
-          O,
           P,
+          O,
           M,
           T,
           D,
@@ -47441,8 +47441,8 @@ object-assign
           F = this,
           U = F.options.commonmark,
           W = F.options.pedantic,
-          V = F.blockTokenizers,
-          z = F.interruptList,
+          z = F.blockTokenizers,
+          V = F.interruptList,
           G = 0,
           H = t.length,
           K = null,
@@ -47467,7 +47467,7 @@ object-assign
         }
         if ((m = t.charAt(++G)) === d || m === f) {
           if (n) return !0
-          for (G = 0, O = [], P = [], M = []; G < H; ) {
+          for (G = 0, P = [], O = [], M = []; G < H; ) {
             for (
               v = G,
                 _ = !1,
@@ -47519,29 +47519,29 @@ object-assign
               ((E = t.slice(v, b)),
               (k = v === G ? E : t.slice(G, b)),
               (j === u || j === c || j === p) &&
-                V.thematicBreak.call(F, e, E, !0))
+                z.thematicBreak.call(F, e, E, !0))
             )
               break
             if (((S = R), (R = !r(k).length), q && T))
-              (T.value = T.value.concat(M, E)), (P = P.concat(M, E)), (M = [])
+              (T.value = T.value.concat(M, E)), (O = O.concat(M, E)), (M = [])
             else if (_)
               0 !== M.length && (T.value.push(""), (T.trail = M.concat())),
                 (T = { value: [E], indent: $, trail: [] }),
-                O.push(T),
-                (P = P.concat(M, E)),
+                P.push(T),
+                (O = O.concat(M, E)),
                 (M = [])
             else if (R) {
               if (S) break
               M.push(E)
             } else {
               if (S) break
-              if (l(z, V, F, [e, E, !0])) break
-              ;(T.value = T.value.concat(M, E)), (P = P.concat(M, E)), (M = [])
+              if (l(V, z, F, [e, E, !0])) break
+              ;(T.value = T.value.concat(M, E)), (O = O.concat(M, E)), (M = [])
             }
             G = b + 1
           }
           for (
-            L = e(P.join(h)).reset({
+            L = e(O.join(h)).reset({
               type: "list",
               ordered: a,
               start: K,
@@ -47552,14 +47552,14 @@ object-assign
               A = F.enterBlock(),
               I = !1,
               G = -1,
-              H = O.length;
+              H = P.length;
             ++G < H;
 
           )
-            (T = O[G].value.join(h)),
+            (T = P[G].value.join(h)),
               (N = e.now()),
               (T = e(T)(listItem(F, T, N), L)).loose && (I = !0),
-              (T = O[G].trail.join(h)),
+              (T = P[G].trail.join(h)),
               G !== H - 1 && (T += h),
               e(T)
           return D(), A(), (L.loose = I), L
@@ -47695,17 +47695,17 @@ object-assign
         E = t.length,
         S = "",
         R = "",
-        O = i,
-        P = u
-      if (("!" === w && ((O = a), (R = w), (w = t.charAt(++k))), w === f)) {
+        P = i,
+        O = u
+      if (("!" === w && ((P = a), (R = w), (w = t.charAt(++k))), w === f)) {
         for (
           k++,
             R += w,
             _ = "",
             C.options.footnotes &&
-              O === i &&
+              P === i &&
               t.charAt(k) === d &&
-              ((R += d), k++, (O = l)),
+              ((R += d), k++, (P = l)),
             x = 0;
           k < E;
 
@@ -47720,7 +47720,7 @@ object-assign
         if (((S = _), (o = _), (w = t.charAt(k)) === m)) {
           for (k++, S += w, _ = ""; k < E && ((w = t.charAt(k)), r(w)); )
             (_ += w), k++
-          if (((w = t.charAt(k)), O !== l && w === f)) {
+          if (((w = t.charAt(k)), P !== l && w === f)) {
             for (
               g = "", _ += w, k++;
               k < E && (w = t.charAt(k)) !== f && w !== m;
@@ -47728,7 +47728,7 @@ object-assign
             )
               w === h && ((g += h), (w = t.charAt(++k))), (g += w), k++
             ;(w = t.charAt(k)) === m
-              ? ((P = g ? p : c), (_ += g + w), k++)
+              ? ((O = g ? p : c), (_ += g + w), k++)
               : (g = ""),
               (S += _),
               (_ = "")
@@ -47736,13 +47736,13 @@ object-assign
             if (!o) return
             g = o
           }
-          if (P === p || !j)
+          if (O === p || !j)
             return (
               (S = R + S),
-              O === i && C.inLink
+              P === i && C.inLink
                 ? null
                 : !!n ||
-                  (O === l && -1 !== o.indexOf(" ")
+                  (P === l && -1 !== o.indexOf(" ")
                     ? e(S)({
                         type: "footnote",
                         children: this.tokenizeInline(o, e.now()),
@@ -47750,14 +47750,14 @@ object-assign
                     : ((y = e.now()),
                       (y.column += R.length),
                       (y.offset += R.length),
-                      (g = P === p ? g : o),
-                      (b = { type: O + "Reference", identifier: s(g) }),
-                      (O !== i && O !== a) || (b.referenceType = P),
-                      O === i
+                      (g = O === p ? g : o),
+                      (b = { type: P + "Reference", identifier: s(g) }),
+                      (P !== i && P !== a) || (b.referenceType = O),
+                      P === i
                         ? ((v = C.enterLink()),
                           (b.children = C.tokenizeInline(o, y)),
                           v())
-                        : O === a &&
+                        : P === a &&
                           (b.alt = C.decode.raw(C.unescape(o), y) || null),
                       e(S)(b)))
             )
@@ -47852,8 +47852,8 @@ object-assign
         E,
         S,
         R,
-        O,
         P,
+        O,
         M,
         T,
         D,
@@ -47916,8 +47916,8 @@ object-assign
                 C = L.length + 1,
                 b = 0,
                 k = "",
-                O = "",
-                P = !0,
+                P = "",
+                O = !0,
                 M = null,
                 T = null;
               b < C;
@@ -47925,15 +47925,15 @@ object-assign
             )
               if ((E = L.charAt(b)) !== p && E !== u) {
                 if ("" === E || E === a)
-                  if (P) e(E)
+                  if (O) e(E)
                   else {
                     if (E && T) {
                       ;(k += E), b++
                       continue
                     }
-                    ;(!O && !E) ||
-                      P ||
-                      ((j = O),
+                    ;(!P && !E) ||
+                      O ||
+                      ((j = P),
                       k.length > 1 &&
                         (E
                           ? ((j += k.slice(0, k.length - 1)),
@@ -47941,24 +47941,24 @@ object-assign
                           : ((j += k), (k = ""))),
                       (D = e.now()),
                       e(j)(
-                        { type: "tableCell", children: W.tokenizeInline(O, D) },
+                        { type: "tableCell", children: W.tokenizeInline(P, D) },
                         x
                       )),
                       e(k + E),
                       (k = ""),
-                      (O = "")
+                      (P = "")
                   }
                 else if (
-                  (k && ((O += k), (k = "")),
-                  (O += E),
-                  E === o && b !== C - 2 && ((O += L.charAt(b + 1)), b++),
+                  (k && ((P += k), (k = "")),
+                  (P += E),
+                  E === o && b !== C - 2 && ((P += L.charAt(b + 1)), b++),
                   E === s)
                 ) {
-                  for (M = 1; L.charAt(b + 1) === E; ) (O += E), b++, M++
+                  for (M = 1; L.charAt(b + 1) === E; ) (P += E), b++, M++
                   T ? M >= T && (T = 0) : (T = M)
                 }
-                ;(P = !1), b++
-              } else O ? (k += E) : e(E), b++
+                ;(O = !1), b++
+              } else P ? (k += E) : e(E), b++
             A || e(c + v)
           }
           return B

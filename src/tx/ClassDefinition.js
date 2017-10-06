@@ -1,4 +1,5 @@
 import { parse } from "url"
+import toMarkdown from "to-markdown"
 import makeFetchHappen from "make-fetch-happen"
 import cheerio from "cheerio"
 const fetch = makeFetchHappen.defaults({
@@ -50,11 +51,15 @@ function contentToJS(KlassName, $, $content) {
         .replace("\n", "")
         .match(/(\S+)\((.*)\)/)
 
+      const returnsDesc = toMarkdown(
+        $tr.find("td:nth-child(2) > div.desc").html()
+      )
+
       return {
         name,
         args,
         returns: $tr.find("td:nth-child(2) > div > code").text(),
-        returnsDesc: $tr.find("td:nth-child(2) > div.desc").text(),
+        returnsDesc,
       }
     })
     .get()

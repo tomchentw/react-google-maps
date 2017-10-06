@@ -62,6 +62,22 @@ export default function transformer(file, api) {
     )
   })
 
+  wrap.find(j.Program).forEach(path => {
+    j(path).replaceWith({
+      ...path.node.__clone(),
+      body: [
+        {
+          ...path.node.body[0],
+          comments: [
+            j.commentBlock(AUTO_GENERATED_HEADER, true),
+            ...(path.node.body[0].comments || []),
+          ],
+        },
+        ...path.node.body.slice(1),
+      ],
+    })
+  })
+
   wrap.find(j.ClassBody).forEach(path => {
     j(path).replaceWith(
       Object.assign(path.node.__clone(), {
@@ -224,3 +240,10 @@ export default function transformer(file, api) {
     ]
   }
 }
+
+const AUTO_GENERATED_HEADER = `
+ * -----------------------------------------------------------------------------
+ * This file is auto-generated from the corresponding file at \`src/macros/\`.
+ * Please **DO NOT** edit this file directly when creating PRs.
+ * -----------------------------------------------------------------------------
+ `

@@ -2870,7 +2870,7 @@
               JSXExpressionContainer
             )
           })(f),
-          $ = (function(e) {
+          Z = (function(e) {
             function JSXOpeningElement() {
               e.apply(this, arguments)
             }
@@ -2949,7 +2949,7 @@
               JSXOpeningElement
             )
           })(f),
-          Z = (function(e) {
+          $ = (function(e) {
             function JSXSpreadAttribute() {
               e.apply(this, arguments)
             }
@@ -4825,8 +4825,8 @@
             JSXClosingElement: G,
             JSXElement: H,
             JSXExpressionContainer: K,
-            JSXOpeningElement: $,
-            JSXSpreadAttribute: Z,
+            JSXOpeningElement: Z,
+            JSXSpreadAttribute: $,
             Literal: (function(e) {
               function Literal() {
                 e.apply(this, arguments)
@@ -19809,8 +19809,8 @@
           G = "[object Date]",
           H = "[object DOMException]",
           K = "[object Error]",
-          $ = "[object Function]",
-          Z = "[object GeneratorFunction]",
+          Z = "[object Function]",
+          $ = "[object GeneratorFunction]",
           Y = "[object Map]",
           J = "[object Number]",
           X = "[object Null]",
@@ -19863,8 +19863,8 @@
           Ge = /^[-+]0x[0-9a-f]+$/i,
           He = /^0b[01]+$/i,
           Ke = /^\[object .+?Constructor\]$/,
-          $e = /^0o[0-7]+$/i,
-          Ze = /^(?:0|[1-9]\d*)$/,
+          Ze = /^0o[0-7]+$/i,
+          $e = /^(?:0|[1-9]\d*)$/,
           Ye = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g,
           Je = /($^)/,
           Xe = /['\n\r\u2028\u2029\\]/g,
@@ -19966,7 +19966,7 @@
         ;(xt[ce] = xt[pe] = xt[de] = xt[he] = xt[fe] = xt[me] = xt[ge] = xt[
           ye
         ] = xt[be] = !0),
-          (xt[U] = xt[W] = xt[le] = xt[V] = xt[ue] = xt[G] = xt[K] = xt[$] = xt[
+          (xt[U] = xt[W] = xt[le] = xt[V] = xt[ue] = xt[G] = xt[K] = xt[Z] = xt[
             Y
           ] = xt[J] = xt[Q] = xt[te] = xt[ne] = xt[re] = xt[ie] = !1)
         var Ct = {}
@@ -19975,7 +19975,7 @@
         ] = Ct[de] = Ct[he] = Ct[fe] = Ct[Y] = Ct[J] = Ct[Q] = Ct[te] = Ct[
           ne
         ] = Ct[re] = Ct[oe] = Ct[me] = Ct[ge] = Ct[ye] = Ct[be] = !0),
-          (Ct[K] = Ct[$] = Ct[ie] = !1)
+          (Ct[K] = Ct[Z] = Ct[ie] = !1)
         var wt = {
             À: "A",
             Á: "A",
@@ -20215,7 +20215,7 @@
           Gt = basePropertyOf(wt),
           Ht = basePropertyOf(kt),
           Kt = basePropertyOf(Et),
-          $t = (function runInContext(e) {
+          Zt = (function runInContext(e) {
             function lodash(e) {
               if (isObjectLike(e) && !Pr(e) && !(e instanceof LazyWrapper)) {
                 if (e instanceof LodashWrapper) return e
@@ -20366,7 +20366,7 @@
                 if (((a = initCloneArray(e)), !l)) return copyArray(e, a)
               } else {
                 var m = qn(e),
-                  g = m == $ || m == Z
+                  g = m == Z || m == $
                 if (Mr(e)) return cloneBuffer(e, l)
                 if (m == Q || m == U || (g && !o)) {
                   if (((a = u || g ? {} : initCloneObject(e)), !l))
@@ -21893,7 +21893,7 @@
             function isIndex(e, t) {
               return (
                 !!(t = null == t ? A : t) &&
-                ("number" == typeof e || Ze.test(e)) &&
+                ("number" == typeof e || $e.test(e)) &&
                 e > -1 &&
                 e % 1 == 0 &&
                 e < t
@@ -22315,7 +22315,7 @@
             function isFunction(e) {
               if (!isObject(e)) return !1
               var t = baseGetTag(e)
-              return t == $ || t == Z || t == z || t == ee
+              return t == Z || t == $ || t == z || t == ee
             }
             function isInteger(e) {
               return "number" == typeof e && e == toInteger(e)
@@ -22388,7 +22388,7 @@
               if ("string" != typeof e) return 0 === e ? e : +e
               e = e.replace(Ie, "")
               var n = He.test(e)
-              return n || $e.test(e)
+              return n || Ze.test(e)
                 ? Pt(e.slice(2), n ? 2 : 8)
                 : Ge.test(e) ? L : +e
             }
@@ -22495,7 +22495,7 @@
               return !1
             }
             var t = (e =
-                null == e ? Tt : $t.defaults(Tt.Object(), e, $t.pick(Tt, _t)))
+                null == e ? Tt : Zt.defaults(Tt.Object(), e, Zt.pick(Tt, _t)))
                 .Array,
               n = e.Date,
               r = e.Error,
@@ -22549,7 +22549,7 @@
               })(),
               Nt = e.clearTimeout !== Tt.clearTimeout && e.clearTimeout,
               Vt = n && n.now !== Tt.Date.now && n.now,
-              Zt = e.setTimeout !== Tt.setTimeout && e.setTimeout,
+              $t = e.setTimeout !== Tt.setTimeout && e.setTimeout,
               Yt = Ue.ceil,
               Jt = Ue.floor,
               Xt = Qe.getOwnPropertySymbols,
@@ -22792,7 +22792,7 @@
             var Fn = it ? isFunction : stubFalse,
               Un = shortOut(Mn),
               Wn =
-                Zt ||
+                $t ||
                 function(e, t) {
                   return Tt.setTimeout(e, t)
                 },
@@ -22845,11 +22845,11 @@
                     : []
                 )
               }),
-              $n = baseRest(function(e) {
+              Zn = baseRest(function(e) {
                 var t = arrayMap(e, castArrayLikeObject)
                 return t.length && t[0] === e[0] ? baseIntersection(t) : []
               }),
-              Zn = baseRest(function(e) {
+              $n = baseRest(function(e) {
                 var t = last(e),
                   n = arrayMap(e, castArrayLikeObject)
                 return (
@@ -23124,8 +23124,8 @@
               Kr = createInverter(function(e, t, n) {
                 lt.call(e, t) ? e[t].push(n) : (e[t] = [n])
               }, getIteratee),
-              $r = baseRest(baseInvoke),
-              Zr = createAssigner(function(e, t, n) {
+              Zr = baseRest(baseInvoke),
+              $r = createAssigner(function(e, t, n) {
                 baseMerge(e, t, n)
               }),
               Yr = createAssigner(function(e, t, n, r) {
@@ -23388,8 +23388,8 @@
               (lodash.initial = function initial(e) {
                 return (null == e ? 0 : e.length) ? baseSlice(e, 0, -1) : []
               }),
-              (lodash.intersection = $n),
-              (lodash.intersectionBy = Zn),
+              (lodash.intersection = Zn),
+              (lodash.intersectionBy = $n),
               (lodash.intersectionWith = Yn),
               (lodash.invert = Hr),
               (lodash.invertBy = Kr),
@@ -23426,7 +23426,7 @@
                 return baseMatchesProperty(e, baseClone(t, d))
               }),
               (lodash.memoize = memoize),
-              (lodash.merge = Zr),
+              (lodash.merge = $r),
               (lodash.mergeWith = Yr),
               (lodash.method = fo),
               (lodash.methodOf = mo),
@@ -23812,7 +23812,7 @@
                   baseInRange(e, t, n)
                 )
               }),
-              (lodash.invoke = $r),
+              (lodash.invoke = Zr),
               (lodash.isArguments = Rr),
               (lodash.isArray = Pr),
               (lodash.isArrayBuffer = Or),
@@ -24580,9 +24580,9 @@
               lodash
             )
           })()
-        ;(Tt._ = $t),
+        ;(Tt._ = Zt),
           (o = function() {
-            return $t
+            return Zt
           }.call(t, n, t, r)) !== s && (r.exports = o)
       }.call(this))
     }.call(
@@ -26747,7 +26747,7 @@ object-assign
       function flush() {
         fe &&
           (me.push(fe),
-          te && te.call(oe, fe, { start: Z, end: now() }),
+          te && te.call(oe, fe, { start: $, end: now() }),
           (fe = C))
       }
       var n,
@@ -26763,8 +26763,8 @@ object-assign
         G,
         H,
         K,
-        $,
         Z,
+        $,
         Y,
         J,
         X,
@@ -26786,7 +26786,7 @@ object-assign
         fe = C,
         me = []
       for (
-        Z = now(),
+        $ = now(),
           F = re
             ? function parseError(e, t) {
                 var n = now()
@@ -26825,9 +26825,9 @@ object-assign
               n = C,
               V = C,
               a = C,
-              $ = O[K],
+              Z = O[K],
               X--;
-            ++X < ue && ((q = at(X)), $(q));
+            ++X < ue && ((q = at(X)), Z(q));
 
           )
             (a += q), K === E && u.call(o, a) && ((n = a), (V = o[a]))
@@ -26863,13 +26863,13 @@ object-assign
                 : K !== E && F(A, J)),
             B
               ? (flush(),
-                (Z = now()),
+                ($ = now()),
                 (ce = X - 1),
                 (de += X - H + 1),
                 me.push(B),
                 (Y = now()).offset++,
-                ne && ne.call(se, B, { start: Z, end: Y }, e.slice(H - 1, X)),
-                (Z = Y))
+                ne && ne.call(se, B, { start: $, end: Y }, e.slice(H - 1, X)),
+                ($ = Y))
               : ((a = e.slice(H - 1, X)),
                 (fe += a),
                 (de += a.length),
@@ -39647,6 +39647,37 @@ object-assign
       "",
     ])
   },
+  "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/components/BicyclingLayer.md": function(
+    e,
+    t,
+    n
+  ) {
+    var r = {
+        recompose: n("./node_modules/recompose/es/Recompose.js"),
+        "../index": n("./src/index.js"),
+        react: n("./node_modules/react/react.js"),
+      },
+      o = n(
+        "./node_modules/react-styleguidist/loaders/utils/client/requireInRuntime.js"
+      ).bind(null, r),
+      s = n(
+        "./node_modules/react-styleguidist/loaders/utils/client/evalInContext.js"
+      ).bind(null, "var React = require('react');", o)
+    e.exports = [
+      {
+        type: "markdown",
+        content:
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  BicyclingLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithABicyclingLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  &gt;\n    &lt;BicyclingLayer /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithABicyclingLayer /&gt;\n```\n\n### Map with a BicyclingLayer',
+      },
+      {
+        type: "code",
+        content:
+          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  BicyclingLayer,\n} = require("../index");\n\nconst MapWithABicyclingLayer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={12}\n    defaultCenter={{ lat: 34.17223, lng: -118.37897 }}\n  >\n    <BicyclingLayer autoUpdate />\n  </GoogleMap>\n);\n\n<MapWithABicyclingLayer />',
+        settings: {},
+        evalInContext: s,
+      },
+    ]
+  },
   "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/components/DirectionsRenderer.md": function(
     e,
     t,
@@ -40236,6 +40267,33 @@ object-assign
           '### Props\n\n-   googleMapURL: String\n-   loadingElement: ReactElement\n\n### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithAMarker = withScriptjs(withGoogleMap(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">8</span>}\n    defaultCenter={{ <span class="hljs-attr">lat</span>: <span class="hljs-number">-34.397</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">150.644</span> }}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Marker</span>\n      <span class="hljs-attr">position</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">lat:</span> <span class="hljs-attr">-34.397</span>, <span class="hljs-attr">lng:</span> <span class="hljs-attr">150.644</span> }}\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n));\n\n&lt;MapWithAMarker\n  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```',
       },
     ]
+  },
+  "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/BicyclingLayer.jsx": function(
+    e,
+    t,
+    n
+  ) {
+    e.exports = {
+      description: "\n",
+      methods: [],
+      displayName: "BicyclingLayer",
+      doclets: {
+        url:
+          "https://developers.google.com/maps/documentation/javascript/3.exp/reference#BicyclingLayer",
+      },
+      tags: {
+        url: [
+          {
+            title: "url",
+            description:
+              "https://developers.google.com/maps/documentation/javascript/3.exp/reference#BicyclingLayer",
+          },
+        ],
+      },
+      examples: n(
+        "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/components/BicyclingLayer.md"
+      ),
+    }
   },
   "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/Circle.jsx": function(
     e,
@@ -43778,6 +43836,16 @@ object-assign
               metadata: {},
             },
             {
+              filepath: "src/components/BicyclingLayer.jsx",
+              pathLine: 'import { BicyclingLayer } from "react-google-maps";',
+              module: n("./src/components/BicyclingLayer.jsx"),
+              props: n(
+                "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/BicyclingLayer.jsx"
+              ),
+              hasExamples: !0,
+              metadata: {},
+            },
+            {
               filepath: "src/components/Circle.jsx",
               pathLine: 'import { Circle } from "react-google-maps";',
               module: n("./src/components/Circle.jsx"),
@@ -45093,10 +45161,10 @@ object-assign
         return K
       }),
       n.d(t, "onlyUpdateForKeys", function() {
-        return $
+        return Z
       }),
       n.d(t, "onlyUpdateForPropTypes", function() {
-        return Z
+        return $
       }),
       n.d(t, "withContext", function() {
         return Y
@@ -45641,16 +45709,16 @@ object-assign
         })
         return t(e)
       },
-      $ = function onlyUpdateForKeys(e) {
+      Z = function onlyUpdateForKeys(e) {
         var t = H(function(t, n) {
           return !i()(S(n, e), S(t, e))
         })
         return t
       },
-      Z = function onlyUpdateForPropTypes(e) {
+      $ = function onlyUpdateForPropTypes(e) {
         var t = e.propTypes,
           n = Object.keys(t || {}),
-          r = $(n)(e)
+          r = Z(n)(e)
         return r
       },
       Y = function withContext(e, t) {
@@ -47446,18 +47514,18 @@ object-assign
           G = 0,
           H = t.length,
           K = null,
-          $ = 0;
+          Z = 0;
         G < H;
 
       ) {
-        if ((m = t.charAt(G)) === f) $ += g - $ % g
+        if ((m = t.charAt(G)) === f) Z += g - Z % g
         else {
           if (m !== d) break
-          $++
+          Z++
         }
         G++
       }
-      if (!($ >= g)) {
+      if (!(Z >= g)) {
         if (((m = t.charAt(G)), (o = U ? w : C), !0 === x[m])) (y = m), (a = !1)
         else {
           for (a = !0, i = ""; G < H && ((m = t.charAt(G)), s(m)); )
@@ -47474,36 +47542,36 @@ object-assign
                 q = !1,
                 -1 === (b = t.indexOf(h, G)) && (b = H),
                 B = G + g,
-                $ = 0;
+                Z = 0;
               G < H;
 
             ) {
-              if ((m = t.charAt(G)) === f) $ += g - $ % g
+              if ((m = t.charAt(G)) === f) Z += g - Z % g
               else {
                 if (m !== d) break
-                $++
+                Z++
               }
               G++
             }
             if (
-              ($ >= g && (q = !0),
-              T && $ >= T.indent && (q = !0),
+              (Z >= g && (q = !0),
+              T && Z >= T.indent && (q = !0),
               (m = t.charAt(G)),
               (j = null),
               !q)
             ) {
-              if (!0 === x[m]) (j = m), G++, $++
+              if (!0 === x[m]) (j = m), G++, Z++
               else {
                 for (i = ""; G < H && ((m = t.charAt(G)), s(m)); ) (i += m), G++
                 ;(m = t.charAt(G)),
                   G++,
-                  i && !0 === o[m] && ((j = m), ($ += i.length + 1))
+                  i && !0 === o[m] && ((j = m), (Z += i.length + 1))
               }
               if (j)
-                if ((m = t.charAt(G)) === f) ($ += g - $ % g), G++
+                if ((m = t.charAt(G)) === f) (Z += g - Z % g), G++
                 else if (m === d) {
-                  for (B = G + g; G < B && t.charAt(G) === d; ) G++, $++
-                  G === B && t.charAt(G) === d && ((G -= g - 1), ($ -= g - 1))
+                  for (B = G + g; G < B && t.charAt(G) === d; ) G++, Z++
+                  G === B && t.charAt(G) === d && ((G -= g - 1), (Z -= g - 1))
                 } else m !== h && "" !== m && (j = null)
             }
             if (j) {
@@ -47511,7 +47579,7 @@ object-assign
               _ = !0
             } else
               U || q || t.charAt(v) !== d
-                ? U && T && (q = $ >= T.indent || $ > g)
+                ? U && T && (q = Z >= T.indent || Z > g)
                 : (q = !0),
                 (_ = !1),
                 (G = v)
@@ -47526,7 +47594,7 @@ object-assign
               (T.value = T.value.concat(M, E)), (O = O.concat(M, E)), (M = [])
             else if (_)
               0 !== M.length && (T.value.push(""), (T.trail = M.concat())),
-                (T = { value: [E], indent: $, trail: [] }),
+                (T = { value: [E], indent: Z, trail: [] }),
                 P.push(T),
                 (O = O.concat(M, E)),
                 (M = [])
@@ -49877,6 +49945,133 @@ object-assign
     }
     var n = Object.prototype.hasOwnProperty
   },
+  "./src/components/BicyclingLayer.jsx": function(e, t, n) {
+    "use strict"
+    function _defineProperty(e, t, n) {
+      return (
+        t in e
+          ? Object.defineProperty(e, t, {
+              value: n,
+              enumerable: !0,
+              configurable: !0,
+              writable: !0,
+            })
+          : (e[t] = n),
+        e
+      )
+    }
+    function _classCallCheck(e, t) {
+      if (!(e instanceof t))
+        throw new TypeError("Cannot call a class as a function")
+    }
+    function _possibleConstructorReturn(e, t) {
+      if (!e)
+        throw new ReferenceError(
+          "this hasn't been initialised - super() hasn't been called"
+        )
+      return !t || ("object" != typeof t && "function" != typeof t) ? e : t
+    }
+    function _inherits(e, t) {
+      if ("function" != typeof t && null !== t)
+        throw new TypeError(
+          "Super expression must either be null or a function, not " + typeof t
+        )
+      ;(e.prototype = Object.create(t && t.prototype, {
+        constructor: {
+          value: e,
+          enumerable: !1,
+          writable: !0,
+          configurable: !0,
+        },
+      })),
+        t &&
+          (Object.setPrototypeOf
+            ? Object.setPrototypeOf(e, t)
+            : (e.__proto__ = t))
+    }
+    Object.defineProperty(t, "__esModule", { value: !0 }),
+      n.d(t, "BicyclingLayer", function() {
+        return c
+      })
+    var r = n("./node_modules/react/react.js"),
+      o = n.n(r),
+      s = n("./node_modules/prop-types/index.js"),
+      i = n.n(s),
+      a = n("./src/utils/MapChildHelper.js"),
+      l = n("./src/constants.js"),
+      u = (function() {
+        function defineProperties(e, t) {
+          for (var n = 0; n < t.length; n++) {
+            var r = t[n]
+            ;(r.enumerable = r.enumerable || !1),
+              (r.configurable = !0),
+              "value" in r && (r.writable = !0),
+              Object.defineProperty(e, r.key, r)
+          }
+        }
+        return function(e, t, n) {
+          return (
+            t && defineProperties(e.prototype, t),
+            n && defineProperties(e, n),
+            e
+          )
+        }
+      })(),
+      c = (function(e) {
+        function BicyclingLayer(e, t) {
+          _classCallCheck(this, BicyclingLayer)
+          var n = _possibleConstructorReturn(
+              this,
+              (BicyclingLayer.__proto__ || Object.getPrototypeOf(BicyclingLayer)
+              ).call(this, e, t)
+            ),
+            r = new google.maps.BicyclingLayer()
+          return (
+            Object(a.d)(BicyclingLayer.propTypes, d, n.props, r),
+            r.setMap(n.context[l.l]),
+            (n.state = _defineProperty({}, l.b, r)),
+            n
+          )
+        }
+        return (
+          _inherits(BicyclingLayer, o.a.PureComponent),
+          u(BicyclingLayer, [
+            {
+              key: "componentDidMount",
+              value: function componentDidMount() {
+                Object(a.a)(this, this.state[l.b], p)
+              },
+            },
+            {
+              key: "componentDidUpdate",
+              value: function componentDidUpdate(e) {
+                Object(a.b)(this, this.state[l.b], p, d, e)
+              },
+            },
+            {
+              key: "componentWillUnmount",
+              value: function componentWillUnmount() {
+                Object(a.c)(this)
+                var e = this.state[l.b]
+                e && e.setMap(null)
+              },
+            },
+            {
+              key: "render",
+              value: function render() {
+                return !1
+              },
+            },
+          ]),
+          BicyclingLayer
+        )
+      })()
+    ;(c.propTypes = {}),
+      (c.contextTypes = _defineProperty({}, l.l, i.a.object)),
+      (t.default = c)
+    var p = {},
+      d = {}
+  },
   "./src/components/Circle.jsx": function(e, t, n) {
     "use strict"
     function _defineProperty(e, t, n) {
@@ -49963,8 +50158,8 @@ object-assign
             r = new google.maps.Circle()
           return (
             Object(a.d)(Circle.propTypes, d, n.props, r),
-            r.setMap(n.context[l.k]),
-            (n.state = _defineProperty({}, l.b, r)),
+            r.setMap(n.context[l.l]),
+            (n.state = _defineProperty({}, l.c, r)),
             n
           )
         }
@@ -49974,20 +50169,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.b], p)
+                Object(a.a)(this, this.state[l.c], p)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.b], p, d, e)
+                Object(a.b)(this, this.state[l.c], p, d, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.b]
+                var e = this.state[l.c]
                 e && e.setMap(null)
               },
             },
@@ -50000,37 +50195,37 @@ object-assign
             {
               key: "getBounds",
               value: function getBounds() {
-                return this.state[l.b].getBounds()
+                return this.state[l.c].getBounds()
               },
             },
             {
               key: "getCenter",
               value: function getCenter() {
-                return this.state[l.b].getCenter()
+                return this.state[l.c].getCenter()
               },
             },
             {
               key: "getDraggable",
               value: function getDraggable() {
-                return this.state[l.b].getDraggable()
+                return this.state[l.c].getDraggable()
               },
             },
             {
               key: "getEditable",
               value: function getEditable() {
-                return this.state[l.b].getEditable()
+                return this.state[l.c].getEditable()
               },
             },
             {
               key: "getRadius",
               value: function getRadius() {
-                return this.state[l.b].getRadius()
+                return this.state[l.c].getRadius()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.state[l.b].getVisible()
+                return this.state[l.c].getVisible()
               },
             },
           ]),
@@ -50064,7 +50259,7 @@ object-assign
       onDrag: i.a.func,
       onRadiusChanged: i.a.func,
     }),
-      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.l, i.a.object)),
       (t.default = c)
     var p = {
         onDblClick: "dblclick",
@@ -50186,8 +50381,8 @@ object-assign
             r = new google.maps.DirectionsRenderer()
           return (
             Object(a.d)(DirectionsRenderer.propTypes, d, n.props, r),
-            r.setMap(n.context[l.k]),
-            (n.state = _defineProperty({}, l.c, r)),
+            r.setMap(n.context[l.l]),
+            (n.state = _defineProperty({}, l.d, r)),
             n
           )
         }
@@ -50197,20 +50392,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.c], p)
+                Object(a.a)(this, this.state[l.d], p)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.c], p, d, e)
+                Object(a.b)(this, this.state[l.d], p, d, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.c]
+                var e = this.state[l.d]
                 e && e.setMap(null)
               },
             },
@@ -50223,19 +50418,19 @@ object-assign
             {
               key: "getDirections",
               value: function getDirections() {
-                return this.state[l.c].getDirections()
+                return this.state[l.d].getDirections()
               },
             },
             {
               key: "getPanel",
               value: function getPanel() {
-                return this.state[l.c].getPanel()
+                return this.state[l.d].getPanel()
               },
             },
             {
               key: "getRouteIndex",
               value: function getRouteIndex() {
-                return this.state[l.c].getRouteIndex()
+                return this.state[l.d].getRouteIndex()
               },
             },
           ]),
@@ -50253,7 +50448,7 @@ object-assign
       routeIndex: i.a.number,
       onDirectionsChanged: i.a.func,
     }),
-      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.l, i.a.object)),
       (t.default = c)
     var p = { onDirectionsChanged: "directions_changed" },
       d = {
@@ -50355,8 +50550,8 @@ object-assign
             r = new google.maps.FusionTablesLayer()
           return (
             Object(a.d)(FusionTablesLayer.propTypes, d, n.props, r),
-            r.setMap(n.context[l.k]),
-            (n.state = _defineProperty({}, l.e, r)),
+            r.setMap(n.context[l.l]),
+            (n.state = _defineProperty({}, l.f, r)),
             n
           )
         }
@@ -50366,20 +50561,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.e], p)
+                Object(a.a)(this, this.state[l.f], p)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.e], p, d, e)
+                Object(a.b)(this, this.state[l.f], p, d, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.e]
+                var e = this.state[l.f]
                 e && e.setMap(null)
               },
             },
@@ -50398,7 +50593,7 @@ object-assign
       options: i.a.any,
       onClick: i.a.func,
     }),
-      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.l, i.a.object)),
       (t.default = c)
     var p = { onClick: "click" },
       d = {
@@ -50480,10 +50675,10 @@ object-assign
           )
           return (
             o()(
-              !!n.context[c.k],
+              !!n.context[c.l],
               "Did you wrap <GoogleMap> component with withGoogleMap() HOC?"
             ),
-            Object(u.d)(h.propTypes, m, n.props, n.context[c.k]),
+            Object(u.d)(h.propTypes, m, n.props, n.context[c.l]),
             n
           )
         }
@@ -50494,28 +50689,28 @@ object-assign
               key: "fitBounds",
               value: function fitBounds() {
                 var e
-                return (e = this.context[c.k]).fitBounds.apply(e, arguments)
+                return (e = this.context[c.l]).fitBounds.apply(e, arguments)
               },
             },
             {
               key: "panBy",
               value: function panBy() {
                 var e
-                return (e = this.context[c.k]).panBy.apply(e, arguments)
+                return (e = this.context[c.l]).panBy.apply(e, arguments)
               },
             },
             {
               key: "panTo",
               value: function panTo() {
                 var e
-                return (e = this.context[c.k]).panTo.apply(e, arguments)
+                return (e = this.context[c.l]).panTo.apply(e, arguments)
               },
             },
             {
               key: "panToBounds",
               value: function panToBounds() {
                 var e
-                return (e = this.context[c.k]).panToBounds.apply(e, arguments)
+                return (e = this.context[c.l]).panToBounds.apply(e, arguments)
               },
             },
           ]),
@@ -50523,13 +50718,13 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(u.a)(this, this.context[c.k], f)
+                Object(u.a)(this, this.context[c.l], f)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(u.b)(this, this.context[c.k], f, m, e)
+                Object(u.b)(this, this.context[c.l], f, m, e)
               },
             },
             {
@@ -50548,61 +50743,61 @@ object-assign
             {
               key: "getBounds",
               value: function getBounds() {
-                return this.context[c.k].getBounds()
+                return this.context[c.l].getBounds()
               },
             },
             {
               key: "getCenter",
               value: function getCenter() {
-                return this.context[c.k].getCenter()
+                return this.context[c.l].getCenter()
               },
             },
             {
               key: "getClickableIcons",
               value: function getClickableIcons() {
-                return this.context[c.k].getClickableIcons()
+                return this.context[c.l].getClickableIcons()
               },
             },
             {
               key: "getDiv",
               value: function getDiv() {
-                return this.context[c.k].getDiv()
+                return this.context[c.l].getDiv()
               },
             },
             {
               key: "getHeading",
               value: function getHeading() {
-                return this.context[c.k].getHeading()
+                return this.context[c.l].getHeading()
               },
             },
             {
               key: "getMapTypeId",
               value: function getMapTypeId() {
-                return this.context[c.k].getMapTypeId()
+                return this.context[c.l].getMapTypeId()
               },
             },
             {
               key: "getProjection",
               value: function getProjection() {
-                return this.context[c.k].getProjection()
+                return this.context[c.l].getProjection()
               },
             },
             {
               key: "getStreetView",
               value: function getStreetView() {
-                return this.context[c.k].getStreetView()
+                return this.context[c.l].getStreetView()
               },
             },
             {
               key: "getTilt",
               value: function getTilt() {
-                return this.context[c.k].getTilt()
+                return this.context[c.l].getTilt()
               },
             },
             {
               key: "getZoom",
               value: function getZoom() {
-                return this.context[c.k].getZoom()
+                return this.context[c.l].getZoom()
               },
             },
           ]),
@@ -50659,7 +50854,7 @@ object-assign
             : (e[t] = n),
           e
         )
-      })({}, c.k, l.a.object))
+      })({}, c.l, l.a.object))
     var h = d
     t.default = d
     var f = {
@@ -50793,8 +50988,8 @@ object-assign
             r = new google.maps.GroundOverlay(e.url, e.bounds)
           return (
             Object(a.d)(GroundOverlay.propTypes, d, n.props, r),
-            r.setMap(n.context[l.k]),
-            (n.state = _defineProperty({}, l.f, r)),
+            r.setMap(n.context[l.l]),
+            (n.state = _defineProperty({}, l.g, r)),
             n
           )
         }
@@ -50804,20 +50999,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.f], p)
+                Object(a.a)(this, this.state[l.g], p)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.f], p, d, e)
+                Object(a.b)(this, this.state[l.g], p, d, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.f]
+                var e = this.state[l.g]
                 e && e.setMap(null)
               },
             },
@@ -50830,19 +51025,19 @@ object-assign
             {
               key: "getBounds",
               value: function getBounds() {
-                return this.state[l.f].getBounds()
+                return this.state[l.g].getBounds()
               },
             },
             {
               key: "getOpacity",
               value: function getOpacity() {
-                return this.state[l.f].getOpacity()
+                return this.state[l.g].getOpacity()
               },
             },
             {
               key: "getUrl",
               value: function getUrl() {
-                return this.state[l.f].getUrl()
+                return this.state[l.g].getUrl()
               },
             },
           ]),
@@ -50857,7 +51052,7 @@ object-assign
       onDblClick: i.a.func,
       onClick: i.a.func,
     }),
-      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.l, i.a.object)),
       (t.default = c)
     var p = { onDblClick: "dblclick", onClick: "click" },
       d = {
@@ -50957,8 +51152,8 @@ object-assign
             r = new google.maps.InfoWindow()
           return (
             Object(d.d)(InfoWindow.propTypes, b, n.props, r),
-            r.setMap(n.context[h.k]),
-            (n.state = _defineProperty({}, h.i, r)),
+            r.setMap(n.context[h.l]),
+            (n.state = _defineProperty({}, h.j, r)),
             n
           )
         }
@@ -50968,35 +51163,35 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(d.a)(this, this.state[h.i], y)
+                Object(d.a)(this, this.state[h.j], y)
                 var e = document.createElement("div")
                 u.a.unstable_renderSubtreeIntoContainer(
                   this,
                   a.a.Children.only(this.props.children),
                   e
                 ),
-                  this.state[h.i].setContent(e),
-                  g(this.state[h.i], this.context[h.a])
+                  this.state[h.j].setContent(e),
+                  g(this.state[h.j], this.context[h.a])
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(d.b)(this, this.state[h.i], y, b, e),
+                Object(d.b)(this, this.state[h.j], y, b, e),
                   this.props.children !== e.children &&
                     u.a.unstable_renderSubtreeIntoContainer(
                       this,
                       a.a.Children.only(this.props.children),
-                      this.state[h.i].getContent()
+                      this.state[h.j].getContent()
                     ),
-                  g(this.state[h.i], this.context[h.a])
+                  g(this.state[h.j], this.context[h.a])
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(d.c)(this)
-                var e = this.state[h.i]
+                var e = this.state[h.j]
                 e &&
                   (e.getContent() && u.a.unmountComponentAtNode(e.getContent()),
                   e.setMap(null))
@@ -51011,13 +51206,13 @@ object-assign
             {
               key: "getPosition",
               value: function getPosition() {
-                return this.state[h.i].getPosition()
+                return this.state[h.j].getPosition()
               },
             },
             {
               key: "getZIndex",
               value: function getZIndex() {
-                return this.state[h.i].getZIndex()
+                return this.state[h.j].getZIndex()
               },
             },
           ]),
@@ -51038,7 +51233,7 @@ object-assign
       onZindexChanged: p.a.func,
     }),
       (m.contextTypes = ((r = {}),
-      _defineProperty(r, h.k, p.a.object),
+      _defineProperty(r, h.l, p.a.object),
       _defineProperty(r, h.a, p.a.object),
       r)),
       (t.default = m)
@@ -51157,8 +51352,8 @@ object-assign
             r = new google.maps.KmlLayer()
           return (
             Object(a.d)(KmlLayer.propTypes, d, n.props, r),
-            r.setMap(n.context[l.k]),
-            (n.state = _defineProperty({}, l.j, r)),
+            r.setMap(n.context[l.l]),
+            (n.state = _defineProperty({}, l.k, r)),
             n
           )
         }
@@ -51168,20 +51363,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.j], p)
+                Object(a.a)(this, this.state[l.k], p)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.j], p, d, e)
+                Object(a.b)(this, this.state[l.k], p, d, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.j]
+                var e = this.state[l.k]
                 e && e.setMap(null)
               },
             },
@@ -51194,31 +51389,31 @@ object-assign
             {
               key: "getDefaultViewport",
               value: function getDefaultViewport() {
-                return this.state[l.j].getDefaultViewport()
+                return this.state[l.k].getDefaultViewport()
               },
             },
             {
               key: "getMetadata",
               value: function getMetadata() {
-                return this.state[l.j].getMetadata()
+                return this.state[l.k].getMetadata()
               },
             },
             {
               key: "getStatus",
               value: function getStatus() {
-                return this.state[l.j].getStatus()
+                return this.state[l.k].getStatus()
               },
             },
             {
               key: "getUrl",
               value: function getUrl() {
-                return this.state[l.j].getUrl()
+                return this.state[l.k].getUrl()
               },
             },
             {
               key: "getZIndex",
               value: function getZIndex() {
-                return this.state[l.j].getZIndex()
+                return this.state[l.k].getZIndex()
               },
             },
           ]),
@@ -51236,7 +51431,7 @@ object-assign
       onClick: i.a.func,
       onStatusChanged: i.a.func,
     }),
-      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.l, i.a.object)),
       (t.default = c)
     var p = {
         onDefaultViewportChanged: "defaultviewport_changed",
@@ -51341,10 +51536,10 @@ object-assign
             ),
             r = new (n.props.markerWithLabel || google.maps.Marker)()
           Object(l.d)(Marker.propTypes, h, n.props, r)
-          var o = n.context[u.m]
+          var o = n.context[u.n]
           return (
-            o ? o.addMarker(r, !!n.props.noRedraw) : r.setMap(n.context[u.k]),
-            (n.state = _defineProperty({}, u.l, r)),
+            o ? o.addMarker(r, !!n.props.noRedraw) : r.setMap(n.context[u.l]),
+            (n.state = _defineProperty({}, u.m, r)),
             n
           )
         }
@@ -51357,29 +51552,29 @@ object-assign
                 return _defineProperty(
                   {},
                   u.a,
-                  this.context[u.a] || this.state[u.l]
+                  this.context[u.a] || this.state[u.m]
                 )
               },
             },
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(l.a)(this, this.state[u.l], d)
+                Object(l.a)(this, this.state[u.m], d)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(l.b)(this, this.state[u.l], d, h, e)
+                Object(l.b)(this, this.state[u.m], d, h, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(l.c)(this)
-                var e = this.state[u.l]
+                var e = this.state[u.m]
                 if (e) {
-                  var t = this.context[u.m]
+                  var t = this.context[u.n]
                   t && t.removeMarker(e, !!this.props.noRedraw), e.setMap(null)
                 }
               },
@@ -51394,79 +51589,79 @@ object-assign
             {
               key: "getAnimation",
               value: function getAnimation() {
-                return this.state[u.l].getAnimation()
+                return this.state[u.m].getAnimation()
               },
             },
             {
               key: "getClickable",
               value: function getClickable() {
-                return this.state[u.l].getClickable()
+                return this.state[u.m].getClickable()
               },
             },
             {
               key: "getCursor",
               value: function getCursor() {
-                return this.state[u.l].getCursor()
+                return this.state[u.m].getCursor()
               },
             },
             {
               key: "getDraggable",
               value: function getDraggable() {
-                return this.state[u.l].getDraggable()
+                return this.state[u.m].getDraggable()
               },
             },
             {
               key: "getIcon",
               value: function getIcon() {
-                return this.state[u.l].getIcon()
+                return this.state[u.m].getIcon()
               },
             },
             {
               key: "getLabel",
               value: function getLabel() {
-                return this.state[u.l].getLabel()
+                return this.state[u.m].getLabel()
               },
             },
             {
               key: "getOpacity",
               value: function getOpacity() {
-                return this.state[u.l].getOpacity()
+                return this.state[u.m].getOpacity()
               },
             },
             {
               key: "getPlace",
               value: function getPlace() {
-                return this.state[u.l].getPlace()
+                return this.state[u.m].getPlace()
               },
             },
             {
               key: "getPosition",
               value: function getPosition() {
-                return this.state[u.l].getPosition()
+                return this.state[u.m].getPosition()
               },
             },
             {
               key: "getShape",
               value: function getShape() {
-                return this.state[u.l].getShape()
+                return this.state[u.m].getShape()
               },
             },
             {
               key: "getTitle",
               value: function getTitle() {
-                return this.state[u.l].getTitle()
+                return this.state[u.m].getTitle()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.state[u.l].getVisible()
+                return this.state[u.m].getVisible()
               },
             },
             {
               key: "getZIndex",
               value: function getZIndex() {
-                return this.state[u.l].getZIndex()
+                return this.state[u.m].getZIndex()
               },
             },
           ]),
@@ -51531,8 +51726,8 @@ object-assign
       onZindexChanged: a.a.func,
     }),
       (p.contextTypes = ((r = {}),
-      _defineProperty(r, u.k, a.a.object),
-      _defineProperty(r, u.m, a.a.object),
+      _defineProperty(r, u.l, a.a.object),
+      _defineProperty(r, u.n, a.a.object),
       r)),
       (p.childContextTypes = _defineProperty({}, u.a, a.a.object)),
       (t.default = p)
@@ -51701,8 +51896,8 @@ object-assign
             (r.draw = s.a.bind(n.draw, n)),
             (r.onRemove = s.a.bind(n.onRemove, n)),
             (n.onPositionElement = s.a.bind(n.onPositionElement, n)),
-            r.setMap(n.context[g.k]),
-            (n.state = _defineProperty({}, g.n, r)),
+            r.setMap(n.context[g.l]),
+            (n.state = _defineProperty({}, g.o, r)),
             n
           )
         }
@@ -51725,7 +51920,7 @@ object-assign
                   "OverlayView requires either props.mapPaneName or props.defaultMapPaneName but got %s",
                   e
                 ),
-                  this.state[g.n]
+                  this.state[g.o]
                     .getPanes()
                     [e].appendChild(this.containerElement),
                   p.a.unstable_renderSubtreeIntoContainer(
@@ -51739,7 +51934,7 @@ object-assign
             {
               key: "onPositionElement",
               value: function onPositionElement() {
-                var e = this.state[g.n].getProjection(),
+                var e = this.state[g.o].getProjection(),
                   t = Object.assign(
                     { x: 0, y: 0 },
                     Object(m.b)(this.containerElement, this.props)
@@ -51761,21 +51956,21 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(f.a)(this, this.state[g.n], v)
+                Object(f.a)(this, this.state[g.o], v)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(f.b)(this, this.state[g.n], v, _, e),
-                  s.a.delay(this.state[g.n].draw)
+                Object(f.b)(this, this.state[g.o], v, _, e),
+                  s.a.delay(this.state[g.o].draw)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(f.c)(this)
-                var e = this.state[g.n]
+                var e = this.state[g.o]
                 e &&
                   (e.setMap(null),
                   (e.onAdd = null),
@@ -51792,13 +51987,13 @@ object-assign
             {
               key: "getPanes",
               value: function getPanes() {
-                return this.state[g.n].getPanes()
+                return this.state[g.o].getPanes()
               },
             },
             {
               key: "getProjection",
               value: function getProjection() {
-                return this.state[g.n].getProjection()
+                return this.state[g.o].getProjection()
               },
             },
           ]),
@@ -51818,7 +52013,7 @@ object-assign
         getPixelPositionOffset: h.a.func,
       }),
       (b.contextTypes = ((r = {}),
-      _defineProperty(r, g.k, h.a.object),
+      _defineProperty(r, g.l, h.a.object),
       _defineProperty(r, g.a, h.a.object),
       r)),
       (t.default = b)
@@ -51911,8 +52106,8 @@ object-assign
             r = new google.maps.Polygon()
           return (
             Object(a.d)(Polygon.propTypes, d, n.props, r),
-            r.setMap(n.context[l.k]),
-            (n.state = _defineProperty({}, l.o, r)),
+            r.setMap(n.context[l.l]),
+            (n.state = _defineProperty({}, l.p, r)),
             n
           )
         }
@@ -51922,20 +52117,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.o], p)
+                Object(a.a)(this, this.state[l.p], p)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.o], p, d, e)
+                Object(a.b)(this, this.state[l.p], p, d, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.o]
+                var e = this.state[l.p]
                 e && e.setMap(null)
               },
             },
@@ -51948,31 +52143,31 @@ object-assign
             {
               key: "getDraggable",
               value: function getDraggable() {
-                return this.state[l.o].getDraggable()
+                return this.state[l.p].getDraggable()
               },
             },
             {
               key: "getEditable",
               value: function getEditable() {
-                return this.state[l.o].getEditable()
+                return this.state[l.p].getEditable()
               },
             },
             {
               key: "getPath",
               value: function getPath() {
-                return this.state[l.o].getPath()
+                return this.state[l.p].getPath()
               },
             },
             {
               key: "getPaths",
               value: function getPaths() {
-                return this.state[l.o].getPaths()
+                return this.state[l.p].getPaths()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.state[l.o].getVisible()
+                return this.state[l.p].getVisible()
               },
             },
           ]),
@@ -52004,7 +52199,7 @@ object-assign
       onClick: i.a.func,
       onDrag: i.a.func,
     }),
-      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.l, i.a.object)),
       (t.default = c)
     var p = {
         onDblClick: "dblclick",
@@ -52126,8 +52321,8 @@ object-assign
             r = new google.maps.Polyline()
           return (
             Object(a.d)(Polyline.propTypes, d, n.props, r),
-            r.setMap(n.context[l.k]),
-            (n.state = _defineProperty({}, l.p, r)),
+            r.setMap(n.context[l.l]),
+            (n.state = _defineProperty({}, l.q, r)),
             n
           )
         }
@@ -52137,20 +52332,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.p], p)
+                Object(a.a)(this, this.state[l.q], p)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.p], p, d, e)
+                Object(a.b)(this, this.state[l.q], p, d, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.p]
+                var e = this.state[l.q]
                 e && e.setMap(null)
               },
             },
@@ -52163,25 +52358,25 @@ object-assign
             {
               key: "getDraggable",
               value: function getDraggable() {
-                return this.state[l.p].getDraggable()
+                return this.state[l.q].getDraggable()
               },
             },
             {
               key: "getEditable",
               value: function getEditable() {
-                return this.state[l.p].getEditable()
+                return this.state[l.q].getEditable()
               },
             },
             {
               key: "getPath",
               value: function getPath() {
-                return this.state[l.p].getPath()
+                return this.state[l.q].getPath()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.state[l.p].getVisible()
+                return this.state[l.q].getVisible()
               },
             },
           ]),
@@ -52211,7 +52406,7 @@ object-assign
       onClick: i.a.func,
       onDrag: i.a.func,
     }),
-      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.l, i.a.object)),
       (t.default = c)
     var p = {
         onDblClick: "dblclick",
@@ -52330,8 +52525,8 @@ object-assign
             r = new google.maps.Rectangle()
           return (
             Object(a.d)(Rectangle.propTypes, d, n.props, r),
-            r.setMap(n.context[l.k]),
-            (n.state = _defineProperty({}, l.q, r)),
+            r.setMap(n.context[l.l]),
+            (n.state = _defineProperty({}, l.r, r)),
             n
           )
         }
@@ -52341,20 +52536,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.q], p)
+                Object(a.a)(this, this.state[l.r], p)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.q], p, d, e)
+                Object(a.b)(this, this.state[l.r], p, d, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.q]
+                var e = this.state[l.r]
                 e && e.setMap(null)
               },
             },
@@ -52367,25 +52562,25 @@ object-assign
             {
               key: "getBounds",
               value: function getBounds() {
-                return this.state[l.q].getBounds()
+                return this.state[l.r].getBounds()
               },
             },
             {
               key: "getDraggable",
               value: function getDraggable() {
-                return this.state[l.q].getDraggable()
+                return this.state[l.r].getDraggable()
               },
             },
             {
               key: "getEditable",
               value: function getEditable() {
-                return this.state[l.q].getEditable()
+                return this.state[l.r].getEditable()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.state[l.q].getVisible()
+                return this.state[l.r].getVisible()
               },
             },
           ]),
@@ -52416,7 +52611,7 @@ object-assign
       onClick: i.a.func,
       onDrag: i.a.func,
     }),
-      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.l, i.a.object)),
       (t.default = c)
     var p = {
         onDblClick: "dblclick",
@@ -52535,14 +52730,14 @@ object-assign
           )
           return (
             o()(
-              !!n.context[c.k],
+              !!n.context[c.l],
               "Did you render <StreetViewPanorama> as a child of <GoogleMap> with withGoogleMap() HOC?"
             ),
             Object(u.d)(
               StreetViewPanorama.propTypes,
               f,
               n.props,
-              n.context[c.k].getStreetView()
+              n.context[c.l].getStreetView()
             ),
             n
           )
@@ -52555,28 +52750,28 @@ object-assign
               value: function getChildContext() {
                 return _defineProperty(
                   {},
-                  c.k,
-                  this.context[c.k].getStreetView()
+                  c.l,
+                  this.context[c.l].getStreetView()
                 )
               },
             },
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(u.a)(this, this.context[c.k].getStreetView(), h)
+                Object(u.a)(this, this.context[c.l].getStreetView(), h)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(u.b)(this, this.context[c.k].getStreetView(), h, f, e)
+                Object(u.b)(this, this.context[c.l].getStreetView(), h, f, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(u.c)(this)
-                var e = this.context[c.k].getStreetView()
+                var e = this.context[c.l].getStreetView()
                 e && e.setVisible(!1)
               },
             },
@@ -52590,61 +52785,61 @@ object-assign
             {
               key: "getLinks",
               value: function getLinks() {
-                return this.context[c.k].getLinks()
+                return this.context[c.l].getLinks()
               },
             },
             {
               key: "getLocation",
               value: function getLocation() {
-                return this.context[c.k].getLocation()
+                return this.context[c.l].getLocation()
               },
             },
             {
               key: "getMotionTracking",
               value: function getMotionTracking() {
-                return this.context[c.k].getMotionTracking()
+                return this.context[c.l].getMotionTracking()
               },
             },
             {
               key: "getPano",
               value: function getPano() {
-                return this.context[c.k].getPano()
+                return this.context[c.l].getPano()
               },
             },
             {
               key: "getPhotographerPov",
               value: function getPhotographerPov() {
-                return this.context[c.k].getPhotographerPov()
+                return this.context[c.l].getPhotographerPov()
               },
             },
             {
               key: "getPosition",
               value: function getPosition() {
-                return this.context[c.k].getPosition()
+                return this.context[c.l].getPosition()
               },
             },
             {
               key: "getPov",
               value: function getPov() {
-                return this.context[c.k].getPov()
+                return this.context[c.l].getPov()
               },
             },
             {
               key: "getStatus",
               value: function getStatus() {
-                return this.context[c.k].getStatus()
+                return this.context[c.l].getStatus()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.context[c.k].getVisible()
+                return this.context[c.l].getVisible()
               },
             },
             {
               key: "getZoom",
               value: function getZoom() {
-                return this.context[c.k].getZoom()
+                return this.context[c.l].getZoom()
               },
             },
           ]),
@@ -52677,8 +52872,8 @@ object-assign
       onVisibleChanged: l.a.func,
       onZoomChanged: l.a.func,
     }),
-      (d.contextTypes = _defineProperty({}, c.k, l.a.object)),
-      (d.childContextTypes = _defineProperty({}, c.k, l.a.object)),
+      (d.contextTypes = _defineProperty({}, c.l, l.a.object)),
+      (d.childContextTypes = _defineProperty({}, c.l, l.a.object)),
       (t.default = d)
     var h = {
         onCloseClick: "closeclick",
@@ -52800,8 +52995,8 @@ object-assign
             r = new google.maps.TrafficLayer()
           return (
             Object(a.d)(TrafficLayer.propTypes, d, n.props, r),
-            r.setMap(n.context[l.k]),
-            (n.state = _defineProperty({}, l.s, r)),
+            r.setMap(n.context[l.l]),
+            (n.state = _defineProperty({}, l.t, r)),
             n
           )
         }
@@ -52811,20 +53006,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.s], p)
+                Object(a.a)(this, this.state[l.t], p)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.s], p, d, e)
+                Object(a.b)(this, this.state[l.t], p, d, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.s]
+                var e = this.state[l.t]
                 e && e.setMap(null)
               },
             },
@@ -52839,7 +53034,7 @@ object-assign
         )
       })()
     ;(c.propTypes = { defaultOptions: i.a.any, options: i.a.any }),
-      (c.contextTypes = _defineProperty({}, l.k, i.a.object)),
+      (c.contextTypes = _defineProperty({}, l.l, i.a.object)),
       (t.default = c)
     var p = {},
       d = {
@@ -52942,7 +53137,7 @@ object-assign
                 [this].concat(s)
               )
             )),
-            (n.state = _defineProperty({}, m.h, null)),
+            (n.state = _defineProperty({}, m.i, null)),
             (r = t),
             _possibleConstructorReturn(n, r)
           )
@@ -52953,48 +53148,48 @@ object-assign
             {
               key: "componentWillMount",
               value: function componentWillMount() {
-                if (s.a && !this.state[m.h]) {
+                if (s.a && !this.state[m.i]) {
                   var e = new (n(
                     "./node_modules/google-maps-infobox/infobox-module.js"
                   ))()
                   Object(f.d)(InfoBox.propTypes, _, this.props, e),
-                    e.setMap(this.context[m.k]),
-                    this.setState(_defineProperty({}, m.h, e))
+                    e.setMap(this.context[m.l]),
+                    this.setState(_defineProperty({}, m.i, e))
                 }
               },
             },
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(f.a)(this, this.state[m.h], v)
+                Object(f.a)(this, this.state[m.i], v)
                 var e = document.createElement("div")
                 p.a.unstable_renderSubtreeIntoContainer(
                   this,
                   u.a.Children.only(this.props.children),
                   e
                 ),
-                  this.state[m.h].setContent(e),
-                  b(this.state[m.h], this.context[m.a])
+                  this.state[m.i].setContent(e),
+                  b(this.state[m.i], this.context[m.a])
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(f.b)(this, this.state[m.h], v, _, e),
+                Object(f.b)(this, this.state[m.i], v, _, e),
                   this.props.children !== e.children &&
                     p.a.unstable_renderSubtreeIntoContainer(
                       this,
                       u.a.Children.only(this.props.children),
-                      this.state[m.h].getContent()
+                      this.state[m.i].getContent()
                     ),
-                  b(this.state[m.h], this.context[m.a])
+                  b(this.state[m.i], this.context[m.a])
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(f.c)(this)
-                var e = this.state[m.h]
+                var e = this.state[m.i]
                 e &&
                   (e.getContent() && p.a.unmountComponentAtNode(e.getContent()),
                   e.setMap(null))
@@ -53009,19 +53204,19 @@ object-assign
             {
               key: "getPosition",
               value: function getPosition() {
-                return this.state[m.h].getPosition()
+                return this.state[m.i].getPosition()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.state[m.h].getVisible()
+                return this.state[m.i].getVisible()
               },
             },
             {
               key: "getZIndex",
               value: function getZIndex() {
-                return this.state[m.h].getZIndex()
+                return this.state[m.i].getZIndex()
               },
             },
           ]),
@@ -53044,7 +53239,7 @@ object-assign
       onZindexChanged: h.a.func,
     }),
       (y.contextTypes = ((r = {}),
-      _defineProperty(r, m.k, h.a.object),
+      _defineProperty(r, m.l, h.a.object),
       _defineProperty(r, m.a, h.a.object),
       r)),
       (t.default = y)
@@ -53167,8 +53362,8 @@ object-assign
             r = new u.a()
           return (
             Object(c.d)(MarkerClusterer.propTypes, m, n.props, r),
-            r.setMap(n.context[p.k]),
-            (n.state = _defineProperty({}, p.m, r)),
+            r.setMap(n.context[p.l]),
+            (n.state = _defineProperty({}, p.n, r)),
             n
           )
         }
@@ -53179,11 +53374,11 @@ object-assign
               key: "getChildContext",
               value: function getChildContext() {
                 var e,
-                  t = this.state[p.m]
+                  t = this.state[p.n]
                 return (
                   (e = {}),
                   _defineProperty(e, p.a, t),
-                  _defineProperty(e, p.m, t),
+                  _defineProperty(e, p.n, t),
                   e
                 )
               },
@@ -53191,21 +53386,21 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(c.a)(this, this.state[p.m], f)
+                Object(c.a)(this, this.state[p.n], f)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(c.b)(this, this.state[p.m], f, m, e),
-                  this.state[p.m].repaint()
+                Object(c.b)(this, this.state[p.n], f, m, e),
+                  this.state[p.n].repaint()
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(c.c)(this)
-                var e = this.state[p.m]
+                var e = this.state[p.n]
                 e && e.setMap(null)
               },
             },
@@ -53259,10 +53454,10 @@ object-assign
       onMouseOut: a.a.func,
       onMouseOver: a.a.func,
     }),
-      (h.contextTypes = _defineProperty({}, p.k, a.a.object)),
+      (h.contextTypes = _defineProperty({}, p.l, a.a.object)),
       (h.childContextTypes = ((r = {}),
       _defineProperty(r, p.a, a.a.object),
-      _defineProperty(r, p.m, a.a.object),
+      _defineProperty(r, p.n, a.a.object),
       r)),
       (t.default = h)
     var f = {
@@ -53478,8 +53673,8 @@ object-assign
           var r = new google.maps.drawing.DrawingManager()
           return (
             Object(u.d)(DrawingManager.propTypes, f, n.props, r),
-            r.setMap(n.context[c.k]),
-            (n.state = _defineProperty({}, c.d, r)),
+            r.setMap(n.context[c.l]),
+            (n.state = _defineProperty({}, c.e, r)),
             n
           )
         }
@@ -53489,20 +53684,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(u.a)(this, this.state[c.d], h)
+                Object(u.a)(this, this.state[c.e], h)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(u.b)(this, this.state[c.d], h, f, e)
+                Object(u.b)(this, this.state[c.e], h, f, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(u.c)(this)
-                var e = this.state[c.d]
+                var e = this.state[c.e]
                 e && e.setMap(null)
               },
             },
@@ -53515,7 +53710,7 @@ object-assign
             {
               key: "getDrawingMode",
               value: function getDrawingMode() {
-                return this.state[c.d].getDrawingMode()
+                return this.state[c.e].getDrawingMode()
               },
             },
           ]),
@@ -53534,7 +53729,7 @@ object-assign
       onPolylineComplete: l.a.func,
       onRectangleComplete: l.a.func,
     }),
-      (d.contextTypes = _defineProperty({}, c.k, l.a.object)),
+      (d.contextTypes = _defineProperty({}, c.l, l.a.object)),
       (t.default = d)
     var h = {
         onCircleComplete: "circlecomplete",
@@ -53649,7 +53844,7 @@ object-assign
                 [this].concat(s)
               )
             )),
-            (n.state = _defineProperty({}, g.r, null)),
+            (n.state = _defineProperty({}, g.s, null)),
             (r = t),
             _possibleConstructorReturn(n, r)
           )
@@ -53671,14 +53866,14 @@ object-assign
                     this.containerElement.firstChild
                   )
                   Object(m.d)(SearchBox.propTypes, j, this.props, e),
-                    this.setState(_defineProperty({}, g.r, e))
+                    this.setState(_defineProperty({}, g.s, e))
                 }
               },
             },
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(m.a)(this, this.state[g.r], _),
+                Object(m.a)(this, this.state[g.s], _),
                   this.handleMountAtControlPosition()
               },
             },
@@ -53692,7 +53887,7 @@ object-assign
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(m.b)(this, this.state[g.r], _, j, e),
+                Object(m.b)(this, this.state[g.s], _, j, e),
                   this.props.children !== e.children &&
                     this.handleRenderChildToContainerElement(),
                   this.props.controlPosition !== e.controlPosition &&
@@ -53725,7 +53920,7 @@ object-assign
                 v(this.props.controlPosition) &&
                   (this.mountControlIndex =
                     -1 +
-                    this.context[g.k].controls[this.props.controlPosition].push(
+                    this.context[g.l].controls[this.props.controlPosition].push(
                       this.containerElement.firstChild
                     ))
               },
@@ -53734,7 +53929,7 @@ object-assign
               key: "handleUnmountAtControlPosition",
               value: function handleUnmountAtControlPosition() {
                 if (v(this.props.controlPosition)) {
-                  var e = this.context[g.k].controls[
+                  var e = this.context[g.l].controls[
                     this.props.controlPosition
                   ].removeAt(this.mountControlIndex)
                   this.containerElement.appendChild(e)
@@ -53750,13 +53945,13 @@ object-assign
             {
               key: "getBounds",
               value: function getBounds() {
-                return this.state[g.r].getBounds()
+                return this.state[g.s].getBounds()
               },
             },
             {
               key: "getPlaces",
               value: function getPlaces() {
-                return this.state[g.r].getPlaces()
+                return this.state[g.s].getPlaces()
               },
             },
           ]),
@@ -53769,7 +53964,7 @@ object-assign
       bounds: f.a.any,
       onPlacesChanged: f.a.func,
     }),
-      (b.contextTypes = _defineProperty({}, g.k, f.a.object)),
+      (b.contextTypes = _defineProperty({}, g.l, f.a.object)),
       (t.default = b)
     var v = o.a.isNumber,
       _ = { onPlacesChanged: "places_changed" },
@@ -53871,7 +54066,7 @@ object-assign
                 [this].concat(s)
               )
             )),
-            (n.state = _defineProperty({}, d.r, null)),
+            (n.state = _defineProperty({}, d.s, null)),
             (r = t),
             _possibleConstructorReturn(n, r)
           )
@@ -53890,13 +54085,13 @@ object-assign
                   t = new google.maps.places.SearchBox(e)
                 Object(p.d)(SearchBox.propTypes, y, this.props, t),
                   Object(p.a)(this, t, g),
-                  this.setState(_defineProperty({}, d.r, t))
+                  this.setState(_defineProperty({}, d.s, t))
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(p.b)(this, this.state[d.r], g, y, e)
+                Object(p.b)(this, this.state[d.s], g, y, e)
               },
             },
             {
@@ -53914,13 +54109,13 @@ object-assign
             {
               key: "getBounds",
               value: function getBounds() {
-                return this.state[d.r].getBounds()
+                return this.state[d.s].getBounds()
               },
             },
             {
               key: "getPlaces",
               value: function getPlaces() {
-                return this.state[d.r].getPlaces()
+                return this.state[d.s].getPlaces()
               },
             },
           ]),
@@ -54031,8 +54226,8 @@ object-assign
           var r = new google.maps.visualization.HeatmapLayer()
           return (
             Object(u.d)(HeatmapLayer.propTypes, f, n.props, r),
-            r.setMap(n.context[c.k]),
-            (n.state = _defineProperty({}, c.g, r)),
+            r.setMap(n.context[c.l]),
+            (n.state = _defineProperty({}, c.h, r)),
             n
           )
         }
@@ -54042,20 +54237,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(u.a)(this, this.state[c.g], h)
+                Object(u.a)(this, this.state[c.h], h)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(u.b)(this, this.state[c.g], h, f, e)
+                Object(u.b)(this, this.state[c.h], h, f, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(u.c)(this)
-                var e = this.state[c.g]
+                var e = this.state[c.h]
                 e && e.setMap(null)
               },
             },
@@ -54068,7 +54263,7 @@ object-assign
             {
               key: "getData",
               value: function getData() {
-                return this.state[c.g].getData()
+                return this.state[c.h].getData()
               },
             },
           ]),
@@ -54081,7 +54276,7 @@ object-assign
       data: l.a.any,
       options: l.a.any,
     }),
-      (d.contextTypes = _defineProperty({}, c.k, l.a.object)),
+      (d.contextTypes = _defineProperty({}, c.l, l.a.object)),
       (t.default = d)
     var h = {},
       f = {
@@ -54095,62 +54290,65 @@ object-assign
   },
   "./src/constants.js": function(e, t, n) {
     "use strict"
-    n.d(t, "k", function() {
+    n.d(t, "l", function() {
       return r
     }),
-      n.d(t, "l", function() {
+      n.d(t, "m", function() {
         return o
       }),
-      n.d(t, "q", function() {
+      n.d(t, "r", function() {
         return s
       }),
-      n.d(t, "p", function() {
+      n.d(t, "q", function() {
         return i
       }),
-      n.d(t, "o", function() {
+      n.d(t, "p", function() {
         return a
       }),
-      n.d(t, "b", function() {
+      n.d(t, "c", function() {
         return l
       }),
-      n.d(t, "j", function() {
+      n.d(t, "k", function() {
         return u
       }),
-      n.d(t, "c", function() {
+      n.d(t, "d", function() {
         return c
       }),
-      n.d(t, "g", function() {
+      n.d(t, "h", function() {
         return p
       }),
-      n.d(t, "e", function() {
+      n.d(t, "f", function() {
         return d
       }),
       n.d(t, "a", function() {
         return h
       }),
-      n.d(t, "i", function() {
+      n.d(t, "j", function() {
         return f
       }),
-      n.d(t, "n", function() {
+      n.d(t, "o", function() {
         return m
       }),
-      n.d(t, "f", function() {
+      n.d(t, "g", function() {
         return g
       }),
-      n.d(t, "d", function() {
+      n.d(t, "e", function() {
         return y
       }),
-      n.d(t, "r", function() {
+      n.d(t, "s", function() {
         return b
       }),
-      n.d(t, "m", function() {
+      n.d(t, "n", function() {
         return v
       }),
-      n.d(t, "h", function() {
+      n.d(t, "i", function() {
         return _
       }),
-      n.d(t, "s", function() {
+      n.d(t, "t", function() {
         return j
+      }),
+      n.d(t, "b", function() {
+        return x
       })
     var r = "__SECRET_MAP_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
       o = "__SECRET_MARKER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
@@ -54170,7 +54368,8 @@ object-assign
       b = "__SECRET_SEARCH_BOX_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
       v = "__SECRET_MARKER_CLUSTERER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
       _ = "__SECRET_INFO_BOX_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      j = "__SECRET_TRAFFIC_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED"
+      j = "__SECRET_TRAFFIC_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      x = "__SECRET_BICYCLING_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED"
   },
   "./src/index.js": function(e, t, n) {
     "use strict"
@@ -54238,6 +54437,10 @@ object-assign
     var b = n("./src/components/StreetViewPanorama.jsx")
     n.d(t, "StreetViewPanorama", function() {
       return b.default
+    })
+    var v = n("./src/components/BicyclingLayer.jsx")
+    n.d(t, "BicyclingLayer", function() {
+      return v.default
     })
   },
   "./src/utils/MapChildHelper.js": function(e, t, n) {
@@ -54470,7 +54673,7 @@ object-assign
               {
                 key: "getChildContext",
                 value: function getChildContext() {
-                  return _defineProperty({}, f.k, this.state.map)
+                  return _defineProperty({}, f.l, this.state.map)
                 },
               },
               {
@@ -54533,7 +54736,7 @@ object-assign
           containerElement: p.a.node.isRequired,
           mapElement: p.a.node.isRequired,
         }),
-        (n.childContextTypes = _defineProperty({}, f.k, p.a.object)),
+        (n.childContextTypes = _defineProperty({}, f.l, p.a.object)),
         n
       )
     }

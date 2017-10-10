@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="8.4.1"></a>
+## [8.4.1](https://github.com/tomchentw/react-google-maps/compare/v8.4.0...v8.4.1) (2017-10-11)
+
+
+### Bug Fixes
+
+* **OverlayView:** typo of `FLOAT_PANE` ([0eac8c8](https://github.com/tomchentw/react-google-maps/commit/0eac8c8)), closes [#658](https://github.com/tomchentw/react-google-maps/issues/658)
+
+
+
 <a name="8.4.0"></a>
 # [8.4.0](https://github.com/tomchentw/react-google-maps/compare/v8.3.5...v8.4.0) (2017-10-10)
 

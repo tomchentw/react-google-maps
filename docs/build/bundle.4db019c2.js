@@ -52000,7 +52000,7 @@ object-assign
           OverlayView
         )
       })()
-    ;(b.LOAT_PANE = "floatPane"),
+    ;(b.FLOAT_PANE = "floatPane"),
       (b.MAP_PANE = "mapPane"),
       (b.MARKER_LAYER = "markerLayer"),
       (b.OVERLAY_LAYER = "overlayLayer"),

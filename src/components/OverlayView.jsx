@@ -25,7 +25,7 @@ import { MAP, ANCHOR, OVERLAY_VIEW } from "../constants"
  * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
  */
 export class OverlayView extends React.PureComponent {
-  static LOAT_PANE = `floatPane`
+  static FLOAT_PANE = `floatPane`
   static MAP_PANE = `mapPane`
   static MARKER_LAYER = `markerLayer`
   static OVERLAY_LAYER = `overlayLayer`

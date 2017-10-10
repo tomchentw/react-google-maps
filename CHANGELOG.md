@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="8.4.0"></a>
+# [8.4.0](https://github.com/tomchentw/react-google-maps/compare/v8.3.5...v8.4.0) (2017-10-10)
+
+
+### Features
+
+* **BicyclingLayer:** Add new component for _Google Maps BicyclingLayer_ ([26ce879](https://github.com/tomchentw/react-google-maps/commit/26ce879))
+
+
+
 <a name="8.3.5"></a>
 ## [8.3.5](https://github.com/tomchentw/react-google-maps/compare/v8.3.4...v8.3.5) (2017-10-06)
 

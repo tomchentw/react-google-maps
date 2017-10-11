@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="8.4.2"></a>
+## [8.4.2](https://github.com/tomchentw/react-google-maps/compare/v8.4.1...v8.4.2) (2017-10-11)
+
+
+### Bug Fixes
+
+* **withGoogleMap:** make compatible with `recompose@^0.26` ([450e1a8](https://github.com/tomchentw/react-google-maps/commit/450e1a8)), closes [#659](https://github.com/tomchentw/react-google-maps/issues/659)
+* **withScriptjs:** make compatible with `recompose@^0.26` ([20f91af](https://github.com/tomchentw/react-google-maps/commit/20f91af)), closes [#659](https://github.com/tomchentw/react-google-maps/issues/659)
+
+
+
 <a name="8.4.1"></a>
 ## [8.4.1](https://github.com/tomchentw/react-google-maps/compare/v8.4.0...v8.4.1) (2017-10-11)
 

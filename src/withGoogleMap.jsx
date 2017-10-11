@@ -2,13 +2,13 @@
 import _ from "lodash"
 import warning from "warning"
 import invariant from "invariant"
-import { getDisplayName, createEagerFactory } from "recompose"
+import { getDisplayName } from "recompose"
 import PropTypes from "prop-types"
 import React from "react"
 import { MAP } from "./constants"
 
 export function withGoogleMap(BaseComponent) {
-  const factory = createEagerFactory(BaseComponent)
+  const factory = React.createFactory(BaseComponent)
 
   class Container extends React.PureComponent {
     static displayName = `withGoogleMap(${getDisplayName(BaseComponent)})`

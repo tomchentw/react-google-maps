@@ -1,7 +1,7 @@
 import _ from "lodash"
 import invariant from "invariant"
 import canUseDOM from "can-use-dom"
-import { getDisplayName, createEagerFactory } from "recompose"
+import { getDisplayName } from "recompose"
 import PropTypes from "prop-types"
 import React from "react"
 
@@ -10,7 +10,7 @@ const LOADING_STATE_BEGIN = `BEGIN`
 const LOADING_STATE_LOADED = `LOADED`
 
 export function withScriptjs(BaseComponent) {
-  const factory = createEagerFactory(BaseComponent)
+  const factory = React.createFactory(BaseComponent)
 
   class Container extends React.PureComponent {
     static displayName = `withScriptjs(${getDisplayName(BaseComponent)})`

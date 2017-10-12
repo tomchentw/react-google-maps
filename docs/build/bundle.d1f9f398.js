@@ -40887,6 +40887,23 @@ object-assign
         },
       ],
       props: {
+        defaultExtraMapTypes: {
+          type: {
+            name: "arrayOf",
+            value: { name: "arrayOf", value: { name: "any" } },
+          },
+          required: !1,
+          description: "",
+          tags: {
+            url: [
+              {
+                title: "url",
+                description:
+                  "https://developers.google.com/maps/documentation/javascript/3.exp/reference#MapTypeRegistry",
+              },
+            ],
+          },
+        },
         defaultCenter: {
           type: { name: "any" },
           required: !1,
@@ -50604,6 +50621,13 @@ object-assign
   },
   "./src/components/GoogleMap.jsx": function(e, t, n) {
     "use strict"
+    function _toConsumableArray(e) {
+      if (Array.isArray(e)) {
+        for (var t = 0, n = Array(e.length); t < e.length; t++) n[t] = e[t]
+        return n
+      }
+      return Array.from(e)
+    }
     function _classCallCheck(e, t) {
       if (!(e instanceof t))
         throw new TypeError("Cannot call a class as a function")
@@ -50806,6 +50830,7 @@ object-assign
       })()
     ;(d.displayName = "GoogleMap"),
       (d.propTypes = {
+        defaultExtraMapTypes: l.a.arrayOf(l.a.arrayOf(l.a.any)),
         defaultCenter: l.a.any,
         defaultClickableIcons: l.a.bool,
         defaultHeading: l.a.number,
@@ -50879,6 +50904,12 @@ object-assign
         onZoomChanged: "zoom_changed",
       },
       m = {
+        extraMapTypes: function extraMapTypes(e, t) {
+          t.forEach(function(t) {
+            var n
+            return (n = e.mapTypes).set.apply(n, _toConsumableArray(t))
+          })
+        },
         center: function center(e, t) {
           e.setCenter(t)
         },

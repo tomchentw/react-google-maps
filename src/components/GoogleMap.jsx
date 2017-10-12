@@ -25,6 +25,12 @@ export class Map extends React.PureComponent {
 
   static propTypes = {
     /**
+     * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#MapTypeRegistry
+     * @type Array<[id:string, mapType:MapType|*]>
+     */
+    defaultExtraMapTypes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.any)),
+
+    /**
      * @type LatLng|LatLngLiteral
      */
     defaultCenter: PropTypes.any,
@@ -383,6 +389,10 @@ const eventMap = {
 }
 
 const updaterMap = {
+  extraMapTypes(instance, extra) {
+    extra.forEach(it => instance.mapTypes.set(...it))
+  },
+
   center(instance, center) {
     instance.setCenter(center)
   },

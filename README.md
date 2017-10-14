@@ -13,9 +13,14 @@
 ## [Usage & Configuration](https://tomchentw.github.io/react-google-maps/#usage--configuration)
 
 
-## Changelog
+## [Changelog][changelog-url]
 
-The changelog is automatically generated via [standard-version][standard-version] and [can be found in project root](https://github.com/tomchentw/react-google-maps/blob/master/CHANGELOG.md) as well as npm tarball.
+The changelog is automatically generated via [standard-version][standard-version] and can be found in project root as well as npm tarball.
+
+
+## [Demo App][demo-app-url]
+
+[Source code][demo-app-source]
 
 
 ## Getting Help
@@ -59,6 +64,9 @@ Please be considerate when doing this as this is not the primary purpose of the 
 [gitter-image]: https://badges.gitter.im/Join%20Chat.svg
 [gitter-url]: https://gitter.im/tomchentw/react-google-maps?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 
+[changelog-url]: https://github.com/tomchentw/react-google-maps/blob/master/CHANGELOG.md
+[demo-app-url]: https://tomchentw.github.io/#/demos/react-google-maps
+[demo-app-source]: https://github.com/tomchentw/tomchentw.github.io/blob/master/src/Pages/Demos/ReactGoogleMaps.jsx
 
 [standard-version]: https://github.com/conventional-changelog/standard-version
 [conventional-commits-specification]: https://conventionalcommits.org/

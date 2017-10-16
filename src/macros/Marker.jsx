@@ -36,31 +36,6 @@ export class Marker extends React.PureComponent {
      * @see https://github.com/mikesaidani/marker-clusterer-plus
      */
     noRedraw: PropTypes.bool,
-    /**
-     * For `MarkerWithLabel`
-     * @see https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js
-     */
-    markerWithLabel: PropTypes.func,
-    /**
-     * For `MarkerWithLabel`
-     * @see https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js
-     */
-    labelClass: PropTypes.string,
-    /**
-     * For `MarkerWithLabel`
-     * @see https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js
-     */
-    labelAnchor: PropTypes.object,
-    /**
-     * For `MarkerWithLabel`
-     * @see https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js
-     */
-    labelContent: PropTypes.string,
-    /**
-     * For `MarkerWithLabel`
-     * @see https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js
-     */
-    labelStyle: PropTypes.object,
   }
 
   static contextTypes = {
@@ -77,8 +52,7 @@ export class Marker extends React.PureComponent {
    */
   constructor(props, context) {
     super(props, context)
-    const GMKlass = this.props.markerWithLabel || google.maps.Marker
-    const marker = new GMKlass()
+    const marker = new google.maps.Marker()
     construct(Marker.propTypes, updaterMap, this.props, marker)
     const markerClusterer = this.context[MARKER_CLUSTERER]
     if (markerClusterer) {
@@ -133,11 +107,4 @@ export default Marker
 
 const eventMap = {}
 
-const updaterMap = {
-  /*
-   * @see https://github.com/printercu/google-maps-utility-library-v3-read-only/blob/master/markerwithlabel/src/markerwithlabel.js
-   */
-  labelContent(instance, labelContent) {
-    instance.set(`labelContent`, labelContent)
-  },
-}
+const updaterMap = {}

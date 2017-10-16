@@ -2,6 +2,54 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="9.0.0"></a>
+# [9.0.0](https://github.com/tomchentw/react-google-maps/compare/v8.5.0...v9.0.0) (2017-10-16)
+
+
+### Bug Fixes
+
+* **Marker:** remove buggy `MarkerWithLabel` support ([b3985f4](https://github.com/tomchentw/react-google-maps/commit/b3985f4))
+
+
+### Features
+
+* **addons/MarkerWithLabel:** separate from `Marker` ([3f7670f](https://github.com/tomchentw/react-google-maps/commit/3f7670f)), closes [#595](https://github.com/tomchentw/react-google-maps/issues/595) [#604](https://github.com/tomchentw/react-google-maps/issues/604)
+* **package.json:** add `markerwithlabel` to dependencies ([b4fe224](https://github.com/tomchentw/react-google-maps/commit/b4fe224))
+
+
+### BREAKING CHANGES
+
+* **Marker:** MarkerWithLabel comes with its own React Component now
+
+Before:
+
+```js
+import { Marker } from "react-google-maps";
+
+<Marker
+  position={{ lat: -34.397, lng: 150.644 }}
+  labelAnchor={new google.maps.Point(0, 0)}
+  labelContent="<div>Hello There!</div>"
+  labelStyle={{/* WON'T WORK */}}
+/>
+```
+
+After:
+
+```js
+import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";
+
+<MarkerWithLabel
+  position={{ lat: -34.397, lng: 150.644 }}
+  labelAnchor={new google.maps.Point(0, 0)}
+  labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}
+>
+  <div>Hello There!</div>
+</MarkerWithLabel>
+```
+
+
+
 <a name="8.5.0"></a>
 # [8.5.0](https://github.com/tomchentw/react-google-maps/compare/v8.4.2...v8.5.0) (2017-10-12)
 

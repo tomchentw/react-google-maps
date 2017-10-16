@@ -2,6 +2,7 @@
 
 ### Editor
 *.swp
+.idea
 
 ### Node ###
 # Logs

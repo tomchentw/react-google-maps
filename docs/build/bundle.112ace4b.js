@@ -2352,7 +2352,7 @@
               M[t.left.type](e, t.left)
             },
           },
-          T = (function(e) {
+          D = (function(e) {
             function ForStatement() {
               e.apply(this, arguments)
             }
@@ -2401,7 +2401,7 @@
               ForStatement
             )
           })(O),
-          D = (function(e) {
+          T = (function(e) {
             function ForInStatement() {
               e.apply(this, arguments)
             }
@@ -3145,10 +3145,10 @@
                   return o
                 },
                 M = Math.floor,
-                T = function(e) {
+                D = function(e) {
                   return parseInt(M((e - 65536) / 1024) + 55296, 10)
                 },
-                D = function(e) {
+                T = function(e) {
                   return parseInt((e - 65536) % 1024 + 56320, 10)
                 },
                 A = String.fromCharCode,
@@ -3349,11 +3349,11 @@
                   ) {
                     ;(t = e[a]),
                       (n = e[a + 1] - 1),
-                      (r = T(t)),
-                      (o = D(t)),
-                      (s = T(n))
+                      (r = D(t)),
+                      (o = T(t)),
+                      (s = D(n))
                     var c = 56320 == o,
-                      p = 57343 == (i = D(n)),
+                      p = 57343 == (i = T(n)),
                       d = !1
                     r == s || (c && p)
                       ? (l.push([[r, s + 1], [o, i + 1]]), (d = !0))
@@ -4811,8 +4811,8 @@
             DoWhileStatement: O,
             ExportNamedDeclaration: P,
             ExportDefaultDeclaration: R,
-            ForStatement: T,
-            ForInStatement: D,
+            ForStatement: D,
+            ForInStatement: T,
             ForOfStatement: I,
             FunctionDeclaration: L,
             FunctionExpression: N,
@@ -8252,7 +8252,7 @@
         (M.parseParenArrowList = function(e, t, n) {
           return this.parseArrowExpression(this.startNodeAt(e, t), n)
         })
-      var T = []
+      var D = []
       ;(M.parseNew = function() {
         var e = this.startNode(),
           t = this.parseIdent(!0)
@@ -8278,7 +8278,7 @@
           (e.callee = this.parseSubscripts(this.parseExprAtom(), n, r, !0)),
           this.eat(f.parenL)
             ? (e.arguments = this.parseExprList(f.parenR, !1))
-            : (e.arguments = T),
+            : (e.arguments = D),
           this.finishNode(e, "NewExpression")
         )
       }),
@@ -8540,15 +8540,15 @@
             this.finishNode(e, "YieldExpression")
           )
         })
-      var D = C.prototype
-      ;(D.raise = function(e, t) {
+      var T = C.prototype
+      ;(T.raise = function(e, t) {
         var n = getLineInfo(this.input, e)
         t += " (" + n.line + ":" + n.column + ")"
         var r = new SyntaxError(t)
         throw ((r.pos = e), (r.loc = n), (r.raisedAt = this.pos), r)
       }),
-        (D.raiseRecoverable = D.raise),
-        (D.curPosition = function() {
+        (T.raiseRecoverable = T.raise),
+        (T.curPosition = function() {
           if (this.options.locations)
             return new v(this.curLine, this.pos - this.lineStart)
         })
@@ -17498,12 +17498,12 @@
       }
       function baseToString(e) {
         if ("string" == typeof e) return e
-        if (isSymbol(e)) return T ? T.call(e) : ""
+        if (isSymbol(e)) return D ? D.call(e) : ""
         var t = e + ""
         return "0" == t && 1 / e == -o ? "-0" : t
       }
       function castPath(e) {
-        return A(e) ? e : D(e)
+        return A(e) ? e : T(e)
       }
       function getMapData(e, t) {
         var n = e.__data__
@@ -17629,7 +17629,7 @@
         P = getNative(y, "Map"),
         O = getNative(Object, "create"),
         M = S ? S.prototype : void 0,
-        T = M ? M.toString : void 0
+        D = M ? M.toString : void 0
       ;(Hash.prototype.clear = function hashClear() {
         this.__data__ = O ? O(null) : {}
       }),
@@ -17691,7 +17691,7 @@
         (MapCache.prototype.set = function mapCacheSet(e, t) {
           return getMapData(this, e).set(e, t), this
         })
-      var D = memoize(function(e) {
+      var T = memoize(function(e) {
         e = toString(e)
         var t = []
         return (
@@ -19783,8 +19783,8 @@
           P = 800,
           O = 16,
           M = 1,
-          T = 2,
-          D = 1 / 0,
+          D = 2,
+          T = 1 / 0,
           A = 9007199254740991,
           I = 1.7976931348623157e308,
           L = NaN,
@@ -19847,9 +19847,9 @@
           Pe = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
           Oe = /^\w*$/,
           Me = /^\./,
-          Te = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,
-          De = /[\\^$.*+?()[\]{}|]/g,
-          Ae = RegExp(De.source),
+          De = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,
+          Te = /[\\^$.*+?()[\]{}|]/g,
+          Ae = RegExp(Te.source),
           Ie = /^\s+|\s+$/g,
           Le = /^\s+/,
           Ne = /\s+$/,
@@ -20195,10 +20195,10 @@
           Ot = "object" == typeof e && e && e.Object === Object && e,
           Mt =
             "object" == typeof self && self && self.Object === Object && self,
-          Tt = Ot || Mt || Function("return this")(),
-          Dt = "object" == typeof t && t && !t.nodeType && t,
-          At = Dt && "object" == typeof r && r && !r.nodeType && r,
-          It = At && At.exports === Dt,
+          Dt = Ot || Mt || Function("return this")(),
+          Tt = "object" == typeof t && t && !t.nodeType && t,
+          At = Tt && "object" == typeof r && r && !r.nodeType && r,
+          It = At && At.exports === Tt,
           Lt = It && Ot.process,
           Nt = (function() {
             try {
@@ -20973,7 +20973,7 @@
               if (Pr(e)) return arrayMap(e, baseToString) + ""
               if (isSymbol(e)) return kn ? kn.call(e) : ""
               var t = e + ""
-              return "0" == t && 1 / e == -D ? "-0" : t
+              return "0" == t && 1 / e == -T ? "-0" : t
             }
             function baseUniq(e, t, n) {
               var r = -1,
@@ -21254,7 +21254,7 @@
             }
             function createBind(e, t, n) {
               function wrapper() {
-                return (this && this !== Tt && this instanceof wrapper
+                return (this && this !== Dt && this instanceof wrapper
                   ? o
                   : e
                 ).apply(r ? n : this, arguments)
@@ -21331,7 +21331,7 @@
                       r - i
                     )
                   : apply(
-                      this && this !== Tt && this instanceof wrapper ? o : e,
+                      this && this !== Dt && this instanceof wrapper ? o : e,
                       this,
                       a
                     )
@@ -21420,7 +21420,7 @@
                   u ? (y = reorder(y, u)) : g && s > 1 && y.reverse(),
                   d && c < s && (y.length = c),
                   this &&
-                    this !== Tt &&
+                    this !== Dt &&
                     this instanceof wrapper &&
                     (w = v || createCtor(w)),
                   w.apply(C, y)
@@ -21482,7 +21482,7 @@
                     l = -1,
                     u = o.length,
                     c = t(u + a),
-                    p = this && this !== Tt && this instanceof wrapper ? i : e;
+                    p = this && this !== Dt && this instanceof wrapper ? i : e;
                   ++l < u;
 
                 )
@@ -22061,7 +22061,7 @@
             function toKey(e) {
               if ("string" == typeof e || isSymbol(e)) return e
               var t = e + ""
-              return "0" == t && 1 / e == -D ? "-0" : t
+              return "0" == t && 1 / e == -T ? "-0" : t
             }
             function toSource(e) {
               if (null != e) {
@@ -22359,13 +22359,13 @@
               if (!e) return []
               if (isArrayLike(e))
                 return isString(e) ? stringToArray(e) : copyArray(e)
-              if (Dt && e[Dt]) return iteratorToArray(e[Dt]())
+              if (Tt && e[Tt]) return iteratorToArray(e[Tt]())
               var t = qn(e)
               return (t == Y ? mapToArray : t == ne ? setToArray : values)(e)
             }
             function toFinite(e) {
               return e
-                ? (e = toNumber(e)) === D || e === -D
+                ? (e = toNumber(e)) === T || e === -T
                   ? (e < 0 ? -1 : 1) * I
                   : e === e ? e : 0
                 : 0 === e ? e : 0
@@ -22495,7 +22495,7 @@
               return !1
             }
             var t = (e =
-                null == e ? Tt : Zt.defaults(Tt.Object(), e, Zt.pick(Tt, _t)))
+                null == e ? Dt : Zt.defaults(Dt.Object(), e, Zt.pick(Dt, _t)))
                 .Array,
               n = e.Date,
               r = e.Error,
@@ -22518,12 +22518,12 @@
               })(),
               pt = st.toString,
               dt = at.call(Qe),
-              ht = Tt._,
+              ht = Dt._,
               gt = et(
                 "^" +
                   at
                     .call(lt)
-                    .replace(De, "\\$&")
+                    .replace(Te, "\\$&")
                     .replace(
                       /hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,
                       "$1.*?"
@@ -22539,7 +22539,7 @@
               St = st.propertyIsEnumerable,
               Ot = rt.splice,
               Mt = bt ? bt.isConcatSpreadable : s,
-              Dt = bt ? bt.iterator : s,
+              Tt = bt ? bt.iterator : s,
               At = bt ? bt.toStringTag : s,
               Lt = (function() {
                 try {
@@ -22547,9 +22547,9 @@
                   return e({}, "", {}), e
                 } catch (e) {}
               })(),
-              Nt = e.clearTimeout !== Tt.clearTimeout && e.clearTimeout,
-              Vt = n && n.now !== Tt.Date.now && n.now,
-              $t = e.setTimeout !== Tt.setTimeout && e.setTimeout,
+              Nt = e.clearTimeout !== Dt.clearTimeout && e.clearTimeout,
+              Vt = n && n.now !== Dt.Date.now && n.now,
+              $t = e.setTimeout !== Dt.setTimeout && e.setTimeout,
               Yt = Ue.ceil,
               Jt = Ue.floor,
               Xt = Qe.getOwnPropertySymbols,
@@ -22721,7 +22721,7 @@
                     return gn.set(e, t), e
                   }
                 : identity,
-              Tn = Lt
+              Dn = Lt
                 ? function(e, t) {
                     return Lt(e, "toString", {
                       configurable: !0,
@@ -22731,14 +22731,14 @@
                     })
                   }
                 : identity,
-              Dn = baseRest,
+              Tn = baseRest,
               An =
                 Nt ||
                 function(e) {
-                  return Tt.clearTimeout(e)
+                  return Dt.clearTimeout(e)
                 },
               In =
-                hn && 1 / setToArray(new hn([, -0]))[1] == D
+                hn && 1 / setToArray(new hn([, -0]))[1] == T
                   ? function(e) {
                       return new hn(e)
                     }
@@ -22794,9 +22794,9 @@
               Wn =
                 $t ||
                 function(e, t) {
-                  return Tt.setTimeout(e, t)
+                  return Dt.setTimeout(e, t)
                 },
-              zn = shortOut(Tn),
+              zn = shortOut(Dn),
               Vn = (function memoizeCapped(e) {
                 var t = memoize(e, function(e) {
                     return n.size === c && n.clear(), e
@@ -22807,7 +22807,7 @@
                 var t = []
                 return (
                   Me.test(e) && t.push(""),
-                  e.replace(Te, function(e, n, r, o) {
+                  e.replace(De, function(e, n, r, o) {
                     t.push(r ? o.replace(We, "$1") : n || e)
                   }),
                   t
@@ -22993,7 +22993,7 @@
               yr =
                 Vt ||
                 function() {
-                  return Tt.Date.now()
+                  return Dt.Date.now()
                 },
               br = baseRest(function(e, t, n) {
                 var r = y
@@ -23018,7 +23018,7 @@
                 return baseDelay(e, toNumber(t) || 0, n)
               })
             memoize.Cache = MapCache
-            var xr = Dn(function(e, t) {
+            var xr = Tn(function(e, t) {
                 var n = (t =
                   1 == t.length && Pr(t[0])
                     ? arrayMap(t[0], baseUnary(getIteratee()))
@@ -23065,12 +23065,12 @@
                     return isObjectLike(e) && baseGetTag(e) == le
                   },
               Mr = Qt || stubFalse,
-              Tr = qt
+              Dr = qt
                 ? baseUnary(qt)
                 : function baseIsDate(e) {
                     return isObjectLike(e) && baseGetTag(e) == G
                   },
-              Dr = Ft
+              Tr = Ft
                 ? baseUnary(Ft)
                 : function baseIsMap(e) {
                     return isObjectLike(e) && qn(e) == Y
@@ -23346,7 +23346,7 @@
                 return baseFlatten(map(e, t), 1)
               }),
               (lodash.flatMapDeep = function flatMapDeep(e, t) {
-                return baseFlatten(map(e, t), D)
+                return baseFlatten(map(e, t), T)
               }),
               (lodash.flatMapDepth = function flatMapDepth(e, t, n) {
                 return (
@@ -23355,7 +23355,7 @@
               }),
               (lodash.flatten = flatten),
               (lodash.flattenDeep = function flattenDeep(e) {
-                return (null == e ? 0 : e.length) ? baseFlatten(e, D) : []
+                return (null == e ? 0 : e.length) ? baseFlatten(e, T) : []
               }),
               (lodash.flattenDepth = function flattenDepth(e, t) {
                 return (null == e ? 0 : e.length)
@@ -23743,7 +23743,7 @@
               }),
               (lodash.escapeRegExp = function escapeRegExp(e) {
                 return (e = toString(e)) && Ae.test(e)
-                  ? e.replace(De, "\\$&")
+                  ? e.replace(Te, "\\$&")
                   : e
               }),
               (lodash.every = function every(e, t, n) {
@@ -23826,7 +23826,7 @@
                 )
               }),
               (lodash.isBuffer = Mr),
-              (lodash.isDate = Tr),
+              (lodash.isDate = Dr),
               (lodash.isElement = function isElement(e) {
                 return isObjectLike(e) && 1 === e.nodeType && !isPlainObject(e)
               }),
@@ -23862,7 +23862,7 @@
               (lodash.isFunction = isFunction),
               (lodash.isInteger = isInteger),
               (lodash.isLength = isLength),
-              (lodash.isMap = Dr),
+              (lodash.isMap = Tr),
               (lodash.isMatch = function isMatch(e, t) {
                 return e === t || baseIsMatch(e, t, getMatchData(t))
               }),
@@ -23965,7 +23965,7 @@
                 return e && e.length ? baseNth(e, toInteger(t)) : s
               }),
               (lodash.noConflict = function noConflict() {
-                return Tt._ === this && (Tt._ = ht), this
+                return Dt._ === this && (Dt._ = ht), this
               }),
               (lodash.noop = noop),
               (lodash.now = yr),
@@ -24516,7 +24516,7 @@
                       b = y.iteratee,
                       v = y.type,
                       _ = b(g)
-                    if (v == T) g = _
+                    if (v == D) g = _
                     else if (!_) {
                       if (v == M) continue e
                       break e
@@ -24573,14 +24573,14 @@
                 return baseWrapperValue(this.__wrapped__, this.__actions__)
               }),
               (lodash.prototype.first = lodash.prototype.head),
-              Dt &&
-                (lodash.prototype[Dt] = function wrapperToIterator() {
+              Tt &&
+                (lodash.prototype[Tt] = function wrapperToIterator() {
                   return this
                 }),
               lodash
             )
           })()
-        ;(Tt._ = Zt),
+        ;(Dt._ = Zt),
           (o = function() {
             return Zt
           }.call(t, n, t, r)) !== s && (r.exports = o)
@@ -26679,6 +26679,377 @@
       (MarkerClusterer.IMAGE_SIZES = [53, 56, 66, 78, 90]),
       (e.exports = MarkerClusterer)
   },
+  "./node_modules/markerwithlabel/index.js": function(e, t) {
+    /*!
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+    function inherits(e, t) {
+      function tempCtor() {}
+      ;(tempCtor.prototype = t.prototype),
+        (e.superClass_ = t.prototype),
+        (e.prototype = new tempCtor()),
+        (e.prototype.constructor = e)
+    }
+    e.exports = function(e) {
+      function MarkerLabel_(e, t, n) {
+        ;(this.marker_ = e),
+          (this.handCursorURL_ = e.handCursorURL),
+          (this.labelDiv_ = document.createElement("div")),
+          (this.labelDiv_.style.cssText =
+            "position: absolute; overflow: hidden;"),
+          (this.eventDiv_ = document.createElement("div")),
+          (this.eventDiv_.style.cssText = this.labelDiv_.style.cssText),
+          this.eventDiv_.addEventListener("selectstart", function() {
+            return !1
+          }),
+          this.eventDiv_.addEventListener("dragstart", function() {
+            return !1
+          }),
+          (this.crossDiv_ = MarkerLabel_.getSharedCross(t))
+      }
+      function MarkerWithLabel(t) {
+        ;((t = t || {}).labelContent = t.labelContent || ""),
+          (t.labelAnchor = t.labelAnchor || new e.Point(0, 0)),
+          (t.labelClass = t.labelClass || "markerLabels"),
+          (t.labelStyle = t.labelStyle || {}),
+          (t.labelInBackground = t.labelInBackground || !1),
+          void 0 === t.labelVisible && (t.labelVisible = !0),
+          void 0 === t.raiseOnDrag && (t.raiseOnDrag = !0),
+          void 0 === t.clickable && (t.clickable = !0),
+          void 0 === t.draggable && (t.draggable = !1),
+          void 0 === t.optimized && (t.optimized = !1),
+          (t.crossImage =
+            t.crossImage ||
+            "http" +
+              ("https:" === document.location.protocol ? "s" : "") +
+              "://maps.gstatic.com/intl/en_us/mapfiles/drag_cross_67_16.png"),
+          (t.handCursor =
+            t.handCursor ||
+            "http" +
+              ("https:" === document.location.protocol ? "s" : "") +
+              "://maps.gstatic.com/intl/en_us/mapfiles/closedhand_8_8.cur"),
+          (t.optimized = !1),
+          (this.label = new MarkerLabel_(this, t.crossImage, t.handCursor)),
+          e.Marker.apply(this, arguments)
+      }
+      return (
+        inherits(MarkerLabel_, e.OverlayView),
+        (MarkerLabel_.getSharedCross = function(e) {
+          var t
+          return (
+            void 0 === MarkerLabel_.getSharedCross.crossDiv &&
+              (((t = document.createElement("img")).style.cssText =
+                "position: absolute; z-index: 1000002; display: none;"),
+              (t.style.marginLeft = "-8px"),
+              (t.style.marginTop = "-9px"),
+              (t.src = e),
+              (MarkerLabel_.getSharedCross.crossDiv = t)),
+            MarkerLabel_.getSharedCross.crossDiv
+          )
+        }),
+        (MarkerLabel_.prototype.onAdd = function() {
+          var t,
+            n,
+            r,
+            o,
+            s,
+            i,
+            a,
+            l = this,
+            u = !1,
+            c = !1,
+            p = "url(" + this.handCursorURL_ + ")",
+            d = function(e) {
+              e.preventDefault && e.preventDefault(),
+                (e.cancelBubble = !0),
+                e.stopPropagation && e.stopPropagation()
+            },
+            h = function() {
+              l.marker_.setAnimation(null)
+            }
+          this.getPanes().markerLayer.appendChild(this.labelDiv_),
+            this.getPanes().overlayMouseTarget.appendChild(this.eventDiv_),
+            void 0 === MarkerLabel_.getSharedCross.processed &&
+              (this.getPanes().markerLayer.appendChild(this.crossDiv_),
+              (MarkerLabel_.getSharedCross.processed = !0)),
+            (this.listeners_ = [
+              e.event.addDomListener(this.eventDiv_, "mouseover", function(t) {
+                ;(l.marker_.getDraggable() || l.marker_.getClickable()) &&
+                  ((this.style.cursor = "pointer"),
+                  e.event.trigger(l.marker_, "mouseover", t))
+              }),
+              e.event.addDomListener(this.eventDiv_, "mouseout", function(t) {
+                ;(!l.marker_.getDraggable() && !l.marker_.getClickable()) ||
+                  c ||
+                  ((this.style.cursor = l.marker_.getCursor()),
+                  e.event.trigger(l.marker_, "mouseout", t))
+              }),
+              e.event.addDomListener(this.eventDiv_, "mousedown", function(t) {
+                ;(c = !1),
+                  l.marker_.getDraggable() &&
+                    ((u = !0), (this.style.cursor = p)),
+                  (l.marker_.getDraggable() || l.marker_.getClickable()) &&
+                    (e.event.trigger(l.marker_, "mousedown", t), d(t))
+              }),
+              e.event.addDomListener(document, "mouseup", function(n) {
+                var r
+                if (
+                  (u &&
+                    ((u = !1),
+                    (l.eventDiv_.style.cursor = "pointer"),
+                    e.event.trigger(l.marker_, "mouseup", n)),
+                  c)
+                ) {
+                  if (s) {
+                    ;((r = l
+                      .getProjection()
+                      .fromLatLngToDivPixel(l.marker_.getPosition())).y += 20),
+                      l.marker_.setPosition(
+                        l.getProjection().fromDivPixelToLatLng(r)
+                      )
+                    try {
+                      l.marker_.setAnimation(e.Animation.BOUNCE),
+                        setTimeout(h, 1406)
+                    } catch (e) {}
+                  }
+                  ;(l.crossDiv_.style.display = "none"),
+                    l.marker_.setZIndex(t),
+                    (o = !0),
+                    (c = !1),
+                    (n.latLng = l.marker_.getPosition()),
+                    e.event.trigger(l.marker_, "dragend", n)
+                }
+              }),
+              e.event.addListener(l.marker_.getMap(), "mousemove", function(o) {
+                var p
+                u &&
+                  (c
+                    ? ((o.latLng = new e.LatLng(
+                        o.latLng.lat() - n,
+                        o.latLng.lng() - r
+                      )),
+                      (p = l.getProjection().fromLatLngToDivPixel(o.latLng)),
+                      s &&
+                        ((l.crossDiv_.style.left = p.x + "px"),
+                        (l.crossDiv_.style.top = p.y + "px"),
+                        (l.crossDiv_.style.display = ""),
+                        (p.y -= 20)),
+                      l.marker_.setPosition(
+                        l.getProjection().fromDivPixelToLatLng(p)
+                      ),
+                      s && (l.eventDiv_.style.top = p.y + 20 + "px"),
+                      e.event.trigger(l.marker_, "drag", o))
+                    : ((n = o.latLng.lat() - l.marker_.getPosition().lat()),
+                      (r = o.latLng.lng() - l.marker_.getPosition().lng()),
+                      (t = l.marker_.getZIndex()),
+                      (i = l.marker_.getPosition()),
+                      (a = l.marker_.getMap().getCenter()),
+                      (s = l.marker_.get("raiseOnDrag")),
+                      (c = !0),
+                      l.marker_.setZIndex(1e6),
+                      (o.latLng = l.marker_.getPosition()),
+                      e.event.trigger(l.marker_, "dragstart", o)))
+              }),
+              e.event.addDomListener(document, "keydown", function(t) {
+                c &&
+                  27 === t.keyCode &&
+                  ((s = !1),
+                  l.marker_.setPosition(i),
+                  l.marker_.getMap().setCenter(a),
+                  e.event.trigger(document, "mouseup", t))
+              }),
+              e.event.addDomListener(this.eventDiv_, "click", function(t) {
+                ;(l.marker_.getDraggable() || l.marker_.getClickable()) &&
+                  (o
+                    ? (o = !1)
+                    : (e.event.trigger(l.marker_, "click", t), d(t)))
+              }),
+              e.event.addDomListener(this.eventDiv_, "dblclick", function(t) {
+                ;(l.marker_.getDraggable() || l.marker_.getClickable()) &&
+                  (e.event.trigger(l.marker_, "dblclick", t), d(t))
+              }),
+              e.event.addListener(this.marker_, "dragstart", function(e) {
+                c || (s = this.get("raiseOnDrag"))
+              }),
+              e.event.addListener(this.marker_, "drag", function(e) {
+                c ||
+                  (s &&
+                    (l.setPosition(20),
+                    (l.labelDiv_.style.zIndex =
+                      1e6 + (this.get("labelInBackground") ? -1 : 1))))
+              }),
+              e.event.addListener(this.marker_, "dragend", function(e) {
+                c || (s && l.setPosition(0))
+              }),
+              e.event.addListener(this.marker_, "position_changed", function() {
+                l.setPosition()
+              }),
+              e.event.addListener(this.marker_, "zindex_changed", function() {
+                l.setZIndex()
+              }),
+              e.event.addListener(this.marker_, "visible_changed", function() {
+                l.setVisible()
+              }),
+              e.event.addListener(
+                this.marker_,
+                "labelvisible_changed",
+                function() {
+                  l.setVisible()
+                }
+              ),
+              e.event.addListener(this.marker_, "title_changed", function() {
+                l.setTitle()
+              }),
+              e.event.addListener(
+                this.marker_,
+                "labelcontent_changed",
+                function() {
+                  l.setContent()
+                }
+              ),
+              e.event.addListener(
+                this.marker_,
+                "labelanchor_changed",
+                function() {
+                  l.setAnchor()
+                }
+              ),
+              e.event.addListener(
+                this.marker_,
+                "labelclass_changed",
+                function() {
+                  l.setStyles()
+                }
+              ),
+              e.event.addListener(
+                this.marker_,
+                "labelstyle_changed",
+                function() {
+                  l.setStyles()
+                }
+              ),
+            ])
+        }),
+        (MarkerLabel_.prototype.onRemove = function() {
+          var t
+          for (
+            this.labelDiv_.parentNode.removeChild(this.labelDiv_),
+              this.eventDiv_.parentNode.removeChild(this.eventDiv_),
+              t = 0;
+            t < this.listeners_.length;
+            t++
+          )
+            e.event.removeListener(this.listeners_[t])
+        }),
+        (MarkerLabel_.prototype.draw = function() {
+          this.setContent(), this.setTitle(), this.setStyles()
+        }),
+        (MarkerLabel_.prototype.setContent = function() {
+          var e = this.marker_.get("labelContent")
+          if (void 0 === e.nodeType)
+            (this.labelDiv_.innerHTML = e),
+              (this.eventDiv_.innerHTML = this.labelDiv_.innerHTML)
+          else {
+            for (; this.labelDiv_.lastChild; )
+              this.labelDiv_.removeChild(this.labelDiv_.lastChild)
+            for (; this.eventDiv_.lastChild; )
+              this.eventDiv_.removeChild(this.eventDiv_.lastChild)
+            this.labelDiv_.appendChild(e),
+              (e = e.cloneNode(!0)),
+              this.eventDiv_.appendChild(e)
+          }
+        }),
+        (MarkerLabel_.prototype.setTitle = function() {
+          this.eventDiv_.title = this.marker_.getTitle() || ""
+        }),
+        (MarkerLabel_.prototype.setStyles = function() {
+          var e, t
+          ;(this.labelDiv_.className = this.marker_.get("labelClass")),
+            (this.eventDiv_.className = this.labelDiv_.className),
+            (this.labelDiv_.style.cssText = ""),
+            (this.eventDiv_.style.cssText = ""),
+            (t = this.marker_.get("labelStyle"))
+          for (e in t)
+            t.hasOwnProperty(e) &&
+              ((this.labelDiv_.style[e] = t[e]),
+              (this.eventDiv_.style[e] = t[e]))
+          this.setMandatoryStyles()
+        }),
+        (MarkerLabel_.prototype.setMandatoryStyles = function() {
+          ;(this.labelDiv_.style.position = "absolute"),
+            (this.labelDiv_.style.overflow = "hidden"),
+            void 0 !== this.labelDiv_.style.opacity &&
+              "" !== this.labelDiv_.style.opacity &&
+              ((this.labelDiv_.style.MsFilter =
+                '"progid:DXImageTransform.Microsoft.Alpha(opacity=' +
+                100 * this.labelDiv_.style.opacity +
+                ')"'),
+              (this.labelDiv_.style.filter =
+                "alpha(opacity=" + 100 * this.labelDiv_.style.opacity + ")")),
+            (this.eventDiv_.style.position = this.labelDiv_.style.position),
+            (this.eventDiv_.style.overflow = this.labelDiv_.style.overflow),
+            (this.eventDiv_.style.opacity = 0.01),
+            (this.eventDiv_.style.MsFilter =
+              '"progid:DXImageTransform.Microsoft.Alpha(opacity=1)"'),
+            (this.eventDiv_.style.filter = "alpha(opacity=1)"),
+            this.setAnchor(),
+            this.setPosition(),
+            this.setVisible()
+        }),
+        (MarkerLabel_.prototype.setAnchor = function() {
+          var e = this.marker_.get("labelAnchor")
+          ;(this.labelDiv_.style.marginLeft = -e.x + "px"),
+            (this.labelDiv_.style.marginTop = -e.y + "px"),
+            (this.eventDiv_.style.marginLeft = -e.x + "px"),
+            (this.eventDiv_.style.marginTop = -e.y + "px")
+        }),
+        (MarkerLabel_.prototype.setPosition = function(e) {
+          var t = this.getProjection().fromLatLngToDivPixel(
+            this.marker_.getPosition()
+          )
+          void 0 === e && (e = 0),
+            (this.labelDiv_.style.left = Math.round(t.x) + "px"),
+            (this.labelDiv_.style.top = Math.round(t.y - e) + "px"),
+            (this.eventDiv_.style.left = this.labelDiv_.style.left),
+            (this.eventDiv_.style.top = this.labelDiv_.style.top),
+            this.setZIndex()
+        }),
+        (MarkerLabel_.prototype.setZIndex = function() {
+          var e = this.marker_.get("labelInBackground") ? -1 : 1
+          void 0 === this.marker_.getZIndex()
+            ? ((this.labelDiv_.style.zIndex =
+                parseInt(this.labelDiv_.style.top, 10) + e),
+              (this.eventDiv_.style.zIndex = this.labelDiv_.style.zIndex))
+            : ((this.labelDiv_.style.zIndex = this.marker_.getZIndex() + e),
+              (this.eventDiv_.style.zIndex = this.labelDiv_.style.zIndex))
+        }),
+        (MarkerLabel_.prototype.setVisible = function() {
+          this.marker_.get("labelVisible")
+            ? (this.labelDiv_.style.display = this.marker_.getVisible()
+                ? "block"
+                : "none")
+            : (this.labelDiv_.style.display = "none"),
+            (this.eventDiv_.style.display = this.labelDiv_.style.display)
+        }),
+        inherits(MarkerWithLabel, e.Marker),
+        (MarkerWithLabel.prototype.setMap = function(t) {
+          e.Marker.prototype.setMap.apply(this, arguments), this.label.setMap(t)
+        }),
+        MarkerWithLabel
+      )
+    }
+  },
   "./node_modules/object-assign/index.js": function(e, t, n) {
     "use strict"
     function toObject(e) {
@@ -26842,14 +27213,14 @@ object-assign
                       : (n !== a &&
                           ((J = 1 + (X = G + n.length) - G), (i = !1)),
                         i ||
-                          ((W = n ? M : D),
+                          ((W = n ? M : T),
                           t.attribute
                             ? (q = at(X)) === x
                               ? (F(W, J), (V = null))
                               : l(q) ? (V = null) : F(W, J)
                             : F(W, J))),
                     (B = V))
-                  : (i || F(T, J),
+                  : (i || F(D, J),
                     isProhibited((B = parseInt(a, P[K])))
                       ? (F(N, J), (B = d))
                       : B in s
@@ -26946,8 +27317,8 @@ object-assign
     var O = {}
     ;(O[E] = l), (O[R] = i), (O[S] = a)
     var M = 1,
-      T = 2,
-      D = 3,
+      D = 2,
+      T = 3,
       A = 4,
       I = 5,
       L = 6,
@@ -26957,8 +27328,8 @@ object-assign
       F = " cannot be empty",
       U = {}
     ;(U[M] = "Named character references" + q),
-      (U[T] = B + q),
-      (U[D] = "Named character references" + F),
+      (U[D] = B + q),
+      (U[T] = "Named character references" + F),
       (U[A] = B + F),
       (U[I] = "Named character references must be known"),
       (U[L] = B + " cannot be disallowed"),
@@ -30135,7 +30506,7 @@ object-assign
     function enqueuePutListener(e, t, n, r) {
       if (!(r instanceof j)) {
         var o = e._hostContainerInfo,
-          s = o._node && o._node.nodeType === T ? o._node : o._ownerDocument
+          s = o._node && o._node.nodeType === D ? o._node : o._ownerDocument
         S(t, s),
           r
             .getReactMountReady()
@@ -30173,9 +30544,9 @@ object-assign
         case "video":
         case "audio":
           e._wrapperState.listeners = []
-          for (var n in D)
-            D.hasOwnProperty(n) &&
-              e._wrapperState.listeners.push(h.trapBubbledEvent(n, D[n], t))
+          for (var n in T)
+            T.hasOwnProperty(n) &&
+              e._wrapperState.listeners.push(h.trapBubbledEvent(n, T[n], t))
           break
         case "source":
           e._wrapperState.listeners = [
@@ -30269,8 +30640,8 @@ object-assign
         dangerouslySetInnerHTML: null,
         suppressContentEditableWarning: null,
       },
-      T = 11,
-      D = {
+      D = 11,
+      T = {
         topAbort: "abort",
         topCanPlay: "canplay",
         topCanPlayThrough: "canplaythrough",
@@ -39667,12 +40038,12 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  BicyclingLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithABicyclingLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  &gt;\n    &lt;BicyclingLayer /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithABicyclingLayer /&gt;\n```\n\n### Map with a BicyclingLayer',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose, withProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  BicyclingLayer,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithABicyclingLayer = compose(\n  withProps({\n    <span class="hljs-attr">googleMapURL</span>: <span class="hljs-string">"https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"</span>,\n    <span class="hljs-attr">loadingElement</span>: &lt;div style={{ height: `100%` }} /&gt;,\n    containerElement: &lt;div style={{ height: `400px` }} /&gt;,\n    mapElement: &lt;div style={{ height: `100%` }} /&gt;,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: 41.9, lng: -87.624 }}\n  &gt;\n    &lt;BicyclingLayer /&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithABicyclingLayer /&gt;\n```\n\n### Map with a BicyclingLayer',
       },
       {
         type: "code",
         content:
-          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  BicyclingLayer,\n} = require("../index");\n\nconst MapWithABicyclingLayer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={12}\n    defaultCenter={{ lat: 34.17223, lng: -118.37897 }}\n  >\n    <BicyclingLayer autoUpdate />\n  </GoogleMap>\n);\n\n<MapWithABicyclingLayer />',
+          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  BicyclingLayer,\n} = require("../index");\n\nconst MapWithABicyclingLayer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={12}\n    defaultCenter={{ lat: 34.17223, lng: -118.37897 }}\n  >\n    <BicyclingLayer autoUpdate />\n  </GoogleMap>\n);\n\n<MapWithABicyclingLayer />',
         settings: {},
         evalInContext: s,
       },
@@ -39794,7 +40165,7 @@ object-assign
       {
         type: "markdown",
         content:
-          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  GroundOverlay,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithGroundOverlay = compose(\n  withScriptjs,\n  withGoogleMap\n)(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">12</span>}\n    defaultCenter={{<span class="hljs-attr">lat</span>: <span class="hljs-number">40.740</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">-74.18</span>}}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">GroundOverlay</span>\n      <span class="hljs-attr">url</span>=<span class="hljs-string">"https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"</span>\n      <span class="hljs-attr">bounds</span>=<span class="hljs-string">{new</span> <span class="hljs-attr">google.maps.LatLngBounds</span>(\n        <span class="hljs-attr">new</span> <span class="hljs-attr">google.maps.LatLng</span>(<span class="hljs-attr">40.712216</span>, <span class="hljs-attr">-74.22655</span>),\n        <span class="hljs-attr">new</span> <span class="hljs-attr">google.maps.LatLng</span>(<span class="hljs-attr">40.773941</span>, <span class="hljs-attr">-74.12544</span>)\n      )}\n      <span class="hljs-attr">defaultOpacity</span>=<span class="hljs-string">{.5}</span>\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n);\n\n&lt;MapWithGroundOverlay\n  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing.places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Map with Ground Overlay',
+          '### Usage\n\n```jsx\n<span class="hljs-keyword">import</span> { compose } <span class="hljs-keyword">from</span> <span class="hljs-string">"recompose"</span>;\n<span class="hljs-keyword">import</span> {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  GroundOverlay,\n} <span class="hljs-keyword">from</span> <span class="hljs-string">"react-google-maps"</span>;\n\n<span class="hljs-keyword">const</span> MapWithGroundOverlay = compose(\n  withScriptjs,\n  withGoogleMap\n)(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span>\n  &lt;GoogleMap\n    defaultZoom={<span class="hljs-number">12</span>}\n    defaultCenter={{<span class="hljs-attr">lat</span>: <span class="hljs-number">40.740</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">-74.18</span>}}\n  &gt;\n    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">GroundOverlay</span>\n      <span class="hljs-attr">url</span>=<span class="hljs-string">"https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"</span>\n      <span class="hljs-attr">bounds</span>=<span class="hljs-string">{new</span> <span class="hljs-attr">google.maps.LatLngBounds</span>(\n        <span class="hljs-attr">new</span> <span class="hljs-attr">google.maps.LatLng</span>(<span class="hljs-attr">40.712216</span>, <span class="hljs-attr">-74.22655</span>),\n        <span class="hljs-attr">new</span> <span class="hljs-attr">google.maps.LatLng</span>(<span class="hljs-attr">40.773941</span>, <span class="hljs-attr">-74.12544</span>)\n      )}\n      <span class="hljs-attr">defaultOpacity</span>=<span class="hljs-string">{.5}</span>\n    /&gt;</span>\n  <span class="hljs-tag">&lt;/<span class="hljs-name">GoogleMap</span>&gt;</span></span>\n);\n\n&lt;MapWithGroundOverlay\n  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Map with Ground Overlay',
       },
       {
         type: "code",
@@ -40065,6 +40436,38 @@ object-assign
         type: "code",
         content:
           'const fetch = require("isomorphic-fetch");\nconst { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n  Marker,\n} = require("../../index");\nconst { MarkerClusterer } = require("./MarkerClusterer");\n\nconst MapWithAMarkerClusterer = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={3}\n    defaultCenter={{ lat: 25.0391667, lng: 121.525 }}\n  >\n    <MarkerClusterer\n      averageCenter\n      enableRetinaIcons\n      gridSize={60}\n    >\n      {props.markers.map(marker => (\n        <Marker\n          key={marker.photo_id}\n          position={{ lat: marker.latitude, lng: marker.longitude }}\n        />\n      ))}\n    </MarkerClusterer>\n  </GoogleMap>\n);\n\nclass DemoApp extends React.PureComponent {\n  componentWillMount() {\n    this.setState({ markers: [] })\n  }\n\n  componentDidMount() {\n    const url = [\n      // Length issue\n      `https://gist.githubusercontent.com`,\n      `/farrrr/dfda7dd7fccfec5474d3`,\n      `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`\n    ].join("")\n\n    fetch(url)\n      .then(res => res.json())\n      .then(data => {\n        this.setState({ markers: data.photos });\n      });\n  }\n\n  render() {\n    return (\n      <MapWithAMarkerClusterer markers={this.state.markers} />\n    )\n  }\n}\n\n<DemoApp />',
+        settings: {},
+        evalInContext: s,
+      },
+    ]
+  },
+  "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/components/addons/MarkerWithLabel.md": function(
+    e,
+    t,
+    n
+  ) {
+    var r = {
+        recompose: n("./node_modules/recompose/es/Recompose.js"),
+        "../../index": n("./src/index.js"),
+        "./MarkerWithLabel": n("./src/components/addons/MarkerWithLabel.jsx"),
+        react: n("./node_modules/react/react.js"),
+      },
+      o = n(
+        "./node_modules/react-styleguidist/loaders/utils/client/requireInRuntime.js"
+      ).bind(null, r),
+      s = n(
+        "./node_modules/react-styleguidist/loaders/utils/client/evalInContext.js"
+      ).bind(null, "var React = require('react');", o)
+    e.exports = [
+      {
+        type: "markdown",
+        content:
+          '### Usage\n\n```jsx\nimport { compose } from "recompose";\nimport {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} from "react-google-maps";\n\nimport MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";\n\nconst MapWithAMarkerWithLabel = compose(\n  withScriptjs,\n  withGoogleMap\n)(props =&gt;\n  &lt;GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  &gt;\n    &lt;MarkerWithLabel\n      position={{ lat: -34.397, lng: 150.644 }}\n      labelAnchor={new google.maps.Point(0, 0)}\n      labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}\n    &gt;\n      &lt;div&gt;Hello There!&lt;/div&gt;\n    &lt;/MarkerWithLabel&gt;\n  &lt;/GoogleMap&gt;\n);\n\n&lt;MapWithAMarkerWithLabel\n  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&amp;v=3.exp&amp;libraries=geometry,drawing,places"\n  loadingElement={&lt;div style={{ height: `100%` }} /&gt;}\n  containerElement={&lt;div style={{ height: `400px` }} /&gt;}\n  mapElement={&lt;div style={{ height: `100%` }} /&gt;}\n/&gt;\n```\n\n### Map with a MarkerWithLabel',
+      },
+      {
+        type: "code",
+        content:
+          'const { compose } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} = require("../../index");\n\nconst { MarkerWithLabel } = require("./MarkerWithLabel");\n\nconst MapWithAMarkerWithLabel = compose(\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={8}\n    defaultCenter={{ lat: -34.397, lng: 150.644 }}\n  >\n    <MarkerWithLabel\n      position={{ lat: -34.397, lng: 150.644 }}\n      labelAnchor={new google.maps.Point(0, 0)}\n      labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}\n    >\n      <div>Hello There!</div>\n    </MarkerWithLabel>\n  </GoogleMap>\n);\n\n<MapWithAMarkerWithLabel\n  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"\n  loadingElement={<div style={{ height: `100%` }} />}\n  containerElement={<div style={{ height: `400px` }} />}\n  mapElement={<div style={{ height: `100%` }} />}\n/>',
         settings: {},
         evalInContext: s,
       },
@@ -41625,76 +42028,6 @@ object-assign
                 title: "see",
                 description:
                   "https://github.com/mikesaidani/marker-clusterer-plus",
-              },
-            ],
-          },
-        },
-        markerWithLabel: {
-          type: { name: "func" },
-          required: !1,
-          description: "For `MarkerWithLabel`",
-          tags: {
-            see: [
-              {
-                title: "see",
-                description:
-                  "https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js",
-              },
-            ],
-          },
-        },
-        labelClass: {
-          type: { name: "string" },
-          required: !1,
-          description: "For `MarkerWithLabel`",
-          tags: {
-            see: [
-              {
-                title: "see",
-                description:
-                  "https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js",
-              },
-            ],
-          },
-        },
-        labelAnchor: {
-          type: { name: "object" },
-          required: !1,
-          description: "For `MarkerWithLabel`",
-          tags: {
-            see: [
-              {
-                title: "see",
-                description:
-                  "https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js",
-              },
-            ],
-          },
-        },
-        labelContent: {
-          type: { name: "string" },
-          required: !1,
-          description: "For `MarkerWithLabel`",
-          tags: {
-            see: [
-              {
-                title: "see",
-                description:
-                  "https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js",
-              },
-            ],
-          },
-        },
-        labelStyle: {
-          type: { name: "object" },
-          required: !1,
-          description: "For `MarkerWithLabel`",
-          tags: {
-            see: [
-              {
-                title: "see",
-                description:
-                  "https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js",
               },
             ],
           },
@@ -43423,6 +43756,533 @@ object-assign
       ),
     }
   },
+  "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/addons/MarkerWithLabel.jsx": function(
+    e,
+    t,
+    n
+  ) {
+    e.exports = {
+      description: "\n",
+      methods: [
+        {
+          name: "getAnimation",
+          docblock: "@type Animation\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getClickable",
+          docblock: "@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getCursor",
+          docblock: "@type string\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getDraggable",
+          docblock: "@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getIcon",
+          docblock: "@type string|Icon|Symbol\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getLabel",
+          docblock: "@type MarkerLabel\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getOpacity",
+          docblock: "@type number\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getPlace",
+          docblock: "@type MarkerPlace\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getPosition",
+          docblock: "@type LatLng\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getShape",
+          docblock: "@type MarkerShape\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getTitle",
+          docblock: "@type string\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getVisible",
+          docblock: "@type boolean\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+        {
+          name: "getZIndex",
+          docblock: "@type number\n@public",
+          modifiers: [],
+          params: [],
+          returns: null,
+          description: null,
+          tags: {},
+        },
+      ],
+      displayName: "MarkerWithLabel",
+      props: {
+        children: {
+          type: { name: "node" },
+          required: !1,
+          description: "It will be `MarkerWithLabel#labelContent`.",
+          tags: {
+            see: [
+              {
+                title: "see",
+                description:
+                  "https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js",
+              },
+            ],
+          },
+        },
+        labelAnchor: {
+          type: { name: "object" },
+          required: !1,
+          description: "For `MarkerWithLabel`",
+          tags: {
+            see: [
+              {
+                title: "see",
+                description:
+                  "https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js",
+              },
+            ],
+          },
+        },
+        labelClass: {
+          type: { name: "string" },
+          required: !1,
+          description: "For `MarkerWithLabel`",
+          tags: {
+            see: [
+              {
+                title: "see",
+                description:
+                  "https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js",
+              },
+            ],
+          },
+        },
+        labelStyle: {
+          type: { name: "object" },
+          required: !1,
+          description:
+            "For `MarkerWithLabel`. This is for native JS style object, so you may\nexpect some React shorthands for inline styles not working here.",
+          tags: {
+            see: [
+              {
+                title: "see",
+                description:
+                  "https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js",
+              },
+            ],
+          },
+        },
+        labelVisible: {
+          type: { name: "bool" },
+          required: !1,
+          description: "For `MarkerWithLabel`",
+          defaultValue: { value: "true", computed: !1 },
+          tags: {
+            see: [
+              {
+                title: "see",
+                description:
+                  "https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js",
+              },
+            ],
+          },
+        },
+        noRedraw: {
+          type: { name: "bool" },
+          required: !1,
+          description: "For the 2nd argument of `MarkerCluster#addMarker`",
+          tags: {
+            see: [
+              {
+                title: "see",
+                description:
+                  "https://github.com/mikesaidani/marker-clusterer-plus",
+              },
+            ],
+          },
+        },
+        defaultAnimation: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        defaultClickable: {
+          type: { name: "bool" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        defaultCursor: {
+          type: { name: "string" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        defaultDraggable: {
+          type: { name: "bool" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        defaultIcon: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        defaultLabel: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        defaultOpacity: {
+          type: { name: "number" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        defaultOptions: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        defaultPlace: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        defaultPosition: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        defaultShape: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        defaultTitle: {
+          type: { name: "string" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        defaultVisible: {
+          type: { name: "bool" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        defaultZIndex: {
+          type: { name: "number" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        animation: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        clickable: {
+          type: { name: "bool" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        cursor: {
+          type: { name: "string" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        draggable: {
+          type: { name: "bool" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        icon: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        label: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        opacity: {
+          type: { name: "number" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        options: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        place: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        position: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        shape: {
+          type: { name: "any" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        title: {
+          type: { name: "string" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        visible: {
+          type: { name: "bool" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        zIndex: {
+          type: { name: "number" },
+          required: !1,
+          description: "",
+          tags: {},
+        },
+        onDblClick: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onDragEnd: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onDragStart: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onMouseDown: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onMouseOut: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onMouseOver: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onMouseUp: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onRightClick: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onAnimationChanged: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onClick: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onClickableChanged: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onCursorChanged: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onDrag: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onDraggableChanged: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onFlatChanged: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onIconChanged: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onPositionChanged: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onShapeChanged: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onTitleChanged: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onVisibleChanged: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+        onZindexChanged: {
+          type: { name: "func" },
+          required: !1,
+          description: "function",
+          tags: {},
+        },
+      },
+      doclets: {
+        url:
+          "https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js",
+      },
+      tags: {
+        url: [
+          {
+            title: "url",
+            description:
+              "https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js",
+          },
+        ],
+      },
+      examples: n(
+        "./node_modules/react-styleguidist/loaders/examples-loader.js!./src/components/addons/MarkerWithLabel.md"
+      ),
+    }
+  },
   "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/drawing/DrawingManager.jsx": function(
     e,
     t,
@@ -43848,6 +44708,17 @@ object-assign
               module: n("./src/components/addons/MarkerClusterer.jsx"),
               props: n(
                 "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/addons/MarkerClusterer.jsx"
+              ),
+              hasExamples: !0,
+              metadata: {},
+            },
+            {
+              filepath: "src/components/addons/MarkerWithLabel.jsx",
+              pathLine:
+                'import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";',
+              module: n("./src/components/addons/MarkerWithLabel.jsx"),
+              props: n(
+                "./node_modules/react-styleguidist/loaders/props-loader.js!./src/components/addons/MarkerWithLabel.jsx"
               ),
               hasExamples: !0,
               metadata: {},
@@ -45145,7 +46016,7 @@ object-assign
         return M
       }),
       n.d(t, "renameProp", function() {
-        return D
+        return T
       }),
       n.d(t, "renameProps", function() {
         return L
@@ -45468,17 +46339,17 @@ object-assign
           return (r.defaultProps = e), r
         }
       },
-      T = function omit(e, t) {
+      D = function omit(e, t) {
         for (var n = v(e, []), r = 0; r < t.length; r++) {
           var o = t[r]
           n.hasOwnProperty(o) && delete n[o]
         }
         return n
       },
-      D = function renameProp(e, t) {
+      T = function renameProp(e, t) {
         var n = k(function(n) {
           var r
-          return y({}, T(n, [e]), ((r = {}), (r[t] = n[e]), r))
+          return y({}, D(n, [e]), ((r = {}), (r[t] = n[e]), r))
         })
         return n
       },
@@ -45493,7 +46364,7 @@ object-assign
         var t = k(function(t) {
           return y(
             {},
-            T(t, A(e)),
+            D(t, A(e)),
             I(S(t, A(e)), function(t, n) {
               return e[n]
             })
@@ -45855,7 +46726,7 @@ object-assign
       },
       re = function componentFromProp(e) {
         var t = function Component$$1(t) {
-          return te(t[e], T(t, [e]))
+          return te(t[e], D(t, [e]))
         }
         return (t.displayName = "componentFromProp(" + e + ")"), t
       },
@@ -47293,8 +48164,8 @@ object-assign
         P,
         O,
         M,
-        T,
         D,
+        T,
         A = this,
         I = "",
         L = 0,
@@ -47399,13 +48270,13 @@ object-assign
               (O = A.decode.raw(A.unescape(O), e(b).test().end)),
               S &&
                 ((v = e(v).test().end), (S = A.decode.raw(A.unescape(S), v))),
-              (D = { type: C ? "image" : "link", title: S || null, url: O }),
+              (T = { type: C ? "image" : "link", title: S || null, url: O }),
               C
-                ? (D.alt = A.decode.raw(A.unescape(w), M) || null)
-                : ((T = A.enterLink()),
-                  (D.children = A.tokenizeInline(w, M)),
-                  T()),
-              e(I)(D))
+                ? (T.alt = A.decode.raw(A.unescape(w), M) || null)
+                : ((D = A.enterLink()),
+                  (T.children = A.tokenizeInline(w, M)),
+                  D()),
+              e(I)(T))
             )
         }
       }
@@ -47515,8 +48386,8 @@ object-assign
           P,
           O,
           M,
-          T,
           D,
+          T,
           A,
           I,
           L,
@@ -47572,7 +48443,7 @@ object-assign
             }
             if (
               (Z >= g && (q = !0),
-              T && Z >= T.indent && (q = !0),
+              D && Z >= D.indent && (q = !0),
               (m = t.charAt(G)),
               (j = null),
               !q)
@@ -47596,7 +48467,7 @@ object-assign
               _ = !0
             } else
               U || q || t.charAt(v) !== d
-                ? U && T && (q = Z >= T.indent || Z > g)
+                ? U && D && (q = Z >= D.indent || Z > g)
                 : (q = !0),
                 (_ = !1),
                 (G = v)
@@ -47607,12 +48478,12 @@ object-assign
                 z.thematicBreak.call(F, e, E, !0))
             )
               break
-            if (((S = R), (R = !r(k).length), q && T))
-              (T.value = T.value.concat(M, E)), (O = O.concat(M, E)), (M = [])
+            if (((S = R), (R = !r(k).length), q && D))
+              (D.value = D.value.concat(M, E)), (O = O.concat(M, E)), (M = [])
             else if (_)
-              0 !== M.length && (T.value.push(""), (T.trail = M.concat())),
-                (T = { value: [E], indent: Z, trail: [] }),
-                P.push(T),
+              0 !== M.length && (D.value.push(""), (D.trail = M.concat())),
+                (D = { value: [E], indent: Z, trail: [] }),
+                P.push(D),
                 (O = O.concat(M, E)),
                 (M = [])
             else if (R) {
@@ -47621,7 +48492,7 @@ object-assign
             } else {
               if (S) break
               if (l(V, z, F, [e, E, !0])) break
-              ;(T.value = T.value.concat(M, E)), (O = O.concat(M, E)), (M = [])
+              ;(D.value = D.value.concat(M, E)), (O = O.concat(M, E)), (M = [])
             }
             G = b + 1
           }
@@ -47633,7 +48504,7 @@ object-assign
               loose: null,
               children: [],
             }),
-              D = F.enterList(),
+              T = F.enterList(),
               A = F.enterBlock(),
               I = !1,
               G = -1,
@@ -47641,13 +48512,13 @@ object-assign
             ++G < H;
 
           )
-            (T = P[G].value.join(h)),
+            (D = P[G].value.join(h)),
               (N = e.now()),
-              (T = e(T)(listItem(F, T, N), L)).loose && (I = !0),
-              (T = P[G].trail.join(h)),
-              G !== H - 1 && (T += h),
-              e(T)
-          return D(), A(), (L.loose = I), L
+              (D = e(D)(listItem(F, D, N), L)).loose && (I = !0),
+              (D = P[G].trail.join(h)),
+              G !== H - 1 && (D += h),
+              e(D)
+          return T(), A(), (L.loose = I), L
         }
       }
     }
@@ -47940,8 +48811,8 @@ object-assign
         P,
         O,
         M,
-        T,
         D,
+        T,
         A,
         I,
         L,
@@ -48004,7 +48875,7 @@ object-assign
                 P = "",
                 O = !0,
                 M = null,
-                T = null;
+                D = null;
               b < C;
 
             )
@@ -48012,7 +48883,7 @@ object-assign
                 if ("" === E || E === a)
                   if (O) e(E)
                   else {
-                    if (E && T) {
+                    if (E && D) {
                       ;(k += E), b++
                       continue
                     }
@@ -48024,9 +48895,9 @@ object-assign
                           ? ((j += k.slice(0, k.length - 1)),
                             (k = k.charAt(k.length - 1)))
                           : ((j += k), (k = ""))),
-                      (D = e.now()),
+                      (T = e.now()),
                       e(j)(
-                        { type: "tableCell", children: W.tokenizeInline(P, D) },
+                        { type: "tableCell", children: W.tokenizeInline(P, T) },
                         x
                       )),
                       e(k + E),
@@ -48040,7 +48911,7 @@ object-assign
                   E === s)
                 ) {
                   for (M = 1; L.charAt(b + 1) === E; ) (P += E), b++, M++
-                  T ? M >= T && (T = 0) : (T = M)
+                  D ? M >= D && (D = 0) : (D = M)
                 }
                 ;(O = !1), b++
               } else P ? (k += E) : e(E), b++
@@ -51565,7 +52436,7 @@ object-assign
                 t
               )
             ),
-            r = new (n.props.markerWithLabel || google.maps.Marker)()
+            r = new google.maps.Marker()
           Object(l.d)(Marker.propTypes, h, n.props, r)
           var o = n.context[u.n]
           return (
@@ -51701,11 +52572,6 @@ object-assign
       })()
     ;(p.propTypes = {
       noRedraw: a.a.bool,
-      markerWithLabel: a.a.func,
-      labelClass: a.a.string,
-      labelAnchor: a.a.object,
-      labelContent: a.a.string,
-      labelStyle: a.a.object,
       defaultAnimation: a.a.any,
       defaultClickable: a.a.bool,
       defaultCursor: a.a.string,
@@ -51786,9 +52652,6 @@ object-assign
         onZindexChanged: "zindex_changed",
       },
       h = {
-        labelContent: function labelContent(e, t) {
-          e.set("labelContent", t)
-        },
         animation: function animation(e, t) {
           e.setAnimation(t)
         },
@@ -51928,7 +52791,7 @@ object-assign
             (r.onRemove = s.a.bind(n.onRemove, n)),
             (n.onPositionElement = s.a.bind(n.onPositionElement, n)),
             r.setMap(n.context[g.l]),
-            (n.state = _defineProperty({}, g.o, r)),
+            (n.state = _defineProperty({}, g.p, r)),
             n
           )
         }
@@ -51951,7 +52814,7 @@ object-assign
                   "OverlayView requires either props.mapPaneName or props.defaultMapPaneName but got %s",
                   e
                 ),
-                  this.state[g.o]
+                  this.state[g.p]
                     .getPanes()
                     [e].appendChild(this.containerElement),
                   p.a.unstable_renderSubtreeIntoContainer(
@@ -51965,7 +52828,7 @@ object-assign
             {
               key: "onPositionElement",
               value: function onPositionElement() {
-                var e = this.state[g.o].getProjection(),
+                var e = this.state[g.p].getProjection(),
                   t = Object.assign(
                     { x: 0, y: 0 },
                     Object(m.b)(this.containerElement, this.props)
@@ -51987,21 +52850,21 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(f.a)(this, this.state[g.o], v)
+                Object(f.a)(this, this.state[g.p], v)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(f.b)(this, this.state[g.o], v, _, e),
-                  s.a.delay(this.state[g.o].draw)
+                Object(f.b)(this, this.state[g.p], v, _, e),
+                  s.a.delay(this.state[g.p].draw)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(f.c)(this)
-                var e = this.state[g.o]
+                var e = this.state[g.p]
                 e &&
                   (e.setMap(null),
                   (e.onAdd = null),
@@ -52018,13 +52881,13 @@ object-assign
             {
               key: "getPanes",
               value: function getPanes() {
-                return this.state[g.o].getPanes()
+                return this.state[g.p].getPanes()
               },
             },
             {
               key: "getProjection",
               value: function getProjection() {
-                return this.state[g.o].getProjection()
+                return this.state[g.p].getProjection()
               },
             },
           ]),
@@ -52138,7 +53001,7 @@ object-assign
           return (
             Object(a.d)(Polygon.propTypes, d, n.props, r),
             r.setMap(n.context[l.l]),
-            (n.state = _defineProperty({}, l.p, r)),
+            (n.state = _defineProperty({}, l.q, r)),
             n
           )
         }
@@ -52148,20 +53011,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.p], p)
+                Object(a.a)(this, this.state[l.q], p)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.p], p, d, e)
+                Object(a.b)(this, this.state[l.q], p, d, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.p]
+                var e = this.state[l.q]
                 e && e.setMap(null)
               },
             },
@@ -52174,31 +53037,31 @@ object-assign
             {
               key: "getDraggable",
               value: function getDraggable() {
-                return this.state[l.p].getDraggable()
+                return this.state[l.q].getDraggable()
               },
             },
             {
               key: "getEditable",
               value: function getEditable() {
-                return this.state[l.p].getEditable()
+                return this.state[l.q].getEditable()
               },
             },
             {
               key: "getPath",
               value: function getPath() {
-                return this.state[l.p].getPath()
+                return this.state[l.q].getPath()
               },
             },
             {
               key: "getPaths",
               value: function getPaths() {
-                return this.state[l.p].getPaths()
+                return this.state[l.q].getPaths()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.state[l.p].getVisible()
+                return this.state[l.q].getVisible()
               },
             },
           ]),
@@ -52353,7 +53216,7 @@ object-assign
           return (
             Object(a.d)(Polyline.propTypes, d, n.props, r),
             r.setMap(n.context[l.l]),
-            (n.state = _defineProperty({}, l.q, r)),
+            (n.state = _defineProperty({}, l.r, r)),
             n
           )
         }
@@ -52363,20 +53226,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.q], p)
+                Object(a.a)(this, this.state[l.r], p)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.q], p, d, e)
+                Object(a.b)(this, this.state[l.r], p, d, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.q]
+                var e = this.state[l.r]
                 e && e.setMap(null)
               },
             },
@@ -52389,25 +53252,25 @@ object-assign
             {
               key: "getDraggable",
               value: function getDraggable() {
-                return this.state[l.q].getDraggable()
+                return this.state[l.r].getDraggable()
               },
             },
             {
               key: "getEditable",
               value: function getEditable() {
-                return this.state[l.q].getEditable()
+                return this.state[l.r].getEditable()
               },
             },
             {
               key: "getPath",
               value: function getPath() {
-                return this.state[l.q].getPath()
+                return this.state[l.r].getPath()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.state[l.q].getVisible()
+                return this.state[l.r].getVisible()
               },
             },
           ]),
@@ -52557,7 +53420,7 @@ object-assign
           return (
             Object(a.d)(Rectangle.propTypes, d, n.props, r),
             r.setMap(n.context[l.l]),
-            (n.state = _defineProperty({}, l.r, r)),
+            (n.state = _defineProperty({}, l.s, r)),
             n
           )
         }
@@ -52567,20 +53430,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.r], p)
+                Object(a.a)(this, this.state[l.s], p)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.r], p, d, e)
+                Object(a.b)(this, this.state[l.s], p, d, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.r]
+                var e = this.state[l.s]
                 e && e.setMap(null)
               },
             },
@@ -52593,25 +53456,25 @@ object-assign
             {
               key: "getBounds",
               value: function getBounds() {
-                return this.state[l.r].getBounds()
+                return this.state[l.s].getBounds()
               },
             },
             {
               key: "getDraggable",
               value: function getDraggable() {
-                return this.state[l.r].getDraggable()
+                return this.state[l.s].getDraggable()
               },
             },
             {
               key: "getEditable",
               value: function getEditable() {
-                return this.state[l.r].getEditable()
+                return this.state[l.s].getEditable()
               },
             },
             {
               key: "getVisible",
               value: function getVisible() {
-                return this.state[l.r].getVisible()
+                return this.state[l.s].getVisible()
               },
             },
           ]),
@@ -53027,7 +53890,7 @@ object-assign
           return (
             Object(a.d)(TrafficLayer.propTypes, d, n.props, r),
             r.setMap(n.context[l.l]),
-            (n.state = _defineProperty({}, l.t, r)),
+            (n.state = _defineProperty({}, l.u, r)),
             n
           )
         }
@@ -53037,20 +53900,20 @@ object-assign
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(a.a)(this, this.state[l.t], p)
+                Object(a.a)(this, this.state[l.u], p)
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(a.b)(this, this.state[l.t], p, d, e)
+                Object(a.b)(this, this.state[l.u], p, d, e)
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
                 Object(a.c)(this)
-                var e = this.state[l.t]
+                var e = this.state[l.u]
                 e && e.setMap(null)
               },
             },
@@ -53546,6 +54409,374 @@ object-assign
         },
       }
   },
+  "./src/components/addons/MarkerWithLabel.jsx": function(e, t, n) {
+    "use strict"
+    function _defineProperty(e, t, n) {
+      return (
+        t in e
+          ? Object.defineProperty(e, t, {
+              value: n,
+              enumerable: !0,
+              configurable: !0,
+              writable: !0,
+            })
+          : (e[t] = n),
+        e
+      )
+    }
+    function _classCallCheck(e, t) {
+      if (!(e instanceof t))
+        throw new TypeError("Cannot call a class as a function")
+    }
+    function _possibleConstructorReturn(e, t) {
+      if (!e)
+        throw new ReferenceError(
+          "this hasn't been initialised - super() hasn't been called"
+        )
+      return !t || ("object" != typeof t && "function" != typeof t) ? e : t
+    }
+    function _inherits(e, t) {
+      if ("function" != typeof t && null !== t)
+        throw new TypeError(
+          "Super expression must either be null or a function, not " + typeof t
+        )
+      ;(e.prototype = Object.create(t && t.prototype, {
+        constructor: {
+          value: e,
+          enumerable: !1,
+          writable: !0,
+          configurable: !0,
+        },
+      })),
+        t &&
+          (Object.setPrototypeOf
+            ? Object.setPrototypeOf(e, t)
+            : (e.__proto__ = t))
+    }
+    Object.defineProperty(t, "__esModule", { value: !0 }),
+      n.d(t, "MarkerWithLabel", function() {
+        return m
+      })
+    var r,
+      o = n("./node_modules/react/react.js"),
+      s = n.n(o),
+      i = n("./node_modules/prop-types/index.js"),
+      a = n.n(i),
+      l = n("./node_modules/markerwithlabel/index.js"),
+      u = n.n(l),
+      c = n("./node_modules/react-dom/index.js"),
+      p = n.n(c),
+      d = n("./src/utils/MapChildHelper.js"),
+      h = n("./src/constants.js"),
+      f = (function() {
+        function defineProperties(e, t) {
+          for (var n = 0; n < t.length; n++) {
+            var r = t[n]
+            ;(r.enumerable = r.enumerable || !1),
+              (r.configurable = !0),
+              "value" in r && (r.writable = !0),
+              Object.defineProperty(e, r.key, r)
+          }
+        }
+        return function(e, t, n) {
+          return (
+            t && defineProperties(e.prototype, t),
+            n && defineProperties(e, n),
+            e
+          )
+        }
+      })(),
+      m = (function(e) {
+        function MarkerWithLabel(e, t) {
+          _classCallCheck(this, MarkerWithLabel)
+          var n = _possibleConstructorReturn(
+              this,
+              (MarkerWithLabel.__proto__ ||
+                Object.getPrototypeOf(MarkerWithLabel)
+              ).call(this, e, t)
+            ),
+            r = new (u()(google.maps))()
+          Object(d.d)(MarkerWithLabel.propTypes, y, n.props, r)
+          var o = n.context[h.n]
+          return (
+            o ? o.addMarker(r, !!n.props.noRedraw) : r.setMap(n.context[h.l]),
+            (n.state = _defineProperty({}, h.o, r)),
+            n
+          )
+        }
+        return (
+          _inherits(MarkerWithLabel, s.a.PureComponent),
+          f(MarkerWithLabel, [
+            {
+              key: "componentDidMount",
+              value: function componentDidMount() {
+                Object(d.a)(this, this.state[h.o], g)
+                var e = document.createElement("div")
+                p.a.unstable_renderSubtreeIntoContainer(
+                  this,
+                  s.a.Children.only(this.props.children),
+                  e
+                ),
+                  this.state[h.o].set("labelContent", e)
+              },
+            },
+            {
+              key: "componentDidUpdate",
+              value: function componentDidUpdate(e) {
+                Object(d.b)(this, this.state[h.o], g, y, e),
+                  this.props.children !== e.children &&
+                    p.a.unstable_renderSubtreeIntoContainer(
+                      this,
+                      s.a.Children.only(this.props.children),
+                      this.state[h.o].get("labelContent")
+                    )
+              },
+            },
+            {
+              key: "componentWillUnmount",
+              value: function componentWillUnmount() {
+                Object(d.c)(this)
+                var e = this.state[h.o]
+                if (e) {
+                  var t = this.context[h.n]
+                  t && t.removeMarker(e, !!this.props.noRedraw),
+                    e.get("labelContent") &&
+                      p.a.unmountComponentAtNode(e.get("labelContent")),
+                    e.setMap(null)
+                }
+              },
+            },
+            {
+              key: "render",
+              value: function render() {
+                return !1
+              },
+            },
+            {
+              key: "getAnimation",
+              value: function getAnimation() {
+                return this.state[h.o].getAnimation()
+              },
+            },
+            {
+              key: "getClickable",
+              value: function getClickable() {
+                return this.state[h.o].getClickable()
+              },
+            },
+            {
+              key: "getCursor",
+              value: function getCursor() {
+                return this.state[h.o].getCursor()
+              },
+            },
+            {
+              key: "getDraggable",
+              value: function getDraggable() {
+                return this.state[h.o].getDraggable()
+              },
+            },
+            {
+              key: "getIcon",
+              value: function getIcon() {
+                return this.state[h.o].getIcon()
+              },
+            },
+            {
+              key: "getLabel",
+              value: function getLabel() {
+                return this.state[h.o].getLabel()
+              },
+            },
+            {
+              key: "getOpacity",
+              value: function getOpacity() {
+                return this.state[h.o].getOpacity()
+              },
+            },
+            {
+              key: "getPlace",
+              value: function getPlace() {
+                return this.state[h.o].getPlace()
+              },
+            },
+            {
+              key: "getPosition",
+              value: function getPosition() {
+                return this.state[h.o].getPosition()
+              },
+            },
+            {
+              key: "getShape",
+              value: function getShape() {
+                return this.state[h.o].getShape()
+              },
+            },
+            {
+              key: "getTitle",
+              value: function getTitle() {
+                return this.state[h.o].getTitle()
+              },
+            },
+            {
+              key: "getVisible",
+              value: function getVisible() {
+                return this.state[h.o].getVisible()
+              },
+            },
+            {
+              key: "getZIndex",
+              value: function getZIndex() {
+                return this.state[h.o].getZIndex()
+              },
+            },
+          ]),
+          MarkerWithLabel
+        )
+      })()
+    ;(m.propTypes = {
+      children: a.a.node,
+      labelAnchor: a.a.object,
+      labelClass: a.a.string,
+      labelStyle: a.a.object,
+      labelVisible: a.a.bool,
+      noRedraw: a.a.bool,
+      defaultAnimation: a.a.any,
+      defaultClickable: a.a.bool,
+      defaultCursor: a.a.string,
+      defaultDraggable: a.a.bool,
+      defaultIcon: a.a.any,
+      defaultLabel: a.a.any,
+      defaultOpacity: a.a.number,
+      defaultOptions: a.a.any,
+      defaultPlace: a.a.any,
+      defaultPosition: a.a.any,
+      defaultShape: a.a.any,
+      defaultTitle: a.a.string,
+      defaultVisible: a.a.bool,
+      defaultZIndex: a.a.number,
+      animation: a.a.any,
+      clickable: a.a.bool,
+      cursor: a.a.string,
+      draggable: a.a.bool,
+      icon: a.a.any,
+      label: a.a.any,
+      opacity: a.a.number,
+      options: a.a.any,
+      place: a.a.any,
+      position: a.a.any,
+      shape: a.a.any,
+      title: a.a.string,
+      visible: a.a.bool,
+      zIndex: a.a.number,
+      onDblClick: a.a.func,
+      onDragEnd: a.a.func,
+      onDragStart: a.a.func,
+      onMouseDown: a.a.func,
+      onMouseOut: a.a.func,
+      onMouseOver: a.a.func,
+      onMouseUp: a.a.func,
+      onRightClick: a.a.func,
+      onAnimationChanged: a.a.func,
+      onClick: a.a.func,
+      onClickableChanged: a.a.func,
+      onCursorChanged: a.a.func,
+      onDrag: a.a.func,
+      onDraggableChanged: a.a.func,
+      onFlatChanged: a.a.func,
+      onIconChanged: a.a.func,
+      onPositionChanged: a.a.func,
+      onShapeChanged: a.a.func,
+      onTitleChanged: a.a.func,
+      onVisibleChanged: a.a.func,
+      onZindexChanged: a.a.func,
+    }),
+      (m.defaultProps = { labelVisible: !0 }),
+      (m.contextTypes = ((r = {}),
+      _defineProperty(r, h.l, a.a.object),
+      _defineProperty(r, h.n, a.a.object),
+      r)),
+      (t.default = m)
+    var g = {
+        onDblClick: "dblclick",
+        onDragEnd: "dragend",
+        onDragStart: "dragstart",
+        onMouseDown: "mousedown",
+        onMouseOut: "mouseout",
+        onMouseOver: "mouseover",
+        onMouseUp: "mouseup",
+        onRightClick: "rightclick",
+        onAnimationChanged: "animation_changed",
+        onClick: "click",
+        onClickableChanged: "clickable_changed",
+        onCursorChanged: "cursor_changed",
+        onDrag: "drag",
+        onDraggableChanged: "draggable_changed",
+        onFlatChanged: "flat_changed",
+        onIconChanged: "icon_changed",
+        onPositionChanged: "position_changed",
+        onShapeChanged: "shape_changed",
+        onTitleChanged: "title_changed",
+        onVisibleChanged: "visible_changed",
+        onZindexChanged: "zindex_changed",
+      },
+      y = {
+        labelAnchor: function labelAnchor(e, t) {
+          e.set("labelAnchor", t)
+        },
+        labelClass: function labelClass(e, t) {
+          e.set("labelClass", t)
+        },
+        labelStyle: function labelStyle(e, t) {
+          e.set("labelStyle", t)
+        },
+        labelVisible: function labelVisible(e, t) {
+          e.set("labelVisible", t)
+        },
+        animation: function animation(e, t) {
+          e.setAnimation(t)
+        },
+        clickable: function clickable(e, t) {
+          e.setClickable(t)
+        },
+        cursor: function cursor(e, t) {
+          e.setCursor(t)
+        },
+        draggable: function draggable(e, t) {
+          e.setDraggable(t)
+        },
+        icon: function icon(e, t) {
+          e.setIcon(t)
+        },
+        label: function label(e, t) {
+          e.setLabel(t)
+        },
+        opacity: function opacity(e, t) {
+          e.setOpacity(t)
+        },
+        options: function options(e, t) {
+          e.setOptions(t)
+        },
+        place: function place(e, t) {
+          e.setPlace(t)
+        },
+        position: function position(e, t) {
+          e.setPosition(t)
+        },
+        shape: function shape(e, t) {
+          e.setShape(t)
+        },
+        title: function title(e, t) {
+          e.setTitle(t)
+        },
+        visible: function visible(e, t) {
+          e.setVisible(t)
+        },
+        zIndex: function zIndex(e, t) {
+          e.setZIndex(t)
+        },
+      }
+  },
   "./src/components/addons/demoFancyMapStyles.json": function(e, t) {
     e.exports = [
       {
@@ -53875,7 +55106,7 @@ object-assign
                 [this].concat(s)
               )
             )),
-            (n.state = _defineProperty({}, g.s, null)),
+            (n.state = _defineProperty({}, g.t, null)),
             (r = t),
             _possibleConstructorReturn(n, r)
           )
@@ -53897,14 +55128,14 @@ object-assign
                     this.containerElement.firstChild
                   )
                   Object(m.d)(SearchBox.propTypes, j, this.props, e),
-                    this.setState(_defineProperty({}, g.s, e))
+                    this.setState(_defineProperty({}, g.t, e))
                 }
               },
             },
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(m.a)(this, this.state[g.s], _),
+                Object(m.a)(this, this.state[g.t], _),
                   this.handleMountAtControlPosition()
               },
             },
@@ -53918,7 +55149,7 @@ object-assign
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(m.b)(this, this.state[g.s], _, j, e),
+                Object(m.b)(this, this.state[g.t], _, j, e),
                   this.props.children !== e.children &&
                     this.handleRenderChildToContainerElement(),
                   this.props.controlPosition !== e.controlPosition &&
@@ -53976,13 +55207,13 @@ object-assign
             {
               key: "getBounds",
               value: function getBounds() {
-                return this.state[g.s].getBounds()
+                return this.state[g.t].getBounds()
               },
             },
             {
               key: "getPlaces",
               value: function getPlaces() {
-                return this.state[g.s].getPlaces()
+                return this.state[g.t].getPlaces()
               },
             },
           ]),
@@ -54097,7 +55328,7 @@ object-assign
                 [this].concat(s)
               )
             )),
-            (n.state = _defineProperty({}, d.s, null)),
+            (n.state = _defineProperty({}, d.t, null)),
             (r = t),
             _possibleConstructorReturn(n, r)
           )
@@ -54116,13 +55347,13 @@ object-assign
                   t = new google.maps.places.SearchBox(e)
                 Object(p.d)(SearchBox.propTypes, y, this.props, t),
                   Object(p.a)(this, t, g),
-                  this.setState(_defineProperty({}, d.s, t))
+                  this.setState(_defineProperty({}, d.t, t))
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(p.b)(this, this.state[d.s], g, y, e)
+                Object(p.b)(this, this.state[d.t], g, y, e)
               },
             },
             {
@@ -54140,13 +55371,13 @@ object-assign
             {
               key: "getBounds",
               value: function getBounds() {
-                return this.state[d.s].getBounds()
+                return this.state[d.t].getBounds()
               },
             },
             {
               key: "getPlaces",
               value: function getPlaces() {
-                return this.state[d.s].getPlaces()
+                return this.state[d.t].getPlaces()
               },
             },
           ]),
@@ -54327,80 +55558,84 @@ object-assign
       n.d(t, "m", function() {
         return o
       }),
-      n.d(t, "r", function() {
+      n.d(t, "o", function() {
         return s
       }),
-      n.d(t, "q", function() {
+      n.d(t, "s", function() {
         return i
       }),
-      n.d(t, "p", function() {
+      n.d(t, "r", function() {
         return a
       }),
-      n.d(t, "c", function() {
+      n.d(t, "q", function() {
         return l
       }),
-      n.d(t, "k", function() {
+      n.d(t, "c", function() {
         return u
       }),
-      n.d(t, "d", function() {
+      n.d(t, "k", function() {
         return c
       }),
-      n.d(t, "h", function() {
+      n.d(t, "d", function() {
         return p
       }),
-      n.d(t, "f", function() {
+      n.d(t, "h", function() {
         return d
       }),
-      n.d(t, "a", function() {
+      n.d(t, "f", function() {
         return h
       }),
-      n.d(t, "j", function() {
+      n.d(t, "a", function() {
         return f
       }),
-      n.d(t, "o", function() {
+      n.d(t, "j", function() {
         return m
       }),
-      n.d(t, "g", function() {
+      n.d(t, "p", function() {
         return g
       }),
-      n.d(t, "e", function() {
+      n.d(t, "g", function() {
         return y
       }),
-      n.d(t, "s", function() {
+      n.d(t, "e", function() {
         return b
       }),
-      n.d(t, "n", function() {
+      n.d(t, "t", function() {
         return v
       }),
-      n.d(t, "i", function() {
+      n.d(t, "n", function() {
         return _
       }),
-      n.d(t, "t", function() {
+      n.d(t, "i", function() {
         return j
       }),
-      n.d(t, "b", function() {
+      n.d(t, "u", function() {
         return x
+      }),
+      n.d(t, "b", function() {
+        return C
       })
     var r = "__SECRET_MAP_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
       o = "__SECRET_MARKER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      s = "__SECRET_RECTANGLE_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      i = "__SECRET_POLYLINE_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      a = "__SECRET_POLYGON_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      l = "__SECRET_CIRCLE_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      u = "__SECRET_KML_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      c = "__SECRET_DIRECTIONS_RENDERER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      p = "__SECRET_HEATMAP_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      d = "__SECRET_FUSION_TABLES_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      h = "__SECRET_ANCHOR_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      f = "__SECRET_INFO_WINDOW_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      m = "__SECRET_OVERLAY_VIEW_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      g = "__SECRET_GROUND_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      y = "__SECRET_DRAWING_MANAGER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      b = "__SECRET_SEARCH_BOX_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      v = "__SECRET_MARKER_CLUSTERER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      _ = "__SECRET_INFO_BOX_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      j = "__SECRET_TRAFFIC_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
-      x = "__SECRET_BICYCLING_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED"
+      s = "__SECRET_MARKER_WITH_LABEL_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      i = "__SECRET_RECTANGLE_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      a = "__SECRET_POLYLINE_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      l = "__SECRET_POLYGON_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      u = "__SECRET_CIRCLE_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      c = "__SECRET_KML_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      p = "__SECRET_DIRECTIONS_RENDERER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      d = "__SECRET_HEATMAP_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      h = "__SECRET_FUSION_TABLES_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      f = "__SECRET_ANCHOR_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      m = "__SECRET_INFO_WINDOW_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      g = "__SECRET_OVERLAY_VIEW_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      y = "__SECRET_GROUND_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      b = "__SECRET_DRAWING_MANAGER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      v = "__SECRET_SEARCH_BOX_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      _ = "__SECRET_MARKER_CLUSTERER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      j = "__SECRET_INFO_BOX_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      x = "__SECRET_TRAFFIC_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+      C = "__SECRET_BICYCLING_LAYER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED"
   },
   "./src/index.js": function(e, t, n) {
     "use strict"

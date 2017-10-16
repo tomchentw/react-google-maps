@@ -23,16 +23,19 @@ export default function transformer(file, api) {
   const configString = exportConfig.find(j.TemplateElement).get().node.value.raw
   const {
     prohibitedPropNames = [],
+    KlassNameOverrride,
     eventMapOverrides,
     getInstanceFromComponent,
   } = JSON.parse(configString)
   exportConfig.remove()
   const eventNamesOverrides = _.values(eventMapOverrides)
 
-  const KlassName = wrap
-    .find(j.ClassDeclaration)
-    .at(0)
-    .get().node.id.name
+  const KlassName =
+    KlassNameOverrride ||
+    wrap
+      .find(j.ClassDeclaration)
+      .at(0)
+      .get().node.id.name
 
   const result = execSync(
     `./node_modules/.bin/babel-node ${path.resolve(

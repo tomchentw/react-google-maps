@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="9.0.1"></a>
+## [9.0.1](https://github.com/tomchentw/react-google-maps/compare/v9.0.0...v9.0.1) (2017-10-17)
+
+
+### Bug Fixes
+
+* **GroundOveray:** use `defaultUrl` and `defaultBounds` instead ([349b620](https://github.com/tomchentw/react-google-maps/commit/349b620))
+
+
+
 <a name="9.0.0"></a>
 # [9.0.0](https://github.com/tomchentw/react-google-maps/compare/v8.5.0...v9.0.0) (2017-10-16)
 

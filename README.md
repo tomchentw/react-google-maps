@@ -25,13 +25,19 @@ The changelog is automatically generated via [standard-version][standard-version
 
 ## Getting Help
 
-**For support or usage questions like “how do I do X with React-Google-Maps” and “my code doesn't work”, please search and ask on StackOverflow [with a google-maps tag](https://stackoverflow.com/questions/tagged/google-maps?sort=votes&pageSize=50) or [use react-google-maps as a keyword](https://stackoverflow.com/search?q=react-google-maps) first.**
+**Before doing this, did you**:
 
-We ask you to do this because StackOverflow has a much better job at keeping popular questions visible. Unfortunately good answers get lost and outdated on GitHub.
+1. Read the [documentation](https://tomchentw.github.io/react-google-maps)
+2. Read the [source code](https://github.com/tomchentw/react-google-maps)
 
-Some questions take a long time to get an answer. **If your question gets closed or you don't get a reply on StackOverflow for longer than a few days,** we encourage you to post an issue linking to your question. We will close your issue but this will give people watching the repo an opportunity to see your question and reply to it on StackOverflow if they know the answer.
 
-Please be considerate when doing this as this is not the primary purpose of the issue tracker.
+_You can get someone's help in three ways_:
+
+1. Ask on StackOverflow [with a google-maps tag](https://stackoverflow.com/questions/tagged/google-maps?sort=votes&pageSize=50) or [use react-google-maps as a keyword](https://stackoverflow.com/search?q=react-google-maps)
+2. Ask in [the chat room][gitter-url]
+3. Create a Pull Request with your solutions to your problem
+
+Please, be noted, **no one**, I mean, **no one**, is obligated to help you in **ANY** means. Your time is valuable, so does our contributors. Don't waste our time posting questions like “how do I do X with React-Google-Maps” and “my code doesn't work”. This is not the primary purpose of the issue tracker. Don't abuse.
 
 
 ## For contributors

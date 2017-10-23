@@ -18,7 +18,9 @@ import {
 import { MAP } from "../constants"
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#StreetViewPanorama
+ * A wrapper around `google.maps.StreetViewPanorama`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#StreetViewPanorama
  */
 export class StreetViewPanorama extends React.PureComponent {
   static propTypes = {

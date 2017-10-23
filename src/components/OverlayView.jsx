@@ -22,7 +22,9 @@ import { getOffsetOverride, getLayoutStyles } from "../utils/OverlayViewHelper"
 import { MAP, ANCHOR, OVERLAY_VIEW } from "../constants"
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
+ * A wrapper around `google.maps.OverlayView`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
  */
 export class OverlayView extends React.PureComponent {
   static FLOAT_PANE = `floatPane`
@@ -64,7 +66,7 @@ export class OverlayView extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
    */
   constructor(props, context) {
     super(props, context)

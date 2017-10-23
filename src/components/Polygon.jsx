@@ -18,7 +18,9 @@ import {
 import { MAP, POLYGON } from "../constants"
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
+ * A wrapper around `google.maps.Polygon`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
  */
 export class Polygon extends React.PureComponent {
   static propTypes = {
@@ -143,7 +145,7 @@ export class Polygon extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
    */
   constructor(props, context) {
     super(props, context)

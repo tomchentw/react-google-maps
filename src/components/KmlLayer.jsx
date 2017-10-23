@@ -18,7 +18,9 @@ import {
 import { MAP, KML_LAYER } from "../constants"
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
+ * A wrapper around `google.maps.KmlLayer`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
  */
 export class KmlLayer extends React.PureComponent {
   static propTypes = {
@@ -73,7 +75,7 @@ export class KmlLayer extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
    */
   constructor(props, context) {
     super(props, context)

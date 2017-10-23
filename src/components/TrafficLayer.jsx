@@ -18,7 +18,9 @@ import {
 import { MAP, TRAFFIC_LAYER } from "../constants"
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#TrafficLayer
+ * A wrapper around `google.maps.TrafficLayer`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#TrafficLayer
  */
 export class TrafficLayer extends React.PureComponent {
   static propTypes = {
@@ -38,7 +40,7 @@ export class TrafficLayer extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#TrafficLayer
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#TrafficLayer
    */
   constructor(props, context) {
     super(props, context)

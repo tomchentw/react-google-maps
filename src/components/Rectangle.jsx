@@ -18,7 +18,9 @@ import {
 import { MAP, RECTANGLE } from "../constants"
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
+ * A wrapper around `google.maps.Rectangle`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
  */
 export class Rectangle extends React.PureComponent {
   static propTypes = {
@@ -138,7 +140,7 @@ export class Rectangle extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
    */
   constructor(props, context) {
     super(props, context)

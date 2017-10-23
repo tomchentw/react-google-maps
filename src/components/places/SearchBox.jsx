@@ -22,7 +22,9 @@ import {
 import { MAP, SEARCH_BOX } from "../../constants"
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
+ * A wrapper around `google.maps.places.SearchBox` on the map
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
  */
 export class SearchBox extends React.PureComponent {
   static propTypes = {
@@ -69,7 +71,7 @@ export class SearchBox extends React.PureComponent {
     this.containerElement = document.createElement(`div`)
     this.handleRenderChildToContainerElement()
     /*
-     * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
+     * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
      */
     const searchBox = new google.maps.places.SearchBox(
       this.containerElement.firstChild

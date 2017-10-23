@@ -19,7 +19,9 @@ import {
 import { MAP, GROUND_LAYER } from "../constants"
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/reference#GroundOverlay
+ * A wrapper around `google.maps.GroundOverlay`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/reference#GroundOverlay
  */
 export class GroundOverlay extends React.PureComponent {
   static propTypes = {
@@ -71,7 +73,7 @@ export class GroundOverlay extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#GroundOverlay
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#GroundOverlay
    */
   constructor(props, context) {
     super(props, context)

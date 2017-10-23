@@ -19,7 +19,9 @@ import {
 import { MAP, DRAWING_MANAGER } from "../../constants"
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
+ * A wrapper around `google.maps.drawing.DrawingManager`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
  */
 export class DrawingManager extends React.PureComponent {
   static propTypes = {
@@ -79,7 +81,7 @@ export class DrawingManager extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
    */
   constructor(props, context) {
     super(props, context)

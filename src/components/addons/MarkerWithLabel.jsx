@@ -20,7 +20,9 @@ import {
 import { MAP, MARKER_CLUSTERER, MARKER_WITH_LABEL } from "../../constants"
 
 /**
- * @url https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js
+ * A wrapper around `MarkerWithLabel`
+ *
+ * @see https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js
  */
 export class MarkerWithLabel extends React.PureComponent {
   static propTypes = {
@@ -317,7 +319,7 @@ export class MarkerWithLabel extends React.PureComponent {
   }
 
   /*
-   * @url https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js
+   * @see https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js
    */
   constructor(props, context) {
     super(props, context)

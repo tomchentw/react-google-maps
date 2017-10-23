@@ -18,14 +18,16 @@ import {
 import { MAP } from "../constants"
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+ * A wrapper around `google.maps.Map`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
  */
 export class Map extends React.PureComponent {
   static displayName = "GoogleMap"
 
   static propTypes = {
     /**
-     * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#MapTypeRegistry
+     * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#MapTypeRegistry
      * @type Array<[id:string, mapType:MapType|*]>
      */
     defaultExtraMapTypes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.any)),
@@ -211,7 +213,7 @@ export class Map extends React.PureComponent {
   }
 
   /**
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
    * @public 
    */
   fitBounds(...args) {
@@ -219,7 +221,7 @@ export class Map extends React.PureComponent {
   }
 
   /**
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
    * @public 
    */
   panBy(...args) {
@@ -227,7 +229,7 @@ export class Map extends React.PureComponent {
   }
 
   /**
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
    * @public 
    */
   panTo(...args) {
@@ -235,7 +237,7 @@ export class Map extends React.PureComponent {
   }
 
   /**
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
    * @public 
    */
   panToBounds(...args) {
@@ -243,7 +245,7 @@ export class Map extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
    */
   constructor(props, context) {
     super(props, context)

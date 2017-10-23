@@ -18,7 +18,9 @@ import {
 import { MAP, FUSION_TABLES_LAYER } from "../constants"
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#FusionTablesLayer
+ * A wrapper around `google.maps.FusionTablesLayer`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#FusionTablesLayer
  */
 export class FusionTablesLayer extends React.PureComponent {
   static propTypes = {
@@ -43,7 +45,7 @@ export class FusionTablesLayer extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#FusionTablesLayer
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#FusionTablesLayer
    */
   constructor(props, context) {
     super(props, context)

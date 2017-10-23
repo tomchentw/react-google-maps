@@ -18,7 +18,9 @@ import {
 import { MAP, DIRECTIONS_RENDERER } from "../constants"
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
+ * A wrapper around `google.maps.DirectionsRenderer`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
  */
 export class DirectionsRenderer extends React.PureComponent {
   static propTypes = {
@@ -73,7 +75,7 @@ export class DirectionsRenderer extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
    */
   constructor(props, context) {
     super(props, context)

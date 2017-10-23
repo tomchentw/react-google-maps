@@ -20,7 +20,9 @@ export const __jscodeshiftPlaceholder__ = `{
 }`
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
+ * A wrapper around `google.maps.places.SearchBox` without the map
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
  */
 class SearchBox extends React.PureComponent {
   static displayName = "StandaloneSearchBox"
@@ -40,7 +42,7 @@ class SearchBox extends React.PureComponent {
     )
     const element = ReactDOM.findDOMNode(this)
     /*
-     * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
+     * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
      */
     const searchBox = new google.maps.places.SearchBox(element)
     construct(SearchBox.propTypes, updaterMap, this.props, searchBox)

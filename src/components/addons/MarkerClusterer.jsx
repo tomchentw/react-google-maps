@@ -12,7 +12,9 @@ import {
 import { MAP, ANCHOR, MARKER_CLUSTERER } from "../../constants"
 
 /**
- * @url http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html
+ * A wrapper around `MarkerClusterer`
+ *
+ * @see https://github.com/mahnunchik/markerclustererplus
  */
 export class MarkerClusterer extends React.PureComponent {
   static propTypes = {
@@ -212,7 +214,7 @@ export class MarkerClusterer extends React.PureComponent {
   }
 
   /*
-   * @url http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html
+   * @see https://github.com/mahnunchik/markerclustererplus
    */
   constructor(props, context) {
     super(props, context)
@@ -268,9 +270,6 @@ export class MarkerClusterer extends React.PureComponent {
 
 export default MarkerClusterer
 
-/**
- * @url http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html#events
- */
 const eventMap = {
   onClick: "click",
   onClusteringBegin: "clusteringbegin",

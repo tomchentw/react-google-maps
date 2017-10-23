@@ -14,7 +14,9 @@ import {
 import { MAP, ANCHOR, INFO_BOX } from "../../constants"
 
 /**
- * @url http://htmlpreview.github.io/?https://github.com/googlemaps/v3-utility-library/blob/master/infobox/docs/reference.html
+ * A wrapper around `InfoBox`
+ *
+ * @see http://htmlpreview.github.io/?https://github.com/googlemaps/v3-utility-library/blob/master/infobox/docs/reference.html
  */
 export class InfoBox extends React.PureComponent {
   static propTypes = {
@@ -94,7 +96,7 @@ export class InfoBox extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoBox
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoBox
    */
   componentWillMount() {
     if (!canUseDOM || this.state[INFO_BOX]) {

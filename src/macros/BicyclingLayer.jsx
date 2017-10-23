@@ -18,7 +18,9 @@ export const __jscodeshiftPlaceholder__ = `{
 }`
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#BicyclingLayer
+ * A wrapper around `google.maps.BicyclingLayer`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#BicyclingLayer
  */
 export class BicyclingLayer extends React.PureComponent {
   static propTypes = {
@@ -30,7 +32,7 @@ export class BicyclingLayer extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#BicyclingLayer
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#BicyclingLayer
    */
   constructor(props, context) {
     super(props, context)

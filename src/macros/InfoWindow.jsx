@@ -25,7 +25,9 @@ export const __jscodeshiftPlaceholder__ = `{
 }`
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
+ * A wrapper around `google.maps.InfoWindow`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
  */
 export class InfoWindow extends React.PureComponent {
   static propTypes = {
@@ -38,7 +40,7 @@ export class InfoWindow extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
    */
   constructor(props, context) {
     super(props, context)

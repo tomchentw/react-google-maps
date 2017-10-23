@@ -27,7 +27,9 @@ export const __jscodeshiftPlaceholder__ = `{
 }`
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
+ * A wrapper around `google.maps.Circle`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
  */
 export class Circle extends React.PureComponent {
   static propTypes = {
@@ -39,7 +41,7 @@ export class Circle extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
    */
   constructor(props, context) {
     super(props, context)

@@ -19,7 +19,9 @@ export const __jscodeshiftPlaceholder__ = `{
 }`
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#HeatmapLayer
+ * A wrapper around `google.maps.visualization.HeatmapLayer`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#HeatmapLayer
  */
 export class HeatmapLayer extends React.PureComponent {
   static propTypes = {
@@ -31,7 +33,7 @@ export class HeatmapLayer extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#HeatmapLayer
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#HeatmapLayer
    */
   constructor(props, context) {
     super(props, context)

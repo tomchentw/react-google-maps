@@ -26,7 +26,9 @@ export const __jscodeshiftPlaceholder__ = `{
 }`
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
+ * A wrapper around `google.maps.Marker`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
  */
 export class Marker extends React.PureComponent {
   static propTypes = {
@@ -48,7 +50,7 @@ export class Marker extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
    */
   constructor(props, context) {
     super(props, context)

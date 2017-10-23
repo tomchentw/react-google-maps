@@ -27,7 +27,9 @@ export const __jscodeshiftPlaceholder__ = `{
 }`
 
 /**
- * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
+ * A wrapper around `google.maps.Polyline`
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
  */
 export class Polyline extends React.PureComponent {
   static propTypes = {
@@ -39,7 +41,7 @@ export class Polyline extends React.PureComponent {
   }
 
   /*
-   * @url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
    */
   constructor(props, context) {
     super(props, context)

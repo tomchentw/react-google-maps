@@ -311,7 +311,7 @@
           return M[e.type](t, e), t
         }
         function destructure(e, t, n, r, o, s) {
-          I[n.type](e, t, n, r, o, s)
+          A[n.type](e, t, n, r, o, s)
         }
         function destructureIdentifier(e, t, n, r, o, s) {
           s.push(function(t, s, i) {
@@ -2438,7 +2438,7 @@
               ForInStatement
             )
           })(O),
-          I = {
+          A = {
             Identifier: destructureIdentifier,
             AssignmentPattern: function destructureAssignmentPattern(
               e,
@@ -2492,7 +2492,7 @@
                 e.remove(i, n.end)
             },
           },
-          A = (function(e) {
+          I = (function(e) {
             function ForOfStatement() {
               e.apply(this, arguments)
             }
@@ -3151,8 +3151,8 @@
                 T = function(e) {
                   return parseInt((e - 65536) % 1024 + 56320, 10)
                 },
-                I = String.fromCharCode,
-                A = function(e) {
+                A = String.fromCharCode,
+                I = function(e) {
                   return 9 == e
                     ? "\\t"
                     : 10 == e
@@ -3170,16 +3170,16 @@
                               63 == e ||
                               (e >= 91 && e <= 94) ||
                               (e >= 123 && e <= 125)
-                              ? "\\" + I(e)
+                              ? "\\" + A(e)
                               : e >= 32 && e <= 126
-                                ? I(e)
+                                ? A(e)
                                 : e <= 255
                                   ? "\\x" + g(y(e), 2)
                                   : "\\u" + g(y(e), 4)
                 },
                 L = function(e) {
                   return e <= 65535
-                    ? A(e)
+                    ? I(e)
                     : "\\u{" + e.toString(16).toUpperCase() + "}"
                 },
                 N = function(e) {
@@ -3197,12 +3197,12 @@
                     r = "",
                     o = 0,
                     s = e.length
-                  if (P(e)) return A(e[0])
+                  if (P(e)) return I(e[0])
                   for (; o < s; )
                     (r +=
                       (t = e[o]) == (n = e[o + 1] - 1)
-                        ? A(t)
-                        : t + 1 == n ? A(t) + A(n) : A(t) + "-" + A(n)),
+                        ? I(t)
+                        : t + 1 == n ? I(t) + I(n) : I(t) + "-" + I(n)),
                       (o += 2)
                   return "[" + r + "]"
                 },
@@ -4813,7 +4813,7 @@
             ExportDefaultDeclaration: R,
             ForStatement: D,
             ForInStatement: T,
-            ForOfStatement: A,
+            ForOfStatement: I,
             FunctionDeclaration: L,
             FunctionExpression: N,
             Identifier: B,
@@ -8552,7 +8552,7 @@
           if (this.options.locations)
             return new v(this.curLine, this.pos - this.lineStart)
         })
-      var I = function Node(e, t, n) {
+      var A = function Node(e, t, n) {
           ;(this.type = ""),
             (this.start = t),
             (this.end = 0),
@@ -8561,14 +8561,14 @@
               (this.sourceFile = e.options.directSourceFile),
             e.options.ranges && (this.range = [t, 0])
         },
-        A = C.prototype
-      ;(A.startNode = function() {
-        return new I(this, this.start, this.startLoc)
+        I = C.prototype
+      ;(I.startNode = function() {
+        return new A(this, this.start, this.startLoc)
       }),
-        (A.startNodeAt = function(e, t) {
-          return new I(this, e, t)
+        (I.startNodeAt = function(e, t) {
+          return new A(this, e, t)
         }),
-        (A.finishNode = function(e, t) {
+        (I.finishNode = function(e, t) {
           return finishNodeAt.call(
             this,
             e,
@@ -8577,7 +8577,7 @@
             this.lastTokEndLoc
           )
         }),
-        (A.finishNodeAt = function(e, t, n, r) {
+        (I.finishNodeAt = function(e, t, n, r) {
           return finishNodeAt.call(this, e, t, n, r)
         })
       var L = function TokContext(e, t, n, r) {
@@ -9263,7 +9263,7 @@
         (e.Position = v),
         (e.SourceLocation = _),
         (e.getLineInfo = getLineInfo),
-        (e.Node = I),
+        (e.Node = A),
         (e.TokenType = c),
         (e.tokTypes = f),
         (e.TokContext = L),
@@ -17503,7 +17503,7 @@
         return "0" == t && 1 / e == -o ? "-0" : t
       }
       function castPath(e) {
-        return I(e) ? e : T(e)
+        return A(e) ? e : T(e)
       }
       function getMapData(e, t) {
         var n = e.__data__
@@ -17516,7 +17516,7 @@
         return baseIsNative(n) ? n : void 0
       }
       function isKey(e, t) {
-        if (I(e)) return !1
+        if (A(e)) return !1
         var n = typeof e
         return (
           !(
@@ -17703,7 +17703,7 @@
         )
       })
       memoize.Cache = MapCache
-      var I = Array.isArray
+      var A = Array.isArray
       e.exports = function get(e, t, n) {
         var r = null == e ? void 0 : baseGet(e, t)
         return void 0 === r ? n : r
@@ -19785,8 +19785,8 @@
           M = 1,
           D = 2,
           T = 1 / 0,
-          I = 9007199254740991,
-          A = 1.7976931348623157e308,
+          A = 9007199254740991,
+          I = 1.7976931348623157e308,
           L = NaN,
           N = 4294967295,
           B = N - 1,
@@ -19849,8 +19849,8 @@
           Me = /^\./,
           De = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,
           Te = /[\\^$.*+?()[\]{}|]/g,
-          Ie = RegExp(Te.source),
-          Ae = /^\s+|\s+$/g,
+          Ae = RegExp(Te.source),
+          Ie = /^\s+|\s+$/g,
           Le = /^\s+/,
           Ne = /\s+$/,
           Be = /\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/,
@@ -20197,9 +20197,9 @@
             "object" == typeof self && self && self.Object === Object && self,
           Dt = Ot || Mt || Function("return this")(),
           Tt = "object" == typeof t && t && !t.nodeType && t,
-          It = Tt && "object" == typeof r && r && !r.nodeType && r,
-          At = It && It.exports === Tt,
-          Lt = At && Ot.process,
+          At = Tt && "object" == typeof r && r && !r.nodeType && r,
+          It = At && At.exports === Tt,
+          Lt = It && Ot.process,
           Nt = (function() {
             try {
               return Lt && Lt.binding && Lt.binding("util")
@@ -20516,7 +20516,7 @@
             function baseGetTag(e) {
               return null == e
                 ? e === s ? se : X
-                : It && It in Qe(e) ? getRawTag(e) : objectToString(e)
+                : At && At in Qe(e) ? getRawTag(e) : objectToString(e)
             }
             function baseGt(e, t) {
               return e > t
@@ -20852,7 +20852,7 @@
             }
             function baseRepeat(e, t) {
               var n = ""
-              if (!e || t < 1 || t > I) return n
+              if (!e || t < 1 || t > A) return n
               do {
                 t % 2 && (n += e), (t = Jt(t / 2)) && (e += e)
               } while (t)
@@ -20984,7 +20984,7 @@
                 u = l
               if (n) (a = !1), (o = arrayIncludesWith)
               else if (s >= i) {
-                var c = t ? null : An(e)
+                var c = t ? null : In(e)
                 if (c) return setToArray(c)
                 ;(a = !1), (o = cacheHas), (u = new SetCache())
               } else u = t ? [] : l
@@ -21778,14 +21778,14 @@
               return baseIsNative(n) ? n : s
             }
             function getRawTag(e) {
-              var t = lt.call(e, It),
-                n = e[It]
+              var t = lt.call(e, At),
+                n = e[At]
               try {
-                e[It] = s
+                e[At] = s
                 var r = !0
               } catch (e) {}
               var o = pt.call(e)
-              return r && (t ? (e[It] = n) : delete e[It]), o
+              return r && (t ? (e[At] = n) : delete e[At]), o
             }
             function getView(e, t, n) {
               for (var r = -1, o = n.length; ++r < o; ) {
@@ -21892,7 +21892,7 @@
             }
             function isIndex(e, t) {
               return (
-                !!(t = null == t ? I : t) &&
+                !!(t = null == t ? A : t) &&
                 ("number" == typeof e || $e.test(e)) &&
                 e > -1 &&
                 e % 1 == 0 &&
@@ -22251,7 +22251,7 @@
                     : i),
                   (f = "trailing" in n ? !!n.trailing : f)),
                 (debounced.cancel = function cancel() {
-                  u !== s && In(u), (p = 0), (r = c = o = u = s)
+                  u !== s && An(u), (p = 0), (r = c = o = u = s)
                 }),
                 (debounced.flush = function flush() {
                   return u === s ? a : trailingEdge(yr())
@@ -22321,7 +22321,7 @@
               return "number" == typeof e && e == toInteger(e)
             }
             function isLength(e) {
-              return "number" == typeof e && e > -1 && e % 1 == 0 && e <= I
+              return "number" == typeof e && e > -1 && e % 1 == 0 && e <= A
             }
             function isObject(e) {
               var t = typeof e
@@ -22366,7 +22366,7 @@
             function toFinite(e) {
               return e
                 ? (e = toNumber(e)) === T || e === -T
-                  ? (e < 0 ? -1 : 1) * A
+                  ? (e < 0 ? -1 : 1) * I
                   : e === e ? e : 0
                 : 0 === e ? e : 0
             }
@@ -22386,7 +22386,7 @@
                 e = isObject(t) ? t + "" : t
               }
               if ("string" != typeof e) return 0 === e ? e : +e
-              e = e.replace(Ae, "")
+              e = e.replace(Ie, "")
               var n = He.test(e)
               return n || Ze.test(e)
                 ? Pt(e.slice(2), n ? 2 : 8)
@@ -22530,7 +22530,7 @@
                     ) +
                   "$"
               ),
-              yt = At ? e.Buffer : s,
+              yt = It ? e.Buffer : s,
               bt = e.Symbol,
               vt = e.Uint8Array,
               wt = yt ? yt.allocUnsafe : s,
@@ -22540,7 +22540,7 @@
               Ot = rt.splice,
               Mt = bt ? bt.isConcatSpreadable : s,
               Tt = bt ? bt.iterator : s,
-              It = bt ? bt.toStringTag : s,
+              At = bt ? bt.toStringTag : s,
               Lt = (function() {
                 try {
                   var e = getNative(Qe, "defineProperty")
@@ -22732,12 +22732,12 @@
                   }
                 : identity,
               Tn = baseRest,
-              In =
+              An =
                 Nt ||
                 function(e) {
                   return Dt.clearTimeout(e)
                 },
-              An =
+              In =
                 hn && 1 / setToArray(new hn([, -0]))[1] == T
                   ? function(e) {
                       return new hn(e)
@@ -23075,12 +23075,12 @@
                 : function baseIsMap(e) {
                     return isObjectLike(e) && qn(e) == Y
                   },
-              Ir = Ut
+              Ar = Ut
                 ? baseUnary(Ut)
                 : function baseIsRegExp(e) {
                     return isObjectLike(e) && baseGetTag(e) == te
                   },
-              Ar = Wt
+              Ir = Wt
                 ? baseUnary(Wt)
                 : function baseIsSet(e) {
                     return isObjectLike(e) && qn(e) == ne
@@ -23554,7 +23554,7 @@
                     (t = n = s),
                   (n = n === s ? N : n >>> 0)
                     ? (e = toString(e)) &&
-                      ("string" == typeof t || (null != t && !Ir(t))) &&
+                      ("string" == typeof t || (null != t && !Ar(t))) &&
                       !(t = baseToString(t)) &&
                       hasUnicode(e)
                       ? castSlice(stringToArray(e), 0, n)
@@ -23742,7 +23742,7 @@
                 return (e = toString(e)) && ke.test(e) ? e.replace(Ce, Ht) : e
               }),
               (lodash.escapeRegExp = function escapeRegExp(e) {
-                return (e = toString(e)) && Ie.test(e)
+                return (e = toString(e)) && Ae.test(e)
                   ? e.replace(Te, "\\$&")
                   : e
               }),
@@ -23889,11 +23889,11 @@
               (lodash.isObject = isObject),
               (lodash.isObjectLike = isObjectLike),
               (lodash.isPlainObject = isPlainObject),
-              (lodash.isRegExp = Ir),
+              (lodash.isRegExp = Ar),
               (lodash.isSafeInteger = function isSafeInteger(e) {
-                return isInteger(e) && e >= -I && e <= I
+                return isInteger(e) && e >= -A && e <= A
               }),
-              (lodash.isSet = Ar),
+              (lodash.isSet = Ir),
               (lodash.isString = isString),
               (lodash.isSymbol = isSymbol),
               (lodash.isTypedArray = Lr),
@@ -24184,7 +24184,7 @@
                 return y
               }),
               (lodash.times = function times(e, t) {
-                if ((e = toInteger(e)) < 1 || e > I) return []
+                if ((e = toInteger(e)) < 1 || e > A) return []
                 var n = N,
                   r = on(e, N)
                 ;(t = getIteratee(t)), (e -= N)
@@ -24199,7 +24199,7 @@
               }),
               (lodash.toNumber = toNumber),
               (lodash.toSafeInteger = function toSafeInteger(e) {
-                return e ? baseClamp(toInteger(e), -I, I) : 0 === e ? e : 0
+                return e ? baseClamp(toInteger(e), -A, A) : 0 === e ? e : 0
               }),
               (lodash.toString = toString),
               (lodash.toUpper = function toUpper(e) {
@@ -24207,7 +24207,7 @@
               }),
               (lodash.trim = function trim(e, t, n) {
                 if ((e = toString(e)) && (n || t === s))
-                  return e.replace(Ae, "")
+                  return e.replace(Ie, "")
                 if (!e || !(t = baseToString(t))) return e
                 var r = stringToArray(e),
                   o = stringToArray(t)
@@ -24255,7 +24255,7 @@
                 if (l < 1) return r
                 var u = a ? castSlice(a, 0, l).join("") : e.slice(0, l)
                 if (o === s) return u + r
-                if ((a && (l += u.length - l), Ir(o))) {
+                if ((a && (l += u.length - l), Ar(o))) {
                   if (e.slice(l).search(o)) {
                     var c,
                       p = u
@@ -27209,7 +27209,7 @@ object-assign
               (a
                 ? K === E
                   ? (i && !V
-                      ? F(A, 1)
+                      ? F(I, 1)
                       : (n !== a &&
                           ((J = 1 + (X = G + n.length) - G), (i = !1)),
                         i ||
@@ -27231,7 +27231,7 @@ object-assign
                             ((z += c(((B -= 65536) >>> 10) | 55296)),
                             (B = 56320 | (1023 & B))),
                           (B = z + c(B))))
-                : K !== E && F(I, J)),
+                : K !== E && F(A, J)),
             B
               ? (flush(),
                 ($ = now()),
@@ -27319,8 +27319,8 @@ object-assign
     var M = 1,
       D = 2,
       T = 3,
-      I = 4,
-      A = 5,
+      A = 4,
+      I = 5,
       L = 6,
       N = 7,
       B = "Numeric character references",
@@ -27330,8 +27330,8 @@ object-assign
     ;(U[M] = "Named character references" + q),
       (U[D] = B + q),
       (U[T] = "Named character references" + F),
-      (U[I] = B + F),
-      (U[A] = "Named character references must be known"),
+      (U[A] = B + F),
+      (U[I] = "Named character references must be known"),
       (U[L] = B + " cannot be disallowed"),
       (U[N] = B + " cannot be outside the permissible Unicode range")
   },
@@ -30666,7 +30666,7 @@ object-assign
         topVolumeChange: "volumechange",
         topWaiting: "waiting",
       },
-      I = {
+      A = {
         area: !0,
         base: !0,
         br: !0,
@@ -30683,8 +30683,8 @@ object-assign
         track: !0,
         wbr: !0,
       },
-      A = { listing: !0, pre: !0, textarea: !0 },
-      L = o({ menuitem: !0 }, I),
+      I = { listing: !0, pre: !0, textarea: !0 },
+      L = o({ menuitem: !0 }, A),
       N = /^[a-zA-Z][a-zA-Z:_\.\-\d]*$/,
       B = {},
       q = {}.hasOwnProperty,
@@ -30766,7 +30766,7 @@ object-assign
             var x = this._createOpenTagMarkupAndPutListeners(e, o),
               C = this._createContentMarkup(e, o, r)
             p =
-              !C && I[this._tag]
+              !C && A[this._tag]
                 ? x + "/>"
                 : x + ">" + C + "</" + this._currentElement.type + ">"
           }
@@ -30826,7 +30826,7 @@ object-assign
               ? (r = x(s))
               : null != i && (r = this.mountChildren(i, e, n).join(""))
           }
-          return A[this._tag] && "\n" === r.charAt(0) ? "\n" + r : r
+          return I[this._tag] && "\n" === r.charAt(0) ? "\n" + r : r
         },
         _createInitialChildren: function(e, t, n, r) {
           var o = t.dangerouslySetInnerHTML
@@ -40678,17 +40678,17 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.BicyclingLayer`\n",
       methods: [],
       displayName: "BicyclingLayer",
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#BicyclingLayer",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#BicyclingLayer",
           },
@@ -40705,7 +40705,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.Circle`\n",
       methods: [
         {
           name: "getBounds",
@@ -40922,13 +40922,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle",
           },
@@ -40943,7 +40943,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.DirectionsRenderer`\n",
       methods: [
         {
           name: "getDirections",
@@ -41036,13 +41036,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer",
           },
@@ -41059,7 +41059,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.FusionTablesLayer`\n",
       methods: [],
       displayName: "FusionTablesLayer",
       props: {
@@ -41083,13 +41083,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#FusionTablesLayer",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#FusionTablesLayer",
           },
@@ -41106,21 +41106,21 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.Map`\n",
       displayName: "GoogleMap",
       methods: [
         {
           name: "fitBounds",
           docblock:
-            "@url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map\n@public",
+            "@see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map\n@public",
           modifiers: [],
           params: [{ name: "...args" }],
           returns: null,
           description: null,
           tags: {
-            url: [
+            see: [
               {
-                title: "url",
+                title: "see",
                 description:
                   "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map",
               },
@@ -41131,15 +41131,15 @@ object-assign
         {
           name: "panBy",
           docblock:
-            "@url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map\n@public",
+            "@see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map\n@public",
           modifiers: [],
           params: [{ name: "...args" }],
           returns: null,
           description: null,
           tags: {
-            url: [
+            see: [
               {
-                title: "url",
+                title: "see",
                 description:
                   "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map",
               },
@@ -41150,15 +41150,15 @@ object-assign
         {
           name: "panTo",
           docblock:
-            "@url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map\n@public",
+            "@see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map\n@public",
           modifiers: [],
           params: [{ name: "...args" }],
           returns: null,
           description: null,
           tags: {
-            url: [
+            see: [
               {
-                title: "url",
+                title: "see",
                 description:
                   "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map",
               },
@@ -41169,15 +41169,15 @@ object-assign
         {
           name: "panToBounds",
           docblock:
-            "@url https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map\n@public",
+            "@see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map\n@public",
           modifiers: [],
           params: [{ name: "...args" }],
           returns: null,
           description: null,
           tags: {
-            url: [
+            see: [
               {
-                title: "url",
+                title: "see",
                 description:
                   "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map",
               },
@@ -41299,9 +41299,9 @@ object-assign
           required: !1,
           description: "",
           tags: {
-            url: [
+            see: [
               {
-                title: "url",
+                title: "see",
                 description:
                   "https://developers.google.com/maps/documentation/javascript/3.exp/reference#MapTypeRegistry",
               },
@@ -41520,13 +41520,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map",
           },
@@ -41543,7 +41543,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.GroundOverlay`\n",
       methods: [
         {
           name: "getBounds",
@@ -41651,13 +41651,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/reference#GroundOverlay",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/reference#GroundOverlay",
           },
@@ -41674,7 +41674,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.InfoWindow`\n",
       methods: [
         {
           name: "getPosition",
@@ -41765,13 +41765,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow",
           },
@@ -41788,7 +41788,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.KmlLayer`\n",
       methods: [
         {
           name: "getDefaultViewport",
@@ -41901,13 +41901,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer",
           },
@@ -41924,7 +41924,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.Marker`\n",
       methods: [
         {
           name: "getAnimation",
@@ -42356,13 +42356,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker",
           },
@@ -42379,7 +42379,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.OverlayView`\n",
       methods: [
         {
           name: "getPanes",
@@ -42478,13 +42478,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView",
           },
@@ -42501,7 +42501,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.Polygon`\n",
       methods: [
         {
           name: "getDraggable",
@@ -42696,13 +42696,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon",
           },
@@ -42717,7 +42717,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.Polyline`\n",
       methods: [
         {
           name: "getDraggable",
@@ -42889,13 +42889,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline",
           },
@@ -42910,7 +42910,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.Rectangle`\n",
       methods: [
         {
           name: "getBounds",
@@ -43091,13 +43091,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle",
           },
@@ -43112,7 +43112,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.StreetViewPanorama`\n",
       methods: [
         {
           name: "getLinks",
@@ -43368,13 +43368,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#StreetViewPanorama",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#StreetViewPanorama",
           },
@@ -43391,7 +43391,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.TrafficLayer`\n",
       methods: [],
       displayName: "TrafficLayer",
       props: {
@@ -43409,13 +43409,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#TrafficLayer",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#TrafficLayer",
           },
@@ -43432,7 +43432,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `InfoBox`\n",
       methods: [],
       displayName: "InfoBox",
       props: {
@@ -43516,13 +43516,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "http://htmlpreview.github.io/?https://github.com/googlemaps/v3-utility-library/blob/master/infobox/docs/reference.html",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "http://htmlpreview.github.io/?https://github.com/googlemaps/v3-utility-library/blob/master/infobox/docs/reference.html",
           },
@@ -43539,7 +43539,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `MarkerClusterer`\n",
       methods: [],
       displayName: "MarkerClusterer",
       props: {
@@ -43766,16 +43766,12 @@ object-assign
           tags: {},
         },
       },
-      doclets: {
-        url:
-          "http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html",
-      },
+      doclets: { see: "https://github.com/mahnunchik/markerclustererplus" },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
-            description:
-              "http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html",
+            title: "see",
+            description: "https://github.com/mahnunchik/markerclustererplus",
           },
         ],
       },
@@ -43790,7 +43786,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `MarkerWithLabel`\n",
       methods: [
         {
           name: "getAnimation",
@@ -44294,13 +44290,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js",
           },
@@ -44317,7 +44313,7 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description: "A wrapper around `google.maps.drawing.DrawingManager`\n",
       methods: [
         {
           name: "getDrawingMode",
@@ -44394,13 +44390,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager",
           },
@@ -44417,7 +44413,8 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description:
+        "A wrapper around `google.maps.places.SearchBox` on the map\n",
       methods: [
         {
           name: "getBounds",
@@ -44477,13 +44474,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox",
           },
@@ -44500,7 +44497,8 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description:
+        "A wrapper around `google.maps.places.SearchBox` without the map\n",
       displayName: "StandaloneSearchBox",
       methods: [
         {
@@ -44547,13 +44545,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox",
           },
@@ -44570,7 +44568,8 @@ object-assign
     n
   ) {
     e.exports = {
-      description: "\n",
+      description:
+        "A wrapper around `google.maps.visualization.HeatmapLayer`\n",
       methods: [
         {
           name: "getData",
@@ -44612,13 +44611,13 @@ object-assign
         },
       },
       doclets: {
-        url:
+        see:
           "https://developers.google.com/maps/documentation/javascript/3.exp/reference#HeatmapLayer",
       },
       tags: {
-        url: [
+        see: [
           {
-            title: "url",
+            title: "see",
             description:
               "https://developers.google.com/maps/documentation/javascript/3.exp/reference#HeatmapLayer",
           },
@@ -46381,9 +46380,9 @@ object-assign
         })
         return n
       },
-      I = Object.keys,
-      A = function mapKeys(e, t) {
-        return I(e).reduce(function(n, r) {
+      A = Object.keys,
+      I = function mapKeys(e, t) {
+        return A(e).reduce(function(n, r) {
           var o = e[r]
           return (n[t(o, r)] = o), n
         }, {})
@@ -46392,8 +46391,8 @@ object-assign
         var t = k(function(t) {
           return y(
             {},
-            D(t, I(e)),
-            A(S(t, I(e)), function(t, n) {
+            D(t, A(e)),
+            I(S(t, A(e)), function(t, n) {
               return e[n]
             })
           )
@@ -48194,19 +48193,19 @@ object-assign
         M,
         D,
         T,
-        I = this,
-        A = "",
+        A = this,
+        I = "",
         L = 0,
         N = t.charAt(0),
-        B = I.options.pedantic,
-        q = I.options.commonmark,
-        F = I.options.gfm
+        B = A.options.pedantic,
+        q = A.options.commonmark,
+        F = A.options.gfm
       if (
-        ("!" === N && ((C = !0), (A = N), (N = t.charAt(++L))),
-        N === a && (C || !I.inLink))
+        ("!" === N && ((C = !0), (I = N), (N = t.charAt(++L))),
+        N === a && (C || !A.inLink))
       ) {
         for (
-          A += N,
+          I += N,
             P = "",
             L++,
             E = t.length,
@@ -48235,17 +48234,17 @@ object-assign
           ;(P += _), (_ = ""), L++
         }
         if (o) {
-          for (w = P, A += P + _, L++; L < E && ((N = t.charAt(L)), r(N)); )
-            (A += N), L++
+          for (w = P, I += P + _, L++; L < E && ((N = t.charAt(L)), r(N)); )
+            (I += N), L++
           if (
-            ((N = t.charAt(L)), (x = q ? m : f), (P = ""), (b = A), N === p)
+            ((N = t.charAt(L)), (x = q ? m : f), (P = ""), (b = I), N === p)
           ) {
             for (L++, b += p; L < E && (N = t.charAt(L)) !== d; ) {
               if (q && "\n" === N) return
               ;(P += N), L++
             }
             if (t.charAt(L) !== d) return
-            ;(A += p + P + d), (O = P), L++
+            ;(I += p + P + d), (O = P), L++
           } else {
             for (
               N = null, _ = "";
@@ -48268,23 +48267,23 @@ object-assign
               }
               L++
             }
-            ;(O = P), (L = (A += P).length)
+            ;(O = P), (L = (I += P).length)
           }
           for (P = ""; L < E && ((N = t.charAt(L)), r(N)); ) (P += N), L++
-          if (((N = t.charAt(L)), (A += P), P && s.call(x, N)))
-            if ((L++, (A += N), (P = ""), (k = x[N]), (v = A), q)) {
+          if (((N = t.charAt(L)), (I += P), P && s.call(x, N)))
+            if ((L++, (I += N), (P = ""), (k = x[N]), (v = I), q)) {
               for (; L < E && (N = t.charAt(L)) !== k; )
                 N === i && ((P += i), (N = t.charAt(++L))), L++, (P += N)
               if ((N = t.charAt(L)) !== k) return
-              for (S = P, A += P + N, L++; L < E && ((N = t.charAt(L)), r(N)); )
-                (A += N), L++
+              for (S = P, I += P + N, L++; L < E && ((N = t.charAt(L)), r(N)); )
+                (I += N), L++
             } else
               for (_ = ""; L < E; ) {
                 if ((N = t.charAt(L)) === k)
                   j && ((P += k + _), (_ = "")), (j = !0)
                 else if (j) {
                   if (N === c) {
-                    ;(A += P + k + _), (S = P)
+                    ;(I += P + k + _), (S = P)
                     break
                   }
                   r(N) ? (_ += N) : ((P += k + _ + N), (_ = ""), (j = !1))
@@ -48294,17 +48293,17 @@ object-assign
           if (t.charAt(L) === c)
             return (
               !!n ||
-              ((A += c),
-              (O = I.decode.raw(I.unescape(O), e(b).test().end)),
+              ((I += c),
+              (O = A.decode.raw(A.unescape(O), e(b).test().end)),
               S &&
-                ((v = e(v).test().end), (S = I.decode.raw(I.unescape(S), v))),
+                ((v = e(v).test().end), (S = A.decode.raw(A.unescape(S), v))),
               (T = { type: C ? "image" : "link", title: S || null, url: O }),
               C
-                ? (T.alt = I.decode.raw(I.unescape(w), M) || null)
-                : ((D = I.enterLink()),
-                  (T.children = I.tokenizeInline(w, M)),
+                ? (T.alt = A.decode.raw(A.unescape(w), M) || null)
+                : ((D = A.enterLink()),
+                  (T.children = A.tokenizeInline(w, M)),
                   D()),
-              e(A)(T))
+              e(I)(T))
             )
         }
       }
@@ -48416,8 +48415,8 @@ object-assign
           M,
           D,
           T,
-          I,
           A,
+          I,
           L,
           N,
           B,
@@ -48533,8 +48532,8 @@ object-assign
               children: [],
             }),
               T = F.enterList(),
-              I = F.enterBlock(),
-              A = !1,
+              A = F.enterBlock(),
+              I = !1,
               G = -1,
               H = P.length;
             ++G < H;
@@ -48542,11 +48541,11 @@ object-assign
           )
             (D = P[G].value.join(h)),
               (N = e.now()),
-              (D = e(D)(listItem(F, D, N), L)).loose && (A = !0),
+              (D = e(D)(listItem(F, D, N), L)).loose && (I = !0),
               (D = P[G].trail.join(h)),
               G !== H - 1 && (D += h),
               e(D)
-          return T(), I(), (L.loose = A), L
+          return T(), A(), (L.loose = I), L
         }
       }
     }
@@ -48841,8 +48840,8 @@ object-assign
         M,
         D,
         T,
-        I,
         A,
+        I,
         L,
         N,
         B,
@@ -48851,23 +48850,23 @@ object-assign
         U,
         W = this
       if (W.options.gfm) {
-        for (b = 0, A = 0, C = t.length + 1, w = []; b < C; ) {
+        for (b = 0, I = 0, C = t.length + 1, w = []; b < C; ) {
           if (
             ((q = t.indexOf(c, b)),
             (F = t.indexOf(a, b + 1)),
             -1 === q && (q = t.length),
             -1 === F || F > q)
           ) {
-            if (A < h) return
+            if (I < h) return
             break
           }
-          w.push(t.slice(b, q)), A++, (b = q + 1)
+          w.push(t.slice(b, q)), I++, (b = q + 1)
         }
         for (
           j = w.join(c),
             b = 0,
             C = (v = w.splice(1, 1)[0] || []).length,
-            A--,
+            I--,
             _ = !1,
             R = [];
           b < C;
@@ -48886,16 +48885,16 @@ object-assign
         if ((!1 !== _ && R.push(_), !(R.length < d))) {
           if (n) return !0
           for (
-            I = -1,
+            A = -1,
               N = [],
               B = e(j).reset({ type: "table", align: R, children: N });
-            ++I < A;
+            ++A < I;
 
           ) {
             for (
-              L = w[I],
+              L = w[A],
                 x = { type: "tableRow", children: [] },
-                I && e(c),
+                A && e(c),
                 e(L).reset(x, B),
                 C = L.length + 1,
                 b = 0,
@@ -48943,7 +48942,7 @@ object-assign
                 }
                 ;(O = !1), b++
               } else P ? (k += E) : e(E), b++
-            I || e(c + v)
+            A || e(c + v)
           }
           return B
         }

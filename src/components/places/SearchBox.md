@@ -1,6 +1,7 @@
 ### Usage
 
 ```jsx static
+import _ from "lodash";
 import { compose, withProps, lifecycle } from "recompose";
 import {
   withScriptjs,
@@ -109,6 +110,7 @@ const MapWithASearchBox = compose(
 ### Map with a SearchBox
 
 ```jsx
+const _ = require("lodash");
 const { compose, withProps, lifecycle } = require("recompose");
 const {
   withScriptjs,

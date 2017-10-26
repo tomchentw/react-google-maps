@@ -110,8 +110,8 @@
     "warning": "^3.0.0"
   },
   "peerDependencies": {
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0"
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -132,8 +132,8 @@
     "make-fetch-happen": "^2.5.0",
     "mkdirp": "^0.5.1",
     "prettier": "^1.6.1",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-icons": "^2.2.5",
     "react-scripts": "^1.0.13",
     "react-styleguidist": "^6.0.24",

@@ -105,7 +105,7 @@
     "marker-clusterer-plus": "^2.1.4",
     "markerwithlabel": "^2.0.1",
     "prop-types": "^15.5.8",
-    "recompose": "^0.25.0",
+    "recompose": "^0.26.0",
     "scriptjs": "^2.5.8",
     "warning": "^3.0.0"
   },

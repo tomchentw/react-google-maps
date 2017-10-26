@@ -75,6 +75,25 @@
   "lint-staged": {
     "*.{js,jsx,json,css}": ["prettier --write", "git add"]
   },
+  "babel": {
+    "plugins": [
+      "lodash",
+      "transform-class-properties",
+      "transform-object-rest-spread",
+      "transform-runtime"
+    ],
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "ie": 9
+          }
+        }
+      ],
+      "react"
+    ]
+  },
   "dependencies": {
     "babel-runtime": "^6.11.6",
     "can-use-dom": "^0.1.0",
@@ -97,12 +116,11 @@
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.0",
     "babel-plugin-lodash": "^3.2.11",
-    "babel-plugin-transform-flow-comments": "^6.22.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-plugin-typecheck": "^3.9.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
     "cheerio": "^1.0.0-rc.2",
     "codeclimate-test-reporter": "^0.5.0",
     "cross-env": "^5.0.5",

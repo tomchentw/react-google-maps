@@ -14,7 +14,7 @@ import { MAP, ANCHOR, MARKER_CLUSTERER } from "../../constants"
 /**
  * A wrapper around `MarkerClusterer`
  *
- * @see https://github.com/mahnunchik/markerclustererplus
+ * @see https://github.com/mahnunchik/markerclustererplus/blob/master/docs/reference.html
  */
 export class MarkerClusterer extends React.PureComponent {
   static propTypes = {
@@ -214,7 +214,7 @@ export class MarkerClusterer extends React.PureComponent {
   }
 
   /*
-   * @see https://github.com/mahnunchik/markerclustererplus
+   * @see https://github.com/mahnunchik/markerclustererplus/blob/master/docs/reference.html
    */
   constructor(props, context) {
     super(props, context)

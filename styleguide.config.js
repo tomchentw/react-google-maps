@@ -3,6 +3,7 @@ const path = require("path")
 
 module.exports = {
   showUsage: true,
+  showCode: true,
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, ".jsx")
     const dirname = path.basename(path.dirname(componentPath))

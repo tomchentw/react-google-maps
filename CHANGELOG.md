@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="9.1.0"></a>
+# [9.1.0](https://github.com/tomchentw/react-google-maps/compare/v9.0.3...v9.1.0) (2017-10-26)
+
+
+### Features
+
+* **package.json:** support `react@^16.0.0` ([963716d](https://github.com/tomchentw/react-google-maps/commit/963716d)), closes [#677](https://github.com/tomchentw/react-google-maps/issues/677) [#640](https://github.com/tomchentw/react-google-maps/issues/640)
+* **package.json:** upgrade to `recompose@^0.26.0` ([ebb9be8](https://github.com/tomchentw/react-google-maps/commit/ebb9be8))
+* **places/SearchBox:** support `react@^16.0.0` ([94931ae](https://github.com/tomchentw/react-google-maps/commit/94931ae)), closes [#640](https://github.com/tomchentw/react-google-maps/issues/640) [#656](https://github.com/tomchentw/react-google-maps/issues/656)
+
+
+
 <a name="9.0.3"></a>
 ## [9.0.3](https://github.com/tomchentw/react-google-maps/compare/v9.0.2...v9.0.3) (2017-10-26)
 

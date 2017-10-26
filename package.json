@@ -2,41 +2,22 @@
   "name": "react-google-maps",
   "version": "9.0.2",
   "description": "React.js Google Maps integration component",
-  "main": "lib/index.js",
-  "files": ["lib/", "src/", "CHANGELOG.md"],
-  "lint-staged": {
-    "*.{js,jsx,json,css}": ["prettier --write", "git add"]
-  },
-  "scripts": {
-    "precommit": "lint-staged",
-    "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build",
-    "test": "react-scripts test --env=jsdom",
-    "pretest": "npm run lint",
-    "test:once": "cross-env CI=true npm test",
-    "clean": "rimraf lib",
-    "lint": "cross-env NODE_ENV=test eslint .",
-    "build:src": "babel-node src/tx/jscodeshift",
-    "precommit:src": "npm run build:src",
-    "commit:src":
-      "git add -A && git commit -m 'chore(src/components): compile from src/macros with `babel`'",
-    "prebuild:lib": "npm run lint && npm run clean",
-    "build:lib":
-      "cross-env NODE_ENV=production babel src --out-dir lib --ignore macros,tx,spec.js",
-    "precommit:lib": "npm run build:lib",
-    "commit:lib":
-      "git add -A && git commit -m 'chore(lib): compile from src with `babel`'",
-    "precommit:docs": "npm run styleguide:build",
-    "commit:docs":
-      "git add -A && git commit -m 'docs: compile from src with `styleguidist`'",
-    "prerelease":
-      "npm run commit:src && npm run commit:lib && npm run commit:docs",
-    "release": "standard-version"
+  "license": "MIT",
+  "author": {
+    "name": "tomchentw",
+    "email": "developer@tomchentw.com",
+    "url": "https://github.com/tomchentw"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/tomchentw/react-google-maps"
   },
+  "bugs": {
+    "url": "https://github.com/tomchentw/react-google-maps/issues"
+  },
+  "homepage": "https://tomchentw.github.io/react-google-maps/",
+  "main": "lib/index.js",
+  "files": ["lib/", "src/", "CHANGELOG.md"],
   "keywords": [
     "React",
     "Google",
@@ -65,16 +46,52 @@
     "withGoogleMap",
     "withScriptjs"
   ],
-  "author": {
-    "name": "tomchentw",
-    "email": "developer@tomchentw.com",
-    "url": "https://github.com/tomchentw"
+  "scripts": {
+    "precommit": "lint-staged",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build",
+    "test": "react-scripts test --env=jsdom",
+    "pretest": "npm run lint",
+    "test:once": "cross-env CI=true npm test",
+    "clean": "rimraf lib",
+    "lint": "cross-env NODE_ENV=test eslint .",
+    "build:src": "babel-node src/tx/jscodeshift",
+    "precommit:src": "npm run build:src",
+    "commit:src":
+      "git add -A && git commit -m 'chore(src/components): compile from src/macros with `babel`'",
+    "prebuild:lib": "npm run lint && npm run clean",
+    "build:lib":
+      "cross-env NODE_ENV=production babel src --out-dir lib --ignore macros,tx,spec.js",
+    "precommit:lib": "npm run build:lib",
+    "commit:lib":
+      "git add -A && git commit -m 'chore(lib): compile from src with `babel`'",
+    "precommit:docs": "npm run styleguide:build",
+    "commit:docs":
+      "git add -A && git commit -m 'docs: compile from src with `styleguidist`'",
+    "prerelease":
+      "npm run commit:src && npm run commit:lib && npm run commit:docs",
+    "release": "standard-version"
   },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/tomchentw/react-google-maps/issues"
+  "lint-staged": {
+    "*.{js,jsx,json,css}": ["prettier --write", "git add"]
   },
-  "homepage": "https://tomchentw.github.io/react-google-maps/",
+  "dependencies": {
+    "babel-runtime": "^6.11.6",
+    "can-use-dom": "^0.1.0",
+    "google-maps-infobox": "^1.1.13",
+    "invariant": "^2.2.1",
+    "lodash": "^4.16.2",
+    "marker-clusterer-plus": "^2.1.4",
+    "markerwithlabel": "^2.0.1",
+    "prop-types": "^15.5.8",
+    "recompose": "^0.25.0",
+    "scriptjs": "^2.5.8",
+    "warning": "^3.0.0"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -108,22 +125,5 @@
     "rimraf": "^2.6.2",
     "standard-version": "^4.2.0",
     "to-markdown": "^3.1.0"
-  },
-  "dependencies": {
-    "babel-runtime": "^6.11.6",
-    "can-use-dom": "^0.1.0",
-    "google-maps-infobox": "^1.1.13",
-    "invariant": "^2.2.1",
-    "lodash": "^4.16.2",
-    "marker-clusterer-plus": "^2.1.4",
-    "markerwithlabel": "^2.0.1",
-    "prop-types": "^15.5.8",
-    "recompose": "^0.25.0",
-    "scriptjs": "^2.5.8",
-    "warning": "^3.0.0"
-  },
-  "peerDependencies": {
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0"
   }
 }

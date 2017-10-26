@@ -5,13 +5,15 @@ node_js:
 - '6'
 - '8'
 before_script:
-- rm -rf lib src/app # Temp
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 - npm run build:src
 script:
 - npm test -- --coverage
 after_script:
-- if [[ `node --version` == *v6* ]]; then cat ./coverage/lcov.info | ./node_modules/.bin/codeclimate-test-reporter;
-  fi
+- if [[ "$TRAVIS_PULL_REQUEST" == "false" && `node --version` == *v8* ]]; then ./cc-test-reporter
+  after-build --exit-code $TRAVIS_TEST_RESULT; fi
 env:
   global:
-    secure: gYr2P0NQiF4sdolyrwfAURyM/SWPeYvYjhZdVQrGC1RszfpKFJuXvUAZsxA8zdco+oPTn1YeVbbqvOL+ZwAAZr58N9Ou0v/wwDc7XPRpn1odAHTFi5o5yAmX12SIKmt7O9UeT/hIu0ejyd85d2XHsQiGdVWDno4nrNZUnar/PgE=
+    secure: M75Bs+b2JGiCcfqguvV+r4+OtbFFj3rJj+ocNgMnrN34OSH/2enczdPkyHcMih3bVpmRpmlwx1sXIzbfNFh/nlLKs+mbYVeuB9a4J8us8iwrlxlfb2Q2DY/Go9ohaeMrHcs5VvmowLnQ9LBAkFaToYCVEPHyizU/h6iJtQmfipY=

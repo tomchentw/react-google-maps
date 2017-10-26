@@ -36,5 +36,4 @@ exclude_paths:
 - coverage/**
 - docs/**
 - lib/**
-- public/**
 

@@ -53212,7 +53212,7 @@ object-assign
               key: "handleInitializeSearchBox",
               value: function handleInitializeSearchBox() {
                 var e = new google.maps.places.SearchBox(
-                  this.containerElement.firstChild
+                  this.containerElement.querySelector("input")
                 )
                 return (
                   Object(m.d)(SearchBox.propTypes, x, this.props, e),

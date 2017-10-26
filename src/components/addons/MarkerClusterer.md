@@ -75,7 +75,7 @@ class DemoApp extends React.PureComponent {
 
 ```jsx
 const fetch = require("isomorphic-fetch");
-const { compose, withProps } = require("recompose");
+const { compose, withProps, withHandlers } = require("recompose");
 const {
   withScriptjs,
   withGoogleMap,
@@ -91,6 +91,13 @@ const MapWithAMarkerClusterer = compose(
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
+  withHandlers({
+    onMarkerClustererClick: () => (markerClusterer) => {
+      const clickedMarkers = markerClusterer.getMarkers()
+      console.log(`Current clicked markers length: ${clickedMarkers.length}`)
+      console.log(clickedMarkers)
+    },
+  }),
   withScriptjs,
   withGoogleMap
 )(props =>
@@ -99,6 +106,7 @@ const MapWithAMarkerClusterer = compose(
     defaultCenter={{ lat: 25.0391667, lng: 121.525 }}
   >
     <MarkerClusterer
+      onClick={props.onMarkerClustererClick}
       averageCenter
       enableRetinaIcons
       gridSize={60}

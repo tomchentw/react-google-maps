@@ -56,20 +56,18 @@ export class SearchBox extends React.PureComponent {
     )
     this.containerElement = document.createElement(`div`)
     this.handleRenderChildToContainerElement()
-    /*
-     * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
-     */
-    const searchBox = new google.maps.places.SearchBox(
-      this.containerElement.firstChild
-    )
-    construct(SearchBox.propTypes, updaterMap, this.props, searchBox)
-    this.setState({
-      [SEARCH_BOX]: searchBox,
-    })
+    if (React.version.match(/^16/)) {
+      return
+    }
+    this.handleInitializeSearchBox()
   }
 
   componentDidMount() {
-    componentDidMount(this, this.state[SEARCH_BOX], eventMap)
+    let searchBox = this.state[SEARCH_BOX]
+    if (React.version.match(/^16/)) {
+      searchBox = this.handleInitializeSearchBox()
+    }
+    componentDidMount(this, searchBox, eventMap)
     this.handleMountAtControlPosition()
   }
 
@@ -98,13 +96,33 @@ export class SearchBox extends React.PureComponent {
   componentWillUnmount() {
     componentWillUnmount(this)
     this.handleUnmountAtControlPosition()
+    if (React.version.match(/^16/)) {
+      return
+    }
     if (this.containerElement) {
       ReactDOM.unmountComponentAtNode(this.containerElement)
       this.containerElement = null
     }
   }
 
+  handleInitializeSearchBox() {
+    /*
+     * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
+     */
+    const searchBox = new google.maps.places.SearchBox(
+      this.containerElement.firstChild
+    )
+    construct(SearchBox.propTypes, updaterMap, this.props, searchBox)
+    this.setState({
+      [SEARCH_BOX]: searchBox,
+    })
+    return searchBox
+  }
+
   handleRenderChildToContainerElement() {
+    if (React.version.match(/^16/)) {
+      return
+    }
     ReactDOM.unstable_renderSubtreeIntoContainer(
       this,
       React.Children.only(this.props.children),
@@ -132,6 +150,12 @@ export class SearchBox extends React.PureComponent {
   }
 
   render() {
+    if (React.version.match(/^16/)) {
+      return ReactDOM.createPortal(
+        React.Children.only(this.props.children),
+        this.containerElement
+      )
+    }
     return false
   }
 }

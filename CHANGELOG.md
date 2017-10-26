@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="9.2.0"></a>
+# [9.2.0](https://github.com/tomchentw/react-google-maps/compare/v9.1.0...v9.2.0) (2017-10-26)
+
+
+### Features
+
+* **places/SearchBox:** allow other elements around SearchBox input ([238a352](https://github.com/tomchentw/react-google-maps/commit/238a352))
+
+
+
 <a name="9.1.0"></a>
 # [9.1.0](https://github.com/tomchentw/react-google-maps/compare/v9.0.3...v9.1.0) (2017-10-26)
 

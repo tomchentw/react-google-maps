@@ -50127,8 +50127,7 @@ object-assign
                       this,
                       a.a.Children.only(this.props.children),
                       this.state[f.j].getContent()
-                    ),
-                  g(this.state[f.j], this.context[f.a])
+                    )
               },
             },
             {
@@ -52117,8 +52116,7 @@ object-assign
                       this,
                       u.a.Children.only(this.props.children),
                       this.state[m.i].getContent()
-                    ),
-                  b(this.state[m.i], this.context[m.a])
+                    )
               },
             },
             {

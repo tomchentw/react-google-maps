@@ -142,7 +142,6 @@ export class InfoBox extends React.PureComponent {
         this.state[INFO_BOX].getContent()
       )
     }
-    open(this.state[INFO_BOX], this.context[ANCHOR])
   }
 
   componentWillUnmount() {

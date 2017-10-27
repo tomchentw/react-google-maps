@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="9.2.1"></a>
+## [9.2.1](https://github.com/tomchentw/react-google-maps/compare/v9.2.0...v9.2.1) (2017-10-27)
+
+
+### Bug Fixes
+
+* **addons/InfoBox:** don't open again on update ([72cb16f](https://github.com/tomchentw/react-google-maps/commit/72cb16f)), closes [#682](https://github.com/tomchentw/react-google-maps/issues/682)
+* **InfoWindow:** don't open again on update ([98a9c1f](https://github.com/tomchentw/react-google-maps/commit/98a9c1f)), closes [#670](https://github.com/tomchentw/react-google-maps/issues/670)
+
+
+
 <a name="9.2.0"></a>
 # [9.2.0](https://github.com/tomchentw/react-google-maps/compare/v9.1.0...v9.2.0) (2017-10-26)
 

@@ -127,7 +127,6 @@ export class InfoWindow extends React.PureComponent {
         this.state[INFO_WINDOW].getContent()
       )
     }
-    open(this.state[INFO_WINDOW], this.context[ANCHOR])
   }
 
   componentWillUnmount() {

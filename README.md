@@ -48,7 +48,7 @@ Please, be noted, **no one**, I mean, **no one**, is obligated to help you in **
 * **Don't** manually modify `lib` folder. They're generated during `yarn release` process
 * Follow [conventional-commits-specification][conventional-commits-specification]
 * [standard-version][standard-version]
-* Auto generated: `src/marcos` -> `src/components` -> `lib/components`
+* Auto generated: `src/macros` -> `src/components` -> `lib/components`
 * Other components are manually maintained
 * Use `yarn` and keep `yarn.lock` updated in PR
 * Discuss! Discuss! Discuss!

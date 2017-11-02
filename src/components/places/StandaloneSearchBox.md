@@ -4,8 +4,8 @@
 const { compose, withProps, lifecycle } = require("recompose");
 const {
   withScriptjs,
-} = require("../../index");
-const { StandaloneSearchBox } = require("./StandaloneSearchBox");
+} = require("react-google-maps");
+const { StandaloneSearchBox } = require("react-google-maps/lib/components/places/StandaloneSearchBox");
 
 const PlacesWithStandaloneSearchBox = compose(
   withProps({

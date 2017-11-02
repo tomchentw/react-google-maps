@@ -7,7 +7,7 @@ const {
   withGoogleMap,
   GoogleMap,
   BicyclingLayer,
-} = require("../index");
+} = require("react-google-maps");
 
 const MapWithABicyclingLayer = compose(
   withProps({

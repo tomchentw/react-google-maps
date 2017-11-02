@@ -7,7 +7,7 @@ const {
   withGoogleMap,
   GoogleMap,
   KmlLayer,
-} = require("../index");
+} = require("react-google-maps");
 
 const MapWithAKmlLayer = compose(
   withProps({

@@ -6,9 +6,8 @@ const {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-} = require("../../index");
-
-const { MarkerWithLabel } = require("./MarkerWithLabel");
+} = require("react-google-maps");
+const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
 
 const MapWithAMarkerWithLabel = compose(
   withScriptjs,

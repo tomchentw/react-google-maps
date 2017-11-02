@@ -9,7 +9,7 @@ const {
   GoogleMap,
   StreetViewPanorama,
   OverlayView,
-} = require("../index");
+} = require("react-google-maps");
 
 const getPixelPositionOffset = (width, height) => ({
   x: -(width / 2),

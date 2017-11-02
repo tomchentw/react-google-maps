@@ -7,7 +7,7 @@ const {
   withGoogleMap,
   GoogleMap,
   TrafficLayer,
-} = require("../index");
+} = require("react-google-maps");
 
 const MapWithATrafficLayer = compose(
   withProps({

@@ -12,6 +12,12 @@ module.exports = {
     }
     return `import ${name} from "react-google-maps/lib/components/${dirname}/${name}";`
   },
+  dangerouslyUpdateWebpackConfig(webpackConfig, env) {
+    // WARNING: inspect Styleguidist Webpack config before modifying it, otherwise you may break Styleguidist
+    webpackConfig.resolve.alias["react-google-maps/lib"] = path.resolve("./src")
+    webpackConfig.resolve.alias["react-google-maps"] = path.resolve("./src")
+    return webpackConfig
+  },
   styles: {
     Playground: {
       preview: {

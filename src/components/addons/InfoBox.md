@@ -1,7 +1,7 @@
 ### Styled Map with an InfoBox
 
 ```jsx
-const { compose, withProps } = require("recompose");
+const { compose, withProps, withStateHandlers } = require("recompose");
 const {
   withScriptjs,
   withGoogleMap,
@@ -18,6 +18,13 @@ const StyledMapWithAnInfoBox = compose(
     mapElement: <div style={{ height: `100%` }} />,
     center: { lat: 25.03, lng: 121.6 },
   }),
+  withStateHandlers(() => ({
+    isOpen: false,
+  }), {
+    onToggleOpen: ({ isOpen }) => () => ({
+      isOpen: !isOpen,
+    })
+  }),
   withScriptjs,
   withGoogleMap
 )(props =>
@@ -32,10 +39,25 @@ const StyledMapWithAnInfoBox = compose(
     >
       <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>
         <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
-          Hello from Taipei
+          Hello, Taipei!
         </div>
       </div>
     </InfoBox>
+    <Marker
+      position={{ lat: 22.6273, lng: 120.3014 }}
+      onClick={props.onToggleOpen}
+    >
+      {props.isOpen && <InfoBox
+        onCloseClick={props.onToggleOpen}
+        options={{ closeBoxURL: ``, enableEventPropagation: true }}
+      >
+        <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>
+          <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
+            Hello, Kaohsiung!
+          </div>
+        </div>
+      </InfoBox>}
+    </Marker>
   </GoogleMap>
 );
 

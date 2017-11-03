@@ -6,6 +6,7 @@
  */
 /* global google */
 import invariant from "invariant"
+import canUseDOM from "can-use-dom"
 import React from "react"
 import ReactDOM from "react-dom"
 import PropTypes from "prop-types"
@@ -100,8 +101,23 @@ export class InfoWindow extends React.PureComponent {
     }
   }
 
+  componentWillMount() {
+    if (!canUseDOM || this.containerElement) {
+      return
+    }
+    if (React.version.match(/^16/)) {
+      this.containerElement = document.createElement(`div`)
+    }
+  }
+
   componentDidMount() {
     componentDidMount(this, this.state[INFO_WINDOW], eventMap)
+    if (React.version.match(/^16/)) {
+      this.state[INFO_WINDOW].setContent(this.containerElement)
+      open(this.state[INFO_WINDOW], this.context[ANCHOR])
+      this.containerElement = undefined
+      return
+    }
     const content = document.createElement(`div`)
     ReactDOM.unstable_renderSubtreeIntoContainer(
       this,
@@ -120,6 +136,9 @@ export class InfoWindow extends React.PureComponent {
       updaterMap,
       prevProps
     )
+    if (React.version.match(/^16/)) {
+      return
+    }
     if (this.props.children !== prevProps.children) {
       ReactDOM.unstable_renderSubtreeIntoContainer(
         this,
@@ -133,7 +152,7 @@ export class InfoWindow extends React.PureComponent {
     componentWillUnmount(this)
     const infoWindow = this.state[INFO_WINDOW]
     if (infoWindow) {
-      if (infoWindow.getContent()) {
+      if (!React.version.match(/^16/) && infoWindow.getContent()) {
         ReactDOM.unmountComponentAtNode(infoWindow.getContent())
       }
       infoWindow.setMap(null)
@@ -141,6 +160,12 @@ export class InfoWindow extends React.PureComponent {
   }
 
   render() {
+    if (React.version.match(/^16/)) {
+      return ReactDOM.createPortal(
+        React.Children.only(this.props.children),
+        this.containerElement
+      )
+    }
     return false
   }
 

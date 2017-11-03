@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="9.2.2"></a>
+## [9.2.2](https://github.com/tomchentw/react-google-maps/compare/v9.2.1...v9.2.2) (2017-11-03)
+
+
+### Bug Fixes
+
+* **InfoWindow:** use `ReactDOM.createPortal` in React@^16 ([6a61f2c](https://github.com/tomchentw/react-google-maps/commit/6a61f2c)), closes [#691](https://github.com/tomchentw/react-google-maps/issues/691)
+
+
+
 <a name="9.2.1"></a>
 ## [9.2.1](https://github.com/tomchentw/react-google-maps/compare/v9.2.0...v9.2.1) (2017-10-27)
 

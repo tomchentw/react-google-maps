@@ -39101,7 +39101,7 @@ object-assign
       {
         type: "code",
         content:
-          'const { compose, withProps } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} = require("react-google-maps");\nconst { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");\nconst demoFancyMapStyles = require("./demoFancyMapStyles.json");\n\nconst StyledMapWithAnInfoBox = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n    center: { lat: 25.03, lng: 121.6 },\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={5}\n    defaultCenter={props.center}\n    defaultOptions={{ styles: demoFancyMapStyles }}\n  >\n    <InfoBox\n      defaultPosition={new google.maps.LatLng(props.center.lat, props.center.lng)}\n      options={{ closeBoxURL: ``, enableEventPropagation: true }}\n    >\n      <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>\n        <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>\n          Hello from Taipei\n        </div>\n      </div>\n    </InfoBox>\n  </GoogleMap>\n);\n\n<StyledMapWithAnInfoBox />',
+          'const { compose, withProps, withStateHandlers } = require("recompose");\nconst {\n  withScriptjs,\n  withGoogleMap,\n  GoogleMap,\n} = require("react-google-maps");\nconst { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");\nconst demoFancyMapStyles = require("./demoFancyMapStyles.json");\n\nconst StyledMapWithAnInfoBox = compose(\n  withProps({\n    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",\n    loadingElement: <div style={{ height: `100%` }} />,\n    containerElement: <div style={{ height: `400px` }} />,\n    mapElement: <div style={{ height: `100%` }} />,\n    center: { lat: 25.03, lng: 121.6 },\n  }),\n  withStateHandlers(() => ({\n    isOpen: false,\n  }), {\n    onToggleOpen: ({ isOpen }) => () => ({\n      isOpen: !isOpen,\n    })\n  }),\n  withScriptjs,\n  withGoogleMap\n)(props =>\n  <GoogleMap\n    defaultZoom={5}\n    defaultCenter={props.center}\n    defaultOptions={{ styles: demoFancyMapStyles }}\n  >\n    <InfoBox\n      defaultPosition={new google.maps.LatLng(props.center.lat, props.center.lng)}\n      options={{ closeBoxURL: ``, enableEventPropagation: true }}\n    >\n      <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>\n        <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>\n          Hello, Taipei!\n        </div>\n      </div>\n    </InfoBox>\n    <Marker\n      position={{ lat: 22.6273, lng: 120.3014 }}\n      onClick={props.onToggleOpen}\n    >\n      {props.isOpen && <InfoBox\n        onCloseClick={props.onToggleOpen}\n        options={{ closeBoxURL: ``, enableEventPropagation: true }}\n      >\n        <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>\n          <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>\n            Hello, Kaohsiung!\n          </div>\n        </div>\n      </InfoBox>}\n    </Marker>\n  </GoogleMap>\n);\n\n<StyledMapWithAnInfoBox />',
         settings: {},
         evalInContext: i,
       },
@@ -50061,20 +50061,22 @@ object-assign
     }
     Object.defineProperty(t, "__esModule", { value: !0 }),
       n.d(t, "InfoWindow", function() {
-        return m
+        return y
       })
     var r,
       o = n("./node_modules/invariant/browser.js"),
       i = n.n(o),
-      s = n("./node_modules/react/index.js"),
+      s = n("./node_modules/can-use-dom/index.js"),
       a = n.n(s),
-      l = n("./node_modules/react-dom/index.js"),
+      l = n("./node_modules/react/index.js"),
       u = n.n(l),
-      c = n("./node_modules/prop-types/index.js"),
+      c = n("./node_modules/react-dom/index.js"),
       p = n.n(c),
-      d = n("./src/utils/MapChildHelper.js"),
-      f = n("./src/constants.js"),
-      h = (function() {
+      d = n("./node_modules/prop-types/index.js"),
+      f = n.n(d),
+      h = n("./src/utils/MapChildHelper.js"),
+      m = n("./src/constants.js"),
+      g = (function() {
         function defineProperties(e, t) {
           for (var n = 0; n < t.length; n++) {
             var r = t[n]
@@ -50092,7 +50094,7 @@ object-assign
           )
         }
       })(),
-      m = (function(e) {
+      y = (function(e) {
         function InfoWindow(e, t) {
           _classCallCheck(this, InfoWindow)
           var n = _possibleConstructorReturn(
@@ -50105,92 +50107,118 @@ object-assign
             ),
             r = new google.maps.InfoWindow()
           return (
-            Object(d.d)(InfoWindow.propTypes, b, n.props, r),
-            r.setMap(n.context[f.l]),
-            (n.state = _defineProperty({}, f.j, r)),
+            Object(h.d)(InfoWindow.propTypes, _, n.props, r),
+            r.setMap(n.context[m.l]),
+            (n.state = _defineProperty({}, m.j, r)),
             n
           )
         }
         return (
-          _inherits(InfoWindow, a.a.PureComponent),
-          h(InfoWindow, [
+          _inherits(InfoWindow, u.a.PureComponent),
+          g(InfoWindow, [
+            {
+              key: "componentWillMount",
+              value: function componentWillMount() {
+                a.a &&
+                  !this.containerElement &&
+                  u.a.version.match(/^16/) &&
+                  (this.containerElement = document.createElement("div"))
+              },
+            },
             {
               key: "componentDidMount",
               value: function componentDidMount() {
-                Object(d.a)(this, this.state[f.j], y)
+                if (
+                  (Object(h.a)(this, this.state[m.j], v),
+                  u.a.version.match(/^16/))
+                )
+                  return (
+                    this.state[m.j].setContent(this.containerElement),
+                    b(this.state[m.j], this.context[m.a]),
+                    void (this.containerElement = void 0)
+                  )
                 var e = document.createElement("div")
-                u.a.unstable_renderSubtreeIntoContainer(
+                p.a.unstable_renderSubtreeIntoContainer(
                   this,
-                  a.a.Children.only(this.props.children),
+                  u.a.Children.only(this.props.children),
                   e
                 ),
-                  this.state[f.j].setContent(e),
-                  g(this.state[f.j], this.context[f.a])
+                  this.state[m.j].setContent(e),
+                  b(this.state[m.j], this.context[m.a])
               },
             },
             {
               key: "componentDidUpdate",
               value: function componentDidUpdate(e) {
-                Object(d.b)(this, this.state[f.j], y, b, e),
-                  this.props.children !== e.children &&
-                    u.a.unstable_renderSubtreeIntoContainer(
-                      this,
-                      a.a.Children.only(this.props.children),
-                      this.state[f.j].getContent()
-                    )
+                Object(h.b)(this, this.state[m.j], v, _, e),
+                  u.a.version.match(/^16/) ||
+                    (this.props.children !== e.children &&
+                      p.a.unstable_renderSubtreeIntoContainer(
+                        this,
+                        u.a.Children.only(this.props.children),
+                        this.state[m.j].getContent()
+                      ))
               },
             },
             {
               key: "componentWillUnmount",
               value: function componentWillUnmount() {
-                Object(d.c)(this)
-                var e = this.state[f.j]
+                Object(h.c)(this)
+                var e = this.state[m.j]
                 e &&
-                  (e.getContent() && u.a.unmountComponentAtNode(e.getContent()),
+                  (!u.a.version.match(/^16/) &&
+                    e.getContent() &&
+                    p.a.unmountComponentAtNode(e.getContent()),
                   e.setMap(null))
               },
             },
             {
               key: "render",
               value: function render() {
-                return !1
+                return (
+                  !!u.a.version.match(/^16/) &&
+                  p.a.createPortal(
+                    u.a.Children.only(this.props.children),
+                    this.containerElement
+                  )
+                )
               },
             },
             {
               key: "getPosition",
               value: function getPosition() {
-                return this.state[f.j].getPosition()
+                return this.state[m.j].getPosition()
               },
             },
             {
               key: "getZIndex",
               value: function getZIndex() {
-                return this.state[f.j].getZIndex()
+                return this.state[m.j].getZIndex()
               },
             },
           ]),
           InfoWindow
         )
       })()
-    ;(m.propTypes = {
-      defaultOptions: p.a.any,
-      defaultPosition: p.a.any,
-      defaultZIndex: p.a.number,
-      options: p.a.any,
-      position: p.a.any,
-      zIndex: p.a.number,
-      onCloseClick: p.a.func,
-      onDomReady: p.a.func,
-      onContentChanged: p.a.func,
-      onPositionChanged: p.a.func,
-      onZindexChanged: p.a.func,
+    ;(y.propTypes = {
+      defaultOptions: f.a.any,
+      defaultPosition: f.a.any,
+      defaultZIndex: f.a.number,
+      options: f.a.any,
+      position: f.a.any,
+      zIndex: f.a.number,
+      onCloseClick: f.a.func,
+      onDomReady: f.a.func,
+      onContentChanged: f.a.func,
+      onPositionChanged: f.a.func,
+      onZindexChanged: f.a.func,
     }),
-      (m.contextTypes = ((r = {}),
-      _defineProperty(r, f.l, p.a.object),
-      _defineProperty(r, f.a, p.a.object),
+      (y.contextTypes = ((r = {}),
+      _defineProperty(r, m.l, f.a.object),
+      _defineProperty(r, m.a, f.a.object),
       r)),
-      (t.default = m)
-    var g = function open(e, t) {
+      (t.default = y)
+    var b = function open(e, t) {
         t
           ? e.open(e.getMap(), t)
           : e.getPosition()
@@ -50200,14 +50228,14 @@ object-assign
                 "You must provide either an anchor (typically render it inside a <Marker>) or a position props for <InfoWindow>."
               )
       },
-      y = {
+      v = {
         onCloseClick: "closeclick",
         onDomReady: "domready",
         onContentChanged: "content_changed",
         onPositionChanged: "position_changed",
         onZindexChanged: "zindex_changed",
       },
-      b = {
+      _ = {
         options: function options(e, t) {
           e.setOptions(t)
         },

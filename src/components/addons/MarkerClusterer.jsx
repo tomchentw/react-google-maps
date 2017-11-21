@@ -295,6 +295,10 @@ const updaterMap = {
     instance.setCalculator(calculator)
   },
 
+  clusterClass(instance, clusterClass) {
+    instance.setClusterClass(clusterClass)
+  },
+
   enableRetinaIcons(instance, enableRetinaIcons) {
     instance.setEnableRetinaIcons(enableRetinaIcons)
   },

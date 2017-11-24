@@ -50134,8 +50134,7 @@ object-assign
                 )
                   return (
                     this.state[m.j].setContent(this.containerElement),
-                    b(this.state[m.j], this.context[m.a]),
-                    void (this.containerElement = void 0)
+                    void b(this.state[m.j], this.context[m.a])
                   )
                 var e = document.createElement("div")
                 p.a.unstable_renderSubtreeIntoContainer(
@@ -52451,6 +52450,9 @@ object-assign
         },
         calculator: function calculator(e, t) {
           e.setCalculator(t)
+        },
+        clusterClass: function clusterClass(e, t) {
+          e.setClusterClass(t)
         },
         enableRetinaIcons: function enableRetinaIcons(e, t) {
           e.setEnableRetinaIcons(t)

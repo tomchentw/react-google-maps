@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="9.2.3"></a>
+## [9.2.3](https://github.com/tomchentw/react-google-maps/compare/v9.2.2...v9.2.3) (2017-11-24)
+
+
+### Bug Fixes
+
+* **addons/MarkerClusterer:** add missed cluster class binding ([#706](https://github.com/tomchentw/react-google-maps/issues/706)) ([f008c2c](https://github.com/tomchentw/react-google-maps/commit/f008c2c))
+* **InfoWindow:** do not remove container element on mount ([ed764c6](https://github.com/tomchentw/react-google-maps/commit/ed764c6)), closes [#696](https://github.com/tomchentw/react-google-maps/issues/696)
+
+
+
 <a name="9.2.2"></a>
 ## [9.2.2](https://github.com/tomchentw/react-google-maps/compare/v9.2.1...v9.2.2) (2017-11-03)
 

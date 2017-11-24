@@ -17,7 +17,7 @@
   },
   "homepage": "https://tomchentw.github.io/react-google-maps/",
   "main": "lib/index.js",
-  "files": ["lib/", "src/lib", "CHANGELOG.md", "types/index.d.ts"],
+  "files": ["types/index.d.ts", "lib/", "src/", "CHANGELOG.md"],
   "keywords": [
     "React",
     "Google",

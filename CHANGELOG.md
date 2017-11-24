@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="9.3.0"></a>
+# [9.3.0](https://github.com/tomchentw/react-google-maps/compare/v9.2.3...v9.3.0) (2017-11-24)
+
+
+### Bug Fixes
+
+* **package.json:** files including `src/` ([9b18f8d](https://github.com/tomchentw/react-google-maps/commit/9b18f8d))
+
+
+### Features
+
+* **package.json:** add TypeScript definitions. ([#646](https://github.com/tomchentw/react-google-maps/issues/646)) ([072b4c7](https://github.com/tomchentw/react-google-maps/commit/072b4c7)), closes [#363](https://github.com/tomchentw/react-google-maps/issues/363)
+
+
+
 <a name="9.2.3"></a>
 ## [9.2.3](https://github.com/tomchentw/react-google-maps/compare/v9.2.2...v9.2.3) (2017-11-24)
 

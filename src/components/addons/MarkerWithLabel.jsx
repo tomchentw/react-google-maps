@@ -390,117 +390,117 @@ export class MarkerWithLabel extends React.PureComponent {
   }
 
   /**
-   * 
+   *
    * @type Animation
-   * @public 
+   * @public
    */
   getAnimation() {
     return this.state[MARKER_WITH_LABEL].getAnimation()
   }
 
   /**
-   * 
+   *
    * @type boolean
-   * @public 
+   * @public
    */
   getClickable() {
     return this.state[MARKER_WITH_LABEL].getClickable()
   }
 
   /**
-   * 
+   *
    * @type string
-   * @public 
+   * @public
    */
   getCursor() {
     return this.state[MARKER_WITH_LABEL].getCursor()
   }
 
   /**
-   * 
+   *
    * @type boolean
-   * @public 
+   * @public
    */
   getDraggable() {
     return this.state[MARKER_WITH_LABEL].getDraggable()
   }
 
   /**
-   * 
+   *
    * @type string|Icon|Symbol
-   * @public 
+   * @public
    */
   getIcon() {
     return this.state[MARKER_WITH_LABEL].getIcon()
   }
 
   /**
-   * 
+   *
    * @type MarkerLabel
-   * @public 
+   * @public
    */
   getLabel() {
     return this.state[MARKER_WITH_LABEL].getLabel()
   }
 
   /**
-   * 
+   *
    * @type number
-   * @public 
+   * @public
    */
   getOpacity() {
     return this.state[MARKER_WITH_LABEL].getOpacity()
   }
 
   /**
-   * 
+   *
    * @type MarkerPlace
-   * @public 
+   * @public
    */
   getPlace() {
     return this.state[MARKER_WITH_LABEL].getPlace()
   }
 
   /**
-   * 
+   *
    * @type LatLng
-   * @public 
+   * @public
    */
   getPosition() {
     return this.state[MARKER_WITH_LABEL].getPosition()
   }
 
   /**
-   * 
+   *
    * @type MarkerShape
-   * @public 
+   * @public
    */
   getShape() {
     return this.state[MARKER_WITH_LABEL].getShape()
   }
 
   /**
-   * 
+   *
    * @type string
-   * @public 
+   * @public
    */
   getTitle() {
     return this.state[MARKER_WITH_LABEL].getTitle()
   }
 
   /**
-   * 
+   *
    * @type boolean
-   * @public 
+   * @public
    */
   getVisible() {
     return this.state[MARKER_WITH_LABEL].getVisible()
   }
 
   /**
-   * 
+   *
    * @type number
-   * @public 
+   * @public
    */
   getZIndex() {
     return this.state[MARKER_WITH_LABEL].getZIndex()

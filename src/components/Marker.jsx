@@ -341,117 +341,117 @@ export class Marker extends React.PureComponent {
   }
 
   /**
-   * 
+   *
    * @type Animation
-   * @public 
+   * @public
    */
   getAnimation() {
     return this.state[MARKER].getAnimation()
   }
 
   /**
-   * 
+   *
    * @type boolean
-   * @public 
+   * @public
    */
   getClickable() {
     return this.state[MARKER].getClickable()
   }
 
   /**
-   * 
+   *
    * @type string
-   * @public 
+   * @public
    */
   getCursor() {
     return this.state[MARKER].getCursor()
   }
 
   /**
-   * 
+   *
    * @type boolean
-   * @public 
+   * @public
    */
   getDraggable() {
     return this.state[MARKER].getDraggable()
   }
 
   /**
-   * 
+   *
    * @type string|Icon|Symbol
-   * @public 
+   * @public
    */
   getIcon() {
     return this.state[MARKER].getIcon()
   }
 
   /**
-   * 
+   *
    * @type MarkerLabel
-   * @public 
+   * @public
    */
   getLabel() {
     return this.state[MARKER].getLabel()
   }
 
   /**
-   * 
+   *
    * @type number
-   * @public 
+   * @public
    */
   getOpacity() {
     return this.state[MARKER].getOpacity()
   }
 
   /**
-   * 
+   *
    * @type MarkerPlace
-   * @public 
+   * @public
    */
   getPlace() {
     return this.state[MARKER].getPlace()
   }
 
   /**
-   * 
+   *
    * @type LatLng
-   * @public 
+   * @public
    */
   getPosition() {
     return this.state[MARKER].getPosition()
   }
 
   /**
-   * 
+   *
    * @type MarkerShape
-   * @public 
+   * @public
    */
   getShape() {
     return this.state[MARKER].getShape()
   }
 
   /**
-   * 
+   *
    * @type string
-   * @public 
+   * @public
    */
   getTitle() {
     return this.state[MARKER].getTitle()
   }
 
   /**
-   * 
+   *
    * @type boolean
-   * @public 
+   * @public
    */
   getVisible() {
     return this.state[MARKER].getVisible()
   }
 
   /**
-   * 
+   *
    * @type number
-   * @public 
+   * @public
    */
   getZIndex() {
     return this.state[MARKER].getZIndex()

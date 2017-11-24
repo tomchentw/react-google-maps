@@ -126,7 +126,7 @@ export class DrawingManager extends React.PureComponent {
   /**
    * Returns the `DrawingManager`'s drawing mode.
    * @type OverlayTypeDrawingManager
-   * @public 
+   * @public
    */
   getDrawingMode() {
     return this.state[DRAWING_MANAGER].getDrawingMode()

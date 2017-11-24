@@ -132,7 +132,7 @@ For GroundOveray, url and bounds are passed in to constructor and are immutable
   /**
    * Gets the `LatLngBounds` of this overlay.
    * @type LatLngBoundsLatLngBounds
-   * @public 
+   * @public
    */
   getBounds() {
     return this.state[GROUND_LAYER].getBounds()
@@ -141,7 +141,7 @@ For GroundOveray, url and bounds are passed in to constructor and are immutable
   /**
    * Returns the opacity of this ground overlay.
    * @type number
-   * @public 
+   * @public
    */
   getOpacity() {
     return this.state[GROUND_LAYER].getOpacity()
@@ -150,7 +150,7 @@ For GroundOveray, url and bounds are passed in to constructor and are immutable
   /**
    * Gets the url of the projected image.
    * @type string
-   * @public 
+   * @public
    */
   getUrl() {
     return this.state[GROUND_LAYER].getUrl()

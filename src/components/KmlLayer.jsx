@@ -116,7 +116,7 @@ export class KmlLayer extends React.PureComponent {
   /**
    * Get the default viewport for the layer being displayed.
    * @type LatLngBounds
-   * @public 
+   * @public
    */
   getDefaultViewport() {
     return this.state[KML_LAYER].getDefaultViewport()
@@ -125,7 +125,7 @@ export class KmlLayer extends React.PureComponent {
   /**
    * Get the metadata associated with this layer, as specified in the layer markup.
    * @type KmlLayerMetadata
-   * @public 
+   * @public
    */
   getMetadata() {
     return this.state[KML_LAYER].getMetadata()
@@ -134,7 +134,7 @@ export class KmlLayer extends React.PureComponent {
   /**
    * Get the status of the layer, set once the requested document has loaded.
    * @type KmlLayerStatus
-   * @public 
+   * @public
    */
   getStatus() {
     return this.state[KML_LAYER].getStatus()
@@ -143,7 +143,7 @@ export class KmlLayer extends React.PureComponent {
   /**
    * Gets the URL of the KML file being displayed.
    * @type string
-   * @public 
+   * @public
    */
   getUrl() {
     return this.state[KML_LAYER].getUrl()
@@ -152,7 +152,7 @@ export class KmlLayer extends React.PureComponent {
   /**
    * Gets the z-index of the KML Layer.
    * @type number
-   * @public 
+   * @public
    */
   getZIndex() {
     return this.state[KML_LAYER].getZIndex()

@@ -121,7 +121,7 @@ export class DirectionsRenderer extends React.PureComponent {
   /**
    * Returns the renderer's current set of directions.
    * @type DirectionsResult
-   * @public 
+   * @public
    */
   getDirections() {
     return this.state[DIRECTIONS_RENDERER].getDirections()
@@ -130,7 +130,7 @@ export class DirectionsRenderer extends React.PureComponent {
   /**
    * Returns the panel `<div>` in which the `DirectionsResult` is rendered.
    * @type Node<div>DirectionsResult
-   * @public 
+   * @public
    */
   getPanel() {
     return this.state[DIRECTIONS_RENDERER].getPanel()
@@ -139,7 +139,7 @@ export class DirectionsRenderer extends React.PureComponent {
   /**
    * Returns the current (zero-based) route index in use by this `DirectionsRenderer` object.
    * @type numberDirectionsRenderer
-   * @public 
+   * @public
    */
   getRouteIndex() {
     return this.state[DIRECTIONS_RENDERER].getRouteIndex()

@@ -96,7 +96,7 @@ export class HeatmapLayer extends React.PureComponent {
   /**
    * Returns the data points currently displayed by this heatmap.
    * @type MVCArray<LatLng|WeightedLocation>
-   * @public 
+   * @public
    */
   getData() {
     return this.state[HEATMAP_LAYER].getData()

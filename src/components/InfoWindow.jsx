@@ -169,18 +169,18 @@ export class InfoWindow extends React.PureComponent {
   }
 
   /**
-   * 
+   *
    * @type LatLng
-   * @public 
+   * @public
    */
   getPosition() {
     return this.state[INFO_WINDOW].getPosition()
   }
 
   /**
-   * 
+   *
    * @type number
-   * @public 
+   * @public
    */
   getZIndex() {
     return this.state[INFO_WINDOW].getZIndex()

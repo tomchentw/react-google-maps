@@ -214,7 +214,7 @@ export class Map extends React.PureComponent {
 
   /**
    * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
-   * @public 
+   * @public
    */
   fitBounds(...args) {
     return this.context[MAP].fitBounds(...args)
@@ -222,7 +222,7 @@ export class Map extends React.PureComponent {
 
   /**
    * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
-   * @public 
+   * @public
    */
   panBy(...args) {
     return this.context[MAP].panBy(...args)
@@ -230,7 +230,7 @@ export class Map extends React.PureComponent {
 
   /**
    * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
-   * @public 
+   * @public
    */
   panTo(...args) {
     return this.context[MAP].panTo(...args)
@@ -238,7 +238,7 @@ export class Map extends React.PureComponent {
 
   /**
    * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
-   * @public 
+   * @public
    */
   panToBounds(...args) {
     return this.context[MAP].panToBounds(...args)
@@ -276,7 +276,7 @@ export class Map extends React.PureComponent {
   /**
    * Returns the lat/lng bounds of the current viewport. If more than one copy of the world is visible, the bounds range in longitude from -180 to 180 degrees inclusive. If the map is not yet initialized (i.e. the mapType is still null), or center and zoom have not been set then the result is `null` or `undefined`.
    * @type LatLngBoundsnullundefined
-   * @public 
+   * @public
    */
   getBounds() {
     return this.context[MAP].getBounds()
@@ -285,7 +285,7 @@ export class Map extends React.PureComponent {
   /**
    * Returns the position displayed at the center of the map. Note that this `LatLng` object is _not_ wrapped. See `[LatLng](#LatLng)` for more information.
    * @type LatLngLatLngLatLng
-   * @public 
+   * @public
    */
   getCenter() {
     return this.context[MAP].getCenter()
@@ -294,16 +294,16 @@ export class Map extends React.PureComponent {
   /**
    * Returns the clickability of the map icons. A map icon represents a point of interest, also known as a POI. If the returned value is true, then the icons are clickable on the map.
    * @type boolean
-   * @public 
+   * @public
    */
   getClickableIcons() {
     return this.context[MAP].getClickableIcons()
   }
 
   /**
-   * 
+   *
    * @type Element
-   * @public 
+   * @public
    */
   getDiv() {
     return this.context[MAP].getDiv()
@@ -312,16 +312,16 @@ export class Map extends React.PureComponent {
   /**
    * Returns the compass heading of aerial imagery. The heading value is measured in degrees (clockwise) from cardinal direction North.
    * @type number
-   * @public 
+   * @public
    */
   getHeading() {
     return this.context[MAP].getHeading()
   }
 
   /**
-   * 
+   *
    * @type MapTypeId|string
-   * @public 
+   * @public
    */
   getMapTypeId() {
     return this.context[MAP].getMapTypeId()
@@ -330,7 +330,7 @@ export class Map extends React.PureComponent {
   /**
    * Returns the current `Projection`. If the map is not yet initialized (i.e. the mapType is still null) then the result is null. Listen to `projection_changed` and check its value to ensure it is not null.
    * @type ProjectionProjectionprojection_changed
-   * @public 
+   * @public
    */
   getProjection() {
     return this.context[MAP].getProjection()
@@ -339,7 +339,7 @@ export class Map extends React.PureComponent {
   /**
    * Returns the default `StreetViewPanorama` bound to the map, which may be a default panorama embedded within the map, or the panorama set using `setStreetView()`. Changes to the map's `streetViewControl` will be reflected in the display of such a bound panorama.
    * @type StreetViewPanoramaStreetViewPanoramasetStreetView()streetViewControl
-   * @public 
+   * @public
    */
   getStreetView() {
     return this.context[MAP].getStreetView()
@@ -348,16 +348,16 @@ export class Map extends React.PureComponent {
   /**
    * Returns the current angle of incidence of the map, in degrees from the viewport plane to the map plane. The result will be `0` for imagery taken directly overhead or `45` for 45° imagery. 45° imagery is only available for `satellite` and `hybrid` map types, within some locations, and at some zoom levels. **Note:** This method does not return the value set by `setTilt`. See `setTilt` for details.
    * @type number045satellitehybridsetTiltsetTilt
-   * @public 
+   * @public
    */
   getTilt() {
     return this.context[MAP].getTilt()
   }
 
   /**
-   * 
+   *
    * @type number
-   * @public 
+   * @public
    */
   getZoom() {
     return this.context[MAP].getZoom()

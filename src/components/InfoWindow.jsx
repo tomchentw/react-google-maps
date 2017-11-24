@@ -115,7 +115,6 @@ export class InfoWindow extends React.PureComponent {
     if (React.version.match(/^16/)) {
       this.state[INFO_WINDOW].setContent(this.containerElement)
       open(this.state[INFO_WINDOW], this.context[ANCHOR])
-      this.containerElement = undefined
       return
     }
     const content = document.createElement(`div`)

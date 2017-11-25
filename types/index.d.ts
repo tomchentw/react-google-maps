@@ -362,7 +362,7 @@ declare module 'react-google-maps/lib/components/Marker' {
         attribution?: google.maps.Attribution
         clickable?: boolean
         cursor?: string
-        draggable?: string
+        draggable?: boolean
         icon?: string | google.maps.Icon | google.maps.Symbol
         label?: google.maps.MarkerLabel
         opacity?: number

@@ -52900,7 +52900,9 @@ object-assign
                   'Did you include "libraries=places" in the URL?'
                 )
                 var e = l.a.findDOMNode(this),
-                  t = new google.maps.places.SearchBox(e)
+                  t = new google.maps.places.SearchBox(
+                    e.querySelector("input") || e
+                  )
                 Object(p.d)(SearchBox.propTypes, y, this.props, t),
                   Object(p.a)(this, t, g),
                   this.setState(_defineProperty({}, d.t, t))

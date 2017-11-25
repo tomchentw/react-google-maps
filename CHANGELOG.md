@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="9.4.0"></a>
+# [9.4.0](https://github.com/tomchentw/react-google-maps/compare/v9.3.0...v9.4.0) (2017-11-25)
+
+
+### Bug Fixes
+
+* **types/index.d.ts:** draggable property type ([#710](https://github.com/tomchentw/react-google-maps/issues/710)) ([7a29420](https://github.com/tomchentw/react-google-maps/commit/7a29420))
+
+
+### Features
+
+* **StandaloneSearchBox:** accept wrapped input ([#709](https://github.com/tomchentw/react-google-maps/issues/709)) ([55a2f55](https://github.com/tomchentw/react-google-maps/commit/55a2f55))
+
+
+
 <a name="9.3.0"></a>
 # [9.3.0](https://github.com/tomchentw/react-google-maps/compare/v9.2.3...v9.3.0) (2017-11-24)
 

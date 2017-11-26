@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="9.4.1"></a>
+## [9.4.1](https://github.com/tomchentw/react-google-maps/compare/v9.4.0...v9.4.1) (2017-11-26)
+
+
+### Bug Fixes
+
+* **addons/InfoBox:** named require from `google-maps-infobox` module ([6fc7841](https://github.com/tomchentw/react-google-maps/commit/6fc7841)), closes [#711](https://github.com/tomchentw/react-google-maps/issues/711)
+
+
+
 <a name="9.4.0"></a>
 # [9.4.0](https://github.com/tomchentw/react-google-maps/compare/v9.3.0...v9.4.0) (2017-11-25)
 

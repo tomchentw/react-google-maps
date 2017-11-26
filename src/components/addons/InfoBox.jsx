@@ -102,7 +102,9 @@ export class InfoBox extends React.PureComponent {
     if (!canUseDOM || this.state[INFO_BOX]) {
       return
     }
-    const GoogleMapsInfobox = require(/* "google-maps-infobox" uses "google" as a global variable. Since we don't
+    const {
+      InfoBox: GoogleMapsInfobox,
+    } = require(/* "google-maps-infobox" uses "google" as a global variable. Since we don't
        * have "google" on the server, we can not use it in server-side rendering.
        * As a result, we import "google-maps-infobox" here to prevent an error on
        * a isomorphic server.
@@ -160,7 +162,7 @@ export class InfoBox extends React.PureComponent {
   }
 
   /**
-   * 
+   *
    * @type LatLng
    */
   getPosition() {
@@ -168,7 +170,7 @@ export class InfoBox extends React.PureComponent {
   }
 
   /**
-   * 
+   *
    * @type boolean
    */
   getVisible() {
@@ -176,7 +178,7 @@ export class InfoBox extends React.PureComponent {
   }
 
   /**
-   * 
+   *
    * @type number
    */
   getZIndex() {

@@ -51576,9 +51576,9 @@ object-assign
               key: "componentWillMount",
               value: function componentWillMount() {
                 if (i.a && !this.state[m.i]) {
-                  var e = new (n(
-                    "./node_modules/google-maps-infobox/infobox-module.js"
-                  ))()
+                  var e = new (0,
+                  n("./node_modules/google-maps-infobox/infobox-module.js")
+                    .InfoBox)()
                   Object(h.d)(InfoBox.propTypes, _, this.props, e),
                     e.setMap(this.context[m.l]),
                     this.setState(_defineProperty({}, m.i, e))

@@ -101,7 +101,6 @@
   "dependencies": {
     "babel-runtime": "^6.11.6",
     "can-use-dom": "^0.1.0",
-    "eslint": "^4.11.0",
     "google-maps-infobox": "^2.0.0",
     "invariant": "^2.2.1",
     "lodash": "^4.16.2",
@@ -133,6 +132,7 @@
     "cheerio": "^1.0.0-rc.2",
     "cross-env": "^5.1.1",
     "dtslint": "github:Microsoft/dtslint#production",
+    "eslint": "^4.11.0",
     "glob": "^7.1.2",
     "husky": "^0.14.3",
     "isomorphic-fetch": "^2.2.1",

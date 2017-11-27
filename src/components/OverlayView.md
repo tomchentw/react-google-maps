@@ -53,7 +53,12 @@ const MapWithAnOverlayView = compose(
        */
       getPixelPositionOffset={getPixelPositionOffset}
       /*
-       * 3. Create OverlayView content using standard React components.
+       * 3. (Optional) Pass additional css style.
+       *    For example to controll z-index.
+       */
+      style={{ zIndex: 10 }}
+      /*
+       * 4. Create OverlayView content using standard React components.
        */
     >
       <div style={{ background: `white`, border: `1px solid #ccc`, padding: 15 }}>

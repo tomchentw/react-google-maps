@@ -1,4 +1,4 @@
-[`react-google-maps`][react-google-maps] provides a set of React components wrapping the underlying [Google Maps JavaScript API v3][gmjsav3] instances. Thw wrapping simply do
+[`react-google-maps`][react-google-maps] provides a set of React components wrapping the underlying [Google Maps JavaScript API v3][gmjsav3] instances. The wrapping simply do:
 
 * **props delegation** 
 * **events as callbacks**

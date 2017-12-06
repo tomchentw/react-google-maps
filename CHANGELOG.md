@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="9.4.2"></a>
+## [9.4.2](https://github.com/tomchentw/react-google-maps/compare/v9.4.1...v9.4.2) (2017-12-06)
+
+
+### Bug Fixes
+
+* **package.json:** move eslint to devDependencies ([#715](https://github.com/tomchentw/react-google-maps/issues/715)) ([bab1481](https://github.com/tomchentw/react-google-maps/commit/bab1481))
+
+
+
 <a name="9.4.1"></a>
 ## [9.4.1](https://github.com/tomchentw/react-google-maps/compare/v9.4.0...v9.4.1) (2017-11-26)
 

@@ -265,6 +265,7 @@ declare module 'react-google-maps/lib/components/GoogleMap' {
         getBounds(): google.maps.LatLngBounds
         getCenter(): google.maps.LatLng
         getClickableIcons(): boolean
+        getData(): google.maps.Data
         getDiv(): Element
         getHeading(): number
         getMapTypeId(): google.maps.MapTypeId | string

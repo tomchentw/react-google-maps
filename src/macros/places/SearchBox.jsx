@@ -145,7 +145,9 @@ export class SearchBox extends React.PureComponent {
       const child = this.context[MAP].controls[
         this.props.controlPosition
       ].removeAt(this.mountControlIndex)
-      this.containerElement.appendChild(child)
+      if(child !== undefined){
+        this.containerElement.appendChild(child)
+      }
     }
   }
 

@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="9.4.3"></a>
+## [9.4.3](https://github.com/tomchentw/react-google-maps/compare/v9.4.2...v9.4.3) (2017-12-14)
+
+
+### Bug Fixes
+
+* **places/SearchBox:** undefined child at unmount ([0c8e943](https://github.com/tomchentw/react-google-maps/commit/0c8e943))
+
+
+
 <a name="9.4.2"></a>
 ## [9.4.2](https://github.com/tomchentw/react-google-maps/compare/v9.4.1...v9.4.2) (2017-12-06)
 

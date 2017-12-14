@@ -52745,7 +52745,7 @@ object-assign
                   var e = this.context[g.l].controls[
                     this.props.controlPosition
                   ].removeAt(this.mountControlIndex)
-                  this.containerElement.appendChild(e)
+                  void 0 !== e && this.containerElement.appendChild(e)
                 }
               },
             },

@@ -68,7 +68,8 @@
       "git add -A && git commit -m 'docs: compile from src with `styleguidist`'",
     "prerelease":
       "npm run commit:src && npm run commit:lib && npm run commit:docs",
-    "release": "standard-version"
+    "release":
+      "standard-version -m 'chore(release): %s \n\n* CHANGELOG: https://github.com/tomchentw/react-google-maps/blob/v%s/CHANGELOG.md'"
   },
   "lint-staged": {
     "*.{js,jsx,json,css}": ["prettier --write", "git add"]

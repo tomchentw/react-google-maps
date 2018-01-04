@@ -20,8 +20,8 @@ The changelog is automatically generated via [standard-version][standard-version
 
 ## [Demo App][demo-app-url]
 
-[Source code][demo-app-source]
-
+* [Source code][demo-app-source]
+* [CodeSandbox](https://codesandbox.io/s/2xyw6n4o9y)
 
 ## Getting Help
 

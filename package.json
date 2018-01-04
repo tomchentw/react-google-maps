@@ -137,7 +137,7 @@
     "husky": "^0.14.3",
     "isomorphic-fetch": "^2.2.1",
     "jscodeshift": "^0.3.32",
-    "lint-staged": "^5.0.0",
+    "lint-staged": "^6.0.0",
     "make-fetch-happen": "^2.6.0",
     "mkdirp": "^0.5.1",
     "prettier": "^1.8.2",

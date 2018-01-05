@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="9.4.5"></a>
+## [9.4.5](https://github.com/tomchentw/react-google-maps/compare/v9.4.4...v9.4.5) (2018-01-05)
+
+
+### Bug Fixes
+
+* **types:** fix OverlayView type definition ([6955d01](https://github.com/tomchentw/react-google-maps/commit/6955d01))
+
+
+
 <a name="9.4.4"></a>
 ## [9.4.4](https://github.com/tomchentw/react-google-maps/compare/v9.4.3...v9.4.4) (2018-01-04)
 

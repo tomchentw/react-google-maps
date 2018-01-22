@@ -1,3 +1,4 @@
+/* global google */
 import invariant from "invariant"
 import React from "react"
 import PropTypes from "prop-types"
@@ -50,7 +51,7 @@ export class Map extends React.PureComponent {
 
   /**
    * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
-   * @public 
+   * @public
    */
   fitBounds(...args) {
     return this.context[MAP].fitBounds(...args)
@@ -58,7 +59,7 @@ export class Map extends React.PureComponent {
 
   /**
    * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
-   * @public 
+   * @public
    */
   panBy(...args) {
     return this.context[MAP].panBy(...args)
@@ -66,7 +67,7 @@ export class Map extends React.PureComponent {
 
   /**
    * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
-   * @public 
+   * @public
    */
   panTo(...args) {
     return this.context[MAP].panTo(...args)
@@ -74,10 +75,18 @@ export class Map extends React.PureComponent {
 
   /**
    * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
-   * @public 
+   * @public
    */
   panToBounds(...args) {
     return this.context[MAP].panToBounds(...args)
+  }
+
+  /**
+   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#event
+   * @public
+   */
+  trigger(...args) {
+    return google.maps.event.trigger(this.context[MAP], ...args)
   }
 
   /*

@@ -516,6 +516,8 @@ const eventMap = {
   onMouseDown: "mousedown",
   onMouseOut: "mouseout",
   onMouseOver: "mouseover",
+  onMouseEnter: "mouseenter",
+  onMouseLeave: "mouseleave",
   onMouseUp: "mouseup",
   onRightClick: "rightclick",
   onAnimationChanged: "animation_changed",

@@ -22,6 +22,8 @@ export const __jscodeshiftPlaceholder__ = `{
     "onMouseDown": "mousedown",
     "onMouseOut": "mouseout",
     "onMouseOver": "mouseover",
+    "onMouseEnter": "mouseenter",
+    "onMouseLeave": "mouseleave",
     "onMouseUp": "mouseup",
     "onRightClick": "rightclick"
   },

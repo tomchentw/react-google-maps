@@ -236,6 +236,16 @@ export class MarkerWithLabel extends React.PureComponent {
     /**
      * function
      */
+    onMouseEnter: PropTypes.func,
+
+    /**
+     * function
+     */
+    onMouseLeave: PropTypes.func,
+
+    /**
+     * function
+     */
     onMouseUp: PropTypes.func,
 
     /**

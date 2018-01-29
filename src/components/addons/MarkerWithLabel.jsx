@@ -236,6 +236,16 @@ export class MarkerWithLabel extends React.PureComponent {
     /**
      * function
      */
+    onMouseEnter: PropTypes.func,
+
+    /**
+     * function
+     */
+    onMouseLeave: PropTypes.func,
+
+    /**
+     * function
+     */
     onMouseUp: PropTypes.func,
 
     /**
@@ -516,6 +526,8 @@ const eventMap = {
   onMouseDown: "mousedown",
   onMouseOut: "mouseout",
   onMouseOver: "mouseover",
+  onMouseEnter: "mouseenter",
+  onMouseLeave: "mouseleave",
   onMouseUp: "mouseup",
   onRightClick: "rightclick",
   onAnimationChanged: "animation_changed",

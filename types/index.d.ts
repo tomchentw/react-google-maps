@@ -258,7 +258,7 @@ declare module 'react-google-maps/lib/components/GoogleMap' {
     }
 
     export default class GoogleMap extends Component<GoogleMapProps> {
-        fitBounds(bounds: google.maps.LatLngBounds | google.maps.LatLngBoundsLiteral): void
+        fitBounds(bounds: google.maps.LatLngBounds | google.maps.LatLngBoundsLiteral, padding?: number): void
         panBy(x: number, y: number): void
         panTo(latLng: google.maps.LatLng | google.maps.LatLngLiteral): void
         panToBounds(latLngBounds: google.maps.LatLngBounds | google.maps.LatLngBoundsLiteral): void

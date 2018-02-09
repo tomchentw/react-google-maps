@@ -447,6 +447,33 @@ declare module 'react-google-maps/lib/components/OverlayView' {
     }
 }
 
+declare module 'react-google-maps/lib/components/places/Autocomplete' {
+    import { Component } from 'react'
+
+    export interface AutocompleteOptions {
+        defaultBounds?: google.maps.LatLngBounds | google.maps.LatLngBoundsLiteral
+        bounds?: google.maps.LatLngBounds | google.maps.LatLngBoundsLiteral
+        componentRestrictions?: google.maps.places.ComponentRestrictions
+        placeIdOnly?: boolean
+        strictBounds?: boolean
+        types?: string[]
+    }
+
+    export interface AutocompleteProps {
+        controlPosition?: number
+        inputStyle?: Object
+        inputPlaceholder?: string
+        inputClassName?: string
+        onPlaceChanged?(): void
+        options?: AutocompleteOptions
+    }
+
+    export default class Autocomplete extends Component<AutocompleteProps> {
+        getBounds(): google.maps.LatLngBounds
+        getPlace(): google.maps.places.PlaceResult
+    }
+}
+
 declare module 'react-google-maps/lib/components/places/SearchBox' {
     import { Component } from 'react'
 

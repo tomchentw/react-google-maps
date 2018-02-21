@@ -16,7 +16,7 @@ import { getOffsetOverride, getLayoutStyles } from "../utils/OverlayViewHelper"
 import { MAP, ANCHOR, OVERLAY_VIEW } from "../constants"
 
 export const __jscodeshiftPlaceholder__ = `{
-  "eventMapOverrides": { 
+  "eventMapOverrides": {
   },
   "getInstanceFromComponent": "this.state[OVERLAY_VIEW]"
 }`
@@ -123,9 +123,11 @@ export class OverlayView extends React.PureComponent {
   }
 
   onRemove() {
-    this.containerElement.parentNode.removeChild(this.containerElement)
-    ReactDOM.unmountComponentAtNode(this.containerElement)
-    this.containerElement = null
+    if (this.containerElement) {
+      this.containerElement.parentNode.removeChild(this.containerElement)
+      ReactDOM.unmountComponentAtNode(this.containerElement)
+      this.containerElement = null
+    }
   }
 
   componentDidMount() {

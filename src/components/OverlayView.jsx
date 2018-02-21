@@ -126,9 +126,11 @@ export class OverlayView extends React.PureComponent {
   }
 
   onRemove() {
-    this.containerElement.parentNode.removeChild(this.containerElement)
-    ReactDOM.unmountComponentAtNode(this.containerElement)
-    this.containerElement = null
+    if (this.containerElement) {
+      this.containerElement.parentNode.removeChild(this.containerElement)
+      ReactDOM.unmountComponentAtNode(this.containerElement)
+      this.containerElement = null
+    }
   }
 
   componentDidMount() {

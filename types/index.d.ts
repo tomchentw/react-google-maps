@@ -219,6 +219,7 @@ declare module 'react-google-maps/lib/components/GoogleMap' {
     import { Component } from 'react'
 
     export interface GoogleMapProps {
+        defaultExtraMapTypes?: [string, google.maps.MapType][]
         defaultCenter?: google.maps.LatLng | google.maps.LatLngLiteral
         defaultClickableIcons?: boolean
         defaultHeading?: number

@@ -56,8 +56,10 @@ export function withGoogleMap(BaseComponent) {
  See https://github.com/tomchentw/react-google-maps/pull/168`
       )
       // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
-      const map = new google.maps.Map(node)
-      this.setState({ map })
+      if (typeof google !== "undefined"){
+        const map = new google.maps.Map(node)
+        this.setState({ map })
+  	  }
     }
 
     render() {

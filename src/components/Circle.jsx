@@ -15,7 +15,7 @@ import {
   componentWillUnmount,
 } from "../utils/MapChildHelper"
 
-import { MAP, CIRCLE } from "../constants"
+import { MAP, CIRCLE, ANCHOR } from "../constants"
 
 /**
  * A wrapper around `google.maps.Circle`
@@ -154,6 +154,10 @@ export class Circle extends React.PureComponent {
     [MAP]: PropTypes.object,
   }
 
+  static childContextTypes = {
+    [ANCHOR]: PropTypes.object,
+  }
+
   /*
    * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
    */
@@ -166,6 +170,13 @@ export class Circle extends React.PureComponent {
       [CIRCLE]: circle,
     }
   }
+
+  getChildContext() {
+    return {
+      [ANCHOR]: this.context[ANCHOR] || this.state[CIRCLE],
+    }
+  }
+
 
   componentDidMount() {
     componentDidMount(this, this.state[CIRCLE], eventMap)
@@ -190,7 +201,8 @@ export class Circle extends React.PureComponent {
   }
 
   render() {
-    return false
+    const { children } = this.props
+    return <div>{children}</div>
   }
 
   /**

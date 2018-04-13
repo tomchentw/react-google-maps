@@ -1,4 +1,3 @@
-import { parse } from "url"
 import toMarkdown from "to-markdown"
 import makeFetchHappen from "make-fetch-happen"
 import cheerio from "cheerio"
@@ -33,7 +32,7 @@ function contentToJS(KlassName, $, $content) {
   const $constructorTable = $content.find(
     `[summary="class ${KlassName} - Constructor"]`
   )
-  const [, constructorArgs] = $constructorTable
+  const constructorArgs = $constructorTable
     .find(`tr > td > code`)
     .text()
     .match(/\S+\((.*)\)/)

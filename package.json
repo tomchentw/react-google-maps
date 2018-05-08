@@ -104,6 +104,7 @@
     "can-use-dom": "^0.1.0",
     "google-maps-infobox": "^2.0.0",
     "invariant": "^2.2.1",
+    "load-js": "^3.0.2",
     "lodash": "^4.16.2",
     "marker-clusterer-plus": "^2.1.4",
     "markerwithlabel": "^2.0.1",

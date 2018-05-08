@@ -55,6 +55,10 @@ module.exports = {
           name: "withScriptjs",
           content: "src/withScriptjs.md",
         },
+        {
+          name: "withLoadjs",
+          content: "src/withLoadjs.md",
+        },
       ],
     },
     {

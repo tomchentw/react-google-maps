@@ -5345,6 +5345,10 @@ listr@^0.13.0:
     stream-to-observable "^0.2.0"
     strip-ansi "^3.0.1"
 
+load-js@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/load-js/-/load-js-3.0.2.tgz#3eb5c0a0f1fd1fc45567030d9f2622534b75462c"
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"

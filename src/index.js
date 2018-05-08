@@ -1,5 +1,7 @@
 export { default as withScriptjs } from "./withScriptjs"
 
+export { default as withLoadjs } from "./withLoadjs"
+
 export { default as withGoogleMap } from "./withGoogleMap"
 
 export { default as GoogleMap } from "./components/GoogleMap"

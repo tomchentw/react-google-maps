@@ -3,6 +3,7 @@
 declare module 'react-google-maps' {
     export { default as withGoogleMap, WithGoogleMapProps } from 'react-google-maps/lib/withGoogleMap'
     export { default as withScriptjs, WithScriptjsProps } from 'react-google-maps/lib/withScriptjs'
+    export { default as withLoadjs, WithLoadjsProps } from 'react-google-maps/lib/withLoadjs'
 
     export { default as Circle, CircleProps } from 'react-google-maps/lib/components/Circle'
     export { default as DirectionsRenderer, DirectionsRendererProps } from 'react-google-maps/lib/components/DirectionsRenderer'
@@ -40,6 +41,18 @@ declare module 'react-google-maps/lib/withScriptjs' {
     }
 
     export default function withScriptjs<P>(wrappedComponent: ComponentClass<P>): ComponentClass<P & WithScriptjsProps>
+}
+
+declare module 'react-google-maps/lib/withLoadjs' {
+  import { ComponentClass, ReactElement } from 'react'
+
+  export interface WithLoadjsProps {
+    googleMapURL: string
+    loadingElement: ReactElement<any>
+    failedElement: ReactElement<any>
+  }
+
+  export default function withLoadjs<P>(wrappedComponent: ComponentClass<P>): ComponentClass<P & WithLoadjsProps>
 }
 
 declare module 'react-google-maps/lib/components/addons/InfoBox' {

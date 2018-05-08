@@ -65,7 +65,7 @@ export function withLoadjs(BaseComponent) {
           async: true,
         },
       ])
-        .then(() => this.handleLoaded)
+        .then(() => this.handleLoaded())
         .catch(this.handleLoaded)
     }
 

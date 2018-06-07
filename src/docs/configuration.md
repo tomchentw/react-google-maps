@@ -114,7 +114,7 @@ const MyMapComponent = compose(
   >
     {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
   </GoogleMap>
-))
+)
 
 <MyMapComponent isMarkerShown />
 ```
@@ -146,7 +146,7 @@ const MyMapComponent = compose(
   >
     {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} onClick={props.onMarkerClick} />}
   </GoogleMap>
-))
+)
 
 class MyFancyComponent extends React.PureComponent {
   state = {

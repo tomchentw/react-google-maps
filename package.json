@@ -42,6 +42,7 @@
     "Rectangle",
     "StreetViewPanorama",
     "TrafficLayer",
+    "TransitLayer",
     "visualization/HeatmapLayer",
     "withGoogleMap",
     "withScriptjs"

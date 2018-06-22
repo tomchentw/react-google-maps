@@ -18,6 +18,7 @@ declare module 'react-google-maps' {
     export { default as Rectangle, RectangleProps } from 'react-google-maps/lib/components/Rectangle'
     export { default as StreetViewPanorama, StreetViewPanoramaProps } from 'react-google-maps/lib/components/StreetViewPanorama'
     export { default as TrafficLayer, TrafficLayerProps } from 'react-google-maps/lib/components/TrafficLayer'
+    export { default as TransitLayer } from 'react-google-maps/lib/components/TransitLayer'
 }
 
 declare module 'react-google-maps/lib/withGoogleMap' {
@@ -659,5 +660,12 @@ declare module 'react-google-maps/lib/components/visualization/HeatmapLayer' {
 
     export default class HeatmapLayer extends Component<HeatmapLayerProps> {
         getData(): google.maps.MVCArray<google.maps.LatLng | google.maps.visualization.WeightedLocation>
+    }
+}
+
+declare module 'react-google-maps/lib/components/TransitLayer' {
+    import { Component } from 'react'
+
+    export default class TrafficLayer extends Component {
     }
 }

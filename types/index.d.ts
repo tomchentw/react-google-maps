@@ -12,6 +12,7 @@ declare module 'react-google-maps' {
     export { default as InfoWindow, InfoWindowProps } from 'react-google-maps/lib/components/InfoWindow'
     export { default as KmlLayer, KmlLayerProps } from 'react-google-maps/lib/components/KmlLayer'
     export { default as Marker, MarkerProps } from 'react-google-maps/lib/components/Marker'
+    export { default as MarkerWithLabel } from 'react-google-maps/lib/components/addons/MarkerWithLabel'
     export { default as OverlayView, OverlayViewProps } from 'react-google-maps/lib/components/OverlayView'
     export { default as Polygon, PolygonProps } from 'react-google-maps/lib/components/Polygon'
     export { default as Polyline, PolylineProps } from 'react-google-maps/lib/components/Polyline'
@@ -398,13 +399,6 @@ declare module 'react-google-maps/lib/components/Marker' {
 
         // MarkerClustererPlus
         noRedraw?: boolean
-
-        // MarkerWithLabel
-        markerWithLabel?(): void
-        labelClass?: string
-        labelAnchor?: google.maps.Point
-        labelContent?: string
-        labelStyle?: CSSStyleDeclaration
     }
 
     export default class Marker extends Component<MarkerProps> {
@@ -421,6 +415,21 @@ declare module 'react-google-maps/lib/components/Marker' {
         getTitle(): string
         getVisible(): boolean
         getZIndex(): number
+    }
+}
+                                                                                                                                   
+declare module 'react-google-maps/lib/components/addons/MarkerWithLabel' {
+    import { Component } from 'react'
+    import { MarkerProps } from 'react-google-maps/lib/components/Marker';
+
+    export interface MarkerWithLabelProps extends MarkerProps {
+        labelClass?: string
+        labelAnchor?: google.maps.Point
+        labelContent?: string
+        labelStyle?: React.CSSProperties
+    }
+
+    export default class MarkerWithLabel extends Component<MarkerWithLabelProps> {
     }
 }
 

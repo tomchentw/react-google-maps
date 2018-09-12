@@ -70,7 +70,9 @@ function registerEvents(component, instance, eventMap) {
           google.maps.event.addListener(
             instance,
             googleEventName,
-            component.props[onEventName]
+            function(mouseEvent){
+              component.props[onEventName](mouseEvent)
+            }
           )
         )
       }

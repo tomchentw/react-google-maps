@@ -26,7 +26,18 @@ export function withScriptjs(BaseComponent) {
 
     isUnmounted = false
 
+    handleLoading = _.bind(this.handleLoading, this)
     handleLoaded = _.bind(this.handleLoaded, this)
+
+    handleLoading(googleMapURL) {
+      this.setState({
+        loadingState: LOADING_STATE_BEGIN,
+      })
+      // Don't load scriptjs as a dependency since we do not want this module be used on server side.
+      // eslint-disable-next-line global-require
+      const scriptjs = require(`scriptjs`)
+      scriptjs(googleMapURL, this.handleLoaded)
+    }
 
     handleLoaded() {
       if (this.isUnmounted) {
@@ -50,14 +61,18 @@ export function withScriptjs(BaseComponent) {
       if (loadingState !== LOADING_STATE_NONE || !canUseDOM) {
         return
       }
-      this.setState({
-        loadingState: LOADING_STATE_BEGIN,
-      })
-      // Don't load scriptjs as a dependency since we do not want this module be used on server side.
-      // eslint-disable-next-line global-require
-      const scriptjs = require(`scriptjs`)
+
       const { googleMapURL } = this.props
-      scriptjs(googleMapURL, this.handleLoaded)
+      this.handleLoading(googleMapURL)
+    }
+
+    componentDidUpdate(prevProps) {
+      const { googleMapURL: prevGoogleMapURL } = prevProps
+      const { googleMapURL } = this.props
+
+      if (prevGoogleMapURL !== googleMapURL) {
+        this.handleLoading(googleMapURL)
+      }
     }
 
     componentWillUnmount() {

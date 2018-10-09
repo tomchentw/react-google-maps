@@ -2,6 +2,7 @@
 
 * containerElement: ReactElement
 * mapElement: ReactElement
+* googleMapSettings: Settings object for Google Map
 
 ### Usage
 

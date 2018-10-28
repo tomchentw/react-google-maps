@@ -9,7 +9,7 @@ const fetch = makeFetchHappen.defaults({
 const KlassName = process.argv[2]
 
 fetch(
-  "https://developers.google.com/maps/documentation/javascript/3.exp/reference"
+  "https://web.archive.org/web/20180503052259/https://developers.google.com/maps/documentation/javascript/reference/3/"
 )
   .then(it => it.text())
   .then(it => cheerio.load(it))

@@ -1,4 +1,3 @@
-import _ from "lodash"
 import invariant from "invariant"
 import canUseDOM from "can-use-dom"
 import { getDisplayName } from "recompose"
@@ -26,7 +25,7 @@ export function withScriptjs(BaseComponent) {
 
     isUnmounted = false
 
-    handleLoaded = _.bind(this.handleLoaded, this)
+    handleLoaded = this.handleLoaded.bind(this)
 
     handleLoaded() {
       if (this.isUnmounted) {

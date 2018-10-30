@@ -1,5 +1,4 @@
 /* global google */
-import _ from "lodash"
 import invariant from "invariant"
 import canUseDOM from "can-use-dom"
 import React from "react"
@@ -110,7 +109,7 @@ export class SearchBox extends React.PureComponent {
      * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
      */
     const searchBox = new google.maps.places.SearchBox(
-      this.containerElement.querySelector('input')
+      this.containerElement.querySelector("input")
     )
     construct(SearchBox.propTypes, updaterMap, this.props, searchBox)
     this.setState({
@@ -145,7 +144,7 @@ export class SearchBox extends React.PureComponent {
       const child = this.context[MAP].controls[
         this.props.controlPosition
       ].removeAt(this.mountControlIndex)
-      if(child !== undefined){
+      if (child !== undefined) {
         this.containerElement.appendChild(child)
       }
     }
@@ -164,7 +163,9 @@ export class SearchBox extends React.PureComponent {
 
 export default SearchBox
 
-const isValidControlPosition = _.isNumber
+const isValidControlPosition = function(value) {
+  return typeof value === "number"
+}
 
 const eventMap = {}
 

@@ -1,5 +1,4 @@
 /* global google */
-import _ from "lodash"
 import warning from "warning"
 import invariant from "invariant"
 import { getDisplayName } from "recompose"
@@ -26,7 +25,7 @@ export function withGoogleMap(BaseComponent) {
       map: null,
     }
 
-    handleComponentMount = _.bind(this.handleComponentMount, this)
+    handleComponentMount = this.handleComponentMount.bind(this)
 
     getChildContext() {
       return {

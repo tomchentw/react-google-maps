@@ -1,5 +1,4 @@
 /* global google */
-import _ from "lodash"
 import invariant from "invariant"
 import React from "react"
 import ReactDOM from "react-dom"
@@ -69,10 +68,10 @@ export class OverlayView extends React.PureComponent {
     super(props, context)
     const overlayView = new google.maps.OverlayView()
     // You must implement three methods: onAdd(), draw(), and onRemove().
-    overlayView.onAdd = _.bind(this.onAdd, this)
-    overlayView.draw = _.bind(this.draw, this)
-    overlayView.onRemove = _.bind(this.onRemove, this)
-    this.onPositionElement = _.bind(this.onPositionElement, this)
+    overlayView.onAdd = this.onAdd.bind(this)
+    overlayView.draw = this.draw.bind(this)
+    overlayView.onRemove = this.onRemove.bind(this)
+    this.onPositionElement = this.onPositionElement.bind(this)
     // You must call setMap() with a valid Map object to trigger the call to
     // the onAdd() method and setMap(null) in order to trigger the onRemove() method.
     overlayView.setMap(this.context[MAP])
@@ -119,7 +118,7 @@ export class OverlayView extends React.PureComponent {
       offset,
       this.props
     )
-    _.assign(this.containerElement.style, layoutStyles)
+    Object.assign(this.containerElement.style, layoutStyles)
   }
 
   onRemove() {
@@ -140,7 +139,7 @@ export class OverlayView extends React.PureComponent {
       updaterMap,
       prevProps
     )
-    _.delay(this.state[OVERLAY_VIEW].draw)
+    setImmediate(this.state[OVERLAY_VIEW].draw)
   }
 
   componentWillUnmount() {

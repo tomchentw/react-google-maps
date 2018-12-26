@@ -71,11 +71,6 @@ export class Marker extends React.PureComponent {
     defaultOptions: PropTypes.any,
 
     /**
-     * @type MarkerPlace
-     */
-    defaultPlace: PropTypes.any,
-
-    /**
      * @type LatLng|LatLngLiteral
      */
     defaultPosition: PropTypes.any,
@@ -139,11 +134,6 @@ export class Marker extends React.PureComponent {
      * @type MarkerOptions
      */
     options: PropTypes.any,
-
-    /**
-     * @type MarkerPlace
-     */
-    place: PropTypes.any,
 
     /**
      * @type LatLng|LatLngLiteral
@@ -405,15 +395,6 @@ export class Marker extends React.PureComponent {
 
   /**
    *
-   * @type MarkerPlace
-   * @public
-   */
-  getPlace() {
-    return this.state[MARKER].getPlace()
-  }
-
-  /**
-   *
    * @type LatLng
    * @public
    */
@@ -515,10 +496,6 @@ const updaterMap = {
 
   options(instance, options) {
     instance.setOptions(options)
-  },
-
-  place(instance, place) {
-    instance.setPlace(place)
   },
 
   position(instance, position) {

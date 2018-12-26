@@ -122,7 +122,7 @@ export default function transformer(file, api) {
     return [
       ...methodAsProps.map(({ name, args, desc }) => {
         const [, prop] = name.match(/^set(\S+)/)
-        const [, maybeType] = args.match(/\S+:(\S+)/)
+        const [, maybeType] = args.match(/\S+:\s*(\S+)/)
 
         return Object.assign(
           j.objectProperty(
@@ -136,7 +136,7 @@ export default function transformer(file, api) {
       }),
       ...methodAsProps.map(({ name, args, desc }) => {
         const [, prop] = name.match(/^set(\S+)/)
-        const [, maybeType] = args.match(/\S+:(\S+)/)
+        const [, maybeType] = args.match(/\S+:\s*(\S+)/)
 
         return Object.assign(
           j.objectProperty(

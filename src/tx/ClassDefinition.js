@@ -14,6 +14,12 @@ fetch(
   .then(it => it.text())
   .then(it => cheerio.load(it))
   .then($ => {
+    const href = $(`#${KlassName} a`).attr("href")
+    return fetch(href)
+  })
+  .then(it => it.text())
+  .then(it => cheerio.load(it))
+  .then($ => {
     const $content = $(`#${KlassName}`).parent()
     return contentToJS(KlassName, $, $content)
   })
@@ -33,11 +39,9 @@ function contentToJS(KlassName, $, $content) {
   const $constructorTable = $content.find(
     `[summary="class ${KlassName} - Constructor"]`
   )
-  const [, constructorArgs] = $constructorTable
-    .find(`tr > td > code`)
+  const constructorArgs = $constructorTable
+    .find(`tbody .desc li code:first-child`)
     .text()
-    .match(/\S+\((.*)\)/)
-
   const $methodsTable = $content.find(
     `[summary="class ${KlassName} - Methods"]`
   )
@@ -45,20 +49,15 @@ function contentToJS(KlassName, $, $content) {
     .find("tbody > tr")
     .map((i, tr) => {
       const $tr = $(tr)
-      const [, name, args] = $tr
-        .find("td:first-child")
-        .text()
-        .replace("\n", "")
-        .match(/(\S+)\((.*)\)/)
-
-      const returnsDesc = toMarkdown(
-        $tr.find("td:nth-child(2) > div.desc").html()
-      )
+      const name = $tr.find('[itemprop="property"]').text()
+      const args = $tr.find('.desc:contains("Parameters") li').text()
+      const returns = $tr.find('.desc:contains("Return Value") code').text()
+      const returnsDesc = toMarkdown($tr.find(".desc:last-child").html())
 
       return {
         name,
         args,
-        returns: $tr.find("td:nth-child(2) > div > code").text(),
+        returns,
         returnsDesc,
       }
     })

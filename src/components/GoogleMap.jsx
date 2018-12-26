@@ -195,11 +195,6 @@ export class Map extends React.PureComponent {
     /**
      * function
      */
-    onResize: PropTypes.func,
-
-    /**
-     * function
-     */
     onTiltChanged: PropTypes.func,
 
     /**
@@ -275,7 +270,7 @@ export class Map extends React.PureComponent {
 
   /**
    * Returns the lat/lng bounds of the current viewport. If more than one copy of the world is visible, the bounds range in longitude from -180 to 180 degrees inclusive. If the map is not yet initialized (i.e. the mapType is still null), or center and zoom have not been set then the result is `null` or `undefined`.
-   * @type LatLngBoundsnullundefined
+   * @type LatLngBounds
    * @public
    */
   getBounds() {
@@ -284,7 +279,7 @@ export class Map extends React.PureComponent {
 
   /**
    * Returns the position displayed at the center of the map. Note that this `LatLng` object is _not_ wrapped. See `[LatLng](#LatLng)` for more information.
-   * @type LatLngLatLngLatLng
+   * @type LatLng
    * @public
    */
   getCenter() {
@@ -329,7 +324,7 @@ export class Map extends React.PureComponent {
 
   /**
    * Returns the current `Projection`. If the map is not yet initialized (i.e. the mapType is still null) then the result is null. Listen to `projection_changed` and check its value to ensure it is not null.
-   * @type ProjectionProjectionprojection_changed
+   * @type Projection
    * @public
    */
   getProjection() {
@@ -338,7 +333,7 @@ export class Map extends React.PureComponent {
 
   /**
    * Returns the default `StreetViewPanorama` bound to the map, which may be a default panorama embedded within the map, or the panorama set using `setStreetView()`. Changes to the map's `streetViewControl` will be reflected in the display of such a bound panorama.
-   * @type StreetViewPanoramaStreetViewPanoramasetStreetView()streetViewControl
+   * @type StreetViewPanorama
    * @public
    */
   getStreetView() {
@@ -347,7 +342,7 @@ export class Map extends React.PureComponent {
 
   /**
    * Returns the current angle of incidence of the map, in degrees from the viewport plane to the map plane. The result will be `0` for imagery taken directly overhead or `45` for 45° imagery. 45° imagery is only available for `satellite` and `hybrid` map types, within some locations, and at some zoom levels. **Note:** This method does not return the value set by `setTilt`. See `setTilt` for details.
-   * @type number045satellitehybridsetTiltsetTilt
+   * @type number
    * @public
    */
   getTilt() {
@@ -385,7 +380,6 @@ const eventMap = {
   onHeadingChanged: "heading_changed",
   onIdle: "idle",
   onProjectionChanged: "projection_changed",
-  onResize: "resize",
   onTiltChanged: "tilt_changed",
   onZoomChanged: "zoom_changed",
 }

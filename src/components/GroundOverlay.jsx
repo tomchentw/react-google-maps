@@ -131,7 +131,7 @@ For GroundOveray, url and bounds are passed in to constructor and are immutable
 
   /**
    * Gets the `LatLngBounds` of this overlay.
-   * @type LatLngBoundsLatLngBounds
+   * @type LatLngBounds
    * @public
    */
   getBounds() {

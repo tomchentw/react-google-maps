@@ -195,7 +195,7 @@ export class Circle extends React.PureComponent {
 
   /**
    * Gets the `LatLngBounds` of this Circle.
-   * @type LatLngBoundsLatLngBounds
+   * @type LatLngBounds
    * @public
    */
   getBounds() {

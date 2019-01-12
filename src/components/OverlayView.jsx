@@ -87,25 +87,22 @@ export class OverlayView extends React.PureComponent {
   onAdd() {
     this.containerElement = document.createElement(`div`)
     this.containerElement.style.position = `absolute`
-  }
 
-  draw() {
+    ReactDOM.render(this.props.children, this.containerElement)
+
     const { mapPaneName } = this.props
     invariant(
       !!mapPaneName,
       `OverlayView requires either props.mapPaneName or props.defaultMapPaneName but got %s`,
       mapPaneName
     )
-    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#MapPanes
+
     const mapPanes = this.state[OVERLAY_VIEW].getPanes()
     mapPanes[mapPaneName].appendChild(this.containerElement)
+  }
 
-    ReactDOM.unstable_renderSubtreeIntoContainer(
-      this,
-      React.Children.only(this.props.children),
-      this.containerElement,
-      this.onPositionElement
-    )
+  draw() {
+    this.onPositionElement()
   }
 
   onPositionElement() {

@@ -49,12 +49,15 @@ export function withGoogleMap(BaseComponent) {
       if (this.state.map || node === null) {
         return
       }
-      warning(
-        `undefined` !== typeof google,
-        `Make sure you've put a <script> tag in your <head> element to load Google Maps JavaScript API v3.
+      if (`undefined` === typeof google) {
+        warning(
+          `undefined` !== typeof google,
+          `Make sure you've put a <script> tag in your <head> element to load Google Maps JavaScript API v3.
  If you're looking for built-in support to load it for you, use the "async/ScriptjsLoader" instead.
  See https://github.com/tomchentw/react-google-maps/pull/168`
-      )
+        )
+        return
+      }
       // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
       const map = new google.maps.Map(node)
       this.setState({ map })

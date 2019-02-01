@@ -98,16 +98,19 @@ export class OverlayView extends React.PureComponent {
     )
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#MapPanes
     const mapPanes = this.state[OVERLAY_VIEW].getPanes()
-    if(mapPanes) {
-       mapPanes[mapPaneName].appendChild(this.containerElement)
-       ReactDOM.unstable_renderSubtreeIntoContainer(
-         this,
-         React.Children.only(this.props.children),
-         this.containerElement,
-         this.onPositionElement
-       )
-    }
+    mapPanes[mapPaneName].appendChild(this.containerElement)
 
+    if (React.version.match(/^16/)) {
+      this.onPositionElement()
+      this.forceUpdate()
+    } else {
+      ReactDOM.unstable_renderSubtreeIntoContainer(
+        this,
+        React.Children.only(this.props.children),
+        this.containerElement,
+        this.onPositionElement
+      )
+    }
   }
 
   onPositionElement() {
@@ -128,8 +131,12 @@ export class OverlayView extends React.PureComponent {
   }
 
   onRemove() {
-    this.containerElement.parentNode.removeChild(this.containerElement)
-    ReactDOM.unmountComponentAtNode(this.containerElement)
+    if (this.containerElement) {
+      this.containerElement.parentNode.removeChild(this.containerElement)
+    }
+    if (!React.version.match(/^16/)) {
+      ReactDOM.unmountComponentAtNode(this.containerElement)
+    }
     this.containerElement = null
   }
 
@@ -145,7 +152,10 @@ export class OverlayView extends React.PureComponent {
       updaterMap,
       prevProps
     )
-    _.delay(this.state[OVERLAY_VIEW].draw)
+
+    if (!React.version.match(/^16/)) {
+      _.delay(this.state[OVERLAY_VIEW].draw)
+    }
   }
 
   componentWillUnmount() {
@@ -161,25 +171,13 @@ export class OverlayView extends React.PureComponent {
   }
 
   render() {
+    if (React.version.match(/^16/) && this.containerElement) {
+      return ReactDOM.createPortal(
+        React.Children.only(this.props.children),
+        this.containerElement
+      )
+    }
     return false
-  }
-
-  /**
-   * Returns the panes in which this OverlayView can be rendered. The panes are not initialized until `onAdd` is called by the API.
-   * @type MapPanesonAdd
-   * @public
-   */
-  getPanes() {
-    return this.state[OVERLAY_VIEW].getPanes()
-  }
-
-  /**
-   * Returns the `MapCanvasProjection` object associated with this `OverlayView`. The projection is not initialized until `onAdd` is called by the API.
-   * @type MapCanvasProjectionMapCanvasProjectionOverlayViewonAdd
-   * @public
-   */
-  getProjection() {
-    return this.state[OVERLAY_VIEW].getProjection()
   }
 }
 

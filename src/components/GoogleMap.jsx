@@ -213,6 +213,14 @@ export class Map extends React.PureComponent {
   }
 
   /**
+   * @see https://developers.google.com/maps/documentation/javascript/reference/#data
+   * @public
+   */
+  get data() {
+    return this.context[MAP].data
+  }
+
+  /**
    * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
    * @public
    */

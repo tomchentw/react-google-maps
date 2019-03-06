@@ -31,3 +31,7 @@ export { default as TrafficLayer } from "./components/TrafficLayer"
 export { default as StreetViewPanorama } from "./components/StreetViewPanorama"
 
 export { default as BicyclingLayer } from "./components/BicyclingLayer"
+
+export {
+  default as HeatmapLayer,
+} from "./components/visualization/HeatmapLayer"

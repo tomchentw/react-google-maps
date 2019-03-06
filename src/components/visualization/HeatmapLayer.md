@@ -6,10 +6,9 @@ const { compose, withProps } = require("recompose");
 const {
   withScriptjs,
   withGoogleMap,
-  GoogleMap,
-  Marker
+  HeatmapLayer,
+  GoogleMap
 } = require("react-google-maps");
-const HeatmapLayer = require("react-google-maps/lib/components/visualization/HeatmapLayer");
 
 const key = "AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg";
 

@@ -37,7 +37,7 @@ _You can get someone's help in three ways_:
 2. Ask in [the chat room][gitter-url]
 3. Create a Pull Request with your solutions to your problem
 
-Please, be noted, **no one**, I mean, **no one**, is obligated to help you in **ANY** means. Your time is valuable, so does our contributors. Don't waste our time posting questions like “how do I do X with React-Google-Maps” and “my code doesn't work”. This is not the primary purpose of the issue tracker. Don't abuse.
+Please note: **no one**, I mean, **no one**, is obligated to help you in **ANY** way. Your time is valuable, so is our contributors'. Don't waste our time posting questions like “how do I do X with React-Google-Maps” and “my code doesn't work”. This is not the primary purpose of the issue tracker. Don't abuse.
 
 
 ## For contributors

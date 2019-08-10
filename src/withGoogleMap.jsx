@@ -34,7 +34,7 @@ export function withGoogleMap(BaseComponent) {
       }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
       const { containerElement, mapElement } = this.props
       invariant(
         !!containerElement && !!mapElement,

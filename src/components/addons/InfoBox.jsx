@@ -98,7 +98,7 @@ export class InfoBox extends React.PureComponent {
   /*
    * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoBox
    */
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     if (!canUseDOM || this.state[INFO_BOX]) {
       return
     }

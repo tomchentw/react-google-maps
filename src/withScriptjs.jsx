@@ -37,7 +37,7 @@ export function withScriptjs(BaseComponent) {
       })
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
       const { loadingElement, googleMapURL } = this.props
       invariant(
         !!loadingElement && !!googleMapURL,

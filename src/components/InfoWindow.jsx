@@ -101,7 +101,7 @@ export class InfoWindow extends React.PureComponent {
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     if (!canUseDOM || this.containerElement) {
       return
     }

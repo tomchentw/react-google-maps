@@ -11334,7 +11334,7 @@ webpackJsonp([0], {
               this.mirror.getValue()
             )
           }),
-          (Controlled.prototype.componentWillMount = function() {
+          (Controlled.prototype.UNSAFE_componentWillMount = function() {
             s || (this.props.editorWillMount && this.props.editorWillMount())
           }),
           (Controlled.prototype.componentDidMount = function() {
@@ -11412,7 +11412,7 @@ webpackJsonp([0], {
                   )
             }
           }),
-          (Controlled.prototype.componentWillReceiveProps = function(e) {
+          (Controlled.prototype.UNSAFE_componentWillReceiveProps = function(e) {
             if (!s) {
               var t
               e.value !== this.props.value && (this.hydrated = !1),
@@ -11494,7 +11494,7 @@ webpackJsonp([0], {
           }
           this.hydrated = !0
         }),
-        (UnControlled.prototype.componentWillMount = function() {
+        (UnControlled.prototype.UNSAFE_componentWillMount = function() {
           s || (this.props.editorWillMount && this.props.editorWillMount())
         }),
         (UnControlled.prototype.componentDidMount = function() {
@@ -11561,7 +11561,7 @@ webpackJsonp([0], {
                 )
           }
         }),
-        (UnControlled.prototype.componentWillReceiveProps = function(e) {
+        (UnControlled.prototype.UNSAFE_componentWillReceiveProps = function(e) {
           if (!s) {
             var t
             e.value !== this.props.value && (this.hydrated = !1),

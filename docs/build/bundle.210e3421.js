@@ -28750,9 +28750,9 @@
                   null != e.type.prototype &&
                   !0 === e.type.prototype.unstable_isAsyncReactComponent &&
                   (e.internalContextTag |= 1),
-                "function" == typeof r.componentWillMount &&
+                "function" == typeof r.UNSAFE_componentWillMount &&
                   ((o = r.state),
-                  r.componentWillMount(),
+                  r.UNSAFE_componentWillMount(),
                   o !== r.state && i.enqueueReplaceState(r, r.state, null),
                   (o = e.updateQueue),
                   null !== o && (r.state = Je(n, e, o, r, s, t))),
@@ -28768,10 +28768,10 @@
                 c = ke(t)
               if (
                 ((c = me(t, c)),
-                "function" != typeof s.componentWillReceiveProps ||
+                "function" != typeof s.UNSAFE_componentWillReceiveProps ||
                   (a === l && u === c) ||
                   ((u = s.state),
-                  s.componentWillReceiveProps(l, c),
+                  s.UNSAFE_componentWillReceiveProps(l, c),
                   s.state !== u && i.enqueueReplaceState(s, s.state, null)),
                 (u = t.memoizedState),
                 (n =
@@ -28812,8 +28812,8 @@
               }
               return (
                 d
-                  ? ("function" == typeof s.componentWillUpdate &&
-                      s.componentWillUpdate(l, n, c),
+                  ? ("function" == typeof s.UNSAFE_componentWillUpdate &&
+                      s.UNSAFE_componentWillUpdate(l, n, c),
                     "function" == typeof s.componentDidUpdate &&
                       (t.effectTag |= 4))
                   : ("function" != typeof s.componentDidUpdate ||
@@ -42985,7 +42985,7 @@
                 )
               }
               return (
-                (WithPropsOnChange.prototype.componentWillReceiveProps = function componentWillReceiveProps(
+                (WithPropsOnChange.prototype.UNSAFE_componentWillReceiveProps = function componentWillReceiveProps(
                   e
                 ) {
                   i(this.props, e) && (this.computedProps = t(e))
@@ -43021,7 +43021,7 @@
                 )
               }
               return (
-                (WithHandlers.prototype.componentWillReceiveProps = function componentWillReceiveProps() {
+                (WithHandlers.prototype.UNSAFE_componentWillReceiveProps = function componentWillReceiveProps() {
                   this.cachedHandlers = {}
                 }),
                 (WithHandlers.prototype.render = function render() {
@@ -43439,10 +43439,10 @@
             return y(this, Sink), x(this, t.apply(this, arguments))
           }
           return (
-            (Sink.prototype.componentWillMount = function componentWillMount() {
+            (Sink.prototype.UNSAFE_componentWillMount = function componentWillMount() {
               e(this.props)
             }),
-            (Sink.prototype.componentWillReceiveProps = function componentWillReceiveProps(
+            (Sink.prototype.UNSAFE_componentWillReceiveProps = function componentWillReceiveProps(
               t
             ) {
               e(t)
@@ -43528,7 +43528,7 @@
               )
             }
             return (
-              (ComponentFromStream.prototype.componentWillMount = function componentWillMount() {
+              (ComponentFromStream.prototype.UNSAFE_componentWillMount = function componentWillMount() {
                 var e = this
                 ;(this.subscription = this.vdom$.subscribe({
                   next: function next(t) {
@@ -43537,7 +43537,7 @@
                 })),
                   this.propsEmitter.emit(this.props)
               }),
-              (ComponentFromStream.prototype.componentWillReceiveProps = function componentWillReceiveProps(
+              (ComponentFromStream.prototype.UNSAFE_componentWillReceiveProps = function componentWillReceiveProps(
                 e
               ) {
                 this.propsEmitter.emit(e)

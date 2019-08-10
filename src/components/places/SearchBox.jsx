@@ -60,7 +60,7 @@ export class SearchBox extends React.PureComponent {
     [SEARCH_BOX]: null,
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     if (!canUseDOM || this.containerElement) {
       return
     }
@@ -85,7 +85,7 @@ export class SearchBox extends React.PureComponent {
     this.handleMountAtControlPosition()
   }
 
-  componentWillUpdate(nextProp) {
+  UNSAFE_componentWillUpdate(nextProp) {
     if (this.props.controlPosition !== nextProp.controlPosition) {
       this.handleUnmountAtControlPosition()
     }

@@ -1,7 +1,7 @@
 # React Google Maps
 React.js Google Maps integration component
 
-[![Travis CI][travis-image]][travis-url] [![Maintainability](https://api.codeclimate.com/v1/badges/d0bb8809ffb79e3f3fde/maintainability)](https://codeclimate.com/github/hericlesme/gmaps-react/maintainability)
+[![Build Status](https://travis-ci.org/hericlesme/react-gmaps.svg?branch=dev)](https://travis-ci.org/hericlesme/react-gmaps) [![Maintainability](https://api.codeclimate.com/v1/badges/d0bb8809ffb79e3f3fde/maintainability)](https://codeclimate.com/github/hericlesme/gmaps-react/maintainability)
 
 
 ## [Introduction](https://tomchentw.github.io/react-google-maps/#introduction)

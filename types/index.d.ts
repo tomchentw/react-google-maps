@@ -1,26 +1,26 @@
 // TypeScript Version: 2.3
 
-declare module 'react-google-maps' {
-    export { default as withGoogleMap, WithGoogleMapProps } from 'react-google-maps/lib/withGoogleMap'
-    export { default as withScriptjs, WithScriptjsProps } from 'react-google-maps/lib/withScriptjs'
+declare module 'react-gmaps' {
+    export { default as withGoogleMap, WithGoogleMapProps } from 'react-gmaps/lib/withGoogleMap'
+    export { default as withScriptjs, WithScriptjsProps } from 'react-gmaps/lib/withScriptjs'
 
-    export { default as Circle, CircleProps } from 'react-google-maps/lib/components/Circle'
-    export { default as DirectionsRenderer, DirectionsRendererProps } from 'react-google-maps/lib/components/DirectionsRenderer'
-    export { default as FusionTablesLayer, FusionTablesLayerProps } from 'react-google-maps/lib/components/FusionTablesLayer'
-    export { default as GoogleMap, GoogleMapProps } from 'react-google-maps/lib/components/GoogleMap'
-    export { default as GroundOverlay, GroundOverlayProps} from 'react-google-maps/lib/components/GroundOverlay'
-    export { default as InfoWindow, InfoWindowProps } from 'react-google-maps/lib/components/InfoWindow'
-    export { default as KmlLayer, KmlLayerProps } from 'react-google-maps/lib/components/KmlLayer'
-    export { default as Marker, MarkerProps } from 'react-google-maps/lib/components/Marker'
-    export { default as OverlayView, OverlayViewProps } from 'react-google-maps/lib/components/OverlayView'
-    export { default as Polygon, PolygonProps } from 'react-google-maps/lib/components/Polygon'
-    export { default as Polyline, PolylineProps } from 'react-google-maps/lib/components/Polyline'
-    export { default as Rectangle, RectangleProps } from 'react-google-maps/lib/components/Rectangle'
-    export { default as StreetViewPanorama, StreetViewPanoramaProps } from 'react-google-maps/lib/components/StreetViewPanorama'
-    export { default as TrafficLayer, TrafficLayerProps } from 'react-google-maps/lib/components/TrafficLayer'
+    export { default as Circle, CircleProps } from 'react-gmaps/lib/components/Circle'
+    export { default as DirectionsRenderer, DirectionsRendererProps } from 'react-gmaps/lib/components/DirectionsRenderer'
+    export { default as FusionTablesLayer, FusionTablesLayerProps } from 'react-gmaps/lib/components/FusionTablesLayer'
+    export { default as GoogleMap, GoogleMapProps } from 'react-gmaps/lib/components/GoogleMap'
+    export { default as GroundOverlay, GroundOverlayProps} from 'react-gmaps/lib/components/GroundOverlay'
+    export { default as InfoWindow, InfoWindowProps } from 'react-gmaps/lib/components/InfoWindow'
+    export { default as KmlLayer, KmlLayerProps } from 'react-gmaps/lib/components/KmlLayer'
+    export { default as Marker, MarkerProps } from 'react-gmaps/lib/components/Marker'
+    export { default as OverlayView, OverlayViewProps } from 'react-gmaps/lib/components/OverlayView'
+    export { default as Polygon, PolygonProps } from 'react-gmaps/lib/components/Polygon'
+    export { default as Polyline, PolylineProps } from 'react-gmaps/lib/components/Polyline'
+    export { default as Rectangle, RectangleProps } from 'react-gmaps/lib/components/Rectangle'
+    export { default as StreetViewPanorama, StreetViewPanoramaProps } from 'react-gmaps/lib/components/StreetViewPanorama'
+    export { default as TrafficLayer, TrafficLayerProps } from 'react-gmaps/lib/components/TrafficLayer'
 }
 
-declare module 'react-google-maps/lib/withGoogleMap' {
+declare module 'react-gmaps/lib/withGoogleMap' {
     import { ComponentClass, ReactElement, StatelessComponent } from 'react'
 
     export interface WithGoogleMapProps {
@@ -31,7 +31,7 @@ declare module 'react-google-maps/lib/withGoogleMap' {
     export default function withGoogleMap<P>(wrappedComponent: string | ComponentClass<P> | StatelessComponent<P>): ComponentClass<P & WithGoogleMapProps>
 }
 
-declare module 'react-google-maps/lib/withScriptjs' {
+declare module 'react-gmaps/lib/withScriptjs' {
     import { ComponentClass, ReactElement } from 'react'
 
     export interface WithScriptjsProps {
@@ -42,7 +42,7 @@ declare module 'react-google-maps/lib/withScriptjs' {
     export default function withScriptjs<P>(wrappedComponent: ComponentClass<P>): ComponentClass<P & WithScriptjsProps>
 }
 
-declare module 'react-google-maps/lib/components/addons/InfoBox' {
+declare module 'react-gmaps/lib/components/addons/InfoBox' {
     import { Component } from 'react'
     import { InfoBoxOptions } from 'google-maps-infobox'
 
@@ -67,7 +67,7 @@ declare module 'react-google-maps/lib/components/addons/InfoBox' {
     }
 }
 
-declare module 'react-google-maps/lib/components/addons/MarkerClusterer' {
+declare module 'react-gmaps/lib/components/addons/MarkerClusterer' {
     import { Component } from 'react'
 
     export interface MarkerClustererProps {
@@ -115,7 +115,7 @@ declare module 'react-google-maps/lib/components/addons/MarkerClusterer' {
     }
 }
 
-declare module 'react-google-maps/lib/components/Circle' {
+declare module 'react-gmaps/lib/components/Circle' {
     import { Component } from 'react'
 
     export interface CircleProps {
@@ -157,7 +157,7 @@ declare module 'react-google-maps/lib/components/Circle' {
     }
 }
 
-declare module 'react-google-maps/lib/components/DirectionsRenderer' {
+declare module 'react-gmaps/lib/components/DirectionsRenderer' {
     import { Component } from 'react'
 
     export interface DirectionsRendererProps {
@@ -180,7 +180,7 @@ declare module 'react-google-maps/lib/components/DirectionsRenderer' {
     }
 }
 
-declare module 'react-google-maps/lib/components/drawing/DrawingManager' {
+declare module 'react-gmaps/lib/components/drawing/DrawingManager' {
     import { Component } from 'react'
 
     export interface DrawingManagerProps {
@@ -202,7 +202,7 @@ declare module 'react-google-maps/lib/components/drawing/DrawingManager' {
     }
 }
 
-declare module 'react-google-maps/lib/components/FusionTablesLayer' {
+declare module 'react-gmaps/lib/components/FusionTablesLayer' {
     import { Component } from 'react'
 
     export interface FusionTablesLayerProps {
@@ -215,7 +215,7 @@ declare module 'react-google-maps/lib/components/FusionTablesLayer' {
     }
 }
 
-declare module 'react-google-maps/lib/components/GoogleMap' {
+declare module 'react-gmaps/lib/components/GoogleMap' {
     import { Component } from 'react'
 
     export interface GoogleMapProps {
@@ -275,7 +275,7 @@ declare module 'react-google-maps/lib/components/GoogleMap' {
     }
 }
 
-declare module 'react-google-maps/lib/components/GroundOverlay' {
+declare module 'react-gmaps/lib/components/GroundOverlay' {
     import { Component } from 'react'
 
     export interface GroundOverlayProps {
@@ -291,7 +291,7 @@ declare module 'react-google-maps/lib/components/GroundOverlay' {
     }
 }
 
-declare module 'react-google-maps/lib/components/InfoWindow' {
+declare module 'react-gmaps/lib/components/InfoWindow' {
     import { Component } from 'react'
 
     export interface InfoWindowProps {
@@ -315,7 +315,7 @@ declare module 'react-google-maps/lib/components/InfoWindow' {
     }
 }
 
-declare module 'react-google-maps/lib/components/KmlLayer' {
+declare module 'react-gmaps/lib/components/KmlLayer' {
     import { Component } from 'react'
 
     export interface KmlLayerProps {
@@ -340,7 +340,7 @@ declare module 'react-google-maps/lib/components/KmlLayer' {
     }
 }
 
-declare module 'react-google-maps/lib/components/Marker' {
+declare module 'react-gmaps/lib/components/Marker' {
     import { Component } from 'react'
 
     export interface MarkerProps {
@@ -424,7 +424,7 @@ declare module 'react-google-maps/lib/components/Marker' {
     }
 }
 
-declare module 'react-google-maps/lib/components/OverlayView' {
+declare module 'react-gmaps/lib/components/OverlayView' {
     import { Component, ReactNode } from 'react'
 
     export interface OverlayViewProps {
@@ -447,7 +447,7 @@ declare module 'react-google-maps/lib/components/OverlayView' {
     }
 }
 
-declare module 'react-google-maps/lib/components/places/SearchBox' {
+declare module 'react-gmaps/lib/components/places/SearchBox' {
     import { Component } from 'react'
 
     export interface SearchBoxProps {
@@ -463,7 +463,7 @@ declare module 'react-google-maps/lib/components/places/SearchBox' {
     }
 }
 
-declare module 'react-google-maps/lib/components/places/StandaloneSearchBox' {
+declare module 'react-gmaps/lib/components/places/StandaloneSearchBox' {
     import { Component } from 'react'
 
     export interface StandaloneSearchBoxProps {
@@ -478,7 +478,7 @@ declare module 'react-google-maps/lib/components/places/StandaloneSearchBox' {
     }
 }
 
-declare module 'react-google-maps/lib/components/Polygon' {
+declare module 'react-gmaps/lib/components/Polygon' {
     import { Component } from 'react'
 
     export interface PolygonProps {
@@ -517,7 +517,7 @@ declare module 'react-google-maps/lib/components/Polygon' {
     }
 }
 
-declare module 'react-google-maps/lib/components/Polyline' {
+declare module 'react-gmaps/lib/components/Polyline' {
     import { Component } from 'react'
 
     export interface PolylineProps {
@@ -553,7 +553,7 @@ declare module 'react-google-maps/lib/components/Polyline' {
     }
 }
 
-declare module 'react-google-maps/lib/components/Rectangle' {
+declare module 'react-gmaps/lib/components/Rectangle' {
     import { Component } from 'react'
 
     export interface RectangleProps {
@@ -590,7 +590,7 @@ declare module 'react-google-maps/lib/components/Rectangle' {
     }
 }
 
-declare module 'react-google-maps/lib/components/StreetViewPanorama' {
+declare module 'react-gmaps/lib/components/StreetViewPanorama' {
     import { Component } from 'react'
 
     export interface StreetViewPanoramaProps {
@@ -635,7 +635,7 @@ declare module 'react-google-maps/lib/components/StreetViewPanorama' {
     }
 }
 
-declare module 'react-google-maps/lib/components/TrafficLayer' {
+declare module 'react-gmaps/lib/components/TrafficLayer' {
     import { Component } from 'react'
 
     export interface TrafficLayerProps {
@@ -647,7 +647,7 @@ declare module 'react-google-maps/lib/components/TrafficLayer' {
     }
 }
 
-declare module 'react-google-maps/lib/components/visualization/HeatmapLayer' {
+declare module 'react-gmaps/lib/components/visualization/HeatmapLayer' {
     import { Component } from 'react'
 
     export interface HeatmapLayerProps {

@@ -180,7 +180,7 @@ class MyFancyComponent extends React.PureComponent {
 ```
 
 
-[withGoogleMap]: https://tomchentw.github.io/react-google-maps/#withgooglemap
+[withGoogleMap]: https://hericlesme.github.io/react-gmaps/#withgooglemap
 [gmjsav3]: https://developers.google.com/maps/documentation/javascript/
-[withScriptjs]: https://tomchentw.github.io/react-google-maps/#withscriptjs
+[withScriptjs]: https://hericlesme.github.io/react-gmaps/#withscriptjs
 [recompose]: https://github.com/acdlite/recompose/blob/master/docs/API.md

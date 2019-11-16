@@ -17,9 +17,6 @@
 
 ## Development
 
-[![devDependency Status][david-dm-image]][david-dm-url]
-
-
 ```shell
 git clone ...
 npm install
@@ -102,8 +99,6 @@ Right now, only the owner (author) has the write permission on npm. But the proc
 
 
 
-[david-dm-image]: https://img.shields.io/david/dev/tomchentw/react-google-maps.svg?style=flat-square
-[david-dm-url]: https://david-dm.org/tomchentw/react-google-maps#info=devDependencies
 [standard-version]: https://github.com/conventional-changelog/standard-version
 [CHANGELOG.md]: ./CHANGELOG.md
 [commit-format]: https://github.com/conventional-changelog/standard-version#commit-message-convention-at-a-glance

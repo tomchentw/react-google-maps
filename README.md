@@ -3,6 +3,16 @@
 
 [![Version][npm-image]][npm-url] [![Travis CI][travis-image]][travis-url] [![Quality][codeclimate-image]][codeclimate-url] [![Coverage][codeclimate-coverage-image]][codeclimate-coverage-url] [![Dependencies][gemnasium-image]][gemnasium-url] [![Gitter][gitter-image]][gitter-url]
 
+**DISCLAIMER**
+
+This project has been deprecated and replaced by a new TypeScript one.
+**So this project is no longer maintained!**
+
+Please refer to the new project instead:
+
+- [`react-google-maps-api` on Github](https://github.com/JustFly1984/react-google-maps-api/tree/master/packages/react-google-maps-api)
+- [`@react-google-maps/api` on npm](https://www.npmjs.com/package/@react-google-maps/api)
+- [The new awesome documentation](https://react-google-maps-api-docs.netlify.com/)
 
 ## [Introduction](https://tomchentw.github.io/react-google-maps/#introduction)
 

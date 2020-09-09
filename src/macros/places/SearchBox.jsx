@@ -46,23 +46,15 @@ export class SearchBox extends React.PureComponent {
     [SEARCH_BOX]: null,
   }
 
-  componentWillMount() {
-    if (!canUseDOM || this.containerElement) {
-      return
-    }
-    invariant(
-      google.maps.places,
-      `Did you include "libraries=places" in the URL?`
-    )
-    this.containerElement = document.createElement(`div`)
-    this.handleRenderChildToContainerElement()
-    if (React.version.match(/^16/)) {
-      return
-    }
-    this.handleInitializeSearchBox()
-  }
-
   componentDidMount() {
+    if (canUseDOM && !this.containerElement) {
+      invariant(
+        google.maps.places,
+        `Did you include "libraries=places" in the URL?`
+      )
+      this.containerElement = document.createElement(`div`)
+      this.handleRenderChildToContainerElement()
+    }
     let searchBox = this.state[SEARCH_BOX]
     if (React.version.match(/^16/)) {
       searchBox = this.handleInitializeSearchBox()

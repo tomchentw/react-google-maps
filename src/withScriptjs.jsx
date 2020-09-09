@@ -37,15 +37,12 @@ export function withScriptjs(BaseComponent) {
       })
     }
 
-    componentWillMount() {
+    componentDidMount() {
       const { loadingElement, googleMapURL } = this.props
       invariant(
         !!loadingElement && !!googleMapURL,
         `Required props loadingElement or googleMapURL is missing. You need to provide both of them.`
       )
-    }
-
-    componentDidMount() {
       const { loadingState } = this.state
       if (loadingState !== LOADING_STATE_NONE || !canUseDOM) {
         return
@@ -56,7 +53,6 @@ export function withScriptjs(BaseComponent) {
       // Don't load scriptjs as a dependency since we do not want this module be used on server side.
       // eslint-disable-next-line global-require
       const scriptjs = require(`scriptjs`)
-      const { googleMapURL } = this.props
       scriptjs(googleMapURL, this.handleLoaded)
     }
 

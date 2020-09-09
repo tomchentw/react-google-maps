@@ -101,18 +101,12 @@ export class InfoWindow extends React.PureComponent {
     }
   }
 
-  componentWillMount() {
-    if (!canUseDOM || this.containerElement) {
-      return
-    }
-    if (React.version.match(/^16/)) {
-      this.containerElement = document.createElement(`div`)
-    }
-  }
-
   componentDidMount() {
     componentDidMount(this, this.state[INFO_WINDOW], eventMap)
     if (React.version.match(/^16/)) {
+      if (canUseDOM && !this.containerElement) {
+        this.containerElement = document.createElement(`div`)
+      }
       this.state[INFO_WINDOW].setContent(this.containerElement)
       open(this.state[INFO_WINDOW], this.context[ANCHOR])
       return

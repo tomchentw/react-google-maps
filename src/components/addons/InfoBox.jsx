@@ -95,30 +95,32 @@ export class InfoBox extends React.PureComponent {
     [INFO_BOX]: null,
   }
 
-  /*
-   * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoBox
-   */
-  componentWillMount() {
-    if (!canUseDOM || this.state[INFO_BOX]) {
-      return
-    }
-    const {
-      InfoBox: GoogleMapsInfobox,
-    } = require(/* "google-maps-infobox" uses "google" as a global variable. Since we don't
-       * have "google" on the server, we can not use it in server-side rendering.
-       * As a result, we import "google-maps-infobox" here to prevent an error on
-       * a isomorphic server.
-       */ `google-maps-infobox`)
-    const infoBox = new GoogleMapsInfobox()
-    construct(InfoBox.propTypes, updaterMap, this.props, infoBox)
-    infoBox.setMap(this.context[MAP])
-    this.setState({
-      [INFO_BOX]: infoBox,
-    })
+
+  componentDidMount() {
+
+
   }
 
   componentDidMount() {
     componentDidMount(this, this.state[INFO_BOX], eventMap)
+    /*
+    * @see https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoBox
+    */
+    if (canUseDOM && !this.state[INFO_BOX]) {
+      const {
+        InfoBox: GoogleMapsInfobox,
+      } = require(/* "google-maps-infobox" uses "google" as a global variable. Since we don't
+         * have "google" on the server, we can not use it in server-side rendering.
+         * As a result, we import "google-maps-infobox" here to prevent an error on
+         * a isomorphic server.
+         */ `google-maps-infobox`)
+      const infoBox = new GoogleMapsInfobox()
+      construct(InfoBox.propTypes, updaterMap, this.props, infoBox)
+      infoBox.setMap(this.context[MAP])
+      this.setState({
+        [INFO_BOX]: infoBox,
+      })
+    }
     const content = document.createElement(`div`)
     ReactDOM.unstable_renderSubtreeIntoContainer(
       this,

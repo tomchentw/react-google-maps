@@ -279,6 +279,9 @@ declare module 'react-google-maps/lib/components/GroundOverlay' {
     import { Component } from 'react'
 
     export interface GroundOverlayProps {
+
+        opacity:google.maps.GroundOverlay.opacity
+        onClick?(e: google.maps.MouseEvent): void
         bounds: google.maps.LatLngBounds | google.maps.LatLngBoundsLiteral
         url: string
         options?: google.maps.GroundOverlayOptions

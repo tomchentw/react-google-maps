@@ -6,9 +6,10 @@ import { getDisplayName } from "recompose"
 import PropTypes from "prop-types"
 import React from "react"
 import { MAP } from "./constants"
+import { createFactory } from "./utils/CreateReactFactoryHelper"
 
 export function withGoogleMap(BaseComponent) {
-  const factory = React.createFactory(BaseComponent)
+  const factory = createFactory(BaseComponent)
 
   class Container extends React.PureComponent {
     static displayName = `withGoogleMap(${getDisplayName(BaseComponent)})`

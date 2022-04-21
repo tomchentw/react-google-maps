@@ -4,13 +4,14 @@ import canUseDOM from "can-use-dom"
 import { getDisplayName } from "recompose"
 import PropTypes from "prop-types"
 import React from "react"
+import { createFactory } from "./utils/CreateReactFactoryHelper"
 
 const LOADING_STATE_NONE = `NONE`
 const LOADING_STATE_BEGIN = `BEGIN`
 const LOADING_STATE_LOADED = `LOADED`
 
 export function withScriptjs(BaseComponent) {
-  const factory = React.createFactory(BaseComponent)
+  const factory = createFactory(BaseComponent)
 
   class Container extends React.PureComponent {
     static displayName = `withScriptjs(${getDisplayName(BaseComponent)})`

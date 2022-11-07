@@ -219,7 +219,8 @@ declare module 'react-google-maps/lib/components/GoogleMap' {
     import { Component } from 'react'
 
     export interface GoogleMapProps {
-        defaultCenter?: google.maps.LatLng | google.maps.LatLngLiteral
+        children?:ReactNode
+	defaultCenter?: google.maps.LatLng | google.maps.LatLngLiteral
         defaultClickableIcons?: boolean
         defaultHeading?: number
         defaultMapTypeId?: google.maps.MapTypeId | string
@@ -295,7 +296,8 @@ declare module 'react-google-maps/lib/components/InfoWindow' {
     import { Component } from 'react'
 
     export interface InfoWindowProps {
-        defaultOptions?: google.maps.InfoWindowOptions
+        children?:ReactNode
+	defaultOptions?: google.maps.InfoWindowOptions
         defaultPosition?: google.maps.LatLng | google.maps.LatLngLiteral
         defaultZIndex?: number
         options?: google.maps.InfoWindowOptions
@@ -344,7 +346,8 @@ declare module 'react-google-maps/lib/components/Marker' {
     import { Component } from 'react'
 
     export interface MarkerProps {
-        defaultAnimation?: google.maps.Animation
+        children?:ReactNode
+	defaultAnimation?: google.maps.Animation
         defaultClickable?: boolean
         defaultCursor?: string
         defaultDraggable?: boolean
